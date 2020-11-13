@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>hexo on 1o</title><link>https://567899.xyz/tags/hexo/</link><description>Recent content in hexo on 1o</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Wed, 11 Apr 2018 01:37:56 +0800</lastBuildDate><atom:link href="https://567899.xyz/tags/hexo/index.xml" rel="self" type="application/rss+xml"/><item><title>hexo备份更换设备后同步编辑</title><link>https://567899.xyz/post/hexo-backup-synchronize-edit/</link><pubDate>Wed, 11 Apr 2018 01:37:56 +0800</pubDate><guid>https://567899.xyz/post/hexo-backup-synchronize-edit/</guid><description>备份hexo原始配置文件 压缩打包备份原始的hexo配置文件scaffolds, source, themes 和 _config.yml 在新电脑上重新布署安装一次hexo cd /d npm install hexo-cli -g hexo init blog cd</description></item><item><title>hexo同步布署在github-coding并实现国内外自动分流</title><link>https://567899.xyz/post/hexo-github-coding-sync-diversion/</link><pubDate>Thu, 29 Mar 2018 01:37:56 +0800</pubDate><guid>https://567899.xyz/post/hexo-github-coding-sync-diversion/</guid><description>&lt;p>建议单独托管在github上，因为国内大环境背景下，你懂的啦！&lt;/p>
+&lt;p>&lt;img src="https://567899.xyz/images/coding-domain-Filing.png" alt="">&lt;/p>
+&lt;h3 id="域名解析">域名解析&lt;/h3>
+&lt;p>登陆&lt;a href="https://www.dnspod.cn" target="_blank">DNSPOD控制台&lt;/a> 在域名添加2条记录值&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>记录类型&lt;/th>
+&lt;th>线路类型&lt;/th>
+&lt;th>记录值&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>CNAME&lt;/td>
+&lt;td>国外&lt;/td>
+&lt;td>username.github.io&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>CNAME&lt;/td>
+&lt;td>国内&lt;/td>
+&lt;td>username.coding.me&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table></description></item><item><title>简要安装hexo和next主题</title><link>https://567899.xyz/post/hexo-next-install/</link><pubDate>Sat, 18 Feb 2017 01:37:56 +0800</pubDate><guid>https://567899.xyz/post/hexo-next-install/</guid><description>&lt;p>以下以Windows平台为例&lt;/p>
+&lt;h3 id="下载安装node和git">下载安装Node和git&lt;/h3>
+&lt;p>&lt;a href="https://git-scm.com/downloads" target="_blank">Git - Downloads&lt;/a> 和 &lt;a href="https://nodejs.org/zh-cn/download/" target="_blank">下载 | Node.js&lt;/a>&lt;/p>
+&lt;h3 id="安装hexo">安装hexo&lt;/h3>
+&lt;p>打开Git Bash依次执行&lt;/p>
+&lt;pre>&lt;code class="language-bash">npm install hexo-cli -g
+cd /d #这里以D盘为例
+hexo init blog
+cd blog #/d/blog为hexo的根目录
+npm install
+hexo server
+&lt;/code>&lt;/pre>
+&lt;p>应该就能在浏览器中打开(http://localhost:4000) 看到效果了。&lt;/p></description></item></channel></rss>

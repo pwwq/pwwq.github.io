@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>甲骨文Oracle通过API或Chrome脚本获得免费VPS - 1o</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="1o" /><meta name="description" content="甲骨文Oracle通过API或Chrome脚本获得2台免费VPS及DD成win7或debian 收获Oracle云资源 2 个 Autonomous Database （自主数据仓库或" />
+
+
+<meta name="baidu-site-verification" content="zW0oque8IK" />
+<meta name="google-site-verification" content="HAIwoMdm1A6XQ6Fp6KwAO7gpL5UKk5TOzvs9DuacYFI" />
+
+
+<meta name="generator" content="Hugo 0.69.2 with theme even" />
+
+
+<link rel="canonical" href="https://567899.xyz/post/oracle/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link href="/sass/main.min.2bac9f1300a8a18219cc84fc2401646cd7e17b7d565c50ac353b993e321e29ec.css" rel="stylesheet">
+
+
+
+<meta property="og:title" content="甲骨文Oracle通过API或Chrome脚本获得免费VPS" />
+<meta property="og:description" content="甲骨文Oracle通过API或Chrome脚本获得2台免费VPS及DD成win7或debian 收获Oracle云资源 2 个 Autonomous Database （自主数据仓库或" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://567899.xyz/post/oracle/" />
+<meta property="article:published_time" content="2019-10-10T01:37:56+08:00" />
+<meta property="article:modified_time" content="2020-09-09T05:02:24+00:00" />
+<meta itemprop="name" content="甲骨文Oracle通过API或Chrome脚本获得免费VPS">
+<meta itemprop="description" content="甲骨文Oracle通过API或Chrome脚本获得2台免费VPS及DD成win7或debian 收获Oracle云资源 2 个 Autonomous Database （自主数据仓库或">
+<meta itemprop="datePublished" content="2019-10-10T01:37:56&#43;08:00" />
+<meta itemprop="dateModified" content="2020-09-09T05:02:24&#43;00:00" />
+<meta itemprop="wordCount" content="1972">
+
+
+
+<meta itemprop="keywords" content="Oracle," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="甲骨文Oracle通过API或Chrome脚本获得免费VPS"/>
+<meta name="twitter:description" content="甲骨文Oracle通过API或Chrome脚本获得2台免费VPS及DD成win7或debian 收获Oracle云资源 2 个 Autonomous Database （自主数据仓库或"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">1o</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/links/">
+        <li class="mobile-menu-item">链接</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">关于</li>
+      </a><a href="/search/">
+        <li class="mobile-menu-item">搜索</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">1o</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/links/">链接</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">关于</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/search/">搜索</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">甲骨文Oracle通过API或Chrome脚本获得免费VPS</h1>
+
+      <div class="post-meta">
+        <span class="post-time" title="2019-10-10 01:37:56 &#43;0800 &#43;0800"> 2019-10-10 </span>
+        <div class="post-category">
+            <a href="/categories/free/"> free </a>
+            </div>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    
+
+    <div class="post-content">
+      <p>甲骨文Oracle通过API或Chrome脚本获得2台免费VPS及DD成win7或debian</p>
+<p>收获Oracle云资源</p>
+<pre><code class="language-bash">2 个 Autonomous Database （自主数据仓库或自主事务处理），每个 Autonomous Database 都有 1 个 OCPU 和 20 GB 存储资源；
+2 个 Compute VM，每个 Compute VM 有 1⁄8 OCPU 和 1 GB 内存；
+2 个 Block Volumes，总共 100 GB，最多 5 个免费备份；
+10 GB Object Storage、10 GB Archive Storage 和每月 50000 个 API 请求；
+1 个 Load Balancer，10 Mbps 带宽；
+每月 10 TB 的出站数据传输；
+5 亿个摄取数据点和 10 亿个服务监测数据点；
+每月传递 100 万个通知的选项和每月 1000 封电子邮件。
+</code></pre>
+<p>进入 oracle官网 的 <a href="https://www.oracle.com/cn/cloud/free/" target="_blank">活动页面</a> 注册oracle cloud账号</p>
+<p><strong>创建免费计算实例</strong></p>
+<p>可以手动创建，也可以使用API或者浏览器脚本刷鸡。</p>
+<blockquote>
+<p>通过oracle API方式刷鸡</p>
+</blockquote>
+<p>依次打开【计算】【实例】【创建实例】</p>
+<p><img src="/images/oracle_new_vm.png" alt=""></p>
+<p>得到如下信息</p>
+<pre><code class="language-bash">{compartmentId: &quot;ocid1.tenancy.oc1..aaaaaaaaoodmmnnegqztqezosewgzbk47yaryminfacexjd4jb2ec6ninuca&quot;,бн}
+agentConfig: {isMonitoringDisabled: false, isManagementDisabled: false}
+isManagementDisabled: false
+isMonitoringDisabled: false
+availabilityDomain: &quot;llRm:AP-SEOUL-1-AD-1&quot;
+compartmentId: &quot;ocid1.tenancy.oc1..aaaaaaaaoodmmnnegqztqezosewgzbk47yaryminfacexjd4jb2ec6ninuca&quot;
+createVnicDetails: {,бн}
+assignPublicIp: false
+subnetId: &quot;ocid1.subnet.oc1.ap-seoul-1.aaaaaaaaoxhcsdpm6ugk7fq7gcr24iksb62pddjx3sql5voeplnupji4uwlq&quot;
+definedTags: {}
+displayName: &quot;instance-20191012-1827&quot;
+freeformTags: {}
+metadata: {,бн}
+ssh_authorized_keys: &quot;ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAuI793fGfvkqUAq3uyEHhB11TOum+eWajfe8fqooaZ/o5mg4fDBSxL+QGRX88EAf1K/FOgdfhIlfHIyrQ66m/6MBKbAbnIZlPKTYBKA3Q48W23drUOEKJ6yHPLpjD7QQ3Z1RDLRSlGfkfhHqdoYZ4VaV67T23GsQG7h1bDL+AO4Z96iMXp6qT7f/wzrmbUWBHT/ifFKH784Idy7sFlOAZfI2Q8DvHdUysZSNsT0FOyzmhvbBlCf0enDrpIvmTzEdwzKECuygV6+5omhBwVAUGuqX6kV/nyglVHJqsy1JtEtoISrN2G0dgRODO6OxlsBm+rcEuUpXp1IYBuDI57d9n/Q==&quot;
+shape: &quot;VM.Standard.E2.1.Micro&quot;
+sourceDetails: {sourceType: &quot;image&quot;,бн}
+imageId: &quot;ocid1.image.oc1.ap-seoul-1.aaaaaaaa2j27ep22b6vp4gfjwccbem7hm4rhbe2ay3ctqiex3ftbeseaj55q&quot;
+sourceType: &quot;image&quot;
+</code></pre>
+<p>找到如下信息并记录</p>
+<pre><code class="language-bash">availabilityDomain #跟地区相关，我是韩国
+compartmentId # 账号相关
+subnetId #子网络
+shape #服务器类型，永久免费为VM.Standard.E2.1.Micro，可以不变
+ssh_authorized_keys #这个是服务器的公钥文件
+imageId #这是系统类型
+</code></pre>
+<p>获取User OCID</p>
+<p><img src="/images/User_Information_ocid.png" alt=""></p>
+<p>记下User_ocid后面要用</p>
+<p>获取Tenancy OCID</p>
+<p><img src="/images/Tenancy_OCID.png" alt=""></p>
+<p>记下Tenancy_OCID后面要用</p>
+<p><strong>下载安装oci命令行管理工具</strong></p>
+<pre><code class="language-bash">bash -c &quot;$(curl –L https://raw.githubusercontent.com/oracle/oci-cli/master/scripts/install/install.sh)&quot;
+</code></pre>
+<p>一路回车就好了，结束使用下面命令查看安装是否成功</p>
+<pre><code class="language-bash">oci -v
+</code></pre>
+<p>配置cli账号信息，添加api key</p>
+<pre><code class="language-bash">oci setup config
+</code></pre>
+<p><img src="/images/oracle_oci_config.webp" alt=""></p>
+<p>接下来需要把公共秘钥传到控制台，回到浏览器，同样进入用户界面查看</p>
+<p><img src="/images/oracle_add_apikey.webp" alt=""></p>
+<p>添加好后就可以来看看oci命令行工具行不行了。</p>
+<pre><code class="language-bash">oci iam availability-domain list
+</code></pre>
+<p><img src="/images/oracle_oci_list.webp" alt=""></p>
+<p>查看配置文件是否正确</p>
+<p><img src="/images/oracle_oci_config_succe.webp" alt=""></p>
+<p>如果没有报错说明配置成功。</p>
+<p>使用cli命令自动化脚建立服务器</p>
+<p>前面已经配置好了cli，这里就可以使用命令来尝试建立云计算服务器了。</p>
+<pre><code class="language-bash">oci compute instance launch --availability-domain JCbl:AP-SEOUL-1-AD-1 --display-name seoul1 --image-id ocid1.image.oc1.ap-seoul-1.aaaaaaaa4e3nhzytej7iwr4qh6aov3d5yxswfek7wzjyd2tpaqtlwt3kmqta --subnet-id ocid1.subnet.oc1.ap-seoul-1.aaaaaaaa...  --shape VM.Standard.E2.1.Micro --assign-public-ip true --metadata '{&quot;ssh_authorized_keys&quot;: &quot;ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC+Sk1M9GX6AOoI1RtK33zaltsuSIGofdtI0sT9YqULEP0zSvrHPh8TEWY7XQdz1TbWcXLG7V0YNZgzUMEr6khI4zRygCU8N5OYX/M3VH36FddD0Jr6HiEkHTECVYdxxvJ7Lq8iCe5VP9IfomphjWTVZfml+jX0deR6gHY3MVblEnwLdhxT61aLOUe8Q1P3m6SWjukpSl9Wk/rf96YQIyw23+lWILWw9TkEhJOXwwV89nvlM11jN4fjh1yl1ax+yRl4BsMfRUrfT8CZ+OhR8qZILKPhsY8ehOZs8TbbWU8G55y/PJS8WjhhP3I0BpETazMZWuY41 zhang&quot;}' --compartment-id ocid1.tenancy.oc1...
+</code></pre>
+<p>这里几个参数多是前面用小本本记录下来的信息</p>
+<pre><code class="language-bash">availability-domain #有记录
+display-name #云服务器名称，随意,最好不要加这个参数，不然只能创建一个，第二个时名字一样了
+image-id # 前面有记录，我这是centos7的
+subnet-id #前面有记录
+shape #永久免费就是这一款VM.Standard.E2.1.Micro
+assign-public-ip true #是否需要公网ip，当然是true
+metadata #这里就是添加了一个免登录秘钥，改成你自己的就行
+compartment-id #前面有记录
+</code></pre>
+<p>运行命令，如果一会儿有输出的话那么就没问题了，接下来就可以定时执行命令创建云服务器了。</p>
+<p><img src="/images/oracle_auto_500.webp" alt=""></p>
+<p>使用crontab定时执行，第二天再来查看是否创建成功就可以了。 首先把命令写成oci.sh的bash脚本</p>
+<pre><code class="language-bash">export NVM_DIR=&quot;$HOME/.nvm&quot;
+[ -s &quot;$NVM_DIR/nvm.sh&quot; ] &amp;&amp; \. &quot;$NVM_DIR/nvm.sh&quot;  # This loads nvm
+[ -s &quot;$NVM_DIR/bash_completion&quot; ] &amp;&amp; \. &quot;$NVM_DIR/bash_completion&quot;  # This loads nvm bash_completion
+alias ic=&quot;ibmcloud&quot;
+
+export PATH=/home/name/bin:$PATH
+
+[[ -e &quot;/home/name/lib/oracle-cli/lib/python2.7/site-packages/oci_cli/bin/oci_autocomplete.sh&quot; ]] &amp;&amp; source &quot;/home/name/lib/oracle-cli/lib/python2.7/site-packages/oci_cli/bin/oci_autocomplete.sh&quot;
+
+oci compute instance launch --availability-domain JCbl:AP-SEOUL-1-AD-1  --image-id ocid1.image.oc1.ap-seoul-1.aaaaaaaa4e3nhzytej7iwr4qh6aov3d5yxswfek7wzjyd2tpaqtlwt3kmqta --subnet-id ocid1.subnet.oc1.ap-seoul-1.aaaaaaaa...  --shape VM.Standard.E2.1.Micro --assign-public-ip true --metadata '{&quot;ssh_authorized_keys&quot;: &quot;ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC+Sk1M9GX6AOoI1RtK33zaltsuSIGofdtI0sT9YqULEP0zSvrHPh8TEWY7XQdz1TbWcXLG7V0YNZgzUMEr6khI4zRygCU8N5OYX/M3VH36FddD0Jr6HiEkHTECVYdxxvJ7Lq8iCe5VP9IfomphjWTVZfml+jX0deR6gHY3MVblEnwLdhxT61aLOUe8Q1P3m6SWjukpSl9Wk/rf96YQIyw23+lWILWw9TkEhJOXwwV89nvlM11jN4fjh1yl1ax+yRl4BsMfRUrfT8CZ+OhR8qZILKPhsY8ehOZs8TbbWU8G55y/PJS8WjhhP3I0BpETazMZWuY41 zhang&quot;}' --compartment-id ocid1.tenancy.oc1...
+</code></pre>
+<p>添加计划任务</p>
+<pre><code class="language-bash">crontab -e
+</code></pre>
+<p>内容如下</p>
+<pre><code class="language-bash">*/2 * * * *  /bin/bash /home/name/oci.sh
+</code></pre>
+<p>根据需要更改，我这里是没两分钟执行一次。，让他自动刷可用的机器</p>
+<p>转载自https://www.bobobk.com/612.html</p>
+<blockquote>
+<p>通过Google Chrome脚本方式刷鸡</p>
+</blockquote>
+<p>F12贴到Console然后回车</p>
+<pre><code class="language-bash">var i = 1;
+
+function myLoop () {
+   setTimeout(function () {
+      document.getElementsByClassName('oui-button oui-button-primary')[0].click();
+      i++;
+      if (i &lt; 3600) {
+         myLoop();
+      }
+   }, 10000)
+}
+
+myLoop();
+</code></pre>
+<p>转载自https://www.hostloc.com/thread-586893-1-1.html</p>
+<blockquote>
+<p>oracle 一键dd win7精简版</p>
+</blockquote>
+<pre><code class="language-bash">wget --no-check-certificate -qO InstallNET.sh 'https://moeclub.org/attachment/LinuxShell/InstallNET.sh' &amp;&amp; bash InstallNET.sh -dd 'https://file.zrj766.com/Oracle-Win/win7-oracle.img.gz'
+</code></pre>
+<p>20分钟后直接3389 [记得oracle面板开防火墙3389端口]</p>
+<pre><code class="language-bash">账号：Administrator
+密码：mjjmjj
+</code></pre>
+<p>安装系统后，系统C盘仅占用3.3G左右，内存占用400m左右</p>
+<p>DD包系统C盘，默认5G储存大小，若需要扩容或分区。</p>
+<p>使用快捷键 Win + R 打开运行窗口，输入 compmgmt.msc 按回车键。磁盘管理内进行扩容/分区。</p>
+<p>由于精简了sxs 后续无法安装更新，望知悉</p>
+<p>关于激活cmd管理员权限。</p>
+<p>然后依次输入</p>
+<pre><code class="language-bash">slmgr.vbs -upk
+slmgr.vbs -ipk RHTBY-VWY6D-QJRJ9-JGQ3X-Q2289
+slmgr.vbs -skms kms.cangshui.net
+slmgr.vbs -ato
+slmgr.vbs -dlv
+</code></pre>
+<p>转载自https://www.hostloc.com/thread-593715-1-1.html</p>
+<blockquote>
+<p>oracle 一键dd debian</p>
+</blockquote>
+<p>原系统请选择 ubuntu16</p>
+<pre><code class="language-bash">bash &lt;(wget --no-check-certificate -qO- 'https://moeclub.org/attachment/LinuxShell/InstallNET.sh') -d 9 -v 64 -a -firmware
+</code></pre>
+<p>默认root密码是MoeClub.org</p>
+<p>如果是ubuntu18.04需要额外执行以下2个命令</p>
+<p>命令1</p>
+<pre><code class="language-bash">mkdir /etc/network/interfaces.d
+</code></pre>
+<p>命令2</p>
+<pre><code class="language-bash">echo &quot;# This file describes the network interfaces available on your system
+# and how to activate them. For more information, see interfaces(5).
+
+source /etc/network/interfaces.d/*
+
+# The loopback network interface
+auto lo
+iface lo inet loopback
+
+# The primary network interface
+allow-hotplug ens3
+iface ens3 inet dhcp
+
+&quot; &gt; /etc/network/interfaces
+</code></pre>
+<p>转载自https://www.hostloc.com/thread-587961-1-1.html</p>
+<p>抢救Oracle免费机器</p>
+<pre><code class="language-bash">dd if=/dev/sda of=/dev/sdb
+</code></pre>
+<p>停止实倒，分离磁盘后附加到另一台免费鸡上全盘克隆救活。</p>
+<p>使用<code>fdisk -l</code>可以看到附加上去的磁盘分区<code>/dev/sdb</code>等待完成，直到出现如下提示</p>
+<pre><code class="language-bash">97677312+0 records in
+97677312+0 records out
+50010783744 bytes (50 GB, 47 GiB) copied, 8486.97 s, 5.9MB/s
+</code></pre>
+<p>钻石盘I/O低，可能要等待1小时左右</p>
+<p>就可以分离,附加引导卷,开机了</p>
+
+    </div>
+
+    
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/oracle/">Oracle</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/windows10-ltsc-2019-linux/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Windows10 LTSC 2019 安装和卸载 linux 子系统</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/russia-pronhub-vkontakte-adblock-via/">
+            <span class="next-text nav-default">俄罗斯IP上P站添加规则跳过VK免登陆验证安卓Via浏览器AdBlock</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+  <div class="comments">
+    <div class="loading post">
+      <img src="/img/spinner.svg">
+      <p class="post-content">
+        评论正在加载中...如果评论较长时间无法加载，你可以
+        <a href='https://github.com/ouuan/blog-comments/issues?q=is%3Aissue+is%3Aopen+"%e7%94%b2%e9%aa%a8%e6%96%87Oracle%e9%80%9a%e8%bf%87API%e6%88%96Chrome%e8%84%9a%e6%9c%ac%e8%8e%b7%e5%be%97%e5%85%8d%e8%b4%b9VPS - 1o"' target="_blank">搜索对应的 issue</a>
+        或者
+        <a href="https://github.com/ouuan/blog-comments/issues/new?title=%e7%94%b2%e9%aa%a8%e6%96%87Oracle%e9%80%9a%e8%bf%87API%e6%88%96Chrome%e8%84%9a%e6%9c%ac%e8%8e%b7%e5%be%97%e5%85%8d%e8%b4%b9VPS - 1o" target="_blank">新建一个 issue</a>
+        。
+      </p>
+    </div>
+    <script src="https://utteranc.es/client.js"
+            repo="pwwq/blog-comments"
+            issue-term="title"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    <noscript>请启用 JavaScript 来查看评论。</a></noscript>
+  </div>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:admin@567899.xyz" class="iconfont icon-email" title="email" target="_blank"></a>
+      <a href="https://github.com/pwwq" class="iconfont icon-github" title="github" target="_blank"></a>
+      <a href="https://space.bilibili.com/11067182" class="iconfont icon-bilibili" title="bilibili" target="_blank"></a>
+      <a href="https://t.me/id009" class="iconfont icon-telegram" title="telegram" target="_blank"></a>
+  <a href="https://567899.xyz/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io" target="_blank">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even" target="_blank">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2013 - 
+    2020
+    <span class="heart">
+      <a class="iconfont icon-github" title="source code" href="https://github.com/pwwq/hugo-blog" target="_blank"></a>
+    </span> 
+    <span class="author">1o</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <link href="https://cdn.bootcss.com/highlight.js/9.15.10/styles/tomorrow.min.css" rel="stylesheet">
+  <script>hljs.configure({tabReplace: '    '});</script><script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+  
+
+
+
+<script type="text/javascript" src="/js/main.min.6821b76b4e5300f807f477f7f6e0e8772a852e6af6d99f47104e1b9632e47aba.js"></script>
+  <script type="text/javascript">
+    window.MathJax = {
+      tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+      showProcessingMessages: false,
+      messageStyle: 'none'
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"  integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-157787819-1', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+</body>
+</html>

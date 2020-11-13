@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>AutoRclone使用教程 - 1o</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="1o" /><meta name="description" content="怎么快速拷贝1000T资源到我的Google Drive？ 必须是Rclone/AutoRclone啊！一直不想写关于AutoRclone的（中" />
+
+
+<meta name="baidu-site-verification" content="zW0oque8IK" />
+<meta name="google-site-verification" content="HAIwoMdm1A6XQ6Fp6KwAO7gpL5UKk5TOzvs9DuacYFI" />
+
+
+<meta name="generator" content="Hugo 0.69.2 with theme even" />
+
+
+<link rel="canonical" href="https://567899.xyz/post/autorclone/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link href="/sass/main.min.2bac9f1300a8a18219cc84fc2401646cd7e17b7d565c50ac353b993e321e29ec.css" rel="stylesheet">
+
+
+
+<meta property="og:title" content="AutoRclone使用教程" />
+<meta property="og:description" content="怎么快速拷贝1000T资源到我的Google Drive？ 必须是Rclone/AutoRclone啊！一直不想写关于AutoRclone的（中" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://567899.xyz/post/autorclone/" />
+<meta property="article:published_time" content="2020-02-10T01:37:56+08:00" />
+<meta property="article:modified_time" content="2020-09-09T14:22:48+00:00" />
+<meta itemprop="name" content="AutoRclone使用教程">
+<meta itemprop="description" content="怎么快速拷贝1000T资源到我的Google Drive？ 必须是Rclone/AutoRclone啊！一直不想写关于AutoRclone的（中">
+<meta itemprop="datePublished" content="2020-02-10T01:37:56&#43;08:00" />
+<meta itemprop="dateModified" content="2020-09-09T14:22:48&#43;00:00" />
+<meta itemprop="wordCount" content="2881">
+
+
+
+<meta itemprop="keywords" content="GoogleDrive,AutoRclone," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="AutoRclone使用教程"/>
+<meta name="twitter:description" content="怎么快速拷贝1000T资源到我的Google Drive？ 必须是Rclone/AutoRclone啊！一直不想写关于AutoRclone的（中"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">1o</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/links/">
+        <li class="mobile-menu-item">链接</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">关于</li>
+      </a><a href="/search/">
+        <li class="mobile-menu-item">搜索</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">1o</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/links/">链接</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">关于</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/search/">搜索</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">AutoRclone使用教程</h1>
+
+      <div class="post-meta">
+        <span class="post-time" title="2020-02-10 01:37:56 &#43;0800 &#43;0800"> 2020-02-10 </span>
+        <div class="post-category">
+            <a href="/categories/%E6%95%99%E7%A8%8B/"> 教程 </a>
+            </div>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#步骤-1-下载代码">步骤 1 下载代码</a></li>
+            <li><a href="#步骤-2-生成service-accounts">步骤 2 生成service accounts</a></li>
+            <li><a href="#步骤-3-可选将service-accounts加入google-groups">步骤 3 可选：将service accounts加入Google Groups</a></li>
+            <li><a href="#步骤-4-将service-accounts或者google-groups加入到team-drive">步骤 4 将service accounts或者Google Groups加入到Team Drive</a></li>
+            <li><a href="#步骤-5-开始拷贝上传">步骤 5 开始拷贝/上传</a></li>
+            <li><a href="#一些-q--a">一些 Q &amp; A</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>怎么快速拷贝1000T资源到我的Google Drive？</p>
+<p>必须是Rclone/AutoRclone啊！一直不想写关于AutoRclone的（中文）教程，因为其一直处于测试阶段，如果后面代码有大的更新那么前面的教程对于后面的人来说就是一个误导。但是现在应该不会有大的更新了，而且这么长时间的测试发现如果没有一个详细的教程的话，会让很多不会程序的小白错过这么好的工具 :)</p>
+<p>AutoRclone是一个用Python写的小程序的集合，其</p>
+<ul>
+<li>学习了folderclone利用service accounts来替代普通Google账号进行拷贝/上传；</li>
+<li>通过rclone rc来做到对Rclone任务的监、控；</li>
+<li>还可以用Google Groups的形式对成百上千的service accounts进行管理。</li>
+</ul>
+<p>从而方便快速地</p>
+<ul>
+<li>从本地到 Team Drive，</li>
+<li>从公共分享目录到 Team Drive，</li>
+<li>再或者从 Team Drive 到 Team Drive。</li>
+</ul>
+<p>其食用方法极其简单！</p>
+<h3 id="步骤-1-下载代码">步骤 1 下载代码</h3>
+<p>首先不管你是哪个操作系统，需要安装Python。对于Linux和Windows分别用以下方式安装相关脚本</p>
+<p><strong>Linux:</strong> 安装screen，git和最新的Rclone。如果是Debian/Ubuntu，直接输入以下命令</p>
+<pre><code class="language-bash">sudo apt-get update
+sudo apt-get install -y python3-pip screen git curl
+curl https://rclone.org/install.sh | sudo bash
+</code></pre>
+<p><strong>CentOS</strong>把<code>apt-get</code>替换成<code>yum</code></p>
+<p>然后从Github下载代码并安装相关Python依赖包</p>
+<pre><code class="language-bash">sudo git clone https://github.com/xyou365/AutoRclone &amp;&amp; cd AutoRclone &amp;&amp; sudo pip3 install -r requirements.txt
+</code></pre>
+<p><strong>Windows:</strong> 安装最新的<a href="https://rclone.org/downloads/" target="_blank">Rclone</a>，直接从Github下载<a href="https://github.com/xyou365/AutoRclone" target="_blank">AutoRclone</a>后在Windows的cmd或PowerShell中切换到AutoRclone的目录，输入以下命令安装相关Python依赖包</p>
+<pre><code class="language-bash">pip3 install -r requirements.txt
+</code></pre>
+<ul>
+<li>以上步骤如果输入python3没有反应，请输入python或者py3</li>
+<li>以下所有步骤由于需要用到谷歌服务，请确保cmd或者vps能够翻墙</li>
+</ul>
+<h3 id="步骤-2-生成service-accounts">步骤 2 生成service accounts</h3>
+<p>首先开启Drive API<a href="https://developers.google.com/drive/api/v3/quickstart/python" target="_blank">Enable the Drive API</a>并将<code>credentials.json</code>保存到你的AutoRclone目录下面</p>
+<p>开启Drive API然后分三种情况</p>
+<p>如果你之前没创建过项目, 直接运行</p>
+<pre><code class="language-bash">python3 gen_sa_accounts.py --quick-setup 5
+</code></pre>
+<ol>
+<li>创建6个项目（项目0到项目5）</li>
+<li>按提示打开url链接、登陆、授权允许信任<code>Quickstart</code>启用<code>Service Usage API</code></li>
+<li>创建600个service accounts（6个项目，每个项目100个）</li>
+<li>将600个service accounts的授权文件下载到accounts文件夹下面</li>
+</ol>
+<p>查看<code>quickstart</code>这个项目，可以看到里面只有一个 OAuth 授权，下载这个授权文件，放到AutoRclone目录下。</p>
+<p><img src="/images/quickstart-OAuth-ID-4RTTHTRH5.png" alt=""></p>
+<p>如果你已经有N个项目，现需要创建新的项目并在新的项目中创建<code>service accounts</code>直接运行</p>
+<pre><code class="language-bash">python3 gen_sa_accounts.py --quick-setup 2 --new-only
+</code></pre>
+<ol>
+<li>额外创建2个项目（项目N+1到项目N+2）</li>
+<li>开启相关的服务</li>
+<li>创建200个service accounts（2个项目，每个项目100个）</li>
+<li>将200个service accounts的授权文件下载到accounts文件夹下面</li>
+</ol>
+<p>如果你想用已有的项目来创建service accounts（不创建新的项目），直接运行</p>
+<pre><code class="language-bash">python3 gen_sa_accounts.py --quick-setup -1
+</code></pre>
+<p>注意这会覆盖掉已有的service accounts</p>
+<p>顺利完成后，AutoRclone文件下面的accounts文件夹下会有很多的json文件。</p>
+<h3 id="步骤-3-可选将service-accounts加入google-groups">步骤 3 可选：将service accounts加入Google Groups</h3>
+<p>为了方便管理service accounts，也是为了让我们的Team Drive可以容纳更多的service accounts，我们这里用到了Google Groups。</p>
+<blockquote>
+<p><a href="https://support.google.com/a/answer/7338880?hl=en" target="_blank">Official limits to the members of Team Drive</a> (Limit for individuals and groups directly added as members is 600).</p>
+</blockquote>
+<p>对于G Suite管理员</p>
+<ol>
+<li>按照<a href="https://developers.google.com/admin-sdk/directory/v1/quickstart/python" target="_blank">官方步骤</a>开启Directory API，将生成的json文件保存到credentials文件下。</li>
+<li>在<a href="https://support.google.com/a/answer/33343?hl=en" target="_blank">控制面版</a>里面创建一个群组，创建好你会获得一个类似域名邮箱的地址sa@yourdomain.com</li>
+<li>利用API将service accounts加入Google Groups</li>
+</ol>
+<pre><code class="language-bash">python3 add_to_google_group.py -g sa@yourdomain.com
+</code></pre>
+<p>如果想看参数的具体含义，直接运行<code>python3 add_to_google_group.py -h</code></p>
+<p>对于普通Google账号</p>
+<p>直接创建一个<a href="https://groups.google.com/" target="_blank">Google Group</a>然后手动地将service accounts对应的邮箱地址（可以在json认证文件中找到）挨个加进去。但每次只能加10个，每24小时只能加100个。</p>
+<h3 id="步骤-4-将service-accounts或者google-groups加入到team-drive">步骤 4 将service accounts或者Google Groups加入到Team Drive</h3>
+<ul>
+<li>如果你没有Team Drive，那可以找朋友帮你开一个或者去买一个，实在不嫌弃也可以留言找博主开一个</li>
+<li>如果你已经在完成了步骤2中的用Google Groups来管理service accounts，那么直接将Google Groups地址sa@yourdomain.com或者sb@googlegroups.com加入你的源Team Drive（tdsrc）和目标Team Drive（tddst）</li>
+<li>如果你在步骤2中没有生成并保存credentials.json那么再做一遍</li>
+</ul>
+<p>将service accounts加入到源Team Drive</p>
+<pre><code class="language-bash">python3 add_to_team_drive.py -d SharedTeamDriveSrcID
+</code></pre>
+<p>将service accounts加入到目标Team Drive</p>
+<pre><code class="language-bash">python3 add_to_team_drive.py -d SharedTeamDriveDstID
+</code></pre>
+<h3 id="步骤-5-开始拷贝上传">步骤 5 开始拷贝/上传</h3>
+<p>准备工作都做好了，以后你只需要将项目文件夹拷贝到任何地方，进行此拷贝/上传步骤就可以啦</p>
+<p>拷贝</p>
+<pre><code class="language-bash">python3 rclone_sa_magic.py -s SourceID -d DestinationID -dp DestinationPathName -b 1 -e 600
+</code></pre>
+<ol>
+<li><code>-s</code>后跟源文件文件夹id</li>
+<li><code>-d</code>后跟团队盘id</li>
+<li><code>-dp</code>后跟保存的目标文件夹路径</li>
+<li><code>-b</code>后跟开始账号序号</li>
+<li><code>-e</code>后跟结束账号序号,<strong>少于或等于已经添加到团队盘成员的个数数值</strong></li>
+</ol>
+<p>其它</p>
+<ol>
+<li>如果想看参数的具体含义，直接运行<code>python3 rclone_sa_magic.py -h</code></li>
+<li>特别地，如果想多开，请用<code>-p</code>参数给不同的复制任务指定不同的端口</li>
+<li>如果发现拷贝内容明显少于源Team Drive里面的内容，那么你可能碰到<a href="https://forum.rclone.org/t/rclone-cannot-see-all-files-folder-in-public-shared-folder/12351" target="_blank">Bug</a>了，请给上运行参数再加上<code>--disable_list_r</code></li>
+<li>如果你一开始就碰到了</li>
+</ol>
+<pre><code class="language-bash">Failed to rc: connection failed: Post http://localhost:5572/core/stats: dial tcp :5572: connectex: No connection could be made because the target machine actively refused it.
+</code></pre>
+<p>那么可能是权限或者路径导致Rclone任务都没跑起来，请观察日志文件<code>log_rclone.txt</code>，并结合如下简单命令检查出原因</p>
+<pre><code class="language-bash">rclone --config rclone.conf size --disable ListR src001:，rclone --config rclone.conf size --disable ListR dst001:
+</code></pre>
+<p>上传</p>
+<pre><code class="language-bash">python3 rclone_sa_magic.py -sp YourLocalPath -d DestinationID -dp DestinationPathName -b 1 -e 600
+</code></pre>
+<p>拷贝截图</p>
+<p>不出意外应该就可以跑起来了。每个service account的总的时间消耗是校验时间+拷贝时间，如果你的拷贝任务比较大的话建议将其（按文件夹）稍微拆分，挨个或者并行完成，这样能极大减小每次切换service accounts后不必要的校验时间。另外关于拷贝速度，API调用限制了每秒不超过10次调用，每次拷贝固定数量的文件数目，所以如果你的任务中的文件比较小的话，拷贝速度可能是每秒几百MB，文件都比较大的话，拷贝速度可能是几十GB/s。</p>
+<h3 id="一些-q--a">一些 Q &amp; A</h3>
+<p>Q. 怎么检查是否拷贝完全？发现丢文件了？
+A. 拷贝完请做以下检查</p>
+<pre><code class="language-bash">rclone --config rclone.conf size src001:源路径
+rclone --config rclone.conf size dst001:目标路径
+</code></pre>
+<p>如果发现目标盘比源盘体积还要大，那么对目标盘进行去重；如果发现目标盘比源盘少文件了，那么再拷贝一次；如果还是少，那么就是源盘里面的有重复文件了，直接对其进行去重复。去重命令：</p>
+<pre><code class="language-bash">rclone --config rclone.conf dedupe dst001:源路径
+rclone --config rclone.conf dedupe src001:目标路径
+</code></pre>
+<p>转载自https://gsuitems.com/index.php/archives/13/</p>
+
+    </div>
+
+    
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/googledrive/">GoogleDrive</a>
+          <a href="/tags/autorclone/">AutoRclone</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/caddy2/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Caddy2的安装、配置站点</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/fodi/">
+            <span class="next-text nav-default">在Cloudflare Workers和Github Pages部署FODI</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+  <div class="comments">
+    <div class="loading post">
+      <img src="/img/spinner.svg">
+      <p class="post-content">
+        评论正在加载中...如果评论较长时间无法加载，你可以
+        <a href='https://github.com/ouuan/blog-comments/issues?q=is%3Aissue+is%3Aopen+"AutoRclone%e4%bd%bf%e7%94%a8%e6%95%99%e7%a8%8b - 1o"' target="_blank">搜索对应的 issue</a>
+        或者
+        <a href="https://github.com/ouuan/blog-comments/issues/new?title=AutoRclone%e4%bd%bf%e7%94%a8%e6%95%99%e7%a8%8b - 1o" target="_blank">新建一个 issue</a>
+        。
+      </p>
+    </div>
+    <script src="https://utteranc.es/client.js"
+            repo="pwwq/blog-comments"
+            issue-term="title"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    <noscript>请启用 JavaScript 来查看评论。</a></noscript>
+  </div>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:admin@567899.xyz" class="iconfont icon-email" title="email" target="_blank"></a>
+      <a href="https://github.com/pwwq" class="iconfont icon-github" title="github" target="_blank"></a>
+      <a href="https://space.bilibili.com/11067182" class="iconfont icon-bilibili" title="bilibili" target="_blank"></a>
+      <a href="https://t.me/id009" class="iconfont icon-telegram" title="telegram" target="_blank"></a>
+  <a href="https://567899.xyz/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io" target="_blank">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even" target="_blank">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2013 - 
+    2020
+    <span class="heart">
+      <a class="iconfont icon-github" title="source code" href="https://github.com/pwwq/hugo-blog" target="_blank"></a>
+    </span> 
+    <span class="author">1o</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <link href="https://cdn.bootcss.com/highlight.js/9.15.10/styles/tomorrow.min.css" rel="stylesheet">
+  <script>hljs.configure({tabReplace: '    '});</script><script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+  
+
+
+
+<script type="text/javascript" src="/js/main.min.6821b76b4e5300f807f477f7f6e0e8772a852e6af6d99f47104e1b9632e47aba.js"></script>
+  <script type="text/javascript">
+    window.MathJax = {
+      tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+      showProcessingMessages: false,
+      messageStyle: 'none'
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"  integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-157787819-1', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+</body>
+</html>

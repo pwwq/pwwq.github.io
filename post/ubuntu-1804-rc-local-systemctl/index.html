@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>ubuntu-18.04设置systemctl开机启动脚本rc.local - 1o</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="1o" /><meta name="description" content="使用update-rc.d以及rc.local等方法就是不生效。后来在ubuntu的官方论坛ubuntu-16.10开始不再使用initd管" />
+
+
+<meta name="baidu-site-verification" content="zW0oque8IK" />
+<meta name="google-site-verification" content="HAIwoMdm1A6XQ6Fp6KwAO7gpL5UKk5TOzvs9DuacYFI" />
+
+
+<meta name="generator" content="Hugo 0.69.2 with theme even" />
+
+
+<link rel="canonical" href="https://567899.xyz/post/ubuntu-1804-rc-local-systemctl/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link href="/sass/main.min.2bac9f1300a8a18219cc84fc2401646cd7e17b7d565c50ac353b993e321e29ec.css" rel="stylesheet">
+
+
+
+<meta property="og:title" content="ubuntu-18.04设置systemctl开机启动脚本rc.local" />
+<meta property="og:description" content="使用update-rc.d以及rc.local等方法就是不生效。后来在ubuntu的官方论坛ubuntu-16.10开始不再使用initd管" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://567899.xyz/post/ubuntu-1804-rc-local-systemctl/" />
+<meta property="article:published_time" content="2019-02-23T01:37:56+08:00" />
+<meta property="article:modified_time" content="2020-09-09T14:12:54+00:00" />
+<meta itemprop="name" content="ubuntu-18.04设置systemctl开机启动脚本rc.local">
+<meta itemprop="description" content="使用update-rc.d以及rc.local等方法就是不生效。后来在ubuntu的官方论坛ubuntu-16.10开始不再使用initd管">
+<meta itemprop="datePublished" content="2019-02-23T01:37:56&#43;08:00" />
+<meta itemprop="dateModified" content="2020-09-09T14:12:54&#43;00:00" />
+<meta itemprop="wordCount" content="798">
+
+
+
+<meta itemprop="keywords" content="systemctl," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="ubuntu-18.04设置systemctl开机启动脚本rc.local"/>
+<meta name="twitter:description" content="使用update-rc.d以及rc.local等方法就是不生效。后来在ubuntu的官方论坛ubuntu-16.10开始不再使用initd管"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">1o</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/links/">
+        <li class="mobile-menu-item">链接</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">关于</li>
+      </a><a href="/search/">
+        <li class="mobile-menu-item">搜索</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">1o</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/links/">链接</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">关于</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/search/">搜索</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">ubuntu-18.04设置systemctl开机启动脚本rc.local</h1>
+
+      <div class="post-meta">
+        <span class="post-time" title="2019-02-23 01:37:56 &#43;0800 &#43;0800"> 2019-02-23 </span>
+        <div class="post-category">
+            <a href="/categories/%E6%95%99%E7%A8%8B/"> 教程 </a>
+            </div>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    
+
+    <div class="post-content">
+      <p>使用<code>update-rc.d</code>以及<code>rc.local</code>等方法就是不生效。后来在ubuntu的官方论坛ubuntu-16.10开始不再使用initd管理系统改用systemd</p>
+<p>ubuntu-18.04 LTS版本用的是systemctl命令来替换了service和chkconfig的功能。</p>
+<blockquote>
+<p>systemd is now used for user sessions. System sessions had already been provided by systemd in previous Ubuntu releases.</p>
+</blockquote>
+<p>比如以前启动 mysql 服务用:</p>
+<pre><code class="language-bash">sudo service mysql start
+</code></pre>
+<p>现在用：</p>
+<pre><code class="language-bash">sudo systemctl start mysqld.service
+</code></pre>
+<p>其实这个改动到不是算大，主要是开机启动比以前复杂多了。systemd 默认读取 /etc/systemd/system 下的配置文件，该目录下的文件会链接/lib/systemd/system/下的文件。</p>
+<p>执行 ls /lib/systemd/system 你可以看到有很多启动脚本，其中就有我们需要的 rc.local.service</p>
+<p>打开脚本内容：</p>
+<pre><code class="language-bash">cat /lib/systemd/system/rc.local.service
+</code></pre>
+<p>可以看出<code>/lib/systemd/system/rc.local.service</code>的启动顺序是没有<code>Install</code>段</p>
+<pre><code class="language-bash">#  This file is part of systemd.
+#
+#  systemd is free software; you can redistribute it and/or modify it
+#  under the terms of the GNU Lesser General Public License as published by
+#  the Free Software Foundation; either version 2.1 of the License, or
+#  (at your option) any later version.
+
+# This unit gets pulled automatically into multi-user.target by
+# systemd-rc-local-generator if /etc/rc.local is executable.
+[Unit]
+Description=/etc/rc.local Compatibility
+ConditionFileIsExecutable=/etc/rc.local
+After=network.target
+
+[Service]
+Type=forking
+ExecStart=/etc/rc.local start
+TimeoutSec=0
+RemainAfterExit=yes
+</code></pre>
+<p>一般正常的启动文件主要分成三部分</p>
+<ol>
+<li><code>Unit</code>段: 启动顺序与依赖关系</li>
+<li><code>Service</code>段: 启动行为,如何启动，启动类型</li>
+<li><code>Install</code>段: 定义如何安装这个配置文件，即怎样做到开机启动</li>
+</ol>
+<p>下面为<code>/lib/systemd/system/rc.local.service</code>添加<code>Install</code>段</p>
+<pre><code class="language-bash">echo &quot;
+[Install]  
+WantedBy=multi-user.target  
+Alias=rc-local.service&quot; &gt;&gt; /lib/systemd/system/rc.local.service
+</code></pre>
+<p>这里需要注意一下ubuntu-18.04默认是没有<code>/etc/rc.local</code>这个文件的，需要自己创建</p>
+<pre><code class="language-bash">sudo touch /etc/rc.local
+</code></pre>
+<p>添加<code>rc.local</code>自定义启动</p>
+<pre><code class="language-bash">sudo echo &quot;#!/bin/bash&quot; &gt; /etc/rc.local
+</code></pre>
+<p>添加测试,编辑文件<code>/etc/rc.local</code>中添加</p>
+<pre><code class="language-bash">echo &quot;test&quot; &gt; /root/test.txt
+</code></pre>
+<p>给予可执行权限</p>
+<pre><code class="language-bash">chmod 755 /etc/rc.local
+</code></pre>
+<p><code>systemd</code>默认读取<code>/etc/systemd/system</code>下的配置文件, 所以还需要在<code>/etc/systemd/system</code>目录下创建软链接</p>
+<pre><code class="language-bash">ln -s /lib/systemd/system/rc.local.service /etc/systemd/system/
+</code></pre>
+<p>重启系统,然后看看/root/test.txt文件的内容为test 是否存在就知道开机脚本是否生效了。</p>
+
+    </div>
+
+    
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/systemctl/">systemctl</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/onedrive25tb/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">OneDrive存储空间升级到25TB的教程</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/caddy/">
+            <span class="next-text nav-default">caddy官方脚本一键手动安装与使用</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+  <div class="comments">
+    <div class="loading post">
+      <img src="/img/spinner.svg">
+      <p class="post-content">
+        评论正在加载中...如果评论较长时间无法加载，你可以
+        <a href='https://github.com/ouuan/blog-comments/issues?q=is%3Aissue+is%3Aopen+"ubuntu-18.04%e8%ae%be%e7%bd%aesystemctl%e5%bc%80%e6%9c%ba%e5%90%af%e5%8a%a8%e8%84%9a%e6%9c%acrc.local - 1o"' target="_blank">搜索对应的 issue</a>
+        或者
+        <a href="https://github.com/ouuan/blog-comments/issues/new?title=ubuntu-18.04%e8%ae%be%e7%bd%aesystemctl%e5%bc%80%e6%9c%ba%e5%90%af%e5%8a%a8%e8%84%9a%e6%9c%acrc.local - 1o" target="_blank">新建一个 issue</a>
+        。
+      </p>
+    </div>
+    <script src="https://utteranc.es/client.js"
+            repo="pwwq/blog-comments"
+            issue-term="title"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    <noscript>请启用 JavaScript 来查看评论。</a></noscript>
+  </div>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:admin@567899.xyz" class="iconfont icon-email" title="email" target="_blank"></a>
+      <a href="https://github.com/pwwq" class="iconfont icon-github" title="github" target="_blank"></a>
+      <a href="https://space.bilibili.com/11067182" class="iconfont icon-bilibili" title="bilibili" target="_blank"></a>
+      <a href="https://t.me/id009" class="iconfont icon-telegram" title="telegram" target="_blank"></a>
+  <a href="https://567899.xyz/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io" target="_blank">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even" target="_blank">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2013 - 
+    2020
+    <span class="heart">
+      <a class="iconfont icon-github" title="source code" href="https://github.com/pwwq/hugo-blog" target="_blank"></a>
+    </span> 
+    <span class="author">1o</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <link href="https://cdn.bootcss.com/highlight.js/9.15.10/styles/tomorrow.min.css" rel="stylesheet">
+  <script>hljs.configure({tabReplace: '    '});</script><script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+  
+
+
+
+<script type="text/javascript" src="/js/main.min.6821b76b4e5300f807f477f7f6e0e8772a852e6af6d99f47104e1b9632e47aba.js"></script>
+  <script type="text/javascript">
+    window.MathJax = {
+      tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+      showProcessingMessages: false,
+      messageStyle: 'none'
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"  integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-157787819-1', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+</body>
+</html>

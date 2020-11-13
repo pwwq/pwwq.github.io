@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>使用GitHub Actions云编译OpenWrt - 1o</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="1o" /><meta name="description" content="前言 Github Ac­tions 是 GitHub 推出的持续集成 (Con­tin­u­ous in­te­gra­tion，简称 CI) 服务，它提供了配置非常不错的虚拟服务" />
+
+
+<meta name="baidu-site-verification" content="zW0oque8IK" />
+<meta name="google-site-verification" content="HAIwoMdm1A6XQ6Fp6KwAO7gpL5UKk5TOzvs9DuacYFI" />
+
+
+<meta name="generator" content="Hugo 0.69.2 with theme even" />
+
+
+<link rel="canonical" href="https://567899.xyz/post/build-openwrt-with-github-actions/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link href="/sass/main.min.2bac9f1300a8a18219cc84fc2401646cd7e17b7d565c50ac353b993e321e29ec.css" rel="stylesheet">
+
+
+
+<meta property="og:title" content="使用GitHub Actions云编译OpenWrt" />
+<meta property="og:description" content="前言 Github Ac­tions 是 GitHub 推出的持续集成 (Con­tin­u­ous in­te­gra­tion，简称 CI) 服务，它提供了配置非常不错的虚拟服务" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://567899.xyz/post/build-openwrt-with-github-actions/" />
+<meta property="article:published_time" content="2020-01-12T01:37:56+08:00" />
+<meta property="article:modified_time" content="2020-09-09T14:06:00+00:00" />
+<meta itemprop="name" content="使用GitHub Actions云编译OpenWrt">
+<meta itemprop="description" content="前言 Github Ac­tions 是 GitHub 推出的持续集成 (Con­tin­u­ous in­te­gra­tion，简称 CI) 服务，它提供了配置非常不错的虚拟服务">
+<meta itemprop="datePublished" content="2020-01-12T01:37:56&#43;08:00" />
+<meta itemprop="dateModified" content="2020-09-09T14:06:00&#43;00:00" />
+<meta itemprop="wordCount" content="4101">
+
+
+
+<meta itemprop="keywords" content="Actions,GitHub,OpenWrt," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="使用GitHub Actions云编译OpenWrt"/>
+<meta name="twitter:description" content="前言 Github Ac­tions 是 GitHub 推出的持续集成 (Con­tin­u­ous in­te­gra­tion，简称 CI) 服务，它提供了配置非常不错的虚拟服务"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">1o</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/links/">
+        <li class="mobile-menu-item">链接</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">关于</li>
+      </a><a href="/search/">
+        <li class="mobile-menu-item">搜索</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">1o</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/links/">链接</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">关于</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/search/">搜索</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">使用GitHub Actions云编译OpenWrt</h1>
+
+      <div class="post-meta">
+        <span class="post-time" title="2020-01-12 01:37:56 &#43;0800 &#43;0800"> 2020-01-12 </span>
+        <div class="post-category">
+            <a href="/categories/%E6%95%99%E7%A8%8B/"> 教程 </a>
+            </div>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#前言">前言</a></li>
+            <li><a href="#教程更新">教程更新</a></li>
+            <li><a href="#方案特点">方案特点</a></li>
+            <li><a href="#项目地址">项目地址</a></li>
+            <li><a href="#准备工作">准备工作</a></li>
+            <li><a href="#基础使用">基础使用</a></li>
+            <li><a href="#首次编译">首次编译</a></li>
+            <li><a href="#再次编译">再次编译</a></li>
+          </ul>
+        </li>
+        <li><a href="#进阶使用">进阶使用</a>
+          <ul>
+            <li><a href="#自定义环境变量与功能">自定义环境变量与功能</a></li>
+            <li><a href="#添加软件包">添加软件包</a></li>
+            <li><a href="#定时自动编译">定时自动编译</a></li>
+            <li><a href="#真一键编译点击-star-开始编译">真·一键编译（点击 star 开始编译）</a></li>
+            <li><a href="#自定义源码编译">自定义源码编译</a></li>
+            <li><a href="#并发编译同时编译多个固件">并发编译（同时编译多个固件）</a></li>
+            <li><a href="#云-menuconfigssh-连接到-actions">云 menuconfig（SSH 连接到 Actions）</a></li>
+            <li><a href="#macos-编译方案">macOS 编译方案</a></li>
+            <li><a href="#尾巴">尾巴</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h3 id="前言">前言</h3>
+<p>Github Ac­tions 是 GitHub 推出的持续集成 (Con­tin­u­ous in­te­gra­tion，简称 CI) 服务，它提供了配置非常不错的虚拟服务器环境（E5 2vCPU/​7G RAM），基于它可以进行构建、测试、打包、部署项目。对于公共仓库可免费无时间限制的使用（指累积时间），不过要使用它首先需要知道如何编写 workflow 文件。但这篇文章并不是教你如何枯燥的去编写 work­flow 文件，而是教你如何去使用博主已经编写好的 Open­Wrt 编译方案。</p>
+<h3 id="教程更新">教程更新</h3>
+<ul>
+<li>2020-02-01 新图文教程</li>
+<li>2019-12-10 新增 macOS 编译方案使用说明</li>
+<li>2019-12-06 添加 tmate 网页终端链接说明</li>
+<li>2019-12-05 优化基础使用教程，添加 @lietxia 大佬的图文教程链接</li>
+<li>2019-12-04 新增云menuconfig使用方法</li>
+<li>2019-12-03 新增并发编译使用方法</li>
+<li>2019-11-30 新增自定义源码编译使用方法</li>
+<li>2019-11-14 全网独家首发</li>
+</ul>
+<h3 id="方案特点">方案特点</h3>
+<ol>
+<li>免费</li>
+<li>一键快速编译</li>
+<li>定时自动编译</li>
+<li>客制化编译</li>
+<li>并发编译（可同时进行20+5个编译任务）</li>
+<li>无需搭建编译环境（在线make menuconfig生成配置文件)</li>
+<li>无需消耗自己的计算机与服务器的计算资源（性感E5在线编译）</li>
+<li>无需担心磁盘空间不足（近60G磁盘空间）</li>
+<li>无需使用清理文件（内核更新不怕 boom ）</li>
+<li>编译速度快（编译时间1-2小时）</li>
+<li>编译成功率提升200%（万兆自由网络环境）</li>
+<li>全新环境（杜绝编译环境不干净导致编译失败）</li>
+</ol>
+<blockquote>
+<p>本解决方案是一个开放平台，任何人都可以基于此打造自己专属的编译方案。</p>
+</blockquote>
+<h3 id="项目地址">项目地址</h3>
+<p><a href="https://github.com/P3TERX/Actions-OpenWrt">https://github.com/P3TERX/Actions-OpenWrt</a></p>
+<p>支持项目请随手点个 star，让更多的人发现、使用并受益。</p>
+<h3 id="准备工作">准备工作</h3>
+<ul>
+<li>注册 GitHub 账号</li>
+<li>搭建编译环境，用于生成<code>.config</code>文件。(可选)</li>
+</ul>
+<blockquote>
+<p>TIPS: 关于编译环境的搭建，推荐去看我之前写的相关文章，Win­dows 10 可以使用 WSL ，ma­cOS、Linux 可以使用 Docker 。</p>
+</blockquote>
+<h3 id="基础使用">基础使用</h3>
+<p>首先你必须要熟悉整个 Open­Wrt 的编译过程，这会让你非常容易的理解如何使用 GitHub Ac­tions 进行编译，即使你没有成功过。因为实际上本地编译近 90% 失败的原因是因为网络问题导致的，中国大陆特色，咱也不敢多说。而使用 GitHub Ac­tions 编译成功率至少提升 200% ，为什么这样说呢？因为 Ac­tions 服务器由 Mi­crosoft Azure 提供，在自由的美利坚，拥有万兆带宽。</p>
+<h3 id="首次编译">首次编译</h3>
+<p>在自己搭建编译环境中使用<a href="https://github.com/coolsnowwolf/lede" target="_blank">Lean&rsquo;s OpenWrt</a> 源码生成<code>.config</code>文件。（或使用后面进阶玩法中的云menuconfig，直接 SSH 到 Actions 进行操作）</p>
+<blockquote>
+<p>TIPS: 方案默认引用 Lean 的源码，因为他的 README 影响了我开始学习编译，也就有了这个项目，而且他的源码非常的优秀。有其它需求可自行修改 work­flow 文件，方法后面的进阶使用中有说明。</p>
+</blockquote>
+<p>进入<a href="https://github.com/P3TERX/Actions-OpenWrt" target="_blank">P3TERX/Actions-OpenWrt</a> 项目页面，点击页面中的<code>Use this template</code> （使用这个模版）按钮。</p>
+<p><img src="/images/build-openwrt-with-github-actions1.png" alt=""></p>
+<p>填写仓库名称，然后点击<code>Create repository from template</code>（从模版创建储存库）按钮。</p>
+<p><img src="/images/build-openwrt-with-github-actions2.png" alt=""></p>
+<p>经过几秒钟的等待，页面会跳转到新建的仓库，内容和我的项目是相同的。然后点击<code>Create new file</code>（创建新文件）按钮。</p>
+<p><img src="/images/build-openwrt-with-github-actions3.png" alt=""></p>
+<p>文件名填写为<code>.config</code>，把生成的<code>.config</code>文件的内容复制粘贴到下面的文本框中。</p>
+<p><img src="/images/build-openwrt-with-github-actions4.png" alt=""></p>
+<p>翻到页面最下方，点击<code>Commit new file</code>（提交新文件）按钮即可。后续编译工作会自动开始，你可以在 Actions 页面进行查看。</p>
+<p><img src="/images/build-openwrt-with-github-actions5.png" alt=""></p>
+<p>下载后的<code>OpenWrt_firmware.zip</code>压缩包文件大小会少于网页上显示的<code>OpenWrt_firmware</code>文件夹</p>
+<h3 id="再次编译">再次编译</h3>
+<p>默认情况下触发编译有两种方式：</p>
+<ol>
+<li>发布 release</li>
+<li>修改.config文件</li>
+</ol>
+<p>他们分别对应以下使用场景：</p>
+<ul>
+<li>在编译配置没有修改的情况下，若源码有更新，那么在 releases 页面发布一个 release 将直接使用最新源码进行编译。</li>
+<li>如果你想修改配置，则生成船新的<code>.config</code>文件 push 到仓库来触发编译的工作流程。</li>
+</ul>
+<p>其它触发方式你可以在后面的进阶使用中看到。</p>
+<h2 id="进阶使用">进阶使用</h2>
+<h3 id="自定义环境变量与功能">自定义环境变量与功能</h3>
+<p>打开work­flow文件<code>.github/workflows/build-openwrt.yml</code>你会看到有如下一些环境变量，可按照自己的需求对这些变量进行定义。</p>
+<pre><code class="language-bash">env:
+  REPO_URL: https://github.com/coolsnowwolf/lede
+  REPO_BRANCH: master
+  CONFIG_FILE: .config
+  DIY_SH: diy.sh
+  SSH_ACTIONS: false
+  UPLOAD_BIN_DIR: false
+  UPLOAD_FIRMWARE: true
+  TZ: Asia/Shanghai
+</code></pre>
+<blockquote>
+<p>TIPS: 修改时需要注意<code>:</code>(冒号)后面有空格。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th align="left">环境变量</th>
+<th align="left">功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">REPO_URL</td>
+<td align="left">源码仓库地址</td>
+</tr>
+<tr>
+<td align="left">REPO_BRANCH</td>
+<td align="left">源码分支</td>
+</tr>
+<tr>
+<td align="left">CONFIG_FILE</td>
+<td align="left"><code>.config</code>文件名</td>
+</tr>
+<tr>
+<td align="left">DIY_SH</td>
+<td align="left">DIY脚本文件名</td>
+</tr>
+<tr>
+<td align="left">SSH_ACTIONS</td>
+<td align="left">SSH连接Actions功能。默认false</td>
+</tr>
+<tr>
+<td align="left">UPLOAD_BIN_DIR</td>
+<td align="left">上传bin目录。即包含所有ipk文件和固件的目录。默认false</td>
+</tr>
+<tr>
+<td align="left">UPLOAD_FIRMWARE</td>
+<td align="left">上传固件目录。默认true</td>
+</tr>
+<tr>
+<td align="left">TZ</td>
+<td align="left">时区设置</td>
+</tr>
+<tr>
+<td align="left">DIY</td>
+<td align="left">脚本</td>
+</tr>
+</tbody>
+</table>
+<p>仓库内有一个<code>diy.sh</code>文件，你可以把对源码修改的指令写到这个文件中，比如修改默认 IP、主机名、主题、添加 / 删除软件包等操作。但不仅限于这些操作，发挥你强大的想象力，可做出更强大的功能。</p>
+<blockquote>
+<p>TIPS: 脚本工作目录在源码目录，内附一个修改默认 IP 的例子供参考使用。</p>
+</blockquote>
+<h3 id="添加软件包">添加软件包</h3>
+<p>在 DIY 脚本中加入对指定软件包的远程仓库的克隆指令。就像下面这样：</p>
+<pre><code class="language-bash">git clone https://github.com/P3TERX/xxx package/xxx
+</code></pre>
+<p>这样做的好处是每一次编译都会拉取最新的源码。</p>
+<blockquote>
+<p>TIPS: 生成<code>.config</code>文件时记得选中相应的软件。如果添加的软件包与 Open­Wrt 中已有的软件包同名的情况，则需要把源码中的同名软件包删除，否则会优先编译 Open­Wrt 中的软件包。这同样可以利用到的 DIY 脚本。</p>
+</blockquote>
+<p>最后不要忘了添加更新 feeds 的命令</p>
+<pre><code class="language-bash">./scripts/feeds update -a
+./scripts/feeds install -a
+</code></pre>
+<p>Custom files（自定义文件）
+俗称 “files 大法”，在仓库根目录下新建 files 目录，把文件放入即可。</p>
+<h3 id="定时自动编译">定时自动编译</h3>
+<p>编辑work­flow文件<code>.github/workflows/build-openwrt.yml</code>取消注释下面两行。</p>
+<pre><code class="language-bash">#  schedule:
+#    - cron: 0 8 * * 5
+</code></pre>
+<p>例子是北京时间每周五下午4点钟开始编译（周末下班回家直接下载最新固件开始折腾）。如需自定义则按照 cron 格式修改即可，Ac­tions 虚拟环境中的时区是 UTC ，注意按照自己所在地时区进行转换。</p>
+<h3 id="真一键编译点击-star-开始编译">真·一键编译（点击 star 开始编译）</h3>
+<p>点击自己仓库页面上的 Star 开始编译，为了防止被滥用，这个功能默认没有开启。开启后如果被恶意点击轻则封号，严重可能会导致中美关系恶化、原子弹爆炸、第三次世界大战等后果。（大雾</p>
+<p>编辑 work­flow 文件<code>.github/workflows/build-openwrt.yml</code>取消注释下面两行，后续点击自己仓库上的 star 即可开始编译。</p>
+<pre><code class="language-bash">#  watch:
+#    types: [started]
+</code></pre>
+<blockquote>
+<p>TIPS: 字段started并不是“开始了”的意思，而是“已经点击 Star”。</p>
+</blockquote>
+<p>吐槽: 官方并没有提供一个开始按钮，通过搜索找到过很多奇怪的一键触发方式，但都是通过 Web­hook 来实现的。机智的我发现了可以通过点击 Star 来触发，这样就相当于把 Star 当成开始按钮。这个started有种一句双关的意思了。</p>
+<p>有个小技巧可以防止恶意点击，在<code>runs-on: ubuntu-latest</code>下面加上<code>if: github.event.repository.owner.id == github.event.sender.id</code>这样只有你自己点 star 才会触发编译。</p>
+<pre><code class="language-bash">jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: github.event.repository.owner.id == github.event.sender.id
+</code></pre>
+<h3 id="自定义源码编译">自定义源码编译</h3>
+<p>此方案默认引用的是 L 大的源码，如果你觉得不好用或者有编译其它源码的需求可以进行替换，自由是本解决方案最大的特点。</p>
+<p>编辑 work­flow 文件<code>.github/workflows/build-openwrt.yml</code>修改下面的相关环境变量字段。</p>
+<pre><code class="language-bash">REPO_URL: https://github.com/coolsnowwolf/lede
+REPO_BRANCH: master
+</code></pre>
+<p>比如修改为 Open­Wrt 官方源码 19.07 分支</p>
+<pre><code class="language-bash">REPO_URL: https://github.com/openwrt/openwrt
+REPO_BRANCH: openwrt-19.07
+</code></pre>
+<blockquote>
+<p>TIPS: 注意冒号后面有空格</p>
+</blockquote>
+<h3 id="并发编译同时编译多个固件">并发编译（同时编译多个固件）</h3>
+<p>多 repository 方案</p>
+<p>通过 P3TERX/Actions-OpenWrt 项目创建多个仓库来编译不同架构机型的 Open­Wrt 固件。</p>
+<p>多 workflow 方案</p>
+<p>基于 GitHub Ac­tions 可同时运行多个工作流程的特性，最多可以同时进行至少 20 个编译任务。也可以单独选择其中一个进行编译，这充分的利用到了 GitHub Ac­tions 为每个账户免费提供的 20 个 Ubuntu 虚拟服务器环境。此外你还可以额外再使用 5 个 macOS 虚拟服务器环境进行编译，开启方法在后面有说明。</p>
+<p>假设有三台路由器的固件需要编译，比如 K2P、软路由、新路由 3。</p>
+<p>生成它们的<code>.config</code>文件
+分别将它们重命名为<code>k2p.config</code>、<code>x64.config</code>、<code>d2.config</code>放入本地仓库根目录。
+复制多个 workflow 文件<code>.github/workflows/build-openwrt.yml</code>为了更好的区分可以对它进行重命名，比如<code>k2p.yml</code>、<code>x64.yml</code>、<code>d2.yml</code>。此外第一行name字段也可以进行相应的修改。
+然后分别用上面修改的文件名替换对应 workflow 文件中下面两个位置的<code>.config</code>，不同的机型同样可以使用不同的 DIY 脚本。</p>
+<pre><code class="language-bash">...
+    paths:
+      - '.config'
+...
+        CONFIG_FILE: '.config'
+        DIY_SH: 'diy.sh'
+...
+</code></pre>
+<p>最后 push ，此时此就触发了3个并行的编译工作流程。</p>
+<h3 id="云-menuconfigssh-连接到-actions">云 menuconfig（SSH 连接到 Actions）</h3>
+<p>通过 tmate 连接到 GitHub Ac­tions 虚拟服务器环境，可直接进行<code>make menuconfig</code>操作生成编译配置，或者任意的客制化操作。也就是说，你不需要再自己搭建编译环境了。这可能改变之前所有使用 GitHub Ac­tions 的编译 Open­Wrt 方式。</p>
+<p>编辑 workflow 文件<code>.github/workflows/build-openwrt.yml</code>修改<code>SSH_ACTIONS</code>环境变量的值为<code>true</code>：</p>
+<pre><code class="language-bash">SSH_ACTIONS: true
+</code></pre>
+<p>在触发工作流程后，在 Actions 页面等待执行到<code>SSH connection to Actions</code>步骤，会出现下面的信息。</p>
+<pre><code class="language-bash">To connect to this session copy-n-paste the following into a terminal or browser:
+
+ssh Y26QeagDtsPXp2mT6me5cnMRd@nyc1.tmate.io
+
+https://tmate.io/t/Y26QeagDtsPXp2mT6me5cnMRd
+</code></pre>
+<ol>
+<li>复制 SSH 连接命令粘贴到终端内执行，或者复制链接在浏览器中打开使用网页终端。（网页终端可能会遇到黑屏的情况，按 Ctrl + C 即可）</li>
+<li><code>cd openwrt &amp;&amp; make menuconfig</code></li>
+<li>完成后按快捷键Ctrl+D或执行exit命令退出，后续编译工作将自动进行。</li>
+</ol>
+<blockquote>
+<p>TIPS: 固件目录下有个<code>config.seed</code>文件，如果你需要再次编译可以使用它。</p>
+</blockquote>
+<p>WARRING: 默认连接30分钟后会断开并终止编译工作流程，防止资源浪费与封号风险。如果你想解除这个限制，可以根据提示操作，导致的一切后果请自行承担。</p>
+<h3 id="macos-编译方案">macOS 编译方案</h3>
+<p>GitHub Ac­tions 的 ma­cOS 虚拟机性能要高于 Ubuntu 虚拟机，所以使用它编译 Open­Wrt 理论上速度会更快。博主经过几天时间的研究已经总结出了 macOS 下的 OpenWrt 编译环境的搭建方法，并编写出了适用于 ma­cOS 虚拟环境的 Open­Wrt 编译方案的 work­flow 文件。</p>
+<p>由于并不是每个开发者都会按照规范去写代码，所以使用 ma­cOS 编译 Open­Wrt 不可避免的会遇到非常多的问题，而且后续测试发现 ma­cOS 虚拟机性能已大幅下降，故相关 work­flow 文件已经移除。也不建议任何人使用 ma­cOS 编译 Open­Wrt 。</p>
+<h3 id="尾巴">尾巴</h3>
+<p>希望大家不要滥用免费的开发资源，需要时再编译，让开发者来充分利用才能产生更多更好的软件，这样大家才能受益。</p>
+<p>转载自：<a href="https://p3terx.com/archives/build-openwrt-with-github-actions.html" target="_blank">使用 GitHub Actions 云编译 OpenWrt - P3TERX ZONE</a></p>
+
+    </div>
+
+    
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/actions/">Actions</a>
+          <a href="/tags/github/">GitHub</a>
+          <a href="/tags/openwrt/">OpenWrt</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/cn-onedrive-oneindex/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">OneIndex搭建世纪互联版OneDrive</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/internet-sim-ambr-dl-ul-2g-3g-4g-lte/">
+            <span class="next-text nav-default">检测移动电信联通通讯运营商SIM卡分配给用户的最高速率、限速速率网速值</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+  <div class="comments">
+    <div class="loading post">
+      <img src="/img/spinner.svg">
+      <p class="post-content">
+        评论正在加载中...如果评论较长时间无法加载，你可以
+        <a href='https://github.com/ouuan/blog-comments/issues?q=is%3Aissue+is%3Aopen+"%e4%bd%bf%e7%94%a8GitHub%20Actions%e4%ba%91%e7%bc%96%e8%af%91OpenWrt - 1o"' target="_blank">搜索对应的 issue</a>
+        或者
+        <a href="https://github.com/ouuan/blog-comments/issues/new?title=%e4%bd%bf%e7%94%a8GitHub%20Actions%e4%ba%91%e7%bc%96%e8%af%91OpenWrt - 1o" target="_blank">新建一个 issue</a>
+        。
+      </p>
+    </div>
+    <script src="https://utteranc.es/client.js"
+            repo="pwwq/blog-comments"
+            issue-term="title"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    <noscript>请启用 JavaScript 来查看评论。</a></noscript>
+  </div>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:admin@567899.xyz" class="iconfont icon-email" title="email" target="_blank"></a>
+      <a href="https://github.com/pwwq" class="iconfont icon-github" title="github" target="_blank"></a>
+      <a href="https://space.bilibili.com/11067182" class="iconfont icon-bilibili" title="bilibili" target="_blank"></a>
+      <a href="https://t.me/id009" class="iconfont icon-telegram" title="telegram" target="_blank"></a>
+  <a href="https://567899.xyz/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io" target="_blank">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even" target="_blank">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2013 - 
+    2020
+    <span class="heart">
+      <a class="iconfont icon-github" title="source code" href="https://github.com/pwwq/hugo-blog" target="_blank"></a>
+    </span> 
+    <span class="author">1o</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <link href="https://cdn.bootcss.com/highlight.js/9.15.10/styles/tomorrow.min.css" rel="stylesheet">
+  <script>hljs.configure({tabReplace: '    '});</script><script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+  
+
+
+
+<script type="text/javascript" src="/js/main.min.6821b76b4e5300f807f477f7f6e0e8772a852e6af6d99f47104e1b9632e47aba.js"></script>
+  <script type="text/javascript">
+    window.MathJax = {
+      tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+      showProcessingMessages: false,
+      messageStyle: 'none'
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"  integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-157787819-1', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+</body>
+</html>

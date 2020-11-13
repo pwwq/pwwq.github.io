@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>使用Aira2下载文件后自动上传到GoogleDrive网盘onedrive - 1o</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="1o" /><meta name="description" content="更新 【2018.10.30】 这里分享下萌咖大佬的Aira2上传脚本，不过是精简版，全能版暂不分享，精简版包含以下功能： 1、脚本适用于Rclo" />
+
+
+<meta name="baidu-site-verification" content="zW0oque8IK" />
+<meta name="google-site-verification" content="HAIwoMdm1A6XQ6Fp6KwAO7gpL5UKk5TOzvs9DuacYFI" />
+
+
+<meta name="generator" content="Hugo 0.69.2 with theme even" />
+
+
+<link rel="canonical" href="https://567899.xyz/post/aira2-uploads-googledrive-onedrive/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link href="/sass/main.min.2bac9f1300a8a18219cc84fc2401646cd7e17b7d565c50ac353b993e321e29ec.css" rel="stylesheet">
+
+
+
+<meta property="og:title" content="使用Aira2下载文件后自动上传到GoogleDrive网盘onedrive" />
+<meta property="og:description" content="更新 【2018.10.30】 这里分享下萌咖大佬的Aira2上传脚本，不过是精简版，全能版暂不分享，精简版包含以下功能： 1、脚本适用于Rclo" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://567899.xyz/post/aira2-uploads-googledrive-onedrive/" />
+<meta property="article:published_time" content="2018-04-11T01:37:56+08:00" />
+<meta property="article:modified_time" content="2020-09-09T04:05:59+00:00" />
+<meta itemprop="name" content="使用Aira2下载文件后自动上传到GoogleDrive网盘onedrive">
+<meta itemprop="description" content="更新 【2018.10.30】 这里分享下萌咖大佬的Aira2上传脚本，不过是精简版，全能版暂不分享，精简版包含以下功能： 1、脚本适用于Rclo">
+<meta itemprop="datePublished" content="2018-04-11T01:37:56&#43;08:00" />
+<meta itemprop="dateModified" content="2020-09-09T04:05:59&#43;00:00" />
+<meta itemprop="wordCount" content="1236">
+
+
+
+<meta itemprop="keywords" content="Aira2,GoogleDrive,OneDrive," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="使用Aira2下载文件后自动上传到GoogleDrive网盘onedrive"/>
+<meta name="twitter:description" content="更新 【2018.10.30】 这里分享下萌咖大佬的Aira2上传脚本，不过是精简版，全能版暂不分享，精简版包含以下功能： 1、脚本适用于Rclo"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">1o</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/links/">
+        <li class="mobile-menu-item">链接</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">关于</li>
+      </a><a href="/search/">
+        <li class="mobile-menu-item">搜索</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">1o</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/links/">链接</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">关于</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/search/">搜索</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">使用Aira2下载文件后自动上传到GoogleDrive网盘onedrive</h1>
+
+      <div class="post-meta">
+        <span class="post-time" title="2018-04-11 01:37:56 &#43;0800 &#43;0800"> 2018-04-11 </span>
+        <div class="post-category">
+            <a href="/categories/%E6%95%99%E7%A8%8B/"> 教程 </a>
+            </div>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#更新">更新</a></li>
+        <li><a href="#脚本说明-aria2-一键安装管理脚本">脚本说明: Aria2 一键安装管理脚本</a></li>
+        <li><a href="#使用方法">使用方法</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h2 id="更新">更新</h2>
+<pre><code class="language-bash">【2018.10.30】
+这里分享下萌咖大佬的Aira2上传脚本，不过是精简版，全能版暂不分享，精简版包含以下功能：
+1、脚本适用于Rclone挂载的网盘，比如Onedrive/Google Drive等。
+2、判断上传文件的文件大小区间。
+限制最低上传大小：可防止产生的.aria2后缀文件一起上传到网盘。
+限制最高文件大小：适用于Onedrive等，官方限制上传不能超过15G，其它可自行更改其数值。
+3、支持文件名中包含空格等特殊字符。
+</code></pre>
+<h2 id="脚本说明-aria2-一键安装管理脚本">脚本说明: Aria2 一键安装管理脚本</h2>
+<p>系统支持: CentOS6+ / Debian6+ / Ubuntu14+</p>
+<pre><code class="language-bash">wget -N --no-check-certificate https://raw.githubusercontent.com/ojbk8/doubi/master/aria2.sh &amp;&amp; chmod +x aria2.sh &amp;&amp; bash aria2.sh
+</code></pre>
+<blockquote>
+<p>Aria2下载为什么会多出一个.aria2后缀的文件？</p>
+</blockquote>
+<p>找到force-save参数，进行设置</p>
+<p><code>force-save=true</code> 会保存文件下载历史,但会在下载目录产生同名.aria2文件</p>
+<p><code>force-save=false</code>不产生同名.aria2文件,同时也不能能保存下载历史</p>
+<h2 id="使用方法">使用方法</h2>
+<p>原理是当下载完后<code>aria2</code>会给脚本传3个参数<code>$1</code>、<code>$2</code>、<code>$3</code>分别为<code>gid</code>、文件数量、文件路径。我们对文件路径这个字符串处理一番就可以达到目的了。</p>
+<p>新建脚本文件<code>rcloneupload.sh</code>并复制下面代码：</p>
+<pre><code class="language-bash">#!/bin/bash
+downloadpath='/root/Download' #需要上传的目录，Aria2下载目录
+name='rclonename' #配置Rclone时填写的name
+folder='/rclone' #网盘里的文件夹，留空为整个网盘。
+MinSize='0.01k' #限制最低上传大小，默认10k，BT下载时可防止上传其他无用文件。会删除文件，谨慎设置。
+MaxSize='15G' #限制最高文件大小，默认15G，OneDrive上传限制。
+
+filepath=$3 #Aria2传递给脚本的原始路径，如果是单文件则为/root/Download/1.mp4，如果是文件夹则该值为文件夹内第一个文件比如/root/Download/a/b/1.mp4
+rdp=${filepath#${downloadpath}/} #路径转换，去掉开头的下载路径。
+path=${downloadpath}/${rdp%%/*} #文件或文件夹路径。如果是单个文件，应与原始路径一致。
+
+if [ $2 -eq 0 ]
+	then
+		exit 0
+fi
+
+while true; do
+if [ &quot;$path&quot; = &quot;$filepath&quot; ] &amp;&amp; [ $2 -eq 1 ] #如果下载的是单个文件
+	then
+	rclone move -v &quot;$filepath&quot; ${name}:${folder} --min-size $MinSize --max-size $MaxSize
+	rm -vf &quot;$filepath&quot;.aria2 #删除残留的.aria.2文件
+	exit 0
+elif [ &quot;$path&quot; != &quot;$filepath&quot; ] #如果下载的是文件夹
+	then
+	while [[ &quot;`ls -A &quot;$path/&quot;`&quot; != &quot;&quot; ]]; do
+	rclone move -v &quot;$path&quot; ${name}:&quot;${folder}&quot;/&quot;${rdp%%/*}&quot; --min-size $MinSize --max-size $MaxSize --delete-empty-src-dirs
+	rclone delete -v &quot;$path&quot; --max-size $MinSize #删除多余的文件
+	rclone rmdirs -v &quot;$downloadpath&quot; --leave-root #删除空目录，--delete-empty-src-dirs参数已实现，加上无所谓。
+	done
+	rm -vf &quot;$path&quot;.aria2 #删除残留的.aria2文件
+	exit 0
+fi
+done
+</code></pre>
+<p>或者</p>
+<pre><code class="language-bash">#!/bin/bash
+
+GID=&quot;$1&quot;;
+FileNum=&quot;$2&quot;;
+File=&quot;$3&quot;;
+MinSize=&quot;5&quot;  #限制最低上传大小，默认5k
+MaxSize=&quot;157286400&quot;  #限制最高文件大小(单位k)，默认15G
+RemoteDIR=&quot;/RATS/&quot;;  #rclone挂载的本地文件夹，最后面保留/
+LocalDIR=&quot;/download/&quot;;  #Aria2下载目录，最后面保留/
+
+if [[ -z $(echo &quot;$FileNum&quot; |grep -o '[0-9]*' |head -n1) ]]; then FileNum='0'; fi
+if [[ &quot;$FileNum&quot; -le '0' ]]; then exit 0; fi
+if [[ &quot;$#&quot; != '3' ]]; then exit 0; fi
+
+function LoadFile(){
+  IFS_BAK=$IFS
+  IFS=$'\n'
+  if [[ ! -d &quot;$LocalDIR&quot; ]]; then return; fi
+  if [[ -e &quot;$File&quot; ]]; then
+    FileLoad=&quot;${File/#$LocalDIR}&quot;
+    while true
+      do
+        if [[ &quot;$FileLoad&quot; == '/' ]]; then return; fi
+        echo &quot;$FileLoad&quot; |grep -q '/';
+        if [[ &quot;$?&quot; == &quot;0&quot; ]]; then
+          FileLoad=$(dirname &quot;$FileLoad&quot;);
+        else
+          break;
+        fi;
+      done;
+    if [[ &quot;$FileLoad&quot; == &quot;$LocalDIR&quot; ]]; then return; fi
+    EXEC=&quot;$(command -v mv)&quot;
+    if [[ -z &quot;$EXEC&quot; ]]; then return; fi
+    Option=&quot; -f&quot;;
+    cd &quot;$LocalDIR&quot;;
+    if [[ -e &quot;$FileLoad&quot; ]]; then
+      ItemSize=$(du -s &quot;$FileLoad&quot; |cut -f1 |grep -o '[0-9]*' |head -n1)
+      if [[ -z &quot;$ItemSize&quot; ]]; then return; fi
+      if [[ &quot;$ItemSize&quot; -le &quot;$MinSize&quot; ]]; then
+        echo -ne &quot;\033[33m$FileLoad \033[0mtoo small to spik.\n&quot;;
+        return;
+      fi
+      if [[ &quot;$ItemSize&quot; -ge &quot;$MaxSize&quot; ]]; then
+        echo -ne &quot;\033[33m$FileLoad \033[0mtoo large to spik.\n&quot;;
+        return;
+      fi
+      eval &quot;${EXEC}${Option}&quot; \'&quot;${FileLoad}&quot;\' &quot;${RemoteDIR}&quot;;
+    fi
+  fi
+  IFS=$IFS_BAK
+}
+LoadFile;
+</code></pre>
+<p>授权</p>
+<pre><code class="language-bash">chmod +x rcloneupload.sh
+</code></pre>
+<p>然后再到Aria2配置文件中加上一行</p>
+<pre><code class="language-bash">on-download-complete=/root/rcloneupload.sh
+</code></pre>
+<p>即可，后面为脚本的路径。最后重启Aria2生效。</p>
+<p>转载自： <a href="https://www.moerats.com/archives/482/">https://www.moerats.com/archives/482/</a></p>
+
+    </div>
+
+    
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/aira2/">Aira2</a>
+          <a href="/tags/googledrive/">GoogleDrive</a>
+          <a href="/tags/onedrive/">OneDrive</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/ubuntu-iptables/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Ubuntu18.04关闭iptables防火墙开放所有端口</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/alipay-dangmianfu-zfaka/">
+            <span class="next-text nav-default">免费申请开通支付宝当面付基础版费率0.38%对接ZFAKA教程</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+  <div class="comments">
+    <div class="loading post">
+      <img src="/img/spinner.svg">
+      <p class="post-content">
+        评论正在加载中...如果评论较长时间无法加载，你可以
+        <a href='https://github.com/ouuan/blog-comments/issues?q=is%3Aissue+is%3Aopen+"%e4%bd%bf%e7%94%a8Aira2%e4%b8%8b%e8%bd%bd%e6%96%87%e4%bb%b6%e5%90%8e%e8%87%aa%e5%8a%a8%e4%b8%8a%e4%bc%a0%e5%88%b0GoogleDrive%e7%bd%91%e7%9b%98onedrive - 1o"' target="_blank">搜索对应的 issue</a>
+        或者
+        <a href="https://github.com/ouuan/blog-comments/issues/new?title=%e4%bd%bf%e7%94%a8Aira2%e4%b8%8b%e8%bd%bd%e6%96%87%e4%bb%b6%e5%90%8e%e8%87%aa%e5%8a%a8%e4%b8%8a%e4%bc%a0%e5%88%b0GoogleDrive%e7%bd%91%e7%9b%98onedrive - 1o" target="_blank">新建一个 issue</a>
+        。
+      </p>
+    </div>
+    <script src="https://utteranc.es/client.js"
+            repo="pwwq/blog-comments"
+            issue-term="title"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    <noscript>请启用 JavaScript 来查看评论。</a></noscript>
+  </div>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:admin@567899.xyz" class="iconfont icon-email" title="email" target="_blank"></a>
+      <a href="https://github.com/pwwq" class="iconfont icon-github" title="github" target="_blank"></a>
+      <a href="https://space.bilibili.com/11067182" class="iconfont icon-bilibili" title="bilibili" target="_blank"></a>
+      <a href="https://t.me/id009" class="iconfont icon-telegram" title="telegram" target="_blank"></a>
+  <a href="https://567899.xyz/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io" target="_blank">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even" target="_blank">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2013 - 
+    2020
+    <span class="heart">
+      <a class="iconfont icon-github" title="source code" href="https://github.com/pwwq/hugo-blog" target="_blank"></a>
+    </span> 
+    <span class="author">1o</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <link href="https://cdn.bootcss.com/highlight.js/9.15.10/styles/tomorrow.min.css" rel="stylesheet">
+  <script>hljs.configure({tabReplace: '    '});</script><script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+  
+
+
+
+<script type="text/javascript" src="/js/main.min.6821b76b4e5300f807f477f7f6e0e8772a852e6af6d99f47104e1b9632e47aba.js"></script>
+  <script type="text/javascript">
+    window.MathJax = {
+      tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+      showProcessingMessages: false,
+      messageStyle: 'none'
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"  integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-157787819-1', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>使用bitwarden_rs搭建安全密码库服务器 - 1o</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="1o" /><meta name="description" content="bitwarden_rs是一个免费开源、能自己搭建服务端的安全密码库服务器 https://bitwarden.com/ https://github.com/dani-garcia/bitwarden_rs https://hub.docker.com/r/bitwardenrs/server Docker安装 wget -qO- get.docker.com | bash 安装Docker Compose curl -L https://github.com/docker/compose/releases/download/1.16.1/docker-compose-`uname -s`-`uname -m` &amp;gt; ./docker-compose mv" />
+
+
+<meta name="baidu-site-verification" content="zW0oque8IK" />
+<meta name="google-site-verification" content="HAIwoMdm1A6XQ6Fp6KwAO7gpL5UKk5TOzvs9DuacYFI" />
+
+
+<meta name="generator" content="Hugo 0.69.2 with theme even" />
+
+
+<link rel="canonical" href="https://567899.xyz/post/bitwarden/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link href="/sass/main.min.2bac9f1300a8a18219cc84fc2401646cd7e17b7d565c50ac353b993e321e29ec.css" rel="stylesheet">
+
+
+
+<meta property="og:title" content="使用bitwarden_rs搭建安全密码库服务器" />
+<meta property="og:description" content="bitwarden_rs是一个免费开源、能自己搭建服务端的安全密码库服务器 https://bitwarden.com/ https://github.com/dani-garcia/bitwarden_rs https://hub.docker.com/r/bitwardenrs/server Docker安装 wget -qO- get.docker.com | bash 安装Docker Compose curl -L https://github.com/docker/compose/releases/download/1.16.1/docker-compose-`uname -s`-`uname -m` &gt; ./docker-compose mv" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://567899.xyz/post/bitwarden/" />
+<meta property="article:published_time" content="2018-06-01T01:37:56+08:00" />
+<meta property="article:modified_time" content="2020-11-07T19:47:29+08:00" />
+<meta itemprop="name" content="使用bitwarden_rs搭建安全密码库服务器">
+<meta itemprop="description" content="bitwarden_rs是一个免费开源、能自己搭建服务端的安全密码库服务器 https://bitwarden.com/ https://github.com/dani-garcia/bitwarden_rs https://hub.docker.com/r/bitwardenrs/server Docker安装 wget -qO- get.docker.com | bash 安装Docker Compose curl -L https://github.com/docker/compose/releases/download/1.16.1/docker-compose-`uname -s`-`uname -m` &gt; ./docker-compose mv">
+<meta itemprop="datePublished" content="2018-06-01T01:37:56&#43;08:00" />
+<meta itemprop="dateModified" content="2020-11-07T19:47:29&#43;08:00" />
+<meta itemprop="wordCount" content="881">
+
+
+
+<meta itemprop="keywords" content="Bitwarden," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="使用bitwarden_rs搭建安全密码库服务器"/>
+<meta name="twitter:description" content="bitwarden_rs是一个免费开源、能自己搭建服务端的安全密码库服务器 https://bitwarden.com/ https://github.com/dani-garcia/bitwarden_rs https://hub.docker.com/r/bitwardenrs/server Docker安装 wget -qO- get.docker.com | bash 安装Docker Compose curl -L https://github.com/docker/compose/releases/download/1.16.1/docker-compose-`uname -s`-`uname -m` &gt; ./docker-compose mv"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">1o</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/links/">
+        <li class="mobile-menu-item">链接</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">关于</li>
+      </a><a href="/search/">
+        <li class="mobile-menu-item">搜索</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">1o</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/links/">链接</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">关于</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/search/">搜索</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">使用bitwarden_rs搭建安全密码库服务器</h1>
+
+      <div class="post-meta">
+        <span class="post-time" title="2018-06-01 01:37:56 &#43;0800 &#43;0800"> 2018-06-01 </span>
+        <div class="post-category">
+            <a href="/categories/%E6%95%99%E7%A8%8B/"> 教程 </a>
+            </div>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#docker安装">Docker安装</a></li>
+        <li><a href="#部署-bitwarden_rs">部署 Bitwarden_rs</a>
+          <ul>
+            <li><a href="#快速部署">快速部署</a></li>
+            <li><a href="#官方提供">官方提供</a></li>
+            <li><a href="#自定义部署推荐使用">自定义部署(推荐使用)</a></li>
+          </ul>
+        </li>
+        <li><a href="#容器操作命令">容器操作命令</a></li>
+        <li><a href="#升级-bitwarden-镜像">升级 Bitwarden 镜像</a></li>
+        <li><a href="#备份bitwarden_rs">备份Bitwarden_rs</a></li>
+        <li><a href="#恢复bitwarden_rs">恢复Bitwarden_rs</a></li>
+        <li><a href="#客户端使用">客户端使用</a>
+          <ul>
+            <li><a href="#desktop">Desktop</a></li>
+            <li><a href="#web-browser">Web Browser</a></li>
+            <li><a href="#mobile">Mobile</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>bitwarden_rs是一个免费开源、能自己搭建服务端的安全密码库服务器</p>
+<ul>
+<li><a href="https://bitwarden.com/">https://bitwarden.com/</a></li>
+<li><a href="https://github.com/dani-garcia/bitwarden_rs">https://github.com/dani-garcia/bitwarden_rs</a></li>
+<li><a href="https://hub.docker.com/r/bitwardenrs/server">https://hub.docker.com/r/bitwardenrs/server</a></li>
+</ul>
+<h2 id="docker安装">Docker安装</h2>
+<pre><code>wget -qO- get.docker.com | bash
+</code></pre>
+<p>安装Docker Compose</p>
+<pre><code>curl -L https://github.com/docker/compose/releases/download/1.16.1/docker-compose-`uname -s`-`uname -m` &gt; ./docker-compose
+mv ./docker-compose /usr/bin/docker-compose
+chmod +x /usr/bin/docker-compose
+</code></pre>
+<p>Docker进程管理</p>
+<pre><code>systemctl enable docker
+systemctl start docker
+systemctl status docker
+</code></pre>
+<h2 id="部署-bitwarden_rs">部署 Bitwarden_rs</h2>
+<blockquote>
+<p><a href="https://github.com/dani-garcia/bitwarden_rs">https://github.com/dani-garcia/bitwarden_rs</a></p>
+</blockquote>
+<h3 id="快速部署">快速部署</h3>
+<pre><code>docker pull bitwardenrs/server:latest
+docker run -d --name bitwarden -v /bw-data/:/data/ -p 8800:80 bitwardenrs/server:latest
+</code></pre>
+<h3 id="官方提供">官方提供</h3>
+<pre><code>curl -Lso bitwarden.sh https://go.btwrdn.co/bw-sh \
+  &amp;&amp; chmod +x bitwarden.sh
+./bitwarden.sh install
+./bitwarden.sh start
+</code></pre>
+<h3 id="自定义部署推荐使用">自定义部署(推荐使用)</h3>
+<p>拉取 bitwarden_rs 镜像</p>
+<pre><code>docker pull bitwardenrs/server:latest
+</code></pre>
+<p>生成一个admin用户管理页面的token(可选)</p>
+<pre><code>openssl rand -base64 48
+</code></pre>
+<p>运行 bitwarden_rs 容器</p>
+<pre><code>docker run -d --name bitwarden --restart=always \
+    -e SIGNUPS_ALLOWED=true \
+    -e INVITATIONS_ALLOWED=true \
+    -e ADMIN_TOKEN=youpassword \
+    -p 8800:80 \
+    -v /bw-data/:/data/ \
+    bitwardenrs/server:latest
+</code></pre>
+<p>参数解释：</p>
+<ol>
+<li><code>SIGNUP_ALLOWED</code>是否允许注册</li>
+<li><code>INVITATIONS_ALLOWED</code>是否允许组织邀请注册</li>
+<li><code>ADMIN_TOKEN</code>用户管理界面 (/admin)，可用于删除用户及邀请用户注册</li>
+<li>将宿主机的8800映射到容器的80端口上</li>
+</ol>
+<p>更多参数可参考<a href="https://github.com/dani-garcia/bitwarden_rs/wiki" target="_blank">官方 Wiki</a></p>
+<p><strong>自己注册完成后建议将<code>SIGNUP_ALLOWED</code>设置为<code>false</code>禁止注册</strong></p>
+<h2 id="容器操作命令">容器操作命令</h2>
+<p>启动容器</p>
+<pre><code>docker start bitwarden
+</code></pre>
+<p>停止容器</p>
+<pre><code>docker stop bitwarden
+</code></pre>
+<p>删除容器</p>
+<pre><code>docker rm bitwarden
+</code></pre>
+<p>查看运行容器</p>
+<pre><code>docker ps -as
+</code></pre>
+<h2 id="升级-bitwarden-镜像">升级 Bitwarden 镜像</h2>
+<pre><code># 重新拉取镜像
+docker pull bitwardenrs/server:latest
+# 停止、删除原容器
+docker stop bitwarden
+docker rm bitwarden
+# 重新运行 docker run 命令
+# 查看镜像文件
+docker image ls
+# 删除原镜像文件, $ID 在 step4 中可以看到
+docker image rm $ID
+</code></pre>
+<h2 id="备份bitwarden_rs">备份Bitwarden_rs</h2>
+<p>只需要备份<code>/bw-data/db.sqlite3</code>这个文件就行了。你可以用<code>rclone sync</code>同步到各个网盘(可选)</p>
+<h2 id="恢复bitwarden_rs">恢复Bitwarden_rs</h2>
+<p>先按上述方法安装运行Bitwarden_rs，然后停止</p>
+<pre><code>docker stop bitwarden
+</code></pre>
+<p>替换备份好的<code>/bw-data/db.sqlite3</code>这个文件即可，然后启动Bitwarden_rs</p>
+<pre><code>docker start bitwarden
+</code></pre>
+<p>如果你的数据库路径与原来的不一致，可以手动指定，代码示例：</p>
+<pre><code>docker run -d --name bitwarden \
+  -e DATABASE_URL=/database/bitwarden.sqlite3 \
+  -v /bw-data/:/data/ \
+  -v /bw-database/:/database/ \
+  -p 8800:80 \
+  bitwardenrs/server:latest
+</code></pre>
+<p>bitwarden可以支持多用户注册使用，如果想要让bitwarden发送邮件的话，可以使用SMTP发邮件，参考代码如下：</p>
+<pre><code>docker run -d --name bitwarden \
+  -e SMTP_HOST=&lt;smtp.domain.tld&gt; \
+  -e SMTP_FROM=&lt;bitwarden@domain.tld&gt; \
+  -e SMTP_PORT=587 \
+  -e SMTP_SSL=true \
+  -e SMTP_USERNAME=&lt;username&gt; \
+  -e SMTP_PASSWORD=&lt;password&gt; \
+  -v /bw-data/:/data/ \
+  -p 8800:80 \
+  bitwardenrs/server:latest
+</code></pre>
+<p>然后用WEB服务器(nginx,caddy等)弄个域名反代一下自定义端口,需要设置好SSL证书以https访问</p>
+<h2 id="客户端使用">客户端使用</h2>
+<blockquote>
+<p><a href="https://bitwarden.com/download/">https://bitwarden.com/download/</a></p>
+</blockquote>
+<h3 id="desktop">Desktop</h3>
+<ol>
+<li><a href="https://vault.bitwarden.com/download/?app=desktop&amp;platform=windows" target="_blank">Windows</a></li>
+</ol>
+<p>Support for Windows 7, 8, and 10</p>
+<ol start="2">
+<li>
+<p><a href="https://vault.bitwarden.com/download/?app=desktop&amp;platform=macos" target="_blank">macOS</a>
+Support for macOS Yosemite and later</p>
+</li>
+<li>
+<p><a href="https://vault.bitwarden.com/download/?app=desktop&amp;platform=linux" target="_blank">Linux</a></p>
+</li>
+</ol>
+<p>Support for most distributions</p>
+<h3 id="web-browser">Web Browser</h3>
+<ol>
+<li><a href="https://chrome.google.com/webstore/detail/bitwarden-free-password-m/nngceckbapebfimnlniiiahkandclblb" target="_blank">Google Chrome</a></li>
+<li><a href="https://addons.mozilla.org/firefox/addon/bitwarden-password-manager" target="_blank">Mozilla Firefox</a></li>
+<li><a href="https://addons.opera.com/extensions/details/bitwarden-free-password-manager/" target="_blank">Opera</a></li>
+<li><a href="https://microsoftedge.microsoft.com/addons/detail/jbkfoedolllekgbhcbcoahefnbanhhlh" target="_blank">Microsoft Edge</a></li>
+<li><a href="https://vault.bitwarden.com/download/?app=desktop&amp;platform=macos" target="_blank">Safari</a></li>
+<li><a href="https://chrome.google.com/webstore/detail/bitwarden-free-password-m/nngceckbapebfimnlniiiahkandclblb" target="_blank">Vivaldi</a></li>
+<li><a href="https://chrome.google.com/webstore/detail/bitwarden-free-password-m/nngceckbapebfimnlniiiahkandclblb" target="_blank">Brave</a></li>
+<li><a href="https://addons.mozilla.org/firefox/addon/bitwarden-password-manager/" target="_blank">Tor Browser</a></li>
+</ol>
+<h3 id="mobile">Mobile</h3>
+<ol>
+<li><a href="https://itunes.apple.com/app/bitwarden-free-password-manager/id1137397744?mt=8" target="_blank">App Store</a></li>
+<li><a href="https://play.google.com/store/apps/details?id=com.x8bit.bitwarden" target="_blank">Google Play</a></li>
+</ol>
+
+    </div>
+
+    
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/bitwarden/">Bitwarden</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/linux-vps-rclone-googledrive-microsoftonedrive/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">在Linux_VPS上使用rclone挂载GoogleDrive云端硬盘和MicrosoftOneDrive</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/nginx-caddy-proxy-google-youtube-wikipedia/">
+            <span class="next-text nav-default">利用Caddy,Nginx反向代理谷歌YouTube等网站</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+  <div class="comments">
+    <div class="loading post">
+      <img src="/img/spinner.svg">
+      <p class="post-content">
+        评论正在加载中...如果评论较长时间无法加载，你可以
+        <a href='https://github.com/ouuan/blog-comments/issues?q=is%3Aissue+is%3Aopen+"%e4%bd%bf%e7%94%a8bitwarden_rs%e6%90%ad%e5%bb%ba%e5%ae%89%e5%85%a8%e5%af%86%e7%a0%81%e5%ba%93%e6%9c%8d%e5%8a%a1%e5%99%a8 - 1o"' target="_blank">搜索对应的 issue</a>
+        或者
+        <a href="https://github.com/ouuan/blog-comments/issues/new?title=%e4%bd%bf%e7%94%a8bitwarden_rs%e6%90%ad%e5%bb%ba%e5%ae%89%e5%85%a8%e5%af%86%e7%a0%81%e5%ba%93%e6%9c%8d%e5%8a%a1%e5%99%a8 - 1o" target="_blank">新建一个 issue</a>
+        。
+      </p>
+    </div>
+    <script src="https://utteranc.es/client.js"
+            repo="pwwq/blog-comments"
+            issue-term="title"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    <noscript>请启用 JavaScript 来查看评论。</a></noscript>
+  </div>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:admin@567899.xyz" class="iconfont icon-email" title="email" target="_blank"></a>
+      <a href="https://github.com/pwwq" class="iconfont icon-github" title="github" target="_blank"></a>
+      <a href="https://space.bilibili.com/11067182" class="iconfont icon-bilibili" title="bilibili" target="_blank"></a>
+      <a href="https://t.me/id009" class="iconfont icon-telegram" title="telegram" target="_blank"></a>
+  <a href="https://567899.xyz/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io" target="_blank">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even" target="_blank">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2013 - 
+    2020
+    <span class="heart">
+      <a class="iconfont icon-github" title="source code" href="https://github.com/pwwq/hugo-blog" target="_blank"></a>
+    </span> 
+    <span class="author">1o</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <link href="https://cdn.bootcss.com/highlight.js/9.15.10/styles/tomorrow.min.css" rel="stylesheet">
+  <script>hljs.configure({tabReplace: '    '});</script><script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+  
+
+
+
+<script type="text/javascript" src="/js/main.min.6821b76b4e5300f807f477f7f6e0e8772a852e6af6d99f47104e1b9632e47aba.js"></script>
+  <script type="text/javascript">
+    window.MathJax = {
+      tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+      showProcessingMessages: false,
+      messageStyle: 'none'
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"  integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-157787819-1', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>docker on 1o</title><link>https://567899.xyz/tags/docker/</link><description>Recent content in docker on 1o</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Wed, 25 Jul 2018 01:37:56 +0800</lastBuildDate><atom:link href="https://567899.xyz/tags/docker/index.xml" rel="self" type="application/rss+xml"/><item><title>docker创建删除使用容器或镜像</title><link>https://567899.xyz/post/docker-images/</link><pubDate>Wed, 25 Jul 2018 01:37:56 +0800</pubDate><guid>https://567899.xyz/post/docker-images/</guid><description>&lt;p>&lt;em>更多容器可以访问&lt;a href="https://www.docker.com/" target="_blank">docker&lt;/a>的&lt;a href="https://hub.docker.com/" target="_blank">Docker Hub&lt;/a>&lt;/em>&lt;/p>
+&lt;p>操作系统内核大于等于 3.10 的都可以安装最新版 Docker 查看内核版本&lt;/p>
+&lt;pre>&lt;code class="language-bash">uname -r
+&lt;/code>&lt;/pre>
+&lt;h3 id="安装docker">安装docker&lt;/h3>
+&lt;pre>&lt;code class="language-bash">wget -qO- get.docker.com | bash
+&lt;/code>&lt;/pre>
+&lt;p>安装完成后，运行下面的命令，验证是否安装成功。&lt;/p>
+&lt;pre>&lt;code class="language-bash">docker version
+&lt;/code>&lt;/pre></description></item></channel></rss>

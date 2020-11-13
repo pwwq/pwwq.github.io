@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>从零开始编译OpenWRT lean软路由固件教程 - 1o</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="1o" /><meta name="description" content="测试系统：ubuntu18.04 lts x64 如何编译自己需要的OpenWrt固件 Lean大雕的地址： https://github.com/coolsnowwolf/lede 注意： 不要用 root 用户 git 和编译！！！ 国内用户编译前" />
+
+
+<meta name="baidu-site-verification" content="zW0oque8IK" />
+<meta name="google-site-verification" content="HAIwoMdm1A6XQ6Fp6KwAO7gpL5UKk5TOzvs9DuacYFI" />
+
+
+<meta name="generator" content="Hugo 0.69.2 with theme even" />
+
+
+<link rel="canonical" href="https://567899.xyz/post/openwrt/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link href="/sass/main.min.2bac9f1300a8a18219cc84fc2401646cd7e17b7d565c50ac353b993e321e29ec.css" rel="stylesheet">
+
+
+
+<meta property="og:title" content="从零开始编译OpenWRT lean软路由固件教程" />
+<meta property="og:description" content="测试系统：ubuntu18.04 lts x64 如何编译自己需要的OpenWrt固件 Lean大雕的地址： https://github.com/coolsnowwolf/lede 注意： 不要用 root 用户 git 和编译！！！ 国内用户编译前" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://567899.xyz/post/openwrt/" />
+<meta property="article:published_time" content="2018-08-26T01:37:56+08:00" />
+<meta property="article:modified_time" content="2020-09-09T09:30:36+00:00" />
+<meta itemprop="name" content="从零开始编译OpenWRT lean软路由固件教程">
+<meta itemprop="description" content="测试系统：ubuntu18.04 lts x64 如何编译自己需要的OpenWrt固件 Lean大雕的地址： https://github.com/coolsnowwolf/lede 注意： 不要用 root 用户 git 和编译！！！ 国内用户编译前">
+<meta itemprop="datePublished" content="2018-08-26T01:37:56&#43;08:00" />
+<meta itemprop="dateModified" content="2020-09-09T09:30:36&#43;00:00" />
+<meta itemprop="wordCount" content="5838">
+
+
+
+<meta itemprop="keywords" content="OpenWRT," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="从零开始编译OpenWRT lean软路由固件教程"/>
+<meta name="twitter:description" content="测试系统：ubuntu18.04 lts x64 如何编译自己需要的OpenWrt固件 Lean大雕的地址： https://github.com/coolsnowwolf/lede 注意： 不要用 root 用户 git 和编译！！！ 国内用户编译前"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">1o</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/links/">
+        <li class="mobile-menu-item">链接</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">关于</li>
+      </a><a href="/search/">
+        <li class="mobile-menu-item">搜索</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">1o</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/links/">链接</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">关于</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/search/">搜索</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">从零开始编译OpenWRT lean软路由固件教程</h1>
+
+      <div class="post-meta">
+        <span class="post-time" title="2018-08-26 01:37:56 &#43;0800 &#43;0800"> 2018-08-26 </span>
+        <div class="post-category">
+            <a href="/categories/%E6%95%99%E7%A8%8B/"> 教程 </a>
+            </div>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li>
+          <ul>
+            <li>
+              <ul>
+                <li><a href="#如何编译自己需要的openwrt固件">如何编译自己需要的OpenWrt固件</a></li>
+                <li><a href="#文本翻译机翻">文本翻译(机翻)</a></li>
+                <li><a href="#知道github地址怎么编译到固件里面呢">知道github地址怎么编译到固件里面呢</a></li>
+                <li><a href="#以后二次编译">以后二次编译</a></li>
+                <li><a href="#多线多拨负载均衡">多线多拨负载均衡</a></li>
+                <li><a href="#修改内核版本">修改内核版本</a></li>
+                <li><a href="#openwrt路由器通过安卓iphone有线共享网络上网">OpenWrt路由器通过安卓iPhone有线共享网络上网</a></li>
+                <li><a href="#支持-ipv6">支持 iPv6：</a></li>
+                <li><a href="#lean-luci--applications">lean LuCI —&gt; Applications</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>测试系统：ubuntu18.04 lts x64</p>
+<h4 id="如何编译自己需要的openwrt固件">如何编译自己需要的OpenWrt固件</h4>
+<p>Lean大雕的地址： <a href="https://github.com/coolsnowwolf/lede">https://github.com/coolsnowwolf/lede</a></p>
+<p>注意：</p>
+<ol>
+<li>不要用 root 用户 git 和编译！！！</li>
+<li>国内用户编译前最好准备好梯子</li>
+<li>默认登陆IP 192.168.1.1, 密码 password</li>
+</ol>
+<p>编译命令如下:</p>
+<p>首先装好 Ubuntu 64bit，推荐  Ubuntu  14 LTS x64</p>
+<p>桌面版本的按<code>CTRL+ALT+T</code>进入终端，更新软件列表，下载安装更新。命令行输入</p>
+<pre><code class="language-bash">sudo apt-get update
+</code></pre>
+<p>安装基础环境(占用2GB左右的磁盘)</p>
+<pre><code class="language-bash">sudo apt-get -y install build-essential asciidoc binutils bzip2 gawk gettext git libncurses5-dev libz-dev patch unzip zlib1g-dev lib32gcc1 libc6-dev-i386 subversion flex uglifyjs git-core gcc-multilib p7zip p7zip-full msmtp libssl-dev texinfo libglib2.0-dev xmlto qemu-utils upx libelf-dev autoconf automake libtool autopoint
+</code></pre>
+<p>下载源代码，建立工作目录，进入工作目录</p>
+<pre><code class="language-bash">git clone https://github.com/coolsnowwolf/lede
+cd lede
+</code></pre>
+<p>更新软件包,测试编译环境</p>
+<pre><code class="language-bash">./scripts/feeds update -a
+./scripts/feeds install -a
+</code></pre>
+<p>配置固件菜单</p>
+<pre><code class="language-bash">make menuconfig
+</code></pre>
+<p>最后选好你要的路由，输入</p>
+<pre><code class="language-bash">make -j1 V=s
+</code></pre>
+<p><code>-j1</code>后面是线程数。第一次编译推荐用单线程，国内请尽量全局科学上网,即可开始编译你要的固件了。<strong>以后编译可以选择多线程</strong>，规则如下<code>n+1</code>其中<code>n</code>代表线程数量，比如你的CPU是双核四线程的话，就是<code>make -j5 V=s</code>  <code>V=s</code>代表输出全部过程</p>
+<p>本套代码保证肯定可以编译成功。里面包括了 R9 所有源代码，包括 IPK 的。</p>
+<p>以默认的x86软路由为例，不额外增加插件什么的，首次编译占用20GB左右的磁盘空间。添加的功能插件越多占用磁盘空间会越大，编译环境建议50GB+的磁盘大小。</p>
+<p>固件保存路径</p>
+<pre><code class="language-bash">~/lede/bin/targets/x86/64
+</code></pre>
+<p>IPK路径</p>
+<pre><code class="language-bash">~/lede/bin/targets/x86/64/packages
+</code></pre>
+<p>网络下载路径</p>
+<pre><code class="language-bash">~/lede/dl
+</code></pre>
+<p>最后芝麻开门代码</p>
+<pre><code class="language-bash">echo 0xDEADBEEF &gt; /etc/config/google_fu_mode
+</code></pre>
+<hr>
+<h4 id="文本翻译机翻">文本翻译(机翻)</h4>
+<p>[*]内置[]排除的<M>模块&lt;&gt;支持模块的</p>
+<ol>
+<li>&lt;*&gt;表示将软件包编译进固件，</li>
+<li><M>表示软件包会被编译，但不会编译进固件。</li>
+</ol>
+<pre><code class="language-bash">OpenWrt Configuration【OpenWrt配置】
+Arrow keys navigate the menu.  &lt;Enter&gt; selects submenus ---&gt; (or empty submenus ----).  Highlighted letters are hotkeys.  Pressing &lt;Y&gt; includes, &lt;N&gt; excludes, &lt;M&gt; modularizes features.  Press &lt;Esc&gt;&lt;Esc&gt; to exit, &lt;?&gt; for Help, &lt;/&gt; for Search.  Legend: [*] built-in  [ ] excluded  &lt;M&gt; module  &lt; &gt; module capable 
+
+箭头键浏览菜单。 &lt;Enter&gt;选择子菜单---&gt;（或空子菜单----）。高亮显示的字母是热键。按&lt;Y&gt;包含，&lt;N&gt;排除，&lt;M&gt;模块化功能。按下&lt;Esc&gt; &lt;Esc&gt;退出，按下&lt;？&gt;获得帮助，按下&lt;/&gt;获得Search。图例：[*]内置[]排除的&lt;M&gt;模块&lt;&gt;支持模块的x
+
+Target System (x86)  ---&gt;   目标系统（x86）
+Subtarget (x86_64)  ---&gt;   子目标（x86_64）
+Target Profile (Generic)  ---&gt;目标配置文件（通用）
+Target Images  ---&gt; 保存目标镜像的格式
+Global build settings  ---&gt;      全局构建设置
+Advanced configuration options (for developers)  ---- 高级配置选项（适用于开发人员）
+Build the OpenWrt Image Builder 构建OpenWrt图像生成器
+Build the OpenWrt SDK构建OpenWrt SDK
+Package the OpenWrt-based Toolchain打包基于OpenWrt的工具链
+Image configuration  ---&gt;图像配置
+Base system  ---&gt;     基本系统
+Administration  ---&gt;     管理
+Boot Loaders  ---&gt;引导加载程序
+Development  ---&gt;   开发
+Extra packages  ---&gt;  额外包
+Firmware  ---&gt;固件
+Fonts  ---&gt;字体
+Kernel modules  ---&gt;  内核模块
+Languages  ---&gt;语言
+Libraries  ---&gt;  图书馆
+LuCI  ---&gt;      LuCI
+Mail  ---&gt;邮件
+Multimedia  ---&gt;多媒体
+Network  ---&gt;网络
+Sound  ---&gt; 声音
+Utilities  ---&gt;实用程序
+Xorg  ---&gt;Xorg
+&lt;Select&gt; 选择   &lt; Exit &gt; 退出   &lt; Help &gt;  帮助  &lt; Save &gt; 保存   &lt; Load &gt;  加载
+</code></pre>
+<p>进入<code>LuCI</code> <code>Applications</code>选择自己需要的功能插件</p>
+<p>如果是物理机软路由的话，建议选择输出UEFI，这样能挂载2TB以上的磁盘，虚拟机就没这个必要了
+<code>Target Images</code>  <code>[*] Build EFI GRUB images (Linux x86 or x86_64 host only)</code></p>
+<h4 id="知道github地址怎么编译到固件里面呢">知道github地址怎么编译到固件里面呢</h4>
+<p>但是如果只知道软件包的github地址怎么编译到固件里面呢？</p>
+<p>luci-app-s-s-r-plus今天就拿这个举例子</p>
+<p>鉴于L大已删除相关源码，现将自用的ssr源码托管到github</p>
+<p>github地址：https://github.com/maxlicheng/luci-app-ssr-plus.git</p>
+<p>源码特色</p>
+<ol>
+<li>免开门</li>
+<li>更新g-f-w列表，共5176条</li>
+<li>更新国内IP段，共8369条</li>
+</ol>
+<p>使用方法一</p>
+<pre><code class="language-bash">    #源码根目录，进入package文件夹
+    cd package/
+    #创建一个openwrt-packages
+    mkdir openwrt-packages
+    #进入新建的文件夹
+    cd openwrt-packages
+    #下载源码
+    git clone https://github.com/maxlicheng/luci-app-ssr-plus.git
+    #回到源码根目录
+    cd ../..
+    #拉取源码
+    git pull
+</code></pre>
+<p>使用方法二</p>
+<pre><code class="language-bash">    #源码根目录，编辑.gitignore文件
+    vi .gitignore
+    #在文件最后一行，加入
+    git rm --cached package/lean/luci-app-ssr-plus/ -r
+    #保存后，进入lean源码目录
+    cd package/lean/
+    #下载源码
+    git clone https://github.com/maxlicheng/luci-app-ssr-plus.git
+    #回到源码根目录
+    cd ../..
+    #拉取源码
+    git pull
+</code></pre>
+<p>注意
+以上两种方法只能选其中一种， 采用任一方法后，ssr就不受git pull影响了。</p>
+<p>进入编译配置菜单</p>
+<pre><code class="language-bash">make menuconfig
+</code></pre>
+<p>添加插件应用说明</p>
+<p>LuCI -&gt; Applications（进入Applications会看到如下图界面。）</p>
+<p>现在就可以看到新添加的软件包了，新添加的软件包后面会显示（New）</p>
+<hr>
+<p>官方源：</p>
+<pre><code class="language-bash">git clone https://github.com/lede-project/source.git
+</code></pre>
+<p>lean源：</p>
+<pre><code class="language-bash">git clone https://github.com/coolsnowwolf/lede.git
+</code></pre>
+<p>测试编译环境</p>
+<pre><code class="language-bash">make defconfig
+</code></pre>
+<p>配置固件菜单</p>
+<pre><code class="language-bash">make menuconfig
+</code></pre>
+<p>预先下载dl库，可以避免下载造成的编译失败。</p>
+<pre><code class="language-bash">make download V=s
+</code></pre>
+<p>全速编译固件</p>
+<pre><code class="language-bash">make V=99
+</code></pre>
+<p><code>-j</code>参数设定全速编译，<code>-j</code>参数可能会导致系统卡死，不建议老爷机使用</p>
+<p>最好在编译新增包前，执行<code>./scripts/feeds {update,install} -a</code>再增加修改各种编译模板，完后<code>./scripts/feeds update -i</code>即可，这样会从编译模板里读取要编译包的版本更新到索引。之后无需再执行<code>{update,install} -a</code>如果执行了会重新从openwrt源码URL下载索引，然后比如ppp的编译模板，会下载安装到官方源码版本。</p>
+<pre><code class="language-bash">make clean #清除bin 目录
+make dirclean #清除bin 目录+清除交叉编译工具及工具链目录
+make distclean #清除所有相关的东西，包括下载的软件包，配置文件，feed内容等
+</code></pre>
+<p>每次编译成功后备份<code>make menuconfig</code>的镜像配置文件，以避免下次编译时失败报错无法回退。</p>
+<pre><code class="language-bash">cp .config my.config
+</code></pre>
+<p><code>make dirclean</code>不会删除<code>dl</code>目录修改</p>
+<h4 id="以后二次编译">以后二次编译</h4>
+<pre><code class="language-bash">cd lede                                                          进入LEDE目录
+git pull                                                         同步更新源码
+./scripts/feeds update -a &amp;&amp; ./scripts/feeds install -a          更新FEEDS
+rm -rf ./tmp &amp;&amp; rm -rf .config                                   清除编译配置和缓存
+make menuconfig                                                  进入编译配置菜单
+make -jn V=s                                                     n=线程数+1，例如4线程的I5填-j5，开始编译
+</code></pre>
+<h4 id="多线多拨负载均衡">多线多拨负载均衡</h4>
+<p>多拨插件<code>syncdial</code>原<code>macvlan</code>负载均衡插件<code>mwan3</code>IPSET规则生成工具<code>mwan3help</code></p>
+<pre><code class="language-bash">&gt; LuCI &gt; Applications
+  luci-app-syncdial........................... Virtual WAN config generator
+  luci-app-mwan3........ LuCI support for the MWAN3 multiwan hotplug script
+  luci-app-mwan3helper....................... LuCI support for MWAN3 Helper
+</code></pre>
+<h4 id="修改内核版本">修改内核版本</h4>
+<p>打开LEDE目录/target/linux/架构/Makefile以X86为例</p>
+<p>打开<code>~/lede/target/linux/x86/Makefile</code>找到<code>KERNEL_PATCHVER:=4.9</code>修改它,具体支持内核版本<code>~/lede/include/kernel-version.mk</code></p>
+<h4 id="openwrt路由器通过安卓iphone有线共享网络上网">OpenWrt路由器通过安卓iPhone有线共享网络上网</h4>
+<pre><code class="language-bash">Kernel modules  ---&gt;
+    USB Support  ---&gt;
+        &lt;*&gt; kmod-usb-net............... Kernel modules for USB-to-Ethernet convertors
+        &lt;*&gt; kmod-usb-ohci............................... Support for OHCI controllers
+        &lt;*&gt; kmod-usb-uhci............................... Support for UHCI controllers
+        &lt;*&gt; kmod-usb2................................... Support for USB2 controllers
+
+Utilities  ---&gt;
+    &lt;*&gt; libimobiledevice-utils............ A library that talks to Apple devices.
+    &lt;*&gt; libplist-utils............................. Apple property list converter
+    &lt;*&gt; libusbmuxd-utils......................... USB multiplexing daemon utilies
+    &lt;*&gt; usbmuxd.......................................... USB multiplexing daemon
+</code></pre>
+<p>USB連接手機後，打開網絡共享，會在/proc/net/dev下面新增一個網絡接口,安卓是USB開頭的接口名192.168.42.xx網段的，iPhone是eth開頭的接口名172.20.10.xx網段的。</p>
+<h4 id="支持-ipv6">支持 iPv6：</h4>
+<pre><code class="language-bash">Extra packages —&gt; ipv6helper （选定这个后下面几项自动选择了）
+Network —&gt; odhcp6c
+Network —&gt; odhcpd-ipv6only
+LuCI —&gt; Protocols —&gt; luci-proto-ipv6
+LuCI —&gt; Protocols —&gt; luci-proto-ppp
+</code></pre>
+<h4 id="lean-luci--applications">lean LuCI —&gt; Applications</h4>
+<pre><code class="language-bash">LuCI —&gt; Applications —&gt; luci-app-accesscontrol #访问时间控制
+LuCI —&gt; Applications —&gt; luci-app-adblock #ADB广告过滤
+LuCI —&gt; Applications —&gt; luci-app-adbyby-plus #广告屏蔽大师Plus +
+LuCI —&gt; Applications —&gt; luci-app-adbyby #广告过滤大师（已弃）
+LuCI —&gt; Applications —&gt; luci-app-adkill #广告过滤（已弃）
+LuCI —&gt; Applications —&gt; luci-app-advanced-reboot #Linksys高级重启
+LuCI —&gt; Applications —&gt; luci-app-ahcp #支持AHCPd
+LuCI —&gt; Applications —&gt; luci-app-aliddns #阿里DDNS客户端
+LuCI —&gt; Applications —&gt; luci-app-amule #aMule下载工具
+LuCI —&gt; Applications —&gt; luci-app-aria2 # Aria2下载工具
+LuCI —&gt; Applications —&gt; luci-app-arpbind #IP/MAC绑定
+LuCI —&gt; Applications —&gt; luci-app-asterisk #支持Asterisk电话服务器
+LuCI —&gt; Applications —&gt; luci-app-attendedsysupgrade #固件更新升级相关
+LuCI —&gt; Applications —&gt; luci-app-autoreboot #支持计划重启
+LuCI —&gt; Applications —&gt; luci-app-bcp38 #BCP38网络入口过滤(不确定)
+LuCI —&gt; Applications —&gt; luci-app-bird4 #Bird 4(未知)
+LuCI —&gt; Applications —&gt; luci-app-bird6 #Bird 6(未知)
+LuCI —&gt; Applications —&gt; luci-app-bmx6 #BMX6路由协议
+LuCI —&gt; Applications —&gt; luci-app-bmx7 #BMX7路由协议
+LuCI —&gt; Applications —&gt; luci-app-caldav #联系人
+LuCI —&gt; Applications —&gt; luci-app-cjdns #加密IPV6网络相关
+LuCI —&gt; Applications —&gt; luci-app-clamav #ClamAV杀毒软件
+LuCI —&gt; Applications —&gt; luci-app-commands #Shell命令模块
+LuCI —&gt; Applications —&gt; luci-app-cshark #CloudShark捕获工具
+LuCI —&gt; Applications —&gt; luci-app-ddns #动态域名 DNS
+LuCI —&gt; Applications —&gt; luci-app-diag-core #core诊断工具
+LuCI —&gt; Applications —&gt; luci-app-dnscrypt-proxy #DNSCrypt解决DNS污染
+LuCI —&gt; Applications —&gt; luci-app-dnscrypt-dnsforwarder #DNSForwarder防DNS污染
+LuCI —&gt; Applications —&gt; luci-app-dnspod #DNSPod
+LuCI —&gt; Applications —&gt; luci-app-dump1090 #民航无线频率(不确定)
+LuCI —&gt; Applications —&gt; luci-app-dynapoint #DynaPoint(未知)
+LuCI —&gt; Applications —&gt; luci-app-e2guardian #Web内容过滤器
+LuCI —&gt; Applications —&gt; luci-app-filetransfer #文件传输
+LuCI —&gt; Applications —&gt; luci-app-firewall #添加防火墙
+LuCI —&gt; Applications —&gt; luci-app-flowoffload #Turbo ACC FLOW转发加速
+LuCI —&gt; Applications —&gt; luci-app-freifunk-diagnostics #freifunk组件 诊断(未知)
+LuCI —&gt; Applications —&gt; luci-app-freifunk-policyrouting #freifunk组件 策略路由(未知)
+LuCI —&gt; Applications —&gt; luci-app-freifunk-widgets #freifunk组件 索引(未知)
+LuCI —&gt; Applications —&gt; luci-app-frpc #内网穿透 Frp
+LuCI —&gt; Applications —&gt; luci-app-fwknopd #Firewall Knock Operator服务器
+LuCI —&gt; Applications —&gt; luci-app-guest-wifi #WiFi访客网络
+LuCI —&gt; Applications —&gt; luci-app-hd-idle #硬盘休眠
+LuCI —&gt; Applications —&gt; luci-app-hnet #Homenet Status家庭网络控制协议
+LuCI —&gt; Applications —&gt; luci-app-kooldns #virtual服务器 ddns替代方案（已弃）
+LuCI —&gt; Applications —&gt; luci-app-koolproxy #KP去广告（已弃）
+LuCI —&gt; Applications —&gt; luci-app-lxc #LXC容器管理
+LuCI —&gt; Applications —&gt; luci-app-meshwizard #网络设置向导
+LuCI —&gt; Applications —&gt; luci-app-minidlna #完全兼容DLNA / UPnP-AV客户端的服务器软件
+LuCI —&gt; Applications —&gt; luci-app-mjpg-streamer #兼容Linux-UVC的摄像头程序
+LuCI —&gt; Applications —&gt; luci-app-mmc-over-gpio #添加SD卡操作界面（已弃）
+LuCI —&gt; Applications —&gt; luci-app-multiwan #多拨虚拟网卡（已弃）
+LuCI —&gt; Applications —&gt; luci-app-mwan #MWAN负载均衡
+LuCI —&gt; Applications —&gt; luci-app-mwan3 #MWAN3分流助手
+LuCI —&gt; Applications —&gt; luci-app-n2n_v2 #N2N内网穿透 N2N v2 virtual服务
+LuCI —&gt; Applications —&gt; luci-app-nft-qos #QOS流控 Nftables版（已弃）
+LuCI —&gt; Applications —&gt; luci-app-ngrokc #Ngrok 内网穿透（已弃）
+LuCI —&gt; Applications —&gt; luci-app-nlbwmon #网络带宽监视器
+LuCI —&gt; Applications —&gt; luci-app-noddos #NodDOS Clients 阻止DDoS攻击
+LuCI —&gt; Applications —&gt; luci-app-ntpc #NTP时间同步服务器
+LuCI —&gt; Applications —&gt; luci-app-ocserv #OpenConnect virtual服务
+LuCI —&gt; Applications —&gt; luci-app-olsr #OLSR配置和状态模块
+LuCI —&gt; Applications —&gt; luci-app-olsr-services #OLSR服务器
+LuCI —&gt; Applications —&gt; luci-app-olsr-viz #OLSR可视化
+LuCI —&gt; Applications —&gt; luci-app-ocserv #OpenConnect virtual服务（已弃）
+LuCI —&gt; Applications —&gt; luci-app-openvirtual** #Openvirtual客户端
+LuCI —&gt; Applications —&gt; luci-app-openvirtual-server #易于使用的Openvirtual服务器 Web-UI
+LuCI —&gt; Applications —&gt; luci-app-oscam #OSCAM服务器（已弃）
+LuCI —&gt; Applications —&gt; luci-app-p910nd #打印服务器模块
+LuCI —&gt; Applications —&gt; luci-app-pagekitee #Pagekite内网穿透客户端
+LuCI —&gt; Applications —&gt; luci-app-polipo #Polipo代理(是一个小型且快速的网页缓存代理)
+LuCI —&gt; Applications —&gt; luci-app-pppoe-relay #PPPoE NAT穿透 点对点协议(PPP)
+LuCI —&gt; Applications —&gt; luci-app-p p t p-server #virtual服务器 p p t p
+LuCI —&gt; Applications —&gt; luci-app-privoxy #Privoxy网络代理(带过滤无缓存)
+LuCI —&gt; Applications —&gt; luci-app-qos #流量服务质量(QoS)流控
+LuCI —&gt; Applications —&gt; luci-app-radicale #CalDAV/CardDAV同步工具
+LuCI —&gt; Applications —&gt; luci-app-ramfree #释放内存
+LuCI —&gt; Applications —&gt; luci-app-rp-pppoe-server #Roaring Penguin PPPoE Server 服务器
+LuCI —&gt; Applications —&gt; luci-app-samba #网络共享(Samba)
+LuCI —&gt; Applications —&gt; luci-app-samba4 #网络共享(Samba4)
+LuCI —&gt; Applications —&gt; luci-app-sfe #Turbo ACC网络加速(开启Fast Path转发加速)
+LuCI —&gt; Applications —&gt; luci-app-s-s #SS兲朝上网（已弃）
+LuCI —&gt; Applications —&gt; luci-app-s-s-libes #SS-libev服务端
+LuCI —&gt; Applications —&gt; luci-app-shairplay #支持AirPlay功能
+LuCI —&gt; Applications —&gt; luci-app-siitwizard #SIIT配置向导 SIIT-Wizzard
+LuCI —&gt; Applications —&gt; luci-app-simple-adblock #简单的广告拦截
+LuCI —&gt; Applications —&gt; luci-app-simple-softethervirtual** #SoftEther virtual服务器 NAT穿透（已弃）
+LuCI —&gt; Applications —&gt; luci-app-splash #Client-Splash是无线MESH网络的一个热点认证系统
+LuCI —&gt; Applications —&gt; luci-app-sqm #流量智能队列管理(QOS)
+LuCI —&gt; Applications —&gt; luci-app-squid #Squid代理服务器
+LuCI —&gt; Applications —&gt; luci-app-S-S R-plus #S-S R兲朝上网Plus+
+LuCI —&gt; Applications —&gt; luci-app-S-S R-plus —&gt; Include s-s New Versiong #新SS代理
+LuCI —&gt; Applications —&gt; luci-app-S-S R-plus —&gt; Include V2ray #V2Ray透明代理
+LuCI —&gt; Applications —&gt; luci-app-S-S R-plus —&gt; Include Kcptun #Kcptun代理
+LuCI —&gt; Applications —&gt; luci-app-S-S R-plus —&gt; Include s-sR Server #S-S R客户端
+LuCI —&gt; Applications —&gt; luci-app-S-S R-plus —&gt; Include s-sR Socks and Tunnel #S-S R代理
+LuCI —&gt; Applications —&gt; luci-app-S-S R-pro #S-S R-Pro
+LuCI —&gt; Applications —&gt; luci-app-S-S Rserver-python #s-sR Python服务器
+LuCI —&gt; Applications —&gt; luci-app-statistics #流量监控工具
+LuCI —&gt; Applications —&gt; luci-app-syncdial #多拨虚拟网卡(原macvlan)
+LuCI —&gt; Applications —&gt; luci-app-tinyproxy #Tinyproxy是 HTTP(S)代理服务器
+LuCI —&gt; Applications —&gt; luci-app-transmission #BT下载工具
+LuCI —&gt; Applications —&gt; luci-app-travelmate #旅行路由器
+LuCI —&gt; Applications —&gt; luci-app-ttyd #网页终端命令行
+LuCI —&gt; Applications —&gt; luci-app-udpxy #udpxy做组播服务器
+LuCI —&gt; Applications —&gt; luci-app-uhttpd #uHTTPd Web服务器
+LuCI —&gt; Applications —&gt; luci-app-unbound #Unbound DNS解析器
+LuCI —&gt; Applications —&gt; luci-app-upnp #通用即插即用UPnP(端口自动转发)
+LuCI —&gt; Applications —&gt; luci-app-usb-printer #USB 打印服务器
+LuCI —&gt; Applications —&gt; luci-app-v2ray-pro #V2Ray透明代理
+LuCI —&gt; Applications —&gt; luci-app-vlmcsd #KMS服务器设置
+LuCI —&gt; Applications —&gt; luci-app-vnstat #vnStat网络监控(图表)
+LuCI —&gt; Applications —&gt; luci-app-virtualbypass #virtual** BypassWebUI 绕过virtual设置
+LuCI —&gt; Applications —&gt; luci-app-vsftpd #FTP服务器
+LuCI —&gt; Applications —&gt; luci-app-watchcat #断网检测功能与定时重启
+LuCI —&gt; Applications —&gt; luci-app-webadmin #Web管理页面设置
+LuCI —&gt; Applications —&gt; luci-app-webshell #网页命令行终端（已弃）
+LuCI —&gt; Applications —&gt; luci-app-wifischedule #WiFi 计划
+LuCI —&gt; Applications —&gt; luci-app-wireguard #virtual服务器 WireGuard状态
+LuCI —&gt; Applications —&gt; luci-app-wireless-regdb #WiFi无线
+LuCI —&gt; Applications —&gt; luci-app-wol #WOL网络唤醒
+LuCI —&gt; Applications —&gt; luci-app-wrtbwmon #实时流量监测
+LuCI —&gt; Applications —&gt; luci-app-xlnetacc #迅雷快鸟
+LuCI —&gt; Applications —&gt; luci-app-zerotier #ZeroTier内网穿透
+</code></pre>
+
+    </div>
+
+    
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/openwrt/">OpenWRT</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/router-on-a-stick-vmwareworkstation-openwrt-lede/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">VMware Workstation单臂路由配置安装openwrt(LEDE)单网卡国际互联网</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/docker-images/">
+            <span class="next-text nav-default">docker创建删除使用容器或镜像</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+  <div class="comments">
+    <div class="loading post">
+      <img src="/img/spinner.svg">
+      <p class="post-content">
+        评论正在加载中...如果评论较长时间无法加载，你可以
+        <a href='https://github.com/ouuan/blog-comments/issues?q=is%3Aissue+is%3Aopen+"%e4%bb%8e%e9%9b%b6%e5%bc%80%e5%a7%8b%e7%bc%96%e8%af%91OpenWRT%20lean%e8%bd%af%e8%b7%af%e7%94%b1%e5%9b%ba%e4%bb%b6%e6%95%99%e7%a8%8b - 1o"' target="_blank">搜索对应的 issue</a>
+        或者
+        <a href="https://github.com/ouuan/blog-comments/issues/new?title=%e4%bb%8e%e9%9b%b6%e5%bc%80%e5%a7%8b%e7%bc%96%e8%af%91OpenWRT%20lean%e8%bd%af%e8%b7%af%e7%94%b1%e5%9b%ba%e4%bb%b6%e6%95%99%e7%a8%8b - 1o" target="_blank">新建一个 issue</a>
+        。
+      </p>
+    </div>
+    <script src="https://utteranc.es/client.js"
+            repo="pwwq/blog-comments"
+            issue-term="title"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    <noscript>请启用 JavaScript 来查看评论。</a></noscript>
+  </div>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:admin@567899.xyz" class="iconfont icon-email" title="email" target="_blank"></a>
+      <a href="https://github.com/pwwq" class="iconfont icon-github" title="github" target="_blank"></a>
+      <a href="https://space.bilibili.com/11067182" class="iconfont icon-bilibili" title="bilibili" target="_blank"></a>
+      <a href="https://t.me/id009" class="iconfont icon-telegram" title="telegram" target="_blank"></a>
+  <a href="https://567899.xyz/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io" target="_blank">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even" target="_blank">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2013 - 
+    2020
+    <span class="heart">
+      <a class="iconfont icon-github" title="source code" href="https://github.com/pwwq/hugo-blog" target="_blank"></a>
+    </span> 
+    <span class="author">1o</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <link href="https://cdn.bootcss.com/highlight.js/9.15.10/styles/tomorrow.min.css" rel="stylesheet">
+  <script>hljs.configure({tabReplace: '    '});</script><script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+  
+
+
+
+<script type="text/javascript" src="/js/main.min.6821b76b4e5300f807f477f7f6e0e8772a852e6af6d99f47104e1b9632e47aba.js"></script>
+  <script type="text/javascript">
+    window.MathJax = {
+      tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+      showProcessingMessages: false,
+      messageStyle: 'none'
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"  integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-157787819-1', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+</body>
+</html>

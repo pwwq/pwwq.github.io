@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>V2ray安装配置VMess、VLESS、XTLS教程 - 1o</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="1o" /><meta name="description" content="近期更新重点 V2Ray v4.27.0&#43;新增支持VLESS新协议 V2Ray v4.29.0&#43;新增支持XTLS新协议 VMess AEAD will be used when alterId is 0 in V2Ray v4.28.0&#43; 安装脚本放废弃go.s" />
+
+
+<meta name="baidu-site-verification" content="zW0oque8IK" />
+<meta name="google-site-verification" content="HAIwoMdm1A6XQ6Fp6KwAO7gpL5UKk5TOzvs9DuacYFI" />
+
+
+<meta name="generator" content="Hugo 0.69.2 with theme even" />
+
+
+<link rel="canonical" href="https://567899.xyz/post/v2ray/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link href="/sass/main.min.2bac9f1300a8a18219cc84fc2401646cd7e17b7d565c50ac353b993e321e29ec.css" rel="stylesheet">
+
+
+
+<meta property="og:title" content="V2ray安装配置VMess、VLESS、XTLS教程" />
+<meta property="og:description" content="近期更新重点 V2Ray v4.27.0&#43;新增支持VLESS新协议 V2Ray v4.29.0&#43;新增支持XTLS新协议 VMess AEAD will be used when alterId is 0 in V2Ray v4.28.0&#43; 安装脚本放废弃go.s" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://567899.xyz/post/v2ray/" />
+<meta property="article:published_time" content="2020-09-28T01:37:56+08:00" />
+<meta property="article:modified_time" content="2020-10-17T20:31:31+08:00" />
+<meta itemprop="name" content="V2ray安装配置VMess、VLESS、XTLS教程">
+<meta itemprop="description" content="近期更新重点 V2Ray v4.27.0&#43;新增支持VLESS新协议 V2Ray v4.29.0&#43;新增支持XTLS新协议 VMess AEAD will be used when alterId is 0 in V2Ray v4.28.0&#43; 安装脚本放废弃go.s">
+<meta itemprop="datePublished" content="2020-09-28T01:37:56&#43;08:00" />
+<meta itemprop="dateModified" content="2020-10-17T20:31:31&#43;08:00" />
+<meta itemprop="wordCount" content="2763">
+
+
+
+<meta itemprop="keywords" content="V2ray," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="V2ray安装配置VMess、VLESS、XTLS教程"/>
+<meta name="twitter:description" content="近期更新重点 V2Ray v4.27.0&#43;新增支持VLESS新协议 V2Ray v4.29.0&#43;新增支持XTLS新协议 VMess AEAD will be used when alterId is 0 in V2Ray v4.28.0&#43; 安装脚本放废弃go.s"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">1o</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/links/">
+        <li class="mobile-menu-item">链接</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">关于</li>
+      </a><a href="/search/">
+        <li class="mobile-menu-item">搜索</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">1o</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/links/">链接</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">关于</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/search/">搜索</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">V2ray安装配置VMess、VLESS、XTLS教程</h1>
+
+      <div class="post-meta">
+        <span class="post-time" title="2020-09-28 01:37:56 &#43;0800 &#43;0800"> 2020-09-28 </span>
+        <div class="post-category">
+            <a href="/categories/%E6%95%99%E7%A8%8B/"> 教程 </a>
+            </div>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#安装v2ray">安装V2ray</a></li>
+        <li><a href="#v2ray在使用vless时证书权限的解决办法">V2ray在使用VLESS时证书权限的解决办法</a></li>
+        <li><a href="#编辑配置文件">编辑配置文件</a></li>
+        <li><a href="#推荐组合模式">推荐组合模式</a>
+          <ul>
+            <li><a href="#v2ray服务端配置文件">V2Ray服务端配置文件</a></li>
+          </ul>
+        </li>
+        <li><a href="#配置nginx">配置Nginx</a></li>
+        <li><a href="#客户端连接">客户端连接</a>
+          <ul>
+            <li><a href="#vless--tcp--xtls">VLESS &amp; TCP &amp; XTLS</a></li>
+            <li><a href="#vless_ws_tlsjson">vless_ws_tls.json</a></li>
+            <li><a href="#vmess_ws_tlsjson">vmess_ws_tls.json</a></li>
+          </ul>
+        </li>
+        <li><a href="#vless-h2c-caddy2">VLESS-H2C-Caddy2</a></li>
+        <li><a href="#udp2raw-vmess-kcp">udp2raw vmess kcp</a>
+          <ul>
+            <li><a href="#udp2raw服务端设置debainubuntucentos">udp2raw服务端设置(Debain,Ubuntu,Centos)</a></li>
+            <li><a href="#运行">运行</a></li>
+            <li><a href="#udp2raw创建开机自动启动服务">udp2raw创建开机自动启动服务</a></li>
+            <li><a href="#udp2raw管理进程">udp2raw管理进程</a></li>
+            <li><a href="#udp2raw在client端运行">udp2raw在client端运行:</a></li>
+            <li><a href="#vmess-kcp客户端v2ray配置">Vmess KCP客户端V2ray配置</a></li>
+          </ul>
+        </li>
+        <li><a href="#管理v2ray进程">管理V2Ray进程</a></li>
+        <li><a href="#日常ssl证书申请的路径">日常SSL证书申请的路径</a>
+          <ul>
+            <li><a href="#宝塔nginx的ssl证书路径">宝塔Nginx的SSL证书路径</a></li>
+          </ul>
+        </li>
+        <li><a href="#配置web服务器websocket的规则">配置WEB服务器WebSocket的规则</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>近期更新重点</p>
+<ul>
+<li>V2Ray v4.27.0+新增支持VLESS新协议</li>
+<li>V2Ray v4.29.0+新增支持XTLS新协议</li>
+<li>VMess AEAD will be used when alterId is 0 in V2Ray v4.28.0+</li>
+<li>安装脚本放废弃<code>go.sh</code>改用<code>install-realese.sh</code></li>
+</ul>
+<p>详情参考</p>
+<ol>
+<li><a href="https://v2ray.com/">https://v2ray.com/</a></li>
+<li><a href="https://github.com/v2ray/v2ray-core">https://github.com/v2ray/v2ray-core</a></li>
+<li><a href="https://toutyrater.github.io/">https://toutyrater.github.io/</a></li>
+<li><a href="https://guide.v2fly.org/">https://guide.v2fly.org/</a></li>
+<li><a href="https://github.com/veekxt/v2ray-template">https://github.com/veekxt/v2ray-template</a></li>
+<li><a href="https://github.com/v2fly/v2ray-examples">https://github.com/v2fly/v2ray-examples</a></li>
+<li><a href="https://www.v2fly.org/">https://www.v2fly.org/</a></li>
+<li><a href="https://github.com/rprx/v2ray-vless">https://github.com/rprx/v2ray-vless</a></li>
+<li><a href="https://github.com/v2fly/v2ray-core">https://github.com/v2fly/v2ray-core</a></li>
+</ol>
+<p>排名不分先后顺序 致敬开发者们的无私奉献</p>
+<h2 id="安装v2ray">安装V2ray</h2>
+<p>安裝和更新 V2Ray</p>
+<pre><code>#安裝執行檔和 .dat 資料檔
+curl -LROJ https://raw.githubusercontent.com/v2fly/fhs-install-v2ray/master/install-release.sh
+bash install-release.sh
+</code></pre>
+<p>安裝最新發行的 geoip.dat 和 geosite.dat</p>
+<pre><code>#只更新 .dat 資料檔
+curl -LROJ https://raw.githubusercontent.com/v2fly/fhs-install-v2ray/master/install-dat-release.sh
+bash install-dat-release.sh
+</code></pre>
+<p>移除 V2Ray</p>
+<pre><code>bash install-release.sh --remove
+</code></pre>
+<p>指定版本安装示范</p>
+<pre><code>bash install-release.sh --version v4.29.0
+</code></pre>
+<p>完成安装会提示如下</p>
+<pre><code>[Service]
+ExecStart=
+ExecStart=/usr/local/bin/v2ray -config /usr/local/etc/v2ray/%i.json
+
+
+installed: /usr/local/bin/v2ray
+installed: /usr/local/bin/v2ctl
+installed: /usr/local/share/v2ray/geoip.dat
+installed: /usr/local/share/v2ray/geosite.dat
+installed: /usr/local/etc/v2ray/config.json
+installed: /var/log/v2ray/
+installed: /var/log/v2ray/access.log
+installed: /var/log/v2ray/error.log
+installed: /etc/systemd/system/v2ray.service
+installed: /etc/systemd/system/v2ray@.service
+removed: /tmp/tmp.MMsycHU0KG
+info: V2Ray v4.29.0 is installed.
+You may need to execute a command to remove dependent software: apt purge curl unzip
+Please execute the command: systemctl enable v2ray; systemctl start v2ray
+</code></pre>
+<h2 id="v2ray在使用vless时证书权限的解决办法">V2ray在使用VLESS时证书权限的解决办法</h2>
+<p>使用證書時權限不足 会导致套用模板后V2ray无法启动且无错误日志</p>
+<p>简单粗暴的解决方法是编辑修改<code>/etc/systemd/system/v2ray.service</code>找到<code>User=nobody</code>修改为<code>User=root</code></p>
+<pre><code>sed -i 's/User=nobody/User=root/' /etc/systemd/system/v2ray.service
+</code></pre>
+<p>详情参考<a href="https://github.com/v2fly/fhs-install-v2ray/wiki/Insufficient-permissions-when-using-certificates" target="_blank">使用證書時權限不足</a></p>
+<h2 id="编辑配置文件">编辑配置文件</h2>
+<p><code>uuid</code>可以通过</p>
+<pre><code>cat /proc/sys/kernel/random/uuid
+</code></pre>
+<p>或者</p>
+<pre><code>v2ctl uuid
+</code></pre>
+<p>随机生成</p>
+<p>测试配置文件是否错误</p>
+<pre><code>v2ray -test -config=config.json
+</code></pre>
+<h2 id="推荐组合模式">推荐组合模式</h2>
+<ol>
+<li>VLESS TCP XTLS</li>
+</ol>
+<p>极致性能，超低的CPU占用，在硬路由器，手机上表现突出</p>
+<ol start="2">
+<li>VLESS over WS with TLS CDN</li>
+</ol>
+<p>服务器公网IP被xxoo了就能套娃使用</p>
+<ol start="3">
+<li>Vmess KCP udp2raw</li>
+</ol>
+<p>在高丢包、高延迟、网络线路不佳的情况表现突出</p>
+<h3 id="v2ray服务端配置文件">V2Ray服务端配置文件</h3>
+<p>客户端可以同时通过下列方式连接到服务器，其中 WS 都可以通过 CDN</p>
+<ul>
+<li>VLESS over TCP with XTLS</li>
+<li>VLESS over TCP with TLS</li>
+<li>VLESS over WS with TLS</li>
+<li>VLESS over WS with TLS CDN</li>
+<li>shadowsocks</li>
+</ul>
+<p>编辑修改<code>/usr/local/etc/v2ray/config.json</code>替换成以下内容</p>
+<pre><code class="language-json">{
+    &quot;log&quot;: {
+        &quot;loglevel&quot;: &quot;warning&quot;
+    },
+    &quot;inbounds&quot;: [
+        {
+            &quot;port&quot;: 443,
+            &quot;protocol&quot;: &quot;vless&quot;,
+            &quot;settings&quot;: {
+                &quot;clients&quot;: [
+                    {
+                        &quot;id&quot;: &quot;&quot;, // 填写你的 UUID
+                        &quot;flow&quot;: &quot;xtls-rprx-origin&quot;,
+                        &quot;level&quot;: 0,
+                        &quot;email&quot;: &quot;love@v2fly.org&quot;
+                    }
+                ],
+                &quot;decryption&quot;: &quot;none&quot;,
+                &quot;fallbacks&quot;: [
+                    {
+                        &quot;dest&quot;: &quot;/dev/shm/default.sock&quot;,
+                        &quot;xver&quot;: 1
+                    },
+                    {
+                        &quot;alpn&quot;: &quot;h2&quot;,
+                        &quot;dest&quot;: &quot;/dev/shm/h2c.sock&quot;,
+                        &quot;xver&quot;: 1
+                    },
+                    {
+                        &quot;path&quot;: &quot;/websocket&quot;, // 必须换成自定义的 PATH
+                        &quot;dest&quot;: 1234,
+                        &quot;xver&quot;: 1
+                    }
+                ]
+            },
+            &quot;streamSettings&quot;: {
+                &quot;network&quot;: &quot;tcp&quot;,
+                &quot;security&quot;: &quot;xtls&quot;,
+                &quot;xtlsSettings&quot;: {
+                    &quot;alpn&quot;: [
+                        &quot;h2&quot;,
+                        &quot;http/1.1&quot;
+                    ],
+                    &quot;certificates&quot;: [
+                        {
+                            &quot;certificateFile&quot;: &quot;/path/to/fullchain.crt&quot;, // 换成你的证书，绝对路径
+                            &quot;keyFile&quot;: &quot;/path/to/private.key&quot; // 换成你的私钥，绝对路径
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            &quot;port&quot;: 1234,
+            &quot;listen&quot;: &quot;127.0.0.1&quot;,
+            &quot;protocol&quot;: &quot;vless&quot;,
+            &quot;settings&quot;: {
+                &quot;clients&quot;: [
+                    {
+                        &quot;id&quot;: &quot;&quot;, // 填写你的 UUID
+                        &quot;level&quot;: 0,
+                        &quot;email&quot;: &quot;love@v2fly.org&quot;
+                    }
+                ],
+                &quot;decryption&quot;: &quot;none&quot;
+            },
+            &quot;streamSettings&quot;: {
+                &quot;network&quot;: &quot;ws&quot;,
+                &quot;security&quot;: &quot;none&quot;,
+                &quot;wsSettings&quot;: {
+                    &quot;acceptProxyProtocol&quot;: true, // 提醒：若你用 Nginx/Caddy 等反代 WS，需要删掉这行
+                    &quot;path&quot;: &quot;/websocket&quot; // 必须换成自定义的 PATH，需要和分流的一致
+                }
+            }
+        },
+        {
+            &quot;protocol&quot;: &quot;shadowsocks&quot;,
+            &quot;port&quot;: 1038,
+            &quot;settings&quot;: {
+            &quot;method&quot;: &quot;chacha20-ietf-poly1305&quot;,
+            &quot;password&quot;: &quot;yourpassword&quot;,
+            &quot;udp&quot;: true
+            }
+        },
+        {
+            &quot;protocol&quot;: &quot;shadowsocks&quot;,
+            &quot;port&quot;: 1039,
+            &quot;settings&quot;: {
+            &quot;method&quot;: &quot;aes-128-gcm&quot;,
+            &quot;password&quot;: &quot;youpassword&quot;,
+            &quot;udp&quot;: true
+            }
+        },
+		{
+			&quot;port&quot;: 7777,
+			&quot;protocol&quot;: &quot;vmess&quot;,
+			&quot;settings&quot;: {
+			&quot;clients&quot;: [
+				{
+					&quot;id&quot;: &quot;&quot;, // 填写你的 UUID
+					&quot;alterId&quot;: 0
+				}
+			]
+			},
+			&quot;streamSettings&quot;: {
+			&quot;network&quot;: &quot;kcp&quot;,
+			&quot;security&quot;: &quot;aes-128-gcm&quot;,
+			&quot;kcpSettings&quot;: {
+				&quot;mtu&quot;: 1350,
+				&quot;tti&quot;: 20,
+				&quot;uplinkCapacity&quot;: 5,
+				&quot;downlinkCapacity&quot;: 100,
+				&quot;congestion&quot;: false,
+				&quot;readBufferSize&quot;: 1,
+				&quot;writeBufferSize&quot;: 1,
+				&quot;header&quot;: {
+					&quot;type&quot;: &quot;none&quot;
+				},
+				&quot;seed&quot;: &quot;Password&quot;
+				}
+			}
+		}
+    ],
+    &quot;outbounds&quot;: [
+        {
+            &quot;protocol&quot;: &quot;freedom&quot;
+        }
+    ]
+}
+</code></pre>
+<p>V2ray v4.31.0+可以更改<code>xtls-rprx-origin</code>为<code>xtls-rprx-direct</code></p>
+<pre><code>sed -i 's/xtls-rprx-origin/xtls-rprx-direct/' /usr/local/etc/v2ray/config.json
+</code></pre>
+<p>替换自己的<code>UUID</code></p>
+<pre><code>sed -i 's/&quot;id&quot;: &quot;&quot;/&quot;id&quot;: &quot;这里替换成你的UUID值&quot;/' /usr/local/etc/v2ray/config.json
+</code></pre>
+<h2 id="配置nginx">配置Nginx</h2>
+<pre><code>server {
+    listen  unix:/dev/shm/default.sock proxy_protocol;
+    listen  unix:/dev/shm/h2c.sock http2 proxy_protocol;
+    server_name example.com;
+    root /var/www/example.com;
+    index index.html index.htm index.php;
+    #php
+    location ~ \.php$ {
+    include snippets/fastcgi-php.conf;
+    fastcgi_pass unix:/run/php/php7.3-fpm.sock;
+    }
+}
+server {
+    listen 80;
+    listen [::]:80;
+    server_name example.com;
+    root /var/www/example.com;
+    index index.html index.htm index.php;
+    return 301 https://$server_name$request_uri;
+}
+</code></pre>
+<h2 id="客户端连接">客户端连接</h2>
+<h3 id="vless--tcp--xtls">VLESS &amp; TCP &amp; XTLS</h3>
+<pre><code class="language-JSON">{
+    &quot;log&quot;: {
+        &quot;loglevel&quot;: &quot;warning&quot;
+    },
+    &quot;inbounds&quot;: [
+        {
+            &quot;port&quot;: 10800,
+            &quot;listen&quot;: &quot;127.0.0.1&quot;,
+            &quot;protocol&quot;: &quot;socks&quot;,
+            &quot;settings&quot;: {
+                &quot;udp&quot;: true
+            }
+        }
+    ],
+    &quot;outbounds&quot;: [
+        {
+            &quot;protocol&quot;: &quot;vless&quot;,
+            &quot;settings&quot;: {
+                &quot;vnext&quot;: [
+                    {
+                        &quot;address&quot;: &quot;example.com&quot;, // 换成你的域名或服务器 IP（发起请求时无需解析域名了）
+                        &quot;port&quot;: 443,
+                        &quot;users&quot;: [
+                            {
+                                &quot;id&quot;: &quot;&quot;, // 填写你的 UUID
+                                &quot;flow&quot;: &quot;xtls-rprx-origin&quot;,
+                                &quot;encryption&quot;: &quot;none&quot;,
+                                &quot;level&quot;: 0
+                            }
+                        ]
+                    }
+                ]
+            },
+            &quot;streamSettings&quot;: {
+                &quot;network&quot;: &quot;tcp&quot;,
+                &quot;security&quot;: &quot;xtls&quot;, // 需要使用 XTLS
+                &quot;xtlsSettings&quot;: {
+                    &quot;serverName&quot;: &quot;example.com&quot; // 换成你的域名
+                }
+            }
+        }
+    ]
+}
+</code></pre>
+<h3 id="vless_ws_tlsjson">vless_ws_tls.json</h3>
+<pre><code>{
+    &quot;log&quot;: {
+        &quot;loglevel&quot;: &quot;warning&quot;
+    },
+    &quot;inbounds&quot;: [
+        {
+            &quot;port&quot;: 10800,
+            &quot;listen&quot;: &quot;127.0.0.1&quot;,
+            &quot;protocol&quot;: &quot;socks&quot;,
+            &quot;settings&quot;: {
+                &quot;udp&quot;: true
+            }
+        }
+    ],
+    &quot;outbounds&quot;: [
+        {
+            &quot;protocol&quot;: &quot;vless&quot;,
+            &quot;settings&quot;: {
+                &quot;vnext&quot;: [
+                    {
+                        &quot;address&quot;: &quot;example.com&quot;, // 换成你的域名或服务器 IP（发起请求时无需解析域名了）
+                        &quot;port&quot;: 443,
+                        &quot;users&quot;: [
+                            {
+                                &quot;id&quot;: &quot;&quot;, // 填写你的 UUID
+                                &quot;encryption&quot;: &quot;none&quot;,
+                                &quot;level&quot;: 0
+                            }
+                        ]
+                    }
+                ]
+            },
+            &quot;streamSettings&quot;: {
+                &quot;network&quot;: &quot;ws&quot;,
+                &quot;security&quot;: &quot;tls&quot;,
+                &quot;tlsSettings&quot;: {
+                    &quot;serverName&quot;: &quot;example.com&quot; // 换成你的域名
+                },
+                &quot;wsSettings&quot;: {
+                    &quot;path&quot;: &quot;/websocket&quot; // 必须换成自定义的 PATH，需要和服务端的一致
+                }
+            }
+        }
+    ]
+}
+</code></pre>
+<h3 id="vmess_ws_tlsjson">vmess_ws_tls.json</h3>
+<pre><code>{
+    &quot;log&quot;: {
+        &quot;loglevel&quot;: &quot;warning&quot;
+    },
+    &quot;inbounds&quot;: [
+        {
+            &quot;port&quot;: 10800,
+            &quot;listen&quot;: &quot;127.0.0.1&quot;,
+            &quot;protocol&quot;: &quot;socks&quot;,
+            &quot;settings&quot;: {
+                &quot;udp&quot;: true
+            }
+        }
+    ],
+    &quot;outbounds&quot;: [
+        {
+            &quot;protocol&quot;: &quot;vmess&quot;,
+            &quot;settings&quot;: {
+                &quot;vnext&quot;: [
+                    {
+                        &quot;address&quot;: &quot;example.com&quot;, // 换成你的域名或服务器 IP（发起请求时无需解析域名了）
+                        &quot;port&quot;: 443,
+                        &quot;users&quot;: [
+                            {
+                                &quot;id&quot;: &quot;&quot;, // 填写你的 UUID
+                                &quot;security&quot;: &quot;none&quot;,
+                                &quot;level&quot;: 0
+                            }
+                        ]
+                    }
+                ]
+            },
+            &quot;streamSettings&quot;: {
+                &quot;network&quot;: &quot;ws&quot;,
+                &quot;security&quot;: &quot;tls&quot;,
+                &quot;tlsSettings&quot;: {
+                    &quot;serverName&quot;: &quot;example.com&quot; // 换成你的域名
+                },
+                &quot;wsSettings&quot;: {
+                    &quot;path&quot;: &quot;/vmessws&quot; // 必须换成自定义的 PATH，需要和服务端的一致
+                }
+            }
+        }
+    ]
+}
+</code></pre>
+<h2 id="vless-h2c-caddy2">VLESS-H2C-Caddy2</h2>
+<p>注意： 目前仅 caddy2 的 v2.2.0-rc.1 版及以后完美支持 v2ray 的 H2C,实现 H2(HTTP/2)应用。</p>
+<p>V2ray配置文件</p>
+<pre><code>{
+    &quot;log&quot;: {
+        &quot;loglevel&quot;: &quot;none&quot;
+    },
+    &quot;inbounds&quot;: [
+        {
+            &quot;sniffing&quot;: {
+                &quot;enabled&quot;: true,
+                &quot;destOverride&quot;: [&quot;http&quot;,&quot;tls&quot;]
+            },
+            &quot;listen&quot;: &quot;127.0.0.1&quot;,
+            &quot;port&quot;: 10443,
+            &quot;tag&quot;: &quot;vless-in&quot;,
+            &quot;protocol&quot;: &quot;vless&quot;,
+            &quot;settings&quot;: {
+                &quot;clients&quot;: [
+                    {
+                        &quot;id&quot;: &quot;&quot;, // uuid
+                        &quot;level&quot;: 0
+                    }
+                ],
+                &quot;decryption&quot;: &quot;none&quot;
+            },
+            &quot;streamSettings&quot;: {
+                &quot;network&quot;: &quot;h2&quot;,
+                &quot;security&quot;: &quot;none&quot;,
+                &quot;httpSettings&quot;: {
+                    &quot;path&quot;: &quot;/path&quot;,
+                    &quot;host&quot;: [
+                        &quot;&quot;
+                    ]
+                }
+            }
+        }
+    ],
+    &quot;outbounds&quot;: [
+        {
+            &quot;protocol&quot;: &quot;freedom&quot;,
+            &quot;settings&quot;: { },
+            &quot;tag&quot;: &quot;direct&quot;
+        },
+        {
+            &quot;protocol&quot;: &quot;blackhole&quot;,
+            &quot;settings&quot;: { },
+            &quot;tag&quot;: &quot;block&quot;
+        }
+    ],
+    &quot;dns&quot;: {
+        &quot;servers&quot;: [
+            &quot;https://cloudflare-dns.com/dns-query&quot;,
+            &quot;https://dns.google/dns-query&quot;
+        ]
+    },
+    &quot;routing&quot;: {
+        &quot;domainStrategy&quot;: &quot;AsIs&quot;,
+        &quot;rules&quot;: [
+            {
+                &quot;type&quot;: &quot;field&quot;,
+                &quot;inboundTag&quot;: [
+                  &quot;vless-in&quot;
+                ],
+                &quot;outboundTag&quot;: &quot;direct&quot;
+            },
+            {
+                &quot;type&quot;: &quot;field&quot;,
+                &quot;outboundTag&quot;: &quot;block&quot;,
+                &quot;protocol&quot;: [
+                    &quot;bittorrent&quot;
+                ]
+            }
+        ]
+    }
+}
+</code></pre>
+<p>Caddy2的Caddyfile</p>
+<pre><code>example.com {
+encode zstd gzip
+root * /usr/share/caddy/example.com
+file_server
+
+tls admin@example.com {
+    protocols tls1.3
+    curves x25519
+    alpn h2
+}
+
+header {
+        Strict-Transport-Security max-age=31536000;
+        X-Content-Type-Options nosniff
+        X-Frame-Options DENY
+        Referrer-Policy no-referrer-when-downgrade
+}
+
+reverse_proxy /v2ray?id=v2ray 127.0.0.1:10443 {
+     header_up Host {http.request.host}
+     header_up X-Real-IP {http.request.remote}
+     header_up X-Forwarded-For {http.request.remote}
+     header_up X-Forwarded-Port {http.request.port}
+     header_up X-Forwarded-Proto {http.request.scheme}
+     header_up Connection {http.request.header.Connection}
+     header_up Upgrade {http.request.header.Upgrade}
+     transport http {
+         versions h2c
+    }
+  }
+}
+</code></pre>
+<p>客户端</p>
+<pre><code>{
+  &quot;log&quot;:{},
+  &quot;inbounds&quot;:[
+    {
+      &quot;port&quot;:&quot;1080&quot;,
+      &quot;protocol&quot;:&quot;socks&quot;,
+      &quot;settings&quot;:{
+        &quot;auth&quot;:&quot;noauth&quot;,
+        &quot;udp&quot;:true
+      }
+    },
+    {
+      &quot;port&quot;:&quot;1081&quot;,
+      &quot;protocol&quot;:&quot;http&quot;,
+      &quot;settings&quot;:{}
+    }
+  ],
+  &quot;outbounds&quot;:[
+    {
+      &quot;protocol&quot;:&quot;vless&quot;,
+      &quot;settings&quot;:{
+        &quot;vnext&quot;:[
+          {
+            &quot;address&quot;:&quot;example.com&quot;,
+            &quot;port&quot;:443,
+            &quot;users&quot;:[
+              {
+                &quot;id&quot;:&quot;&quot;,
+                &quot;encryption&quot;:&quot;none&quot;
+              }
+            ]
+          }
+        ]
+      },
+      &quot;streamSettings&quot;:{
+        &quot;network&quot;:&quot;h2&quot;,
+        &quot;security&quot;:&quot;tls&quot;,
+        &quot;httpSettings&quot;:{
+          &quot;host&quot;:[
+            &quot;example.com&quot;
+          ],
+          &quot;path&quot;:&quot;/path&quot;
+        }
+      }
+    },
+    {
+      &quot;tag&quot;:&quot;direct&quot;,
+      &quot;protocol&quot;:&quot;freedom&quot;,
+      &quot;settings&quot;:{}
+    },
+    {
+      &quot;tag&quot;:&quot;blocked&quot;,
+      &quot;protocol&quot;:&quot;blackhole&quot;,
+      &quot;settings&quot;:{}
+    }
+  ],
+  &quot;routing&quot;:{
+    &quot;domainStrategy&quot;:&quot;IPOnDemand&quot;,
+    &quot;rules&quot;:[
+      {
+        &quot;type&quot;:&quot;field&quot;,
+        &quot;ip&quot;:[
+          &quot;geoip:private&quot;
+        ],
+        &quot;outboundTag&quot;:&quot;direct&quot;
+      }
+    ]
+  }
+}
+</code></pre>
+<h2 id="udp2raw-vmess-kcp">udp2raw vmess kcp</h2>
+<blockquote>
+<p><a href="https://github.com/wangyu-/udp2raw-tunnel" target="_blank">udp2raw-tunnel</a></p>
+</blockquote>
+<p><a href="https://github.com/wangyu-/udp2raw-tunnel/releases" target="_blank">下载udp2raw-tunnel</a></p>
+<h3 id="udp2raw服务端设置debainubuntucentos">udp2raw服务端设置(Debain,Ubuntu,Centos)</h3>
+<pre><code>wget https://github.com/wangyu-/udp2raw-tunnel/releases/download/20200818.0/udp2raw_binaries.tar.gz
+tar -zxvf udp2raw_binaries.tar.gz
+mv udp2raw_amd64 /usr/bin/udp2raw
+</code></pre>
+<h3 id="运行">运行</h3>
+<p>假设你有一个server，ip为<code>44.55.66.77</code>，有一个服务监听在<code>udp 7777</code>端口。 假设你本地的主机到<code>44.55.66.77</code>的UDP流量被屏蔽了，或者被qos了</p>
+<p>在server端运行:</p>
+<pre><code>udp2raw -s -l0.0.0.0:4096  -r127.0.0.1:7777   -k &quot;passwd&quot; --raw-mode faketcp   --cipher-mode xor  -a
+</code></pre>
+<p>(以上例子需要用root账号运行。 用非root运行udp2raw需要一些额外的步骤，具体方法请看 这个 链接。用非root运行更安全)</p>
+<h3 id="udp2raw创建开机自动启动服务">udp2raw创建开机自动启动服务</h3>
+<pre><code>echo &quot;[Unit]
+Description=udp2raw server
+After=network.service
+
+[Service]
+Type=simple
+User=root
+Group=root
+ExecStart=/usr/bin/udp2raw  -s -l0.0.0.0:4096  -r127.0.0.1:7777   -k &quot;passwd&quot; --raw-mode faketcp   --cipher-mode xor  -a &amp;
+PrivateTmp=true
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target&quot; &gt; /etc/systemd/system/udp2raw.service
+</code></pre>
+<h3 id="udp2raw管理进程">udp2raw管理进程</h3>
+<pre><code>systemctl daemon-reload
+systemctl enable udp2raw.service
+systemctl start udp2raw.service
+systemctl status udp2raw.service
+</code></pre>
+<h3 id="udp2raw在client端运行">udp2raw在client端运行:</h3>
+<pre><code>./udp2raw_amd64 -c -l0.0.0.0:3333  -r44.55.66.77:4096 -k &quot;passwd&quot; --raw-mode faketcp   --cipher-mode xor  -a
+</code></pre>
+<p><strong>android设备上运行udp2raw(arm cpu)</strong></p>
+<p>照常运行<code>udp2raw_arm</code>，除了必须将<code>-a</code>选项更改为<code>-g</code></p>
+<pre><code>./udp2raw_arm -c -r 44.55.66.77:4096 -l 0.0.0.0:3333 -k1234 --cipher xor -g
+</code></pre>
+<p>从udp2raw的输出中找到生成的iptables规则，通过运行手动将其添加：</p>
+<pre><code>iptables -I INPUT -s 44.55.66.77/32 -p tcp -m tcp --sport 4096 -j DROP
+</code></pre>
+<p>在不使用-g命令的情况下运行udp2raw_ram</p>
+<pre><code>./udp2raw_arm -c -r 44.55.66.77:4096 -l 0.0.0.0:3333 -k1234 --cipher xor
+</code></pre>
+<p><strong>注意将<code>44.55.66.77</code>替换成你自己服务器的公网IP地址</strong></p>
+<h3 id="vmess-kcp客户端v2ray配置">Vmess KCP客户端V2ray配置</h3>
+<pre><code>{
+    &quot;inbounds&quot;: [
+        {
+            &quot;port&quot;: 10808,
+            &quot;listen&quot;: &quot;127.0.0.1&quot;,
+            &quot;protocol&quot;: &quot;socks&quot;,
+            &quot;settings&quot;: {
+                &quot;udp&quot;: true
+            }
+        }
+    ],
+  &quot;outbounds&quot;: [
+    {
+      &quot;protocol&quot;: &quot;vmess&quot;,
+      &quot;settings&quot;: {
+        &quot;vnext&quot;: [
+          {
+            &quot;address&quot;: &quot;127.0.0.1&quot;,
+            &quot;port&quot;: 3333,
+            &quot;users&quot;: [
+              {
+                &quot;id&quot;: &quot;&quot;,  // 填写你的 UUID
+                &quot;alterId&quot;: 0
+              }
+            ]
+          }
+        ]
+      },
+      &quot;streamSettings&quot;: {
+			&quot;network&quot;: &quot;kcp&quot;,
+			&quot;security&quot;: &quot;aes-128-gcm&quot;,
+			&quot;kcpSettings&quot;: {
+				&quot;mtu&quot;: 1350,
+				&quot;tti&quot;: 20,
+				&quot;uplinkCapacity&quot;: 5,
+				&quot;downlinkCapacity&quot;: 100,
+				&quot;congestion&quot;: false,
+				&quot;readBufferSize&quot;: 1,
+				&quot;writeBufferSize&quot;: 1,
+				&quot;header&quot;: {
+					&quot;type&quot;: &quot;none&quot;
+				},
+				&quot;seed&quot;: &quot;Password&quot;
+				}
+			}
+    }
+  ]
+}
+</code></pre>
+<h2 id="管理v2ray进程">管理V2Ray进程</h2>
+<p>启动</p>
+<pre><code>systemctl start v2ray.service
+</code></pre>
+<p>停止</p>
+<pre><code>systemctl stop v2ray.service
+</code></pre>
+<p>状态</p>
+<pre><code>systemctl status v2ray.service
+</code></pre>
+<p>重启</p>
+<pre><code>systemctl restart v2ray.service
+</code></pre>
+<h2 id="日常ssl证书申请的路径">日常SSL证书申请的路径</h2>
+<h3 id="宝塔nginx的ssl证书路径">宝塔Nginx的SSL证书路径</h3>
+<pre><code>/www/server/panel/vhost/cert/example.com/fullchain.pem
+/www/server/panel/vhost/cert/example.com/privkey.pem
+</code></pre>
+<p>Caddy1的SSL证书路径</p>
+<pre><code>/etc/ssl/caddy/acme/acme-v02.api.letsencrypt.org/sites/example.com/example.com.crt
+/etc/ssl/caddy/acme/acme-v02.api.letsencrypt.org/sites/example.com/example.com.key
+</code></pre>
+<p>Caddy2的SSL证书路径</p>
+<pre><code>/var/lib/caddy/.local/share/caddy/certificates/acme-v02.api.letsencrypt.org-directory/example.com/example.com.crt
+/var/lib/caddy/.local/share/caddy/certificates/acme-v02.api.letsencrypt.org-directory/example.com/example.com.key
+</code></pre>
+<p>Certbot的SSL证书路径</p>
+<pre><code>/etc/letsencrypt/live/example.com/fullchain.pem
+/etc/letsencrypt/live/example.com/privkey.pem
+</code></pre>
+<p>如果需要配置多个域名证书，可以增加<code>certificates</code>值，例如</p>
+<pre><code>&quot;certificates&quot;: [
+			{
+			&quot;certificateFile&quot;: &quot;/path/to/tls1.crt&quot;, // 换成你的证书，绝对路径
+			&quot;keyFile&quot;: &quot;/path/to/tls1.key&quot; // 换成你的私钥，绝对路径
+			},
+			{
+			&quot;certificateFile&quot;: &quot;/path/to/tls2.crt&quot;, // 换成你的证书，绝对路径
+			&quot;keyFile&quot;: &quot;/path/to/tls2.key&quot; // 换成你的私钥，绝对路径
+			},
+			{
+			&quot;certificateFile&quot;: &quot;/path/to/tls3.crt&quot;, // 换成你的证书，绝对路径
+			&quot;keyFile&quot;: &quot;/path/to/tls3.key&quot; // 换成你的私钥，绝对路径
+			}
+		]
+</code></pre>
+<h2 id="配置web服务器websocket的规则">配置WEB服务器WebSocket的规则</h2>
+<p>在配置文件中添加v2ray的WebSocket的规则，然后重启在WEB服务器生效。</p>
+<p>Caddy2</p>
+<pre><code>@v2ray_websocket {
+    path /ray
+    header Connection *Upgrade*
+    header Upgrade websocket
+    }
+reverse_proxy @v2ray_websocket localhost:22782
+</code></pre>
+<p>Caddy</p>
+<pre><code>    proxy /ray localhost:22782 {
+        websocket
+        header_upstream -Origin
+    }
+</code></pre>
+<p>Nginx</p>
+<pre><code>location /ray {
+    proxy_redirect off;
+    proxy_pass http://127.0.0.1:22782;
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection &quot;upgrade&quot;;
+    proxy_set_header Host $http_host;
+    proxy_read_timeout 300s;
+    }
+</code></pre>
+<p>Apache</p>
+<p>把以下配置加到<code>VirtualHost</code>值</p>
+<pre><code>  &lt;Location &quot;/ray/&quot;&gt;
+    ProxyPass ws://127.0.0.1:22782/ray/ upgrade=WebSocket
+    ProxyAddHeaders Off
+    ProxyPreserveHost On
+    RequestHeader append X-Forwarded-For %{REMOTE_ADDR}s
+  &lt;/Location&gt;
+</code></pre>
+
+    </div>
+
+    
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/v2ray/">V2ray</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/google_drive_folderclone/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">[更新]Folderclone谷歌Google Drive共享云端硬盘转存相互转移拷贝复制文件的正确姿势</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/dujiaoka/">
+            <span class="next-text nav-default">纯净Linux系统手工配置独角数卡发卡站点环境</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+  <div class="comments">
+    <div class="loading post">
+      <img src="/img/spinner.svg">
+      <p class="post-content">
+        评论正在加载中...如果评论较长时间无法加载，你可以
+        <a href='https://github.com/ouuan/blog-comments/issues?q=is%3Aissue+is%3Aopen+"V2ray%e5%ae%89%e8%a3%85%e9%85%8d%e7%bd%aeVMess%e3%80%81VLESS%e3%80%81XTLS%e6%95%99%e7%a8%8b - 1o"' target="_blank">搜索对应的 issue</a>
+        或者
+        <a href="https://github.com/ouuan/blog-comments/issues/new?title=V2ray%e5%ae%89%e8%a3%85%e9%85%8d%e7%bd%aeVMess%e3%80%81VLESS%e3%80%81XTLS%e6%95%99%e7%a8%8b - 1o" target="_blank">新建一个 issue</a>
+        。
+      </p>
+    </div>
+    <script src="https://utteranc.es/client.js"
+            repo="pwwq/blog-comments"
+            issue-term="title"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    <noscript>请启用 JavaScript 来查看评论。</a></noscript>
+  </div>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:admin@567899.xyz" class="iconfont icon-email" title="email" target="_blank"></a>
+      <a href="https://github.com/pwwq" class="iconfont icon-github" title="github" target="_blank"></a>
+      <a href="https://space.bilibili.com/11067182" class="iconfont icon-bilibili" title="bilibili" target="_blank"></a>
+      <a href="https://t.me/id009" class="iconfont icon-telegram" title="telegram" target="_blank"></a>
+  <a href="https://567899.xyz/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io" target="_blank">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even" target="_blank">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2013 - 
+    2020
+    <span class="heart">
+      <a class="iconfont icon-github" title="source code" href="https://github.com/pwwq/hugo-blog" target="_blank"></a>
+    </span> 
+    <span class="author">1o</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <link href="https://cdn.bootcss.com/highlight.js/9.15.10/styles/tomorrow.min.css" rel="stylesheet">
+  <script>hljs.configure({tabReplace: '    '});</script><script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+  
+
+
+
+<script type="text/javascript" src="/js/main.min.6821b76b4e5300f807f477f7f6e0e8772a852e6af6d99f47104e1b9632e47aba.js"></script>
+  <script type="text/javascript">
+    window.MathJax = {
+      tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+      showProcessingMessages: false,
+      messageStyle: 'none'
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"  integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-157787819-1', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+</body>
+</html>

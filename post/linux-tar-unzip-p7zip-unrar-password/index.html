@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Linux下tar,unzip,7z,rar压缩带密码解压文件文件夹的使用 - 1o</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="1o" /><meta name="description" content="tar压缩 压缩多个文件或者文件夹的命令 tar -czvf a.tar.gz(想压缩文件名) 源文件名1 源文件名2 源文件夹1 源文件夹2 参数： c创建一个压缩文件，" />
+
+
+<meta name="baidu-site-verification" content="zW0oque8IK" />
+<meta name="google-site-verification" content="HAIwoMdm1A6XQ6Fp6KwAO7gpL5UKk5TOzvs9DuacYFI" />
+
+
+<meta name="generator" content="Hugo 0.69.2 with theme even" />
+
+
+<link rel="canonical" href="https://567899.xyz/post/linux-tar-unzip-p7zip-unrar-password/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link href="/sass/main.min.2bac9f1300a8a18219cc84fc2401646cd7e17b7d565c50ac353b993e321e29ec.css" rel="stylesheet">
+
+
+
+<meta property="og:title" content="Linux下tar,unzip,7z,rar压缩带密码解压文件文件夹的使用" />
+<meta property="og:description" content="tar压缩 压缩多个文件或者文件夹的命令 tar -czvf a.tar.gz(想压缩文件名) 源文件名1 源文件名2 源文件夹1 源文件夹2 参数： c创建一个压缩文件，" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://567899.xyz/post/linux-tar-unzip-p7zip-unrar-password/" />
+<meta property="article:published_time" content="2017-10-01T01:37:56+08:00" />
+<meta property="article:modified_time" content="2020-09-26T23:56:21+08:00" />
+<meta itemprop="name" content="Linux下tar,unzip,7z,rar压缩带密码解压文件文件夹的使用">
+<meta itemprop="description" content="tar压缩 压缩多个文件或者文件夹的命令 tar -czvf a.tar.gz(想压缩文件名) 源文件名1 源文件名2 源文件夹1 源文件夹2 参数： c创建一个压缩文件，">
+<meta itemprop="datePublished" content="2017-10-01T01:37:56&#43;08:00" />
+<meta itemprop="dateModified" content="2020-09-26T23:56:21&#43;08:00" />
+<meta itemprop="wordCount" content="1641">
+
+
+
+<meta itemprop="keywords" content="tar,rar,7z," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Linux下tar,unzip,7z,rar压缩带密码解压文件文件夹的使用"/>
+<meta name="twitter:description" content="tar压缩 压缩多个文件或者文件夹的命令 tar -czvf a.tar.gz(想压缩文件名) 源文件名1 源文件名2 源文件夹1 源文件夹2 参数： c创建一个压缩文件，"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">1o</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/links/">
+        <li class="mobile-menu-item">链接</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">关于</li>
+      </a><a href="/search/">
+        <li class="mobile-menu-item">搜索</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">1o</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/links/">链接</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">关于</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/search/">搜索</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Linux下tar,unzip,7z,rar压缩带密码解压文件文件夹的使用</h1>
+
+      <div class="post-meta">
+        <span class="post-time" title="2017-10-01 01:37:56 &#43;0800 &#43;0800"> 2017-10-01 </span>
+        <div class="post-category">
+            <a href="/categories/%E6%95%99%E7%A8%8B/"> 教程 </a>
+            </div>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#tar压缩">tar压缩</a></li>
+            <li><a href="#tar解压">tar解压</a></li>
+            <li><a href="#压缩zip解压unzip缩命令">压缩zip解压unzip缩命令</a></li>
+            <li><a href="#7z">7Z</a></li>
+            <li><a href="#unrar">unrar</a></li>
+          </ul>
+        </li>
+        <li><a href="#使用tar与openssl加密解密打包文件">使用tar与OpenSSL加密解密打包文件</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h3 id="tar压缩">tar压缩</h3>
+<p>压缩多个文件或者文件夹的命令</p>
+<pre><code class="language-bash">tar -czvf a.tar.gz(想压缩文件名) 源文件名1 源文件名2 源文件夹1 源文件夹2
+</code></pre>
+<p>参数：</p>
+<ul>
+<li><code>c</code>创建一个压缩文件，如果只使用这个参数，不使用 z 参数，那么只会打包，不会压缩</li>
+<li><code>x</code>解开一个压缩文件</li>
+<li><code>z</code>是否使用 gzip 压缩或解压</li>
+<li><code>j</code>是否使用 bzip2 压缩或解压</li>
+<li><code>v</code>显示详细信息</li>
+<li><code>f</code>指定压缩后的文件名，后面要直接跟文件名，所以将 f 参数放到最后</li>
+</ul>
+<p>举几个例子：</p>
+<p>将a文件夹打包成a.tar但是不压缩</p>
+<pre><code class="language-bash">tar cvf a.tar arg
+</code></pre>
+<p>将a文件夹打包成a.tar.gz并使用 gzip 压缩</p>
+<pre><code class="language-bash">tar czvf a.tar.gz arg
+</code></pre>
+<p>将a文件夹打包成a.tar.gz并使用bzip2压缩</p>
+<pre><code class="language-bash">tar cjvf a.tar.bz2 arg
+</code></pre>
+<h3 id="tar解压">tar解压</h3>
+<p>Linux下常见的压缩包格式有5种:zip tar.gz tar.bz2 tar.xz tar.Z</p>
+<p>其中tar是种打包格式,gz和bz2等后缀才是指代压缩方式:gzip和bzip2</p>
+<p>filename.zip的解压:</p>
+<pre><code class="language-bash">unzip filename.zip
+</code></pre>
+<p>filename.tar.gz的解压:</p>
+<pre><code class="language-bash">tar -zxvf filename.tar.gz
+</code></pre>
+<p>其中zxvf含义分别如下</p>
+<ul>
+<li><code>z</code>gzip压缩格式</li>
+<li><code>x</code>extract解压</li>
+<li><code>v</code>verbose详细信息</li>
+<li><code>f</code>file(file=archieve)文件</li>
+</ul>
+<p>filename.tar.bz2的解压:</p>
+<pre><code class="language-bash">tar -jxvf filename.tar.bz2
+</code></pre>
+<p><code>j</code>指bzip2压缩格式</p>
+<p>其它选项和tar.gz解压含义相同</p>
+<p>filename.tar.xz的解压:</p>
+<pre><code class="language-bash">tar -Jxvf filename.tar.xz
+</code></pre>
+<p>注意<code>J</code>大写</p>
+<p>filename.tar.Z的解压:</p>
+<pre><code class="language-bash">tar -Zxvf filename.tar.Z
+</code></pre>
+<p>注意<code>Z</code>大写</p>
+<p>关于tar的详细命令可以</p>
+<pre><code class="language-bash">tar --help
+</code></pre>
+<p>事实上, 从1.15版本开始tar就可以自动识别压缩的格式,故不需人为区分压缩格式就能正确解压</p>
+<pre><code class="language-bash">tar -xvf filename.tar.gz
+tar -xvf filename.tar.bz2
+tar -xvf filename.tar.xz
+tar -xvf filename.tar.Z
+</code></pre>
+<h3 id="压缩zip解压unzip缩命令">压缩zip解压unzip缩命令</h3>
+<p>安装</p>
+<pre><code class="language-bash">apt-get install unzip
+</code></pre>
+<p>zip命令</p>
+<pre><code class="language-bash">zip -r myfile.zip ./*
+</code></pre>
+<p>将当前目录下的所有文件和文件夹全部压缩成myfile.zip文件,－r表示递归压缩子目录下所有文件.</p>
+<p>unzip命令</p>
+<pre><code class="language-bash">unzip -o -d /home/sunny myfile.zip
+</code></pre>
+<p>把myfile.zip文件解压到 /home/sunny/</p>
+<ul>
+<li><code>o</code>不提示的情况下覆盖文件；</li>
+<li><code>d</code> -d /home/sunny 指明将文件解压缩到/home/sunny目录下；</li>
+</ul>
+<p>其他</p>
+<pre><code class="language-bash">zip -d myfile.zip smart.txt
+</code></pre>
+<p>删除压缩文件中smart.txt文件</p>
+<pre><code class="language-bash">zip -m myfile.zip ./rpm_info.txt
+</code></pre>
+<p>向压缩文件中myfile.zip中添加rpm_info.txt文件</p>
+<pre><code class="language-bash">zip -r filename.zip file1 file2 file3 /usr/work/school 
+</code></pre>
+<p>上面的命令把 file1、file2、 file3、以及 /usr/work/school 目录的内容（假设这个目录存在）压缩起来，然后放入 filename.zip 文件中。</p>
+<p>解压unzip缩命令</p>
+<pre><code class="language-bash">unzip filename.zip
+</code></pre>
+<h3 id="7z">7Z</h3>
+<p>linux安装7z命令</p>
+<pre><code class="language-bash">apt-get install p7zip-full
+</code></pre>
+<p>带密码压缩</p>
+<pre><code class="language-bash">7z -p a test.7z test.txt
+</code></pre>
+<p><code>-p</code>添加密码</p>
+<p>解压：</p>
+<pre><code class="language-bash">7z x test.7z
+</code></pre>
+<p>解压缩7z文件</p>
+<pre><code class="language-bash">7z x phpMyAdmin-3.3.8.1-all-languages.7z -r -o./
+</code></pre>
+<p>最新命令为7zr</p>
+<p>参数含义：</p>
+<ol>
+<li><code>x</code>代表解压缩文件，并且是按原始目录树解压（还有个参数 e 也是解压缩文件，但其会将所有文件都解压到根下，而不是自己原有的文件夹下）</li>
+<li><code>r</code> 表示递归解压缩所有的子文件夹</li>
+<li><code>o</code>是指定解压到的目录，-o后是没有空格的，直接接目录。这一点需要注意。</li>
+</ol>
+<p>压缩文件/文件夹</p>
+<pre><code class="language-bash">7z a -r test.7z ./*
+</code></pre>
+<p>参数含义：</p>
+<ol>
+<li><code>a</code>代表添加文件／文件夹到压缩包</li>
+<li><code>t</code>是指定压缩类型，这里定为7z，可不指定，因为7za默认压缩类型就是7z。</li>
+<li><code>r</code>表示递归所有的子文件夹</li>
+<li><code>Mytest.7z</code>是压缩好后的压缩包名</li>
+<li><code>/opt/phpMyAdmin-3.3.8.1-all-languages/*</code>是压缩目标。</li>
+</ol>
+<p>注意：7za不仅仅支持.7z压缩格式，还支持.tar.bz2等压缩类型的。如上所述，用-t指定即可。</p>
+<h3 id="unrar">unrar</h3>
+<p><a href="http://www.rarsoft.com/download.htm" target="_blank">RAR下载地址</a> 64系统</p>
+<p>安装unrar,rar</p>
+<pre><code class="language-bash">wget https://www.rarlab.com/rar/rarlinux-x64-5.8.b2.tar.gz
+tar xvf rarlinux-x64-5.8.b2.tar.gz
+cd rar
+cp rar /usr/local/rar
+cp unrar /usr/local/unrar
+ln -s /usr/local/rar /usr/local/bin/rar
+ln -s /usr/local/unrar /usr/local/bin/unrar
+</code></pre>
+<p>安装完毕后就有了RAR和UNRAR这两个程序</p>
+<p>解压有密码的rar压缩包</p>
+<pre><code class="language-bash">unrar e -p filename.rar
+</code></pre>
+<p>输入密码后解压一个名为filename.rar的带密码压缩包</p>
+<ol>
+<li>unrar v test.rar    #查看压缩文件中的文件</li>
+<li>unrar x test.rar /tmp   #解压到指定文件夹</li>
+<li>unrar e test.rar   #解压到当前文件夹</li>
+</ol>
+<pre><code class="language-bash">rar -p a test.rar test.txt
+</code></pre>
+<p>带密码压缩会提示输入两次密码。</p>
+<p>解压：</p>
+<pre><code class="language-bash">unrar x test.rar
+</code></pre>
+<p>会提示输入密码。</p>
+<h2 id="使用tar与openssl加密解密打包文件">使用tar与OpenSSL加密解密打包文件</h2>
+<p>在当前目录下有一个<code>pma</code>目录的文件夹:</p>
+<ol>
+<li>使用tar对文件压缩加密：</li>
+</ol>
+<pre><code>tar -zcvf - pma|openssl des3 -salt -k password | dd of=pma.des3
+</code></pre>
+<p>完成将得到一个<code>pma.des3</code>的打包文件，用你设置的密码替换<code>password</code>。</p>
+<ol start="2">
+<li>使用tar对加密文件解压：</li>
+</ol>
+<pre><code>dd if=pma.des3 |openssl des3 -d -k password|tar zxf -
+</code></pre>
+<p>注意：命令最后有<code>-</code>，它将释放所有的文件。其中<code>-k password</code>可以不使用，这样执行完命令后会提示你输入密码，加上<code>-k</code>参数表示在程序中自动验证密码。</p>
+
+    </div>
+
+    
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/tar/">tar</a>
+          <a href="/tags/rar/">rar</a>
+          <a href="/tags/7z/">7z</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/oneindex-installation-failed/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Oneindex程序安装失败解决办法</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/english-preview/">
+            <span class="next-text nav-default">[English] Creating a New Theme</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+  <div class="comments">
+    <div class="loading post">
+      <img src="/img/spinner.svg">
+      <p class="post-content">
+        评论正在加载中...如果评论较长时间无法加载，你可以
+        <a href='https://github.com/ouuan/blog-comments/issues?q=is%3Aissue+is%3Aopen+"Linux%e4%b8%8btar%2cunzip%2c7z%2crar%e5%8e%8b%e7%bc%a9%e5%b8%a6%e5%af%86%e7%a0%81%e8%a7%a3%e5%8e%8b%e6%96%87%e4%bb%b6%e6%96%87%e4%bb%b6%e5%a4%b9%e7%9a%84%e4%bd%bf%e7%94%a8 - 1o"' target="_blank">搜索对应的 issue</a>
+        或者
+        <a href="https://github.com/ouuan/blog-comments/issues/new?title=Linux%e4%b8%8btar%2cunzip%2c7z%2crar%e5%8e%8b%e7%bc%a9%e5%b8%a6%e5%af%86%e7%a0%81%e8%a7%a3%e5%8e%8b%e6%96%87%e4%bb%b6%e6%96%87%e4%bb%b6%e5%a4%b9%e7%9a%84%e4%bd%bf%e7%94%a8 - 1o" target="_blank">新建一个 issue</a>
+        。
+      </p>
+    </div>
+    <script src="https://utteranc.es/client.js"
+            repo="pwwq/blog-comments"
+            issue-term="title"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    <noscript>请启用 JavaScript 来查看评论。</a></noscript>
+  </div>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:admin@567899.xyz" class="iconfont icon-email" title="email" target="_blank"></a>
+      <a href="https://github.com/pwwq" class="iconfont icon-github" title="github" target="_blank"></a>
+      <a href="https://space.bilibili.com/11067182" class="iconfont icon-bilibili" title="bilibili" target="_blank"></a>
+      <a href="https://t.me/id009" class="iconfont icon-telegram" title="telegram" target="_blank"></a>
+  <a href="https://567899.xyz/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io" target="_blank">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even" target="_blank">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2013 - 
+    2020
+    <span class="heart">
+      <a class="iconfont icon-github" title="source code" href="https://github.com/pwwq/hugo-blog" target="_blank"></a>
+    </span> 
+    <span class="author">1o</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <link href="https://cdn.bootcss.com/highlight.js/9.15.10/styles/tomorrow.min.css" rel="stylesheet">
+  <script>hljs.configure({tabReplace: '    '});</script><script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+  
+
+
+
+<script type="text/javascript" src="/js/main.min.6821b76b4e5300f807f477f7f6e0e8772a852e6af6d99f47104e1b9632e47aba.js"></script>
+  <script type="text/javascript">
+    window.MathJax = {
+      tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+      showProcessingMessages: false,
+      messageStyle: 'none'
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"  integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-157787819-1', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+</body>
+</html>

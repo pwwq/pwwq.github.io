@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Debian9安装最新版Nginx - 1o</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="1o" /><meta name="description" content="apt-get默认安装的nginx为1.10，如果嫌太老了可以修改安装源的方式来获得更新的版本； 一、添加Nginx源 新建一个nginx.li" />
+
+
+<meta name="baidu-site-verification" content="zW0oque8IK" />
+<meta name="google-site-verification" content="HAIwoMdm1A6XQ6Fp6KwAO7gpL5UKk5TOzvs9DuacYFI" />
+
+
+<meta name="generator" content="Hugo 0.69.2 with theme even" />
+
+
+<link rel="canonical" href="https://567899.xyz/post/debian-ubuntu-install-new-nginx/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link href="/sass/main.min.2bac9f1300a8a18219cc84fc2401646cd7e17b7d565c50ac353b993e321e29ec.css" rel="stylesheet">
+
+
+
+<meta property="og:title" content="Debian9安装最新版Nginx" />
+<meta property="og:description" content="apt-get默认安装的nginx为1.10，如果嫌太老了可以修改安装源的方式来获得更新的版本； 一、添加Nginx源 新建一个nginx.li" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://567899.xyz/post/debian-ubuntu-install-new-nginx/" />
+<meta property="article:published_time" content="2018-11-21T01:37:56+08:00" />
+<meta property="article:modified_time" content="2020-09-09T11:57:25+00:00" />
+<meta itemprop="name" content="Debian9安装最新版Nginx">
+<meta itemprop="description" content="apt-get默认安装的nginx为1.10，如果嫌太老了可以修改安装源的方式来获得更新的版本； 一、添加Nginx源 新建一个nginx.li">
+<meta itemprop="datePublished" content="2018-11-21T01:37:56&#43;08:00" />
+<meta itemprop="dateModified" content="2020-09-09T11:57:25&#43;00:00" />
+<meta itemprop="wordCount" content="1140">
+
+
+
+<meta itemprop="keywords" content="Debian,Nginx," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Debian9安装最新版Nginx"/>
+<meta name="twitter:description" content="apt-get默认安装的nginx为1.10，如果嫌太老了可以修改安装源的方式来获得更新的版本； 一、添加Nginx源 新建一个nginx.li"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">1o</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/links/">
+        <li class="mobile-menu-item">链接</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">关于</li>
+      </a><a href="/search/">
+        <li class="mobile-menu-item">搜索</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">1o</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/links/">链接</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">关于</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/search/">搜索</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Debian9安装最新版Nginx</h1>
+
+      <div class="post-meta">
+        <span class="post-time" title="2018-11-21 01:37:56 &#43;0800 &#43;0800"> 2018-11-21 </span>
+        <div class="post-category">
+            <a href="/categories/%E6%95%99%E7%A8%8B/"> 教程 </a>
+            </div>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#增加-nginx-虚拟主机">增加 Nginx 虚拟主机</a></li>
+    <li><a href="#解决nginx-php-fpm配置有误引起的502错误">解决Nginx php-fpm配置有误引起的502错误</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>apt-get默认安装的nginx为1.10，如果嫌太老了可以修改安装源的方式来获得更新的版本；</p>
+<p>一、添加Nginx源
+新建一个nginx.list文件</p>
+<pre><code class="language-bash">vi /etc/apt/sources.list.d/nginx.list
+</code></pre>
+<p>加入以下内容：</p>
+<pre><code class="language-bash">deb http://nginx.org/packages/mainline/debian/ stretch nginx
+deb-src http://nginx.org/packages/mainline/debian/ stretch nginx
+</code></pre>
+<p>下面这个我也不晓得干什么的，反正老外是这样写的</p>
+<pre><code class="language-bash">wget -qO - http://nginx.org/keys/nginx_signing.key | apt-key add -
+</code></pre>
+<p>更新一下让源生效</p>
+<pre><code class="language-bash">apt update
+</code></pre>
+<p>二、安装更新版本nginx</p>
+<p>如果之前用apt命令安装了旧版本nginx,需要卸载掉才行</p>
+<pre><code class="language-bash">apt remove nginx-common
+</code></pre>
+<p>正式开始安装</p>
+<pre><code class="language-bash">apt install nginx
+</code></pre>
+<p>安装完成查看版本:</p>
+<pre><code class="language-bash">nginx -v
+</code></pre>
+<p>会列出<code>Nginx</code> <code>OpenSSL</code>相关配置文件路径&hellip;</p>
+<p>查看nginx进程</p>
+<pre><code class="language-bash">ps aux | grep nginx
+pgrep nginx
+</code></pre>
+<p>安装好的文件位置：</p>
+<pre><code class="language-bash">/usr/sbin/nginx  #主程序
+/etc/nginx  #存放配置文件
+/usr/share/nginx  #存放静态文件
+/var/log/nginx  #存放日志
+/etc/nginx/nginx.conf  #默认nginx配置文件
+</code></pre>
+<p>Nginx控制命令：</p>
+<pre><code class="language-bash">###启动
+systemctl enable nginx
+###重启
+systemctl restart nginx
+###停止
+systemctl stop nginx
+###也可以使用
+/etc/init.d/nginx start # 启动Nginx服务
+/etc/init.d/nginx stop # 停止Nginx服务
+/etc/init.d/nginx  restart # 重启Nginx服务
+</code></pre>
+<h1 id="增加-nginx-虚拟主机">增加 Nginx 虚拟主机</h1>
+<p>检查<code>/etc/nginx/nginx.conf</code>配置文件，确保文件中有：<code>include /etc/nginx/conf.d/*.conf;</code> 默认已经有了的。</p>
+<p>然后在目录<code>/etc/nginx/conf.d/</code>下面新建文件<code>site1.conf</code>，<code>site2.conf</code>&hellip;文件名任意写，自己看明白就OK</p>
+<p>Debian10的Nginx新增站点方法</p>
+<p>在目录<code>/etc/nginx/sites-available/</code>下新增站点配置文件<code>your_domain</code></p>
+<pre><code class="language-bash">nano /etc/nginx/sites-available/your_domain
+</code></pre>
+<p>示范如下</p>
+<pre><code>server {
+ listen 80;
+ listen [::]:80;
+
+ root /var/www/your_domain/html;
+ index index.html index.htm index.nginx-debian.html;
+
+ server_name your_domain www.your_domain;
+
+ location / {
+ try_files $uri $uri/ =404;
+ }
+}
+</code></pre>
+<p>接下来，通过创建sites-enabled目录中的自定义配置文件的符号链接来启用这个服务器块：</p>
+<pre><code>sudo ln -s /etc/nginx/sites-available/your_domain /etc/nginx/sites-enabled/
+</code></pre>
+<p>使用<code>nginx -t</code>测试Nginx文件中有没有语法错误，配置测试通过就可以<code>systemctl restart nginx</code>重新启动Nginx</p>
+<p>Nginx配置支持PHP</p>
+<pre><code class="language-bash">location ~ \.php$ {
+fastcgi_pass 127.0.0.1:9000;
+fastcgi_index index.php;
+fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+include fastcgi_params;
+}
+</code></pre>
+<p>或者</p>
+<pre><code class="language-bash">location ~ \.php$ {
+fastcgi_pass unix:/run/php/php7.2-fpm.sock;
+fastcgi_index index.php;
+fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+include fastcgi_params;
+}
+</code></pre>
+<p>又或者</p>
+<pre><code class="language-bash">location ~ \.php$ {
+include snippets/fastcgi-php.conf;
+fastcgi_pass unix:/run/php/php7.2-fpm.sock;
+}
+</code></pre>
+<h1 id="解决nginx-php-fpm配置有误引起的502错误">解决Nginx php-fpm配置有误引起的502错误</h1>
+<p>针对该问题的解决方案是，修改<code>/etc/nginx/conf/vhosts</code>下的conf文件，</p>
+<p>将<code>fastcgi_pass 127.0.0.1:9000;</code>修改为<code>fastcgi_pass unix:/run/php/php7.0-fpm.sock;</code></p>
+<p>重启Nginx服务后，WEB访问依然报错502，继续定位分析。</p>
+<p>在nginx error_log日志<code>/var/log/nginx/error.log</code>中出现了以下新的报错内容：</p>
+<pre><code class="language-bash">2017/07/29 11:24:47 [crit] 6114#0: *1 connect() to unix:/run/php/php7.2-fpm.sock failed (13: Permission denied) while connecting to upstream, client: 183.14.134.xx, server: 112.74.89.xx, request: “GET / HTTP/1.1”, upstream: “fastcgi://unix:/run/php/php7.2-fpm.sock:”, host: “112.74.89.xx”
+</code></pre>
+<p>编辑文件<code>/etc/php/7.2/fpm/pool.d/www.conf</code>找到</p>
+<pre><code class="language-bash">listen.owner = www-data
+listen.group = www-data
+;listen.mode = 0660
+</code></pre>
+<p>修改为</p>
+<pre><code class="language-bash">;listen.owner = www-data
+;listen.group = www-data
+listen.mode = 0666
+</code></pre>
+<p>重启下Nginx和php</p>
+<pre><code class="language-bash">systemctl restart nginx
+systemctl restart php7.2-fpm
+</code></pre>
+
+    </div>
+
+    
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/debian/">Debian</a>
+          <a href="/tags/nginx/">Nginx</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/ubuntu-debian-apache2-php-vhost-sites/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Ubuntu_Debian配置Apache2_PHP配置站点</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/debian-ubuntu-nginx-certbot-lets-encrypt-ssl/">
+            <span class="next-text nav-default">Nginx使用官方工具Certbot配置申请Let’s Encrypt安全SSL证书详细教程</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+  <div class="comments">
+    <div class="loading post">
+      <img src="/img/spinner.svg">
+      <p class="post-content">
+        评论正在加载中...如果评论较长时间无法加载，你可以
+        <a href='https://github.com/ouuan/blog-comments/issues?q=is%3Aissue+is%3Aopen+"Debian9%e5%ae%89%e8%a3%85%e6%9c%80%e6%96%b0%e7%89%88Nginx - 1o"' target="_blank">搜索对应的 issue</a>
+        或者
+        <a href="https://github.com/ouuan/blog-comments/issues/new?title=Debian9%e5%ae%89%e8%a3%85%e6%9c%80%e6%96%b0%e7%89%88Nginx - 1o" target="_blank">新建一个 issue</a>
+        。
+      </p>
+    </div>
+    <script src="https://utteranc.es/client.js"
+            repo="pwwq/blog-comments"
+            issue-term="title"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    <noscript>请启用 JavaScript 来查看评论。</a></noscript>
+  </div>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:admin@567899.xyz" class="iconfont icon-email" title="email" target="_blank"></a>
+      <a href="https://github.com/pwwq" class="iconfont icon-github" title="github" target="_blank"></a>
+      <a href="https://space.bilibili.com/11067182" class="iconfont icon-bilibili" title="bilibili" target="_blank"></a>
+      <a href="https://t.me/id009" class="iconfont icon-telegram" title="telegram" target="_blank"></a>
+  <a href="https://567899.xyz/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io" target="_blank">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even" target="_blank">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2013 - 
+    2020
+    <span class="heart">
+      <a class="iconfont icon-github" title="source code" href="https://github.com/pwwq/hugo-blog" target="_blank"></a>
+    </span> 
+    <span class="author">1o</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <link href="https://cdn.bootcss.com/highlight.js/9.15.10/styles/tomorrow.min.css" rel="stylesheet">
+  <script>hljs.configure({tabReplace: '    '});</script><script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+  
+
+
+
+<script type="text/javascript" src="/js/main.min.6821b76b4e5300f807f477f7f6e0e8772a852e6af6d99f47104e1b9632e47aba.js"></script>
+  <script type="text/javascript">
+    window.MathJax = {
+      tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+      showProcessingMessages: false,
+      messageStyle: 'none'
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"  integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-157787819-1', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+</body>
+</html>

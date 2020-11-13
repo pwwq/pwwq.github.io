@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>使用Rclone挂载世纪互联OneDrive - 1o</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="1o" /><meta name="description" content="世纪互联空全局订阅获取Azure&#43;自建独享API 适用于可以使用API,但本身子账号不能创建API的。可以撸个空全局，利用空全局账号创建API" />
+
+
+<meta name="baidu-site-verification" content="zW0oque8IK" />
+<meta name="google-site-verification" content="HAIwoMdm1A6XQ6Fp6KwAO7gpL5UKk5TOzvs9DuacYFI" />
+
+
+<meta name="generator" content="Hugo 0.69.2 with theme even" />
+
+
+<link rel="canonical" href="https://567899.xyz/post/rclone-onedrive-cn/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link href="/sass/main.min.2bac9f1300a8a18219cc84fc2401646cd7e17b7d565c50ac353b993e321e29ec.css" rel="stylesheet">
+
+
+
+<meta property="og:title" content="使用Rclone挂载世纪互联OneDrive" />
+<meta property="og:description" content="世纪互联空全局订阅获取Azure&#43;自建独享API 适用于可以使用API,但本身子账号不能创建API的。可以撸个空全局，利用空全局账号创建API" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://567899.xyz/post/rclone-onedrive-cn/" />
+<meta property="article:published_time" content="2020-02-01T01:37:56+08:00" />
+<meta property="article:modified_time" content="2020-09-09T09:23:42+00:00" />
+<meta itemprop="name" content="使用Rclone挂载世纪互联OneDrive">
+<meta itemprop="description" content="世纪互联空全局订阅获取Azure&#43;自建独享API 适用于可以使用API,但本身子账号不能创建API的。可以撸个空全局，利用空全局账号创建API">
+<meta itemprop="datePublished" content="2020-02-01T01:37:56&#43;08:00" />
+<meta itemprop="dateModified" content="2020-09-09T09:23:42&#43;00:00" />
+<meta itemprop="wordCount" content="2166">
+
+
+
+<meta itemprop="keywords" content="API,rclone,OneDrive," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="使用Rclone挂载世纪互联OneDrive"/>
+<meta name="twitter:description" content="世纪互联空全局订阅获取Azure&#43;自建独享API 适用于可以使用API,但本身子账号不能创建API的。可以撸个空全局，利用空全局账号创建API"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">1o</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/links/">
+        <li class="mobile-menu-item">链接</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">关于</li>
+      </a><a href="/search/">
+        <li class="mobile-menu-item">搜索</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">1o</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/links/">链接</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">关于</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/search/">搜索</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">使用Rclone挂载世纪互联OneDrive</h1>
+
+      <div class="post-meta">
+        <span class="post-time" title="2020-02-01 01:37:56 &#43;0800 &#43;0800"> 2020-02-01 </span>
+        <div class="post-category">
+            <a href="/categories/%E6%95%99%E7%A8%8B/"> 教程 </a>
+            </div>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li>
+          <ul>
+            <li>
+              <ul>
+                <li><a href="#世纪互联空全局订阅获取azure自建独享api">世纪互联空全局订阅获取Azure+自建独享API</a></li>
+                <li><a href="#世纪互联-onedrive-获取-client_id-及-client_secret">世纪互联 OneDrive 获取 CLIENT_ID 及 CLIENT_SECRET</a></li>
+                <li><a href="#安装配置-rclone">安装配置 Rclone</a></li>
+                <li><a href="#挂载">挂载</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h4 id="世纪互联空全局订阅获取azure自建独享api">世纪互联空全局订阅获取Azure+自建独享API</h4>
+<p>适用于可以使用API,但本身子账号不能创建API的。可以撸个空全局，利用空全局账号创建API来供不能创建API的子号使用。</p>
+<p><img src="/images/rclone-onedrive-cn-api.png" alt=""></p>
+<p>打开<a href="https://www.microsoft.com/zh-cn/microsoft-365/compare-china-global-versions-microsoft-365" target="_blank">比较面向中小企业的中国版本计划和价格</a> 随便选个套餐<code>立即购买</code>然后按提示注册新账号，左上角点进去,进入管理,把付款取消掉。</p>
+<p>API权限<strong>我们需要空全局管理员点击</strong>  <code>代表XXXX授予管理员同意</code></p>
+<p>WINDOWS平台<code>rclone</code>获取<code>token</code>时需要在后面加上<code>--onedrive-is-21vianet-version=true</code>示范如下</p>
+<pre><code class="language-bash">rclone authorize &quot;onedrive&quot; &quot;client_ID&quot; &quot;client_secret&quot; --onedrive-is-21vianet-version=true
+</code></pre>
+<h4 id="世纪互联-onedrive-获取-client_id-及-client_secret">世纪互联 OneDrive 获取 CLIENT_ID 及 CLIENT_SECRET</h4>
+<p>打开 <a href="https://portal.azure.cn/">https://portal.azure.cn/</a> 登陆并按以下步骤：</p>
+<ol>
+<li>左侧找到 <code>Azure Active Directory</code> 点击</li>
+<li>左侧找到 <a href="https://portal.azure.cn/#blade/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/RegisteredApps" target="_blank">应用注册</a></li>
+<li>上方找到 <code>新注册</code> 点击</li>
+<li>名称：<code>onedrive</code></li>
+<li>受支持的账户类型：	<code>任何组织目录(任何 Azure AD 目录 - 多租户)中的帐户</code>（第二个）</li>
+<li>重定向 URL：<code>http://localhost:53682</code></li>
+<li>点击注册 找到 <code>应用程序(客户端) ID</code>  <strong>复制client_ID保存</strong></li>
+<li>左侧找到 <code>证书和密码</code> 点击</li>
+<li>下方 <code>客户端密码</code> - <code>新客户端密码</code></li>
+<li>说明：<code>onedrive</code></li>
+<li>截止期限：默认 <code>1年内</code></li>
+<li>点击 添加，<code>值</code> 客户端密码  <strong>复制client_secret保存</strong></li>
+<li>左侧找到 <code>API 权限</code> 点击</li>
+<li><code>添加权限</code>  - <code>Microsoft Graph</code> - <code>委托的权限</code> - <code>Files (7)</code>全部勾选</li>
+<li>选择<code>应用程序权限</code> 在下方<code>Files</code>里选择 <code>Files.Read.All</code>和<code>Files.ReadWrite.All</code></li>
+</ol>
+<p>回到界面会发现该权限处于未授权状态，<strong>我们需要全局管理员点击</strong>  <code>代表XXXX授予管理员同意</code></p>
+<pre><code class="language-bash">Files.Read
+Files.Read.All
+Files.Read.Selected
+Files.ReadWrite
+Files.ReadWrite.All
+Files.ReadWrite.AppFolder
+Files.ReadWrite.Selected
+</code></pre>
+<h4 id="安装配置-rclone">安装配置 Rclone</h4>
+<p>Rclone 世纪互联版地址：<a href="https://www.hostloc.com/thread-612579-1-1.html" target="_blank">兼容世纪互联的 Rclone</a></p>
+<p>预编译兼容世纪互联的 Rclone v1.50.2</p>
+<p><a href="/uploads/rclone-v1.50.2-linux-386-21vianet.zip">Linux 32位</a> | <a href="/uploads/rclone-v1.50.2-linux-amd64-21vianet.zip">Linux 64位</a> | <a href="/uploads/rclone-v1.50.2-windows-386-21vianet.zip">Windows 32位</a> | <a href="/uploads/rclone-v1.50.2-windows-amd64-21vianet.zip">Windows 64位</a></p>
+<p>下载解压上传到 <code>/usr/bin</code> 目录，然后</p>
+<pre><code class="language-bash">chmod +x /usr/bin/rclone
+rclone config
+</code></pre>
+<p>完整配置过程如下</p>
+<pre><code class="language-bash">Microsoft Windows [版本 10.0.17763.316]
+(c) 2018 Microsoft Corporation。保留所有权利。
+
+C:\Users\user&gt;cd C:\Users\user\Desktop\rclone-v1.50.2-windows-amd64-21vianet
+
+C:\Users\user\Desktop\rclone-v1.50.2-windows-amd64-21vianet&gt;rclone config
+2020/02/01 13:46:21 NOTICE: Config file &quot;C:\\Users\\user\\.config\\rclone\\rclone.conf&quot; not found - using defaults
+No remotes found - make a new one
+n) New remote
+s) Set configuration password
+q) Quit config
+n/s/q&gt; n
+name&gt; onedrive_cn
+Type of storage to configure.
+Enter a string value. Press Enter for the default (&quot;&quot;).
+Choose a number from below, or type in your own value
+ 1 / 1Fichier
+   \ &quot;fichier&quot;
+ 2 / Alias for an existing remote
+   \ &quot;alias&quot;
+ 3 / Amazon Drive
+   \ &quot;amazon cloud drive&quot;
+ 4 / Amazon S3 Compliant Storage Provider (AWS, Alibaba, Ceph, Digital Ocean, Dreamhost, IBM COS, Minio, etc)
+   \ &quot;s3&quot;
+ 5 / Backblaze B2
+   \ &quot;b2&quot;
+ 6 / Box
+   \ &quot;box&quot;
+ 7 / Cache a remote
+   \ &quot;cache&quot;
+ 8 / Citrix Sharefile
+   \ &quot;sharefile&quot;
+ 9 / Dropbox
+   \ &quot;dropbox&quot;
+10 / Encrypt/Decrypt a remote
+   \ &quot;crypt&quot;
+11 / FTP Connection
+   \ &quot;ftp&quot;
+12 / Google Cloud Storage (this is not Google Drive)
+   \ &quot;google cloud storage&quot;
+13 / Google Drive
+   \ &quot;drive&quot;
+14 / Google Photos
+   \ &quot;google photos&quot;
+15 / Hubic
+   \ &quot;hubic&quot;
+16 / JottaCloud
+   \ &quot;jottacloud&quot;
+17 / Koofr
+   \ &quot;koofr&quot;
+18 / Local Disk
+   \ &quot;local&quot;
+19 / Mail.ru Cloud
+   \ &quot;mailru&quot;
+20 / Mega
+   \ &quot;mega&quot;
+21 / Microsoft Azure Blob Storage
+   \ &quot;azureblob&quot;
+22 / Microsoft OneDrive
+   \ &quot;onedrive&quot;
+23 / OpenDrive
+   \ &quot;opendrive&quot;
+24 / Openstack Swift (Rackspace Cloud Files, Memset Memstore, OVH)
+   \ &quot;swift&quot;
+25 / Pcloud
+   \ &quot;pcloud&quot;
+26 / Put.io
+   \ &quot;putio&quot;
+27 / QingCloud Object Storage
+   \ &quot;qingstor&quot;
+28 / SSH/SFTP Connection
+   \ &quot;sftp&quot;
+29 / Transparently chunk/split large files
+   \ &quot;chunker&quot;
+30 / Union merges the contents of several remotes
+   \ &quot;union&quot;
+31 / Webdav
+   \ &quot;webdav&quot;
+32 / Yandex Disk
+   \ &quot;yandex&quot;
+33 / http Connection
+   \ &quot;http&quot;
+34 / premiumize.me
+   \ &quot;premiumizeme&quot;
+Storage&gt; 22
+** See help for onedrive backend at: https://rclone.org/onedrive/ **
+
+Microsoft App Client Id
+Leave blank normally.
+Enter a string value. Press Enter for the default (&quot;&quot;).
+client_id&gt; 6b57cb03-3791-4823-9ce9-5dd027e*****
+Microsoft App Client Secret
+Leave blank normally.
+Enter a string value. Press Enter for the default (&quot;&quot;).
+client_secret&gt; l05:IBoAAVh4]Y]4M_?9lgw-L8******
+OneDrive operated by 21Vianet (世纪互联).
+Enter a boolean value (true or false). Press Enter for the default (&quot;false&quot;).
+is_21vianet_version&gt; true
+Edit advanced config? (y/n)
+y) Yes
+n) No
+y/n&gt; y
+Chunk size to upload files with - must be multiple of 320k (327,680 bytes).
+
+Above this size files will be chunked - must be multiple of 320k (327,680 bytes). Note
+that the chunks will be buffered into memory.
+Enter a size with suffix k,M,G,T. Press Enter for the default (&quot;10M&quot;).
+chunk_size&gt; 10M
+The ID of the drive to use
+Enter a string value. Press Enter for the default (&quot;&quot;).
+drive_id&gt;
+The type of the drive ( personal | business | documentLibrary )
+Enter a string value. Press Enter for the default (&quot;&quot;).
+drive_type&gt; business
+Set to make OneNote files show up in directory listings.
+
+By default rclone will hide OneNote files in directory listings because
+operations like &quot;Open&quot; and &quot;Update&quot; won't work on them.  But this
+behaviour may also prevent you from deleting them.  If you want to
+delete OneNote files or otherwise want them to show up in directory
+listing, set this option.
+Enter a boolean value (true or false). Press Enter for the default (&quot;false&quot;).
+expose_onenote_files&gt;
+Remote config
+Make sure your Redirect URL is set to &quot;http://localhost:53682/&quot; in your custom config.
+Use auto config?
+ * Say Y if not sure
+ * Say N if you are working on a remote or headless machine
+y) Yes
+n) No
+y/n&gt; Y
+If your browser doesn't open automatically go to the following link: http://127.0.0.1:53682/auth?state=3-n1fmI2XA7QsjnhQAjoQw
+Log in and authorize rclone for access
+Waiting for code...
+Got code
+Choose a number from below, or type in an existing value
+ 1 / OneDrive Personal or Business
+   \ &quot;onedrive&quot;
+ 2 / Root Sharepoint site
+   \ &quot;sharepoint&quot;
+ 3 / Type in driveID
+   \ &quot;driveid&quot;
+ 4 / Type in SiteID
+   \ &quot;siteid&quot;
+ 5 / Search a Sharepoint site
+   \ &quot;search&quot;
+Your choice&gt; 1
+Found 1 drives, please select the one you want to use:
+0: OneDrive (business) id=b!Yb3jWYP2_EOgiOjYxlsv4iz1Y8ZSfhlEm48kp98Ew0Dzv4TUrSwSSK1sL5j*****
+Chose drive to use:&gt; 0
+Found drive 'root' of type 'business', URL: https://*****-my.sharepoint.cn/personal/***_****_partner_onmschina_cn/Documents
+Is that okay?
+y) Yes
+n) No
+y/n&gt; y
+--------------------
+[onedrive_cn]
+type = onedrive
+client_id = 6b57cb03-3791-4823-9ce9-5dd027e*****
+client_secret = l05:IBoAAVh4]Y]4M_?9lgw-L8******
+is_21vianet_version = true
+chunk_size = 10M
+drive_type = business
+token = {&quot;access_token&quot;:&quot;eyJ0eXAiOiJKV1Q********BtBs2OM8B1Euv7SAA&quot;,&quot;expiry&quot;:&quot;2020-02-01T14:50:32.8151941+08:00&quot;}
+drive_id = b!Yb3jWYP2_EOgiOjYxlsv4iz1Y8****************UrSwSSK1sL5jmrG0I
+--------------------
+y) Yes this is OK
+e) Edit this remote
+d) Delete this remote
+y/e/d&gt; y
+Current remotes:
+
+Name                 Type
+====                 ====
+onedrive_cn        onedrive
+
+e) Edit existing remote
+n) New remote
+d) Delete remote
+r) Rename remote
+c) Copy remote
+s) Set configuration password
+q) Quit config
+e/n/d/r/c/s/q&gt; q
+</code></pre>
+<p>配置文件<code>C:\Users\user\.config\rclone\rclone.conf</code>格式如下</p>
+<pre><code class="language-bash">[onedrive_cn]
+type = onedrive
+client_id = 6b57cb03-3791-4823-9ce9-5dd027e*****
+client_secret = l05:IBoAAVh4]Y]4M_?9lgw-L8******
+is_21vianet_version = true
+chunk_size = 10M
+drive_type = business
+token = {&quot;access_token&quot;:&quot;eyJ0eXAiOiJKV1Q********BtBs2OM8B1Euv7SAA&quot;,&quot;expiry&quot;:&quot;2020-02-01T14:50:32.8151941+08:00&quot;}
+drive_id = b!Yb3jWYP2_EOgiOjYxlsv4iz1Y8****************UrSwSSK1sL5jmrG0I
+</code></pre>
+<h4 id="挂载">挂载</h4>
+<pre><code class="language-bash">apt -y update &amp;&amp; apt install fuse
+</code></pre>
+<p>挂载命令：</p>
+<pre><code class="language-bash">rclone mount onedrive:/ /mnt/ --copy-links --no-gzip-encoding --no-check-certificate --allow-other --allow-non-empty --umask 000
+</code></pre>
+<p>后台挂载命令：</p>
+<pre><code class="language-bash">nohup rclone mount onedrive:/ /mnt --copy-links --no-gzip-encoding --no-check-certificate --allow-other --allow-non-empty --umask 000 &gt;/dev/null 2&gt;&amp;1 &amp;
+</code></pre>
+<p>卸载命令：</p>
+<pre><code class="language-bash">fusermount -qzu LocalFolder onedrive
+</code></pre>
+<p>Rclone 开机启动（脚本来自：Rat&rsquo;s Blog，二次修改支持多网盘挂载）</p>
+<pre><code class="language-bash">nano /etc/init.d/rcloned
+</code></pre>
+<p>文本内容如下</p>
+<pre><code class="language-bash">#!/bin/bash
+
+PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:~/bin
+export PATH
+NAME_BIN=&quot;rclone&quot;
+### BEGIN INIT INFO
+# Provides:          rclone
+# Required-Start:    $all
+# Required-Stop:     $all
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Start rclone at boot time
+# Description:       Enable rclone by daemon.
+### END INIT INFO
+
+NAME=&quot;&quot; #rclone name名
+REMOTE='' #远程文件夹
+LOCAL='' #挂在地址
+
+NAME_1=&quot;&quot;
+REMOTE_1=''
+LOCAL_1=''
+
+Green_font_prefix=&quot;\033[32m&quot; &amp;&amp; Red_font_prefix=&quot;\033[31m&quot; &amp;&amp; Green_background_prefix=&quot;\033[42;37m&quot; &amp;&amp; Red_background_prefix=&quot;\033[41;37m&quot; &amp;&amp; Font_color_suffix=&quot;\033[0m&quot;
+Info=&quot;${Green_font_prefix}[信息]${Font_color_suffix}&quot;
+Error=&quot;${Red_font_prefix}[错误]${Font_color_suffix}&quot;
+RETVAL=0
+
+check_running(){
+    PID=&quot;$(ps -C $NAME_BIN -o pid= |head -n1 |grep -o '[0-9]\{1,\}')&quot;
+    if [[ ! -z ${PID} ]]; then
+        return 0
+    else
+        return 1
+    fi
+}
+do_start(){
+    check_running
+    if [[ $? -eq 0 ]]; then
+        echo -e &quot;${Info} $NAME_BIN (PID ${PID}) 正在运行...&quot; &amp;&amp; exit 0
+    else
+        fusermount -zuq $LOCAL &gt;/dev/null 2&gt;&amp;1
+        mkdir -p $LOCAL
+        /usr/bin/rclone mount $NAME:$REMOTE $LOCAL --copy-links --no-gzip-encoding --no-check-certificate --allow-other --allow-non-empty --umask 000 &gt;/dev/null 2&gt;&amp;1 &amp;
+        sleep 2s
+        fusermount -zuq $LOCAL_1 &gt;/dev/null 2&gt;&amp;1
+        mkdir -p $LOCAL_1
+        /usr/bin/rclone mount $NAME_1:$REMOTE_1 $LOCAL_1 --copy-links --no-gzip-encoding --no-check-certificate --allow-other --allow-non-empty --umask 000 &gt;/dev/null 2&gt;&amp;1 &amp;
+        check_running
+        if [[ $? -eq 0 ]]; then
+            echo -e &quot;${Info} $NAME_BIN 启动成功 !&quot;
+        else
+            echo -e &quot;${Error} $NAME_BIN 启动失败 !&quot;
+        fi
+    fi
+}
+do_stop(){
+    check_running
+    if [[ $? -eq 0 ]]; then
+        kill -9 ${PID}
+        RETVAL=$?
+        if [[ $RETVAL -eq 0 ]]; then
+            echo -e &quot;${Info} $NAME_BIN 停止成功 !&quot;
+        else
+            echo -e &quot;${Error} $NAME_BIN 停止失败 !&quot;
+        fi
+    else
+        echo -e &quot;${Info} $NAME_BIN 未运行&quot;
+        RETVAL=1
+    fi
+    fusermount -zuq $LOCAL &gt;/dev/null 2&gt;&amp;1
+    fusermount -zuq $LOCAL1 &gt;/dev/null 2&gt;&amp;1
+}
+do_status(){
+    check_running
+    if [[ $? -eq 0 ]]; then
+        echo -e &quot;${Info} $NAME_BIN (PID $(echo ${PID})) 正在运行...&quot;
+    else
+        echo -e &quot;${Info} $NAME_BIN 未运行 !&quot;
+        RETVAL=1
+    fi
+}
+do_restart(){
+    do_stop
+    do_start
+}
+case &quot;$1&quot; in
+    start|stop|restart|status)
+    do_$1
+    ;;
+    *)
+    echo &quot;使用方法: $0 { start | stop | restart | status }&quot;
+    RETVAL=1
+    ;;
+esac
+exit $RETVAL
+</code></pre>
+<p>操作命令</p>
+<pre><code class="language-bash">chmod +x /etc/init.d/rcloned
+/etc/init.d/rcloned start
+/etc/init.d/rcloned stop
+</code></pre>
+
+    </div>
+
+    
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/api/">API</a>
+          <a href="/tags/rclone/">rclone</a>
+          <a href="/tags/onedrive/">OneDrive</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/onelist/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">OneList又一款OneDrive列目录程序,解决API抽风问题</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/cn-onedrive-oneindex/">
+            <span class="next-text nav-default">OneIndex搭建世纪互联版OneDrive</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+  <div class="comments">
+    <div class="loading post">
+      <img src="/img/spinner.svg">
+      <p class="post-content">
+        评论正在加载中...如果评论较长时间无法加载，你可以
+        <a href='https://github.com/ouuan/blog-comments/issues?q=is%3Aissue+is%3Aopen+"%e4%bd%bf%e7%94%a8Rclone%e6%8c%82%e8%bd%bd%e4%b8%96%e7%ba%aa%e4%ba%92%e8%81%94OneDrive - 1o"' target="_blank">搜索对应的 issue</a>
+        或者
+        <a href="https://github.com/ouuan/blog-comments/issues/new?title=%e4%bd%bf%e7%94%a8Rclone%e6%8c%82%e8%bd%bd%e4%b8%96%e7%ba%aa%e4%ba%92%e8%81%94OneDrive - 1o" target="_blank">新建一个 issue</a>
+        。
+      </p>
+    </div>
+    <script src="https://utteranc.es/client.js"
+            repo="pwwq/blog-comments"
+            issue-term="title"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    <noscript>请启用 JavaScript 来查看评论。</a></noscript>
+  </div>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:admin@567899.xyz" class="iconfont icon-email" title="email" target="_blank"></a>
+      <a href="https://github.com/pwwq" class="iconfont icon-github" title="github" target="_blank"></a>
+      <a href="https://space.bilibili.com/11067182" class="iconfont icon-bilibili" title="bilibili" target="_blank"></a>
+      <a href="https://t.me/id009" class="iconfont icon-telegram" title="telegram" target="_blank"></a>
+  <a href="https://567899.xyz/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io" target="_blank">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even" target="_blank">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2013 - 
+    2020
+    <span class="heart">
+      <a class="iconfont icon-github" title="source code" href="https://github.com/pwwq/hugo-blog" target="_blank"></a>
+    </span> 
+    <span class="author">1o</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <link href="https://cdn.bootcss.com/highlight.js/9.15.10/styles/tomorrow.min.css" rel="stylesheet">
+  <script>hljs.configure({tabReplace: '    '});</script><script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+  
+
+
+
+<script type="text/javascript" src="/js/main.min.6821b76b4e5300f807f477f7f6e0e8772a852e6af6d99f47104e1b9632e47aba.js"></script>
+  <script type="text/javascript">
+    window.MathJax = {
+      tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+      showProcessingMessages: false,
+      messageStyle: 'none'
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"  integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-157787819-1', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+</body>
+</html>
