@@ -44,12 +44,12 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://567899.xyz/post/v2ray/" />
 <meta property="article:published_time" content="2020-09-28T01:37:56+08:00" />
-<meta property="article:modified_time" content="2020-10-17T20:31:31+08:00" />
+<meta property="article:modified_time" content="2020-12-10T01:19:18+08:00" />
 <meta itemprop="name" content="V2ray安装配置VMess、VLESS、XTLS教程">
 <meta itemprop="description" content="近期更新重点 V2Ray v4.27.0&#43;新增支持VLESS新协议 V2Ray v4.29.0&#43;新增支持XTLS新协议 VMess AEAD will be used when alterId is 0 in V2Ray v4.28.0&#43; 安装脚本放废弃go.s">
 <meta itemprop="datePublished" content="2020-09-28T01:37:56&#43;08:00" />
-<meta itemprop="dateModified" content="2020-10-17T20:31:31&#43;08:00" />
-<meta itemprop="wordCount" content="2763">
+<meta itemprop="dateModified" content="2020-12-10T01:19:18&#43;08:00" />
+<meta itemprop="wordCount" content="3336">
 
 
 
@@ -149,6 +149,13 @@
   <ul>
     <li>
       <ul>
+        <li><a href="#xray">xray</a>
+          <ul>
+            <li><a href="#install--upgrade-xray-core-and-dat-files">Install &amp; Upgrade Xray-core and .dat files</a></li>
+            <li><a href="#update-geoipdat-and-geositedat-only">Update geoip.dat and geosite.dat only</a></li>
+            <li><a href="#remove-xray-except-json-and-logs">Remove Xray, except json and logs</a></li>
+          </ul>
+        </li>
         <li><a href="#安装v2ray">安装V2ray</a></li>
         <li><a href="#v2ray在使用vless时证书权限的解决办法">V2ray在使用VLESS时证书权限的解决办法</a></li>
         <li><a href="#编辑配置文件">编辑配置文件</a></li>
@@ -196,6 +203,7 @@
 <li>V2Ray v4.29.0+新增支持XTLS新协议</li>
 <li>VMess AEAD will be used when alterId is 0 in V2Ray v4.28.0+</li>
 <li>安装脚本放废弃<code>go.sh</code>改用<code>install-realese.sh</code></li>
+<li>V2Ray v4.33.0移除了XTLS，建议使用V2Ray v4.32.1</li>
 </ul>
 <p>详情参考</p>
 <ol>
@@ -208,8 +216,221 @@
 <li><a href="https://www.v2fly.org/">https://www.v2fly.org/</a></li>
 <li><a href="https://github.com/rprx/v2ray-vless">https://github.com/rprx/v2ray-vless</a></li>
 <li><a href="https://github.com/v2fly/v2ray-core">https://github.com/v2fly/v2ray-core</a></li>
+<li><a href="https://github.com/XTLS/Xray-core">https://github.com/XTLS/Xray-core</a></li>
 </ol>
 <p>排名不分先后顺序 致敬开发者们的无私奉献</p>
+<hr>
+<h2 id="xray">xray</h2>
+<blockquote>
+<p><a href="https://github.com/XTLS/Xray-core">https://github.com/XTLS/Xray-core</a></p>
+</blockquote>
+<h3 id="install--upgrade-xray-core-and-dat-files">Install &amp; Upgrade Xray-core and .dat files</h3>
+<pre><code>bash &lt;(curl -L https://raw.githubusercontent.com/XTLS/Xray-install/main/install-release.sh)
+</code></pre>
+<h3 id="update-geoipdat-and-geositedat-only">Update geoip.dat and geosite.dat only</h3>
+<pre><code>bash &lt;(curl -L https://raw.githubusercontent.com/XTLS/Xray-install/main/install-dat-release.sh)
+</code></pre>
+<h3 id="remove-xray-except-json-and-logs">Remove Xray, except json and logs</h3>
+<pre><code>bash &lt;(curl -L https://raw.githubusercontent.com/XTLS/Xray-install/main/install-release.sh) --remove
+</code></pre>
+<p>成功安装后会提示如下</p>
+<pre><code># /etc/systemd/system/xray.service
+[Unit]
+Description=Xray Service
+Documentation=https://github.com/xtls
+After=network.target nss-lookup.target
+
+[Service]
+User=nobody
+CapabilityBoundingSet=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
+AmbientCapabilities=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
+NoNewPrivileges=true
+ExecStart=/usr/local/bin/xray run -config /usr/local/etc/xray/config.json
+Restart=on-failure
+RestartPreventExitStatus=23
+
+[Install]
+WantedBy=multi-user.target
+
+# /etc/systemd/system/xray.service.d/10-donot_touch_single_conf.conf
+# In case you have a good reason to do so, duplicate this file in the same directory and make your customizes there.
+# Or all changes you made will be lost!  # Refer: https://www.freedesktop.org/software/systemd/man/systemd.unit.html
+[Service]
+ExecStart=
+ExecStart=/usr/local/bin/xray run -config /usr/local/etc/xray/config.json
+
+installed: /usr/local/bin/xray
+installed: /usr/local/share/xray/geoip.dat
+installed: /usr/local/share/xray/geosite.dat
+installed: /usr/local/etc/xray/config.json
+installed: /var/log/xray/
+installed: /var/log/xray/access.log
+installed: /var/log/xray/error.log
+installed: /etc/systemd/system/xray.service
+installed: /etc/systemd/system/xray@.service
+removed: /tmp/tmp.S3mHoPXvIj
+info: Xray v1.1.2 is installed.
+You may need to execute a command to remove dependent software: apt purge curl unzip
+Please execute the command: systemctl enable xray; systemctl start xray
+</code></pre>
+<p>解决SSL证书权限不足</p>
+<pre><code>sed -i 's/User=nobody/User=root/' /etc/systemd/system/xray.service
+sed -i 's/User=nobody/User=root/' /etc/systemd/system/xray@.service
+</code></pre>
+<p>编辑创建xray配置文件</p>
+<pre><code>nano /usr/local/etc/xray/config.json
+</code></pre>
+<p>输入以下示范</p>
+<pre><code>{
+    &quot;log&quot;: {
+        &quot;loglevel&quot;: &quot;warning&quot;
+    },
+    &quot;inbounds&quot;: [
+        {
+            &quot;port&quot;: 443,
+            &quot;protocol&quot;: &quot;vless&quot;,
+            &quot;settings&quot;: {
+                &quot;clients&quot;: [
+                    {
+                        &quot;id&quot;: &quot;&quot;, // 填写你的 UUID
+                        &quot;flow&quot;: &quot;xtls-rprx-direct&quot;,
+                        &quot;level&quot;: 0,
+                        &quot;email&quot;: &quot;love@v2fly.org&quot;
+                    }
+                ],
+                &quot;decryption&quot;: &quot;none&quot;,
+                &quot;fallbacks&quot;: [
+                    {
+                        &quot;dest&quot;: 81
+                    },
+                    {
+                        &quot;path&quot;: &quot;/websocket&quot;, // 必须换成自定义的 PATH
+                        &quot;dest&quot;: 1234,
+                        &quot;xver&quot;: 1
+                    }
+                ]
+            },
+            &quot;streamSettings&quot;: {
+                &quot;network&quot;: &quot;tcp&quot;,
+                &quot;security&quot;: &quot;xtls&quot;,
+                &quot;xtlsSettings&quot;: {
+                    &quot;alpn&quot;: [
+                        &quot;http/1.1&quot;
+                    ],
+                    &quot;certificates&quot;: [
+                        {
+                            &quot;certificateFile&quot;: &quot;/etc/letsencrypt/live/ojbk.eu.org/fullchain.pem&quot;, // 换成你的证书，绝对路径
+                            &quot;keyFile&quot;: &quot;/etc/letsencrypt/live/ojbk.eu.org/privkey.pem&quot; // 换成你的私钥，绝对路径
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            &quot;port&quot;: 1234,
+            &quot;listen&quot;: &quot;127.0.0.1&quot;,
+            &quot;protocol&quot;: &quot;vless&quot;,
+            &quot;settings&quot;: {
+                &quot;clients&quot;: [
+                    {
+                        &quot;id&quot;: &quot;&quot;, // 填写你的 UUID
+                        &quot;level&quot;: 0,
+                        &quot;email&quot;: &quot;love@v2fly.org&quot;
+                    }
+                ],
+                &quot;decryption&quot;: &quot;none&quot;
+            },
+            &quot;streamSettings&quot;: {
+                &quot;network&quot;: &quot;ws&quot;,
+                &quot;security&quot;: &quot;none&quot;,
+                &quot;wsSettings&quot;: {
+                    &quot;acceptProxyProtocol&quot;: true, // 提醒：若你用 Nginx/Caddy 等反代 WS，需要删掉这行
+                    &quot;path&quot;: &quot;/websocket&quot; // 必须换成自定义的 PATH，需要和分流的一致
+                }
+            }
+        },
+        {
+            &quot;protocol&quot;: &quot;shadowsocks&quot;,
+            &quot;port&quot;: 1038,
+            &quot;settings&quot;: {
+            &quot;method&quot;: &quot;chacha20-ietf-poly1305&quot;,
+            &quot;password&quot;: &quot;yourpassword###&quot;,
+            &quot;udp&quot;: true
+            }
+        },
+        {
+            &quot;protocol&quot;: &quot;shadowsocks&quot;,
+            &quot;port&quot;: 1039,
+            &quot;settings&quot;: {
+            &quot;method&quot;: &quot;aes-128-gcm&quot;,
+            &quot;password&quot;: &quot;youpassword###&quot;,
+            &quot;udp&quot;: true
+            }
+        },
+		{
+			&quot;port&quot;: 5678,
+			&quot;protocol&quot;: &quot;vmess&quot;,
+			&quot;settings&quot;: {
+			&quot;clients&quot;: [
+				{
+					&quot;id&quot;: &quot;&quot;,
+					&quot;alterId&quot;: 0
+				}
+			]
+			},
+			&quot;streamSettings&quot;: {
+			&quot;network&quot;: &quot;kcp&quot;,
+			&quot;security&quot;: &quot;aes-128-gcm&quot;,
+			&quot;kcpSettings&quot;: {
+					&quot;mtu&quot;: 1350,
+					&quot;tti&quot;: 20,
+					&quot;uplinkCapacity&quot;: 5,
+					&quot;downlinkCapacity&quot;: 100,
+					&quot;congestion&quot;: false,
+					&quot;readBufferSize&quot;: 1,
+					&quot;writeBufferSize&quot;: 1,
+					&quot;header&quot;: {
+						&quot;type&quot;: &quot;none&quot;
+					},
+					&quot;seed&quot;: &quot;Password###&quot;
+				}
+			}
+		}
+    ],
+    &quot;outbounds&quot;: [
+        {
+            &quot;protocol&quot;: &quot;freedom&quot;
+        }
+    ]
+}
+</code></pre>
+<p>启动xray</p>
+<pre><code>systemctl enable xray
+systemctl start xray
+</code></pre>
+<p>nginx配置示范</p>
+<pre><code>server {
+    listen 80;
+    listen [::]:80;
+    server_name example.com;
+    root /var/www/example.com;
+    index index.html index.htm index.php;
+    #return 301 https://$server_name$request_uri;
+}
+server {
+    listen 81;
+    listen [::]:81;
+    server_name example.com;
+    root /var/www/example.com;
+    index index.html index.htm index.php;
+    #php
+    location ~ \.php$ {
+    include snippets/fastcgi-php.conf;
+    fastcgi_pass unix:/run/php/php7.3-fpm.sock;
+    }
+}
+</code></pre>
+<hr>
 <h2 id="安装v2ray">安装V2ray</h2>
 <p>安裝和更新 V2Ray</p>
 <pre><code>#安裝執行檔和 .dat 資料檔
@@ -225,7 +446,7 @@ bash install-dat-release.sh
 <pre><code>bash install-release.sh --remove
 </code></pre>
 <p>指定版本安装示范</p>
-<pre><code>bash install-release.sh --version v4.29.0
+<pre><code>bash install-release.sh --version v4.32.1
 </code></pre>
 <p>完成安装会提示如下</p>
 <pre><code>[Service]
