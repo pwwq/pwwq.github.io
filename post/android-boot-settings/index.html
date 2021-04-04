@@ -44,12 +44,12 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://567899.xyz/post/android-boot-settings/" />
 <meta property="article:published_time" content="2016-11-12T01:37:56+08:00" />
-<meta property="article:modified_time" content="2020-09-09T05:40:42+00:00" />
+<meta property="article:modified_time" content="2021-04-04T17:06:22+08:00" />
 <meta itemprop="name" content="安卓手机跳过Google开机向导设置">
 <meta itemprop="description" content="build.prop关闭开机引导（推荐） 打开TWRP终端 mount -o remount,rw /system #挂载 system 分区为读写 vi /system/build.prop #浏览build.prop #输入&quot;i&quo">
 <meta itemprop="datePublished" content="2016-11-12T01:37:56&#43;08:00" />
-<meta itemprop="dateModified" content="2020-09-09T05:40:42&#43;00:00" />
-<meta itemprop="wordCount" content="370">
+<meta itemprop="dateModified" content="2021-04-04T17:06:22&#43;08:00" />
+<meta itemprop="wordCount" content="427">
 
 
 
@@ -156,6 +156,7 @@
         <li><a href="#删除验证程序">删除验证程序</a></li>
       </ul>
     </li>
+    <li><a href="#终极方法">终极方法</a></li>
   </ul>
 </nav>
   </div>
@@ -186,6 +187,12 @@ reboot
 <p>进入 TWRP，挂载 system，打开 文件管理，删除或重命名 setupwizard.apk</p>
 <p><code>system/priv-app/setupwizard/setupwizard.apk</code></p>
 <p>开机后，挂梯子登录谷歌账户，再把 setupwizard.apk 改回来（前提是不删除源文件，只重命名一下），完成通过向导即可。若未改回会存在任务键、返回键失灵、状态栏无法下拉等问题。</p>
+<h1 id="终极方法">终极方法</h1>
+<ol>
+<li>刷机前退出登陆谷歌账号及手机厂商的账号</li>
+<li>取出SIM卡也不要连接WIFI网络</li>
+<li>直到完成开机设置，顺利进入手机桌面</li>
+</ol>
 
     </div>
 
