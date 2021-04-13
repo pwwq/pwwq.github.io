@@ -124,6 +124,27 @@
           <section id="posts" class="posts">
     <article class="post">
   <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/post/bitwarden/">使用bitwarden_rs搭建安全密码库服务器</a></h1>
+    <div class="post-meta">
+      <span class="post-time" title="2018-06-01 01:37:56 &#43;0800 &#43;0800"> 2018-06-01 </span>
+      <div class="post-category">
+          <a href="/categories/%E6%95%99%E7%A8%8B/"> 教程 </a>
+          </div>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      bitwarden_rs是一个免费开源、能自己搭建服务端的安全密码库服务器 https://bitwarden.com/ https://github.com/dani-garcia/bitwarden_rs https://hub.docker.com/r/bitwardenrs/server Docker安装 wget -qO- get.docker.com | bash 安装Docker Compose curl -L https://github.com/docker/compose/releases/download/1.16.1/docker-compose-`uname -s`-`uname -m` &gt; ./docker-compose mv
+    </div>
+    <div class="read-more">
+      <a href="/post/bitwarden/" class="read-more-link">阅读更多</a>
+    </div>
+  </div>
+</article>
+
+    <article class="post">
+  <header class="post-header">
     <h1 class="post-title"><a class="post-link" href="/post/nginx-caddy-proxy-google-youtube-wikipedia/">利用Caddy,Nginx反向代理谷歌YouTube等网站</a></h1>
     <div class="post-meta">
       <span class="post-time" title="2018-05-21 01:37:56 &#43;0800 &#43;0800"> 2018-05-21 </span>
@@ -344,27 +365,6 @@
     </div>
     <div class="read-more">
       <a href="/post/crontab/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/post/debian-ubuntu-kernel-update-bbr/">Debian/Ubuntu系统手动更新内核并启用TCP BBR拥塞控制算法</a></h1>
-    <div class="post-meta">
-      <span class="post-time" title="2017-12-21 01:37:56 &#43;0800 &#43;0800"> 2017-12-21 </span>
-      <div class="post-category">
-          <a href="/categories/%E6%95%99%E7%A8%8B/"> 教程 </a>
-          </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      查看内核版本 uname -r BBR要求内核为kernel4.9以上版本。 如果大于或等于4.9的可以直接开启BBR,开启步骤如下 配置文件 echo &quot;net.core.default_qdisc=fq&quot; &gt;&gt; /etc/sysctl.conf echo &quot;net.ipv4.tcp_congestion_control=bbr&quot; &gt;&gt; /etc/sysctl.conf 加
-    </div>
-    <div class="read-more">
-      <a href="/post/debian-ubuntu-kernel-update-bbr/" class="read-more-link">阅读更多</a>
     </div>
   </div>
 </article>
