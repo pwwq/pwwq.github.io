@@ -124,6 +124,51 @@
           <section id="posts" class="posts">
     <article class="post">
   <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/post/hexo-github-coding-sync-diversion/">hexo同步布署在github-coding并实现国内外自动分流</a></h1>
+    <div class="post-meta">
+      <span class="post-time" title="2018-03-29 01:37:56 &#43;0800 &#43;0800"> 2018-03-29 </span>
+      <div class="post-category">
+          <a href="/categories/%E6%95%99%E7%A8%8B/"> 教程 </a>
+          </div>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      <p>建议单独托管在github上，因为国内大环境背景下，你懂的啦！</p>
+<p><img src="/images/coding-domain-Filing.png" alt=""></p>
+<h3 id="域名解析">域名解析</h3>
+<p>登陆<a href="https://www.dnspod.cn" target="_blank">DNSPOD控制台</a>  在域名添加2条记录值</p>
+<table>
+<thead>
+<tr>
+<th>记录类型</th>
+<th>线路类型</th>
+<th>记录值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CNAME</td>
+<td>国外</td>
+<td>username.github.io</td>
+</tr>
+<tr>
+<td>CNAME</td>
+<td>国内</td>
+<td>username.coding.me</td>
+</tr>
+</tbody>
+</table>
+    </div>
+    <div class="read-more">
+      <a href="/post/hexo-github-coding-sync-diversion/" class="read-more-link">阅读更多</a>
+    </div>
+  </div>
+</article>
+
+    <article class="post">
+  <header class="post-header">
     <h1 class="post-title"><a class="post-link" href="/post/crontab/">Crontab定时执行计划任务</a></h1>
     <div class="post-meta">
       <span class="post-time" title="2018-01-25 01:37:56 &#43;0800 &#43;0800"> 2018-01-25 </span>
@@ -308,27 +353,6 @@ We&rsquo;ll start with creating a new site with a very basic template.
     </div>
     <div class="read-more">
       <a href="/post/linux-tcp-bbr-lotserver/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/post/ssh-xshell-password-keys/">SSH使用SSH-KEY登录并禁用密码登录</a></h1>
-    <div class="post-meta">
-      <span class="post-time" title="2017-07-12 01:37:56 &#43;0800 &#43;0800"> 2017-07-12 </span>
-      <div class="post-category">
-          <a href="/categories/%E6%95%99%E7%A8%8B/"> 教程 </a>
-          </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      SSH安全登陆三步曲 修改默认端口22为其它 改用SSH-keys登陆 禁止密码登陆 Linux生成密钥对 ssh-keygen 文件 类型 路径 id_rsa 私钥 ~/.ssh/id_rsa id_rsa.pub 公钥 ~/.ssh/id_rsa.pub 使用Xshe
-    </div>
-    <div class="read-more">
-      <a href="/post/ssh-xshell-password-keys/" class="read-more-link">阅读更多</a>
     </div>
   </div>
 </article>
