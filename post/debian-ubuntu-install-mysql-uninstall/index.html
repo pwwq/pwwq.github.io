@@ -44,12 +44,12 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://567899.xyz/post/debian-ubuntu-install-mysql-uninstall/" />
 <meta property="article:published_time" content="2018-07-24T01:37:56+08:00" />
-<meta property="article:modified_time" content="2021-07-26T22:46:36+08:00" />
+<meta property="article:modified_time" content="2021-07-26T23:51:22+08:00" />
 <meta itemprop="name" content="Debian和Ubuntu安装最新的MySQL修改密码卸载清理">
 <meta itemprop="description" content="Debian 9上安装最新的MySQL 在Debian 9中，MySQL项目的社区分支MariaDB被打包为默认的MySQL变体。虽然MariaDB在大多数">
 <meta itemprop="datePublished" content="2018-07-24T01:37:56&#43;08:00" />
-<meta itemprop="dateModified" content="2021-07-26T22:46:36&#43;08:00" />
-<meta itemprop="wordCount" content="1141">
+<meta itemprop="dateModified" content="2021-07-26T23:51:22&#43;08:00" />
+<meta itemprop="wordCount" content="1169">
 
 
 
@@ -206,7 +206,13 @@ mysql&gt; SET PASSWORD FOR 'root'@'localhost' = PASSWORD('yournewpassword');
 <p>如果报以下错误提示</p>
 <p><code>ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'SETPASSWORD = PASSWORD('123456')' at line 1</code></p>
 <p>可以使用以下命令进行MySQL首次密码设置</p>
-<pre><code>ALTER USER 'root'@'localhost' IDENTIFIED BY '123456';
+<pre><code>drop 'root'@'localhost';
+ALTER USER 'root'@'localhost' IDENTIFIED BY 'yourpassword';
+FLUSH PRIVILEGES;
+QUIT;
+</code></pre>
+<p>Ubuntu 20.04 安装 MySQL 8查看安装时随机生成的账户密码</p>
+<pre><code>sudo cat /etc/mysql/debian.cnf
 </code></pre>
 <p>最后重启一下MySQL</p>
 <pre><code class="language-bash">systemctl restart mysql
