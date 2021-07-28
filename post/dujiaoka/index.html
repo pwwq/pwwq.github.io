@@ -44,12 +44,12 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://567899.xyz/post/dujiaoka/" />
 <meta property="article:published_time" content="2020-09-22T16:40:38+00:00" />
-<meta property="article:modified_time" content="2021-07-28T00:13:44+08:00" />
+<meta property="article:modified_time" content="2021-07-28T22:55:14+08:00" />
 <meta itemprop="name" content="纯净Linux系统手工配置独角数卡发卡站点环境">
 <meta itemprop="description" content="纯净系统纯手工打造独角数卡发卡站点环境，抛弃各种面板、一键网站环境。 https://github.com/assimon/dujiaoka 支付接口已集成 支付宝当面付 支付宝PC支付 支付宝手机支付 payjs微信扫">
 <meta itemprop="datePublished" content="2020-09-22T16:40:38&#43;00:00" />
-<meta itemprop="dateModified" content="2021-07-28T00:13:44&#43;08:00" />
-<meta itemprop="wordCount" content="3157">
+<meta itemprop="dateModified" content="2021-07-28T22:55:14&#43;08:00" />
+<meta itemprop="wordCount" content="3216">
 
 
 
@@ -264,6 +264,28 @@
   location / {
     try_files $uri $uri/ /index.php$is_args$query_string;
    }
+  #php
+  location ~ \.php$ {
+  include snippets/fastcgi-php.conf;
+  fastcgi_pass unix:/run/php/php7.3-fpm.sock;
+  }
+}
+server {
+  listen 443 ssl http2;
+  listen [::]:443 ssl http2;
+  server_name example.com;
+  root /var/www/example.com/public;
+  index index.html index.htm index.php;
+  #独角数卡伪静态
+  location / {
+    try_files $uri $uri/ /index.php$is_args$query_string;
+   }
+   #SSL
+    ssl on;
+    ssl_protocols TLSv1 TLSv1.1 TLSv1.2 TLSv1.3;
+    ssl_certificate      /etc/letsencrypt/live/example.com/fullchain.pem;
+    ssl_certificate_key  /etc/letsencrypt/live/example.com/privkey.pem;  
+    ssl_ciphers EECDH+CHACHA20:EECDH+CHACHA20-draft:EECDH+AES128:RSA+AES128:EECDH+AES256:RSA+AES256:EECDH+3DES:RSA+3DES:!MD5;
   #php
   location ~ \.php$ {
   include snippets/fastcgi-php.conf;
