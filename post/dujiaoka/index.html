@@ -44,12 +44,12 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://567899.xyz/post/dujiaoka/" />
 <meta property="article:published_time" content="2020-09-22T16:40:38+00:00" />
-<meta property="article:modified_time" content="2021-07-28T22:56:30+08:00" />
+<meta property="article:modified_time" content="2021-07-31T00:40:20+08:00" />
 <meta itemprop="name" content="纯净Linux系统手工配置独角数卡发卡站点环境">
 <meta itemprop="description" content="纯净系统纯手工打造独角数卡发卡站点环境，抛弃各种面板、一键网站环境。 https://github.com/assimon/dujiaoka 支付接口已集成 支付宝当面付 支付宝PC支付 支付宝手机支付 payjs微信扫">
 <meta itemprop="datePublished" content="2020-09-22T16:40:38&#43;00:00" />
-<meta itemprop="dateModified" content="2021-07-28T22:56:30&#43;08:00" />
-<meta itemprop="wordCount" content="3216">
+<meta itemprop="dateModified" content="2021-07-31T00:40:20&#43;08:00" />
+<meta itemprop="wordCount" content="3318">
 
 
 
@@ -168,6 +168,7 @@
             <li><a href="#supervisor进程管理">Supervisor进程管理</a></li>
           </ul>
         </li>
+        <li><a href="#补充更新独角数卡-200">【补充更新】独角数卡-2.0.0</a></li>
       </ul>
     </li>
   </ul>
@@ -226,7 +227,7 @@
 <h2 id="独角数卡发卡站环境搭建">独角数卡发卡站环境搭建</h2>
 <p>Nginx、MYSQL的搭建具体教程请<a href="/post/debian10-web-nginx-certbot-ssl-php-mysql/">点击查看</a>，这里重点只讲独角数卡发卡站环境搭建PHP环境的配置</p>
 <h3 id="php和一些必要组件的安装">PHP和一些必要组件的安装</h3>
-<pre><code>apt -y install php-fpm php-mysql php-redis php-fileinfo php-cli php-gd redis-server php-mbstring php-bcmath
+<pre><code>apt -y install php-fpm php-mysql php-redis php-fileinfo php-cli php-gd redis-server php-mbstring php-bcmath php-curl
 </code></pre>
 <h3 id="配置php组件">配置PHP组件</h3>
 <p>配置PHP的redis缓存组件</p>
@@ -550,6 +551,20 @@ stdout_logfile=/var/log/supervisor/laravel-queue.log&quot; &gt; /etc/supervisor/
 </code></pre>
 <p>如果顺利的话就可以打开站点，登陆后台管理了</p>
 <p>Enjoy&hellip;</p>
+<h2 id="补充更新独角数卡-200">【补充更新】独角数卡-2.0.0</h2>
+<p>打开域名在线安装完成后,网站正式上线后务必关闭调试模式</p>
+<pre><code>sed -i 's/APP_DEBUG=true/APP_DEBUG=false/' /var/www/example.com/.env
+</code></pre>
+<p>如需要开启https登陆后台【可选】</p>
+<pre><code>echo &quot;ADMIN_HTTPS=true&quot; &gt;&gt; /var/www/example.com/.env
+</code></pre>
+<p>然后重启Supervisor</p>
+<pre><code>supervisorctl restart laravel-worker:*
+</code></pre>
+<p>替换<code>favicon.ico</code></p>
+<pre><code>/var/www/example.com/public/assets/style/favicon.ico
+/var/www/example.com/public/favicon.ico
+</code></pre>
 
     </div>
 
