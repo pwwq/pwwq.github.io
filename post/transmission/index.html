@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Transmission的安装、配置、制作PT种子torrent做种 - Xizi&#39;s Blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Xizi" /><meta name="description" content="安装Transmission apt install transmission-daemon 管理Transmission service transmission-daemon stop service transmission-daemon start 配置Transmission 先停止Transmission systemctl stop transmission-daemon.service 然" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.69.2 with theme even" />
+
+
+<link rel="canonical" href="https://567899.xyz/post/transmission/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link href="/sass/main.min.8512a1393ed8da42d418fb5c93ffb87b1b8e675a95bf81444ae5aa3f5a2cd0ab.css" rel="stylesheet">
+<link href="/lib/fancybox/jquery.fancybox-3.1.20.min.css" rel="stylesheet">
+
+
+<meta property="og:title" content="Transmission的安装、配置、制作PT种子torrent做种" />
+<meta property="og:description" content="安装Transmission apt install transmission-daemon 管理Transmission service transmission-daemon stop service transmission-daemon start 配置Transmission 先停止Transmission systemctl stop transmission-daemon.service 然" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://567899.xyz/post/transmission/" />
+<meta property="article:published_time" content="2021-07-04T01:37:56+08:00" />
+<meta property="article:modified_time" content="2021-08-13T13:45:07+08:00" />
+<meta itemprop="name" content="Transmission的安装、配置、制作PT种子torrent做种">
+<meta itemprop="description" content="安装Transmission apt install transmission-daemon 管理Transmission service transmission-daemon stop service transmission-daemon start 配置Transmission 先停止Transmission systemctl stop transmission-daemon.service 然">
+<meta itemprop="datePublished" content="2021-07-04T01:37:56&#43;08:00" />
+<meta itemprop="dateModified" content="2021-08-13T13:45:07&#43;08:00" />
+<meta itemprop="wordCount" content="1693">
+
+
+
+<meta itemprop="keywords" content="Transmission," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Transmission的安装、配置、制作PT种子torrent做种"/>
+<meta name="twitter:description" content="安装Transmission apt install transmission-daemon 管理Transmission service transmission-daemon stop service transmission-daemon start 配置Transmission 先停止Transmission systemctl stop transmission-daemon.service 然"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Xizi&#39;s Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/links/">
+        <li class="mobile-menu-item">链接</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">关于</li>
+      </a><a href="/search/">
+        <li class="mobile-menu-item">搜索</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Xizi&#39;s Blog</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/links/">链接</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">关于</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/search/">搜索</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Transmission的安装、配置、制作PT种子torrent做种</h1>
+
+      <div class="post-meta">
+        <span class="post-time" title="2021-07-04 01:37:56 &#43;0800 &#43;0800"> 2021-07-04 </span>
+        <div class="post-category">
+            <a href="/categories/%E6%95%99%E7%A8%8B/"> 教程 </a>
+            </div>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#安装transmission">安装Transmission</a></li>
+        <li><a href="#管理transmission">管理Transmission</a></li>
+        <li><a href="#配置transmission">配置Transmission</a></li>
+        <li><a href="#webui美化">WebUI美化</a></li>
+        <li><a href="#制作种子">制作种子</a></li>
+        <li><a href="#发布种子">发布种子</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h2 id="安装transmission">安装Transmission</h2>
+<pre><code>apt install transmission-daemon
+</code></pre>
+<h2 id="管理transmission">管理Transmission</h2>
+<pre><code>service transmission-daemon stop
+service transmission-daemon start
+</code></pre>
+<h2 id="配置transmission">配置Transmission</h2>
+<p>先停止Transmission</p>
+<pre><code>systemctl stop transmission-daemon.service
+</code></pre>
+<p>然后编辑配置文件<code>/var/lib/transmission-daemon/info/settings.json</code></p>
+<pre><code>nano /var/lib/transmission-daemon/info/settings.json
+</code></pre>
+<p>重点需要修改的地方</p>
+<pre><code>&quot;rpc-password&quot;: &quot;管理密码&quot;, #web-ui的密码，可直接修改，重新运行或者reload服务的时候会自动被加密
+&quot;rpc-port&quot;: 9091,
+&quot;rpc-url&quot;: &quot;/transmission/&quot;,
+&quot;rpc-username&quot;: &quot;用户名&quot;,  #用户名
+&quot;rpc-whitelist&quot;: &quot;127.0.0.1&quot;,
+&quot;rpc-whitelist-enabled&quot;: false, #如果你要让其他网段连入，请设false
+</code></pre>
+<p>对照表</p>
+<pre><code>&quot;alt-speed-up&quot;: 500, #计划时段上传限速值
+&quot;alt-speed-down&quot;: 500, #计划时段下载限速值
+&quot;alt-speed-enabled&quot;: false,
+&quot;alt-speed-time-begin&quot;: 540,
+&quot;alt-speed-time-day&quot;: 127,
+&quot;alt-speed-time-enabled&quot;: true, #启用计划工作，为false时，以上计划配置则不生效
+&quot;alt-speed-time-end&quot;: 420, #计划结束时间，为零点到开始时间的分钟数，比如7:00就是7*60=420。另外，该时间是用的GMT时间，即北京时间-8小时。比如你计划北京时间7点30分开始，这个数字应该是（7-8+24）*60+30=1410
+&quot;bind-address-ipv4&quot;: &quot;0.0.0.0&quot;,
+&quot;bind-address-ipv6&quot;: &quot;::&quot;,
+&quot;blocklist-enabled&quot;: true,
+&quot;blocklist-updates-enabled&quot;: false,
+&quot;blocklist-url&quot;: &quot;http://www.example.com/blocklist&quot;,
+&quot;cache-size-mb&quot;: 4, #缓存大小，以MB为单位，建议设大一些，避免频繁读写硬盘而伤硬盘，建议设为内存大小的1/6～1/4
+&quot;compact-view&quot;: false,
+&quot;dht-enabled&quot;: false, #关闭DHT（不通过tracker寻找节点）功能，不少PT站的要求，但BT下载设置为true会使得下载更好
+&quot;download-dir&quot;: &quot;/home/yys/Downloads&quot;, #下载的内容存放的目录
+&quot;download-queue-enabled&quot;: true,
+&quot;download-queue-size&quot;: 5,
+&quot;encryption&quot;: 1, #0=不加密，1=优先加密，2=必须加密
+&quot;idle-seeding-limit&quot;: 30,
+&quot;idle-seeding-limit-enabled&quot;: false,
+&quot;incomplete-dir&quot;: &quot;/home/yys/Downloads&quot;,
+&quot;incomplete-dir-enabled&quot;: false,
+&quot;inhibit-desktop-hibernation&quot;: true,
+&quot;lpd-enabled&quot;: false, #禁用LDP（本地节点发现，用于在本地网络寻找节点）,不少PT站的要求
+&quot;main-window-height&quot;: 500,
+&quot;main-window-is-maximized&quot;: 0,
+&quot;main-window-width&quot;: 615,
+&quot;main-window-x&quot;: 337,
+&quot;main-window-y&quot;: 211,
+&quot;message-level&quot;: 2,
+&quot;open-dialog-dir&quot;: &quot;/home/yys/\u684c\u9762&quot;,
+&quot;peer-congestion-algorithm&quot;: &quot;&quot;,
+&quot;peer-limit-global&quot;: 240, #全局连接数
+&quot;peer-limit-per-torrent&quot;: 60, #每个种子最多的连接数
+&quot;peer-port&quot;: 51413, #预设的port口
+&quot;peer-port-random-high&quot;: 65535,
+&quot;peer-port-random-low&quot;: 49152,
+&quot;peer-port-random-on-start&quot;: false, #不建议改为true
+&quot;peer-socket-tos&quot;: &quot;default&quot;,
+&quot;pex-enabled&quot;: false, #禁用PEX（节点交换，用于同已与您相连接的节点交换节点名单）,不少PT站的要求
+&quot;port-forwarding-enabled&quot;: true,
+&quot;preallocation&quot;: 1, #预分配文件磁盘空间，0=关闭，1=快速，2=完全。建议取1开启该功能，防止下载大半了才发现磁盘不够。取2时，可以减少磁盘碎片，但速度较慢。
+&quot;prefetch-enabled&quot;: 1,
+&quot;queue-stalled-enabled&quot;: true,
+&quot;queue-stalled-minutes&quot;: 30,
+&quot;ratio-limit&quot;: 2,
+&quot;ratio-limit-enabled&quot;: false,
+&quot;rename-partial-files&quot;: true, #在未完成的文件名后添加后缀.part,false=禁用
+&quot;rpc-authentication-required&quot;: true,
+&quot;rpc-bind-address&quot;: &quot;0.0.0.0&quot;,
+&quot;rpc-enabled&quot;: true,
+&quot;rpc-password&quot;: &quot;{c8c083168db9fff40b5136b6d0f3f4a864110a78\/oH51JaE&quot;, #web-ui的密码，可直接修改，重新运行或者reload服务的时候会自动被加密
+&quot;rpc-port&quot;: 9091, #默认web-ui的port口，可自行更改
+&quot;rpc-url&quot;: &quot;/transmission/&quot;,
+&quot;rpc-username&quot;: &quot;transmission&quot;, #默认登入名称
+&quot;rpc-whitelist&quot;: &quot;127.0.0.1&quot;,
+&quot;rpc-whitelist-enabled&quot;: true, #如果你要让其他网段连入，请设false
+&quot;scrape-paused-torrents-enabled&quot;: true,
+&quot;script-torrent-done-enabled&quot;: false,
+&quot;script-torrent-done-filename&quot;: &quot;/home/yys&quot;,
+&quot;seed-queue-enabled&quot;: false,
+&quot;seed-queue-size&quot;: 10,
+&quot;show-backup-trackers&quot;: true,
+&quot;show-extra-peer-details&quot;: false,
+&quot;show-filterbar&quot;: true,
+&quot;show-notification-area-icon&quot;: false,
+&quot;show-options-window&quot;: true,
+&quot;show-statusbar&quot;: true,
+&quot;show-toolbar&quot;: true,
+&quot;show-tracker-scrapes&quot;: true,
+&quot;sort-mode&quot;: &quot;sort-by-age&quot;,
+&quot;sort-reversed&quot;: false,
+&quot;speed-limit-down&quot;: 300, #平时的下载限速
+&quot;speed-limit-down-enabled&quot;: true, #启用平时下载限速
+&quot;speed-limit-up&quot;: 30, #平时上传限速
+&quot;speed-limit-up-enabled&quot;: true, #启用平时上传限速
+&quot;start-added-torrents&quot;: false,
+&quot;statusbar-stats&quot;: &quot;total-ratio&quot;,
+&quot;torrent-added-notification-enabled&quot;: true,
+&quot;torrent-complete-notification-enabled&quot;: true,
+&quot;torrent-complete-sound-enabled&quot;: true,
+&quot;trash-can-enabled&quot;: true,
+&quot;trash-original-torrent-files&quot;: false,
+&quot;umask&quot;: 18,
+&quot;upload-slots-per-torrent&quot;: 14
+&quot;utp-enabled&quot;: true, #启用μTP协议
+&quot;watch-dir&quot;: &quot;/home/yys/\u4e0b\u8f7d&quot;,
+&quot;watch-dir-enabled&quot;: false
+</code></pre>
+<p>更多配置参数，可去 <a href="https://github.com/transmission/transmission/wiki/Editing-Configuration-Files" target="_blank">diting-Configuration-Files</a>探索。</p>
+<p>保存修改后设置开机自动启动</p>
+<pre><code>systemctl enable transmission-daemon
+systemctl start transmission-daemon.service
+</code></pre>
+<h2 id="webui美化">WebUI美化</h2>
+<p>安装<a href="https://github.com/ronggang/transmission-web-control" target="_blank">transmission-web-control</a>进行美化</p>
+<pre><code>wget https://github.com/ronggang/transmission-web-control/raw/master/release/install-tr-control-cn.sh
+chmod +x install-tr-control-cn.sh
+bash install-tr-control-cn.sh
+</code></pre>
+<p>按照提示，输入相应的数字，按回车即可</p>
+<h2 id="制作种子">制作种子</h2>
+<pre><code>find / -name transmission-create
+</code></pre>
+<p>寻找transmission安装目录</p>
+<pre><code>transmission-create
+</code></pre>
+<p>获得参数说明帮助</p>
+<pre><code>Options:
+ -h --help                    Display this help page and exit
+ -p --private                 Allow this torrent to only be used with the
+                              specified tracker(s)
+ -o --outfile   &lt;file&gt;        Save the generated .torrent to this filename
+ -s --piecesize &lt;size in KiB&gt; Set how many KiB each piece should be, overriding
+                              the preferred default
+ -c --comment   &lt;comment&gt;     Add a comment
+ -t --tracker   &lt;url&gt;         Add a tracker's announce URL
+ -V --version                 Show version number and exit
+</code></pre>
+<p>参数说明：</p>
+<ol>
+<li>-p 表示这是私用的种子，这个 PT 必须要加上</li>
+<li>-o 生成的种子输出位置，不要忘记把名字打上</li>
+<li>-t tracker 服务器地址，自行查询各大站点</li>
+<li>-s 每个文件块的大小，单位是 KB，设置的 4096，也就是 4M</li>
+<li>最后空一格写源文件的位置，也就是文件的存放位置，可以是一个文件或者一整个目录</li>
+</ol>
+<p>示范</p>
+<pre><code>transmission-create -p -o /种子输出目录/种子文件名.torrent -t https://pt.m-team.cc/announce.php -s 4096 /要做种的文件目录/文件名
+</code></pre>
+<p><strong>文件的命名里不要出现空格，会生成错误的文件</strong></p>
+<h2 id="发布种子">发布种子</h2>
+<ol>
+<li>将制作好的种子文件.torrent发布到相关PT站点</li>
+<li>请不要将视频移动、改名、删除，可以让更多人下载到这个种子。</li>
+<li>上传种子后一定要下载网站的新种子文件，然后选择资源的上级目录，开始做种。</li>
+<li>网站会统计每一个用户的下载量和上传量，下载量和上传量在一定程度上决定着用户的等级，有没有权限下载文件。每一个用户注册后会得到一个passkey，用户从网站里面下载的种子里面包含了私人的passkey。通过passkey识别每一个用户，统计每一个用户的下载、上传和做种时间等等。</li>
+</ol>
+
+    </div>
+
+    
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/transmission/">Transmission</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/google_drive_folderclone/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">[更新]Folderclone谷歌Google Drive共享云端硬盘转存相互转移拷贝复制文件的正确姿势</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/win10-sound-not-work/">
+            <span class="next-text nav-default">win10系统音量图标灰色无法调节的解决方法</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+  <div class="comments">
+    <div class="loading post">
+      <img src="/img/spinner.svg">
+      <p class="post-content">
+        评论正在加载中...如果评论较长时间无法加载，你可以
+        <a href='https://github.com/pwwq/blog-comments/issues?q=is%3Aissue+is%3Aopen+"Transmission%e7%9a%84%e5%ae%89%e8%a3%85%e3%80%81%e9%85%8d%e7%bd%ae%e3%80%81%e5%88%b6%e4%bd%9cPT%e7%a7%8d%e5%ad%90torrent%e5%81%9a%e7%a7%8d - Xizi%27s%20Blog"' target="_blank">搜索对应的 issue</a>
+        或者
+        <a href="https://github.com/pwwq/blog-comments/issues/new?title=Transmission%e7%9a%84%e5%ae%89%e8%a3%85%e3%80%81%e9%85%8d%e7%bd%ae%e3%80%81%e5%88%b6%e4%bd%9cPT%e7%a7%8d%e5%ad%90torrent%e5%81%9a%e7%a7%8d - Xizi%27s%20Blog" target="_blank">新建一个 issue</a>
+        。
+      </p>
+    </div>
+    <script src="https://utteranc.es/client.js"
+            repo="pwwq/blog-comments"
+            issue-term="title"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    <noscript>请启用 JavaScript 来查看评论。</a></noscript>
+  </div>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:admin@567899.xyz" class="iconfont icon-email" title="email" target="_blank"></a>
+      <a href="https://github.com/pwwq" class="iconfont icon-github" title="github" target="_blank"></a>
+  <a href="https://567899.xyz/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io" target="_blank">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even" target="_blank">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2013 - 
+    2021
+    <span class="heart">
+      <a class="iconfont icon-github" title="source code" href="https://github.com/pwwq/hugo-code" target="_blank"></a>
+    </span> 
+    <span class="author">Xizi</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <link href="https://cdn.bootcss.com/highlight.js/9.15.10/styles/tomorrow.min.css" rel="stylesheet">
+  <script>hljs.configure({tabReplace: '    '});</script><script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+  <script type="text/javascript" src="/lib/fancybox/jquery.fancybox-3.1.20.min.js"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.6821b76b4e5300f807f477f7f6e0e8772a852e6af6d99f47104e1b9632e47aba.js"></script>
+  <script type="text/javascript">
+    window.MathJax = {
+      tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+      showProcessingMessages: false,
+      messageStyle: 'none'
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"  integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-XXXXX', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+</body>
+</html>
