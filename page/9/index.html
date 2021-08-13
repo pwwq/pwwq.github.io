@@ -124,6 +124,49 @@
           <section id="posts" class="posts">
     <article class="post">
   <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/post/shortcodes/">Shortcodes</a></h1>
+    <div class="post-meta">
+      <span class="post-time" title="2016-08-30 16:01:23 &#43;0800 &#43;0800"> 2016-08-30 </span>
+      <div class="post-category">
+          <a href="/categories/shortcodes/"> shortcodes </a>
+          </div>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      <h1 id="admonition">Admonition</h1>
+<div class="admonition note"><p class="admonition-title">I'm title!</p>
+<p>biu biu biu.</p>
+<div class="admonition note"><p class="admonition-title">note</p>
+  <p>biu biu biu.</p>
+</div>
+<div class="admonition example">
+  <p>Without title.</p>
+</div>
+</div>
+<pre><code class="language-markdown">{{% admonition note &quot;I'm title!&quot; false %}}
+biu biu biu.
+
+{{% admonition type=&quot;note&quot; title=&quot;note&quot; details=&quot;true&quot; %}}
+biu biu biu.
+{{% /admonition %}}
+
+{{% admonition example %}}
+Without title.
+{{% /admonition %}}
+
+{{% /admonition %}}
+</code></pre>
+    </div>
+    <div class="read-more">
+      <a href="/post/shortcodes/" class="read-more-link">阅读更多</a>
+    </div>
+  </div>
+</article>
+
+    <article class="post">
+  <header class="post-header">
     <h1 class="post-title"><a class="post-link" href="/post/linux-github-id_rsa-pub/">Linux下如何管理多个ssh密钥对github公钥私钥</a></h1>
     <div class="post-meta">
       <span class="post-time" title="2016-07-29 01:37:56 &#43;0800 &#43;0800"> 2016-07-29 </span>
@@ -307,41 +350,6 @@
     </div>
     <div class="read-more">
       <a href="/post/debian-lxde-vnc-firefox/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/post/js-flowchart-diagrams/">JS Flowchart Diagrams</a></h1>
-    <div class="post-meta">
-      <span class="post-time" title="2015-03-04 21:57:50 &#43;0800 &#43;0800"> 2015-03-04 </span>
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      <h2 id="usage">Usage</h2>
-<pre><code class="language-flow">st=&gt;start: Start|past:&gt;http://www.google.com[blank]
-e=&gt;end: End:&gt;http://www.google.com
-op1=&gt;operation: My Operation|past
-op2=&gt;operation: Stuff|current
-sub1=&gt;subroutine: My Subroutine|invalid
-cond=&gt;condition: Yes
-or No?|approved:&gt;http://www.google.com
-c2=&gt;condition: Good idea|rejected
-io=&gt;inputoutput: catch something...|request
-
-st-&gt;op1(right)-&gt;cond
-cond(yes, right)-&gt;c2
-cond(no)-&gt;sub1(left)-&gt;op1
-c2(yes)-&gt;io-&gt;e
-c2(no)-&gt;op2-&gt;e
-</code></pre>
-    </div>
-    <div class="read-more">
-      <a href="/post/js-flowchart-diagrams/" class="read-more-link">阅读更多</a>
     </div>
   </div>
 </article>
