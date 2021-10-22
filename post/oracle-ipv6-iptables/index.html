@@ -44,11 +44,11 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://567899.xyz/post/oracle-ipv6-iptables/" />
 <meta property="article:published_time" content="2020-02-28T01:37:56+08:00" />
-<meta property="article:modified_time" content="2021-10-22T16:36:20+08:00" />
+<meta property="article:modified_time" content="2021-10-22T16:39:20+08:00" />
 <meta itemprop="name" content="甲骨文云配置IPV6及关闭防火墙放行端口">
 <meta itemprop="description" content="甲骨文的系统推荐使用ubuntu 分配 IPv6 网络 - 虚拟云网络 - 虚拟云网络详细信息 中操作，最后一个步骤在实例的 VNIC 详细信息中操作： 分配CIDR 网络 - 虚">
 <meta itemprop="datePublished" content="2020-02-28T01:37:56&#43;08:00" />
-<meta itemprop="dateModified" content="2021-10-22T16:36:20&#43;08:00" />
+<meta itemprop="dateModified" content="2021-10-22T16:39:20&#43;08:00" />
 <meta itemprop="wordCount" content="570">
 
 
@@ -191,7 +191,7 @@
 <p><strong>IPv4还需要在<code>实例</code>的<code>VNIC</code>详细信息 - <code>入站规则</code>中加入以下规则</strong></p>
 <ol>
 <li>目的地类型(Destination Type) <code>CIDR</code></li>
-<li>目的地CIDR(Destination CIDR) <code>::/0</code></li>
+<li>目的地CIDR(Destination CIDR) <code>0.0.0.0/0</code></li>
 <li>IP协议IP Protocol <code>所有协议All Protocols</code></li>
 </ol>
 <h3 id="分配-ipv6">分配 IPv6</h3>
