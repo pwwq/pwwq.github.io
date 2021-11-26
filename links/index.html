@@ -44,12 +44,12 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://567899.xyz/links/" />
 <meta property="article:published_time" content="2020-02-06T22:53:11+08:00" />
-<meta property="article:modified_time" content="2021-07-29T12:27:24+08:00" />
+<meta property="article:modified_time" content="2021-11-26T18:51:15+08:00" />
 <meta itemprop="name" content="链接">
 <meta itemprop="description" content="记录下自己的VPS常用操作 配置SSH使用密钥KEY登陆 mkdir .ssh chmod 700 .ssh touch .ssh/authorized_keys chmod 600 .ssh/authorized_keys 写入公钥内容,(替换成自己的公钥) echo &quot;ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAw8G3KL6oxDQ92IkrAjKbmyXN4qiYSbVQ4iFF94mTN2muiAaYGBlP/fL5d/os5Qxs9lmEOPgJsLUbSmsVfpO6RCqzVXILNWT3FduEJ2T59YYv/nNdu2OJEHU6eZQjQrUMqmb6LRtKgORoNELqwCYgHasughlZb8cKcd9u1Icbd3CLaiZg9ebGvQf3&#43;o/shoaRt75BgtWtrVXwy5iX1W6070Tw&#43;GTpDKFPwdgg/IffvZ9MORGmHSWHHzELjQ7nnS9CgzWUsoC4qQrgNo6RkA75yps5OZ9GrtDVmuhuRdmTyDv7Yvp2UII78RpsW686HWK2cD5PV&#43;JlJOkNbJklxI8AwQ==&quot; &gt; .ssh/authorized_keys 修改SSH配置文件/e">
 <meta itemprop="datePublished" content="2020-02-06T22:53:11&#43;08:00" />
-<meta itemprop="dateModified" content="2021-07-29T12:27:24&#43;08:00" />
-<meta itemprop="wordCount" content="446">
+<meta itemprop="dateModified" content="2021-11-26T18:51:15&#43;08:00" />
+<meta itemprop="wordCount" content="433">
 
 
 
@@ -161,12 +161,8 @@ chmod 600 .ssh/authorized_keys
 <pre><code>yum install -y xz openssl gawk file
 </code></pre>
 <p>DD系统Debian 10</p>
-<pre><code>bash &lt;(wget --no-check-certificate -qO- 'https://moeclub.org/attachment/LinuxShell/InstallNET.sh') -d 10 -v 64 -a
+<pre><code>bash &lt;(wget --no-check-certificate -qO- 'https://raw.githubusercontent.com/MoeClub/Note/master/InstallNET.sh') -d 10 -v 64 -p &quot;自定义root密码&quot; -port &quot;自定义ssh端口&quot;
 </code></pre>
-<p>Oracle甲骨文DD系统Debian 10</p>
-<pre><code>bash &lt;(wget --no-check-certificate -qO- 'https://moeclub.org/attachment/LinuxShell/InstallNET.sh') -d 10 -v 64 -a -firmware
-</code></pre>
-<p>默认<code>root</code>密码是<code>MoeClub.org</code>端口22</p>
 <p>甲骨文Debian 10配置ipv6地址</p>
 <pre><code>echo &quot;iface ens3 inet6 dhcp&quot; &gt;&gt; /etc/network/interfaces
 reboot
