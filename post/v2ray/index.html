@@ -44,12 +44,12 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://567899.xyz/post/v2ray/" />
 <meta property="article:published_time" content="2020-09-28T01:37:56+08:00" />
-<meta property="article:modified_time" content="2021-08-07T08:59:17+08:00" />
+<meta property="article:modified_time" content="2021-12-02T23:01:46+08:00" />
 <meta itemprop="name" content="V2ray安装配置VMess、VLESS、XTLS教程">
 <meta itemprop="description" content="近期更新重点 V2Ray v4.27.0&#43;新增支持VLESS新协议 V2Ray v4.29.0&#43;新增支持XTLS新协议 VMess AEAD will be used when alterId is 0 in V2Ray v4.28.0&#43; 安装脚本放废弃go.s">
 <meta itemprop="datePublished" content="2020-09-28T01:37:56&#43;08:00" />
-<meta itemprop="dateModified" content="2021-08-07T08:59:17&#43;08:00" />
-<meta itemprop="wordCount" content="3380">
+<meta itemprop="dateModified" content="2021-12-02T23:01:46&#43;08:00" />
+<meta itemprop="wordCount" content="3630">
 
 
 
@@ -156,6 +156,7 @@
             <li><a href="#remove-xray-except-json-and-logs">Remove Xray, except json and logs</a></li>
           </ul>
         </li>
+        <li><a href="#解决ip谷歌搜索人机验证码">解决IP谷歌搜索人机验证码</a></li>
         <li><a href="#安装v2ray">安装V2ray</a></li>
         <li><a href="#v2ray在使用vless时证书权限的解决办法">V2ray在使用VLESS时证书权限的解决办法</a></li>
         <li><a href="#编辑配置文件">编辑配置文件</a></li>
@@ -414,6 +415,54 @@ sed -i 's/example.com/你的域名/' /usr/local/etc/xray/config.json
 <pre><code>systemctl enable xray
 systemctl start xray
 </code></pre>
+<h2 id="解决ip谷歌搜索人机验证码">解决IP谷歌搜索人机验证码</h2>
+<ol>
+<li>warp双栈，v4v6出口全部由warp接管</li>
+</ol>
+<pre><code>bash &lt;(curl -fsSL https://raw.githubusercontent.com/P3TERX/warp.sh/main/warp.sh) d
+</code></pre>
+<ol start="2">
+<li>添加v4出口，v4出口warp接管</li>
+</ol>
+<pre><code>bash &lt;(curl -fsSL https://raw.githubusercontent.com/P3TERX/warp.sh/main/warp.sh) 4
+</code></pre>
+<ol start="3">
+<li>添加v6出口，v6出口warp接管，需要在扶墙配置文件里指定google走v6</li>
+</ol>
+<pre><code>bash &lt;(curl -fsSL https://raw.githubusercontent.com/P3TERX/warp.sh/main/warp.sh) 6
+</code></pre>
+<p>然后编辑<code>/usr/local/etc/xray/config.json</code>修改替换<code>outbounds</code>和<code>routing</code>为以下内容</p>
+<pre><code>	&quot;outbounds&quot;: [
+             {
+               &quot;tag&quot;:&quot;IP4_out&quot;,
+               &quot;protocol&quot;: &quot;freedom&quot;,
+               &quot;settings&quot;: {}
+             },
+            {
+               &quot;tag&quot;:&quot;IP6_out&quot;,
+               &quot;protocol&quot;: &quot;freedom&quot;,
+              &quot;settings&quot;: {
+                   &quot;domainStrategy&quot;: &quot;UseIPv6&quot; // 指定使用 IPv6
+                   }
+             }
+            ],
+	&quot;routing&quot;: {
+            &quot;rules&quot;: [
+                {
+                 &quot;type&quot;: &quot;field&quot;,
+                 &quot;outboundTag&quot;: &quot;IP6_out&quot;,
+                 &quot;domain&quot;: [&quot;domain:google.com&quot;] // google走 IPv6
+                 },
+                {
+                   &quot;type&quot;: &quot;field&quot;,
+                   &quot;outboundTag&quot;: &quot;IP4_out&quot;,
+                   &quot;network&quot;: &quot;udp,tcp&quot;// 其余走 IPv4
+                 }
+             ]
+          }
+</code></pre>
+<p><a href="/uploads/xray_warp_ipv6_google_config.json">点击下载完整的配置文件示范</a></p>
+<p>重启VPS查看效果</p>
 <p>nginx配置示范</p>
 <pre><code>server {
     listen 80;
