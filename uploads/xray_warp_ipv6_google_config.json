@@ -134,7 +134,7 @@
                 {
                  "type": "field",
                  "outboundTag": "IP6_out",
-                 "domain": ["domain:google.com"] // google走 IPv6
+                 "domain": ["domain:www.google.com"] // google走 IPv6
                  },
                 {
                    "type": "field",
