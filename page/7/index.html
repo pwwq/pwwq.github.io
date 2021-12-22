@@ -124,6 +124,40 @@
           <section id="posts" class="posts">
     <article class="post">
   <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/post/nginx-caddy-proxy-google-youtube-wikipedia/">利用Caddy,Nginx反向代理谷歌YouTube等网站</a></h1>
+    <div class="post-meta">
+      <span class="post-time" title="2018-05-21 01:37:56 &#43;0800 &#43;0800"> 2018-05-21 </span>
+      <div class="post-category">
+          <a href="/categories/%E6%95%99%E7%A8%8B/"> 教程 </a>
+          </div>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      <p><a href="https://caddyserver.com" target="_blank">Caddy</a> - The HTTP/2 Web Server with Automatic HTTPS</p>
+<ul>
+<li>go语言一个二进制单文件就是服务端</li>
+<li>自动申请<a href="https://letsencrypt.org" target="_blank">Let&rsquo;s Encrypt</a>免费的SSL/TLS证书,自动续期。</li>
+</ul>
+<h3 id="caddy一键安装脚本">Caddy一键安装脚本</h3>
+<pre><code class="language-bash">wget -N --no-check-certificate https://raw.githubusercontent.com/ojbk8/ToyoDAdoubiBackup/master/caddy_install.sh &amp;&amp; chmod +x caddy_install.sh &amp;&amp; bash caddy_install.sh
+</code></pre>
+<ul>
+<li>caddy_conf_file=&rdquo;/usr/local/caddy/Caddyfile&rdquo;</li>
+<li>日志文件：cat /tmp/caddy.log</li>
+<li>使用说明：service caddy start | stop | restart | status</li>
+<li>或者使用：/etc/init.d/caddy start | stop | restart | status</li>
+</ul>
+    </div>
+    <div class="read-more">
+      <a href="/post/nginx-caddy-proxy-google-youtube-wikipedia/" class="read-more-link">阅读更多</a>
+    </div>
+  </div>
+</article>
+
+    <article class="post">
+  <header class="post-header">
     <h1 class="post-title"><a class="post-link" href="/post/gitbook-install-plugin/">gitbook安装和插件的使用</a></h1>
     <div class="post-meta">
       <span class="post-time" title="2018-05-17 01:37:56 &#43;0800 &#43;0800"> 2018-05-17 </span>
@@ -331,27 +365,6 @@
     </div>
     <div class="read-more">
       <a href="/post/debian-ubuntu-kernel-update-bbr/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/post/ipv4-ipv6-connect-access/">IPv6的VPS连接IPv4和IPv4的VPS免费获取IPv6</a></h1>
-    <div class="post-meta">
-      <span class="post-time" title="2017-11-09 01:37:56 &#43;0800 &#43;0800"> 2017-11-09 </span>
-      <div class="post-category">
-          <a href="/categories/%E6%95%99%E7%A8%8B/"> 教程 </a>
-          </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      只有IPv6的VPS连通IPV4 无ipv4纯ipv6先编辑/etc/resolv.conf改成DNS64地址 nameserver 2001:67c:2b0::4 nameserver 2001:67c:27e4::64 然后执行 chattr +i /etc/resolv.conf service systemd-resolved restart IP
-    </div>
-    <div class="read-more">
-      <a href="/post/ipv4-ipv6-connect-access/" class="read-more-link">阅读更多</a>
     </div>
   </div>
 </article>

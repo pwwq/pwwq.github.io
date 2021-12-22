@@ -124,6 +124,27 @@
           <section id="posts" class="posts">
     <article class="post">
   <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/post/ipv4-ipv6-connect-access/">IPv6的VPS连接IPv4和IPv4的VPS免费获取IPv6</a></h1>
+    <div class="post-meta">
+      <span class="post-time" title="2017-11-09 01:37:56 &#43;0800 &#43;0800"> 2017-11-09 </span>
+      <div class="post-category">
+          <a href="/categories/%E6%95%99%E7%A8%8B/"> 教程 </a>
+          </div>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      只有IPv6的VPS连通IPV4 无ipv4纯ipv6先编辑/etc/resolv.conf改成DNS64地址 nameserver 2001:67c:2b0::4 nameserver 2001:67c:27e4::64 然后执行 chattr +i /etc/resolv.conf service systemd-resolved restart IP
+    </div>
+    <div class="read-more">
+      <a href="/post/ipv4-ipv6-connect-access/" class="read-more-link">阅读更多</a>
+    </div>
+  </div>
+</article>
+
+    <article class="post">
+  <header class="post-header">
     <h1 class="post-title"><a class="post-link" href="/post/oneindex-installation-failed/">Oneindex程序安装失败解决办法</a></h1>
     <div class="post-meta">
       <span class="post-time" title="2017-10-04 01:37:56 &#43;0800 &#43;0800"> 2017-10-04 </span>
@@ -308,35 +329,6 @@ We&rsquo;ll start with creating a new site with a very basic template.
     </div>
     <div class="read-more">
       <a href="/post/ssh-xshell-password-keys/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/post/frps-service-install/">搭建配置frps内网穿透服务端开机自启</a></h1>
-    <div class="post-meta">
-      <span class="post-time" title="2017-05-15 01:37:56 &#43;0800 &#43;0800"> 2017-05-15 </span>
-      <div class="post-category">
-          <a href="/categories/%E6%95%99%E7%A8%8B/"> 教程 </a>
-          </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      <p>在debian ubuntu x64上测试通过 <a href="https://github.com/fatedier/frp/releases" target="_blank">其它系统frp下载</a></p>
-<p>假设你的IPV4地址为11.22.33.44 假设是以ROOT用户登陆并在root用户默认目录下</p>
-<h3 id="下载安装frp">下载安装frp</h3>
-<pre><code class="language-bash">wget -N -O frp.tar.gz https://github.com/fatedier/frp/releases/download/v0.23.1/frp_0.23.1_linux_amd64.tar.gz
-tar -zxvf frp.tar.gz
-mv frp_0.23.1_linux_amd64 frp
-</code></pre>
-<h3 id="配置frps服务端">配置frps服务端</h3>
-<p>修改文件frp/frps.ini服务端配置文件,按需要添加删减,示范如下</p>
-    </div>
-    <div class="read-more">
-      <a href="/post/frps-service-install/" class="read-more-link">阅读更多</a>
     </div>
   </div>
 </article>

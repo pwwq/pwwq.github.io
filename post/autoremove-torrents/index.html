@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>使用autoremove-torrents自动删除PT种子文件 - Xizi&#39;s Blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Xizi" /><meta name="description" content="GitHub: https://github.com/jerrymakesjelly/autoremove-torrents 文档：https://autoremove-torrents.readthedocs.io/zh_CN/latest/ 环境要求 Python 2.7 或 Python 3" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.69.2 with theme even" />
+
+
+<link rel="canonical" href="https://567899.xyz/post/autoremove-torrents/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link href="/sass/main.min.8512a1393ed8da42d418fb5c93ffb87b1b8e675a95bf81444ae5aa3f5a2cd0ab.css" rel="stylesheet">
+<link href="/lib/fancybox/jquery.fancybox-3.1.20.min.css" rel="stylesheet">
+
+
+<meta property="og:title" content="使用autoremove-torrents自动删除PT种子文件" />
+<meta property="og:description" content="GitHub: https://github.com/jerrymakesjelly/autoremove-torrents 文档：https://autoremove-torrents.readthedocs.io/zh_CN/latest/ 环境要求 Python 2.7 或 Python 3" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://567899.xyz/post/autoremove-torrents/" />
+<meta property="article:published_time" content="2021-12-22T18:33:56+08:00" />
+<meta property="article:modified_time" content="2021-12-22T21:42:11+08:00" />
+<meta itemprop="name" content="使用autoremove-torrents自动删除PT种子文件">
+<meta itemprop="description" content="GitHub: https://github.com/jerrymakesjelly/autoremove-torrents 文档：https://autoremove-torrents.readthedocs.io/zh_CN/latest/ 环境要求 Python 2.7 或 Python 3">
+<meta itemprop="datePublished" content="2021-12-22T18:33:56&#43;08:00" />
+<meta itemprop="dateModified" content="2021-12-22T21:42:11&#43;08:00" />
+<meta itemprop="wordCount" content="2103">
+
+
+
+<meta itemprop="keywords" content="transmission,qBittorrent,PT," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="使用autoremove-torrents自动删除PT种子文件"/>
+<meta name="twitter:description" content="GitHub: https://github.com/jerrymakesjelly/autoremove-torrents 文档：https://autoremove-torrents.readthedocs.io/zh_CN/latest/ 环境要求 Python 2.7 或 Python 3"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Xizi&#39;s Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/links/">
+        <li class="mobile-menu-item">链接</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">关于</li>
+      </a><a href="/search/">
+        <li class="mobile-menu-item">搜索</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Xizi&#39;s Blog</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/links/">链接</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">关于</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/search/">搜索</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">使用autoremove-torrents自动删除PT种子文件</h1>
+
+      <div class="post-meta">
+        <span class="post-time" title="2021-12-22 18:33:56 &#43;0800 &#43;0800"> 2021-12-22 </span>
+        <div class="post-category">
+            <a href="/categories/%E6%95%99%E7%A8%8B/"> 教程 </a>
+            </div>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#环境要求">环境要求</a></li>
+            <li><a href="#安装autoremove-torrents">安装autoremove-torrents</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <ul>
+<li>GitHub:  <a href="https://github.com/jerrymakesjelly/autoremove-torrents">https://github.com/jerrymakesjelly/autoremove-torrents</a></li>
+<li>文档：https://autoremove-torrents.readthedocs.io/zh_CN/latest/</li>
+</ul>
+<h3 id="环境要求">环境要求</h3>
+<p>Python 2.7 或 Python 3</p>
+<p>以Debian系统安装为例安装Python3</p>
+<pre><code>apt update
+apt install python3-pip
+</code></pre>
+<h3 id="安装autoremove-torrents">安装autoremove-torrents</h3>
+<p>从 pip 安装</p>
+<pre><code>pip3 install autoremove-torrents
+</code></pre>
+<p>或者从 GitHub 安装</p>
+<pre><code>git clone https://github.com/jerrymakesjelly/autoremove-torrents.git
+cd autoremove-torrents
+python3 setup.py install
+
+### 编写配置文件
+
+你可以把配置文件放在磁盘的任何地方。不过，在默认情况下，`autoremove-torrents`只在Shell的当前工作目录去找
+
+创建编辑`/root/config.yml`配置文件
+
+</code></pre>
+<p>nano /root/config.yml</p>
+<pre><code>
+配置示范如下
+
+</code></pre>
+<p>my_task:
+client: qbittorrent
+host: http://127.0.0.1:8080
+username: admin
+password: adminadmin
+strategies:
+my_strategy:
+remove: seeding_time &gt; 86400 or (ratio &gt; 1 and last_activity &gt; 600)
+delete_data: false</p>
+<pre><code>
+该语法是复合表达式。
+
+* `and`选择同时满足 表达式1 和 表达式2 的种子（交集）。
+* `or`选择满足 表达式1 或者 表达式2 或者同时满足两个表达式的种子（并集）
+
+删除条件：做种时间86400秒即24小时1天(时间可根据PT站点H&amp;R时长要求调整) 或者 分享率大于1且种子从停止活动（无上传或下载）到现在所经过的时间600秒。
+
+
+**登录信息**
+
+这部分是您的登录信息。
+
+1. 对于 qBittorrent、Transmission 或 μTorrent，本程序借助客户端的 WebUI 工作。
+
+* client：客户端类型，不区分大小写。
+* host：WebUI的访问地址。该地址必须指明一个协议（http:// 或 https:// ）。
+* username：WebUI的用户名。
+* password：WebUI的密码。
+
+2. 对于 Deluge
+
+本程序通过 RPC 协议访问 Deluge。
+
+* client：客户端类型，这里填 Deluge 即可。
+* host：Deluge Daemon 的地址（或域名）以及端口，例如 127.0.0.1:58846。
+* username：Deluge Daemon 的用户名。
+* password：Deluge Daemon 的密码。
+
+例：
+
+</code></pre>
+<p>my_task:
+client: deluge
+host: 127.0.0.1:58846
+username: localclient
+password: 357a0d23f09b9f303f58846e41986b36fef2ac88</p>
+<pre><code>
+注解
+
+1. 不要在 host 字段中填写任何协议，本程序既不使用 HTTP 协议访问 Deluge，也不用 HTTPS 协议。
+2. 端口号是 Deluge Daemon 的端口号，不是 WebUI 的端口号。可以在 WebUI 中的 Connection Manager 里看到端口号。
+3. 如果你的 autoremove-torrents 和 Deluge 运行在不同的计算机上，请确保您的 Deluge 允许接受远程计算机的连接。您可以在 Preferences -&gt; Daemon -&gt; Allow Remote Connections 中修改这个设置。
+
+注解
+
+一般来说，您可以在 ~/.config/deluge/auth 中找到用户名和密码。您也可以在文件末尾加一行以添加一个用户。
+
+有关身份验证方面的更多信息，请访问 https://dev.deluge-torrent.org/wiki/UserGuide/Authentication 。
+
+
+### 删除条件 使用`remove`关键词(高级)
+
+使用 remove 关键词。remove 关键词是在1.4.0版本中新增的关键词，用于支持复杂的删除条件的设置。remove 关键词后接一个表达式，表达式由以下语法构成：
+
+1. &lt;参数&gt; &lt;比较运算符&gt; &lt;数值&gt;
+
+参数：可选列表如下，不区分大小写。
+
+注解
+
+某些属性只能在特定的状态中使用，不在可用状态的种子不会被删除。
+
+|  参数  |  单位  |  可用状态  |  说明  |
+|  ----  |  ----  |  ----  |  ----  | 
+|  average_downloadspeed  |  KiB/s  | 	全部  |  平均下载速度。  |
+|  average_uploadspeed  |  	KiB/s  |  	全部  |  	平均上传速度。  |
+|  connected_leecher  |  	/	  |  Downloading 或 Uploading	  |  已连接的下载者数。  |
+|  connected_seeder  |  	/	  |  Downloading 或 Uploading	  |  已连接的做种者数。  |
+|  create_time  |  	秒	  |  全部	  |  种子从添加到客户端到现在所经过的时间。  |
+|  download  |  	GiB	  |  全部	  |  下载量  |
+|  download_speed  |  	KiB/s	  |  Downloading	  |  下载速度  |
+|  last_activity  |  	秒	  |  全部	  |  种子从停止活动（无上传或下载）到现在所经过的时间。  |
+|  leecher  |  	/  |  	全部  |  	下载者数。  |
+|  progress  |  	%  |  	全部  |  	下载进度。  |
+|  ratio  |  	/	  |  全部  |  	分享率  |
+|  seeder  |  	/	  |  全部  |  	做种者数。  |
+|  seeding_time  |  	秒  |  	全部  |  	做种时间  |
+|  size  |  	GiB  |  	全部  |  	种子大小。  |
+|  upload  |  	GiB  |  	全部  |  	上传量  |
+|  upload_ratio  |  	/  |  	全部  |  	上传量 / 种子大小  |
+|  upload_speed	  |  KiB/s	  |  Downloading 或 Uploading	  |  上传速度  |
+
+`比较运算符`：可选列表如下。由于种子的状态数据变化快，通常情况下设置一个特定的数据没有意义，因此本程序不提供等号。
+
+|  比较运算符  |  说明 |
+|  ----  |  ----  |
+|    &lt;	  |  小于 |
+|    &gt;    |  大于 |
+
+
+数值：指定一个数值，支持整数和小数。
+
+该语法直接选出符合条件的种子，并直接删除它们或者与后面的复合表达式配合使用。这是一个例子，它直接删除做种时间大于259200秒的种子：
+
+my_task:
+  client: xxx
+  host: xxx
+  username: xxx
+  password: xxx
+  strategies:
+    my_strategy:
+      remove: seeding_time &gt; 259200
+&lt;表达式1&gt; and &lt;表达式2&gt; 以及 &lt;表达式1&gt; or &lt;表达式2&gt;
+
+该语法是复合表达式。
+
+and：选择同时满足 表达式1 和 表达式2 的种子（交集）。
+or：选择满足 表达式1 或者 表达式2 或者同时满足两个表达式的种子（并集）。
+
+1. 这是一个例子。对于全体种子，分享率超过 2 而且 做种时间超过 60000 秒的种子会被删除：
+
+</code></pre>
+<p>my_task:
+client: xxx
+host: xxx
+username: xxx
+password: xxx
+strategies:
+my_strategy:
+remove: ratio &gt; 2 and seeding_time &gt; 60000</p>
+<pre><code>
+2. 这是另外一个例子。对于全体种子，分享率小于 1 或者 做种时间超过 60000 秒的种子会被删除：
+
+</code></pre>
+<p>my_task:
+client: xxx
+host: xxx
+username: xxx
+password: xxx
+strategies:
+my_strategy:
+remove: ratio &lt; 1 or seeding_time &gt; 60000</p>
+<pre><code>
+`(&lt;表达式&gt;)`
+
+一个表达式加上括号以后，它仍然是表达式。使用括号可以改变优先级。可以使用多重括号嵌套。
+
+3. 这是一个例子。对于全体种子，做种时间超过 60000 秒的种子， 或者 分享率大于 3 而且 添加时间超过 1400000 秒的种子会被删除：
+
+</code></pre>
+<p>my_task:
+client: xxx
+host: xxx
+username: xxx
+password: xxx
+strategies:
+my_strategy:
+remove: seeding_time &gt; 60000 or (ratio &gt; 3 and create_time &gt; 1400000)</p>
+<pre><code>
+
+### 设置计划任务
+
+创建日志文件
+
+</code></pre>
+<p>touch logs</p>
+<pre><code>
+创建计划任务
+
+</code></pre>
+<p>nano /etc/crontab</p>
+<pre><code>
+每15分钟检查一次哪些种子可以被删除,示范如下
+
+</code></pre>
+<p>*/15 * * * *   root  /usr/local/bin/autoremove-torrents  &ndash;conf=/root/config.yml &ndash;log=/root/logs</p>
+<pre><code>
+`--conf`参数指示了配置文件的路径。 `--log`参数指定了存储日志文件的路径（必须存在）
+
+重启crontab
+
+</code></pre>
+<p>/etc/init.d/cron restart
+systemctl restart cron
+systemctl restart cron.service</p>
+<pre><code>
+</code></pre>
+
+    </div>
+
+    
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/transmission/">transmission</a>
+          <a href="/tags/qbittorrent/">qBittorrent</a>
+          <a href="/tags/pt/">PT</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/google_drive_folderclone/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">[更新]Folderclone谷歌Google Drive共享云端硬盘转存相互转移拷贝复制文件的正确姿势</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/android-termux-transmission-pt-downloads/">
+            <span class="next-text nav-default">安卓手机可以在termux里安装Transmission来玩PT下载</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+  <div class="comments">
+    <div class="loading post">
+      <img src="/img/spinner.svg">
+      <p class="post-content">
+        评论正在加载中...如果评论较长时间无法加载，你可以
+        <a href='https://github.com/pwwq/blog-comments/issues?q=is%3Aissue+is%3Aopen+"%e4%bd%bf%e7%94%a8autoremove-torrents%e8%87%aa%e5%8a%a8%e5%88%a0%e9%99%a4PT%e7%a7%8d%e5%ad%90%e6%96%87%e4%bb%b6 - Xizi%27s%20Blog"' target="_blank">搜索对应的 issue</a>
+        或者
+        <a href="https://github.com/pwwq/blog-comments/issues/new?title=%e4%bd%bf%e7%94%a8autoremove-torrents%e8%87%aa%e5%8a%a8%e5%88%a0%e9%99%a4PT%e7%a7%8d%e5%ad%90%e6%96%87%e4%bb%b6 - Xizi%27s%20Blog" target="_blank">新建一个 issue</a>
+        。
+      </p>
+    </div>
+    <script src="https://utteranc.es/client.js"
+            repo="pwwq/blog-comments"
+            issue-term="title"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    <noscript>请启用 JavaScript 来查看评论。</a></noscript>
+  </div>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:admin@567899.xyz" class="iconfont icon-email" title="email" target="_blank"></a>
+      <a href="https://github.com/pwwq" class="iconfont icon-github" title="github" target="_blank"></a>
+  <a href="https://567899.xyz/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io" target="_blank">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even" target="_blank">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2013 - 
+    2021
+    <span class="heart">
+      <a class="iconfont icon-github" title="source code" href="https://github.com/pwwq/hugo-code" target="_blank"></a>
+    </span> 
+    <span class="author">Xizi</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <link href="https://cdn.bootcss.com/highlight.js/9.15.10/styles/tomorrow.min.css" rel="stylesheet">
+  <script>hljs.configure({tabReplace: '    '});</script><script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+  <script type="text/javascript" src="/lib/fancybox/jquery.fancybox-3.1.20.min.js"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.6821b76b4e5300f807f477f7f6e0e8772a852e6af6d99f47104e1b9632e47aba.js"></script>
+  <script type="text/javascript">
+    window.MathJax = {
+      tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+      showProcessingMessages: false,
+      messageStyle: 'none'
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"  integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-XXXXX', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+</body>
+</html>
