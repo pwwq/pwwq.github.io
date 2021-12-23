@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>flexget自动为qbittorrent、transmission等PT客户端添加种子任务 - Xizi&#39;s Blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Xizi" /><meta name="description" content="flexget解决了PT客户端没有RSS订阅功能，实现全自动添加种子任务到qbittorrent、 transmission、 deluge等客" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.69.2 with theme even" />
+
+
+<link rel="canonical" href="https://567899.xyz/post/flexget/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link href="/sass/main.min.8512a1393ed8da42d418fb5c93ffb87b1b8e675a95bf81444ae5aa3f5a2cd0ab.css" rel="stylesheet">
+<link href="/lib/fancybox/jquery.fancybox-3.1.20.min.css" rel="stylesheet">
+
+
+<meta property="og:title" content="flexget自动为qbittorrent、transmission等PT客户端添加种子任务" />
+<meta property="og:description" content="flexget解决了PT客户端没有RSS订阅功能，实现全自动添加种子任务到qbittorrent、 transmission、 deluge等客" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://567899.xyz/post/flexget/" />
+<meta property="article:published_time" content="2021-12-23T19:13:56+08:00" />
+<meta property="article:modified_time" content="2021-12-23T22:19:21+08:00" />
+<meta itemprop="name" content="flexget自动为qbittorrent、transmission等PT客户端添加种子任务">
+<meta itemprop="description" content="flexget解决了PT客户端没有RSS订阅功能，实现全自动添加种子任务到qbittorrent、 transmission、 deluge等客">
+<meta itemprop="datePublished" content="2021-12-23T19:13:56&#43;08:00" />
+<meta itemprop="dateModified" content="2021-12-23T22:19:21&#43;08:00" />
+<meta itemprop="wordCount" content="1740">
+
+
+
+<meta itemprop="keywords" content="transmission,qBittorrent,PT," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="flexget自动为qbittorrent、transmission等PT客户端添加种子任务"/>
+<meta name="twitter:description" content="flexget解决了PT客户端没有RSS订阅功能，实现全自动添加种子任务到qbittorrent、 transmission、 deluge等客"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Xizi&#39;s Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/links/">
+        <li class="mobile-menu-item">链接</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">关于</li>
+      </a><a href="/search/">
+        <li class="mobile-menu-item">搜索</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Xizi&#39;s Blog</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/links/">链接</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">关于</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/search/">搜索</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">flexget自动为qbittorrent、transmission等PT客户端添加种子任务</h1>
+
+      <div class="post-meta">
+        <span class="post-time" title="2021-12-23 19:13:56 &#43;0800 &#43;0800"> 2021-12-23 </span>
+        <div class="post-category">
+            <a href="/categories/%E6%95%99%E7%A8%8B/"> 教程 </a>
+            </div>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#安装flexget">安装flexget</a></li>
+        <li><a href="#flexget配置文件">flexget配置文件</a></li>
+        <li><a href="#flexget-nexusphp插件">flexget-nexusphp插件</a>
+          <ul>
+            <li><a href="#安装flexget-nexusphp插件">安装flexget-nexusphp插件</a></li>
+            <li><a href="#为flexget加上flexget-nexusphp插件的配置文件">为flexget加上flexget-nexusphp插件的配置文件</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>flexget解决了PT客户端没有RSS订阅功能，实现全自动添加种子任务到<a href="/post/qbittorrent/">qbittorrent</a>、 <a href="/post/transmission/">transmission</a>、 deluge等客户端上,配合<a href="/post/autoremove-torrents/">使用autoremove-torrents自动删除PT种子文件</a>简直是PT党刷上传流量的必备神器</p>
+<h2 id="安装flexget">安装flexget</h2>
+<p>从pip安装</p>
+<pre><code>apt update
+apt install python3-pip
+pip3 install flexget
+</code></pre>
+<h2 id="flexget配置文件">flexget配置文件</h2>
+<pre><code>mkdir .flexget
+nano .flexget/config.yml
+</code></pre>
+<p>示范配置</p>
+<pre><code>templates:
+# 剩余空间模板，当 path 对应的路径的剩余空间小于 space 规定的数值的时候停止 RSS 下载 单位MB
+  freespace:
+    free_space:
+      path: /home/star
+      space: 10240
+# qb 的模板，之后写 qb 就是指把种子推送到 qb 进行下载；下面 tr de rt 也是如此
+# 除非你修改了对应客户端的账号密码或者端口号，不然不需要修改这些客户端的模板
+  qb:
+    qbittorrent:
+      path: /home/SCRIPTUSERNAME/qbittorrent/download/
+      host: localhost
+      port: 8080
+      username: admin
+      password: adminadmin
+  tr:
+    transmission:
+      path: /home/SCRIPTUSERNAME/transmission/download/
+      host: localhost
+      port: 9091
+      username: SCRIPTUSERNAME
+      password: SCRIPTPASSWORD
+  de:
+    deluge:
+      path: /home/SCRIPTUSERNAME/deluge/download/
+      host: localhost
+      port: 58846
+      username: SCRIPTUSERNAME
+      password: SCRIPTPASSWORD
+# 体积过滤模板，min 是符合条件的最小种子体积，max 是符合条件的最大种子体积，单位均为 MB
+# strict 默认是 yes，表示在无法确定大小的情况下就不下载，这里把它改成 no 了
+# 也就是说，这段 size 的意思是，只下载体积为 6000-666666 MB 的种子，其他不满足条件的种子不下载
+  size:
+    content_size:
+      min: 10000
+      max: 66666
+      strict: no
+
+# 任务
+tasks:
+  CHDbits:
+    rss: https://chdbits.co/torrentrss.php?rows=
+    verify_ssl_certificates: no
+    accept_all: yes
+    template:
+      - freespace
+      - qb
+    qbittorrent:
+      maxupspeed: 45000
+# qbittorrent单种上传限速45000KB/S
+	  label: CHDbits
+  CMCT:
+    rss: https://hdcmct.org/torrentrss.php?rows=
+    verify_ssl_certificates: no
+    accept_all: yes
+    template:
+      - freespace
+	  - size
+      - qb
+    qbittorrent:
+      label: CMCT
+schedules:
+  - tasks: [ChDbits, CMCT]
+    interval:
+      minutes: 10
+# 每10分钟执行一次
+</code></pre>
+<p>测试flexget运行</p>
+<pre><code>flexget --test  --loglevel debug execute
+</code></pre>
+<p>运行</p>
+<pre><code>flexget execute
+</code></pre>
+<p>设置cron定时计划任务,编辑文件<code>/etc/crontab</code>在最后加以下</p>
+<pre><code>*/2 * * * * /usr/local/bin/flexget execute
+</code></pre>
+<p>每2分钟执行一次<code>flexget execute</code> 保存后重启下<code>cron</code></p>
+<pre><code>/etc/init.d/cron restart
+systemctl restart cron
+systemctl restart cron.service
+</code></pre>
+<h2 id="flexget-nexusphp插件">flexget-nexusphp插件</h2>
+<blockquote>
+<p><a href="https://github.com/Juszoe/flexget-nexusphp">https://github.com/Juszoe/flexget-nexusphp</a></p>
+</blockquote>
+<h3 id="安装flexget-nexusphp插件">安装flexget-nexusphp插件</h3>
+<p>下载插件 <a href="https://github.com/Juszoe/flexget-nexusphp/releases" target="_blank">nexusphp.py</a></p>
+<pre><code>mkdir .flexget/plugins
+wget -O .flexget/plugins/nexusphp.py wget https://github.com/Juszoe/flexget-nexusphp/releases/download/v1.4/nexusphp.py
+</code></pre>
+<h3 id="为flexget加上flexget-nexusphp插件的配置文件">为flexget加上flexget-nexusphp插件的配置文件</h3>
+<p>修改<code>flexget</code>的配置文件<code>.flexget/config.yml</code> 加上<code>flexget-nexusphp</code>插件后的完整示范配置内容如下</p>
+<pre><code>templates:
+# 剩余空间模板，当 path 对应的路径的剩余空间小于 space 规定的数值的时候停止 RSS 下载 单位MB
+  freespace:
+    free_space:
+      path: /home/star
+      space: 10240
+# qb 的模板，之后写 qb 就是指把种子推送到 qb 进行下载；下面 tr de rt 也是如此
+# 除非你修改了对应客户端的账号密码或者端口号，不然不需要修改这些客户端的模板
+  qb:
+    qbittorrent:
+      path: /home/SCRIPTUSERNAME/qbittorrent/download/
+      host: localhost
+      port: 8080
+      username: admin
+      password: adminadmin
+  tr:
+    transmission:
+      path: /home/SCRIPTUSERNAME/transmission/download/
+      host: localhost
+      port: 9091
+      username: SCRIPTUSERNAME
+      password: SCRIPTPASSWORD
+  de:
+    deluge:
+      path: /home/SCRIPTUSERNAME/deluge/download/
+      host: localhost
+      port: 58846
+      username: SCRIPTUSERNAME
+      password: SCRIPTPASSWORD
+# 体积过滤模板，min 是符合条件的最小种子体积，max 是符合条件的最大种子体积，单位均为 MB
+# strict 默认是 yes，表示在无法确定大小的情况下就不下载，这里把它改成 no 了
+# 也就是说，这段 size 的意思是，只下载体积为 6000-666666 MB 的种子，其他不满足条件的种子不下载
+  size:
+    content_size:
+      min: 10000
+      max: 66666
+      strict: no
+
+# 任务
+tasks:
+  CHDbits:
+    rss: https://chdbits.co/torrentrss.php?rows=
+# 为rss的other_fields字段添加link属性
+    other_fields:
+      - link
+    verify_ssl_certificates: no
+    accept_all: yes
+# flexget-nexusphp配置与accept_all同级别
+    nexusphp:
+      cookie: 'xxxxxxxx'
+      hr: no
+      discount:
+        - free
+        - 2xfree
+    template:
+      - freespace
+      - qb
+    qbittorrent:
+      maxupspeed: 45000
+# qbittorrent单种上传限速45000KB/S
+      label: CHDbits
+  CMCT:
+    rss: https://hdcmct.org/torrentrss.php?rows=
+    verify_ssl_certificates: no
+    accept_all: no
+    template:
+      - freespace
+	  - size
+      - qb
+    qbittorrent:
+      label: CMCT
+schedules:
+  - tasks: [ChDbits, CMCT]
+    interval:
+      minutes: 10
+# 每10分钟执行一次
+</code></pre>
+<p><strong>详细配置</strong></p>
+<ul>
+<li><code>cookie</code> <strong>网站cookie</strong> 必须填写</li>
+<li><code>discount</code> <strong>优惠类型</strong> 默认不限制优惠类型。<br>
+列表类型，Flexget会只下载含有列表内优惠类型的种子。<br>
+有效值：<code>free 2x 2x50% 2xfree 50% 30%</code><br>
+<code>注意：x为英文字母</code></li>
+<li><code>seeders</code> <strong>做种情况</strong> 做种人数超出范围的，Flexget将不会下载
+<ul>
+<li><code>注意：此选项兼容性较差</code></li>
+<li><code>min</code> 最小做种人数。整数，默认不限制</li>
+<li><code>max</code> 最大做种人数。整数，默认不限制</li>
+</ul>
+</li>
+<li><code>leechers</code> <strong>下载情况</strong> 下载人数超出范围的，Flexget将不会下载
+<ul>
+<li><code>注意：此选项兼容性较差</code></li>
+<li><code>min</code> 最小下载人数。整数，默认不限制</li>
+<li><code>max</code> 最大下载人数。整数，默认不限制</li>
+</ul>
+</li>
+<li><code>max_complete</code> <strong>下载者中最大完成度</strong> 超过这个值将不下载。
+小数，范围<code>0-1.0</code>，默认为1</li>
+<li><code>left-time</code> <strong>最小剩余时间</strong> 当实际剩余时间小于设置的值，则不下载。
+时间字符串，例如 <code>3 hours</code>、<code>10 minutes</code>、<code>1 days</code>。
+例如设置<code>1 hours</code>，优惠剩余59分钟，那么就不下载。默认不限制</li>
+<li><code>hr</code> <strong>是否下载HR种</strong> 默认 yes<br>
+<ol>
+<li><code>yes</code> 会下载HR，即不过滤HR<br></li>
+<li><code>no</code> 不下载HR<br></li>
+</ol>
+</li>
+<li><code>adapter</code> <strong>站点适配器</strong> 站点不兼容时可自定义，具体参考
+<a href="https://github.com/Juszoe/flexget-nexusphp/blob/master/site.md" target="_blank">判断站点以及适配站点</a></li>
+<li><code>comment</code> <strong>在torrent注释中添加详情链接</strong><br>
+<ol>
+<li><code>yes</code> 在torrent注释中添加详情链接，方便在BT客户端查看<br></li>
+<li><code>no</code> 默认值<br></li>
+</ol>
+</li>
+<li><code>user-agent</code> <strong>浏览器标识</strong> 默认为Google浏览器</li>
+<li><code>remember</code> <strong>记住优惠信息</strong> 不建议设置为 no，因为会增大站点压力。默认 yes</li>
+</ul>
+<p>测试flexget运行</p>
+<pre><code>flexget --test  --loglevel debug execute
+</code></pre>
+<p>运行</p>
+<pre><code>flexget execute
+</code></pre>
+
+    </div>
+
+    
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/transmission/">transmission</a>
+          <a href="/tags/qbittorrent/">qBittorrent</a>
+          <a href="/tags/pt/">PT</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/google_drive_folderclone/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">[更新]Folderclone谷歌Google Drive共享云端硬盘转存相互转移拷贝复制文件的正确姿势</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/autoremove-torrents/">
+            <span class="next-text nav-default">使用autoremove-torrents自动删除PT种子文件</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+  <div class="comments">
+    <div class="loading post">
+      <img src="/img/spinner.svg">
+      <p class="post-content">
+        评论正在加载中...如果评论较长时间无法加载，你可以
+        <a href='https://github.com/pwwq/blog-comments/issues?q=is%3Aissue+is%3Aopen+"flexget%e8%87%aa%e5%8a%a8%e4%b8%baqbittorrent%e3%80%81transmission%e7%ad%89PT%e5%ae%a2%e6%88%b7%e7%ab%af%e6%b7%bb%e5%8a%a0%e7%a7%8d%e5%ad%90%e4%bb%bb%e5%8a%a1 - Xizi%27s%20Blog"' target="_blank">搜索对应的 issue</a>
+        或者
+        <a href="https://github.com/pwwq/blog-comments/issues/new?title=flexget%e8%87%aa%e5%8a%a8%e4%b8%baqbittorrent%e3%80%81transmission%e7%ad%89PT%e5%ae%a2%e6%88%b7%e7%ab%af%e6%b7%bb%e5%8a%a0%e7%a7%8d%e5%ad%90%e4%bb%bb%e5%8a%a1 - Xizi%27s%20Blog" target="_blank">新建一个 issue</a>
+        。
+      </p>
+    </div>
+    <script src="https://utteranc.es/client.js"
+            repo="pwwq/blog-comments"
+            issue-term="title"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    <noscript>请启用 JavaScript 来查看评论。</a></noscript>
+  </div>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:admin@567899.xyz" class="iconfont icon-email" title="email" target="_blank"></a>
+      <a href="https://github.com/pwwq" class="iconfont icon-github" title="github" target="_blank"></a>
+  <a href="https://567899.xyz/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io" target="_blank">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even" target="_blank">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2013 - 
+    2021
+    <span class="heart">
+      <a class="iconfont icon-github" title="source code" href="https://github.com/pwwq/hugo-code" target="_blank"></a>
+    </span> 
+    <span class="author">Xizi</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <link href="https://cdn.bootcss.com/highlight.js/9.15.10/styles/tomorrow.min.css" rel="stylesheet">
+  <script>hljs.configure({tabReplace: '    '});</script><script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+  <script type="text/javascript" src="/lib/fancybox/jquery.fancybox-3.1.20.min.js"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.6821b76b4e5300f807f477f7f6e0e8772a852e6af6d99f47104e1b9632e47aba.js"></script>
+  <script type="text/javascript">
+    window.MathJax = {
+      tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+      showProcessingMessages: false,
+      messageStyle: 'none'
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"  integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-XXXXX', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+</body>
+</html>

@@ -124,6 +124,27 @@
           <section id="posts" class="posts">
     <article class="post">
   <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/post/debian-ubuntu-kernel-update-bbr/">Debian/Ubuntu系统手动更新内核并启用TCP BBR拥塞控制算法</a></h1>
+    <div class="post-meta">
+      <span class="post-time" title="2017-12-21 01:37:56 &#43;0800 &#43;0800"> 2017-12-21 </span>
+      <div class="post-category">
+          <a href="/categories/%E6%95%99%E7%A8%8B/"> 教程 </a>
+          </div>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      查看内核版本 uname -r BBR要求内核为kernel4.9以上版本。 如果大于或等于4.9的可以直接开启BBR,开启步骤如下 配置文件 echo &quot;net.core.default_qdisc=fq&quot; &gt;&gt; /etc/sysctl.conf echo &quot;net.ipv4.tcp_congestion_control=bbr&quot; &gt;&gt; /etc/sysctl.conf 加
+    </div>
+    <div class="read-more">
+      <a href="/post/debian-ubuntu-kernel-update-bbr/" class="read-more-link">阅读更多</a>
+    </div>
+  </div>
+</article>
+
+    <article class="post">
+  <header class="post-header">
     <h1 class="post-title"><a class="post-link" href="/post/ipv4-ipv6-connect-access/">IPv6的VPS连接IPv4和IPv4的VPS免费获取IPv6</a></h1>
     <div class="post-meta">
       <span class="post-time" title="2017-11-09 01:37:56 &#43;0800 &#43;0800"> 2017-11-09 </span>
@@ -308,27 +329,6 @@ We&rsquo;ll start with creating a new site with a very basic template.
     </div>
     <div class="read-more">
       <a href="/post/linux-tcp-bbr-lotserver/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/post/ssh-xshell-password-keys/">SSH使用SSH-KEY登录并禁用密码登录</a></h1>
-    <div class="post-meta">
-      <span class="post-time" title="2017-07-12 01:37:56 &#43;0800 &#43;0800"> 2017-07-12 </span>
-      <div class="post-category">
-          <a href="/categories/%E6%95%99%E7%A8%8B/"> 教程 </a>
-          </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      SSH安全登陆三步曲 修改默认端口22为其它 改用SSH-keys登陆 禁止密码登陆 Linux生成密钥对 ssh-keygen 文件 类型 路径 id_rsa 私钥 ~/.ssh/id_rsa id_rsa.pub 公钥 ~/.ssh/id_rsa.pub 使用Xshe
-    </div>
-    <div class="read-more">
-      <a href="/post/ssh-xshell-password-keys/" class="read-more-link">阅读更多</a>
     </div>
   </div>
 </article>
