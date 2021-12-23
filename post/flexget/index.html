@@ -44,12 +44,12 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://567899.xyz/post/flexget/" />
 <meta property="article:published_time" content="2021-12-23T19:13:56+08:00" />
-<meta property="article:modified_time" content="2021-12-23T22:23:24+08:00" />
+<meta property="article:modified_time" content="2021-12-23T22:45:23+08:00" />
 <meta itemprop="name" content="flexget自动为qbittorrent、transmission等PT客户端添加种子任务">
 <meta itemprop="description" content="https://flexget.com flexget解决了PT客户端没有RSS订阅功能，实现全自动添加种子任务到qbittorrent、 transmission、 deluge等">
 <meta itemprop="datePublished" content="2021-12-23T19:13:56&#43;08:00" />
-<meta itemprop="dateModified" content="2021-12-23T22:23:24&#43;08:00" />
-<meta itemprop="wordCount" content="1741">
+<meta itemprop="dateModified" content="2021-12-23T22:45:23&#43;08:00" />
+<meta itemprop="wordCount" content="1785">
 
 
 
@@ -154,6 +154,7 @@
         <li><a href="#flexget-nexusphp插件">flexget-nexusphp插件</a>
           <ul>
             <li><a href="#安装flexget-nexusphp插件">安装flexget-nexusphp插件</a></li>
+            <li><a href="#chrome浏览器获取站点的cookie">Chrome浏览器获取站点的cookie</a></li>
             <li><a href="#为flexget加上flexget-nexusphp插件的配置文件">为flexget加上flexget-nexusphp插件的配置文件</a></li>
           </ul>
         </li>
@@ -269,6 +270,9 @@ systemctl restart cron.service
 <pre><code>mkdir .flexget/plugins
 wget -O .flexget/plugins/nexusphp.py wget https://github.com/Juszoe/flexget-nexusphp/releases/download/v1.4/nexusphp.py
 </code></pre>
+<h3 id="chrome浏览器获取站点的cookie">Chrome浏览器获取站点的cookie</h3>
+<p><a href="https://www.google.com/chrome/" target="_blank">Chrome</a>登陆站点后按键盘<code>F12</code>依次如下图操作</p>
+<p><img src="/images/chrome-cookie.png" alt=""></p>
 <h3 id="为flexget加上flexget-nexusphp插件的配置文件">为flexget加上flexget-nexusphp插件的配置文件</h3>
 <p>修改<code>flexget</code>的配置文件<code>.flexget/config.yml</code> 加上<code>flexget-nexusphp</code>插件后的完整示范配置内容如下</p>
 <pre><code>templates:
