@@ -44,12 +44,12 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://567899.xyz/post/flexget/" />
 <meta property="article:published_time" content="2021-12-23T19:13:56+08:00" />
-<meta property="article:modified_time" content="2021-12-23T22:45:23+08:00" />
+<meta property="article:modified_time" content="2021-12-24T22:45:38+08:00" />
 <meta itemprop="name" content="flexget自动为qbittorrent、transmission等PT客户端添加种子任务">
 <meta itemprop="description" content="https://flexget.com flexget解决了PT客户端没有RSS订阅功能，实现全自动添加种子任务到qbittorrent、 transmission、 deluge等">
 <meta itemprop="datePublished" content="2021-12-23T19:13:56&#43;08:00" />
-<meta itemprop="dateModified" content="2021-12-23T22:45:23&#43;08:00" />
-<meta itemprop="wordCount" content="1785">
+<meta itemprop="dateModified" content="2021-12-24T22:45:38&#43;08:00" />
+<meta itemprop="wordCount" content="1858">
 
 
 
@@ -316,22 +316,23 @@ wget -O .flexget/plugins/nexusphp.py wget https://github.com/Juszoe/flexget-nexu
 # 任务
 tasks:
   CHDbits:
-    rss: https://chdbits.co/torrentrss.php?rows=
-# 为rss的other_fields字段添加link属性
-    other_fields:
-      - link
+# 带flexget-nexusphp插件的这里不要RSS
     verify_ssl_certificates: no
-    accept_all: yes
+    accept_all: no
 # flexget-nexusphp配置与accept_all同级别
+    template:
+      - freespace
+      - qb
     nexusphp:
       cookie: 'xxxxxxxx'
       hr: no
       discount:
         - free
         - 2xfree
-    template:
-      - freespace
-      - qb
+# nexusphp、rss、nexusphp、accept_all、verify_ssl_certificates 、qbittorrent 同级对齐
+    rss:
+      url: https://xxxxxx.xxxxxxxx
+      other_fields: [link]
     qbittorrent:
       maxupspeed: 45000
 # qbittorrent单种上传限速45000KB/S
