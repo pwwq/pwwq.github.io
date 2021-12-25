@@ -44,12 +44,12 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://567899.xyz/post/autoremove-torrents/" />
 <meta property="article:published_time" content="2021-12-22T18:33:56+08:00" />
-<meta property="article:modified_time" content="2021-12-22T21:44:14+08:00" />
+<meta property="article:modified_time" content="2021-12-25T13:43:05+08:00" />
 <meta itemprop="name" content="使用autoremove-torrents自动删除PT种子文件">
 <meta itemprop="description" content="GitHub: https://github.com/jerrymakesjelly/autoremove-torrents 文档：https://autoremove-torrents.readthedocs.io/zh_CN/latest/ 环境要求 Python 2.7 或 Python 3">
 <meta itemprop="datePublished" content="2021-12-22T18:33:56&#43;08:00" />
-<meta itemprop="dateModified" content="2021-12-22T21:44:14&#43;08:00" />
-<meta itemprop="wordCount" content="1946">
+<meta itemprop="dateModified" content="2021-12-25T13:43:05&#43;08:00" />
+<meta itemprop="wordCount" content="2002">
 
 
 
@@ -186,8 +186,13 @@ python3 setup.py install
 </code></pre>
 <h3 id="编写配置文件">编写配置文件</h3>
 <p>你可以把配置文件放在磁盘的任何地方。不过，在默认情况下，<code>autoremove-torrents</code>只在Shell的当前工作目录去找</p>
-<p>创建编辑<code>/root/config.yml</code>配置文件</p>
-<pre><code>nano /root/config.yml
+<pre><code># 创建autoremove-torrents目录
+mkdir /root/autoremove-torrents
+# 创建autoremove-torrents 日志文件
+touch /root/autoremove-torrents/logs
+</code></pre>
+<p>创建autoremove-torrents的配置文件</p>
+<pre><code>nano /root/autoremove-torrents/config.yml
 </code></pre>
 <p>配置示范如下</p>
 <pre><code>my_task: 
@@ -445,7 +450,7 @@ or：选择满足 表达式1 或者 表达式2 或者同时满足两个表达式
 <pre><code>nano /etc/crontab
 </code></pre>
 <p>每15分钟检查一次哪些种子可以被删除,示范如下</p>
-<pre><code>*/15 * * * *   root  /usr/local/bin/autoremove-torrents  --conf=/root/config.yml --log=/root/logs
+<pre><code>*/15 * * * *   root  /usr/local/bin/autoremove-torrents  --conf=/root/autoremove-torrents/config.yml --log=/root/autoremove-torrents/logs
 </code></pre>
 <p><code>--conf</code>参数指示了配置文件的路径。 <code>--log</code>参数指定了存储日志文件的路径（必须存在）</p>
 <p>重启crontab</p>
