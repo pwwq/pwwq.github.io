@@ -44,12 +44,12 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://567899.xyz/post/flexget/" />
 <meta property="article:published_time" content="2021-12-23T19:13:56+08:00" />
-<meta property="article:modified_time" content="2021-12-25T13:33:34+08:00" />
+<meta property="article:modified_time" content="2021-12-26T14:23:18+08:00" />
 <meta itemprop="name" content="flexget自动为qbittorrent、transmission等PT客户端添加种子任务">
 <meta itemprop="description" content="https://flexget.com flexget解决了PT客户端没有RSS订阅功能，实现全自动添加种子任务到qbittorrent、 transmission、 deluge等">
 <meta itemprop="datePublished" content="2021-12-23T19:13:56&#43;08:00" />
-<meta itemprop="dateModified" content="2021-12-25T13:33:34&#43;08:00" />
-<meta itemprop="wordCount" content="1974">
+<meta itemprop="dateModified" content="2021-12-26T14:23:18&#43;08:00" />
+<meta itemprop="wordCount" content="2177">
 
 
 
@@ -241,20 +241,39 @@ tasks:
       - qb
     qbittorrent:
       label: CMCT
-schedules:
-  - tasks: [ChDbits, CMCT]
-    interval:
-      minutes: 10
+# RSS功能使用daemon模式的schedules或者使用cron  二选一
+#schedules:
+#  - tasks: [ChDbits, CMCT]
+#    interval:
+#      minutes: 10
+# 这里我选用是CRON
+schedules: no
 # 每10分钟执行一次
+</code></pre>
+<p>使用 schedules 示范</p>
+<pre><code>schedules:
+  - tasks: [HDChina,TTG]
+    interval:
+      minutes: 3
+  - tasks: [Gods]
+    interval:
+      minutes: 1
 </code></pre>
 <p>测试flexget运行</p>
 <pre><code>flexget --test  --loglevel debug execute
+</code></pre>
+<p>第一次使用 RSS 的时候难免会下载到一些已经出种的老种，为了解决这个情况，第一次执行 flexget 的时候，可以用</p>
+<pre><code>flexget execute --learn
+</code></pre>
+<p>这样子不会下载种子，但是会把这次 RSS 到的种子标记为已下载，这样之后就不会下到老种了</p>
+<p>添加开机自启动,编辑文件<code>/etc/rc.local</code>在 <code>exit 0</code> 前面（前一行）添加</p>
+<pre><code>flexget daemon start -d
 </code></pre>
 <p>运行</p>
 <pre><code>flexget execute
 </code></pre>
 <p>设置cron定时计划任务,编辑文件<code>/etc/crontab</code>在最后加以下</p>
-<pre><code>*/2 * * * * /usr/local/bin/flexget execute &gt;/dev/null 2&gt;&amp;1
+<pre><code>*/2 *  * * * root  /usr/local/bin/flexget execute &gt;/dev/null 2&gt;&amp;1
 </code></pre>
 <p>每2分钟执行一次<code>flexget execute</code> 保存后重启下<code>cron</code></p>
 <pre><code>/etc/init.d/cron restart
