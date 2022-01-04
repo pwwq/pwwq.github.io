@@ -44,12 +44,12 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://567899.xyz/post/autoremove-torrents/" />
 <meta property="article:published_time" content="2021-12-22T18:33:56+08:00" />
-<meta property="article:modified_time" content="2022-01-04T19:47:26+08:00" />
+<meta property="article:modified_time" content="2022-01-04T19:50:05+08:00" />
 <meta itemprop="name" content="使用autoremove-torrents自动删除PT种子文件">
 <meta itemprop="description" content="GitHub: https://github.com/jerrymakesjelly/autoremove-torrents 文档：https://autoremove-torrents.readthedocs.io/zh_CN/latest/ 环境要求 Python 2.7 或 Python 3">
 <meta itemprop="datePublished" content="2021-12-22T18:33:56&#43;08:00" />
-<meta itemprop="dateModified" content="2022-01-04T19:47:26&#43;08:00" />
-<meta itemprop="wordCount" content="4785">
+<meta itemprop="dateModified" content="2022-01-04T19:50:05&#43;08:00" />
+<meta itemprop="wordCount" content="4852">
 
 
 
@@ -845,6 +845,9 @@ my_task:          # Part 1: Task Name
   delete_data: true
 
 # Add more tasks here...
+</code></pre>
+<p>记得检查你的配置文件，确保它按照你的想法工作（不然可能就会误删种子了）。使用以下命令行以查看将要删除的种子，但不会真正地删除它们：</p>
+<pre><code>autoremove-torrents --view
 </code></pre>
 <h3 id="设置计划任务">设置计划任务</h3>
 <p>创建日志文件</p>
