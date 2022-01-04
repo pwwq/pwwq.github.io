@@ -44,11 +44,11 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://567899.xyz/post/autoremove-torrents/" />
 <meta property="article:published_time" content="2021-12-22T18:33:56+08:00" />
-<meta property="article:modified_time" content="2022-01-04T19:39:19+08:00" />
+<meta property="article:modified_time" content="2022-01-04T19:44:21+08:00" />
 <meta itemprop="name" content="使用autoremove-torrents自动删除PT种子文件">
 <meta itemprop="description" content="GitHub: https://github.com/jerrymakesjelly/autoremove-torrents 文档：https://autoremove-torrents.readthedocs.io/zh_CN/latest/ 环境要求 Python 2.7 或 Python 3">
 <meta itemprop="datePublished" content="2021-12-22T18:33:56&#43;08:00" />
-<meta itemprop="dateModified" content="2022-01-04T19:39:19&#43;08:00" />
+<meta itemprop="dateModified" content="2022-01-04T19:44:21&#43;08:00" />
 <meta itemprop="wordCount" content="4749">
 
 
@@ -837,7 +837,7 @@ my_task:          # Part 1: Task Name
     ourbits:
       categories:
         - ourbits
-      remove: seeding_time &gt; 172800 or (ratio &gt; 3 and last_activity &gt; 1800)
+      remove: seeding_time &gt; 172800 or (ratio &gt; 1 and last_activity &gt; 1800)
 # 删除条件(做种时间大于172800秒即48小时、分享率大于1且种子从停止活动1800秒)
 # 我堡带H&amp;R标志的种子要求做种48小时
     # Add more strategies here...
