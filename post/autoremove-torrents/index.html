@@ -44,12 +44,12 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://567899.xyz/post/autoremove-torrents/" />
 <meta property="article:published_time" content="2021-12-22T18:33:56+08:00" />
-<meta property="article:modified_time" content="2022-01-03T20:21:13+08:00" />
+<meta property="article:modified_time" content="2022-01-04T19:39:19+08:00" />
 <meta itemprop="name" content="使用autoremove-torrents自动删除PT种子文件">
 <meta itemprop="description" content="GitHub: https://github.com/jerrymakesjelly/autoremove-torrents 文档：https://autoremove-torrents.readthedocs.io/zh_CN/latest/ 环境要求 Python 2.7 或 Python 3">
 <meta itemprop="datePublished" content="2021-12-22T18:33:56&#43;08:00" />
-<meta itemprop="dateModified" content="2022-01-03T20:21:13&#43;08:00" />
-<meta itemprop="wordCount" content="4403">
+<meta itemprop="dateModified" content="2022-01-04T19:39:19&#43;08:00" />
+<meta itemprop="wordCount" content="4749">
 
 
 
@@ -159,6 +159,7 @@
         <li><a href="#直接使用删除条件关键词">直接使用删除条件关键词</a>
           <ul>
             <li><a href="#删除条件-使用remove关键词高级">删除条件 使用<code>remove</code>关键词(高级)</a></li>
+            <li><a href="#本站的完整示范">本站的完整示范</a></li>
             <li><a href="#设置计划任务">设置计划任务</a></li>
           </ul>
         </li>
@@ -803,6 +804,47 @@ or：选择满足 表达式1 或者 表达式2 或者同时满足两个表达式
   strategies:
     my_strategy:
       remove: seeding_time &gt; 60000 or (ratio &gt; 3 and create_time &gt; 1400000)
+</code></pre>
+<h3 id="本站的完整示范">本站的完整示范</h3>
+<p>仅供参考</p>
+<pre><code># A task block
+my_task:          # Part 1: Task Name
+  # Part 2: Login Information
+  client: qbittorrent
+  host: http://127.0.0.1:8080
+#对于 qBittorrent、Transmission 或 μTorrent的 host：WebUI的访问地址。该地址必须指明一个协议（http:// 或 https:// ）。
+#Deluge Daemon 的地址（或域名）以及端口，例如 127.0.0.1:58846
+  username: admin
+  password: adminadmin
+  # Part 3: Strategies Block (Remove Conditions)
+  strategies:
+    opencd:
+      categories:
+        - opencd
+      remove: (seeding_time &gt; 129600 and last_activity &gt; 1800)
+# 皇后全站36小时H&amp;R即129600秒
+    pterclub:
+      categories:
+        - LemonHD
+        - pterclub
+      remove: last_activity &gt; 1800
+# 当前柠檬和猫站均无H&amp;R要求
+    btschool:
+      categories:
+        - btschool
+      remove: (seeding_time &gt; 72000 and last_activity &gt; 1800)
+# BT学校全站20小时H&amp;R即72000秒
+    ourbits:
+      categories:
+        - ourbits
+      remove: seeding_time &gt; 172800 or (ratio &gt; 3 and last_activity &gt; 1800)
+# 删除条件(做种时间大于172800秒即48小时、分享率大于1且种子从停止活动1800秒)
+# 我堡带H&amp;R标志的种子要求做种48小时
+    # Add more strategies here...
+  # Part 4: Decide whether to remove and delete data (optional)
+  delete_data: true
+
+# Add more tasks here...
 </code></pre>
 <h3 id="设置计划任务">设置计划任务</h3>
 <p>创建日志文件</p>
