@@ -44,12 +44,12 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://567899.xyz/post/flexget/" />
 <meta property="article:published_time" content="2021-12-23T19:13:56+08:00" />
-<meta property="article:modified_time" content="2021-12-26T14:23:18+08:00" />
+<meta property="article:modified_time" content="2022-01-04T14:37:43+08:00" />
 <meta itemprop="name" content="flexget自动为qbittorrent、transmission等PT客户端添加种子任务">
 <meta itemprop="description" content="https://flexget.com flexget解决了PT客户端没有RSS订阅功能，实现全自动添加种子任务到qbittorrent、 transmission、 deluge等">
 <meta itemprop="datePublished" content="2021-12-23T19:13:56&#43;08:00" />
-<meta itemprop="dateModified" content="2021-12-26T14:23:18&#43;08:00" />
-<meta itemprop="wordCount" content="2177">
+<meta itemprop="dateModified" content="2022-01-04T14:37:43&#43;08:00" />
+<meta itemprop="wordCount" content="2753">
 
 
 
@@ -298,7 +298,7 @@ wget -O .flexget/plugins/nexusphp.py wget https://github.com/Juszoe/flexget-nexu
 # 剩余空间模板，当 path 对应的路径的剩余空间小于 space 规定的数值的时候停止 RSS 下载 单位MB
   freespace:
     free_space:
-      path: /home/star
+      path: /home/SCRIPTUSERNAME/transmission/download/
       space: 10240
 # qb 的模板，之后写 qb 就是指把种子推送到 qb 进行下载；下面 tr de rt 也是如此
 # 除非你修改了对应客户端的账号密码或者端口号，不然不需要修改这些客户端的模板
@@ -325,51 +325,117 @@ wget -O .flexget/plugins/nexusphp.py wget https://github.com/Juszoe/flexget-nexu
       password: SCRIPTPASSWORD
 # 体积过滤模板，min 是符合条件的最小种子体积，max 是符合条件的最大种子体积，单位均为 MB
 # strict 默认是 yes，表示在无法确定大小的情况下就不下载，这里把它改成 no 了
-# 也就是说，这段 size 的意思是，只下载体积为 6000-666666 MB 的种子，其他不满足条件的种子不下载
+# 也就是说，这段 size 的意思是，只下载体积为 100-150666 MB 的种子，其他不满足条件的种子不下载
   size:
     content_size:
-      min: 10000
-      max: 66666
+      min: 100
+      max: 150666
       strict: no
 
 # 任务
 tasks:
-  CHDbits:
+  LemonHD:
 # 带flexget-nexusphp插件的这里不要RSS
     verify_ssl_certificates: no
     accept_all: no
 # flexget-nexusphp配置与accept_all同级别
     template:
       - freespace
+      - size
       - qb
     nexusphp:
-      cookie: 'xxxxxxxx'
+      cookie: 'xxxxxxxxxxxxx'
       hr: no
       discount:
         - free
         - 2xfree
 # nexusphp、rss、nexusphp、accept_all、verify_ssl_certificates 、qbittorrent 同级对齐
     rss:
-      url: https://xxxxxx.xxxxxxxx
+      url: https://lemonhd.org/torrentrss.php?rows=xxxxxxxxxx
       other_fields: [link]
     qbittorrent:
-      maxupspeed: 45000
+      maxupspeed: 99000
 # qbittorrent单种上传限速45000KB/S
-      label: CHDbits
-  CMCT:
-    rss: https://hdcmct.org/torrentrss.php?rows=
+      label: LemonHD
+#tasks:
+  pterclub:
+# 带flexget-nexusphp插件的这里不要RSS
     verify_ssl_certificates: no
     accept_all: no
+# flexget-nexusphp配置与accept_all同级别
     template:
       - freespace
-	  - size
+      - size
       - qb
+    nexusphp:
+      cookie: 'PHPSESSID=cclcsc68rog0078mibarn0of3v; c_secure_uid=xxxxxxxxxx'
+      hr: no
+      discount:
+        - free
+        - 2xfree
+# nexusphp、rss、nexusphp、accept_all、verify_ssl_certificates 、qbittorrent 同级对齐
+    rss:
+      url: https://pterclub.com/torrentrss.php?rows=xxxxxxxxxxxxxx
+      other_fields: [link]
     qbittorrent:
-      label: CMCT
+      maxupspeed: 99000
+# qbittorrent单种上传限速45000KB/S
+      label: pterclub
+#tasks:
+  ourbits:
+# 带flexget-nexusphp插件的这里不要RSS
+    verify_ssl_certificates: no
+    accept_all: no
+# flexget-nexusphp配置与accept_all同级别
+    template:
+      - freespace
+      - size
+      - qb
+    nexusphp:
+      cookie: 'cf_clearance=UTCejIf5fmIUd7c1.kWAVkIjxxxxxxxxxxxxxxxxxx'
+      hr: no
+      discount:
+        - free
+        - 2xfree
+# nexusphp、rss、nexusphp、accept_all、verify_ssl_certificates 、qbittorrent 同级对齐
+    rss:
+      url: https://ourbits.club/torrentrss.php?rows=xxxxxxxxxxxxxx
+      other_fields: [link]
+    qbittorrent:
+      maxupspeed: 45666
+# qbittorrent单种上传限速45000KB/S
+      label: ourbits
+#tasks:
+  opencd:
+# 带flexget-nexusphp插件的这里不要RSS
+    verify_ssl_certificates: no
+    accept_all: no
+# flexget-nexusphp配置与accept_all同级别
+    template:
+      - freespace
+      - size
+      - qb
+    nexusphp:
+      cookie: '_ga=GA1.2.529558662.1641272891; _gid=GA1.2.131640xxxxxxxxxxx'
+      hr: no
+      discount:
+        - free
+        - 2xfree
+# nexusphp、rss、nexusphp、accept_all、verify_ssl_certificates 、qbittorrent 同级对齐
+    rss:
+      url: https://open.cd/torrentrss.php?rows=xxxxxxxxxxxxxx
+      other_fields: [link]
+    qbittorrent:
+      maxupspeed: 95666
+# qbittorrent单种上传限速45000KB/S
+      label: opencd
 schedules:
-  - tasks: [ChDbits, CMCT]
+  - tasks: [LemonHD, pterclub]
     interval:
-      minutes: 10
+      minutes: 1
+  - tasks: [opencd, ourbits]
+    interval:
+      minutes: 2
 # 每10分钟执行一次
 </code></pre>
 <p><strong>详细配置</strong></p>
