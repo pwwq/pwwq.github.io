@@ -44,12 +44,12 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://567899.xyz/post/debian10-web-nginx-certbot-ssl-php-mysql/" />
 <meta property="article:published_time" content="2020-09-10T16:40:38+00:00" />
-<meta property="article:modified_time" content="2020-09-22T22:19:26+08:00" />
+<meta property="article:modified_time" content="2022-09-06T23:35:08+08:00" />
 <meta itemprop="name" content="Debian10手动搭建WEB环境Nginx,SSL,PHP,MySQL">
 <meta itemprop="description" content="手动搭建，使用apt,apt-get快速安装免编译 更新软件源 apt update 来更新软件源。 Nginx 这里使用Nginx作为WEB服务器。 安装Nginx apt install openssl nginx -y">
 <meta itemprop="datePublished" content="2020-09-10T16:40:38&#43;00:00" />
-<meta itemprop="dateModified" content="2020-09-22T22:19:26&#43;08:00" />
-<meta itemprop="wordCount" content="1813">
+<meta itemprop="dateModified" content="2022-09-06T23:35:08&#43;08:00" />
+<meta itemprop="wordCount" content="1906">
 
 
 
@@ -289,6 +289,16 @@ Donating to EFF:                    <a href="https://eff.org/donate-le">https://
 <pre><code>certbot renew
 </code></pre>
 <p>可添加一个<code>cron</code>计划<code>19 4 * * 3 root certbot renew</code>意为每周三的00:19执行定时更新SSL证书计划</p>
+<p>泛域名证书</p>
+<pre><code>certbot certonly --preferred-challenges dns --manual  -d *.example.com --server https://acme-v02.api.letsencrypt.org/directory
+</code></pre>
+<ol>
+<li>&ndash;preferred-challenges dns: 认证方式选择DNS, 泛域名支持DNS</li>
+<li>&ndash;manual: 手动模式, 这里为了简单就使用手动认证了, 下面会说自动模式的使用.</li>
+<li>-d *.bysir.cn: 就是要申请的泛域名了</li>
+<li>&ndash;server <a href="https://acme-v02.api.letsencrypt.org/directory">https://acme-v02.api.letsencrypt.org/directory</a></li>
+</ol>
+<p>手动配置TXT记录后回车</p>
 <h3 id="使用ssl证书">使用SSL证书</h3>
 <p>编辑<code>/etc/nginx/sites-available/example.com</code>站点配置文件修改为</p>
 <pre><code class="language-json">server {
