@@ -44,12 +44,12 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://567899.xyz/post/v2ray-http/" />
 <meta property="article:published_time" content="2022-09-09T09:37:56+08:00" />
-<meta property="article:modified_time" content="2022-09-09T22:30:17+08:00" />
+<meta property="article:modified_time" content="2022-09-09T23:10:22+08:00" />
 <meta itemprop="name" content="V2ray免流教程">
 <meta itemprop="description" content="V2ray服务端的搭建配置 bash &lt;(curl -L https://raw.githubusercontent.com/XTLS/Xray-install/main/install-release.sh) 免流的方案：VMess协议 &#43; TCP &#43; HTTP，编辑配置文件/usr/local/etc/xray/config">
 <meta itemprop="datePublished" content="2022-09-09T09:37:56&#43;08:00" />
-<meta itemprop="dateModified" content="2022-09-09T22:30:17&#43;08:00" />
-<meta itemprop="wordCount" content="1437">
+<meta itemprop="dateModified" content="2022-09-09T23:10:22&#43;08:00" />
+<meta itemprop="wordCount" content="1725">
 
 
 
@@ -235,7 +235,75 @@ systemctl restart xray
 <h3 id="实现热点免流">实现热点免流</h3>
 <p>安卓手机使用V2rayNG免root实现热点免流</p>
 <p>打开V2rayNG依次进入【设置】【进阶设置】勾选【允许来自局域网的连接】记住下面的<code>HTTP代理商品</code>默认是<code>10809</code>在其它连接的客户端WIFI里面设置系统代理为手机的内网IP与v2ray的<code>HTTP代理商品</code></p>
-<p>可以解锁的安卓手机可以刷Magisk，然后装模块<a href="https://github.com/CerteKim/Xray4Magisk" target="_blank">Xray4Magisk</a></p>
+<p>可以解锁的安卓手机可以刷<a href="https://github.com/topjohnwu/Magisk" target="_blank">Magisk</a>，然后装模块<a href="https://github.com/CerteKim/Xray4Magisk" target="_blank">Xray4Magisk</a>下载安装<a href="https://github.com/Asterisk4Magisk/Xray4Magisk/releases/download/1.4.3/Xray4Magisk-1.4.3.zip" target="_blank">Xray4Magisk-1.4.3.zip</a></p>
+<p>编辑配置文件<code>/data/adb/xray/confs/proxy.json</code>替换成以下的</p>
+<pre><code>{
+  &quot;outbounds&quot;: [
+    {
+      &quot;tag&quot;: &quot;proxy&quot;,
+      &quot;protocol&quot;: &quot;vmess&quot;,
+      &quot;settings&quot;: {
+        &quot;vnext&quot;: [
+          {
+            &quot;address&quot;: &quot;服务器的IP地址或域名&quot;,
+            &quot;port&quot;: 80,
+            &quot;users&quot;: [
+              {
+                &quot;id&quot;: &quot;改成你的ID参数&quot;,
+                &quot;alterId&quot;: 0,
+                &quot;security&quot;: &quot;aes-128-gcm&quot;
+              }
+            ]
+          }
+        ]
+      },
+      &quot;streamSettings&quot;: {
+        &quot;network&quot;: &quot;tcp&quot;,
+        &quot;tcpSettings&quot;: {
+          &quot;header&quot;: {
+            &quot;type&quot;: &quot;http&quot;,
+            &quot;request&quot;: {
+              &quot;version&quot;: &quot;1.1&quot;,
+              &quot;method&quot;: &quot;GET&quot;,
+              &quot;path&quot;: [
+                &quot;/&quot;
+              ],
+              &quot;headers&quot;: {
+                &quot;Host&quot;: [
+                  &quot;tms.dingtalk.com&quot;
+                ],
+                &quot;User-Agent&quot;: [
+                  &quot;Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.75 Safari/537.36&quot;,
+                  &quot;Mozilla/5.0 (iPhone; CPU iPhone OS 10_0_2 like Mac OS X) AppleWebKit/601.1 (KHTML, like Gecko) CriOS/53.0.2785.109 Mobile/14A456 Safari/601.1.46&quot;
+                ],
+                &quot;Accept-Encoding&quot;: [
+                  &quot;gzip, deflate&quot;
+                ],
+                &quot;Connection&quot;: [
+                  &quot;keep-alive&quot;
+                ],
+                &quot;Pragma&quot;: &quot;no-cache&quot;
+              }
+            }
+          }
+        }
+      },
+      &quot;mux&quot;: {
+        &quot;enabled&quot;: false,
+        &quot;concurrency&quot;: -1
+      }
+    }
+  ]
+}
+</code></pre>
+<p>修成路由为全局代理，改配置文件<code>/data/adb/xray/confs/routing.json</code>替换成以下的</p>
+<pre><code>{
+  &quot;routing&quot;: {
+    &quot;domainStrategy&quot;: &quot;IPIfNonMatch&quot;,
+    &quot;rules&quot;: []
+  }
+}
+</code></pre>
 <h3 id="通用免流混淆参数">通用免流混淆参数</h3>
 <pre><code>QQ 音乐混淆参数：dl.stream.qqmusic.com
 梦想 e 卡混淆参数：imhdfs.icbc.com.cn
