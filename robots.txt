@@ -1,5 +1,0 @@
-User-agent: *
-Disallow: /
-
-User-agent: *
-Sitemap: https://567899.xyz/sitemap.xml

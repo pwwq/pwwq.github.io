@@ -1,10 +1,8 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>docker on Xizi's Blog</title><link>https://567899.xyz/tags/docker/</link><description>Recent content in docker on Xizi's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Wed, 25 Jul 2018 01:37:56 +0800</lastBuildDate><atom:link href="https://567899.xyz/tags/docker/index.xml" rel="self" type="application/rss+xml"/><item><title>docker创建删除使用容器或镜像</title><link>https://567899.xyz/post/docker-images/</link><pubDate>Wed, 25 Jul 2018 01:37:56 +0800</pubDate><guid>https://567899.xyz/post/docker-images/</guid><description>&lt;p>&lt;em>更多容器可以访问&lt;a href="https://www.docker.com/" target="_blank">docker&lt;/a>的&lt;a href="https://hub.docker.com/" target="_blank">Docker Hub&lt;/a>&lt;/em>&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>docker on Xizi's Blog</title><link>https://567899.xyz/tags/docker/</link><description>Recent content in docker on Xizi's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Fri, 11 Mar 2022 22:04:59 +0800</lastBuildDate><atom:link href="https://567899.xyz/tags/docker/index.xml" rel="self" type="application/rss+xml"/><item><title>Cookie自动登陆签到、抓包提取制作HAR文件</title><link>https://567899.xyz/post/qiandao/</link><pubDate>Fri, 11 Mar 2022 22:04:59 +0800</pubDate><guid>https://567899.xyz/post/qiandao/</guid><description>通过自动签到(网页签到、APP签到)，可以有效防止某些站点规则中的因长时间未登陆不活跃而导致封号，还可以赚积分、领金币薅羊毛&amp;hellip; Docker安装签到 https://hub.docker.com/r/a76yyyy/qiandao https://github.com/qiandao-today/qiandao 安装、启用docker wget -qO- get.docker.com | bash systemctl enable docker systemctl start docker Docker部署a76yyyy/qiandao签到 docker run -d --name qiandao --restart=always --env PORT=8923 --net=host -v /root/qiandao:/usr/src/app/config</description></item><item><title>docker创建删除使用容器或镜像</title><link>https://567899.xyz/post/docker-images/</link><pubDate>Wed, 25 Jul 2018 01:37:56 +0800</pubDate><guid>https://567899.xyz/post/docker-images/</guid><description>&lt;p>&lt;em>更多容器可以访问&lt;a href="https://www.docker.com/">docker&lt;/a>的&lt;a href="https://hub.docker.com/">Docker Hub&lt;/a>&lt;/em>&lt;/p>
 &lt;p>操作系统内核大于等于 3.10 的都可以安装最新版 Docker 查看内核版本&lt;/p>
-&lt;pre>&lt;code class="language-bash">uname -r
-&lt;/code>&lt;/pre>
-&lt;h3 id="安装docker">安装docker&lt;/h3>
-&lt;pre>&lt;code class="language-bash">wget -qO- get.docker.com | bash
-&lt;/code>&lt;/pre>
-&lt;p>安装完成后，运行下面的命令，验证是否安装成功。&lt;/p>
-&lt;pre>&lt;code class="language-bash">docker version
-&lt;/code>&lt;/pre></description></item></channel></rss>
+&lt;div class="highlight">&lt;pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">uname -r
+&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="安装docker">安装docker&lt;/h2>
+&lt;div class="highlight">&lt;pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">wget -qO- get.docker.com | bash
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>安装完成后，运行下面的命令，验证是否安装成功。&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">docker version
+&lt;/code>&lt;/pre>&lt;/div></description></item></channel></rss>

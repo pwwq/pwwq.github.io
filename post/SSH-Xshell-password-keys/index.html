@@ -1,0 +1,126 @@
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><title>SSH使用SSH-KEY登录并禁用密码登录 | Xizi's Blog</title><meta property="og:title" content="SSH使用SSH-KEY登录并禁用密码登录 - Xizi's Blog"><meta property="og:type" content="article"><meta property="article:published_time" content="2017-07-12T01:37:56+08:00"><meta property="article:modified_time" content="2017-07-12T01:37:56+08:00"><meta name=Keywords content><meta name=description content="SSH使用SSH-KEY登录并禁用密码登录"><meta name=author content="Xizi"><meta property="og:url" content="https://567899.xyz/post/SSH-Xshell-password-keys/"><link rel="shortcut icon" href=/favicon.ico type=image/x-icon><link rel=stylesheet href=/css/normalize.css><link rel=stylesheet href=/css/style.css><script type=text/javascript src=//cdn.bootcdn.net/ajax/libs/jquery/3.4.1/jquery.min.js></script><link href=https://cdn.bootcdn.net/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css rel=stylesheet><link rel=stylesheet href=/css/douban.css><link rel=stylesheet href=/css/other.css></head><body><header id=header class=clearfix><div class=container><div class=col-group><div class=site-name><a id=logo href=https://567899.xyz>Xizi's Blog</a><p class=description>记录、分享自己的折腾日记。</p></div><div><nav id=nav-menu class=clearfix><a class=current href=https://567899.xyz>首页</a>
+<a href=https://567899.xyz/post/tools/ title=工具>工具</a>
+<a href=https://567899.xyz/archives/ title=归档>归档</a>
+<a href=https://567899.xyz/about/ title=关于>关于</a></nav></div></div></div></header><div id=body><div class=container><div class=col-group><div class=col-8 id=main><div class=res-cons><style type=text/css>.post-toc{position:fixed;width:200px;margin-left:-210px;padding:5px 10px;font-family:Athelas,STHeiti,Microsoft Yahei,serif;font-size:12px;border:1px solid rgba(0,0,0,.07);border-radius:5px;background-color:rgba(255,255,255,.98);background-clip:padding-box;-webkit-box-shadow:1px 1px 2px rgba(0,0,0,.125);box-shadow:1px 1px 2px rgba(0,0,0,.125);word-wrap:break-word;white-space:nowrap;-webkit-box-sizing:border-box;box-sizing:border-box;z-index:999;cursor:pointer;max-height:70%;overflow-y:auto;overflow-x:hidden}.post-toc .post-toc-title{width:100%;margin:0 auto;font-size:20px;font-weight:400;text-transform:uppercase;text-align:center}.post-toc .post-toc-content{font-size:15px}.post-toc .post-toc-content>nav>ul{margin:10px 0}.post-toc .post-toc-content ul{padding-left:20px;list-style:square;margin:.5em;line-height:1.8em}.post-toc .post-toc-content ul ul{padding-left:15px;display:none}@media print,screen and (max-width:1057px){.post-toc{display:none}}</style><div class=post-toc style=position:absolute;top:188px><h2 class=post-toc-title>文章目录</h2><div class=post-toc-content><nav id=TableOfContents></nav></div></div><script type=text/javascript>$(document).ready(function(){var postToc=$(".post-toc");if(postToc.length){var leftPos=$("#main").offset().left;if(leftPos<220){postToc.css({"width":leftPos-10,"margin-left":(0-leftPos)})}
+var t=postToc.offset().top-20,a={start:{position:"absolute",top:t},process:{position:"fixed",top:20},};$(window).scroll(function(){var e=$(window).scrollTop();e<t?postToc.css(a.start):postToc.css(a.process)})}
+if($("#TableOfContents").children().length<1){$(".post-toc").remove();}})</script><article class=post><header><h1 class=post-title>SSH使用SSH-KEY登录并禁用密码登录</h1></header><date class="post-meta meta-date">2017年7月12日</date><div class=post-meta><span>|</span>
+<span class=meta-category><a href=/categories/%E6%95%99%E7%A8%8B target=_blank>教程</a></span></div><div class=post-content><p>SSH安全登陆三步曲</p><ol><li>修改默认端口22为其它</li><li>改用SSH-keys登陆</li><li>禁止密码登陆</li></ol><blockquote><p>Linux生成密钥对</p></blockquote><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>ssh-keygen
+</code></pre></div><table><thead><tr><th>文件</th><th>类型</th><th>路径</th></tr></thead><tbody><tr><td>id_rsa</td><td>私钥</td><td>~/.ssh/id_rsa</td></tr><tr><td>id_rsa.pub</td><td>公钥</td><td>~/.ssh/id_rsa.pub</td></tr></tbody></table><h1 id=使用xshell生成密钥公钥>使用Xshell生成密钥公钥</h1><p><a href=/uploads/XSHELL5.7z>点击下载Xshell5</a>依次点击菜单栏中的【工具】【新建用户密钥生成向导】</p><p><a data-fancybox=gallery href=/images/xshell_new_key.png><img class=mx-auto alt src=/images/xshell_new_key.png></a></p><p>【密钥类型】选择<code>RSA</code>【长度】<code>2048</code>可以自定义</p><p><a data-fancybox=gallery href=/images/xshell_new_key1.png><img class=mx-auto alt src=/images/xshell_new_key1.png></a></p><p><a data-fancybox=gallery href=/images/xshell_new_key2.png><img class=mx-auto alt src=/images/xshell_new_key2.png></a></p><p><a data-fancybox=gallery href=/images/xshell_new_key3.png><img class=mx-auto alt src=/images/xshell_new_key3.png></a></p><p><a data-fancybox=gallery href=/images/xshell_new_key4.png><img class=mx-auto alt src=/images/xshell_new_key4.png></a></p><p>然后一路【下一步】【保存为文件】</p><p>生成私钥
+工具 -> 用户秘钥管理者
+选中秘钥类型 -> 导出</p><p><a data-fancybox=gallery href=/images/xshell_new_key5.png><img class=mx-auto alt src=/images/xshell_new_key5.png></a></p><p>至此，生成了一对 公钥-私钥 对。
+id_rsa_2048.pub #公钥
+id_rsa_2048 #私钥</p><p>使用<a href=/uploads/puttygen.7z>puttygen</a>把密钥id_rsa_2048转换成xxx.ppk后缀的文件</p><p><a data-fancybox=gallery href=/images/id_rsa_2048_to_ppk.png><img class=mx-auto alt src=/images/id_rsa_2048_to_ppk.png></a></p><p>如果您实在不会或者不想动手的话，可以用现成的。下载已经生成的 <a href=/uploads/share_id_rsa_2048.zip>id_rsa_2048密钥对</a> 里面包括了<code>公钥</code> <code>私钥</code>及转换好了的PPK格式后缀</p><h1 id=配置xshell使用密钥登陆>配置Xshell使用密钥登陆</h1><p>创建目录</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>mkdir .ssh
+chmod <span style=color:#099>700</span> .ssh
+</code></pre></div><p>创建文件</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#0086b3>cd</span> .ssh
+touch authorized_keys
+chmod <span style=color:#099>600</span> authorized_keys
+</code></pre></div><p>写入公钥内容</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>nano /.ssh/authorized_keys
+</code></pre></div><p>把<code>id_rsa_2048.pub</code>中的文本内容全部复制到<code>/.ssh/authorized_keys</code></p><p>修改SSH配置文件</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>nano /etc/ssh/sshd_config
+</code></pre></div><p>启用密钥验证</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>RSAAuthentication yes
+PubkeyAuthentication yes
+AuthorsizedKeysFile .ssh/authorized_keys
+</code></pre></div><p><code>AuthorsizedKeysFile .ssh/authorized_keys</code>是指定公钥数据库文件</p><p>重启SSH服务生效</p><p>RHEL/CentOS系统</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>service sshd restart
+</code></pre></div><p>ubuntu系统</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>service ssh restart
+</code></pre></div><p>debian系统</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>/etc/init.d/ssh restart
+</code></pre></div><p>切换到使用密钥登陆，如果成功了就可以禁止密码登陆了</p><p>PasswordAuthentication no</p><h1 id=其它>其它</h1><p>PermitRootLogin yes</p><p><code>yes</code>允许用户root登陆<code>no</code>禁用</p><p>Port 22</p><p>默认22端口，可自定义修改</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>sudo -i
+</code></pre></div><p>切换到root用户权限</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>passwd root
+</code></pre></div><p>设置root用户的密码</p><p>关于putty的登陆设置，由于putty与ssh2的key文件不同，所以要用puttygen.exe转换一下。</p><p>运行puttygen.exe，选择Conversions->Import key，选择privateKey文件，</p><p>注意这里要选privatekey文件，而不是前面用的publickey文件，
+最后选择"save private key"将密钥保存为.ppk文件，这个就是putty需要的key文件。</p><p>运行putty，填写完session信息后，到connection->ssh->auth中指定好privatekey文件即可，
+当然也可以在connection->data中设置上auto-login username</p><p><code>PermitRootLogin yes</code>使用root登陆提示如下</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>login as: root
+Authenticating with public key <span style=color:#d14>&#34;imported-openssh-key&#34;</span>
+Please login as the user <span style=color:#d14>&#34;ubuntu&#34;</span> rather than the user <span style=color:#d14>&#34;root&#34;</span>.
+</code></pre></div><p>需要在authorized_keys中有一个命令，如下所示。</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>cat /root/.ssh/authorized_keys 
+no-port-forwarding,no-agent-forwarding,no-X11-forwarding,command<span style=color:#000;font-weight:700>=</span><span style=color:#d14>&#34;echo &#39;Please login as the user \&#34;ubuntu\&#34; rather than the user \&#34;root\&#34;.&#39;;echo;sleep 10&#34;</span>
+</code></pre></div><p>删除此行，并保留它后面的ssh-rsa和密钥。</p><p>保存文件，然后重试。</p></div><div class=post-archive><ul class=post-copyright><li><strong>原文作者：</strong><a rel=author href=https://567899.xyz>Xizi</a></li><li style=word-break:break-all><strong>原文链接：</strong><a href=https://567899.xyz/post/SSH-Xshell-password-keys/>https://567899.xyz/post/SSH-Xshell-password-keys/</a></li><li><strong>版权声明：</strong>本作品采用<a rel=license href=https://creativecommons.org/licenses/by-nc-nd/4.0/>知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议</a>进行许可，非商业转载请注明出处（作者，原文链接），商业转载请联系作者获得授权。</li></ul></div><br><div class="post-meta meta-tags"><ul class=clearfix><li><a href=/tags/key target=_blank>key</a></li><li><a href=/tags/SSH target=_blank>SSH</a></li></ul></div></article><div class="post bg-white"><script src=https://utteranc.es/client.js repo=pwwq/blog-comments issue-term=pathname theme=github-light crossorigin=anonymous async></script></div></div><footer id=footer><div>&copy; 2022 <a href=https://567899.xyz>Xizi's Blog By Xizi <a href=/sitemap.xml>站点地图</a></a></div><br><div><div class=github-badge><a href=https://gohugo.io/ target=_black rel=nofollow><span class=badge-subject>Powered by</span><span class="badge-value bg-blue">Hugo</span></a></div><div class=github-badge><a href=https://www.flysnow.org/ target=_black><span class=badge-subject>Design by</span><span class="badge-value bg-brightgreen">飞雪无情</span></a></div><div class=github-badge><a href=https://github.com/flysnow-org/maupassant-hugo target=_black><span class=badge-subject>Theme</span><span class="badge-value bg-yellowgreen">Maupassant</span></a></div></div></footer><script type=text/javascript>window.MathJax={tex2jax:{inlineMath:[['$','$']],processEscapes:true}};</script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async></script><script src=//cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js></script><a id=rocket href=#top></a><script type=text/javascript src="/js/totop.js?v=0.0.0" async></script><style type=text/css>div.highlight{position:relative;margin:1em 0}.copy-code{display:none;position:absolute;top:4px;right:4px;color:rgba(255,255,255,.8);background:rgba(78,78,78,.8);border-radius:var(--radius);padding:0 5px;font:inherit;user-select:none;cursor:pointer;border:0;--radius: 8px}div.highlight:hover .copy-code,pre:hover .copy-code{display:block}</style><script>document.querySelectorAll('pre > code').forEach((codeblock)=>{const container=codeblock.parentNode.parentNode;const copybutton=document.createElement('button');copybutton.classList.add('copy-code');copybutton.innerHTML='copy';function copyingDone(){copybutton.innerHTML='copied!';setTimeout(()=>{copybutton.innerHTML='copy';},2000);}
+copybutton.addEventListener('click',(cb)=>{if('clipboard'in navigator){navigator.clipboard.writeText(codeblock.textContent);copyingDone();return;}
+const range=document.createRange();range.selectNodeContents(codeblock);const selection=window.getSelection();selection.removeAllRanges();selection.addRange(range);try{document.execCommand('copy');copyingDone();}catch(e){};selection.removeRange(range);});if(container.classList.contains("highlight")){container.appendChild(copybutton);}else if(container.parentNode.firstChild==container){}else if(codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"){codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);}else{codeblock.parentNode.appendChild(copybutton);}});</script><script src=/js/douban.js></script></div><div id=secondary><section class=widget><form id=search action=https://567899.xyz/search method=get accept-charset=utf-8 target=_blank _lpchecked=1><input type=text name=q maxlength=20 placeholder=Search>
+<input type=hidden name=sitesearch value=https://567899.xyz>
+<button type=submit class="submit icon-search"></button></form></section><section class=widget><h3 class=widget-title>最近文章</h3><ul class=widget-list><li><a href=https://567899.xyz/post/google_drive_folderclone/ title="[更新]Folderclone谷歌Google Drive共享云端硬盘转存相互转移拷贝复制文件的正确姿势" target=_blank>[更新]Folderclone谷歌Google Drive共享云端硬盘转存相互转移拷贝复制文件的正确姿势</a></li><li><a href=https://567899.xyz/post/v2ray-http/ title="联通电信移动V2ray免流host http教程" target=_blank>联通电信移动V2ray免流host http教程</a></li><li><a href=https://567899.xyz/post/qiandao/ title=Cookie自动登陆签到、抓包提取制作HAR文件 target=_blank>Cookie自动登陆签到、抓包提取制作HAR文件</a></li><li><a href=https://567899.xyz/post/flexget/ title=flexget自动为qbittorrent、transmission等PT客户端添加种子任务 target=_blank>flexget自动为qbittorrent、transmission等PT客户端添加种子任务</a></li><li><a href=https://567899.xyz/post/autoremove-torrents/ title=使用autoremove-torrents自动删除PT种子文件 target=_blank>使用autoremove-torrents自动删除PT种子文件</a></li><li><a href=https://567899.xyz/post/android-termux-transmission-pt-downloads/ title=安卓手机可以在termux里安装Transmission来玩PT下载 target=_blank>安卓手机可以在termux里安装Transmission来玩PT下载</a></li><li><a href=https://567899.xyz/post/TinyFileManager/ title="Tiny File Manager一款简洁的PHP文件管理器" target=_blank>Tiny File Manager一款简洁的PHP文件管理器</a></li><li><a href=https://567899.xyz/post/Transmission/ title=Transmission的安装、配置、制作PT种子torrent做种 target=_blank>Transmission的安装、配置、制作PT种子torrent做种</a></li><li><a href=https://567899.xyz/post/win10-sound-not-work/ title=win10系统音量图标灰色无法调节的解决方法 target=_blank>win10系统音量图标灰色无法调节的解决方法</a></li><li><a href=https://567899.xyz/post/oracle-oci-arm-vps/ title="Oracle甲骨文OCI自动刷ARM VPS脚本" target=_blank>Oracle甲骨文OCI自动刷ARM VPS脚本</a></li></ul></section><section class=widget><h3 class=widget-title><a href=/categories/>分类</a></h3><ul class=widget-list><li><a href=https://567899.xyz/categories/Android/>Android (2)</a></li><li><a href=https://567899.xyz/categories/Telegram/>Telegram (1)</a></li><li><a href=https://567899.xyz/categories/Windows/>Windows (2)</a></li><li><a href=https://567899.xyz/categories/free/>free (1)</a></li><li><a href=https://567899.xyz/categories/%E6%95%99%E7%A8%8B/>教程 (87)</a></li><li><a href=https://567899.xyz/categories/%E8%BD%AF%E4%BB%B6/>软件 (4)</a></li></ul></section><section class=widget><h3 class=widget-title><a href=/tags/>标签</a></h3><div class=tagcloud><a href=https://567899.xyz/tags/7z/>7z</a>
+<a href=https://567899.xyz/tags/ADB/>ADB</a>
+<a href=https://567899.xyz/tags/API/>API</a>
+<a href=https://567899.xyz/tags/Actions/>Actions</a>
+<a href=https://567899.xyz/tags/Aira2/>Aira2</a>
+<a href=https://567899.xyz/tags/Android/>Android</a>
+<a href=https://567899.xyz/tags/Apache/>Apache</a>
+<a href=https://567899.xyz/tags/AutoRclone/>AutoRclone</a>
+<a href=https://567899.xyz/tags/Azure/>Azure</a>
+<a href=https://567899.xyz/tags/BaiduPCS-Go/>BaiduPCS-Go</a>
+<a href=https://567899.xyz/tags/BestTrace/>BestTrace</a>
+<a href=https://567899.xyz/tags/Bitwarden/>Bitwarden</a>
+<a href=https://567899.xyz/tags/caddy/>caddy</a>
+<a href=https://567899.xyz/tags/Certbot/>Certbot</a>
+<a href=https://567899.xyz/tags/Chrome/>Chrome</a>
+<a href=https://567899.xyz/tags/cloudflare/>cloudflare</a>
+<a href=https://567899.xyz/tags/Cookie/>Cookie</a>
+<a href=https://567899.xyz/tags/Debian/>Debian</a>
+<a href=https://567899.xyz/tags/FODI/>FODI</a>
+<a href=https://567899.xyz/tags/FastStoneCapture/>FastStoneCapture</a>
+<a href=https://567899.xyz/tags/Git/>Git</a>
+<a href=https://567899.xyz/tags/GitHub/>GitHub</a>
+<a href=https://567899.xyz/tags/Gmail/>Gmail</a>
+<a href=https://567899.xyz/tags/GoogleDrive/>GoogleDrive</a>
+<a href=https://567899.xyz/tags/hugo/>hugo</a>
+<a href=https://567899.xyz/tags/IP/>IP</a>
+<a href=https://567899.xyz/tags/Lycamobile/>Lycamobile</a>
+<a href=https://567899.xyz/tags/Magisk/>Magisk</a>
+<a href=https://567899.xyz/tags/MySQL/>MySQL</a>
+<a href=https://567899.xyz/tags/NPM/>NPM</a>
+<a href=https://567899.xyz/tags/Netflix/>Netflix</a>
+<a href=https://567899.xyz/tags/Nginx/>Nginx</a>
+<a href=https://567899.xyz/tags/Node.js/>Node.js</a>
+<a href=https://567899.xyz/tags/OneDrive/>OneDrive</a>
+<a href=https://567899.xyz/tags/OpenWrt/>OpenWrt</a>
+<a href=https://567899.xyz/tags/OpenWrt/>OpenWrt</a>
+<a href=https://567899.xyz/tags/oracle/>oracle</a>
+<a href=https://567899.xyz/tags/php/>php</a>
+<a href=https://567899.xyz/tags/PT/>PT</a>
+<a href=https://567899.xyz/tags/Pornhub/>Pornhub</a>
+<a href=https://567899.xyz/tags/Python/>Python</a>
+<a href=https://567899.xyz/tags/QQ/>QQ</a>
+<a href=https://567899.xyz/tags/rclone/>rclone</a>
+<a href=https://567899.xyz/tags/SMTP/>SMTP</a>
+<a href=https://567899.xyz/tags/SSH/>SSH</a>
+<a href=https://567899.xyz/tags/ssl/>ssl</a>
+<a href=https://567899.xyz/tags/TXT/>TXT</a>
+<a href=https://567899.xyz/tags/Telegram/>Telegram</a>
+<a href=https://567899.xyz/tags/Transmission/>Transmission</a>
+<a href=https://567899.xyz/tags/Ubuntu/>Ubuntu</a>
+<a href=https://567899.xyz/tags/V2ray/>V2ray</a>
+<a href=https://567899.xyz/tags/Windows/>Windows</a>
+<a href=https://567899.xyz/tags/WireGuard/>WireGuard</a>
+<a href=https://567899.xyz/tags/Xshell/>Xshell</a>
+<a href=https://567899.xyz/tags/alipay/>alipay</a>
+<a href=https://567899.xyz/tags/bbr/>bbr</a>
+<a href=https://567899.xyz/tags/caddy/>caddy</a>
+<a href=https://567899.xyz/tags/Chrome/>Chrome</a>
+<a href=https://567899.xyz/tags/cloudflare/>cloudflare</a>
+<a href=https://567899.xyz/tags/cmd/>cmd</a>
+<a href=https://567899.xyz/tags/crontab/>crontab</a>
+<a href=https://567899.xyz/tags/dd/>dd</a>
+<a href=https://567899.xyz/tags/docker/>docker</a>
+<a href=https://567899.xyz/tags/folderclone/>folderclone</a>
+<a href=https://567899.xyz/tags/frp/>frp</a>
+<a href=https://567899.xyz/tags/gitbook/>gitbook</a>
+<a href=https://567899.xyz/tags/GitHub/>GitHub</a>
+<a href=https://567899.xyz/tags/google/>google</a>
+<a href=https://567899.xyz/tags/hexo/>hexo</a>
+<a href=https://567899.xyz/tags/hugo/>hugo</a>
+<a href=https://567899.xyz/tags/key/>key</a>
+<a href=https://567899.xyz/tags/nano/>nano</a>
+<a href=https://567899.xyz/tags/OpenWrt/>OpenWrt</a>
+<a href=https://567899.xyz/tags/oracle/>oracle</a>
+<a href=https://567899.xyz/tags/php/>php</a>
+<a href=https://567899.xyz/tags/qBittorrent/>qBittorrent</a>
+<a href=https://567899.xyz/tags/rar/>rar</a>
+<a href=https://567899.xyz/tags/rclone/>rclone</a>
+<a href=https://567899.xyz/tags/scp/>scp</a>
+<a href=https://567899.xyz/tags/screen/>screen</a>
+<a href=https://567899.xyz/tags/ssl/>ssl</a>
+<a href=https://567899.xyz/tags/swap/>swap</a>
+<a href=https://567899.xyz/tags/systemctl/>systemctl</a>
+<a href=https://567899.xyz/tags/tar/>tar</a>
+<a href=https://567899.xyz/tags/Transmission/>Transmission</a>
+<a href=https://567899.xyz/tags/vnc/>vnc</a>
+<a href=https://567899.xyz/tags/Windows/>Windows</a>
+<a href=https://567899.xyz/tags/zfaka/>zfaka</a>
+<a href=https://567899.xyz/tags/%E8%81%94%E9%80%9A/>联通</a></div></section><section class=widget><h3 class=widget-title>其它</h3><ul class=widget-list><li><a href=https://567899.xyz/index.xml>文章 RSS</a></li></ul></section></div></div></div></div></body></html>

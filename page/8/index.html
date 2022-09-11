@@ -1,431 +1,107 @@
-<!DOCTYPE html>
-<html lang="zh-cn">
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Xizi&#39;s Blog</title>
-  <meta name="renderer" content="webkit" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-<meta name="theme-color" content="#f8f5ec" />
-<meta name="msapplication-navbutton-color" content="#f8f5ec">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
-
-
-<meta name="author" content="Xizi" />
-
-
-
-
-
-
-<meta name="generator" content="Hugo 0.69.2 with theme even" />
-
-
-<link rel="canonical" href="https://567899.xyz/" />
-  <link href="https://567899.xyz/index.xml" rel="alternate" type="application/rss+xml" title="Xizi&#39;s Blog" />
-  <link href="https://567899.xyz/index.xml" rel="feed" type="application/rss+xml" title="Xizi&#39;s Blog" />
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-<link rel="manifest" href="/manifest.json">
-<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
-
-<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-<link href="/sass/main.min.8512a1393ed8da42d418fb5c93ffb87b1b8e675a95bf81444ae5aa3f5a2cd0ab.css" rel="stylesheet">
-<link href="/lib/fancybox/jquery.fancybox-3.1.20.min.css" rel="stylesheet">
-
-
-<meta property="og:title" content="Xizi&#39;s Blog" />
-<meta property="og:description" content="" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://567899.xyz/" />
-<meta property="og:updated_time" content="2020-02-07T17:43:21+08:00" />
-<meta itemprop="name" content="Xizi&#39;s Blog">
-<meta itemprop="description" content=""><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Xizi&#39;s Blog"/>
-<meta name="twitter:description" content=""/>
-
-<!--[if lte IE 9]>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
-<![endif]-->
-
-<!--[if lt IE 9]>
-  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
-<![endif]-->
-
-</head>
-<body>
-  <div id="mobile-navbar" class="mobile-navbar">
-  <div class="mobile-header-logo">
-    <a href="/" class="logo">Xizi&#39;s Blog</a>
-  </div>
-  <div class="mobile-navbar-icon">
-    <span></span>
-    <span></span>
-    <span></span>
-  </div>
-</div>
-<nav id="mobile-menu" class="mobile-menu slideout-menu">
-  <ul class="mobile-menu-list">
-    <a href="/">
-        <li class="mobile-menu-item">主页</li>
-      </a><a href="/post/">
-        <li class="mobile-menu-item">归档</li>
-      </a><a href="/tags/">
-        <li class="mobile-menu-item">标签</li>
-      </a><a href="/categories/">
-        <li class="mobile-menu-item">分类</li>
-      </a><a href="/links/">
-        <li class="mobile-menu-item">链接</li>
-      </a><a href="/about/">
-        <li class="mobile-menu-item">关于</li>
-      </a><a href="/search/">
-        <li class="mobile-menu-item">搜索</li>
-      </a>
-  </ul>
-</nav>
-  <div class="container" id="mobile-panel">
-    <header id="header" class="header">
-        <div class="logo-wrapper">
-  <a href="/" class="logo">Xizi&#39;s Blog</a>
-</div>
-
-<nav class="site-navbar">
-  <ul id="menu" class="menu">
-    <li class="menu-item">
-        <a class="menu-item-link" href="/">主页</a>
-      </li><li class="menu-item">
-        <a class="menu-item-link" href="/post/">归档</a>
-      </li><li class="menu-item">
-        <a class="menu-item-link" href="/tags/">标签</a>
-      </li><li class="menu-item">
-        <a class="menu-item-link" href="/categories/">分类</a>
-      </li><li class="menu-item">
-        <a class="menu-item-link" href="/links/">链接</a>
-      </li><li class="menu-item">
-        <a class="menu-item-link" href="/about/">关于</a>
-      </li><li class="menu-item">
-        <a class="menu-item-link" href="/search/">搜索</a>
-      </li>
-  </ul>
-</nav>
-    </header>
-
-    <main id="main" class="main">
-      <div class="content-wrapper">
-        <div id="content" class="content">
-          <section id="posts" class="posts">
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/post/crontab/">Crontab定时执行计划任务</a></h1>
-    <div class="post-meta">
-      <span class="post-time" title="2018-01-25 01:37:56 &#43;0800 &#43;0800"> 2018-01-25 </span>
-      <div class="post-category">
-          <a href="/categories/%E6%95%99%E7%A8%8B/"> 教程 </a>
-          </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      crond简介 crond是linux定时执行计划任务 Linux下的任务调度分为两类，系统任务调度和用户任务调度。 系统任务 配置文件/etc/c
-    </div>
-    <div class="read-more">
-      <a href="/post/crontab/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/post/debian-ubuntu-kernel-update-bbr/">Debian/Ubuntu系统手动更新内核并启用TCP BBR拥塞控制算法</a></h1>
-    <div class="post-meta">
-      <span class="post-time" title="2017-12-21 01:37:56 &#43;0800 &#43;0800"> 2017-12-21 </span>
-      <div class="post-category">
-          <a href="/categories/%E6%95%99%E7%A8%8B/"> 教程 </a>
-          </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      查看内核版本 uname -r BBR要求内核为kernel4.9以上版本。 如果大于或等于4.9的可以直接开启BBR,开启步骤如下 配置文件 echo &quot;net.core.default_qdisc=fq&quot; &gt;&gt; /etc/sysctl.conf echo &quot;net.ipv4.tcp_congestion_control=bbr&quot; &gt;&gt; /etc/sysctl.conf 加
-    </div>
-    <div class="read-more">
-      <a href="/post/debian-ubuntu-kernel-update-bbr/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/post/ipv4-ipv6-connect-access/">IPv6的VPS连接IPv4和IPv4的VPS免费获取IPv6</a></h1>
-    <div class="post-meta">
-      <span class="post-time" title="2017-11-09 01:37:56 &#43;0800 &#43;0800"> 2017-11-09 </span>
-      <div class="post-category">
-          <a href="/categories/%E6%95%99%E7%A8%8B/"> 教程 </a>
-          </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      只有IPv6的VPS连通IPV4 无ipv4纯ipv6先编辑/etc/resolv.conf改成DNS64地址 nameserver 2001:67c:2b0::4 nameserver 2001:67c:27e4::64 然后执行 chattr +i /etc/resolv.conf service systemd-resolved restart IP
-    </div>
-    <div class="read-more">
-      <a href="/post/ipv4-ipv6-connect-access/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/post/oneindex-installation-failed/">Oneindex程序安装失败解决办法</a></h1>
-    <div class="post-meta">
-      <span class="post-time" title="2017-10-04 01:37:56 &#43;0800 &#43;0800"> 2017-10-04 </span>
-      <div class="post-category">
-          <a href="/categories/%E6%95%99%E7%A8%8B/"> 教程 </a>
-          </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      项目地址： https://github.com/donwa/oneindex 功能： 不占用服务器空间，不走服务器流量； 直接列出 OneDrive 目录，文件直链下载。 源码安装运行需求： PHP空间，PHP 5.6+ 需打开curl支持 OneDrive
-    </div>
-    <div class="read-more">
-      <a href="/post/oneindex-installation-failed/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/post/linux-tar-unzip-p7zip-unrar-password/">Linux下tar,unzip,7z,rar压缩带密码解压文件文件夹的使用</a></h1>
-    <div class="post-meta">
-      <span class="post-time" title="2017-10-01 01:37:56 &#43;0800 &#43;0800"> 2017-10-01 </span>
-      <div class="post-category">
-          <a href="/categories/%E6%95%99%E7%A8%8B/"> 教程 </a>
-          </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      tar压缩 压缩多个文件或者文件夹的命令 tar -czvf a.tar.gz(想压缩文件名) 源文件名1 源文件名2 源文件夹1 源文件夹2 参数： c创建一个压缩文件，
-    </div>
-    <div class="read-more">
-      <a href="/post/linux-tar-unzip-p7zip-unrar-password/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/post/qbittorrent/">Linux安装、使用qBittorrent</a></h1>
-    <div class="post-meta">
-      <span class="post-time" title="2017-09-22 01:37:56 &#43;0800 &#43;0800"> 2017-09-22 </span>
-      <div class="post-category">
-          <a href="/categories/%E6%95%99%E7%A8%8B/"> 教程 </a>
-          </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      qBittorrent是一款常见的BT,PT下载工具， PT下载工具对比 qBittorrent在PT中抢上传有优势 Transmission适合
-    </div>
-    <div class="read-more">
-      <a href="/post/qbittorrent/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/post/telegram/">Telegram解锁&#43;86聊天,加机器人spambot进行解锁.</a></h1>
-    <div class="post-meta">
-      <span class="post-time" title="2017-09-04 01:37:56 &#43;0800 &#43;0800"> 2017-09-04 </span>
-      <div class="post-category">
-          <a href="/categories/telegram/"> Telegram </a>
-          </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      Telegram Sorry, you can only send messages to mutual contacts at the moment. MORE INFO OK Telegram 抱歉，您目前只能向相互的联系人发送消息。 更多信息 好的 @SpamBot发送/start Q: Good news, no limits are currently applied to your account.
-    </div>
-    <div class="read-more">
-      <a href="/post/telegram/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/post/english-preview/">[English] Creating a New Theme</a></h1>
-    <div class="post-meta">
-      <span class="post-time" title="2017-08-31 15:43:48 &#43;0800 &#43;0800"> 2017-08-31 </span>
-      <div class="post-category">
-          <a href="/categories/english/"> English </a>
-          </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      Introduction This tutorial will show you how to create a simple theme in Hugo. I assume that you are familiar with HTML, the bash command line, and that you are comfortable using Markdown to format content. I&rsquo;ll explain how Hugo uses templates and how you can organize your templates to create a theme. I won&rsquo;t cover using CSS to style your theme.
-We&rsquo;ll start with creating a new site with a very basic template.
-    </div>
-    <div class="read-more">
-      <a href="/post/english-preview/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/post/japanese-preview/">[日本語] 敬語体系</a></h1>
-    <div class="post-meta">
-      <span class="post-time" title="2017-08-30 01:53:34 &#43;0800 &#43;0800"> 2017-08-30 </span>
-      <div class="post-category">
-          <a href="/categories/%E6%97%A5%E6%9C%AC%E8%AA%9E/"> 日本語 </a>
-          </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      日本語の敬語体系は、一般に、大きく尊敬語・謙譲語・丁寧語に分類される。文化審議会国語分科会は、2007年2月に「敬語の指針」を答申し、これに
-    </div>
-    <div class="read-more">
-      <a href="/post/japanese-preview/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/post/chinese-preview/">[中文] 《长恨歌》</a></h1>
-    <div class="post-meta">
-      <span class="post-time" title="2017-08-30 01:37:56 &#43;0800 &#43;0800"> 2017-08-30 </span>
-      <div class="post-category">
-          <a href="/categories/%E4%B8%AD%E6%96%87/"> 中文 </a>
-          </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      《长恨歌》是中国唐朝诗人白居易的一首长篇叙事诗。 第一段：贵妃受宠爱 汉皇重色思倾国，御宇多年求不得。杨家有女初长成，养在深闺人未识。 天生丽质难
-    </div>
-    <div class="read-more">
-      <a href="/post/chinese-preview/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    </section>
-  
-  <nav class="pagination">
-    <a class="prev" href="/page/7/">
-        <i class="iconfont icon-left"></i>
-        <span class="prev-text">上一页</span>
-      </a>
-    <a class="next" href="/page/9/">
-        <span class="next-text">下一页</span>
-        <i class="iconfont icon-right"></i>
-      </a>
-  </nav>
-        </div>
-        
-
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="social-links">
-      <a href="mailto:admin@567899.xyz" class="iconfont icon-email" title="email" target="_blank"></a>
-      <a href="https://github.com/pwwq" class="iconfont icon-github" title="github" target="_blank"></a>
-  <a href="https://567899.xyz/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
-</div>
-
-<div class="copyright">
-  <span class="power-by">
-    由 <a class="hexo-link" href="https://gohugo.io" target="_blank">Hugo</a> 强力驱动
-  </span>
-  <span class="division">|</span>
-  <span class="theme-info">
-    主题 - 
-    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even" target="_blank">Even</a>
-  </span>
-
-  <div class="busuanzi-footer">
-    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
-      <span class="division">|</span>
-    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
-  </div>
-
-  <span class="copyright-year">
-    &copy; 
-    2013 - 
-    2022
-    <span class="heart">
-      <a class="iconfont icon-github" title="source code" href="https://github.com/pwwq/hugo-code" target="_blank"></a>
-    </span> 
-    <span class="author">Xizi</span>
-  </span>
-</div>
-
-    </footer>
-
-    <div class="back-to-top" id="back-to-top">
-      <i class="iconfont icon-up"></i>
-    </div>
-  </div>
-  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
-  <link href="https://cdn.bootcss.com/highlight.js/9.15.10/styles/tomorrow.min.css" rel="stylesheet">
-  <script>hljs.configure({tabReplace: '    '});</script><script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
-  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
-  <script type="text/javascript" src="/lib/fancybox/jquery.fancybox-3.1.20.min.js"></script>
-
-
-
-<script type="text/javascript" src="/js/main.min.6821b76b4e5300f807f477f7f6e0e8772a852e6af6d99f47104e1b9632e47aba.js"></script>
-  <script type="text/javascript">
-    window.MathJax = {
-      tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
-      showProcessingMessages: false,
-      messageStyle: 'none'
-    };
-  </script>
-  <script async src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"  integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
-
-
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'UA-XXXXX', 'auto');
-	ga('set', 'anonymizeIp', true);
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
-
-
-
-
-
-
-</body>
-</html>
+<!doctype html><html lang=zh-cn><head><meta name=generator content="Hugo 0.69.2"><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><title>Xizi's Blog | 记录、分享自己的折腾日记。</title><meta property="og:title" content="Xizi's Blog | 记录、分享自己的折腾日记。"><meta property="og:type" content="website"><meta name=Keywords content><meta name=description content><meta property="og:url" content="https://567899.xyz/"><link rel="shortcut icon" href=/favicon.ico type=image/x-icon><link rel=stylesheet href=/css/normalize.css><link rel=stylesheet href=/css/style.css><link rel=alternate type=application/rss+xml href=https://567899.xyz/index.xml title="Xizi's Blog"><script type=text/javascript src=//cdn.bootcdn.net/ajax/libs/jquery/3.4.1/jquery.min.js></script><link href=https://cdn.bootcdn.net/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css rel=stylesheet><link rel=stylesheet href=/css/douban.css><link rel=stylesheet href=/css/other.css></head><body><header id=header class=clearfix><div class=container><div class=col-group><div class=site-name><h1><a id=logo href=https://567899.xyz>Xizi's Blog</a></h1><p class=description>记录、分享自己的折腾日记。</p></div><div><nav id=nav-menu class=clearfix><a class=current href=https://567899.xyz>首页</a>
+<a href=https://567899.xyz/post/tools/ title=工具>工具</a>
+<a href=https://567899.xyz/archives/ title=归档>归档</a>
+<a href=https://567899.xyz/about/ title=关于>关于</a></nav></div></div></div></header><div id=body><div class=container><div class=col-group><div class=col-8 id=main><div class=res-cons><article class=post><header><h1 class=post-title><a href=https://567899.xyz/post/crontab/ title=Crontab定时执行计划任务 target=_blank>Crontab定时执行计划任务</a></h1></header><date class="post-meta meta-date">2018年1月25日</date><div class=post-meta><span>|</span>
+<span class=meta-category><a href=/categories/%E6%95%99%E7%A8%8B target=_blank>教程</a></span></div><div class=post-content>crond简介 crond是linux定时执行计划任务 Linux下的任务调度分为两类，系统任务调度和用户任务调度。 系统任务 配置文件/etc/crontab nano /etc/crontab 用户任务 crontab -e crontab文件的含义 用户所建立的crontab文件中，每一行都代表一项任务，每行的每个字段代表一项设置，它的……</div><p class=readmore><a href=https://567899.xyz/post/crontab/ target=_blank>阅读全文</a></p></article><article class=post><header><h1 class=post-title><a href=https://567899.xyz/post/Debian-Ubuntu-kernel-update-bbr/ title="Debian/Ubuntu系统手动更新内核并启用TCP BBR拥塞控制算法" target=_blank>Debian/Ubuntu系统手动更新内核并启用TCP BBR拥塞控制算法</a></h1></header><date class="post-meta meta-date">2017年12月21日</date><div class=post-meta><span>|</span>
+<span class=meta-category><a href=/categories/%E6%95%99%E7%A8%8B target=_blank>教程</a></span></div><div class=post-content>查看内核版本 uname -r BBR要求内核为kernel4.9以上版本。 如果大于或等于4.9的可以直接开启BBR,开启步骤如下 配置文件 echo "net.core.default_qdisc=fq" >> /etc/sysctl.conf echo "net.ipv4.tcp_congestion_control=bbr" >> /etc/sysctl.conf 加载配置到内核参数中 sysctl -p sysctl net.ipv4.tcp_available_congestion_control 顺利的话下面的命令就能看到bbr模块了 lsmod | grep bbr sysctl net.ipv4.tcp_available_congestion_control 返回值一般为： net.ipv4.tcp_available_congestion_control = bbr cubic reno sysctl net.ipv4.tcp_congestion_control 返回值一般为： net.ipv4.tcp_congestion_control = bbr sysctl net.core.default_qdisc 返回值一般为……</div><p class=readmore><a href=https://567899.xyz/post/Debian-Ubuntu-kernel-update-bbr/ target=_blank>阅读全文</a></p></article><article class=post><header><h1 class=post-title><a href=https://567899.xyz/post/ipv4-ipv6-connect-access/ title=IPv6的VPS连接IPv4和IPv4的VPS免费获取IPv6 target=_blank>IPv6的VPS连接IPv4和IPv4的VPS免费获取IPv6</a></h1></header><date class="post-meta meta-date">2017年11月9日</date><div class=post-meta><span>|</span>
+<span class=meta-category><a href=/categories/%E6%95%99%E7%A8%8B target=_blank>教程</a></span></div><div class=post-content>只有IPv6的VPS连通IPV4 无ipv4纯ipv6先编辑/etc/resolv.conf改成DNS64地址 nameserver 2001:67c:2b0::4 nameserver 2001:67c:27e4::64 然后执行 chattr +i /etc/resolv.conf service systemd-resolved restart IPV4免费获得IPV6 只有IPV4的VPS通过Hurricane Electric Internet Services免费获得IPV6。 Hurricane Electric Free IPv6 Tunnel Broker 注册 登陆 按提示输入公网IPV……</div><p class=readmore><a href=https://567899.xyz/post/ipv4-ipv6-connect-access/ target=_blank>阅读全文</a></p></article><article class=post><header><h1 class=post-title><a href=https://567899.xyz/post/oneindex-installation-failed/ title=Oneindex程序安装失败解决办法 target=_blank>Oneindex程序安装失败解决办法</a></h1></header><date class="post-meta meta-date">2017年10月4日</date><div class=post-meta><span>|</span>
+<span class=meta-category><a href=/categories/%E6%95%99%E7%A8%8B target=_blank>教程</a></span></div><div class=post-content>项目地址： https://github.com/donwa/oneindex 功能： 不占用服务器空间，不走服务器流量； 直接列出 OneDrive 目录，文件直链下载。 源码安装运行需求： PHP空间，PHP 5.6+ 需打开curl支持 OneDrive 账号 (个人、企业版或教育版/工作或学校帐户) OneIndex 程序 Oneindex程序安装失败解决办法 打开这个网址https://apps.dev.micr……</div><p class=readmore><a href=https://567899.xyz/post/oneindex-installation-failed/ target=_blank>阅读全文</a></p></article><article class=post><header><h1 class=post-title><a href=https://567899.xyz/post/linux-tar-unzip-p7zip-unrar-password/ title=Linux下tar,unzip,7z,rar压缩带密码解压文件文件夹的使用 target=_blank>Linux下tar,unzip,7z,rar压缩带密码解压文件文件夹的使用</a></h1></header><date class="post-meta meta-date">2017年10月1日</date><div class=post-meta><span>|</span>
+<span class=meta-category><a href=/categories/%E6%95%99%E7%A8%8B target=_blank>教程</a></span></div><div class=post-content>tar压缩 压缩多个文件或者文件夹的命令 tar -czvf a.tar.gz(想压缩文件名) 源文件名1 源文件名2 源文件夹1 源文件夹2 参数： c创建一个压缩文件，如果只使用这个参数，不使用 z 参数，那么只会打包，不会压缩 x解开一个压缩文件 z是否使用 gzip 压缩或解压 j是否使用 bzip2 压缩或解压 v显示详细信息 f指定压……</div><p class=readmore><a href=https://567899.xyz/post/linux-tar-unzip-p7zip-unrar-password/ target=_blank>阅读全文</a></p></article><article class=post><header><h1 class=post-title><a href=https://567899.xyz/post/qBittorrent/ title=Linux安装、使用qBittorrent target=_blank>Linux安装、使用qBittorrent</a></h1></header><date class="post-meta meta-date">2017年9月22日</date><div class=post-meta><span>|</span>
+<span class=meta-category><a href=/categories/%E6%95%99%E7%A8%8B target=_blank>教程</a></span></div><div class=post-content>qBittorrent是一款常见的BT,PT下载工具， PT下载工具对比 qBittorrent在PT中抢上传有优势 Transmission适合在PT保种，系统资源占用少点 安装qBittorrent 添加软件源 add-apt-repository ppa:qbittorrent-team/qbittorrent-stable 按ENTER回车键添加软件源 【可选】如出现add-apt-reposit……</div><p class=readmore><a href=https://567899.xyz/post/qBittorrent/ target=_blank>阅读全文</a></p></article><article class=post><header><h1 class=post-title><a href=https://567899.xyz/post/Telegram/ title=Telegram解锁+86聊天,加机器人spambot进行解锁. target=_blank>Telegram解锁+86聊天,加机器人spambot进行解锁.</a></h1></header><date class="post-meta meta-date">2017年9月4日</date><div class=post-meta><span>|</span>
+<span class=meta-category><a href=/categories/Telegram target=_blank>Telegram</a></span></div><div class=post-content>Telegram Sorry, you can only send messages to mutual contacts at the moment. MORE INFO OK Telegram 抱歉，您目前只能向相互的联系人发送消息。 更多信息 好的 @SpamBot发送/start Q: Good news, no limits are currently applied to your account. You’re free as a bird! But I can’t message non-contacts! Great. First, please confirm that you will never send this to strangers: - Unsolicited advertising of any kind - Promotional messages - Shocking materials Were you going to do anything like that? A: No, I’ll never do any of this! Q: Great! I’m very sorry if……</div><p class=readmore><a href=https://567899.xyz/post/Telegram/ target=_blank>阅读全文</a></p></article><article class=post><header><h1 class=post-title><a href=https://567899.xyz/post/linux-tcp-bbr-lotserver/ title=TCP加速bbr魔改plus锐速lotserver一键安装包 target=_blank>TCP加速bbr魔改plus锐速lotserver一键安装包</a></h1></header><date class="post-meta meta-date">2017年8月23日</date><div class=post-meta><span>|</span>
+<span class=meta-category><a href=/categories/%E6%95%99%E7%A8%8B target=_blank>教程</a></span></div><div class=post-content>整出了一个集合BBR、BBR魔改、BBR plus、锐速四合一的脚本 本脚本支持KVM架构的VPS，不支持OpenVZ。 项目地址：(https://github.com/cx9208/Linux-NetSpeed) 安装 wget https://github.com/ojbk8/Linux-NetSpeed/raw/master/tcp.sh chmod +x tcp.sh ./tcp.sh 先换成对应加速 出现弹窗按TAB键切换选择No回车删除原……</div><p class=readmore><a href=https://567899.xyz/post/linux-tcp-bbr-lotserver/ target=_blank>阅读全文</a></p></article><article class=post><header><h1 class=post-title><a href=https://567899.xyz/post/SSH-Xshell-password-keys/ title=SSH使用SSH-KEY登录并禁用密码登录 target=_blank>SSH使用SSH-KEY登录并禁用密码登录</a></h1></header><date class="post-meta meta-date">2017年7月12日</date><div class=post-meta><span>|</span>
+<span class=meta-category><a href=/categories/%E6%95%99%E7%A8%8B target=_blank>教程</a></span></div><div class=post-content>SSH安全登陆三步曲 修改默认端口22为其它 改用SSH-keys登陆 禁止密码登陆 Linux生成密钥对 ssh-keygen 文件 类型 路径 id_rsa 私钥 ~/.ssh/id_rsa id_rsa.pub 公钥 ~/.ssh/id_rsa.pub 使用Xshell生成密钥公钥 点击下载Xshell5依次点击菜单栏中的【工具】【新建用户密钥生成向导】 【密钥类型】选择RSA【长度】2048可以自定义 然后……</div><p class=readmore><a href=https://567899.xyz/post/SSH-Xshell-password-keys/ target=_blank>阅读全文</a></p></article><article class=post><header><h1 class=post-title><a href=https://567899.xyz/post/frps-service-install/ title=搭建配置frps内网穿透服务端开机自启 target=_blank>搭建配置frps内网穿透服务端开机自启</a></h1></header><date class="post-meta meta-date">2017年5月15日</date><div class=post-meta><span>|</span>
+<span class=meta-category><a href=/categories/%E6%95%99%E7%A8%8B target=_blank>教程</a></span></div><div class=post-content><p>在debian ubuntu x64上测试通过 <a href=https://github.com/fatedier/frp/releases>其它系统frp下载</a></p><p>假设你的IPV4地址为11.22.33.44 假设是以ROOT用户登陆并在root用户默认目录下</p><h2 id=下载安装frp>下载安装frp</h2><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>wget -N -O frp.tar.gz https://github.com/fatedier/frp/releases/download/v0.23.1/frp_0.23.1_linux_amd64.tar.gz
+tar -zxvf frp.tar.gz
+mv frp_0.23.1_linux_amd64 frp
+</code></pre></div><h2 id=配置frps服务端>配置frps服务端</h2><p>修改文件frp/frps.ini服务端配置文件,按需要添加删减,示范如下</p>……</div><p class=readmore><a href=https://567899.xyz/post/frps-service-install/ target=_blank>阅读全文</a></p></article><ol class=page-navigator><li class=prev><a href=https://567899.xyz/page/7/>上一页</a></li><li><a href=https://567899.xyz/>1</a></li><li><a href=https://567899.xyz/page/2/>2</a></li><li><a href=https://567899.xyz/page/3/>3</a></li><li><a href=https://567899.xyz/page/4/>4</a></li><li><a href=https://567899.xyz/page/5/>5</a></li><li><a href=https://567899.xyz/page/6/>6</a></li><li><a href=https://567899.xyz/page/7/>7</a></li><li class=current><a href=https://567899.xyz/page/8/>8</a></li><li><a href=https://567899.xyz/page/9/>9</a></li><li><a href=https://567899.xyz/page/10/>10</a></li><li class=next><a href=https://567899.xyz/page/9/>下一页</a></li></ol></div><footer id=footer><div>&copy; 2022 <a href=https://567899.xyz>Xizi's Blog By Xizi <a href=/sitemap.xml>站点地图</a></a></div><br><div><div class=github-badge><a href=https://gohugo.io/ target=_black rel=nofollow><span class=badge-subject>Powered by</span><span class="badge-value bg-blue">Hugo</span></a></div><div class=github-badge><a href=https://www.flysnow.org/ target=_black><span class=badge-subject>Design by</span><span class="badge-value bg-brightgreen">飞雪无情</span></a></div><div class=github-badge><a href=https://github.com/flysnow-org/maupassant-hugo target=_black><span class=badge-subject>Theme</span><span class="badge-value bg-yellowgreen">Maupassant</span></a></div></div></footer><a id=rocket href=#top></a><script type=text/javascript src="/js/totop.js?v=0.0.0" async></script><script src=/js/douban.js></script></div><div id=secondary><section class=widget><form id=search action=https://567899.xyz/search method=get accept-charset=utf-8 target=_blank _lpchecked=1><input type=text name=q maxlength=20 placeholder=Search>
+<input type=hidden name=sitesearch value=https://567899.xyz>
+<button type=submit class="submit icon-search"></button></form></section><section class=widget><h3 class=widget-title>最近文章</h3><ul class=widget-list><li><a href=https://567899.xyz/post/google_drive_folderclone/ title="[更新]Folderclone谷歌Google Drive共享云端硬盘转存相互转移拷贝复制文件的正确姿势" target=_blank>[更新]Folderclone谷歌Google Drive共享云端硬盘转存相互转移拷贝复制文件的正确姿势</a></li><li><a href=https://567899.xyz/post/v2ray-http/ title="联通电信移动V2ray免流host http教程" target=_blank>联通电信移动V2ray免流host http教程</a></li><li><a href=https://567899.xyz/post/qiandao/ title=Cookie自动登陆签到、抓包提取制作HAR文件 target=_blank>Cookie自动登陆签到、抓包提取制作HAR文件</a></li><li><a href=https://567899.xyz/post/flexget/ title=flexget自动为qbittorrent、transmission等PT客户端添加种子任务 target=_blank>flexget自动为qbittorrent、transmission等PT客户端添加种子任务</a></li><li><a href=https://567899.xyz/post/autoremove-torrents/ title=使用autoremove-torrents自动删除PT种子文件 target=_blank>使用autoremove-torrents自动删除PT种子文件</a></li><li><a href=https://567899.xyz/post/android-termux-transmission-pt-downloads/ title=安卓手机可以在termux里安装Transmission来玩PT下载 target=_blank>安卓手机可以在termux里安装Transmission来玩PT下载</a></li><li><a href=https://567899.xyz/post/TinyFileManager/ title="Tiny File Manager一款简洁的PHP文件管理器" target=_blank>Tiny File Manager一款简洁的PHP文件管理器</a></li><li><a href=https://567899.xyz/post/Transmission/ title=Transmission的安装、配置、制作PT种子torrent做种 target=_blank>Transmission的安装、配置、制作PT种子torrent做种</a></li><li><a href=https://567899.xyz/post/win10-sound-not-work/ title=win10系统音量图标灰色无法调节的解决方法 target=_blank>win10系统音量图标灰色无法调节的解决方法</a></li><li><a href=https://567899.xyz/post/oracle-oci-arm-vps/ title="Oracle甲骨文OCI自动刷ARM VPS脚本" target=_blank>Oracle甲骨文OCI自动刷ARM VPS脚本</a></li></ul></section><section class=widget><h3 class=widget-title><a href=/categories/>分类</a></h3><ul class=widget-list><li><a href=https://567899.xyz/categories/Android/>Android (2)</a></li><li><a href=https://567899.xyz/categories/Telegram/>Telegram (1)</a></li><li><a href=https://567899.xyz/categories/Windows/>Windows (2)</a></li><li><a href=https://567899.xyz/categories/free/>free (1)</a></li><li><a href=https://567899.xyz/categories/%E6%95%99%E7%A8%8B/>教程 (87)</a></li><li><a href=https://567899.xyz/categories/%E8%BD%AF%E4%BB%B6/>软件 (4)</a></li></ul></section><section class=widget><h3 class=widget-title><a href=/tags/>标签</a></h3><div class=tagcloud><a href=https://567899.xyz/tags/7z/>7z</a>
+<a href=https://567899.xyz/tags/ADB/>ADB</a>
+<a href=https://567899.xyz/tags/API/>API</a>
+<a href=https://567899.xyz/tags/Actions/>Actions</a>
+<a href=https://567899.xyz/tags/Aira2/>Aira2</a>
+<a href=https://567899.xyz/tags/Android/>Android</a>
+<a href=https://567899.xyz/tags/Apache/>Apache</a>
+<a href=https://567899.xyz/tags/AutoRclone/>AutoRclone</a>
+<a href=https://567899.xyz/tags/Azure/>Azure</a>
+<a href=https://567899.xyz/tags/BaiduPCS-Go/>BaiduPCS-Go</a>
+<a href=https://567899.xyz/tags/BestTrace/>BestTrace</a>
+<a href=https://567899.xyz/tags/Bitwarden/>Bitwarden</a>
+<a href=https://567899.xyz/tags/caddy/>caddy</a>
+<a href=https://567899.xyz/tags/Certbot/>Certbot</a>
+<a href=https://567899.xyz/tags/Chrome/>Chrome</a>
+<a href=https://567899.xyz/tags/cloudflare/>cloudflare</a>
+<a href=https://567899.xyz/tags/Cookie/>Cookie</a>
+<a href=https://567899.xyz/tags/Debian/>Debian</a>
+<a href=https://567899.xyz/tags/FODI/>FODI</a>
+<a href=https://567899.xyz/tags/FastStoneCapture/>FastStoneCapture</a>
+<a href=https://567899.xyz/tags/Git/>Git</a>
+<a href=https://567899.xyz/tags/GitHub/>GitHub</a>
+<a href=https://567899.xyz/tags/Gmail/>Gmail</a>
+<a href=https://567899.xyz/tags/GoogleDrive/>GoogleDrive</a>
+<a href=https://567899.xyz/tags/hugo/>hugo</a>
+<a href=https://567899.xyz/tags/IP/>IP</a>
+<a href=https://567899.xyz/tags/Lycamobile/>Lycamobile</a>
+<a href=https://567899.xyz/tags/Magisk/>Magisk</a>
+<a href=https://567899.xyz/tags/MySQL/>MySQL</a>
+<a href=https://567899.xyz/tags/NPM/>NPM</a>
+<a href=https://567899.xyz/tags/Netflix/>Netflix</a>
+<a href=https://567899.xyz/tags/Nginx/>Nginx</a>
+<a href=https://567899.xyz/tags/Node.js/>Node.js</a>
+<a href=https://567899.xyz/tags/OneDrive/>OneDrive</a>
+<a href=https://567899.xyz/tags/OpenWrt/>OpenWrt</a>
+<a href=https://567899.xyz/tags/OpenWrt/>OpenWrt</a>
+<a href=https://567899.xyz/tags/oracle/>oracle</a>
+<a href=https://567899.xyz/tags/php/>php</a>
+<a href=https://567899.xyz/tags/PT/>PT</a>
+<a href=https://567899.xyz/tags/Pornhub/>Pornhub</a>
+<a href=https://567899.xyz/tags/Python/>Python</a>
+<a href=https://567899.xyz/tags/QQ/>QQ</a>
+<a href=https://567899.xyz/tags/rclone/>rclone</a>
+<a href=https://567899.xyz/tags/SMTP/>SMTP</a>
+<a href=https://567899.xyz/tags/SSH/>SSH</a>
+<a href=https://567899.xyz/tags/ssl/>ssl</a>
+<a href=https://567899.xyz/tags/TXT/>TXT</a>
+<a href=https://567899.xyz/tags/Telegram/>Telegram</a>
+<a href=https://567899.xyz/tags/Transmission/>Transmission</a>
+<a href=https://567899.xyz/tags/Ubuntu/>Ubuntu</a>
+<a href=https://567899.xyz/tags/V2ray/>V2ray</a>
+<a href=https://567899.xyz/tags/Windows/>Windows</a>
+<a href=https://567899.xyz/tags/WireGuard/>WireGuard</a>
+<a href=https://567899.xyz/tags/Xshell/>Xshell</a>
+<a href=https://567899.xyz/tags/alipay/>alipay</a>
+<a href=https://567899.xyz/tags/bbr/>bbr</a>
+<a href=https://567899.xyz/tags/caddy/>caddy</a>
+<a href=https://567899.xyz/tags/Chrome/>Chrome</a>
+<a href=https://567899.xyz/tags/cloudflare/>cloudflare</a>
+<a href=https://567899.xyz/tags/cmd/>cmd</a>
+<a href=https://567899.xyz/tags/crontab/>crontab</a>
+<a href=https://567899.xyz/tags/dd/>dd</a>
+<a href=https://567899.xyz/tags/docker/>docker</a>
+<a href=https://567899.xyz/tags/folderclone/>folderclone</a>
+<a href=https://567899.xyz/tags/frp/>frp</a>
+<a href=https://567899.xyz/tags/gitbook/>gitbook</a>
+<a href=https://567899.xyz/tags/GitHub/>GitHub</a>
+<a href=https://567899.xyz/tags/google/>google</a>
+<a href=https://567899.xyz/tags/hexo/>hexo</a>
+<a href=https://567899.xyz/tags/hugo/>hugo</a>
+<a href=https://567899.xyz/tags/key/>key</a>
+<a href=https://567899.xyz/tags/nano/>nano</a>
+<a href=https://567899.xyz/tags/OpenWrt/>OpenWrt</a>
+<a href=https://567899.xyz/tags/oracle/>oracle</a>
+<a href=https://567899.xyz/tags/php/>php</a>
+<a href=https://567899.xyz/tags/qBittorrent/>qBittorrent</a>
+<a href=https://567899.xyz/tags/rar/>rar</a>
+<a href=https://567899.xyz/tags/rclone/>rclone</a>
+<a href=https://567899.xyz/tags/scp/>scp</a>
+<a href=https://567899.xyz/tags/screen/>screen</a>
+<a href=https://567899.xyz/tags/ssl/>ssl</a>
+<a href=https://567899.xyz/tags/swap/>swap</a>
+<a href=https://567899.xyz/tags/systemctl/>systemctl</a>
+<a href=https://567899.xyz/tags/tar/>tar</a>
+<a href=https://567899.xyz/tags/Transmission/>Transmission</a>
+<a href=https://567899.xyz/tags/vnc/>vnc</a>
+<a href=https://567899.xyz/tags/Windows/>Windows</a>
+<a href=https://567899.xyz/tags/zfaka/>zfaka</a>
+<a href=https://567899.xyz/tags/%E8%81%94%E9%80%9A/>联通</a></div></section><section class=widget><h3 class=widget-title>其它</h3><ul class=widget-list><li><a href=https://567899.xyz/index.xml>文章 RSS</a></li></ul></section></div></div></div></div></body></html>

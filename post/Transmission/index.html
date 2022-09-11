@@ -1,0 +1,217 @@
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><title>Transmission的安装、配置、制作PT种子torrent做种 | Xizi's Blog</title><meta property="og:title" content="Transmission的安装、配置、制作PT种子torrent做种 - Xizi's Blog"><meta property="og:type" content="article"><meta property="article:published_time" content="2021-07-04T01:37:56+08:00"><meta property="article:modified_time" content="2021-07-04T01:37:56+08:00"><meta name=Keywords content><meta name=description content="Transmission的安装、配置、制作PT种子torrent做种"><meta name=author content="Xizi"><meta property="og:url" content="https://567899.xyz/post/Transmission/"><link rel="shortcut icon" href=/favicon.ico type=image/x-icon><link rel=stylesheet href=/css/normalize.css><link rel=stylesheet href=/css/style.css><script type=text/javascript src=//cdn.bootcdn.net/ajax/libs/jquery/3.4.1/jquery.min.js></script><link href=https://cdn.bootcdn.net/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css rel=stylesheet><link rel=stylesheet href=/css/douban.css><link rel=stylesheet href=/css/other.css></head><body><header id=header class=clearfix><div class=container><div class=col-group><div class=site-name><a id=logo href=https://567899.xyz>Xizi's Blog</a><p class=description>记录、分享自己的折腾日记。</p></div><div><nav id=nav-menu class=clearfix><a class=current href=https://567899.xyz>首页</a>
+<a href=https://567899.xyz/post/tools/ title=工具>工具</a>
+<a href=https://567899.xyz/archives/ title=归档>归档</a>
+<a href=https://567899.xyz/about/ title=关于>关于</a></nav></div></div></div></header><div id=body><div class=container><div class=col-group><div class=col-8 id=main><div class=res-cons><style type=text/css>.post-toc{position:fixed;width:200px;margin-left:-210px;padding:5px 10px;font-family:Athelas,STHeiti,Microsoft Yahei,serif;font-size:12px;border:1px solid rgba(0,0,0,.07);border-radius:5px;background-color:rgba(255,255,255,.98);background-clip:padding-box;-webkit-box-shadow:1px 1px 2px rgba(0,0,0,.125);box-shadow:1px 1px 2px rgba(0,0,0,.125);word-wrap:break-word;white-space:nowrap;-webkit-box-sizing:border-box;box-sizing:border-box;z-index:999;cursor:pointer;max-height:70%;overflow-y:auto;overflow-x:hidden}.post-toc .post-toc-title{width:100%;margin:0 auto;font-size:20px;font-weight:400;text-transform:uppercase;text-align:center}.post-toc .post-toc-content{font-size:15px}.post-toc .post-toc-content>nav>ul{margin:10px 0}.post-toc .post-toc-content ul{padding-left:20px;list-style:square;margin:.5em;line-height:1.8em}.post-toc .post-toc-content ul ul{padding-left:15px;display:none}@media print,screen and (max-width:1057px){.post-toc{display:none}}</style><div class=post-toc style=position:absolute;top:188px><h2 class=post-toc-title>文章目录</h2><div class=post-toc-content><nav id=TableOfContents><ul><li><a href=#安装transmission>安装Transmission</a></li><li><a href=#配置transmission>配置Transmission</a></li><li><a href=#webui美化>WebUI美化</a></li><li><a href=#管理transmission>管理Transmission</a></li><li><a href=#制作种子>制作种子</a></li><li><a href=#发布种子>发布种子</a></li></ul></nav></div></div><script type=text/javascript>$(document).ready(function(){var postToc=$(".post-toc");if(postToc.length){var leftPos=$("#main").offset().left;if(leftPos<220){postToc.css({"width":leftPos-10,"margin-left":(0-leftPos)})}
+var t=postToc.offset().top-20,a={start:{position:"absolute",top:t},process:{position:"fixed",top:20},};$(window).scroll(function(){var e=$(window).scrollTop();e<t?postToc.css(a.start):postToc.css(a.process)})}
+if($("#TableOfContents").children().length<1){$(".post-toc").remove();}})</script><article class=post><header><h1 class=post-title>Transmission的安装、配置、制作PT种子torrent做种</h1></header><date class="post-meta meta-date">2021年7月4日</date><div class=post-meta><span>|</span>
+<span class=meta-category><a href=/categories/%E6%95%99%E7%A8%8B target=_blank>教程</a></span></div><div class=post-content><h2 id=安装transmission>安装Transmission</h2><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-php data-lang=php>apt install transmission-daemon
+</code></pre></div><h2 id=配置transmission>配置Transmission</h2><p>先停止Transmission</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-php data-lang=php>systemctl stop transmission-daemon.service
+</code></pre></div><p>然后编辑配置文件<code>/var/lib/transmission-daemon/info/settings.json</code></p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-php data-lang=php>nano /var/lib/transmission-daemon/info/settings.json
+</code></pre></div><p>重点需要修改的地方</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-php data-lang=php>&#34;rpc-password&#34;: &#34;管理密码&#34;, #web-ui的密码，可直接修改，重新运行或者reload服务的时候会自动被加密
+&#34;rpc-port&#34;: 9091,
+&#34;rpc-url&#34;: &#34;/transmission/&#34;,
+&#34;rpc-username&#34;: &#34;用户名&#34;,  #用户名
+&#34;rpc-whitelist&#34;: &#34;127.0.0.1&#34;,
+&#34;rpc-whitelist-enabled&#34;: false, #如果你要让其他网段连入，请设false
+</code></pre></div><p>对照表</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-php data-lang=php>&#34;alt-speed-up&#34;: 500, #计划时段上传限速值
+&#34;alt-speed-down&#34;: 500, #计划时段下载限速值
+&#34;alt-speed-enabled&#34;: false,
+&#34;alt-speed-time-begin&#34;: 540,
+&#34;alt-speed-time-day&#34;: 127,
+&#34;alt-speed-time-enabled&#34;: true, #启用计划工作，为false时，以上计划配置则不生效
+&#34;alt-speed-time-end&#34;: 420, #计划结束时间，为零点到开始时间的分钟数，比如7:00就是7*60=420。另外，该时间是用的GMT时间，即北京时间-8小时。比如你计划北京时间7点30分开始，这个数字应该是（7-8+24）*60+30=1410
+&#34;bind-address-ipv4&#34;: &#34;0.0.0.0&#34;,
+&#34;bind-address-ipv6&#34;: &#34;::&#34;,
+&#34;blocklist-enabled&#34;: true,
+&#34;blocklist-updates-enabled&#34;: false,
+&#34;blocklist-url&#34;: &#34;http://www.example.com/blocklist&#34;,
+&#34;cache-size-mb&#34;: 4, #缓存大小，以MB为单位，建议设大一些，避免频繁读写硬盘而伤硬盘，建议设为内存大小的1/6～1/4
+&#34;compact-view&#34;: false,
+&#34;dht-enabled&#34;: false, #关闭DHT（不通过tracker寻找节点）功能，不少PT站的要求，但BT下载设置为true会使得下载更好
+&#34;download-dir&#34;: &#34;/home/yys/Downloads&#34;, #下载的内容存放的目录
+&#34;download-queue-enabled&#34;: true,
+&#34;download-queue-size&#34;: 5,
+&#34;encryption&#34;: 1, #0=不加密，1=优先加密，2=必须加密
+&#34;idle-seeding-limit&#34;: 30,
+&#34;idle-seeding-limit-enabled&#34;: false,
+&#34;incomplete-dir&#34;: &#34;/home/yys/Downloads&#34;,
+&#34;incomplete-dir-enabled&#34;: false,
+&#34;inhibit-desktop-hibernation&#34;: true,
+&#34;lpd-enabled&#34;: false, #禁用LDP（本地节点发现，用于在本地网络寻找节点）,不少PT站的要求
+&#34;main-window-height&#34;: 500,
+&#34;main-window-is-maximized&#34;: 0,
+&#34;main-window-width&#34;: 615,
+&#34;main-window-x&#34;: 337,
+&#34;main-window-y&#34;: 211,
+&#34;message-level&#34;: 2,
+&#34;open-dialog-dir&#34;: &#34;/home/yys/\u684c\u9762&#34;,
+&#34;peer-congestion-algorithm&#34;: &#34;&#34;,
+&#34;peer-limit-global&#34;: 240, #全局连接数
+&#34;peer-limit-per-torrent&#34;: 60, #每个种子最多的连接数
+&#34;peer-port&#34;: 51413, #预设的port口
+&#34;peer-port-random-high&#34;: 65535,
+&#34;peer-port-random-low&#34;: 49152,
+&#34;peer-port-random-on-start&#34;: false, #不建议改为true
+&#34;peer-socket-tos&#34;: &#34;default&#34;,
+&#34;pex-enabled&#34;: false, #禁用PEX（节点交换，用于同已与您相连接的节点交换节点名单）,不少PT站的要求
+&#34;port-forwarding-enabled&#34;: true,
+&#34;preallocation&#34;: 1, #预分配文件磁盘空间，0=关闭，1=快速，2=完全。建议取1开启该功能，防止下载大半了才发现磁盘不够。取2时，可以减少磁盘碎片，但速度较慢。
+&#34;prefetch-enabled&#34;: 1,
+&#34;queue-stalled-enabled&#34;: true,
+&#34;queue-stalled-minutes&#34;: 30,
+&#34;ratio-limit&#34;: 2,
+&#34;ratio-limit-enabled&#34;: false,
+&#34;rename-partial-files&#34;: true, #在未完成的文件名后添加后缀.part,false=禁用
+&#34;rpc-authentication-required&#34;: true,
+&#34;rpc-bind-address&#34;: &#34;0.0.0.0&#34;,
+&#34;rpc-enabled&#34;: true,
+&#34;rpc-password&#34;: &#34;{c8c083168db9fff40b5136b6d0f3f4a864110a78\/oH51JaE&#34;, #web-ui的密码，可直接修改，重新运行或者reload服务的时候会自动被加密
+&#34;rpc-port&#34;: 9091, #默认web-ui的port口，可自行更改
+&#34;rpc-url&#34;: &#34;/transmission/&#34;,
+&#34;rpc-username&#34;: &#34;transmission&#34;, #默认登入名称
+&#34;rpc-whitelist&#34;: &#34;127.0.0.1&#34;,
+&#34;rpc-whitelist-enabled&#34;: true, #如果你要让其他网段连入，请设false
+&#34;scrape-paused-torrents-enabled&#34;: true,
+&#34;script-torrent-done-enabled&#34;: false,
+&#34;script-torrent-done-filename&#34;: &#34;/home/yys&#34;,
+&#34;seed-queue-enabled&#34;: false,
+&#34;seed-queue-size&#34;: 10,
+&#34;show-backup-trackers&#34;: true,
+&#34;show-extra-peer-details&#34;: false,
+&#34;show-filterbar&#34;: true,
+&#34;show-notification-area-icon&#34;: false,
+&#34;show-options-window&#34;: true,
+&#34;show-statusbar&#34;: true,
+&#34;show-toolbar&#34;: true,
+&#34;show-tracker-scrapes&#34;: true,
+&#34;sort-mode&#34;: &#34;sort-by-age&#34;,
+&#34;sort-reversed&#34;: false,
+&#34;speed-limit-down&#34;: 300, #平时的下载限速
+&#34;speed-limit-down-enabled&#34;: true, #启用平时下载限速
+&#34;speed-limit-up&#34;: 30, #平时上传限速
+&#34;speed-limit-up-enabled&#34;: true, #启用平时上传限速
+&#34;start-added-torrents&#34;: false,
+&#34;statusbar-stats&#34;: &#34;total-ratio&#34;,
+&#34;torrent-added-notification-enabled&#34;: true,
+&#34;torrent-complete-notification-enabled&#34;: true,
+&#34;torrent-complete-sound-enabled&#34;: true,
+&#34;trash-can-enabled&#34;: true,
+&#34;trash-original-torrent-files&#34;: false,
+&#34;umask&#34;: 18,
+&#34;upload-slots-per-torrent&#34;: 14
+&#34;utp-enabled&#34;: true, #启用μTP协议
+&#34;watch-dir&#34;: &#34;/home/yys/\u4e0b\u8f7d&#34;,
+&#34;watch-dir-enabled&#34;: false
+</code></pre></div><p>更多配置参数，可去 <a href=https://github.com/transmission/transmission/wiki/Editing-Configuration-Files>diting-Configuration-Files</a>探索。</p><p>保存修改后设置开机自动启动</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-php data-lang=php>systemctl enable transmission-daemon
+systemctl start transmission-daemon.service
+</code></pre></div><h2 id=webui美化>WebUI美化</h2><p>安装<a href=https://github.com/ronggang/transmission-web-control>transmission-web-control</a>进行美化</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-php data-lang=php>wget https://github.com/ronggang/transmission-web-control/raw/master/release/install-tr-control-cn.sh
+chmod +x install-tr-control-cn.sh
+bash install-tr-control-cn.sh
+</code></pre></div><p>按照提示，输入相应的数字，按回车即可</p><h2 id=管理transmission>管理Transmission</h2><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-php data-lang=php>service transmission-daemon stop
+service transmission-daemon start
+</code></pre></div><p>通过浏览器访问 <code>http://IP:9091</code> WEBUI管理使用</p><h2 id=制作种子>制作种子</h2><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-php data-lang=php>find / -name transmission-create
+</code></pre></div><p>寻找transmission安装目录</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-php data-lang=php>transmission-create
+</code></pre></div><p>获得参数说明帮助</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-php data-lang=php>Options:
+ -h --help                    Display this help page and exit
+ -p --private                 Allow this torrent to only be used with the
+                              specified tracker(s)
+ -o --outfile   &lt;<span style=color:navy>file</span>&gt;        Save the generated .torrent to this filename
+ -s --piecesize &lt;<span style=color:navy>size</span> <span style=color:teal>in</span> <span style=color:teal>KiB</span>&gt; Set how many KiB each piece should be, overriding
+                              the preferred default
+ -c --comment   &lt;<span style=color:navy>comment</span>&gt;     Add a comment
+ -t --tracker   &lt;<span style=color:navy>url</span>&gt;         Add a tracker&#39;s announce URL
+ -V --version                 Show version number and exit
+</code></pre></div><p>参数说明：</p><ol><li>-p 表示这是私用的种子，这个 PT 必须要加上</li><li>-o 生成的种子输出位置，不要忘记把名字打上</li><li>-t tracker 服务器地址，自行查询各大站点</li><li>-s 每个文件块的大小，单位是 KB，设置的 4096，也就是 4M</li><li>最后空一格写源文件的位置，也就是文件的存放位置，可以是一个文件或者一整个目录</li></ol><p>示范</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-php data-lang=php>transmission-create -p -o /种子输出目录/种子文件名.torrent -t https://pt.m-team.cc/announce.php -s 4096 /要做种的文件目录/文件名
+</code></pre></div><p><strong>文件的命名里不要出现空格，会生成错误的文件</strong></p><h2 id=发布种子>发布种子</h2><ol><li>将制作好的种子文件.torrent发布到相关PT站点</li><li>请不要将视频移动、改名、删除，可以让更多人下载到这个种子。</li><li>上传种子后一定要下载网站的新种子文件，然后选择资源的上级目录，开始做种。</li><li>网站会统计每一个用户的下载量和上传量，下载量和上传量在一定程度上决定着用户的等级，有没有权限下载文件。每一个用户注册后会得到一个passkey，用户从网站里面下载的种子里面包含了私人的passkey。通过passkey识别每一个用户，统计每一个用户的下载、上传和做种时间等等。</li></ol></div><div class=post-archive><ul class=post-copyright><li><strong>原文作者：</strong><a rel=author href=https://567899.xyz>Xizi</a></li><li style=word-break:break-all><strong>原文链接：</strong><a href=https://567899.xyz/post/Transmission/>https://567899.xyz/post/Transmission/</a></li><li><strong>版权声明：</strong>本作品采用<a rel=license href=https://creativecommons.org/licenses/by-nc-nd/4.0/>知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议</a>进行许可，非商业转载请注明出处（作者，原文链接），商业转载请联系作者获得授权。</li></ul></div><br><div class="post-meta meta-tags"><ul class=clearfix><li><a href=/tags/Transmission target=_blank>Transmission</a></li></ul></div></article><div class="post bg-white"><script src=https://utteranc.es/client.js repo=pwwq/blog-comments issue-term=pathname theme=github-light crossorigin=anonymous async></script></div></div><footer id=footer><div>&copy; 2022 <a href=https://567899.xyz>Xizi's Blog By Xizi <a href=/sitemap.xml>站点地图</a></a></div><br><div><div class=github-badge><a href=https://gohugo.io/ target=_black rel=nofollow><span class=badge-subject>Powered by</span><span class="badge-value bg-blue">Hugo</span></a></div><div class=github-badge><a href=https://www.flysnow.org/ target=_black><span class=badge-subject>Design by</span><span class="badge-value bg-brightgreen">飞雪无情</span></a></div><div class=github-badge><a href=https://github.com/flysnow-org/maupassant-hugo target=_black><span class=badge-subject>Theme</span><span class="badge-value bg-yellowgreen">Maupassant</span></a></div></div></footer><script type=text/javascript>window.MathJax={tex2jax:{inlineMath:[['$','$']],processEscapes:true}};</script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async></script><script src=//cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js></script><a id=rocket href=#top></a><script type=text/javascript src="/js/totop.js?v=0.0.0" async></script><style type=text/css>div.highlight{position:relative;margin:1em 0}.copy-code{display:none;position:absolute;top:4px;right:4px;color:rgba(255,255,255,.8);background:rgba(78,78,78,.8);border-radius:var(--radius);padding:0 5px;font:inherit;user-select:none;cursor:pointer;border:0;--radius: 8px}div.highlight:hover .copy-code,pre:hover .copy-code{display:block}</style><script>document.querySelectorAll('pre > code').forEach((codeblock)=>{const container=codeblock.parentNode.parentNode;const copybutton=document.createElement('button');copybutton.classList.add('copy-code');copybutton.innerHTML='copy';function copyingDone(){copybutton.innerHTML='copied!';setTimeout(()=>{copybutton.innerHTML='copy';},2000);}
+copybutton.addEventListener('click',(cb)=>{if('clipboard'in navigator){navigator.clipboard.writeText(codeblock.textContent);copyingDone();return;}
+const range=document.createRange();range.selectNodeContents(codeblock);const selection=window.getSelection();selection.removeAllRanges();selection.addRange(range);try{document.execCommand('copy');copyingDone();}catch(e){};selection.removeRange(range);});if(container.classList.contains("highlight")){container.appendChild(copybutton);}else if(container.parentNode.firstChild==container){}else if(codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"){codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);}else{codeblock.parentNode.appendChild(copybutton);}});</script><script src=/js/douban.js></script></div><div id=secondary><section class=widget><form id=search action=https://567899.xyz/search method=get accept-charset=utf-8 target=_blank _lpchecked=1><input type=text name=q maxlength=20 placeholder=Search>
+<input type=hidden name=sitesearch value=https://567899.xyz>
+<button type=submit class="submit icon-search"></button></form></section><section class=widget><h3 class=widget-title>最近文章</h3><ul class=widget-list><li><a href=https://567899.xyz/post/google_drive_folderclone/ title="[更新]Folderclone谷歌Google Drive共享云端硬盘转存相互转移拷贝复制文件的正确姿势" target=_blank>[更新]Folderclone谷歌Google Drive共享云端硬盘转存相互转移拷贝复制文件的正确姿势</a></li><li><a href=https://567899.xyz/post/v2ray-http/ title="联通电信移动V2ray免流host http教程" target=_blank>联通电信移动V2ray免流host http教程</a></li><li><a href=https://567899.xyz/post/qiandao/ title=Cookie自动登陆签到、抓包提取制作HAR文件 target=_blank>Cookie自动登陆签到、抓包提取制作HAR文件</a></li><li><a href=https://567899.xyz/post/flexget/ title=flexget自动为qbittorrent、transmission等PT客户端添加种子任务 target=_blank>flexget自动为qbittorrent、transmission等PT客户端添加种子任务</a></li><li><a href=https://567899.xyz/post/autoremove-torrents/ title=使用autoremove-torrents自动删除PT种子文件 target=_blank>使用autoremove-torrents自动删除PT种子文件</a></li><li><a href=https://567899.xyz/post/android-termux-transmission-pt-downloads/ title=安卓手机可以在termux里安装Transmission来玩PT下载 target=_blank>安卓手机可以在termux里安装Transmission来玩PT下载</a></li><li><a href=https://567899.xyz/post/TinyFileManager/ title="Tiny File Manager一款简洁的PHP文件管理器" target=_blank>Tiny File Manager一款简洁的PHP文件管理器</a></li><li><a href=https://567899.xyz/post/Transmission/ title=Transmission的安装、配置、制作PT种子torrent做种 target=_blank>Transmission的安装、配置、制作PT种子torrent做种</a></li><li><a href=https://567899.xyz/post/win10-sound-not-work/ title=win10系统音量图标灰色无法调节的解决方法 target=_blank>win10系统音量图标灰色无法调节的解决方法</a></li><li><a href=https://567899.xyz/post/oracle-oci-arm-vps/ title="Oracle甲骨文OCI自动刷ARM VPS脚本" target=_blank>Oracle甲骨文OCI自动刷ARM VPS脚本</a></li></ul></section><section class=widget><h3 class=widget-title><a href=/categories/>分类</a></h3><ul class=widget-list><li><a href=https://567899.xyz/categories/Android/>Android (2)</a></li><li><a href=https://567899.xyz/categories/Telegram/>Telegram (1)</a></li><li><a href=https://567899.xyz/categories/Windows/>Windows (2)</a></li><li><a href=https://567899.xyz/categories/free/>free (1)</a></li><li><a href=https://567899.xyz/categories/%E6%95%99%E7%A8%8B/>教程 (87)</a></li><li><a href=https://567899.xyz/categories/%E8%BD%AF%E4%BB%B6/>软件 (4)</a></li></ul></section><section class=widget><h3 class=widget-title><a href=/tags/>标签</a></h3><div class=tagcloud><a href=https://567899.xyz/tags/7z/>7z</a>
+<a href=https://567899.xyz/tags/ADB/>ADB</a>
+<a href=https://567899.xyz/tags/API/>API</a>
+<a href=https://567899.xyz/tags/Actions/>Actions</a>
+<a href=https://567899.xyz/tags/Aira2/>Aira2</a>
+<a href=https://567899.xyz/tags/Android/>Android</a>
+<a href=https://567899.xyz/tags/Apache/>Apache</a>
+<a href=https://567899.xyz/tags/AutoRclone/>AutoRclone</a>
+<a href=https://567899.xyz/tags/Azure/>Azure</a>
+<a href=https://567899.xyz/tags/BaiduPCS-Go/>BaiduPCS-Go</a>
+<a href=https://567899.xyz/tags/BestTrace/>BestTrace</a>
+<a href=https://567899.xyz/tags/Bitwarden/>Bitwarden</a>
+<a href=https://567899.xyz/tags/caddy/>caddy</a>
+<a href=https://567899.xyz/tags/Certbot/>Certbot</a>
+<a href=https://567899.xyz/tags/Chrome/>Chrome</a>
+<a href=https://567899.xyz/tags/cloudflare/>cloudflare</a>
+<a href=https://567899.xyz/tags/Cookie/>Cookie</a>
+<a href=https://567899.xyz/tags/Debian/>Debian</a>
+<a href=https://567899.xyz/tags/FODI/>FODI</a>
+<a href=https://567899.xyz/tags/FastStoneCapture/>FastStoneCapture</a>
+<a href=https://567899.xyz/tags/Git/>Git</a>
+<a href=https://567899.xyz/tags/GitHub/>GitHub</a>
+<a href=https://567899.xyz/tags/Gmail/>Gmail</a>
+<a href=https://567899.xyz/tags/GoogleDrive/>GoogleDrive</a>
+<a href=https://567899.xyz/tags/hugo/>hugo</a>
+<a href=https://567899.xyz/tags/IP/>IP</a>
+<a href=https://567899.xyz/tags/Lycamobile/>Lycamobile</a>
+<a href=https://567899.xyz/tags/Magisk/>Magisk</a>
+<a href=https://567899.xyz/tags/MySQL/>MySQL</a>
+<a href=https://567899.xyz/tags/NPM/>NPM</a>
+<a href=https://567899.xyz/tags/Netflix/>Netflix</a>
+<a href=https://567899.xyz/tags/Nginx/>Nginx</a>
+<a href=https://567899.xyz/tags/Node.js/>Node.js</a>
+<a href=https://567899.xyz/tags/OneDrive/>OneDrive</a>
+<a href=https://567899.xyz/tags/OpenWrt/>OpenWrt</a>
+<a href=https://567899.xyz/tags/OpenWrt/>OpenWrt</a>
+<a href=https://567899.xyz/tags/oracle/>oracle</a>
+<a href=https://567899.xyz/tags/php/>php</a>
+<a href=https://567899.xyz/tags/PT/>PT</a>
+<a href=https://567899.xyz/tags/Pornhub/>Pornhub</a>
+<a href=https://567899.xyz/tags/Python/>Python</a>
+<a href=https://567899.xyz/tags/QQ/>QQ</a>
+<a href=https://567899.xyz/tags/rclone/>rclone</a>
+<a href=https://567899.xyz/tags/SMTP/>SMTP</a>
+<a href=https://567899.xyz/tags/SSH/>SSH</a>
+<a href=https://567899.xyz/tags/ssl/>ssl</a>
+<a href=https://567899.xyz/tags/TXT/>TXT</a>
+<a href=https://567899.xyz/tags/Telegram/>Telegram</a>
+<a href=https://567899.xyz/tags/Transmission/>Transmission</a>
+<a href=https://567899.xyz/tags/Ubuntu/>Ubuntu</a>
+<a href=https://567899.xyz/tags/V2ray/>V2ray</a>
+<a href=https://567899.xyz/tags/Windows/>Windows</a>
+<a href=https://567899.xyz/tags/WireGuard/>WireGuard</a>
+<a href=https://567899.xyz/tags/Xshell/>Xshell</a>
+<a href=https://567899.xyz/tags/alipay/>alipay</a>
+<a href=https://567899.xyz/tags/bbr/>bbr</a>
+<a href=https://567899.xyz/tags/caddy/>caddy</a>
+<a href=https://567899.xyz/tags/Chrome/>Chrome</a>
+<a href=https://567899.xyz/tags/cloudflare/>cloudflare</a>
+<a href=https://567899.xyz/tags/cmd/>cmd</a>
+<a href=https://567899.xyz/tags/crontab/>crontab</a>
+<a href=https://567899.xyz/tags/dd/>dd</a>
+<a href=https://567899.xyz/tags/docker/>docker</a>
+<a href=https://567899.xyz/tags/folderclone/>folderclone</a>
+<a href=https://567899.xyz/tags/frp/>frp</a>
+<a href=https://567899.xyz/tags/gitbook/>gitbook</a>
+<a href=https://567899.xyz/tags/GitHub/>GitHub</a>
+<a href=https://567899.xyz/tags/google/>google</a>
+<a href=https://567899.xyz/tags/hexo/>hexo</a>
+<a href=https://567899.xyz/tags/hugo/>hugo</a>
+<a href=https://567899.xyz/tags/key/>key</a>
+<a href=https://567899.xyz/tags/nano/>nano</a>
+<a href=https://567899.xyz/tags/OpenWrt/>OpenWrt</a>
+<a href=https://567899.xyz/tags/oracle/>oracle</a>
+<a href=https://567899.xyz/tags/php/>php</a>
+<a href=https://567899.xyz/tags/qBittorrent/>qBittorrent</a>
+<a href=https://567899.xyz/tags/rar/>rar</a>
+<a href=https://567899.xyz/tags/rclone/>rclone</a>
+<a href=https://567899.xyz/tags/scp/>scp</a>
+<a href=https://567899.xyz/tags/screen/>screen</a>
+<a href=https://567899.xyz/tags/ssl/>ssl</a>
+<a href=https://567899.xyz/tags/swap/>swap</a>
+<a href=https://567899.xyz/tags/systemctl/>systemctl</a>
+<a href=https://567899.xyz/tags/tar/>tar</a>
+<a href=https://567899.xyz/tags/Transmission/>Transmission</a>
+<a href=https://567899.xyz/tags/vnc/>vnc</a>
+<a href=https://567899.xyz/tags/Windows/>Windows</a>
+<a href=https://567899.xyz/tags/zfaka/>zfaka</a>
+<a href=https://567899.xyz/tags/%E8%81%94%E9%80%9A/>联通</a></div></section><section class=widget><h3 class=widget-title>其它</h3><ul class=widget-list><li><a href=https://567899.xyz/index.xml>文章 RSS</a></li></ul></section></div></div></div></div></body></html>

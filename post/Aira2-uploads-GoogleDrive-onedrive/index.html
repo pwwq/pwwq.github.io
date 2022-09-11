@@ -1,0 +1,194 @@
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><title>使用Aira2下载文件后自动上传到GoogleDrive网盘onedrive | Xizi's Blog</title><meta property="og:title" content="使用Aira2下载文件后自动上传到GoogleDrive网盘onedrive - Xizi's Blog"><meta property="og:type" content="article"><meta property="article:published_time" content="2018-04-11T01:37:56+08:00"><meta property="article:modified_time" content="2018-04-11T01:37:56+08:00"><meta name=Keywords content><meta name=description content="使用Aira2下载文件后自动上传到GoogleDrive网盘onedrive"><meta name=author content="Xizi"><meta property="og:url" content="https://567899.xyz/post/Aira2-uploads-GoogleDrive-onedrive/"><link rel="shortcut icon" href=/favicon.ico type=image/x-icon><link rel=stylesheet href=/css/normalize.css><link rel=stylesheet href=/css/style.css><script type=text/javascript src=//cdn.bootcdn.net/ajax/libs/jquery/3.4.1/jquery.min.js></script><link href=https://cdn.bootcdn.net/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css rel=stylesheet><link rel=stylesheet href=/css/douban.css><link rel=stylesheet href=/css/other.css></head><body><header id=header class=clearfix><div class=container><div class=col-group><div class=site-name><a id=logo href=https://567899.xyz>Xizi's Blog</a><p class=description>记录、分享自己的折腾日记。</p></div><div><nav id=nav-menu class=clearfix><a class=current href=https://567899.xyz>首页</a>
+<a href=https://567899.xyz/post/tools/ title=工具>工具</a>
+<a href=https://567899.xyz/archives/ title=归档>归档</a>
+<a href=https://567899.xyz/about/ title=关于>关于</a></nav></div></div></div></header><div id=body><div class=container><div class=col-group><div class=col-8 id=main><div class=res-cons><style type=text/css>.post-toc{position:fixed;width:200px;margin-left:-210px;padding:5px 10px;font-family:Athelas,STHeiti,Microsoft Yahei,serif;font-size:12px;border:1px solid rgba(0,0,0,.07);border-radius:5px;background-color:rgba(255,255,255,.98);background-clip:padding-box;-webkit-box-shadow:1px 1px 2px rgba(0,0,0,.125);box-shadow:1px 1px 2px rgba(0,0,0,.125);word-wrap:break-word;white-space:nowrap;-webkit-box-sizing:border-box;box-sizing:border-box;z-index:999;cursor:pointer;max-height:70%;overflow-y:auto;overflow-x:hidden}.post-toc .post-toc-title{width:100%;margin:0 auto;font-size:20px;font-weight:400;text-transform:uppercase;text-align:center}.post-toc .post-toc-content{font-size:15px}.post-toc .post-toc-content>nav>ul{margin:10px 0}.post-toc .post-toc-content ul{padding-left:20px;list-style:square;margin:.5em;line-height:1.8em}.post-toc .post-toc-content ul ul{padding-left:15px;display:none}@media print,screen and (max-width:1057px){.post-toc{display:none}}</style><div class=post-toc style=position:absolute;top:188px><h2 class=post-toc-title>文章目录</h2><div class=post-toc-content><nav id=TableOfContents><ul><li><a href=#更新>更新</a></li><li><a href=#脚本说明-aria2-一键安装管理脚本>脚本说明: Aria2 一键安装管理脚本</a></li><li><a href=#使用方法>使用方法</a></li></ul></nav></div></div><script type=text/javascript>$(document).ready(function(){var postToc=$(".post-toc");if(postToc.length){var leftPos=$("#main").offset().left;if(leftPos<220){postToc.css({"width":leftPos-10,"margin-left":(0-leftPos)})}
+var t=postToc.offset().top-20,a={start:{position:"absolute",top:t},process:{position:"fixed",top:20},};$(window).scroll(function(){var e=$(window).scrollTop();e<t?postToc.css(a.start):postToc.css(a.process)})}
+if($("#TableOfContents").children().length<1){$(".post-toc").remove();}})</script><article class=post><header><h1 class=post-title>使用Aira2下载文件后自动上传到GoogleDrive网盘onedrive</h1></header><date class="post-meta meta-date">2018年4月11日</date><div class=post-meta><span>|</span>
+<span class=meta-category><a href=/categories/%E6%95%99%E7%A8%8B target=_blank>教程</a></span></div><div class=post-content><h2 id=更新>更新</h2><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>【2018.10.30】
+这里分享下萌咖大佬的Aira2上传脚本，不过是精简版，全能版暂不分享，精简版包含以下功能：
+1、脚本适用于Rclone挂载的网盘，比如Onedrive/Google Drive等。
+2、判断上传文件的文件大小区间。
+限制最低上传大小：可防止产生的.aria2后缀文件一起上传到网盘。
+限制最高文件大小：适用于Onedrive等，官方限制上传不能超过15G，其它可自行更改其数值。
+3、支持文件名中包含空格等特殊字符。
+</code></pre></div><h2 id=脚本说明-aria2-一键安装管理脚本>脚本说明: Aria2 一键安装管理脚本</h2><p>系统支持: CentOS6+ / Debian6+ / Ubuntu14+</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>wget -N --no-check-certificate https://raw.githubusercontent.com/ojbk8/doubi/master/aria2.sh <span style=color:#000;font-weight:700>&amp;&amp;</span> chmod +x aria2.sh <span style=color:#000;font-weight:700>&amp;&amp;</span> bash aria2.sh
+</code></pre></div><blockquote><p>Aria2下载为什么会多出一个.aria2后缀的文件？</p></blockquote><p>找到force-save参数，进行设置</p><p><code>force-save=true</code> 会保存文件下载历史,但会在下载目录产生同名.aria2文件</p><p><code>force-save=false</code>不产生同名.aria2文件,同时也不能能保存下载历史</p><h2 id=使用方法>使用方法</h2><p>原理是当下载完后<code>aria2</code>会给脚本传3个参数<code>$1</code>、<code>$2</code>、<code>$3</code>分别为<code>gid</code>、文件数量、文件路径。我们对文件路径这个字符串处理一番就可以达到目的了。</p><p>新建脚本文件<code>rcloneupload.sh</code>并复制下面代码：</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#999;font-weight:700;font-style:italic>#!/bin/bash
+</span><span style=color:#999;font-weight:700;font-style:italic></span><span style=color:teal>downloadpath</span><span style=color:#000;font-weight:700>=</span><span style=color:#d14>&#39;/root/Download&#39;</span> <span style=color:#998;font-style:italic>#需要上传的目录，Aria2下载目录</span>
+<span style=color:teal>name</span><span style=color:#000;font-weight:700>=</span><span style=color:#d14>&#39;rclonename&#39;</span> <span style=color:#998;font-style:italic>#配置Rclone时填写的name</span>
+<span style=color:teal>folder</span><span style=color:#000;font-weight:700>=</span><span style=color:#d14>&#39;/rclone&#39;</span> <span style=color:#998;font-style:italic>#网盘里的文件夹，留空为整个网盘。</span>
+<span style=color:teal>MinSize</span><span style=color:#000;font-weight:700>=</span><span style=color:#d14>&#39;0.01k&#39;</span> <span style=color:#998;font-style:italic>#限制最低上传大小，默认10k，BT下载时可防止上传其他无用文件。会删除文件，谨慎设置。</span>
+<span style=color:teal>MaxSize</span><span style=color:#000;font-weight:700>=</span><span style=color:#d14>&#39;15G&#39;</span> <span style=color:#998;font-style:italic>#限制最高文件大小，默认15G，OneDrive上传限制。</span>
+
+<span style=color:teal>filepath</span><span style=color:#000;font-weight:700>=</span><span style=color:teal>$3</span> <span style=color:#998;font-style:italic>#Aria2传递给脚本的原始路径，如果是单文件则为/root/Download/1.mp4，如果是文件夹则该值为文件夹内第一个文件比如/root/Download/a/b/1.mp4</span>
+<span style=color:teal>rdp</span><span style=color:#000;font-weight:700>=</span><span style=color:#d14>${</span><span style=color:teal>filepath</span>#<span style=color:#d14>${</span><span style=color:teal>downloadpath</span><span style=color:#d14>}</span>/<span style=color:#d14>}</span> <span style=color:#998;font-style:italic>#路径转换，去掉开头的下载路径。</span>
+<span style=color:teal>path</span><span style=color:#000;font-weight:700>=</span><span style=color:#d14>${</span><span style=color:teal>downloadpath</span><span style=color:#d14>}</span>/<span style=color:#d14>${</span><span style=color:teal>rdp</span>%%/*<span style=color:#d14>}</span> <span style=color:#998;font-style:italic>#文件或文件夹路径。如果是单个文件，应与原始路径一致。</span>
+
+<span style=color:#000;font-weight:700>if</span> <span style=color:#000;font-weight:700>[</span> <span style=color:teal>$2</span> -eq <span style=color:#099>0</span> <span style=color:#000;font-weight:700>]</span>
+	<span style=color:#000;font-weight:700>then</span>
+		<span style=color:#0086b3>exit</span> <span style=color:#099>0</span>
+<span style=color:#000;font-weight:700>fi</span>
+
+<span style=color:#000;font-weight:700>while</span> true; <span style=color:#000;font-weight:700>do</span>
+<span style=color:#000;font-weight:700>if</span> <span style=color:#000;font-weight:700>[</span> <span style=color:#d14>&#34;</span><span style=color:teal>$path</span><span style=color:#d14>&#34;</span> <span style=color:#000;font-weight:700>=</span> <span style=color:#d14>&#34;</span><span style=color:teal>$filepath</span><span style=color:#d14>&#34;</span> <span style=color:#000;font-weight:700>]</span> <span style=color:#000;font-weight:700>&amp;&amp;</span> <span style=color:#000;font-weight:700>[</span> <span style=color:teal>$2</span> -eq <span style=color:#099>1</span> <span style=color:#000;font-weight:700>]</span> <span style=color:#998;font-style:italic>#如果下载的是单个文件</span>
+	<span style=color:#000;font-weight:700>then</span>
+	rclone move -v <span style=color:#d14>&#34;</span><span style=color:teal>$filepath</span><span style=color:#d14>&#34;</span> <span style=color:#d14>${</span><span style=color:teal>name</span><span style=color:#d14>}</span>:<span style=color:#d14>${</span><span style=color:teal>folder</span><span style=color:#d14>}</span> --min-size <span style=color:teal>$MinSize</span> --max-size <span style=color:teal>$MaxSize</span>
+	rm -vf <span style=color:#d14>&#34;</span><span style=color:teal>$filepath</span><span style=color:#d14>&#34;</span>.aria2 <span style=color:#998;font-style:italic>#删除残留的.aria.2文件</span>
+	<span style=color:#0086b3>exit</span> <span style=color:#099>0</span>
+<span style=color:#000;font-weight:700>elif</span> <span style=color:#000;font-weight:700>[</span> <span style=color:#d14>&#34;</span><span style=color:teal>$path</span><span style=color:#d14>&#34;</span> !<span style=color:#000;font-weight:700>=</span> <span style=color:#d14>&#34;</span><span style=color:teal>$filepath</span><span style=color:#d14>&#34;</span> <span style=color:#000;font-weight:700>]</span> <span style=color:#998;font-style:italic>#如果下载的是文件夹</span>
+	<span style=color:#000;font-weight:700>then</span>
+	<span style=color:#000;font-weight:700>while</span> <span style=color:#000;font-weight:700>[[</span> <span style=color:#d14>&#34;`ls -A &#34;</span><span style=color:teal>$path</span>/<span style=color:#d14>&#34;`&#34;</span> !<span style=color:#000;font-weight:700>=</span> <span style=color:#d14>&#34;&#34;</span> <span style=color:#000;font-weight:700>]]</span>; <span style=color:#000;font-weight:700>do</span>
+	rclone move -v <span style=color:#d14>&#34;</span><span style=color:teal>$path</span><span style=color:#d14>&#34;</span> <span style=color:#d14>${</span><span style=color:teal>name</span><span style=color:#d14>}</span>:<span style=color:#d14>&#34;</span><span style=color:#d14>${</span><span style=color:teal>folder</span><span style=color:#d14>}</span><span style=color:#d14>&#34;</span>/<span style=color:#d14>&#34;</span><span style=color:#d14>${</span><span style=color:teal>rdp</span>%%/*<span style=color:#d14>}</span><span style=color:#d14>&#34;</span> --min-size <span style=color:teal>$MinSize</span> --max-size <span style=color:teal>$MaxSize</span> --delete-empty-src-dirs
+	rclone delete -v <span style=color:#d14>&#34;</span><span style=color:teal>$path</span><span style=color:#d14>&#34;</span> --max-size <span style=color:teal>$MinSize</span> <span style=color:#998;font-style:italic>#删除多余的文件</span>
+	rclone rmdirs -v <span style=color:#d14>&#34;</span><span style=color:teal>$downloadpath</span><span style=color:#d14>&#34;</span> --leave-root <span style=color:#998;font-style:italic>#删除空目录，--delete-empty-src-dirs参数已实现，加上无所谓。</span>
+	<span style=color:#000;font-weight:700>done</span>
+	rm -vf <span style=color:#d14>&#34;</span><span style=color:teal>$path</span><span style=color:#d14>&#34;</span>.aria2 <span style=color:#998;font-style:italic>#删除残留的.aria2文件</span>
+	<span style=color:#0086b3>exit</span> <span style=color:#099>0</span>
+<span style=color:#000;font-weight:700>fi</span>
+<span style=color:#000;font-weight:700>done</span>
+</code></pre></div><p>或者</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#999;font-weight:700;font-style:italic>#!/bin/bash
+</span><span style=color:#999;font-weight:700;font-style:italic></span>
+<span style=color:teal>GID</span><span style=color:#000;font-weight:700>=</span><span style=color:#d14>&#34;</span><span style=color:teal>$1</span><span style=color:#d14>&#34;</span>;
+<span style=color:teal>FileNum</span><span style=color:#000;font-weight:700>=</span><span style=color:#d14>&#34;</span><span style=color:teal>$2</span><span style=color:#d14>&#34;</span>;
+<span style=color:teal>File</span><span style=color:#000;font-weight:700>=</span><span style=color:#d14>&#34;</span><span style=color:teal>$3</span><span style=color:#d14>&#34;</span>;
+<span style=color:teal>MinSize</span><span style=color:#000;font-weight:700>=</span><span style=color:#d14>&#34;5&#34;</span>  <span style=color:#998;font-style:italic>#限制最低上传大小，默认5k</span>
+<span style=color:teal>MaxSize</span><span style=color:#000;font-weight:700>=</span><span style=color:#d14>&#34;157286400&#34;</span>  <span style=color:#998;font-style:italic>#限制最高文件大小(单位k)，默认15G</span>
+<span style=color:teal>RemoteDIR</span><span style=color:#000;font-weight:700>=</span><span style=color:#d14>&#34;/RATS/&#34;</span>;  <span style=color:#998;font-style:italic>#rclone挂载的本地文件夹，最后面保留/</span>
+<span style=color:teal>LocalDIR</span><span style=color:#000;font-weight:700>=</span><span style=color:#d14>&#34;/download/&#34;</span>;  <span style=color:#998;font-style:italic>#Aria2下载目录，最后面保留/</span>
+
+<span style=color:#000;font-weight:700>if</span> <span style=color:#000;font-weight:700>[[</span> -z <span style=color:#000;font-weight:700>$(</span><span style=color:#0086b3>echo</span> <span style=color:#d14>&#34;</span><span style=color:teal>$FileNum</span><span style=color:#d14>&#34;</span> |grep -o <span style=color:#d14>&#39;[0-9]*&#39;</span> |head -n1<span style=color:#000;font-weight:700>)</span> <span style=color:#000;font-weight:700>]]</span>; <span style=color:#000;font-weight:700>then</span> <span style=color:teal>FileNum</span><span style=color:#000;font-weight:700>=</span><span style=color:#d14>&#39;0&#39;</span>; <span style=color:#000;font-weight:700>fi</span>
+<span style=color:#000;font-weight:700>if</span> <span style=color:#000;font-weight:700>[[</span> <span style=color:#d14>&#34;</span><span style=color:teal>$FileNum</span><span style=color:#d14>&#34;</span> -le <span style=color:#d14>&#39;0&#39;</span> <span style=color:#000;font-weight:700>]]</span>; <span style=color:#000;font-weight:700>then</span> <span style=color:#0086b3>exit</span> 0; <span style=color:#000;font-weight:700>fi</span>
+<span style=color:#000;font-weight:700>if</span> <span style=color:#000;font-weight:700>[[</span> <span style=color:#d14>&#34;</span><span style=color:teal>$#</span><span style=color:#d14>&#34;</span> !<span style=color:#000;font-weight:700>=</span> <span style=color:#d14>&#39;3&#39;</span> <span style=color:#000;font-weight:700>]]</span>; <span style=color:#000;font-weight:700>then</span> <span style=color:#0086b3>exit</span> 0; <span style=color:#000;font-weight:700>fi</span>
+
+<span style=color:#000;font-weight:700>function</span> LoadFile<span style=color:#000;font-weight:700>(){</span>
+  <span style=color:teal>IFS_BAK</span><span style=color:#000;font-weight:700>=</span><span style=color:teal>$IFS</span>
+  <span style=color:teal>IFS</span><span style=color:#000;font-weight:700>=</span><span style=color:#d14>$&#39;\n&#39;</span>
+  <span style=color:#000;font-weight:700>if</span> <span style=color:#000;font-weight:700>[[</span> ! -d <span style=color:#d14>&#34;</span><span style=color:teal>$LocalDIR</span><span style=color:#d14>&#34;</span> <span style=color:#000;font-weight:700>]]</span>; <span style=color:#000;font-weight:700>then</span> <span style=color:#000;font-weight:700>return</span>; <span style=color:#000;font-weight:700>fi</span>
+  <span style=color:#000;font-weight:700>if</span> <span style=color:#000;font-weight:700>[[</span> -e <span style=color:#d14>&#34;</span><span style=color:teal>$File</span><span style=color:#d14>&#34;</span> <span style=color:#000;font-weight:700>]]</span>; <span style=color:#000;font-weight:700>then</span>
+    <span style=color:teal>FileLoad</span><span style=color:#000;font-weight:700>=</span><span style=color:#d14>&#34;</span><span style=color:#d14>${</span><span style=color:teal>File</span>/#<span style=color:teal>$LocalDIR</span><span style=color:#d14>}</span><span style=color:#d14>&#34;</span>
+    <span style=color:#000;font-weight:700>while</span> <span style=color:#0086b3>true</span>
+      <span style=color:#000;font-weight:700>do</span>
+        <span style=color:#000;font-weight:700>if</span> <span style=color:#000;font-weight:700>[[</span> <span style=color:#d14>&#34;</span><span style=color:teal>$FileLoad</span><span style=color:#d14>&#34;</span> <span style=color:#000;font-weight:700>==</span> <span style=color:#d14>&#39;/&#39;</span> <span style=color:#000;font-weight:700>]]</span>; <span style=color:#000;font-weight:700>then</span> <span style=color:#000;font-weight:700>return</span>; <span style=color:#000;font-weight:700>fi</span>
+        <span style=color:#0086b3>echo</span> <span style=color:#d14>&#34;</span><span style=color:teal>$FileLoad</span><span style=color:#d14>&#34;</span> |grep -q <span style=color:#d14>&#39;/&#39;</span>;
+        <span style=color:#000;font-weight:700>if</span> <span style=color:#000;font-weight:700>[[</span> <span style=color:#d14>&#34;</span><span style=color:teal>$?</span><span style=color:#d14>&#34;</span> <span style=color:#000;font-weight:700>==</span> <span style=color:#d14>&#34;0&#34;</span> <span style=color:#000;font-weight:700>]]</span>; <span style=color:#000;font-weight:700>then</span>
+          <span style=color:teal>FileLoad</span><span style=color:#000;font-weight:700>=</span><span style=color:#000;font-weight:700>$(</span>dirname <span style=color:#d14>&#34;</span><span style=color:teal>$FileLoad</span><span style=color:#d14>&#34;</span><span style=color:#000;font-weight:700>)</span>;
+        <span style=color:#000;font-weight:700>else</span>
+          break;
+        <span style=color:#000;font-weight:700>fi</span>;
+      <span style=color:#000;font-weight:700>done</span>;
+    <span style=color:#000;font-weight:700>if</span> <span style=color:#000;font-weight:700>[[</span> <span style=color:#d14>&#34;</span><span style=color:teal>$FileLoad</span><span style=color:#d14>&#34;</span> <span style=color:#000;font-weight:700>==</span> <span style=color:#d14>&#34;</span><span style=color:teal>$LocalDIR</span><span style=color:#d14>&#34;</span> <span style=color:#000;font-weight:700>]]</span>; <span style=color:#000;font-weight:700>then</span> <span style=color:#000;font-weight:700>return</span>; <span style=color:#000;font-weight:700>fi</span>
+    <span style=color:teal>EXEC</span><span style=color:#000;font-weight:700>=</span><span style=color:#d14>&#34;</span><span style=color:#000;font-weight:700>$(</span><span style=color:#0086b3>command</span> -v mv<span style=color:#000;font-weight:700>)</span><span style=color:#d14>&#34;</span>
+    <span style=color:#000;font-weight:700>if</span> <span style=color:#000;font-weight:700>[[</span> -z <span style=color:#d14>&#34;</span><span style=color:teal>$EXEC</span><span style=color:#d14>&#34;</span> <span style=color:#000;font-weight:700>]]</span>; <span style=color:#000;font-weight:700>then</span> <span style=color:#000;font-weight:700>return</span>; <span style=color:#000;font-weight:700>fi</span>
+    <span style=color:teal>Option</span><span style=color:#000;font-weight:700>=</span><span style=color:#d14>&#34; -f&#34;</span>;
+    <span style=color:#0086b3>cd</span> <span style=color:#d14>&#34;</span><span style=color:teal>$LocalDIR</span><span style=color:#d14>&#34;</span>;
+    <span style=color:#000;font-weight:700>if</span> <span style=color:#000;font-weight:700>[[</span> -e <span style=color:#d14>&#34;</span><span style=color:teal>$FileLoad</span><span style=color:#d14>&#34;</span> <span style=color:#000;font-weight:700>]]</span>; <span style=color:#000;font-weight:700>then</span>
+      <span style=color:teal>ItemSize</span><span style=color:#000;font-weight:700>=</span><span style=color:#000;font-weight:700>$(</span>du -s <span style=color:#d14>&#34;</span><span style=color:teal>$FileLoad</span><span style=color:#d14>&#34;</span> |cut -f1 |grep -o <span style=color:#d14>&#39;[0-9]*&#39;</span> |head -n1<span style=color:#000;font-weight:700>)</span>
+      <span style=color:#000;font-weight:700>if</span> <span style=color:#000;font-weight:700>[[</span> -z <span style=color:#d14>&#34;</span><span style=color:teal>$ItemSize</span><span style=color:#d14>&#34;</span> <span style=color:#000;font-weight:700>]]</span>; <span style=color:#000;font-weight:700>then</span> <span style=color:#000;font-weight:700>return</span>; <span style=color:#000;font-weight:700>fi</span>
+      <span style=color:#000;font-weight:700>if</span> <span style=color:#000;font-weight:700>[[</span> <span style=color:#d14>&#34;</span><span style=color:teal>$ItemSize</span><span style=color:#d14>&#34;</span> -le <span style=color:#d14>&#34;</span><span style=color:teal>$MinSize</span><span style=color:#d14>&#34;</span> <span style=color:#000;font-weight:700>]]</span>; <span style=color:#000;font-weight:700>then</span>
+        <span style=color:#0086b3>echo</span> -ne <span style=color:#d14>&#34;\033[33m</span><span style=color:teal>$FileLoad</span><span style=color:#d14> \033[0mtoo small to spik.\n&#34;</span>;
+        <span style=color:#000;font-weight:700>return</span>;
+      <span style=color:#000;font-weight:700>fi</span>
+      <span style=color:#000;font-weight:700>if</span> <span style=color:#000;font-weight:700>[[</span> <span style=color:#d14>&#34;</span><span style=color:teal>$ItemSize</span><span style=color:#d14>&#34;</span> -ge <span style=color:#d14>&#34;</span><span style=color:teal>$MaxSize</span><span style=color:#d14>&#34;</span> <span style=color:#000;font-weight:700>]]</span>; <span style=color:#000;font-weight:700>then</span>
+        <span style=color:#0086b3>echo</span> -ne <span style=color:#d14>&#34;\033[33m</span><span style=color:teal>$FileLoad</span><span style=color:#d14> \033[0mtoo large to spik.\n&#34;</span>;
+        <span style=color:#000;font-weight:700>return</span>;
+      <span style=color:#000;font-weight:700>fi</span>
+      <span style=color:#0086b3>eval</span> <span style=color:#d14>&#34;</span><span style=color:#d14>${</span><span style=color:teal>EXEC</span><span style=color:#d14>}${</span><span style=color:teal>Option</span><span style=color:#d14>}</span><span style=color:#d14>&#34;</span> <span style=color:#d14>\&#39;</span><span style=color:#d14>&#34;</span><span style=color:#d14>${</span><span style=color:teal>FileLoad</span><span style=color:#d14>}</span><span style=color:#d14>&#34;</span><span style=color:#d14>\&#39;</span> <span style=color:#d14>&#34;</span><span style=color:#d14>${</span><span style=color:teal>RemoteDIR</span><span style=color:#d14>}</span><span style=color:#d14>&#34;</span>;
+    <span style=color:#000;font-weight:700>fi</span>
+  <span style=color:#000;font-weight:700>fi</span>
+  <span style=color:teal>IFS</span><span style=color:#000;font-weight:700>=</span><span style=color:teal>$IFS_BAK</span>
+<span style=color:#000;font-weight:700>}</span>
+LoadFile;
+</code></pre></div><p>授权</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>chmod +x rcloneupload.sh
+</code></pre></div><p>然后再到Aria2配置文件中加上一行</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>on-download-complete<span style=color:#000;font-weight:700>=</span>/root/rcloneupload.sh
+</code></pre></div><p>即可，后面为脚本的路径。最后重启Aria2生效。</p><p>转载自： <a href=https://www.moerats.com/archives/482/>https://www.moerats.com/archives/482/</a></p></div><div class=post-archive><ul class=post-copyright><li><strong>原文作者：</strong><a rel=author href=https://567899.xyz>Xizi</a></li><li style=word-break:break-all><strong>原文链接：</strong><a href=https://567899.xyz/post/Aira2-uploads-GoogleDrive-onedrive/>https://567899.xyz/post/Aira2-uploads-GoogleDrive-onedrive/</a></li><li><strong>版权声明：</strong>本作品采用<a rel=license href=https://creativecommons.org/licenses/by-nc-nd/4.0/>知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议</a>进行许可，非商业转载请注明出处（作者，原文链接），商业转载请联系作者获得授权。</li></ul></div><br><div class=post-archive><h2>See Also</h2><ul class=listing><li><a href=/post/oneindex-installation-failed/>Oneindex程序安装失败解决办法</a></li><li><a href=/post/Windows-Map-a-network-drive/>Windows中将OneDrive映射为本地磁盘</a></li></ul></div><div class="post-meta meta-tags"><ul class=clearfix><li><a href=/tags/Aira2 target=_blank>Aira2</a></li><li><a href=/tags/GoogleDrive target=_blank>GoogleDrive</a></li><li><a href=/tags/OneDrive target=_blank>OneDrive</a></li></ul></div></article><div class="post bg-white"><script src=https://utteranc.es/client.js repo=pwwq/blog-comments issue-term=pathname theme=github-light crossorigin=anonymous async></script></div></div><footer id=footer><div>&copy; 2022 <a href=https://567899.xyz>Xizi's Blog By Xizi <a href=/sitemap.xml>站点地图</a></a></div><br><div><div class=github-badge><a href=https://gohugo.io/ target=_black rel=nofollow><span class=badge-subject>Powered by</span><span class="badge-value bg-blue">Hugo</span></a></div><div class=github-badge><a href=https://www.flysnow.org/ target=_black><span class=badge-subject>Design by</span><span class="badge-value bg-brightgreen">飞雪无情</span></a></div><div class=github-badge><a href=https://github.com/flysnow-org/maupassant-hugo target=_black><span class=badge-subject>Theme</span><span class="badge-value bg-yellowgreen">Maupassant</span></a></div></div></footer><script type=text/javascript>window.MathJax={tex2jax:{inlineMath:[['$','$']],processEscapes:true}};</script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async></script><script src=//cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js></script><a id=rocket href=#top></a><script type=text/javascript src="/js/totop.js?v=0.0.0" async></script><style type=text/css>div.highlight{position:relative;margin:1em 0}.copy-code{display:none;position:absolute;top:4px;right:4px;color:rgba(255,255,255,.8);background:rgba(78,78,78,.8);border-radius:var(--radius);padding:0 5px;font:inherit;user-select:none;cursor:pointer;border:0;--radius: 8px}div.highlight:hover .copy-code,pre:hover .copy-code{display:block}</style><script>document.querySelectorAll('pre > code').forEach((codeblock)=>{const container=codeblock.parentNode.parentNode;const copybutton=document.createElement('button');copybutton.classList.add('copy-code');copybutton.innerHTML='copy';function copyingDone(){copybutton.innerHTML='copied!';setTimeout(()=>{copybutton.innerHTML='copy';},2000);}
+copybutton.addEventListener('click',(cb)=>{if('clipboard'in navigator){navigator.clipboard.writeText(codeblock.textContent);copyingDone();return;}
+const range=document.createRange();range.selectNodeContents(codeblock);const selection=window.getSelection();selection.removeAllRanges();selection.addRange(range);try{document.execCommand('copy');copyingDone();}catch(e){};selection.removeRange(range);});if(container.classList.contains("highlight")){container.appendChild(copybutton);}else if(container.parentNode.firstChild==container){}else if(codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"){codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);}else{codeblock.parentNode.appendChild(copybutton);}});</script><script src=/js/douban.js></script></div><div id=secondary><section class=widget><form id=search action=https://567899.xyz/search method=get accept-charset=utf-8 target=_blank _lpchecked=1><input type=text name=q maxlength=20 placeholder=Search>
+<input type=hidden name=sitesearch value=https://567899.xyz>
+<button type=submit class="submit icon-search"></button></form></section><section class=widget><h3 class=widget-title>最近文章</h3><ul class=widget-list><li><a href=https://567899.xyz/post/google_drive_folderclone/ title="[更新]Folderclone谷歌Google Drive共享云端硬盘转存相互转移拷贝复制文件的正确姿势" target=_blank>[更新]Folderclone谷歌Google Drive共享云端硬盘转存相互转移拷贝复制文件的正确姿势</a></li><li><a href=https://567899.xyz/post/v2ray-http/ title="联通电信移动V2ray免流host http教程" target=_blank>联通电信移动V2ray免流host http教程</a></li><li><a href=https://567899.xyz/post/qiandao/ title=Cookie自动登陆签到、抓包提取制作HAR文件 target=_blank>Cookie自动登陆签到、抓包提取制作HAR文件</a></li><li><a href=https://567899.xyz/post/flexget/ title=flexget自动为qbittorrent、transmission等PT客户端添加种子任务 target=_blank>flexget自动为qbittorrent、transmission等PT客户端添加种子任务</a></li><li><a href=https://567899.xyz/post/autoremove-torrents/ title=使用autoremove-torrents自动删除PT种子文件 target=_blank>使用autoremove-torrents自动删除PT种子文件</a></li><li><a href=https://567899.xyz/post/android-termux-transmission-pt-downloads/ title=安卓手机可以在termux里安装Transmission来玩PT下载 target=_blank>安卓手机可以在termux里安装Transmission来玩PT下载</a></li><li><a href=https://567899.xyz/post/TinyFileManager/ title="Tiny File Manager一款简洁的PHP文件管理器" target=_blank>Tiny File Manager一款简洁的PHP文件管理器</a></li><li><a href=https://567899.xyz/post/Transmission/ title=Transmission的安装、配置、制作PT种子torrent做种 target=_blank>Transmission的安装、配置、制作PT种子torrent做种</a></li><li><a href=https://567899.xyz/post/win10-sound-not-work/ title=win10系统音量图标灰色无法调节的解决方法 target=_blank>win10系统音量图标灰色无法调节的解决方法</a></li><li><a href=https://567899.xyz/post/oracle-oci-arm-vps/ title="Oracle甲骨文OCI自动刷ARM VPS脚本" target=_blank>Oracle甲骨文OCI自动刷ARM VPS脚本</a></li></ul></section><section class=widget><h3 class=widget-title><a href=/categories/>分类</a></h3><ul class=widget-list><li><a href=https://567899.xyz/categories/Android/>Android (2)</a></li><li><a href=https://567899.xyz/categories/Telegram/>Telegram (1)</a></li><li><a href=https://567899.xyz/categories/Windows/>Windows (2)</a></li><li><a href=https://567899.xyz/categories/free/>free (1)</a></li><li><a href=https://567899.xyz/categories/%E6%95%99%E7%A8%8B/>教程 (87)</a></li><li><a href=https://567899.xyz/categories/%E8%BD%AF%E4%BB%B6/>软件 (4)</a></li></ul></section><section class=widget><h3 class=widget-title><a href=/tags/>标签</a></h3><div class=tagcloud><a href=https://567899.xyz/tags/7z/>7z</a>
+<a href=https://567899.xyz/tags/ADB/>ADB</a>
+<a href=https://567899.xyz/tags/API/>API</a>
+<a href=https://567899.xyz/tags/Actions/>Actions</a>
+<a href=https://567899.xyz/tags/Aira2/>Aira2</a>
+<a href=https://567899.xyz/tags/Android/>Android</a>
+<a href=https://567899.xyz/tags/Apache/>Apache</a>
+<a href=https://567899.xyz/tags/AutoRclone/>AutoRclone</a>
+<a href=https://567899.xyz/tags/Azure/>Azure</a>
+<a href=https://567899.xyz/tags/BaiduPCS-Go/>BaiduPCS-Go</a>
+<a href=https://567899.xyz/tags/BestTrace/>BestTrace</a>
+<a href=https://567899.xyz/tags/Bitwarden/>Bitwarden</a>
+<a href=https://567899.xyz/tags/caddy/>caddy</a>
+<a href=https://567899.xyz/tags/Certbot/>Certbot</a>
+<a href=https://567899.xyz/tags/Chrome/>Chrome</a>
+<a href=https://567899.xyz/tags/cloudflare/>cloudflare</a>
+<a href=https://567899.xyz/tags/Cookie/>Cookie</a>
+<a href=https://567899.xyz/tags/Debian/>Debian</a>
+<a href=https://567899.xyz/tags/FODI/>FODI</a>
+<a href=https://567899.xyz/tags/FastStoneCapture/>FastStoneCapture</a>
+<a href=https://567899.xyz/tags/Git/>Git</a>
+<a href=https://567899.xyz/tags/GitHub/>GitHub</a>
+<a href=https://567899.xyz/tags/Gmail/>Gmail</a>
+<a href=https://567899.xyz/tags/GoogleDrive/>GoogleDrive</a>
+<a href=https://567899.xyz/tags/hugo/>hugo</a>
+<a href=https://567899.xyz/tags/IP/>IP</a>
+<a href=https://567899.xyz/tags/Lycamobile/>Lycamobile</a>
+<a href=https://567899.xyz/tags/Magisk/>Magisk</a>
+<a href=https://567899.xyz/tags/MySQL/>MySQL</a>
+<a href=https://567899.xyz/tags/NPM/>NPM</a>
+<a href=https://567899.xyz/tags/Netflix/>Netflix</a>
+<a href=https://567899.xyz/tags/Nginx/>Nginx</a>
+<a href=https://567899.xyz/tags/Node.js/>Node.js</a>
+<a href=https://567899.xyz/tags/OneDrive/>OneDrive</a>
+<a href=https://567899.xyz/tags/OpenWrt/>OpenWrt</a>
+<a href=https://567899.xyz/tags/OpenWrt/>OpenWrt</a>
+<a href=https://567899.xyz/tags/oracle/>oracle</a>
+<a href=https://567899.xyz/tags/php/>php</a>
+<a href=https://567899.xyz/tags/PT/>PT</a>
+<a href=https://567899.xyz/tags/Pornhub/>Pornhub</a>
+<a href=https://567899.xyz/tags/Python/>Python</a>
+<a href=https://567899.xyz/tags/QQ/>QQ</a>
+<a href=https://567899.xyz/tags/rclone/>rclone</a>
+<a href=https://567899.xyz/tags/SMTP/>SMTP</a>
+<a href=https://567899.xyz/tags/SSH/>SSH</a>
+<a href=https://567899.xyz/tags/ssl/>ssl</a>
+<a href=https://567899.xyz/tags/TXT/>TXT</a>
+<a href=https://567899.xyz/tags/Telegram/>Telegram</a>
+<a href=https://567899.xyz/tags/Transmission/>Transmission</a>
+<a href=https://567899.xyz/tags/Ubuntu/>Ubuntu</a>
+<a href=https://567899.xyz/tags/V2ray/>V2ray</a>
+<a href=https://567899.xyz/tags/Windows/>Windows</a>
+<a href=https://567899.xyz/tags/WireGuard/>WireGuard</a>
+<a href=https://567899.xyz/tags/Xshell/>Xshell</a>
+<a href=https://567899.xyz/tags/alipay/>alipay</a>
+<a href=https://567899.xyz/tags/bbr/>bbr</a>
+<a href=https://567899.xyz/tags/caddy/>caddy</a>
+<a href=https://567899.xyz/tags/Chrome/>Chrome</a>
+<a href=https://567899.xyz/tags/cloudflare/>cloudflare</a>
+<a href=https://567899.xyz/tags/cmd/>cmd</a>
+<a href=https://567899.xyz/tags/crontab/>crontab</a>
+<a href=https://567899.xyz/tags/dd/>dd</a>
+<a href=https://567899.xyz/tags/docker/>docker</a>
+<a href=https://567899.xyz/tags/folderclone/>folderclone</a>
+<a href=https://567899.xyz/tags/frp/>frp</a>
+<a href=https://567899.xyz/tags/gitbook/>gitbook</a>
+<a href=https://567899.xyz/tags/GitHub/>GitHub</a>
+<a href=https://567899.xyz/tags/google/>google</a>
+<a href=https://567899.xyz/tags/hexo/>hexo</a>
+<a href=https://567899.xyz/tags/hugo/>hugo</a>
+<a href=https://567899.xyz/tags/key/>key</a>
+<a href=https://567899.xyz/tags/nano/>nano</a>
+<a href=https://567899.xyz/tags/OpenWrt/>OpenWrt</a>
+<a href=https://567899.xyz/tags/oracle/>oracle</a>
+<a href=https://567899.xyz/tags/php/>php</a>
+<a href=https://567899.xyz/tags/qBittorrent/>qBittorrent</a>
+<a href=https://567899.xyz/tags/rar/>rar</a>
+<a href=https://567899.xyz/tags/rclone/>rclone</a>
+<a href=https://567899.xyz/tags/scp/>scp</a>
+<a href=https://567899.xyz/tags/screen/>screen</a>
+<a href=https://567899.xyz/tags/ssl/>ssl</a>
+<a href=https://567899.xyz/tags/swap/>swap</a>
+<a href=https://567899.xyz/tags/systemctl/>systemctl</a>
+<a href=https://567899.xyz/tags/tar/>tar</a>
+<a href=https://567899.xyz/tags/Transmission/>Transmission</a>
+<a href=https://567899.xyz/tags/vnc/>vnc</a>
+<a href=https://567899.xyz/tags/Windows/>Windows</a>
+<a href=https://567899.xyz/tags/zfaka/>zfaka</a>
+<a href=https://567899.xyz/tags/%E8%81%94%E9%80%9A/>联通</a></div></section><section class=widget><h3 class=widget-title>其它</h3><ul class=widget-list><li><a href=https://567899.xyz/index.xml>文章 RSS</a></li></ul></section></div></div></div></div></body></html>

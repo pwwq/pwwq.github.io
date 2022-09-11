@@ -1,0 +1,346 @@
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><title>BaiduPCS-Go上传下载不限速的百度网盘客户端 | Xizi's Blog</title><meta property="og:title" content="BaiduPCS-Go上传下载不限速的百度网盘客户端 - Xizi's Blog"><meta property="og:type" content="article"><meta property="article:published_time" content="2019-01-13T01:37:56+08:00"><meta property="article:modified_time" content="2019-01-13T01:37:56+08:00"><meta name=Keywords content><meta name=description content="BaiduPCS-Go上传下载不限速的百度网盘客户端"><meta name=author content="Xizi"><meta property="og:url" content="https://567899.xyz/post/BaiduPCS-Go/"><link rel="shortcut icon" href=/favicon.ico type=image/x-icon><link rel=stylesheet href=/css/normalize.css><link rel=stylesheet href=/css/style.css><script type=text/javascript src=//cdn.bootcdn.net/ajax/libs/jquery/3.4.1/jquery.min.js></script><link href=https://cdn.bootcdn.net/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css rel=stylesheet><link rel=stylesheet href=/css/douban.css><link rel=stylesheet href=/css/other.css></head><body><header id=header class=clearfix><div class=container><div class=col-group><div class=site-name><a id=logo href=https://567899.xyz>Xizi's Blog</a><p class=description>记录、分享自己的折腾日记。</p></div><div><nav id=nav-menu class=clearfix><a class=current href=https://567899.xyz>首页</a>
+<a href=https://567899.xyz/post/tools/ title=工具>工具</a>
+<a href=https://567899.xyz/archives/ title=归档>归档</a>
+<a href=https://567899.xyz/about/ title=关于>关于</a></nav></div></div></div></header><div id=body><div class=container><div class=col-group><div class=col-8 id=main><div class=res-cons><style type=text/css>.post-toc{position:fixed;width:200px;margin-left:-210px;padding:5px 10px;font-family:Athelas,STHeiti,Microsoft Yahei,serif;font-size:12px;border:1px solid rgba(0,0,0,.07);border-radius:5px;background-color:rgba(255,255,255,.98);background-clip:padding-box;-webkit-box-shadow:1px 1px 2px rgba(0,0,0,.125);box-shadow:1px 1px 2px rgba(0,0,0,.125);word-wrap:break-word;white-space:nowrap;-webkit-box-sizing:border-box;box-sizing:border-box;z-index:999;cursor:pointer;max-height:70%;overflow-y:auto;overflow-x:hidden}.post-toc .post-toc-title{width:100%;margin:0 auto;font-size:20px;font-weight:400;text-transform:uppercase;text-align:center}.post-toc .post-toc-content{font-size:15px}.post-toc .post-toc-content>nav>ul{margin:10px 0}.post-toc .post-toc-content ul{padding-left:20px;list-style:square;margin:.5em;line-height:1.8em}.post-toc .post-toc-content ul ul{padding-left:15px;display:none}@media print,screen and (max-width:1057px){.post-toc{display:none}}</style><div class=post-toc style=position:absolute;top:188px><h2 class=post-toc-title>文章目录</h2><div class=post-toc-content><nav id=TableOfContents><ul><li><a href=#android运行baidupcs-gohttpsgithubcomiikirabaidupcs-gowikiandroid-e8bf90e8a18ce69cace9a1b9e79baee7a88be5ba8fe58f82e88083e7a4bae4be8b><a href=https://github.com/iikira/BaiduPCS-Go/wiki/Android-%E8%BF%90%E8%A1%8C%E6%9C%AC%E9%A1%B9%E7%9B%AE%E7%A8%8B%E5%BA%8F%E5%8F%82%E8%80%83%E7%A4%BA%E4%BE%8B>Android运行BaiduPCS-Go</a></a><ul><li><a href=#安装方式一-通过软件源安装>安装方式一: 通过软件源安装</a></li><li><a href=#安装方式二-手动安装>安装方式二: 手动安装</a></li></ul></li></ul><ul><li><a href=#解决错误代码4-no-permission-to-do-this-operation>解决错误代码4, No permission to do this operation</a></li><li><a href=#注意>注意</a></li></ul><ul><li><a href=#windows>Windows</a></li><li><a href=#linux--macos>Linux / macOS</a></li><li><a href=#android--ios>Android / iOS</a></li></ul><ul><li><a href=#注意--->注意 ! ! !</a></li><li><a href=#检测程序更新>检测程序更新</a></li><li><a href=#登录百度帐号>登录百度帐号</a></li><li><a href=#常规登录百度帐号>常规登录百度帐号</a></li><li><a href=#使用百度-bduss-来登录百度帐号>使用百度 BDUSS 来登录百度帐号</a><ul><li><a href=#例子>例子</a></li></ul></li><li><a href=#列出帐号列表>列出帐号列表</a></li><li><a href=#获取当前帐号>获取当前帐号</a></li><li><a href=#切换百度帐号>切换百度帐号</a></li><li><a href=#退出百度帐号>退出百度帐号</a></li><li><a href=#获取网盘配额>获取网盘配额</a></li><li><a href=#切换工作目录>切换工作目录</a></li><li><a href=#切换工作目录后自动列出工作目录下的文件和目录>切换工作目录后自动列出工作目录下的文件和目录</a><ul><li><a href=#例子-1>例子</a></li></ul></li><li><a href=#输出工作目录>输出工作目录</a></li><li><a href=#列出目录>列出目录</a></li><li><a href=#可选参数>可选参数</a><ul><li><a href=#例子-2>例子</a></li></ul></li><li><a href=#列出目录树形图>列出目录树形图</a></li><li><a href=#获取文件目录的元信息>获取文件/目录的元信息</a><ul><li><a href=#例子-3>例子</a></li></ul></li><li><a href=#搜索文件>搜索文件</a><ul><li><a href=#例子-4>例子</a></li></ul></li><li><a href=#下载文件目录>下载文件/目录</a></li><li><a href=#可选参数-1>可选参数</a><ul><li><a href=#例子-5>例子</a></li></ul></li><li><a href=#上传文件目录>上传文件/目录</a><ul><li><a href=#注意-1>注意:</a></li><li><a href=#例子-6>例子:</a></li></ul></li><li><a href=#获取下载直链>获取下载直链</a><ul><li><a href=#注意-2>注意</a></li></ul></li><li><a href=#手动秒传文件>手动秒传文件</a><ul><li><a href=#例子-7>例子:</a></li></ul></li><li><a href=#修复文件md5>修复文件MD5</a><ul><li><a href=#例子-8>例子:</a></li></ul></li><li><a href=#获取本地文件的秒传信息>获取本地文件的秒传信息</a><ul><li><a href=#例子-9>例子:</a></li></ul></li><li><a href=#导出文件目录>导出文件/目录</a><ul><li><a href=#注意-3>注意</a></li><li><a href=#例子-10>例子:</a></li></ul></li><li><a href=#创建目录>创建目录</a><ul><li><a href=#例子-11>例子</a></li></ul></li><li><a href=#删除文件目录>删除文件/目录</a><ul><li><a href=#例子-12>例子</a></li></ul></li><li><a href=#拷贝文件目录>拷贝文件/目录</a><ul><li><a href=#例子-13>例子</a></li></ul></li><li><a href=#移动重命名文件目录>移动/重命名文件/目录</a><ul><li><a href=#例子-14>例子</a></li></ul></li><li><a href=#分享文件目录>分享文件/目录</a></li><li><a href=#设置分享文件目录>设置分享文件/目录</a></li><li><a href=#列出已分享文件目录>列出已分享文件/目录</a></li><li><a href=#取消分享文件目录>取消分享文件/目录</a></li><li><a href=#离线下载>离线下载</a></li><li><a href=#添加离线下载任务>添加离线下载任务</a></li><li><a href=#精确查询离线下载任务>精确查询离线下载任务</a></li><li><a href=#查询离线下载任务列表>查询离线下载任务列表</a></li><li><a href=#取消离线下载任务>取消离线下载任务</a></li><li><a href=#删除离线下载任务>删除离线下载任务</a><ul><li><a href=#例子-15>例子</a></li></ul></li><li><a href=#回收站>回收站</a></li><li><a href=#列出回收站文件列表>列出回收站文件列表</a><ul><li><a href=#可选参数-2>可选参数</a></li></ul></li><li><a href=#还原回收站文件或目录>还原回收站文件或目录</a></li><li><a href=#删除回收站文件或目录清空回收站>删除回收站文件或目录/清空回收站</a><ul><li><a href=#例子-16>例子</a></li></ul></li><li><a href=#显示程序环境变量>显示程序环境变量</a></li><li><a href=#显示和修改程序配置项>显示和修改程序配置项</a><ul><li><a href=#例子-17>例子</a></li></ul></li><li><a href=#测试通配符>测试通配符</a><ul><li><a href=#例子-18>例子</a></li></ul></li><li><a href=#工具箱>工具箱</a></li></ul><ul><li><a href=#1-查看程序使用说明>1. 查看程序使用说明</a></li><li><a href=#2-登录百度帐号-必做>2. 登录百度帐号 (必做)</a></li><li><a href=#3-切换网盘工作目录>3. 切换网盘工作目录</a></li><li><a href=#4-网盘内列出文件和目录>4. 网盘内列出文件和目录</a></li><li><a href=#5-下载文件>5. 下载文件</a></li><li><a href=#6-设置下载最大并发量>6. 设置下载最大并发量</a></li><li><a href=#7-退出程序>7. 退出程序</a></li></ul></nav></div></div><script type=text/javascript>$(document).ready(function(){var postToc=$(".post-toc");if(postToc.length){var leftPos=$("#main").offset().left;if(leftPos<220){postToc.css({"width":leftPos-10,"margin-left":(0-leftPos)})}
+var t=postToc.offset().top-20,a={start:{position:"absolute",top:t},process:{position:"fixed",top:20},};$(window).scroll(function(){var e=$(window).scrollTop();e<t?postToc.css(a.start):postToc.css(a.process)})}
+if($("#TableOfContents").children().length<1){$(".post-toc").remove();}})</script><article class=post><header><h1 class=post-title>BaiduPCS-Go上传下载不限速的百度网盘客户端</h1></header><date class="post-meta meta-date">2019年1月13日</date><div class=post-meta><span>|</span>
+<span class=meta-category><a href=/categories/%E6%95%99%E7%A8%8B target=_blank>教程</a></span></div><div class=post-content><blockquote><p>BaiduPCS-Go项目地址(<a href=https://github.com/iikira/BaiduPCS-Go>https://github.com/iikira/BaiduPCS-Go</a>)</p></blockquote><h2 id=android运行baidupcs-gohttpsgithubcomiikirabaidupcs-gowikiandroid-e8bf90e8a18ce69cace9a1b9e79baee7a88be5ba8fe58f82e88083e7a4bae4be8b><a href=https://github.com/iikira/BaiduPCS-Go/wiki/Android-%E8%BF%90%E8%A1%8C%E6%9C%AC%E9%A1%B9%E7%9B%AE%E7%A8%8B%E5%BA%8F%E5%8F%82%E8%80%83%E7%A4%BA%E4%BE%8B>Android运行BaiduPCS-Go</a></h2><p><a href=https://termux.com/>下载Termux</a> 安装并运行</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>termux-setup-storage
+</code></pre></div><p>始终允许Termux获取存储权限</p><h3 id=安装方式一-通过软件源安装>安装方式一: 通过软件源安装</h3><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#0086b3>echo</span> <span style=color:#d14>&#34;deb [trusted=yes] http://termux.iikira.com stable main&#34;</span> &gt;&gt; /data/data/com.termux/files/usr/etc/apt/sources.list
+</code></pre></div><p>添加更新软件源</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>apt update
+</code></pre></div><p>安装程序</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>apt install baidupcs-go
+</code></pre></div><h3 id=安装方式二-手动安装>安装方式二: 手动安装</h3><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>apt update <span style=color:#000;font-weight:700>&amp;&amp;</span> apt upgrade -y
+wget -O 1.zip https://github.com/iikira/BaiduPCS-Go/releases/download/v3.3.3/BaiduPCS-Go-v3.3.3-android-21-arm64.zip
+unzip 1.zip <span style=color:#000;font-weight:700>&amp;&amp;</span> rm 1.zip
+mv BaiduPCS-Go-v3.3.3-android-21-arm64 BaiduPCS-Go
+<span style=color:#0086b3>cd</span> ~/BaiduPCS-Go <span style=color:#000;font-weight:700>&amp;&amp;</span> ./BaiduPCS-Go
+</code></pre></div><p>按提示完成登陆</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>BaiduPCS-Go login
+</code></pre></div><p>配置文件所在的目录为家目录的情况</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>config <span style=color:#0086b3>set</span> -max_parallel <span style=color:#099>500</span>
+</code></pre></div><p>下载最大并发量建议值: 50~500, 太低下载速度提升不明显甚至速度会变为0, 太高可能会导致程序出错被操作系统结束掉</p><p>更新程序</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>apt update
+apt install baidupcs-go
+</code></pre></div><p>卸载程序</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>apt remove baidupcs-go
+</code></pre></div><h1 id=baidupcs-go-百度网盘客户端>BaiduPCS-Go 百度网盘客户端</h1><p>仿 Linux shell 文件处理命令的百度网盘命令行客户端.</p><p>This project was largely inspired by <a href=https://github.com/GangZhuo/BaiduPCS>GangZhuo/BaiduPCS</a></p><h2 id=解决错误代码4-no-permission-to-do-this-operation>解决错误代码4, No permission to do this operation</h2><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>BaiduPCS-Go config <span style=color:#0086b3>set</span> -appid <span style=color:#099>266719</span>
+</code></pre></div><p>详见讨论 <a href=https://github.com/iikira/BaiduPCS-Go/issues/387>#387</a></p><h2 id=注意>注意</h2><p>此文档只针对于最新的commit, 可能不适用于已发布的最新版本.</p><h1 id=特色>特色</h1><p>多平台支持, 支持 Windows, macOS, linux, 移动设备等.</p><p>百度帐号多用户支持;</p><p>通配符匹配网盘路径和 Tab 自动补齐命令和路径, <a href=https://baike.baidu.com/item/%E9%80%9A%E9%85%8D%E7%AC%A6>通配符_百度百科</a>;</p><p><a href=#%E4%B8%8B%E8%BD%BD%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95>下载</a>网盘内文件, 支持多个文件或目录下载, 支持断点续传和单文件并行下载;</p><p><a href=#%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95>上传</a>本地文件, 支持上传大文件(>2GB), 支持多个文件或目录上传;</p><p><a href=#%E7%A6%BB%E7%BA%BF%E4%B8%8B%E8%BD%BD>离线下载</a>, 支持http/https/ftp/电驴/磁力链协议.</p><h1 id=编译交叉编译-说明>编译/交叉编译 说明</h1><p>参见 <a href=https://github.com/iikira/BaiduPCS-Go/wiki/%E7%BC%96%E8%AF%91-%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E5%B8%AE%E5%8A%A9>编译/交叉编译帮助</a></p><h1 id=下载运行-说明>下载/运行 说明</h1><p>Go语言程序, 可直接在<a href=https://github.com/iikira/BaiduPCS-Go/releases>发布页</a>下载使用.</p><p>如果程序运行时输出乱码, 请检查下终端的编码方式是否为 <code>UTF-8</code>.</p><p>使用本程序之前, 建议学习一些 linux 基础知识 和 基础命令.</p><p>如果未带任何参数运行程序, 程序将会进入仿Linux shell系统用户界面的cli交互模式, 可直接运行相关命令.</p><p>cli交互模式下, 光标所在行的前缀应为 <code>BaiduPCS-Go ></code>, 如果登录了百度帐号则格式为 <code>BaiduPCS-Go:&lt;工作目录> &lt;百度ID>$</code></p><p>程序会提供相关命令的使用说明.</p><h2 id=windows>Windows</h2><p>程序应在 命令提示符 (Command Prompt) 或 PowerShell 中运行, 在 mintty (例如: GitBash) 可能会有显示问题.</p><p>也可直接双击程序运行, 具体使用方法请参见 <a href=#%E5%91%BD%E4%BB%A4%E5%88%97%E8%A1%A8%E5%8F%8A%E8%AF%B4%E6%98%8E>命令列表及说明</a> 和 <a href=#%E5%88%9D%E7%BA%A7%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B>初级使用教程</a>.</p><h2 id=linux--macos>Linux / macOS</h2><p>程序应在 终端 (Terminal) 运行.</p><p>具体使用方法请参见 <a href=#%E5%91%BD%E4%BB%A4%E5%88%97%E8%A1%A8%E5%8F%8A%E8%AF%B4%E6%98%8E>命令列表及说明</a> 和 <a href=#%E5%88%9D%E7%BA%A7%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B>初级使用教程</a>.</p><h2 id=android--ios>Android / iOS</h2><blockquote><p>Android / iOS 移动设备操作比较麻烦, 不建议在移动设备上使用本程序.</p></blockquote><p>安卓, 建议使用 <a href=https://termux.com>Termux</a> 或 <a href=https://github.com/NeoTerm/NeoTerm>NeoTerm</a> 或 终端模拟器, 以提供终端环境.</p><p>示例: <a href=https://github.com/iikira/BaiduPCS-Go/wiki/Android-%E8%BF%90%E8%A1%8C%E6%9C%AC%E9%A1%B9%E7%9B%AE%E7%A8%8B%E5%BA%8F%E5%8F%82%E8%80%83%E7%A4%BA%E4%BE%8B>Android 运行本项目程序参考示例</a>, 有兴趣的可以参考一下.</p><p>苹果iOS, 需要越狱, 在 Cydia 搜索下载并安装 MobileTerminal, 或者其他提供终端环境的软件.</p><p>示例: <a href=https://github.com/iikira/BaiduPCS-Go/wiki/iOS-%E8%BF%90%E8%A1%8C%E6%9C%AC%E9%A1%B9%E7%9B%AE%E7%A8%8B%E5%BA%8F%E5%8F%82%E8%80%83%E7%A4%BA%E4%BE%8B>iOS 运行本项目程序参考示例</a>, 有兴趣的可以参考一下.</p><p>具体使用方法请参见 <a href=#%E5%91%BD%E4%BB%A4%E5%88%97%E8%A1%A8%E5%8F%8A%E8%AF%B4%E6%98%8E>命令列表及说明</a> 和 <a href=#%E5%88%9D%E7%BA%A7%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B>初级使用教程</a>.</p><h1 id=命令列表及说明>命令列表及说明</h1><h2 id=注意--->注意 ! ! !</h2><p>命令的前缀 <code>BaiduPCS-Go</code> 为指向程序运行的全路径名 (ARGv 的第一个参数)</p><p>直接运行程序时, 未带任何其他参数, 则程序进入cli交互模式, 运行以下命令时, 要把命令的前缀 <code>BaiduPCS-Go</code> 去掉!</p><p>cli交互模式已支持按tab键自动补全命令和路径.</p><h2 id=检测程序更新>检测程序更新</h2><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>BaiduPCS-Go update
+</code></pre></div><h2 id=登录百度帐号>登录百度帐号</h2><h2 id=常规登录百度帐号>常规登录百度帐号</h2><p>支持在线验证绑定的手机号或邮箱,</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>BaiduPCS-Go login
+</code></pre></div><h2 id=使用百度-bduss-来登录百度帐号>使用百度 BDUSS 来登录百度帐号</h2><p><a href=https://github.com/iikira/BaiduPCS-Go/wiki/%E5%85%B3%E4%BA%8E-%E8%8E%B7%E5%8F%96%E7%99%BE%E5%BA%A6-BDUSS>关于 获取百度 BDUSS</a></p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>BaiduPCS-Go login -bduss<span style=color:#000;font-weight:700>=</span>&lt;BDUSS&gt;
+</code></pre></div><h3 id=例子>例子</h3><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>BaiduPCS-Go login -bduss<span style=color:#000;font-weight:700>=</span><span style=color:#099>1234567</span>
+</code></pre></div><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>BaiduPCS-Go login
+请输入百度用户名<span style=color:#000;font-weight:700>(</span>手机号/邮箱/用户名<span style=color:#000;font-weight:700>)</span>, 回车键提交 &gt; <span style=color:#099>1234567</span>
+</code></pre></div><h2 id=列出帐号列表>列出帐号列表</h2><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>BaiduPCS-Go loglist
+</code></pre></div><p>列出所有已登录的百度帐号</p><h2 id=获取当前帐号>获取当前帐号</h2><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>BaiduPCS-Go who
+</code></pre></div><h2 id=切换百度帐号>切换百度帐号</h2><p>切换已登录的百度帐号</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>BaiduPCS-Go su &lt;uid&gt;
+</code></pre></div><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>BaiduPCS-Go su
+
+请输入要切换帐号的 <span style=color:#998;font-style:italic># 值 &gt;</span>
+</code></pre></div><h2 id=退出百度帐号>退出百度帐号</h2><p>退出当前登录的百度帐号</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>BaiduPCS-Go <span style=color:#0086b3>logout</span>
+</code></pre></div><p>程序会进一步确认退出帐号, 防止误操作.</p><h2 id=获取网盘配额>获取网盘配额</h2><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>BaiduPCS-Go quota
+</code></pre></div><p>获取网盘的总储存空间, 和已使用的储存空间</p><h2 id=切换工作目录>切换工作目录</h2><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>BaiduPCS-Go <span style=color:#0086b3>cd</span> &lt;目录&gt;
+</code></pre></div><h2 id=切换工作目录后自动列出工作目录下的文件和目录>切换工作目录后自动列出工作目录下的文件和目录</h2><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>BaiduPCS-Go <span style=color:#0086b3>cd</span> -l &lt;目录&gt;
+</code></pre></div><h3 id=例子-1>例子</h3><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#998;font-style:italic># 切换 /我的资源 工作目录</span>
+BaiduPCS-Go <span style=color:#0086b3>cd</span> /我的资源
+
+<span style=color:#998;font-style:italic># 切换 上级目录</span>
+BaiduPCS-Go <span style=color:#0086b3>cd</span> ..
+
+<span style=color:#998;font-style:italic># 切换 根目录</span>
+BaiduPCS-Go <span style=color:#0086b3>cd</span> /
+
+<span style=color:#998;font-style:italic># 切换 /我的资源 工作目录, 并自动列出 /我的资源 下的文件和目录</span>
+BaiduPCS-Go <span style=color:#0086b3>cd</span> -l 我的资源
+
+<span style=color:#998;font-style:italic># 使用通配符</span>
+BaiduPCS-Go <span style=color:#0086b3>cd</span> /我的*
+</code></pre></div><h2 id=输出工作目录>输出工作目录</h2><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>BaiduPCS-Go <span style=color:#0086b3>pwd</span>
+</code></pre></div><h2 id=列出目录>列出目录</h2><p>列出当前工作目录的文件和目录或指定目录</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>BaiduPCS-Go ls
+</code></pre></div><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>BaiduPCS-Go ls &lt;目录&gt;
+</code></pre></div><h2 id=可选参数>可选参数</h2><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>-asc: 升序排序
+-desc: 降序排序
+-time: 根据时间排序
+-name: 根据文件名排序
+-size: 根据大小排序
+</code></pre></div><h3 id=例子-2>例子</h3><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#998;font-style:italic># 列出 我的资源 内的文件和目录</span>
+BaiduPCS-Go ls 我的资源
+
+<span style=color:#998;font-style:italic># 绝对路径</span>
+BaiduPCS-Go ls /我的资源
+
+<span style=color:#998;font-style:italic># 降序排序</span>
+BaiduPCS-Go ls -desc 我的资源
+
+<span style=color:#998;font-style:italic># 按文件大小降序排序</span>
+BaiduPCS-Go ls -size -desc 我的资源
+
+<span style=color:#998;font-style:italic># 使用通配符</span>
+BaiduPCS-Go ls /我的*
+</code></pre></div><h2 id=列出目录树形图>列出目录树形图</h2><p>列出当前工作目录的文件和目录或指定目录的树形图</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>BaiduPCS-Go tree &lt;目录&gt;
+
+<span style=color:#998;font-style:italic># 默认获取工作目录元信息</span>
+BaiduPCS-Go tree
+</code></pre></div><h2 id=获取文件目录的元信息>获取文件/目录的元信息</h2><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>BaiduPCS-Go meta &lt;文件/目录1&gt; &lt;文件/目录2&gt; &lt;文件/目录3&gt; ...
+
+<span style=color:#998;font-style:italic># 默认获取工作目录元信息</span>
+BaiduPCS-Go meta
+</code></pre></div><h3 id=例子-3>例子</h3><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>BaiduPCS-Go meta 我的资源
+BaiduPCS-Go meta /
+</code></pre></div><h2 id=搜索文件>搜索文件</h2><p>按文件名搜索文件（不支持查找目录）。</p><p>默认在当前工作目录搜索.</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>BaiduPCS-Go search <span style=color:#000;font-weight:700>[</span>-path<span style=color:#000;font-weight:700>=</span>&lt;需要检索的目录&gt;<span style=color:#000;font-weight:700>]</span> <span style=color:#000;font-weight:700>[</span>-r<span style=color:#000;font-weight:700>]</span> &lt;关键字&gt;
+</code></pre></div><h3 id=例子-4>例子</h3><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#998;font-style:italic># 搜索根目录的文件</span>
+BaiduPCS-Go search -path<span style=color:#000;font-weight:700>=</span>/ 关键字
+
+<span style=color:#998;font-style:italic># 搜索当前工作目录的文件</span>
+BaiduPCS-Go search 关键字
+
+<span style=color:#998;font-style:italic># 递归搜索当前工作目录的文件</span>
+BaiduPCS-Go search -r 关键字
+</code></pre></div><h2 id=下载文件目录>下载文件/目录</h2><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>BaiduPCS-Go download &lt;网盘文件或目录的路径1&gt; &lt;文件或目录2&gt; &lt;文件或目录3&gt; ...
+BaiduPCS-Go d &lt;网盘文件或目录的路径1&gt; &lt;文件或目录2&gt; &lt;文件或目录3&gt; ...
+</code></pre></div><h2 id=可选参数-1>可选参数</h2><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>  --test          测试下载, 此操作不会保存文件到本地
+  --ow            overwrite, 覆盖已存在的文件
+  --status        输出所有线程的工作状态
+  --save          将下载的文件直接保存到当前工作目录
+  --saveto value  将下载的文件直接保存到指定的目录
+  -x              为文件加上执行权限, <span style=color:#000;font-weight:700>(</span>windows系统无效<span style=color:#000;font-weight:700>)</span>
+  --share         以分享文件的方式获取下载链接来下载
+  --locate        以获取直链的方式来下载
+  -p value        指定下载线程数
+</code></pre></div><p>支持多个文件或目录的下载.</p><p>下载的文件默认保存到 <strong>程序所在目录</strong> 的 download/ 目录, 支持设置指定目录, 重名的文件会自动跳过!</p><p><a href=https://github.com/iikira/BaiduPCS-Go/wiki/%E5%85%B3%E4%BA%8E%E4%B8%8B%E8%BD%BD%E7%9A%84%E7%AE%80%E5%8D%95%E8%AF%B4%E6%98%8E>关于下载的简单说明</a></p><h3 id=例子-5>例子</h3><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#998;font-style:italic># 设置保存目录, 保存到 D:\Downloads</span>
+<span style=color:#998;font-style:italic># 注意区别反斜杠 &#34;\&#34; 和 斜杠 &#34;/&#34; !!!</span>
+BaiduPCS-Go config <span style=color:#0086b3>set</span> -savedir D:/Downloads
+
+<span style=color:#998;font-style:italic># 下载 /我的资源/1.mp4</span>
+BaiduPCS-Go d /我的资源/1.mp4
+
+<span style=color:#998;font-style:italic># 下载 /我的资源 整个目录!!</span>
+BaiduPCS-Go d /我的资源
+
+<span style=color:#998;font-style:italic># 下载网盘内的全部文件!!</span>
+BaiduPCS-Go d /
+BaiduPCS-Go d *
+</code></pre></div><h2 id=上传文件目录>上传文件/目录</h2><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>BaiduPCS-Go upload &lt;本地文件/目录的路径1&gt; &lt;文件/目录2&gt; &lt;文件/目录3&gt; ... &lt;目标目录&gt;
+BaiduPCS-Go u &lt;本地文件/目录的路径1&gt; &lt;文件/目录2&gt; &lt;文件/目录3&gt; ... &lt;目标目录&gt;
+</code></pre></div><ul><li><p>上传默认采用分片上传的方式, 上传的文件将会保存到, &lt;目标目录>.</p></li><li><p>遇到同名文件将会自动覆盖!!</p></li><li><p>当上传的文件名和网盘的目录名称相同时, 不会覆盖目录, 防止丢失数据.</p></li></ul><h3 id=注意-1>注意:</h3><ul><li>分片上传之后, 服务器可能会记录到错误的文件md5, 可使用 fixmd5 命令尝试修复文件的MD5值, 修复md5不一定能成功, 但文件的完整性是没问题的.</li></ul><p>fixmd5 命令使用方法:</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>BaiduPCS-Go fixmd5 -h
+</code></pre></div><ul><li><p>禁用分片上传可以保证服务器记录到正确的md5.</p></li><li><p>禁用分片上传时只能使用单线程上传, 指定的单个文件上传最大线程数将会无效.</p></li></ul><h3 id=例子-6>例子:</h3><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#998;font-style:italic># 将本地的 C:\Users\Administrator\Desktop\1.mp4 上传到网盘 /视频 目录</span>
+<span style=color:#998;font-style:italic># 注意区别反斜杠 &#34;\&#34; 和 斜杠 &#34;/&#34; !!!</span>
+BaiduPCS-Go upload C:/Users/Administrator/Desktop/1.mp4 /视频
+
+<span style=color:#998;font-style:italic># 将本地的 C:\Users\Administrator\Desktop\1.mp4 和 C:\Users\Administrator\Desktop\2.mp4 上传到网盘 /视频 目录</span>
+BaiduPCS-Go upload C:/Users/Administrator/Desktop/1.mp4 C:/Users/Administrator/Desktop/2.mp4 /视频
+
+<span style=color:#998;font-style:italic># 将本地的 C:\Users\Administrator\Desktop 整个目录上传到网盘 /视频 目录</span>
+BaiduPCS-Go upload C:/Users/Administrator/Desktop /视频
+</code></pre></div><h2 id=获取下载直链>获取下载直链</h2><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>BaiduPCS-Go locate &lt;文件1&gt; &lt;文件2&gt; ...
+</code></pre></div><h3 id=注意-2>注意</h3><p>若该功能无法正常使用, 提示<code>user is not authorized, hitcode:101</code>, 尝试更换 User-Agent 为 <code>netdisk;8.3.1;android-android</code>:</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>BaiduPCS-Go config <span style=color:#0086b3>set</span> -user_agent <span style=color:#d14>&#34;netdisk;8.3.1;android-android&#34;</span>
+</code></pre></div><h2 id=手动秒传文件>手动秒传文件</h2><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>BaiduPCS-Go rapidupload -length<span style=color:#000;font-weight:700>=</span>&lt;文件的大小&gt; -md5<span style=color:#000;font-weight:700>=</span>&lt;文件的md5值&gt; -slicemd5<span style=color:#000;font-weight:700>=</span>&lt;文件前256KB切片的md5值<span style=color:#000;font-weight:700>(</span>可选<span style=color:#000;font-weight:700>)</span>&gt; -crc32<span style=color:#000;font-weight:700>=</span>&lt;文件的crc32值<span style=color:#000;font-weight:700>(</span>可选<span style=color:#000;font-weight:700>)</span>&gt; &lt;保存的网盘路径, 需包含文件名&gt;
+BaiduPCS-Go ru -length<span style=color:#000;font-weight:700>=</span>&lt;文件的大小&gt; -md5<span style=color:#000;font-weight:700>=</span>&lt;文件的md5值&gt; -slicemd5<span style=color:#000;font-weight:700>=</span>&lt;文件前256KB切片的md5值<span style=color:#000;font-weight:700>(</span>可选<span style=color:#000;font-weight:700>)</span>&gt; -crc32<span style=color:#000;font-weight:700>=</span>&lt;文件的crc32值<span style=color:#000;font-weight:700>(</span>可选<span style=color:#000;font-weight:700>)</span>&gt; &lt;保存的网盘路径, 需包含文件名&gt;
+</code></pre></div><p>注意: 使用此功能秒传文件, 前提是知道文件的大小, md5, 前256KB切片的 md5 (可选), crc32 (可选), 且百度网盘中存在一模一样的文件.</p><p>上传的文件将会保存到网盘的目标目录.</p><p>遇到同名文件将会自动覆盖!</p><p>可能无法秒传 20GB 以上的文件!!</p><h3 id=例子-7>例子:</h3><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#998;font-style:italic># 如果秒传成功, 则保存到网盘路径 /test</span>
+BaiduPCS-Go rapidupload -length<span style=color:#000;font-weight:700>=</span><span style=color:#099>56276137</span> -md5<span style=color:#000;font-weight:700>=</span>fbe082d80e90f90f0fb1f94adbbcfa7f -slicemd5<span style=color:#000;font-weight:700>=</span>38c6a75b0ec4499271d4ea38a667ab61 -crc32<span style=color:#000;font-weight:700>=</span><span style=color:#099>314332359</span> /test
+</code></pre></div><h2 id=修复文件md5>修复文件MD5</h2><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>BaiduPCS-Go fixmd5 &lt;文件1&gt; &lt;文件2&gt; &lt;文件3&gt; ...
+</code></pre></div><p>尝试修复文件的MD5值, 以便于校验文件的完整性和导出文件.</p><p>使用分片上传文件, 当文件分片数大于1时, 百度网盘服务端最终计算所得的md5值和本地的不一致, 这可能是百度网盘的bug.</p><p>不过把上传的文件下载到本地后，对比md5值是匹配的, 也就是文件在传输中没有发生损坏.</p><p>对于MD5值可能有误的文件, 程序会在获取文件的元信息时, 给出MD5值 &ldquo;可能不正确&rdquo; 的提示, 表示此文件可以尝试进行MD5值修复.</p><p>修复文件MD5不一定能成功, 原因可能是服务器未刷新, 可过几天后再尝试.</p><p>修复文件MD5的原理为秒传文件, 即修复文件MD5成功后, 文件的<strong>创建日期, 修改日期, fs_id, 版本历史等信息</strong>将会被覆盖, 修复的MD5值将覆盖原先的MD5值, 但不影响文件的完整性.</p><p>注意: 无法修复 <strong>20GB</strong> 以上文件的 md5!!</p><h3 id=例子-8>例子:</h3><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#998;font-style:italic># 修复 /我的资源/1.mp4 的 MD5 值</span>
+BaiduPCS-Go fixmd5 /我的资源/1.mp4
+</code></pre></div><h2 id=获取本地文件的秒传信息>获取本地文件的秒传信息</h2><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>BaiduPCS-Go sumfile &lt;本地文件的路径&gt;
+BaiduPCS-Go sf &lt;本地文件的路径&gt;
+</code></pre></div><p>获取本地文件的大小, md5, 前256KB切片的 md5, crc32, 可用于秒传文件.</p><h3 id=例子-9>例子:</h3><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#998;font-style:italic># 获取 C:\Users\Administrator\Desktop\1.mp4 的秒传信息</span>
+BaiduPCS-Go sumfile C:/Users/Administrator/Desktop/1.mp4
+</code></pre></div><h2 id=导出文件目录>导出文件/目录</h2><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>BaiduPCS-Go <span style=color:#0086b3>export</span> &lt;文件/目录1&gt; &lt;文件/目录2&gt; ...
+BaiduPCS-Go ep &lt;文件/目录1&gt; &lt;文件/目录2&gt; ...
+</code></pre></div><p>导出网盘内的文件或目录, 原理为秒传文件, 此操作会生成导出文件或目录的命令.</p><h3 id=注意-3>注意</h3><p><strong>无法导出 20GB 以上的文件!!</strong></p><p><strong>无法导出文件的版本历史等数据!!</strong></p><p>并不是所有的文件都能导出成功, 程序会列出无法导出的文件列表</p><h3 id=例子-10>例子:</h3><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#998;font-style:italic># 导出当前工作目录:</span>
+BaiduPCS-Go <span style=color:#0086b3>export</span>
+
+<span style=color:#998;font-style:italic># 导出所有文件和目录, 并设置新的根目录为 /root</span>
+BaiduPCS-Go <span style=color:#0086b3>export</span> -root<span style=color:#000;font-weight:700>=</span>/root /
+
+<span style=color:#998;font-style:italic># 导出 /我的资源</span>
+BaiduPCS-Go <span style=color:#0086b3>export</span> /我的资源
+</code></pre></div><h2 id=创建目录>创建目录</h2><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>BaiduPCS-Go mkdir &lt;目录&gt;
+</code></pre></div><h3 id=例子-11>例子</h3><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>BaiduPCS-Go mkdir <span style=color:#099>123</span>
+</code></pre></div><h2 id=删除文件目录>删除文件/目录</h2><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>BaiduPCS-Go rm &lt;网盘文件或目录的路径1&gt; &lt;文件或目录2&gt; &lt;文件或目录3&gt; ...
+</code></pre></div><p>注意: 删除多个文件和目录时, 请确保每一个文件和目录都存在, 否则删除操作会失败.</p><p>被删除的文件或目录可在网盘文件回收站找回.</p><h3 id=例子-12>例子</h3><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#998;font-style:italic># 删除 /我的资源/1.mp4</span>
+BaiduPCS-Go rm /我的资源/1.mp4
+
+<span style=color:#998;font-style:italic># 删除 /我的资源/1.mp4 和 /我的资源/2.mp4</span>
+BaiduPCS-Go rm /我的资源/1.mp4 /我的资源/2.mp4
+
+<span style=color:#998;font-style:italic># 删除 /我的资源 内的所有文件和目录, 但不删除该目录</span>
+BaiduPCS-Go rm /我的资源/*
+
+<span style=color:#998;font-style:italic># 删除 /我的资源 整个目录 !!</span>
+BaiduPCS-Go rm /我的资源
+</code></pre></div><h2 id=拷贝文件目录>拷贝文件/目录</h2><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>BaiduPCS-Go cp &lt;文件/目录&gt; &lt;目标 文件/目录&gt;
+BaiduPCS-Go cp &lt;文件/目录1&gt; &lt;文件/目录2&gt; &lt;文件/目录3&gt; ... &lt;目标目录&gt;
+</code></pre></div><p>注意: 拷贝多个文件和目录时, 请确保每一个文件和目录都存在, 否则拷贝操作会失败.</p><h3 id=例子-13>例子</h3><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#998;font-style:italic># 将 /我的资源/1.mp4 复制到 根目录 /</span>
+BaiduPCS-Go cp /我的资源/1.mp4 /
+
+<span style=color:#998;font-style:italic># 将 /我的资源/1.mp4 和 /我的资源/2.mp4 复制到 根目录 /</span>
+BaiduPCS-Go cp /我的资源/1.mp4 /我的资源/2.mp4 /
+</code></pre></div><h2 id=移动重命名文件目录>移动/重命名文件/目录</h2><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#998;font-style:italic># 移动:</span>
+BaiduPCS-Go mv &lt;文件/目录1&gt; &lt;文件/目录2&gt; &lt;文件/目录3&gt; ... &lt;目标目录&gt;
+<span style=color:#998;font-style:italic># 重命名:</span>
+BaiduPCS-Go mv &lt;文件/目录&gt; &lt;重命名的文件/目录&gt;
+</code></pre></div><p>注意: 移动多个文件和目录时, 请确保每一个文件和目录都存在, 否则移动操作会失败.</p><h3 id=例子-14>例子</h3><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#998;font-style:italic># 将 /我的资源/1.mp4 移动到 根目录 /</span>
+BaiduPCS-Go mv /我的资源/1.mp4 /
+
+<span style=color:#998;font-style:italic># 将 /我的资源/1.mp4 重命名为 /我的资源/3.mp4</span>
+BaiduPCS-Go mv /我的资源/1.mp4 /我的资源/3.mp4
+</code></pre></div><h2 id=分享文件目录>分享文件/目录</h2><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>BaiduPCS-Go share
+</code></pre></div><h2 id=设置分享文件目录>设置分享文件/目录</h2><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>BaiduPCS-Go share <span style=color:#0086b3>set</span> &lt;文件/目录1&gt; &lt;文件/目录2&gt; ...
+BaiduPCS-Go share s &lt;文件/目录1&gt; &lt;文件/目录2&gt; ...
+</code></pre></div><h2 id=列出已分享文件目录>列出已分享文件/目录</h2><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>BaiduPCS-Go share list
+BaiduPCS-Go share l
+</code></pre></div><h2 id=取消分享文件目录>取消分享文件/目录</h2><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>BaiduPCS-Go share cancel &lt;shareid_1&gt; &lt;shareid_2&gt; ...
+BaiduPCS-Go share c &lt;shareid_1&gt; &lt;shareid_2&gt; ...
+</code></pre></div><p>目前只支持通过分享id (shareid) 来取消分享.</p><h2 id=离线下载>离线下载</h2><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>BaiduPCS-Go offlinedl
+BaiduPCS-Go clouddl
+BaiduPCS-Go od
+</code></pre></div><p>离线下载支持http/https/ftp/电驴/磁力链协议</p><p>离线下载同时进行的任务数量有限, 超出限制的部分将无法添加.</p><h2 id=添加离线下载任务>添加离线下载任务</h2><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>BaiduPCS-Go offlinedl add -path<span style=color:#000;font-weight:700>=</span>&lt;离线下载文件保存的路径&gt; 资源地址1 地址2 ...
+</code></pre></div><p>添加任务成功之后, 返回离线下载的任务ID.</p><h2 id=精确查询离线下载任务>精确查询离线下载任务</h2><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>BaiduPCS-Go offlinedl query 任务ID1 任务ID2 ...
+</code></pre></div><h2 id=查询离线下载任务列表>查询离线下载任务列表</h2><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>BaiduPCS-Go offlinedl list
+</code></pre></div><h2 id=取消离线下载任务>取消离线下载任务</h2><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>BaiduPCS-Go offlinedl cancel 任务ID1 任务ID2 ...
+</code></pre></div><h2 id=删除离线下载任务>删除离线下载任务</h2><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>BaiduPCS-Go offlinedl delete 任务ID1 任务ID2 ...
+
+<span style=color:#998;font-style:italic># 清空离线下载任务记录, 程序不会进行二次确认, 谨慎操作!!!</span>
+BaiduPCS-Go offlinedl delete -all
+</code></pre></div><h3 id=例子-15>例子</h3><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#998;font-style:italic># 将百度和腾讯主页, 离线下载到根目录 /</span>
+BaiduPCS-Go offlinedl add -path<span style=color:#000;font-weight:700>=</span>/ http://baidu.com http://qq.com
+
+<span style=color:#998;font-style:italic># 添加磁力链接任务</span>
+BaiduPCS-Go offlinedl add magnet:?xt<span style=color:#000;font-weight:700>=</span>urn:btih:xxx
+
+<span style=color:#998;font-style:italic># 查询任务ID为 12345 的离线下载任务状态</span>
+BaiduPCS-Go offlinedl query <span style=color:#099>12345</span>
+
+<span style=color:#998;font-style:italic># 取消任务ID为 12345 的离线下载任务</span>
+BaiduPCS-Go offlinedl cancel <span style=color:#099>12345</span>
+</code></pre></div><h2 id=回收站>回收站</h2><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>BaiduPCS-Go recycle
+</code></pre></div><p>回收站操作.</p><h2 id=列出回收站文件列表>列出回收站文件列表</h2><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>BaiduPCS-Go recycle list
+</code></pre></div><h3 id=可选参数-2>可选参数</h3><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>  --page value  回收站文件列表页数 <span style=color:#000;font-weight:700>(</span>default: 1<span style=color:#000;font-weight:700>)</span>
+</code></pre></div><h2 id=还原回收站文件或目录>还原回收站文件或目录</h2><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>BaiduPCS-Go recycle restore &lt;fs_id 1&gt; &lt;fs_id 2&gt; &lt;fs_id 3&gt; ...
+</code></pre></div><p>根据文件/目录的 fs_id, 还原回收站指定的文件或目录.</p><h2 id=删除回收站文件或目录清空回收站>删除回收站文件或目录/清空回收站</h2><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>BaiduPCS-Go recycle delete <span style=color:#000;font-weight:700>[</span>-all<span style=color:#000;font-weight:700>]</span> &lt;fs_id 1&gt; &lt;fs_id 2&gt; &lt;fs_id 3&gt; ...
+</code></pre></div><p>根据文件/目录的 fs_id 或 -all 参数, 删除回收站指定的文件或目录或清空回收站.</p><h3 id=例子-16>例子</h3><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#998;font-style:italic># 从回收站还原两个文件, 其中的两个文件的 fs_id 分别为 1013792297798440 和 643596340463870</span>
+BaiduPCS-Go recycle restore <span style=color:#099>1013792297798440</span> <span style=color:#099>643596340463870</span>
+
+<span style=color:#998;font-style:italic># 从回收站删除两个文件, 其中的两个文件的 fs_id 分别为 1013792297798440 和 643596340463870</span>
+BaiduPCS-Go recycle delete <span style=color:#099>1013792297798440</span> <span style=color:#099>643596340463870</span>
+
+<span style=color:#998;font-style:italic># 清空回收站, 程序不会进行二次确认, 谨慎操作!!!</span>
+BaiduPCS-Go recycle delete -all
+</code></pre></div><h2 id=显示程序环境变量>显示程序环境变量</h2><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>BaiduPCS-Go env
+</code></pre></div><p>BAIDUPCS_GO_CONFIG_DIR: 配置文件路径,</p><p>BAIDUPCS_GO_VERBOSE: 是否启用调试.</p><h2 id=显示和修改程序配置项>显示和修改程序配置项</h2><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#998;font-style:italic># 显示配置</span>
+BaiduPCS-Go config
+
+<span style=color:#998;font-style:italic># 设置配置</span>
+BaiduPCS-Go config <span style=color:#0086b3>set</span>
+</code></pre></div><p>注意: v3.5 以后, 程序对配置文件储存路径的寻找做了调整, 配置文件所在的目录可以是程序本身所在目录, 也可以是家目录.</p><p>配置文件所在的目录为家目录的情况:</p><p>Windows: <code>%APPDATA%\BaiduPCS-Go</code></p><p>其他操作系统: <code>$HOME/.config/BaiduPCS-Go</code></p><p>可通过设置环境变量 <code>BAIDUPCS_GO_CONFIG_DIR</code>, 指定配置文件存放的目录.</p><h3 id=例子-17>例子</h3><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#998;font-style:italic># 显示所有可以设置的值</span>
+BaiduPCS-Go config -h
+BaiduPCS-Go config <span style=color:#0086b3>set</span> -h
+
+<span style=color:#998;font-style:italic># 设置下载文件的储存目录</span>
+BaiduPCS-Go config <span style=color:#0086b3>set</span> -savedir D:/Downloads
+
+<span style=color:#998;font-style:italic># 设置下载最大并发量为 150</span>
+BaiduPCS-Go config <span style=color:#0086b3>set</span> -max_parallel <span style=color:#099>150</span>
+
+<span style=color:#998;font-style:italic># 组合设置</span>
+BaiduPCS-Go config <span style=color:#0086b3>set</span> -max_parallel <span style=color:#099>150</span> -savedir D:/Downloads
+</code></pre></div><h2 id=测试通配符>测试通配符</h2><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>BaiduPCS-Go match &lt;通配符表达式&gt;
+</code></pre></div><p>测试通配符匹配路径, 操作成功则输出所有匹配到的路径.</p><h3 id=例子-18>例子</h3><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#998;font-style:italic># 匹配 /我的资源 目录下所有mp4格式的文件</span>
+BaiduPCS-Go match /我的资源/*.mp4
+</code></pre></div><h2 id=工具箱>工具箱</h2><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>BaiduPCS-Go tool
+</code></pre></div><p>目前工具箱支持加解密文件等.</p><h1 id=初级使用教程>初级使用教程</h1><p>新手建议: <strong>双击运行程序</strong>, 进入仿 Linux shell 的 cli 交互模式;</p><p>cli交互模式下, 光标所在行的前缀应为 <code>BaiduPCS-Go ></code>, 如果登录了百度帐号则格式为 <code>BaiduPCS-Go:&lt;工作目录> &lt;百度ID>$</code></p><p>以下例子的命令, 均为 cli交互模式下的命令</p><p>运行命令的正确操作: <strong>输入命令, 按一下回车键 (键盘上的 Enter 键)</strong>, 程序会接收到命令并输出结果</p><h2 id=1-查看程序使用说明>1. 查看程序使用说明</h2><p>cli交互模式下, 运行命令 <code>help</code></p><h2 id=2-登录百度帐号-必做>2. 登录百度帐号 (必做)</h2><p>cli交互模式下, 运行命令 <code>login -h</code> (注意空格) 查看帮助</p><p>cli交互模式下, 运行命令 <code>login</code> 程序将会提示你输入百度用户名(手机号/邮箱/用户名)和密码, 必要时还可以在线验证绑定的手机号或邮箱</p><h2 id=3-切换网盘工作目录>3. 切换网盘工作目录</h2><p>cli交互模式下, 运行命令 <code>cd /我的资源</code> 将工作目录切换为 <code>/我的资源</code> (前提: 该目录存在于网盘)</p><p>目录支持通配符匹配, 所以你也可以这样: 运行命令 <code>cd /我的*</code> 或 <code>cd /我的??</code> 将工作目录切换为 <code>/我的资源</code>, 简化输入.</p><p>将工作目录切换为 <code>/我的资源</code> 成功后, 运行命令 <code>cd ..</code> 切换上级目录, 即将工作目录切换为 <code>/</code></p><p>为什么要这样设计呢, 举个例子,</p><p>假设 你要下载 <code>/我的资源</code> 内名为 <code>1.mp4</code> 和 <code>2.mp4</code> 两个文件, 而未切换工作目录, 你需要依次运行以下命令:</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>d /我的资源/1.mp4
+d /我的资源/2.mp4
+</code></pre></div><p>而切换网盘工作目录之后, 依次运行以下命令:</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#0086b3>cd</span> /我的资源
+d 1.mp4
+d 2.mp4
+</code></pre></div><p>这样就达到了简化输入的目的</p><h2 id=4-网盘内列出文件和目录>4. 网盘内列出文件和目录</h2><p>cli交互模式下, 运行命令 <code>ls -h</code> (注意空格) 查看帮助</p><p>cli交互模式下, 运行命令 <code>ls</code> 来列出当前所在目录的文件和目录</p><p>cli交互模式下, 运行命令 <code>ls /我的资源</code> 来列出 <code>/我的资源</code> 内的文件和目录</p><p>cli交互模式下, 运行命令 <code>ls ..</code> 来列出当前所在目录的上级目录的文件和目录</p><h2 id=5-下载文件>5. 下载文件</h2><p>说明: 下载的文件默认保存到 download/ 目录 (文件夹)</p><p>cli交互模式下, 运行命令 <code>d -h</code> (注意空格) 查看帮助</p><p>cli交互模式下, 运行命令 <code>d /我的资源/1.mp4</code> 来下载位于 <code>/我的资源/1.mp4</code> 的文件 <code>1.mp4</code> , 该操作等效于运行以下命令:</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#0086b3>cd</span> /我的资源
+d 1.mp4
+</code></pre></div><p>现在已经支持目录 (文件夹) 下载, 所以, 运行以下命令, 会下载 <code>/我的资源</code> 内的所有文件 (违规文件除外):</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>d /我的资源
+</code></pre></div><p>参见 例6 设置下载最大并发量</p><h2 id=6-设置下载最大并发量>6. 设置下载最大并发量</h2><p>cli交互模式下, 运行命令 <code>config set -h</code> (注意空格) 查看设置帮助以及可供设置的值</p><p>cli交互模式下, 运行命令 <code>config set -max_parallel 250</code> 将下载最大并发量设置为 250</p><p>下载最大并发量建议值: 50~500, 太低下载速度提升不明显甚至速度会变为0, 太高可能会导致程序出错被操作系统结束掉.</p><h2 id=7-退出程序>7. 退出程序</h2><p>运行命令 <code>quit</code> 或 <code>exit</code> 或 组合键 <code>Ctrl+C</code> 或 组合键 <code>Ctrl+D</code></p><h1 id=已知问题>已知问题</h1><ul><li>分片上传文件时, 当文件分片数大于1, 网盘端最终计算所得的md5值和本地的不一致, 这可能是百度网盘的bug, 测试把上传的文件下载到本地后，对比md5值是匹配的. 可通过秒传的原理来修复md5值.</li></ul><h1 id=常见问题>常见问题</h1><p>参见 <a href=https://github.com/iikira/BaiduPCS-Go/wiki/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98>常见问题</a></p><h1 id=todo>TODO</h1><ol><li>上传大文件;</li><li>回收站操作, 例如查询回收站文件, 还原文件或目录等.</li></ol></div><div class=post-archive><ul class=post-copyright><li><strong>原文作者：</strong><a rel=author href=https://567899.xyz>Xizi</a></li><li style=word-break:break-all><strong>原文链接：</strong><a href=https://567899.xyz/post/BaiduPCS-Go/>https://567899.xyz/post/BaiduPCS-Go/</a></li><li><strong>版权声明：</strong>本作品采用<a rel=license href=https://creativecommons.org/licenses/by-nc-nd/4.0/>知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议</a>进行许可，非商业转载请注明出处（作者，原文链接），商业转载请联系作者获得授权。</li></ul></div><br><div class="post-meta meta-tags"><ul class=clearfix><li><a href=/tags/BaiduPCS-Go target=_blank>BaiduPCS-Go</a></li></ul></div></article><div class="post bg-white"><script src=https://utteranc.es/client.js repo=pwwq/blog-comments issue-term=pathname theme=github-light crossorigin=anonymous async></script></div></div><footer id=footer><div>&copy; 2022 <a href=https://567899.xyz>Xizi's Blog By Xizi <a href=/sitemap.xml>站点地图</a></a></div><br><div><div class=github-badge><a href=https://gohugo.io/ target=_black rel=nofollow><span class=badge-subject>Powered by</span><span class="badge-value bg-blue">Hugo</span></a></div><div class=github-badge><a href=https://www.flysnow.org/ target=_black><span class=badge-subject>Design by</span><span class="badge-value bg-brightgreen">飞雪无情</span></a></div><div class=github-badge><a href=https://github.com/flysnow-org/maupassant-hugo target=_black><span class=badge-subject>Theme</span><span class="badge-value bg-yellowgreen">Maupassant</span></a></div></div></footer><script type=text/javascript>window.MathJax={tex2jax:{inlineMath:[['$','$']],processEscapes:true}};</script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async></script><script src=//cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js></script><a id=rocket href=#top></a><script type=text/javascript src="/js/totop.js?v=0.0.0" async></script><style type=text/css>div.highlight{position:relative;margin:1em 0}.copy-code{display:none;position:absolute;top:4px;right:4px;color:rgba(255,255,255,.8);background:rgba(78,78,78,.8);border-radius:var(--radius);padding:0 5px;font:inherit;user-select:none;cursor:pointer;border:0;--radius: 8px}div.highlight:hover .copy-code,pre:hover .copy-code{display:block}</style><script>document.querySelectorAll('pre > code').forEach((codeblock)=>{const container=codeblock.parentNode.parentNode;const copybutton=document.createElement('button');copybutton.classList.add('copy-code');copybutton.innerHTML='copy';function copyingDone(){copybutton.innerHTML='copied!';setTimeout(()=>{copybutton.innerHTML='copy';},2000);}
+copybutton.addEventListener('click',(cb)=>{if('clipboard'in navigator){navigator.clipboard.writeText(codeblock.textContent);copyingDone();return;}
+const range=document.createRange();range.selectNodeContents(codeblock);const selection=window.getSelection();selection.removeAllRanges();selection.addRange(range);try{document.execCommand('copy');copyingDone();}catch(e){};selection.removeRange(range);});if(container.classList.contains("highlight")){container.appendChild(copybutton);}else if(container.parentNode.firstChild==container){}else if(codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"){codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);}else{codeblock.parentNode.appendChild(copybutton);}});</script><script src=/js/douban.js></script></div><div id=secondary><section class=widget><form id=search action=https://567899.xyz/search method=get accept-charset=utf-8 target=_blank _lpchecked=1><input type=text name=q maxlength=20 placeholder=Search>
+<input type=hidden name=sitesearch value=https://567899.xyz>
+<button type=submit class="submit icon-search"></button></form></section><section class=widget><h3 class=widget-title>最近文章</h3><ul class=widget-list><li><a href=https://567899.xyz/post/google_drive_folderclone/ title="[更新]Folderclone谷歌Google Drive共享云端硬盘转存相互转移拷贝复制文件的正确姿势" target=_blank>[更新]Folderclone谷歌Google Drive共享云端硬盘转存相互转移拷贝复制文件的正确姿势</a></li><li><a href=https://567899.xyz/post/v2ray-http/ title="联通电信移动V2ray免流host http教程" target=_blank>联通电信移动V2ray免流host http教程</a></li><li><a href=https://567899.xyz/post/qiandao/ title=Cookie自动登陆签到、抓包提取制作HAR文件 target=_blank>Cookie自动登陆签到、抓包提取制作HAR文件</a></li><li><a href=https://567899.xyz/post/flexget/ title=flexget自动为qbittorrent、transmission等PT客户端添加种子任务 target=_blank>flexget自动为qbittorrent、transmission等PT客户端添加种子任务</a></li><li><a href=https://567899.xyz/post/autoremove-torrents/ title=使用autoremove-torrents自动删除PT种子文件 target=_blank>使用autoremove-torrents自动删除PT种子文件</a></li><li><a href=https://567899.xyz/post/android-termux-transmission-pt-downloads/ title=安卓手机可以在termux里安装Transmission来玩PT下载 target=_blank>安卓手机可以在termux里安装Transmission来玩PT下载</a></li><li><a href=https://567899.xyz/post/TinyFileManager/ title="Tiny File Manager一款简洁的PHP文件管理器" target=_blank>Tiny File Manager一款简洁的PHP文件管理器</a></li><li><a href=https://567899.xyz/post/Transmission/ title=Transmission的安装、配置、制作PT种子torrent做种 target=_blank>Transmission的安装、配置、制作PT种子torrent做种</a></li><li><a href=https://567899.xyz/post/win10-sound-not-work/ title=win10系统音量图标灰色无法调节的解决方法 target=_blank>win10系统音量图标灰色无法调节的解决方法</a></li><li><a href=https://567899.xyz/post/oracle-oci-arm-vps/ title="Oracle甲骨文OCI自动刷ARM VPS脚本" target=_blank>Oracle甲骨文OCI自动刷ARM VPS脚本</a></li></ul></section><section class=widget><h3 class=widget-title><a href=/categories/>分类</a></h3><ul class=widget-list><li><a href=https://567899.xyz/categories/Android/>Android (2)</a></li><li><a href=https://567899.xyz/categories/Telegram/>Telegram (1)</a></li><li><a href=https://567899.xyz/categories/Windows/>Windows (2)</a></li><li><a href=https://567899.xyz/categories/free/>free (1)</a></li><li><a href=https://567899.xyz/categories/%E6%95%99%E7%A8%8B/>教程 (87)</a></li><li><a href=https://567899.xyz/categories/%E8%BD%AF%E4%BB%B6/>软件 (4)</a></li></ul></section><section class=widget><h3 class=widget-title><a href=/tags/>标签</a></h3><div class=tagcloud><a href=https://567899.xyz/tags/7z/>7z</a>
+<a href=https://567899.xyz/tags/ADB/>ADB</a>
+<a href=https://567899.xyz/tags/API/>API</a>
+<a href=https://567899.xyz/tags/Actions/>Actions</a>
+<a href=https://567899.xyz/tags/Aira2/>Aira2</a>
+<a href=https://567899.xyz/tags/Android/>Android</a>
+<a href=https://567899.xyz/tags/Apache/>Apache</a>
+<a href=https://567899.xyz/tags/AutoRclone/>AutoRclone</a>
+<a href=https://567899.xyz/tags/Azure/>Azure</a>
+<a href=https://567899.xyz/tags/BaiduPCS-Go/>BaiduPCS-Go</a>
+<a href=https://567899.xyz/tags/BestTrace/>BestTrace</a>
+<a href=https://567899.xyz/tags/Bitwarden/>Bitwarden</a>
+<a href=https://567899.xyz/tags/caddy/>caddy</a>
+<a href=https://567899.xyz/tags/Certbot/>Certbot</a>
+<a href=https://567899.xyz/tags/Chrome/>Chrome</a>
+<a href=https://567899.xyz/tags/cloudflare/>cloudflare</a>
+<a href=https://567899.xyz/tags/Cookie/>Cookie</a>
+<a href=https://567899.xyz/tags/Debian/>Debian</a>
+<a href=https://567899.xyz/tags/FODI/>FODI</a>
+<a href=https://567899.xyz/tags/FastStoneCapture/>FastStoneCapture</a>
+<a href=https://567899.xyz/tags/Git/>Git</a>
+<a href=https://567899.xyz/tags/GitHub/>GitHub</a>
+<a href=https://567899.xyz/tags/Gmail/>Gmail</a>
+<a href=https://567899.xyz/tags/GoogleDrive/>GoogleDrive</a>
+<a href=https://567899.xyz/tags/hugo/>hugo</a>
+<a href=https://567899.xyz/tags/IP/>IP</a>
+<a href=https://567899.xyz/tags/Lycamobile/>Lycamobile</a>
+<a href=https://567899.xyz/tags/Magisk/>Magisk</a>
+<a href=https://567899.xyz/tags/MySQL/>MySQL</a>
+<a href=https://567899.xyz/tags/NPM/>NPM</a>
+<a href=https://567899.xyz/tags/Netflix/>Netflix</a>
+<a href=https://567899.xyz/tags/Nginx/>Nginx</a>
+<a href=https://567899.xyz/tags/Node.js/>Node.js</a>
+<a href=https://567899.xyz/tags/OneDrive/>OneDrive</a>
+<a href=https://567899.xyz/tags/OpenWrt/>OpenWrt</a>
+<a href=https://567899.xyz/tags/OpenWrt/>OpenWrt</a>
+<a href=https://567899.xyz/tags/oracle/>oracle</a>
+<a href=https://567899.xyz/tags/php/>php</a>
+<a href=https://567899.xyz/tags/PT/>PT</a>
+<a href=https://567899.xyz/tags/Pornhub/>Pornhub</a>
+<a href=https://567899.xyz/tags/Python/>Python</a>
+<a href=https://567899.xyz/tags/QQ/>QQ</a>
+<a href=https://567899.xyz/tags/rclone/>rclone</a>
+<a href=https://567899.xyz/tags/SMTP/>SMTP</a>
+<a href=https://567899.xyz/tags/SSH/>SSH</a>
+<a href=https://567899.xyz/tags/ssl/>ssl</a>
+<a href=https://567899.xyz/tags/TXT/>TXT</a>
+<a href=https://567899.xyz/tags/Telegram/>Telegram</a>
+<a href=https://567899.xyz/tags/Transmission/>Transmission</a>
+<a href=https://567899.xyz/tags/Ubuntu/>Ubuntu</a>
+<a href=https://567899.xyz/tags/V2ray/>V2ray</a>
+<a href=https://567899.xyz/tags/Windows/>Windows</a>
+<a href=https://567899.xyz/tags/WireGuard/>WireGuard</a>
+<a href=https://567899.xyz/tags/Xshell/>Xshell</a>
+<a href=https://567899.xyz/tags/alipay/>alipay</a>
+<a href=https://567899.xyz/tags/bbr/>bbr</a>
+<a href=https://567899.xyz/tags/caddy/>caddy</a>
+<a href=https://567899.xyz/tags/Chrome/>Chrome</a>
+<a href=https://567899.xyz/tags/cloudflare/>cloudflare</a>
+<a href=https://567899.xyz/tags/cmd/>cmd</a>
+<a href=https://567899.xyz/tags/crontab/>crontab</a>
+<a href=https://567899.xyz/tags/dd/>dd</a>
+<a href=https://567899.xyz/tags/docker/>docker</a>
+<a href=https://567899.xyz/tags/folderclone/>folderclone</a>
+<a href=https://567899.xyz/tags/frp/>frp</a>
+<a href=https://567899.xyz/tags/gitbook/>gitbook</a>
+<a href=https://567899.xyz/tags/GitHub/>GitHub</a>
+<a href=https://567899.xyz/tags/google/>google</a>
+<a href=https://567899.xyz/tags/hexo/>hexo</a>
+<a href=https://567899.xyz/tags/hugo/>hugo</a>
+<a href=https://567899.xyz/tags/key/>key</a>
+<a href=https://567899.xyz/tags/nano/>nano</a>
+<a href=https://567899.xyz/tags/OpenWrt/>OpenWrt</a>
+<a href=https://567899.xyz/tags/oracle/>oracle</a>
+<a href=https://567899.xyz/tags/php/>php</a>
+<a href=https://567899.xyz/tags/qBittorrent/>qBittorrent</a>
+<a href=https://567899.xyz/tags/rar/>rar</a>
+<a href=https://567899.xyz/tags/rclone/>rclone</a>
+<a href=https://567899.xyz/tags/scp/>scp</a>
+<a href=https://567899.xyz/tags/screen/>screen</a>
+<a href=https://567899.xyz/tags/ssl/>ssl</a>
+<a href=https://567899.xyz/tags/swap/>swap</a>
+<a href=https://567899.xyz/tags/systemctl/>systemctl</a>
+<a href=https://567899.xyz/tags/tar/>tar</a>
+<a href=https://567899.xyz/tags/Transmission/>Transmission</a>
+<a href=https://567899.xyz/tags/vnc/>vnc</a>
+<a href=https://567899.xyz/tags/Windows/>Windows</a>
+<a href=https://567899.xyz/tags/zfaka/>zfaka</a>
+<a href=https://567899.xyz/tags/%E8%81%94%E9%80%9A/>联通</a></div></section><section class=widget><h3 class=widget-title>其它</h3><ul class=widget-list><li><a href=https://567899.xyz/index.xml>文章 RSS</a></li></ul></section></div></div></div></div></body></html>
