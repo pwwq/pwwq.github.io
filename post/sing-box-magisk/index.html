@@ -79,6 +79,71 @@ proxies:
     port: <span style=color:#099>8128</span>
     username: uc10.7.163.144
     password: 1f47d3ef53b035443451c7ee7873ff38
+</code></pre></div><p>最新百度直连如下</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>addons: &amp;addons
+  type: http
+  port: <span style=color:#099>443</span>
+  headers:
+    <span style=color:#998;font-style:italic># 百度直连第一种写法</span>
+    X-T5-Auth: <span style=color:#099>683556433</span>
+    Host: 153.3.236.22:443
+
+    <span style=color:#998;font-style:italic># 百度直连第二种写法</span>
+    <span style=color:#998;font-style:italic># baiduDirect: true</span>
+
+    <span style=color:#998;font-style:italic># 钉钉直连写法</span>
+    <span style=color:#998;font-style:italic># withAt: gw.alicdn.com</span>
+    <span style=color:#998;font-style:italic># X-T5-Auth: 683556433</span>
+    <span style=color:#998;font-style:italic># Host: 153.3.236.22:443</span>
+<span style=color:#998;font-style:italic># 节点</span>
+proxies:
+  - name: 北京中联
+    server: 220.181.33.174
+    &lt;&lt;: *addons
+  - name: 广州联通
+    server: 157.255.78.51
+    &lt;&lt;: *addons
+  - name: 广州电信
+    server: 14.215.179.244
+    &lt;&lt;: *addons
+  - name: 广州中联
+    server: 220.181.111.189
+    &lt;&lt;: *addons
+  - name: 重庆移动
+    server: 36.152.45.97
+    &lt;&lt;: *addons
+  - name: 重庆中联
+    server: 36.152.45.98
+    &lt;&lt;: *addons
+  - name: 南京联通
+    server: 153.3.236.22
+    &lt;&lt;: *addons
+  - name: 南京电信
+    server: 180.101.50.249
+    &lt;&lt;: *addons
+  - name: 昆山联通
+    server: 157.0.148.53
+    &lt;&lt;: *addons
+  - name: 郑州联通1
+    server: 110.242.70.68
+    &lt;&lt;: *addons
+  - name: 郑州联通2
+    server: 110.242.70.69
+    &lt;&lt;: *addons
+  - name: 郑州联通3
+    server: 157.255.72.18
+    &lt;&lt;: *addons
+  - name: 郑州联通4
+    server: 157.255.78.51
+    &lt;&lt;: *addons
+  - name: 郑州电信1
+    server: 180.97.93.202
+    &lt;&lt;: *addons
+  - name: 郑州电信2
+    server: 180.101.50.208
+    &lt;&lt;: *addons
+  - name: 郑州中联
+    server: 220.181.7.1
+    &lt;&lt;: *addons
 </code></pre></div><h2 id=传送阵>传送阵</h2><p>传送阵套娃：包含其他传送阵。你的默认只有 direct（直连，不通过代理）、block（断开，“黑洞路由”）、proxy（代理）、domestic（国内）、GLOBAL：全局模式下流量代理节点</p><ol><li>新增名为"GLOBAL"的传送阵</li><li>修改传送阵"proxy"的"传送阵套娃"选择"GLOBAL&rdquo;</li><li>传送阵"domestic"国内代理选择"百度直连&rdquo;(免流佬专用)</li><li>新增"ChatGPT"的传送阵，传送阵套娃选择"proxy&rdquo;,星盘选择MJJ_ChatGPT，我想要这些：<code>((gpt).*(0.5))|((0.5).*(gpt))</code> 正则表达式，表示搜索同时包含关键字gpt和0.5筛选节点</li><li>进入神秘，勾选热点模式、兼容模式</li></ol><p>打开 <code>/data/adb/sfm/src/baseConfig.hjson</code> 文件，修改</p><p>放行应用 修改 baseConfig.hjson，在 packages_list.list 列表中添加应用包名</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>list: <span style=color:#000;font-weight:700>[</span>
   <span style=color:#000;font-weight:700>{</span>
     package_name: com.tencent.mm
