@@ -18,14 +18,14 @@ systemctl status docker
 </code></pre></div><h2 id=升级-bitwarden-镜像>升级 Bitwarden 镜像</h2><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>docker stop bitwarden
 docker pull vaultwarden/server:latest
 docker start bitwarden
-</code></pre></div><h2 id=备份bitwarden>备份Bitwarden</h2><p>以下为必须要备份的</p><ul><li><code>/bw-data/db.sqlite3</code>是Bitwarden的数据库文件</li><li><code>/bw-data/sends/*</code>目录下的所有附件是不加密的</li></ul><p>其它的都可以不备份(可选)，例如<code>/bw-data/config.json/</code>管理面板参数，把下面的内容保存为<code>bitwarden_backup.sh</code></p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#999;font-weight:700;font-style:italic>#!/bin/bash
+</code></pre></div><h2 id=备份bitwarden>备份Bitwarden</h2><p>以下为必须要备份的</p><ul><li><code>/bw-data/db.sqlite3</code>是Bitwarden的数据库文件</li><li><code>/bw-data/sends/*</code>目录下的所有附件是不加密的</li></ul><p>其它的都可以不备份(可选)，例如<code>/bw-data/config.json</code>管理面板参数，把下面的内容保存为<code>bitwarden_backup.sh</code></p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#999;font-weight:700;font-style:italic>#!/bin/bash
 </span><span style=color:#999;font-weight:700;font-style:italic></span><span style=color:#998;font-style:italic># 指定时间格式</span>
 <span style=color:teal>DATE</span><span style=color:#000;font-weight:700>=</span><span style=color:#000;font-weight:700>$(</span>date +%Y%m%d%H%M%S<span style=color:#000;font-weight:700>)</span>
 <span style=color:#998;font-style:italic># youpassword替换成压缩包的解压密码</span>
 zip -P youpassword /bw-data/tmp/bw-<span style=color:teal>$DATE</span>.zip /bw-data/db.sqlite3 /bw-data/sends/*
 <span style=color:#998;font-style:italic># 把备份压缩包文件通过rclone上传到onedrive中的指定的bitwardenbackups目录下</span>
 rclone copy /bw-data/tmp/ onedrive:bitwardenbackups
-<span style=color:#998;font-style:italic># 删除rclone中挂载为名onedrive中bitwardenbitwardenbackups目录下30前的文件</span>
+<span style=color:#998;font-style:italic># 删除rclone中挂载为名onedrive中bitwardenbitwardenbackups目录下30天前的文件</span>
 rclone delete onedrive:bitwardenbackups --min-age 30d
 <span style=color:#998;font-style:italic># 删除备份压缩包文件</span>
 rm /bw-data/tmp/*.zip
