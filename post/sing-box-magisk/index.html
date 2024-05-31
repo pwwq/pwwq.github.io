@@ -256,7 +256,16 @@ proxies:
 vmess://eyJhiI*******
 vmess://eyJh*******IjIifQ<span style=color:#000;font-weight:700>==</span>
 vmess://eyJ*******IjIifQ<span style=color:#000;font-weight:700>==</span>
-</code></pre></div><h2 id=传送阵>传送阵</h2><p>传送阵套娃：包含其他传送阵。你的默认只有 direct（直连，不通过代理）、block（断开，“黑洞路由”）、proxy（代理）、domestic（国内）、GLOBAL：全局模式下流量代理节点</p><ol><li>新增名为"GLOBAL"的传送阵</li><li>修改传送阵"proxy"的"传送阵套娃"选择"GLOBAL&rdquo;</li><li>传送阵"domestic"国内代理选择"百度直连&rdquo;(免流佬专用)</li><li>新增"ChatGPT"的传送阵，传送阵套娃选择"proxy&rdquo;,星盘选择MJJ_ChatGPT，我想要这些：<code>((gpt).*(0.5))|((0.5).*(gpt))</code> 正则表达式，表示搜索同时包含关键字gpt和0.5筛选节点</li><li>进入神秘，勾选热点模式、兼容模式</li></ol><p>打开 <code>/data/adb/sfm/src/baseConfig.hjson</code> 文件，修改</p><h2 id=怎么放行应用>怎么放行应用？</h2><p>修改 packages_list 里的 black 或 white，它们分别是黑名单（放行列表内的应用）和白名单（只代理列表内的应用）。</p><p>mode 默认为黑名单，无须修改，如果要修改，参考白名单。在 black 中添加包名，一行一个。</p><p>可以使用<a href=https://tpanel.netlify.app/>半成品面板</a>，点击动图进入设置 - 名单里给对应的应用启用即可。</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>list: <span style=color:#000;font-weight:700>[</span>
+</code></pre></div><h2 id=传送阵>传送阵</h2><p>传送阵套娃：包含其他传送阵。你的默认只有 direct（直连，不通过代理）、block（断开，“黑洞路由”）、proxy（代理）、domestic（国内）、GLOBAL：全局模式下流量代理节点</p><ol><li>新增名为"GLOBAL"的传送阵</li><li>修改传送阵"proxy"的"传送阵套娃"选择"GLOBAL&rdquo;</li><li>传送阵"domestic"国内代理选择"百度直连&rdquo;(免流佬专用)</li><li>新增"ChatGPT"的传送阵，传送阵套娃选择"proxy&rdquo;,星盘选择MJJ_ChatGPT，我想要这些：<code>((gpt).*(0.5))|((0.5).*(gpt))</code> 正则表达式，表示搜索同时包含关键字gpt和0.5筛选节点</li><li>进入神秘，勾选热点模式、兼容模式</li></ol><p>打开 <code>/data/adb/sfm/src/baseConfig.hjson</code> 文件，修改</p><h2 id=怎么放行应用>怎么放行应用？</h2><p>修改 packages_list 里的 black 或 white，它们分别是黑名单（放行列表内的应用）和白名单（只代理列表内的应用）。</p><p>mode 默认为黑名单，无须修改，如果要修改，参考白名单。在 black 中添加包名，一行一个。例如旅行QQ、微信</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>  packages_list:
+  <span style=color:#000;font-weight:700>{</span>
+    enabled: <span style=color:#0086b3>true</span>
+    mode: black
+    black:
+    <span style=color:#000;font-weight:700>[</span>
+      com.tencent.mobileqq
+      com.tencent.mm
+    <span style=color:#000;font-weight:700>]</span>
+</code></pre></div><p>可以使用<a href=https://tpanel.netlify.app/>半成品面板</a>，点击动图进入设置 - 名单里给对应的应用启用即可。</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>list: <span style=color:#000;font-weight:700>[</span>
   <span style=color:#000;font-weight:700>{</span>
     package_name: com.tencent.mm
     users: <span style=color:#000;font-weight:700>[</span>
