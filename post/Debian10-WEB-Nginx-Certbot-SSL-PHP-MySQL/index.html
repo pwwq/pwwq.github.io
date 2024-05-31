@@ -4,7 +4,70 @@
 <a href=https://567899.xyz/about/ title=关于>关于</a></nav></div></div></div></header><div id=body><div class=container><div class=col-group><div class=col-8 id=main><div class=res-cons><style type=text/css>.post-toc{position:fixed;width:200px;margin-left:-210px;padding:5px 10px;font-family:Athelas,STHeiti,Microsoft Yahei,serif;font-size:12px;border:1px solid rgba(0,0,0,.07);border-radius:5px;background-color:rgba(255,255,255,.98);background-clip:padding-box;-webkit-box-shadow:1px 1px 2px rgba(0,0,0,.125);box-shadow:1px 1px 2px rgba(0,0,0,.125);word-wrap:break-word;white-space:nowrap;-webkit-box-sizing:border-box;box-sizing:border-box;z-index:999;cursor:pointer;max-height:70%;overflow-y:auto;overflow-x:hidden}.post-toc .post-toc-title{width:100%;margin:0 auto;font-size:20px;font-weight:400;text-transform:uppercase;text-align:center}.post-toc .post-toc-content{font-size:15px}.post-toc .post-toc-content>nav>ul{margin:10px 0}.post-toc .post-toc-content ul{padding-left:20px;list-style:square;margin:.5em;line-height:1.8em}.post-toc .post-toc-content ul ul{padding-left:15px;display:none}@media print,screen and (max-width:1057px){.post-toc{display:none}}</style><div class=post-toc style=position:absolute;top:188px><h2 class=post-toc-title>文章目录</h2><div class=post-toc-content><nav id=TableOfContents><ul><li><a href=#nginx>Nginx</a></li><li><a href=#安装nginx>安装Nginx</a></li><li><a href=#配置网站>配置网站</a></li><li><a href=#文件位置>文件位置</a></li><li><a href=#nginx管理命令>Nginx管理命令</a></li><li><a href=#certbot申请lets-encrypt证书ssl>Certbot申请Let’s Encrypt证书SSL</a></li><li><a href=#使用ssl证书>使用SSL证书</a></li><li><a href=#php>PHP</a></li><li><a href=#安装php>安装PHP</a></li><li><a href=#nginx使用php>Nginx使用PHP</a></li><li><a href=#mysql数据库>MySQL数据库</a></li><li><a href=#配置-mysql软件源>配置 MySQL软件源</a></li><li><a href=#安装-mysql>安装 MySQL</a></li></ul></nav></div></div><script type=text/javascript>$(document).ready(function(){var postToc=$(".post-toc");if(postToc.length){var leftPos=$("#main").offset().left;if(leftPos<220){postToc.css({"width":leftPos-10,"margin-left":(0-leftPos)})}
 var t=postToc.offset().top-20,a={start:{position:"absolute",top:t},process:{position:"fixed",top:20},};$(window).scroll(function(){var e=$(window).scrollTop();e<t?postToc.css(a.start):postToc.css(a.process)})}
 if($("#TableOfContents").children().length<1){$(".post-toc").remove();}})</script><article class=post><header><h1 class=post-title>Debian10手动搭建WEB环境Nginx,SSL,PHP,MySQL</h1></header><date class="post-meta meta-date">2020年9月10日</date><div class=post-meta><span>|</span>
-<span class=meta-category><a href=/categories/%E6%95%99%E7%A8%8B target=_blank>教程</a></span></div><div class=post-content><p>手动搭建，使用<code>apt</code>,<code>apt-get</code>快速安装免编译</p><p>更新软件源</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>apt update
+<span class=meta-category><a href=/categories/%E6%95%99%E7%A8%8B target=_blank>教程</a></span></div><div class=post-content><p>手动搭建，使用<code>apt</code>,<code>apt-get</code>快速安装免编译</p><p>安装nginx和php</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>apt update
+apt install openssl nginx-full php-fpm php-mysql -y
+</code></pre></div><p>创建站点，新建文件</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>nano example.com.sh
+</code></pre></div><p>内容如下</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#999;font-weight:700;font-style:italic>#!/bin/bash
+</span><span style=color:#999;font-weight:700;font-style:italic></span><span style=color:#998;font-style:italic># 创建站点目录和默认页面</span>
+mkdir /var/www/example.com
+chown -R www-data:www-data /var/www/example.com
+<span style=color:#0086b3>echo</span> <span style=color:#d14>&#34;hello word&#34;</span> &gt; /var/www/example.com/index.html
+<span style=color:#998;font-style:italic># 添加nginx配置文件</span>
+<span style=color:#0086b3>echo</span> <span style=color:#d14>&#34;server {
+</span><span style=color:#d14>	listen 80;
+</span><span style=color:#d14>	listen [::]:80;
+</span><span style=color:#d14>	server_name example.com;
+</span><span style=color:#d14>	root /var/www/example.com;
+</span><span style=color:#d14>	index index.html;
+</span><span style=color:#d14>	# return 301 https://</span><span style=color:teal>$server_name$request_uri</span><span style=color:#d14>;
+</span><span style=color:#d14>} &gt;&gt; /etc/nginx/sites-available/default
+</span></code></pre></div><p>把<code>example.com</code>替换成自己的域名</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>sed -i <span style=color:#d14>&#39;s/example.com/自己的域名/&#39;</span> example.com.sh
+</code></pre></div><p>给予权限并执行</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>chmod +x example.com.sh
+bash example.com.sh
+systemctl restart nginx
+</code></pre></div><p>Certbot申请Let’s Encrypt证书SSL，安装Certbot</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>apt install certbot -y
+</code></pre></div><p>获取SSL证书</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>certbot certonly --webroot -w /var/www/example.com -d example.com --register-unsafely-without-email
+</code></pre></div><p>输入A同意，即可顺利签发SSL证书,使用SSL证书</p><p>nginx+php+ssl</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#0086b3>echo</span> <span style=color:#d14>&#34;server {
+</span><span style=color:#d14>	listen 443 ssl http2;
+</span><span style=color:#d14>	listen [::]:443 ssl http2;
+</span><span style=color:#d14>	server_name example.com;
+</span><span style=color:#d14>	root /var/www/example.com;
+</span><span style=color:#d14>	index index.html index.htm index.php;
+</span><span style=color:#d14>	#php
+</span><span style=color:#d14>	location ~ \.php</span>$<span style=color:#d14> {
+</span><span style=color:#d14>	include snippets/fastcgi-php.conf;
+</span><span style=color:#d14>	fastcgi_pass unix:/run/php/php7.4-fpm.sock;
+</span><span style=color:#d14>	}
+</span><span style=color:#d14>	ssl on;
+</span><span style=color:#d14>	ssl_protocols TLSv1 TLSv1.1 TLSv1.2 TLSv1.3;
+</span><span style=color:#d14>	ssl_certificate      /etc/letsencrypt/live/example.com/fullchain.pem;
+</span><span style=color:#d14>	ssl_certificate_key  /etc/letsencrypt/live/example.com/privkey.pem;
+</span><span style=color:#d14>} &gt;&gt; /etc/nginx/sites-available/example.com
+</span></code></pre></div><p>nginx反向代理+ssl</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#0086b3>echo</span> <span style=color:#d14>&#34;server {
+</span><span style=color:#d14>  listen 443 ssl http2;
+</span><span style=color:#d14>  listen [::]:443 ssl http2;
+</span><span style=color:#d14>  server_name example.com;
+</span><span style=color:#d14>  location / {
+</span><span style=color:#d14>  proxy_pass http://127.0.0.1:45729;
+</span><span style=color:#d14>  proxy_redirect off;
+</span><span style=color:#d14>  proxy_set_header X-Real-IP </span><span style=color:teal>$remote_addr</span><span style=color:#d14>;
+</span><span style=color:#d14>  proxy_set_header X-Forwarded-For </span><span style=color:teal>$proxy_add_x_forwarded_for</span><span style=color:#d14>;
+</span><span style=color:#d14>  }
+</span><span style=color:#d14>  ssl on;
+</span><span style=color:#d14>  ssl_protocols TLSv1 TLSv1.1 TLSv1.2 TLSv1.3;
+</span><span style=color:#d14>  ssl_certificate      /etc/letsencrypt/live/example.com/fullchain.pem;
+</span><span style=color:#d14>  ssl_certificate_key  /etc/letsencrypt/live/example.com/privkey.pem;
+</span><span style=color:#d14>} &gt;&gt; /etc/nginx/sites-available/example.com
+</span></code></pre></div><p>把<code>example.com</code>替换成自己的域名</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>sed -i <span style=color:#d14>&#39;s/example.com/自己的域名/&#39;</span> /etc/nginx/sites-available/default
+systemctl restart nginx
+</code></pre></div><p>更新Let’s Encrypt证书</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#998;font-style:italic>#systemctl stop xray</span>
+<span style=color:#998;font-style:italic>#sed -i &#39;s/81/80/&#39; /etc/nginx/sites-available/default</span>
+systemctl restart nginx
+certbot renew
+<span style=color:#998;font-style:italic>#sed -i &#39;s/80/81/&#39; /etc/nginx/sites-available/default</span>
+systemctl restart nginx
+<span style=color:#998;font-style:italic>#systemctl restart xray</span>
+</code></pre></div><hr><p>更新软件源</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>apt update
 </code></pre></div><p>来更新软件源。</p><h2 id=nginx>Nginx</h2><p>这里使用<a href=https://nginx.org>Nginx</a>作为WEB服务器。</p><h2 id=安装nginx>安装Nginx</h2><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>apt install openssl nginx -y
 </code></pre></div><p>完成安装后可以用</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>nginx -V
 </code></pre></div><p>查看到版本号<code>nginx/1.14.2</code>,<code>OpenSSL 1.1.1d</code>及相关文件位置路径等</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>nginx version: nginx/1.14.2
