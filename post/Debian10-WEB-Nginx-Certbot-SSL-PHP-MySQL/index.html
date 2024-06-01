@@ -42,7 +42,7 @@ systemctl restart nginx
 </span><span style=color:#d14>	ssl_protocols TLSv1 TLSv1.1 TLSv1.2 TLSv1.3;
 </span><span style=color:#d14>	ssl_certificate      /etc/letsencrypt/live/example.com/fullchain.pem;
 </span><span style=color:#d14>	ssl_certificate_key  /etc/letsencrypt/live/example.com/privkey.pem;
-</span><span style=color:#d14>} &gt;&gt; /etc/nginx/sites-available/example.com
+</span><span style=color:#d14>} &gt;&gt; /etc/nginx/sites-available/default
 </span></code></pre></div><p>nginx反向代理+ssl</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#0086b3>echo</span> <span style=color:#d14>&#34;server {
 </span><span style=color:#d14>  listen 443 ssl http2;
 </span><span style=color:#d14>  listen [::]:443 ssl http2;
@@ -57,7 +57,7 @@ systemctl restart nginx
 </span><span style=color:#d14>  ssl_protocols TLSv1 TLSv1.1 TLSv1.2 TLSv1.3;
 </span><span style=color:#d14>  ssl_certificate      /etc/letsencrypt/live/example.com/fullchain.pem;
 </span><span style=color:#d14>  ssl_certificate_key  /etc/letsencrypt/live/example.com/privkey.pem;
-</span><span style=color:#d14>} &gt;&gt; /etc/nginx/sites-available/example.com
+</span><span style=color:#d14>} &gt;&gt; /etc/nginx/sites-available/default
 </span></code></pre></div><p>把<code>example.com</code>替换成自己的域名</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>sed -i <span style=color:#d14>&#39;s/example.com/自己的域名/&#39;</span> /etc/nginx/sites-available/default
 systemctl restart nginx
 </code></pre></div><p>更新Let’s Encrypt证书</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#998;font-style:italic>#systemctl stop xray</span>
