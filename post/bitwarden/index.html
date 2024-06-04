@@ -1,7 +1,7 @@
 <!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><title>使用bitwarden_rs搭建安全密码库服务器 | Xizi's Blog</title><meta property="og:title" content="使用bitwarden_rs搭建安全密码库服务器 - Xizi's Blog"><meta property="og:type" content="article"><meta property="article:published_time" content="2018-06-01T01:37:56+08:00"><meta property="article:modified_time" content="2018-06-01T01:37:56+08:00"><meta name=Keywords content><meta name=description content="使用bitwarden_rs搭建安全密码库服务器"><meta name=author content="Xizi"><meta property="og:url" content="https://567899.xyz/post/bitwarden/"><link rel="shortcut icon" href=/favicon.ico type=image/x-icon><link rel=stylesheet href=/css/normalize.css><link rel=stylesheet href=/css/style.css><script type=text/javascript src=//cdn.bootcdn.net/ajax/libs/jquery/3.4.1/jquery.min.js></script><link href=https://cdn.bootcdn.net/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css rel=stylesheet><link rel=stylesheet href=/css/douban.css><link rel=stylesheet href=/css/other.css></head><body><header id=header class=clearfix><div class=container><div class=col-group><div class=site-name><a id=logo href=https://567899.xyz>Xizi's Blog</a><p class=description>记录、分享自己的折腾日记。</p></div><div><nav id=nav-menu class=clearfix><a class=current href=https://567899.xyz>首页</a>
 <a href=https://567899.xyz/post/tools/ title=工具>工具</a>
 <a href=https://567899.xyz/archives/ title=归档>归档</a>
-<a href=https://567899.xyz/about/ title=关于>关于</a></nav></div></div></div></header><div id=body><div class=container><div class=col-group><div class=col-8 id=main><div class=res-cons><style type=text/css>.post-toc{position:fixed;width:200px;margin-left:-210px;padding:5px 10px;font-family:Athelas,STHeiti,Microsoft Yahei,serif;font-size:12px;border:1px solid rgba(0,0,0,.07);border-radius:5px;background-color:rgba(255,255,255,.98);background-clip:padding-box;-webkit-box-shadow:1px 1px 2px rgba(0,0,0,.125);box-shadow:1px 1px 2px rgba(0,0,0,.125);word-wrap:break-word;white-space:nowrap;-webkit-box-sizing:border-box;box-sizing:border-box;z-index:999;cursor:pointer;max-height:70%;overflow-y:auto;overflow-x:hidden}.post-toc .post-toc-title{width:100%;margin:0 auto;font-size:20px;font-weight:400;text-transform:uppercase;text-align:center}.post-toc .post-toc-content{font-size:15px}.post-toc .post-toc-content>nav>ul{margin:10px 0}.post-toc .post-toc-content ul{padding-left:20px;list-style:square;margin:.5em;line-height:1.8em}.post-toc .post-toc-content ul ul{padding-left:15px;display:none}@media print,screen and (max-width:1057px){.post-toc{display:none}}</style><div class=post-toc style=position:absolute;top:188px><h2 class=post-toc-title>文章目录</h2><div class=post-toc-content><nav id=TableOfContents><ul><li><a href=#docker安装>Docker安装</a></li><li><a href=#部署-bitwarden>部署 Bitwarden</a></li><li><a href=#bitwarden容器操作命令>bitwarden容器操作命令</a></li><li><a href=#升级-bitwarden-镜像>升级 Bitwarden 镜像</a></li><li><a href=#备份bitwarden>备份Bitwarden</a></li><li><a href=#还原bitwarden的备份数据库>还原Bitwarden的备份数据库</a></li><li><a href=#nginx配置带ssl证书的站点配置文件示范>nginx配置带SSL证书的站点配置文件示范</a></li><li><a href=#客户端使用>客户端使用</a><ul><li><a href=#desktop>Desktop</a></li><li><a href=#web-browser>Web Browser</a></li><li><a href=#mobile>Mobile</a></li></ul></li></ul></nav></div></div><script type=text/javascript>$(document).ready(function(){var postToc=$(".post-toc");if(postToc.length){var leftPos=$("#main").offset().left;if(leftPos<220){postToc.css({"width":leftPos-10,"margin-left":(0-leftPos)})}
+<a href=https://567899.xyz/about/ title=关于>关于</a></nav></div></div></div></header><div id=body><div class=container><div class=col-group><div class=col-8 id=main><div class=res-cons><style type=text/css>.post-toc{position:fixed;width:200px;margin-left:-210px;padding:5px 10px;font-family:Athelas,STHeiti,Microsoft Yahei,serif;font-size:12px;border:1px solid rgba(0,0,0,.07);border-radius:5px;background-color:rgba(255,255,255,.98);background-clip:padding-box;-webkit-box-shadow:1px 1px 2px rgba(0,0,0,.125);box-shadow:1px 1px 2px rgba(0,0,0,.125);word-wrap:break-word;white-space:nowrap;-webkit-box-sizing:border-box;box-sizing:border-box;z-index:999;cursor:pointer;max-height:70%;overflow-y:auto;overflow-x:hidden}.post-toc .post-toc-title{width:100%;margin:0 auto;font-size:20px;font-weight:400;text-transform:uppercase;text-align:center}.post-toc .post-toc-content{font-size:15px}.post-toc .post-toc-content>nav>ul{margin:10px 0}.post-toc .post-toc-content ul{padding-left:20px;list-style:square;margin:.5em;line-height:1.8em}.post-toc .post-toc-content ul ul{padding-left:15px;display:none}@media print,screen and (max-width:1057px){.post-toc{display:none}}</style><div class=post-toc style=position:absolute;top:188px><h2 class=post-toc-title>文章目录</h2><div class=post-toc-content><nav id=TableOfContents><ul><li><a href=#docker安装>Docker安装</a></li><li><a href=#部署-bitwarden>部署 Bitwarden</a></li><li><a href=#bitwarden容器操作命令>bitwarden容器操作命令</a></li><li><a href=#升级-bitwarden-镜像>升级 Bitwarden 镜像</a></li><li><a href=#备份bitwarden>备份Bitwarden</a></li><li><a href=#还原bitwarden的备份数据库镜像备用站点>还原Bitwarden的备份数据库、镜像备用站点</a></li><li><a href=#nginx配置带ssl证书的站点配置文件示范>nginx配置带SSL证书的站点配置文件示范</a></li><li><a href=#客户端使用>客户端使用</a><ul><li><a href=#desktop>Desktop</a></li><li><a href=#web-browser>Web Browser</a></li><li><a href=#mobile>Mobile</a></li></ul></li></ul></nav></div></div><script type=text/javascript>$(document).ready(function(){var postToc=$(".post-toc");if(postToc.length){var leftPos=$("#main").offset().left;if(leftPos<220){postToc.css({"width":leftPos-10,"margin-left":(0-leftPos)})}
 var t=postToc.offset().top-20,a={start:{position:"absolute",top:t},process:{position:"fixed",top:20},};$(window).scroll(function(){var e=$(window).scrollTop();e<t?postToc.css(a.start):postToc.css(a.process)})}
 if($("#TableOfContents").children().length<1){$(".post-toc").remove();}})</script><article class=post><header><h1 class=post-title>使用bitwarden_rs搭建安全密码库服务器</h1></header><date class="post-meta meta-date">2018年6月1日</date><div class=post-meta><span>|</span>
 <span class=meta-category><a href=/categories/%E6%95%99%E7%A8%8B target=_blank>教程</a></span></div><div class=post-content><p>bitwarden_rs是一个免费开源、能自己搭建服务端的安全密码库服务器</p><ul><li><a href=https://bitwarden.com/>https://bitwarden.com/</a></li><li><a href=https://github.com/dani-garcia/bitwarden_rs>https://github.com/dani-garcia/bitwarden_rs</a></li><li><a href=https://hub.docker.com/r/bitwardenrs/server>https://hub.docker.com/r/bitwardenrs/server</a></li></ul><h2 id=docker安装>Docker安装</h2><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>wget -qO- get.docker.com | bash
@@ -14,27 +14,112 @@ systemctl status docker
 </code></pre></div><h2 id=部署-bitwarden>部署 Bitwarden</h2><blockquote><p><a href=https://github.com/dani-garcia/bitwarden_rs>https://github.com/dani-garcia/bitwarden_rs</a></p></blockquote><p>&lsquo;bitwarden_rs&rsquo;的docker镜像<del>bitwardenrs/server</del>现已变更为<strong>vaultwarden/server</strong></p><p>为了安全，可通过docker并创建一个临时容器，Generate an Argon2id PHC string using the &lsquo;bitwarden&rsquo; preset。</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>docker run --rm -it vaultwarden/server /vaultwarden <span style=color:#0086b3>hash</span>
 </code></pre></div><p>得到用bitwarden生成的<code>ADMIN_TOKEN</code>值。类似如下值</p><pre><code>ADMIN_TOKEN='$argon2id$v=19$m=65540,t=3,p=4$iK/BPqYwo02kukcDLJH+oUV1OSGkI0NRSgpGJam3Y6A$PTk/xhEI0bWQk8mWwk8HWdOQMwOipBAtMSEU8CAt274'
 </code></pre><p>复制替换掉<code>ADMIN_TOKEN值</code></p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>docker run -d --name bitwarden --restart<span style=color:#000;font-weight:700>=</span>always -v /bw-data/:/data/ -p 45729:80 -e <span style=color:teal>SIGNUPS_ALLOWED</span><span style=color:#000;font-weight:700>=</span><span style=color:#0086b3>false</span> -e <span style=color:teal>INVITATIONS_ALLOWED</span><span style=color:#000;font-weight:700>=</span><span style=color:#0086b3>false</span> -e <span style=color:teal>ADMIN_TOKEN</span><span style=color:#000;font-weight:700>=</span><span style=color:#d14>`</span>ADMIN_TOKEN值<span style=color:#d14>`</span> vaultwarden/server:latest
-</code></pre></div><p>以下参数可自定义按需修改：</p><ul><li><code>SIGNUP_ALLOWED</code>值是否允许注册</li><li><code>INVITATIONS_ALLOWED</code>值是否允许组织邀请注册</li><li><code>youpassword</code>用户管理界面 (/admin)的密码</li><li><code>/bw-data/</code>宿主机映射目录</li><li>将宿主机的<code>45729</code>映射到容器的80端口上</li><li><code>--restart=always</code>自动启动bitwarden</li><li><code>-e SHOW_PASSWORD_HINT=false</code>禁用密码提示</li></ul><h2 id=bitwarden容器操作命令>bitwarden容器操作命令</h2><p>启动容器</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>docker start bitwarden
+</code></pre></div><p>以下参数可自定义按需修改：</p><ul><li><code>SIGNUP_ALLOWED</code>值是否允许注册</li><li><code>INVITATIONS_ALLOWED</code>值是否允许组织邀请注册</li><li><code>youpassword</code>用户管理界面 (/admin)的密码</li><li><code>/bw-data/</code>宿主机映射目录</li><li>将宿主机的<code>45729</code>映射到容器的80端口上</li><li><code>--restart=always</code>自动启动bitwarden</li><li><code>-e SHOW_PASSWORD_HINT=false</code>禁用密码提示</li></ul><p>禁用日志添加<code>-e LOG_LEVEL=off</code>、 <code>-e USE_SYSLOG=false</code> 、<code>-e EXTENDED_LOGGING=false</code></p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>docker run -d --name bitwarden --restart<span style=color:#000;font-weight:700>=</span>always -e <span style=color:teal>LOG_LEVEL</span><span style=color:#000;font-weight:700>=</span>off -e <span style=color:teal>USE_SYSLOG</span><span style=color:#000;font-weight:700>=</span><span style=color:#0086b3>false</span> -e <span style=color:teal>EXTENDED_LOGGING</span><span style=color:#000;font-weight:700>=</span><span style=color:#0086b3>false</span> -e <span style=color:teal>TZ</span><span style=color:#000;font-weight:700>=</span>Asia/Shanghai -e <span style=color:teal>SHOW_PASSWORD_HINT</span><span style=color:#000;font-weight:700>=</span><span style=color:#0086b3>false</span> -v /bw-data/:/data/ -p 45729:80 -e <span style=color:teal>SIGNUPS_ALLOWED</span><span style=color:#000;font-weight:700>=</span><span style=color:#0086b3>false</span> -e <span style=color:teal>INVITATIONS_ALLOWED</span><span style=color:#000;font-weight:700>=</span><span style=color:#0086b3>false</span> -e <span style=color:teal>ADMIN_TOKEN</span><span style=color:#000;font-weight:700>=</span><span style=color:#d14>&#39;$argon2id$v=19$m=65540,t=3,p=4$iK/BPqYwoMPsukcDLJH+oUV1OSGkI0NRSgpGJam3Y6A$PTk/xhEI0bWQk8mWwk8HWdOQMwOipBAtMSEU8CAt274&#39;</span> vaultwarden/server:latest
+</code></pre></div><h2 id=bitwarden容器操作命令>bitwarden容器操作命令</h2><p>启动容器</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>docker start bitwarden
 </code></pre></div><p>停止容器</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>docker stop bitwarden
 </code></pre></div><p>删除容器</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>docker rm bitwarden
 </code></pre></div><h2 id=升级-bitwarden-镜像>升级 Bitwarden 镜像</h2><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>docker stop bitwarden
 docker pull vaultwarden/server:latest
 docker start bitwarden
-</code></pre></div><h2 id=备份bitwarden>备份Bitwarden</h2><p>以下为必须要备份的</p><ul><li><code>/bw-data/db.sqlite3</code>，<code>db.sqlite3-shm</code>，<code>db.sqlite3-wal</code>是Bitwarden的数据库文件，<strong>新版本需要同时备份这3个文件</strong></li><li><code>/bw-data/sends/*</code>目录下的所有附件是不加密的</li></ul><p>其它的都可以不备份(可选)，例如<code>/bw-data/config.json</code>管理面板参数，把下面的内容保存为<code>bitwarden_backup.sh</code></p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#999;font-weight:700;font-style:italic>#!/bin/bash
-</span><span style=color:#999;font-weight:700;font-style:italic></span><span style=color:#998;font-style:italic># 指定时间格式</span>
-<span style=color:teal>DATE</span><span style=color:#000;font-weight:700>=</span><span style=color:#000;font-weight:700>$(</span>date +%Y%m%d%H%M%S<span style=color:#000;font-weight:700>)</span>
-<span style=color:#998;font-style:italic># yourpassword替换成压缩包的解压密码</span>
-zip -P yourpassword /bw-data/tmp/bw-<span style=color:teal>$DATE</span>.zip /bw-data/db.sqlite3 /bw-data/db.sqlite3-shm /bw-data/db.sqlite3-wal /bw-data/sends/*
-<span style=color:#998;font-style:italic># 把备份压缩包文件通过rclone上传到onedrive中的指定的bitwardenbackups目录下</span>
-rclone copy /bw-data/tmp/ onedrive:bitwardenbackups
-<span style=color:#998;font-style:italic># 删除rclone中挂载为名onedrive中bitwardenbitwardenbackups目录下30天前的文件</span>
-rclone delete onedrive:bitwardenbackups --min-age 30d
-<span style=color:#998;font-style:italic># 删除备份压缩包文件</span>
+</code></pre></div><h2 id=备份bitwarden>备份Bitwarden</h2><p>以下为必须要备份的</p><ul><li><code>/bw-data/db.sqlite3</code>是Bitwarden的数据库文件</li><li><code>/bw-data/sends/*</code>目录下的所有附件是不加密的</li></ul><p>其它的都可以不备份(可选)，例如<code>/bw-data/config.json</code>管理面板参数，把下面的内容保存为<code>bitwarden_backup.sh</code></p><p><code>/bw-data/db.sqlite3</code>是Bitwarden 数据库文件 <code>/root/bitwarden/db.sqlite3</code>是本地复制过来的，用于上传到github或通过rclone上传，判断比对MD5值，只有当有更新才上传。</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#999;font-weight:700;font-style:italic>#!/bin/bash
+</span><span style=color:#999;font-weight:700;font-style:italic></span><span style=color:#998;font-style:italic># 重新启动 Bitwarden Docker 容器</span>
+docker restart bitwarden
+
+<span style=color:#998;font-style:italic># 等待 Bitwarden 容器启动完成</span>
+sleep <span style=color:#099>3</span>
+
+<span style=color:#998;font-style:italic># 获取 Bitwarden 数据库文件的 MD5 值</span>
+<span style=color:teal>db_md5_before</span><span style=color:#000;font-weight:700>=</span><span style=color:#000;font-weight:700>$(</span>md5sum /bw-data/db.sqlite3 | awk <span style=color:#d14>&#39;{print $1}&#39;</span><span style=color:#000;font-weight:700>)</span>
+
+<span style=color:#998;font-style:italic># 再次获取 Bitwarden 数据库文件的 MD5 值</span>
+<span style=color:teal>db_md5_after</span><span style=color:#000;font-weight:700>=</span><span style=color:#000;font-weight:700>$(</span>md5sum /root/bitwarden/db.sqlite3 | awk <span style=color:#d14>&#39;{print $1}&#39;</span><span style=color:#000;font-weight:700>)</span>
+
+<span style=color:#998;font-style:italic># 如果 MD5 值没有变化，则结束脚本</span>
+<span style=color:#000;font-weight:700>if</span> <span style=color:#000;font-weight:700>[</span> <span style=color:#d14>&#34;</span><span style=color:teal>$db_md5_before</span><span style=color:#d14>&#34;</span> <span style=color:#000;font-weight:700>==</span> <span style=color:#d14>&#34;</span><span style=color:teal>$db_md5_after</span><span style=color:#d14>&#34;</span> <span style=color:#000;font-weight:700>]</span>; <span style=color:#000;font-weight:700>then</span>
+  <span style=color:#0086b3>echo</span> <span style=color:#d14>&#34;Bitwarden 数据库没有更新，脚本退出。&#34;</span>
+  <span style=color:#0086b3>exit</span> <span style=color:#099>0</span>
+<span style=color:#000;font-weight:700>fi</span>
+
+# 
+<span style=color:#0086b3>cd</span> /root/bitwarden/
+rm /root/bitwarden/db.sqlite3
+cp -f /bw-data/db.sqlite3 /root/bitwarden
+<span style=color:#998;font-style:italic># 把备份压缩包文件通过github私有仓库</span>
+git add --all
+<span style=color:#998;font-style:italic># 指定时间格式</span>
+<span style=color:teal>DATE</span><span style=color:#000;font-weight:700>=</span><span style=color:#000;font-weight:700>$(</span><span style=color:teal>TZ</span><span style=color:#000;font-weight:700>=</span>Asia/Shanghai date +%Y-%m-%d_%H:%M:%S<span style=color:#000;font-weight:700>)</span>
+git commit -m <span style=color:#d14>&#34;</span><span style=color:teal>$DATE</span><span style=color:#d14>&#34;</span>
+git push
+<span style=color:#0086b3>echo</span> <span style=color:#d14>&#34;github push推送更新成功。&#34;</span>
+<span style=color:#998;font-style:italic># 下面是网盘备份</span>
+<span style=color:#998;font-style:italic># 把db.sqlite3加密压缩</span>
+<span style=color:#998;font-style:italic># 指定时间格式</span>
+<span style=color:teal>DATE</span><span style=color:#000;font-weight:700>=</span><span style=color:#000;font-weight:700>$(</span><span style=color:teal>TZ</span><span style=color:#000;font-weight:700>=</span>Asia/Shanghai date +%Y%m%d%H%M%S<span style=color:#000;font-weight:700>)</span>
+zip -P yourpassword  -r /bw-data/tmp/bw-<span style=color:teal>$DATE</span>.zip /bw-data/db.sqlite3 /bw-data/sends
+<span style=color:#998;font-style:italic># 把备份压缩包文件通过rclone上传到网盘</span>
+rclone copy /bw-data/tmp/*.zip rclonename:bitwarden
+<span style=color:#998;font-style:italic># 删除rclone中挂载为名onedrive中bitwardenbitwardenbackups目录下15天前的备份文件</span>
+rclone delete rclonename:bitwarden --min-age 15d
+<span style=color:#998;font-style:italic># 删除压缩包文件</span>
 rm /bw-data/tmp/*.zip
+<span style=color:#0086b3>echo</span> <span style=color:#d14>&#34;删除压缩包文件&#34;</span>
+<span style=color:#998;font-style:italic># 提示用户更新完成</span>
+<span style=color:#0086b3>echo</span> <span style=color:#d14>&#34;Bitwarden 数据库已经更新完毕。&#34;</span>
 </code></pre></div><p>然后授权</p><p>chmod +x bitwarden_backup.sh</p><p>通过Crontab定时执行计划任务，编辑<code>/etc/crontab</code>文件，添加</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#099>23</span> <span style=color:#099>11</span> * * *  root bash /root/bitwarden_backup.sh
 </code></pre></div><p>然后重启Crontab</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>systemctl restart cron.service
 /etc/init.d/cron restart
-</code></pre></div><h2 id=还原bitwarden的备份数据库>还原Bitwarden的备份数据库</h2><p>解压、替换掉原来的文件即可</p><h2 id=nginx配置带ssl证书的站点配置文件示范>nginx配置带SSL证书的站点配置文件示范</h2><p>编辑<code>/etc/nginx/sites-available/example.com</code>站点配置文件</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>server <span style=color:#000;font-weight:700>{</span>
+</code></pre></div><h2 id=还原bitwarden的备份数据库镜像备用站点>还原Bitwarden的备份数据库、镜像备用站点</h2><p>解压、替换掉原来的文件即可，创建bitwarden_sync.sh文件，</p><p>一、从github恢复</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#999;font-weight:700;font-style:italic>#!/bin/bash
+</span><span style=color:#999;font-weight:700;font-style:italic></span><span style=color:#0086b3>cd</span> /root/bitwarden <span style=color:#000;font-weight:700>&amp;&amp;</span> git pull
+<span style=color:#998;font-style:italic># 重新启动 Bitwarden Docker 容器</span>
+<span style=color:#998;font-style:italic>#docker restart bitwarden</span>
+
+<span style=color:#998;font-style:italic># 获取 Bitwarden 数据库文件的 MD5 值</span>
+<span style=color:teal>db_md5_before</span><span style=color:#000;font-weight:700>=</span><span style=color:#000;font-weight:700>$(</span>md5sum /root/bitwarden/db.sqlite3 | awk <span style=color:#d14>&#39;{print $1}&#39;</span><span style=color:#000;font-weight:700>)</span>
+
+<span style=color:#998;font-style:italic># 再次获取 Bitwarden 数据库文件的 MD5 值</span>
+<span style=color:teal>db_md5_after</span><span style=color:#000;font-weight:700>=</span><span style=color:#000;font-weight:700>$(</span>md5sum /bw-data/db.sqlite3 | awk <span style=color:#d14>&#39;{print $1}&#39;</span><span style=color:#000;font-weight:700>)</span>
+
+<span style=color:#998;font-style:italic># 如果 MD5 值没有变化，则结束脚本</span>
+<span style=color:#000;font-weight:700>if</span> <span style=color:#000;font-weight:700>[</span> <span style=color:#d14>&#34;</span><span style=color:teal>$db_md5_before</span><span style=color:#d14>&#34;</span> <span style=color:#000;font-weight:700>==</span> <span style=color:#d14>&#34;</span><span style=color:teal>$db_md5_after</span><span style=color:#d14>&#34;</span> <span style=color:#000;font-weight:700>]</span>; <span style=color:#000;font-weight:700>then</span>
+  <span style=color:#0086b3>echo</span> <span style=color:#d14>&#34;Bitwarden 数据库没有更新，脚本退出。&#34;</span>
+  <span style=color:#0086b3>exit</span> <span style=color:#099>0</span>
+<span style=color:#000;font-weight:700>fi</span>
+
+rm /bw-data/db.sqlite3 /bw-data/db.sqlite3-shm /bw-data/db.sqlite3-wal
+cp /root/bitwarden/db.sqlite3 /bw-data
+docker restart bitwarden
+
+<span style=color:#998;font-style:italic># 等待 Bitwarden 容器启动完成</span>
+sleep <span style=color:#099>3</span>
+
+<span style=color:#998;font-style:italic># 提示用户更新完成</span>
+<span style=color:#0086b3>echo</span> <span style=color:#d14>&#34;Bitwarden 数据库已经更新完毕。&#34;</span>
+</code></pre></div><p>二、从rclone恢复，如下</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#999;font-weight:700;font-style:italic>#!/bin/bash
+</span><span style=color:#999;font-weight:700;font-style:italic></span>rclone copy rclonename:bitwarden/db.sqlite3  /root/bitwarden
+
+<span style=color:#998;font-style:italic># 获取 Bitwarden 数据库文件的 MD5 值</span>
+<span style=color:teal>db_md5_before</span><span style=color:#000;font-weight:700>=</span><span style=color:#000;font-weight:700>$(</span>md5sum /root/bitwarden/db.sqlite3 | awk <span style=color:#d14>&#39;{print $1}&#39;</span><span style=color:#000;font-weight:700>)</span>
+
+<span style=color:#998;font-style:italic># 再次获取 Bitwarden 数据库文件的 MD5 值</span>
+<span style=color:teal>db_md5_after</span><span style=color:#000;font-weight:700>=</span><span style=color:#000;font-weight:700>$(</span>md5sum /bw-data/db.sqlite3 | awk <span style=color:#d14>&#39;{print $1}&#39;</span><span style=color:#000;font-weight:700>)</span>
+
+<span style=color:#998;font-style:italic># 如果 MD5 值没有变化，则结束脚本</span>
+<span style=color:#000;font-weight:700>if</span> <span style=color:#000;font-weight:700>[</span> <span style=color:#d14>&#34;</span><span style=color:teal>$db_md5_before</span><span style=color:#d14>&#34;</span> <span style=color:#000;font-weight:700>==</span> <span style=color:#d14>&#34;</span><span style=color:teal>$db_md5_after</span><span style=color:#d14>&#34;</span> <span style=color:#000;font-weight:700>]</span>; <span style=color:#000;font-weight:700>then</span>
+  <span style=color:#0086b3>echo</span> <span style=color:#d14>&#34;Bitwarden 数据库没有更新，脚本退出。&#34;</span>
+  <span style=color:#0086b3>exit</span> <span style=color:#099>0</span>
+<span style=color:#000;font-weight:700>fi</span>
+
+rm /bw-data/db.sqlite3 /bw-data/db.sqlite3-shm /bw-data/db.sqlite3-wal
+cp -f /root/bitwarden/db.sqlite3 /bw-data
+<span style=color:#998;font-style:italic># 重新启动 Bitwarden Docker 容器</span>
+docker restart bitwarden
+
+<span style=color:#998;font-style:italic># 等待 Bitwarden 容器启动完成</span>
+sleep <span style=color:#099>3</span>
+
+<span style=color:#998;font-style:italic># 提示用户更新完成</span>
+<span style=color:#0086b3>echo</span> <span style=color:#d14>&#34;Bitwarden 数据库已经更新完毕。&#34;</span>
+</code></pre></div><h2 id=nginx配置带ssl证书的站点配置文件示范>nginx配置带SSL证书的站点配置文件示范</h2><p>编辑<code>/etc/nginx/sites-available/example.com</code>站点配置文件</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>server <span style=color:#000;font-weight:700>{</span>
   listen <span style=color:#099>443</span> ssl http2;
   listen <span style=color:#000;font-weight:700>[</span>::<span style=color:#000;font-weight:700>]</span>:443 ssl http2;
   server_name example.com;
