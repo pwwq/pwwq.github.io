@@ -58,7 +58,7 @@ git push
 zip -P yourpassword  -r /bw-data/tmp/bw-<span style=color:teal>$DATE</span>.zip /bw-data/db.sqlite3 /bw-data/sends
 <span style=color:#998;font-style:italic># 把备份压缩包文件通过rclone上传到网盘</span>
 rclone copy /bw-data/tmp/*.zip rclonename:bitwarden
-<span style=color:#998;font-style:italic># 删除rclone中挂载为名onedrive中bitwardenbitwardenbackups目录下15天前的备份文件</span>
+<span style=color:#998;font-style:italic># 删除15天前的备份文件</span>
 rclone delete rclonename:bitwarden --min-age 15d
 <span style=color:#998;font-style:italic># 删除压缩包文件</span>
 rm /bw-data/tmp/*.zip
