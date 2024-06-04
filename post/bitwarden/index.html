@@ -71,8 +71,6 @@ rm /bw-data/tmp/*.zip
 /etc/init.d/cron restart
 </code></pre></div><h2 id=还原bitwarden的备份数据库镜像备用站点>还原Bitwarden的备份数据库、镜像备用站点</h2><p>解压、替换掉原来的文件即可，创建bitwarden_sync.sh文件，</p><p>一、从github恢复</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#999;font-weight:700;font-style:italic>#!/bin/bash
 </span><span style=color:#999;font-weight:700;font-style:italic></span><span style=color:#0086b3>cd</span> /root/bitwarden <span style=color:#000;font-weight:700>&amp;&amp;</span> git pull
-<span style=color:#998;font-style:italic># 重新启动 Bitwarden Docker 容器</span>
-<span style=color:#998;font-style:italic>#docker restart bitwarden</span>
 
 <span style=color:#998;font-style:italic># 获取 Bitwarden 数据库文件的 MD5 值</span>
 <span style=color:teal>db_md5_before</span><span style=color:#000;font-weight:700>=</span><span style=color:#000;font-weight:700>$(</span>md5sum /root/bitwarden/db.sqlite3 | awk <span style=color:#d14>&#39;{print $1}&#39;</span><span style=color:#000;font-weight:700>)</span>
@@ -88,6 +86,8 @@ rm /bw-data/tmp/*.zip
 
 rm /bw-data/db.sqlite3 /bw-data/db.sqlite3-shm /bw-data/db.sqlite3-wal
 cp /root/bitwarden/db.sqlite3 /bw-data
+
+<span style=color:#998;font-style:italic># 重新启动 Bitwarden Docker 容器</span>
 docker restart bitwarden
 
 <span style=color:#998;font-style:italic># 等待 Bitwarden 容器启动完成</span>
