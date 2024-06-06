@@ -22,6 +22,9 @@ systemctl status docker
 docker pull vaultwarden/server:latest
 docker start bitwarden
 </code></pre></div><h2 id=备份bitwarden>备份Bitwarden</h2><p>以下为必须要备份的</p><ul><li><code>/bw-data/db.sqlite3</code>是Bitwarden的数据库文件</li><li><code>/bw-data/sends/*</code>目录下的所有附件是不加密的</li></ul><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>docker restart bitwarden
+<span style=color:#998;font-style:italic># 手动检查文件更新</span>
+<span style=color:#998;font-style:italic># ls -l /bw-data/db.sqlite3</span>
+<span style=color:#998;font-style:italic># rclone ls rclonename:bitwarden/db.sqlite3</span>
 rclone sync /bw-data/db.sqlite3 rclonename:bitwarden --update
 </code></pre></div><p>其它的都可以不备份(可选)，例如<code>/bw-data/config.json</code>管理面板参数，把下面的内容保存为<code>bitwarden_backup.sh</code></p><p><code>/bw-data/db.sqlite3</code>是Bitwarden 数据库文件 <code>/root/bitwarden/db.sqlite3</code>是本地复制过来的，用于上传到github或通过rclone上传，判断比对MD5值，只有当有更新才上传。</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#999;font-weight:700;font-style:italic>#!/bin/bash
 </span><span style=color:#999;font-weight:700;font-style:italic></span><span style=color:#998;font-style:italic># 重新启动 Bitwarden Docker 容器</span>
