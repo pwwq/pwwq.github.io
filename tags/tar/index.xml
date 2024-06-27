@@ -1,1 +1,39 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>tar on Xizi's Blog</title><link>https://567899.xyz/tags/tar/</link><description>Recent content in tar on Xizi's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sun, 01 Oct 2017 01:37:56 +0800</lastBuildDate><atom:link href="https://567899.xyz/tags/tar/index.xml" rel="self" type="application/rss+xml"/><item><title>Linux下tar,unzip,7z,rar压缩带密码解压文件文件夹的使用</title><link>https://567899.xyz/post/linux-tar-unzip-p7zip-unrar-password/</link><pubDate>Sun, 01 Oct 2017 01:37:56 +0800</pubDate><guid>https://567899.xyz/post/linux-tar-unzip-p7zip-unrar-password/</guid><description>tar压缩 压缩多个文件或者文件夹的命令 tar -czvf a.tar.gz(想压缩文件名) 源文件名1 源文件名2 源文件夹1 源文件夹2 参数： c创建一个压缩文件，如果只使用这个参数，不使用 z 参数，那么只会打包，不会压缩 x解开一个压缩文件 z是否使用 gzip 压缩或解压 j是否使用 bzip2 压缩或解压 v显示详细信息 f指定压</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Tar on Xizi&#39;s Blog</title>
+    <link>https://567899.xyz/tags/tar/</link>
+    <description>Recent content in Tar on Xizi&#39;s Blog</description>
+    <image>
+      <title>Xizi&#39;s Blog</title>
+      <url>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- 0.128.0</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 01 Oct 2017 01:37:56 +0800</lastBuildDate>
+    <atom:link href="https://567899.xyz/tags/tar/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Linux下tar,unzip,7z,rar压缩带密码解压文件文件夹的使用</title>
+      <link>https://567899.xyz/post/linux-tar-unzip-p7zip-unrar-password/</link>
+      <pubDate>Sun, 01 Oct 2017 01:37:56 +0800</pubDate>
+      <guid>https://567899.xyz/post/linux-tar-unzip-p7zip-unrar-password/</guid>
+      <description>tar压缩 压缩多个文件或者文件夹的命令
+tar -czvf a.tar.gz(想压缩文件名) 源文件名1 源文件名2 源文件夹1 源文件夹2 参数：
+c创建一个压缩文件，如果只使用这个参数，不使用 z 参数，那么只会打包，不会压缩 x解开一个压缩文件 z是否使用 gzip 压缩或解压 j是否使用 bzip2 压缩或解压 v显示详细信息 f指定压缩后的文件名，后面要直接跟文件名，所以将 f 参数放到最后 举几个例子：
+将a文件夹打包成a.tar但是不压缩
+tar cvf a.tar arg 将a文件夹打包成a.tar.gz并使用 gzip 压缩
+tar czvf a.tar.gz arg 将a文件夹打包成a.tar.gz并使用bzip2压缩
+tar cjvf a.tar.bz2 arg tar解压 Linux下常见的压缩包格式有5种:zip tar.gz tar.bz2 tar.xz tar.Z
+其中tar是种打包格式,gz和bz2等后缀才是指代压缩方式:gzip和bzip2
+filename.zip的解压:
+unzip filename.zip filename.tar.gz的解压:
+tar -zxvf filename.tar.gz 其中zxvf含义分别如下
+zgzip压缩格式 xextract解压 vverbose详细信息 ffile(file=archieve)文件 filename.tar.bz2的解压:
+tar -jxvf filename.tar.bz2 j指bzip2压缩格式
+其它选项和tar.gz解压含义相同
+filename.tar.xz的解压:
+tar -Jxvf filename.</description>
+    </item>
+  </channel>
+</rss>

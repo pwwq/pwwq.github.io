@@ -1,1 +1,66 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>cloudflare on Xizi's Blog</title><link>https://567899.xyz/tags/cloudflare/</link><description>Recent content in cloudflare on Xizi's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Thu, 22 Feb 2024 15:43:18 +0800</lastBuildDate><atom:link href="https://567899.xyz/tags/cloudflare/index.xml" rel="self" type="application/rss+xml"/><item><title>Cloudflare Tunnel免费内网穿透使用教程</title><link>https://567899.xyz/post/cloudflare-tunnel/</link><pubDate>Thu, 22 Feb 2024 15:43:18 +0800</pubDate><guid>https://567899.xyz/post/cloudflare-tunnel/</guid><description>使用前提条件 拥有域名，并托管在Cloudflare上 持有外币卡或paypal账号【二选一】 使用方法如下 打开 Cloudflare One按提示输入，选择免费套餐，填写好付款方式，开通试用账号； 依次进入【Networks】【Tunnels】【Create a tunnel】创建一个隧道，然后按照里面的提示部</description></item><item><title>自动查找Cloudflare最优(丢包、延迟)节点Ip</title><link>https://567899.xyz/post/cloudflare-cdn-ip/</link><pubDate>Wed, 09 Sep 2020 01:13:06 +0800</pubDate><guid>https://567899.xyz/post/cloudflare-cdn-ip/</guid><description>官方列表：CloudFlare公开的节点 1.1.1.1 和 1.0.0.1 Windows平台自动扫IP工具下载fping-msys2.0 推荐使用半自动方式查找 第一步 执行 1-自动查找100个丢包最少的IP.bat 设置对IP丢包测试PING的次数，默认100次，可手动设定，推荐50次上。运行完毕后命令行窗口会自</description></item><item><title>Caddy利用CloudFlare DNS申请泛域名证书</title><link>https://567899.xyz/post/caddy-cloudflare-api-dns-ssl/</link><pubDate>Sat, 06 Apr 2019 01:37:56 +0800</pubDate><guid>https://567899.xyz/post/caddy-cloudflare-api-dns-ssl/</guid><description>安装Caddy curl https://getcaddy.com | bash -s personal tls.dns.cloudflare 后面的tls.dns.cloudflare为cloudflare的插件，如果你是其它DNS服务商就需要替换下插件参数，比如： tls.dns.auroradns tls.dns.azure tls.dns.cloudflare tls.dns.cloudxns tls.dns.digitalocean tls.dns.dnsimple tls.dns.dnsmadeeasy tls.dns.dnspod tls.dns.dyn tls.dns.exoscale tls.dns.gandi tls.dns.gandiv5 tls.dns.godaddy tls.dns.googlecloud tls.dns.lightsail tls.dns.linode tls.dns.namecheap tls.dns.ns1 tls.dns.otc tls.dns.ovh tls.dns.powerdns tls.dns.rackspace tls.dns.rfc2136 tls.dns.route53i tls.dns.vultr 设置环境变量 以下为Caddy申请通配符时所需要的DNS服务商的环境变量。 #Aurora DNS by</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Cloudflare on Xizi&#39;s Blog</title>
+    <link>https://567899.xyz/tags/cloudflare/</link>
+    <description>Recent content in Cloudflare on Xizi&#39;s Blog</description>
+    <image>
+      <title>Xizi&#39;s Blog</title>
+      <url>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- 0.128.0</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 22 Feb 2024 15:43:18 +0800</lastBuildDate>
+    <atom:link href="https://567899.xyz/tags/cloudflare/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Cloudflare Tunnel免费内网穿透使用教程</title>
+      <link>https://567899.xyz/post/cloudflare-tunnel/</link>
+      <pubDate>Thu, 22 Feb 2024 15:43:18 +0800</pubDate>
+      <guid>https://567899.xyz/post/cloudflare-tunnel/</guid>
+      <description>使用前提条件
+拥有域名，并托管在Cloudflare上 持有外币卡或paypal账号【二选一】 使用方法如下
+打开 Cloudflare One按提示输入，选择免费套餐，填写好付款方式，开通试用账号；
+依次进入【Networks】【Tunnels】【Create a tunnel】创建一个隧道，然后按照里面的提示部署到需要内网穿透的机子上；看到Linux service for cloudflared installed successfully部署成功后刷新页面，此时Status应该会变成绿底黑字HEALTHY
+启动cloudflared
+/etc/init.d/cloudflared start 卸载cloudflared
+cloudflared service uninstall 授权 Cloudflare 隧道
+在服务器命令行中执行
+cloudflared tunnel login 复制网址、在浏览器中打开并登录CloudFlare账号，选中域名并授权；
+接下来就可以在网页端管理配置
+回到网页，依次进入【Networks】【Tunnels】【创建的隧道名称】右侧3点，【Configure】新增、编辑【Public Hostname】和【Private Network】
+不需要手掇配置文件</description>
+    </item>
+    <item>
+      <title>自动查找Cloudflare最优(丢包、延迟)节点Ip</title>
+      <link>https://567899.xyz/post/cloudflare-cdn-ip/</link>
+      <pubDate>Wed, 09 Sep 2020 01:13:06 +0800</pubDate>
+      <guid>https://567899.xyz/post/cloudflare-cdn-ip/</guid>
+      <description>官方列表：CloudFlare公开的节点
+1.1.1.1 和 1.0.0.1
+Windows平台自动扫IP工具下载fping-msys2.0
+推荐使用半自动方式查找
+第一步 执行 1-自动查找100个丢包最少的IP.bat
+设置对IP丢包测试PING的次数，默认100次，可手动设定，推荐50次上。运行完毕后命令行窗口会自动关闭再进行下一步操作
+第二步 执行 2-对100个丢包最少的IP测速.bat
+此过程是利用curl下载托管与cloudflare的大文件，默认每个IP下载时间为10秒钟。下载结束后到temp文件夹根据文件大小排序查看下载文件的大小。文件越大，代表单位时间内传输的数据越多，速度就越快。其中文件名是以IP地址的名称命名的。如果想要对IP单线程测速，可参考第三步。如果第三步找不到好用的IP，可重新执行第二步，再此完整测速分析。
+第三步 执行 3-单IP测速.bat
+输入第二部筛选出来的IP地址，回车后进行文件下载速度测试
+如果觉得上述过程过于繁琐 请参照最后一步
+最后一步 懒人版全自动处理 执行 自动查找最优CF节点-懒人专用.bat
+等待运行完毕后自动弹出IP速度从大到小的排名文本文件。
+该测试的结果不一定能达到预期的效果
+联通测试部分节点
+104.17.172.158 162.159.133.133 104.24.153.63 104.17.185.1 104.25.94.232 104.16.32.143 104.24.161.239 104.24.233.147 104.17.118.218 104.17.210.223 104.24.207.92 104.17.24.7 104.25.143.51 104.16.152.125 104.24.56.130 104.17.216.195 104.17.135.249 104.24.99.16 104.25.191.220 104.27.155.107 104.16.168.132 104.25.94.232 104.27.206.60 104.17.191.231 104.25.85.47 104.25.108.171 104.27.122.73 2020年9月10日更新 测试运营商联通</description>
+    </item>
+    <item>
+      <title>Caddy利用CloudFlare DNS申请泛域名证书</title>
+      <link>https://567899.xyz/post/caddy-cloudflare-api-dns-ssl/</link>
+      <pubDate>Sat, 06 Apr 2019 01:37:56 +0800</pubDate>
+      <guid>https://567899.xyz/post/caddy-cloudflare-api-dns-ssl/</guid>
+      <description>安装Caddy curl https://getcaddy.com | bash -s personal tls.dns.cloudflare 后面的tls.dns.cloudflare为cloudflare的插件，如果你是其它DNS服务商就需要替换下插件参数，比如：
+tls.dns.auroradns tls.dns.azure tls.dns.cloudflare tls.dns.cloudxns tls.dns.digitalocean tls.dns.dnsimple tls.dns.dnsmadeeasy tls.dns.dnspod tls.dns.dyn tls.dns.exoscale tls.dns.gandi tls.dns.gandiv5 tls.dns.godaddy tls.dns.googlecloud tls.dns.lightsail tls.dns.linode tls.dns.namecheap tls.dns.ns1 tls.dns.otc tls.dns.ovh tls.dns.powerdns tls.dns.rackspace tls.dns.rfc2136 tls.dns.route53i tls.dns.vultr 设置环境变量 以下为Caddy申请通配符时所需要的DNS服务商的环境变量。
+#Aurora DNS by PCExtreme AURORA_USER_ID AURORA_KEY AURORA_ENDPOINT(optional) #Azure DNS AZURE_CLIENT_ID AZURE_CLIENT_SECRET AZURE_SUBSCRIPTION_ID AZURE_TENANT_ID #Cloudflare CLOUDFLARE_EMAIL CLOUDFLARE_API_KEY #CloudXNS CLOUDXNS_API_KEY CLOUDXNS_SECRET_KEY #DigitalOcean DO_AUTH_TOKEN #DNSimple DNSIMPLE_EMAIL DNSIMPLE_OAUTH_TOKEN #DNS Made Easy DNSMADEEASY_API_KEY DNSMADEEASY_API_SECRET DNSMADEEASY_SANDBOX(true/false) #DNSPod DNSPOD_API_KEY #DynDNS DYN_CUSTOMER_NAME DYN_USER_NAME DYN_PASSWORD #Gandi/Gandiv5 GANDI_API_KEY/GANDIV5_API_KEY #GoDaddy GODADDY_API_KEY GODADDY_API_SECRET #Google Cloud DNS GCE_PROJECT GCE_DOMAIN GOOGLE_APPLICATION_CREDENTIALS #Lightsail by AWS AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY AWS_SESSION_TOKEN(optional) DNS_ZONE(optional) #Linode LINODE_API_KEY #Namecheap NAMECHEAP_API_USER NAMECHEAP_API_KEY #NS1 NS1_API_KEY #Open Telekom Cloud Managed DNS OTC_DOMAIN_NAME OTC_USER_NAME OTC_PASSWORD OTC_PROJECT_NAME OTC_IDENTITY_ENDPOINT(optional) #OVH OVH_ENDPOINT OVH_APPLICATION_KEY OVH_APPLICATION_SECRET OVH_CONSUMER_KEY #PowerDNS PDNS_API_URL PDNS_API_KEY #Rackspace RACKSPACE_USER RACKSPACE_API_KEY #RFC2136 RFC2136_NAMESERVER RFC2136_TSIG_ALGORITHM RFC2136_TSIG_KEY RFC2136_TSIG_SECRET #Route53 by AWS AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY #Vultr VULTR_API_KEY 登陆CloudFlare的API Tokens 然后下拉找到【API Keys】【Global API Key】【View】</description>
+    </item>
+  </channel>
+</rss>

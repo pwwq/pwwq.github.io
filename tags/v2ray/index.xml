@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>V2ray on Xizi&#39;s Blog</title>
+    <link>https://567899.xyz/tags/v2ray/</link>
+    <description>Recent content in V2ray on Xizi&#39;s Blog</description>
+    <image>
+      <title>Xizi&#39;s Blog</title>
+      <url>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- 0.128.0</generator>
+    <language>en</language>
+    <lastBuildDate>Fri, 09 Sep 2022 09:37:56 +0800</lastBuildDate>
+    <atom:link href="https://567899.xyz/tags/v2ray/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>联通电信移动V2ray免流host http教程</title>
+      <link>https://567899.xyz/post/v2ray-http/</link>
+      <pubDate>Fri, 09 Sep 2022 09:37:56 +0800</pubDate>
+      <guid>https://567899.xyz/post/v2ray-http/</guid>
+      <description>V2ray服务端的搭建配置 bash &amp;lt;(curl -L https://raw.githubusercontent.com/XTLS/Xray-install/main/install-release.sh) 免流的方案采用Vadminss协议+TCP+HTTP，编辑配置文件/usr/local/etc/xray/config.json，
+nano /usr/local/etc/xray/config.json 完整配置示范如下
+{ &amp;#34;inbounds&amp;#34;: [ { &amp;#34;port&amp;#34;: 80, &amp;#34;protocol&amp;#34;: &amp;#34;vmess&amp;#34;, &amp;#34;settings&amp;#34;: { &amp;#34;clients&amp;#34;: [ { &amp;#34;id&amp;#34;: &amp;#34;这里填写你的UUID&amp;#34; } ] }, &amp;#34;streamSettings&amp;#34;: { &amp;#34;network&amp;#34;: &amp;#34;tcp&amp;#34;, &amp;#34;tcpSettings&amp;#34;: { &amp;#34;header&amp;#34;: { &amp;#34;type&amp;#34;: &amp;#34;http&amp;#34;, &amp;#34;response&amp;#34;: { &amp;#34;version&amp;#34;: &amp;#34;1.1&amp;#34;, &amp;#34;status&amp;#34;: &amp;#34;200&amp;#34;, &amp;#34;reason&amp;#34;: &amp;#34;OK&amp;#34;, &amp;#34;headers&amp;#34;: { &amp;#34;Content-Type&amp;#34;: [&amp;#34;application/octet-stream&amp;#34;, &amp;#34;video/mpeg&amp;#34;], &amp;#34;Transfer-Encoding&amp;#34;: [&amp;#34;chunked&amp;#34;], &amp;#34;Connection&amp;#34;: [&amp;#34;keep-alive&amp;#34;], &amp;#34;Pragma&amp;#34;: &amp;#34;no-cache&amp;#34; } } } } } } ], &amp;#34;outbounds&amp;#34;: [ { &amp;#34;protocol&amp;#34;: &amp;#34;freedom&amp;#34; } ] } 可以通过命令cat /proc/sys/kernel/random/uuid随机生成</description>
+    </item>
+    <item>
+      <title>V2ray安装配置Vadminss、VLESS、XTLS教程</title>
+      <link>https://567899.xyz/post/v2ray/</link>
+      <pubDate>Mon, 28 Sep 2020 01:37:56 +0800</pubDate>
+      <guid>https://567899.xyz/post/v2ray/</guid>
+      <description>近期更新重点
+V2Ray v4.27.0+新增支持VLESS新协议 V2Ray v4.29.0+新增支持XTLS新协议 Vadminss AEAD will be used when alterId is 0 in V2Ray v4.28.0+ 安装脚本放废弃go.sh改用install-realese.sh V2Ray v4.33.0移除了XTLS，建议使用V2Ray v4.32.1 详情参考
+https://v2ray.com/ https://github.com/v2ray/v2ray-core https://toutyrater.github.io/ https://guide.v2fly.org/ https://github.com/veekxt/v2ray-template https://github.com/v2fly/v2ray-examples https://www.v2fly.org/ https://github.com/rprx/v2ray-vless https://github.com/v2fly/v2ray-core https://github.com/XTLS/Xray-core 排名不分先后顺序 致敬开发者们的无私奉献
+xray https://github.com/XTLS/Xray-core
+Install &amp;amp; Upgrade Xray-core and .dat files bash &amp;lt;(curl -L https://raw.githubusercontent.com/XTLS/Xray-install/main/install-release.sh) Update geoip.dat and geosite.dat only bash &amp;lt;(curl -L https://raw.githubusercontent.com/XTLS/Xray-install/main/install-dat-release.sh) Remove Xray, except json and logs bash &amp;lt;(curl -L https://raw.githubusercontent.com/XTLS/Xray-install/main/install-release.sh) --remove 成功安装后会提示如下
+# /etc/systemd/system/xray.service [Unit] Description=Xray Service Documentation=https://github.</description>
+    </item>
+  </channel>
+</rss>

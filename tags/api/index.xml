@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>API on Xizi&#39;s Blog</title>
+    <link>https://567899.xyz/tags/api/</link>
+    <description>Recent content in API on Xizi&#39;s Blog</description>
+    <image>
+      <title>Xizi&#39;s Blog</title>
+      <url>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- 0.128.0</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 30 Aug 2020 01:37:56 +0800</lastBuildDate>
+    <atom:link href="https://567899.xyz/tags/api/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Microsoft OneDrive空全局账号自建API(Rclone、OneManager-php)</title>
+      <link>https://567899.xyz/post/onedrive-api/</link>
+      <pubDate>Sun, 30 Aug 2020 01:37:56 +0800</pubDate>
+      <guid>https://567899.xyz/post/onedrive-api/</guid>
+      <description>OneDrive申请空全局账号，然后登陆Azure自建API(Rclone、OneManager-php)使用，可避免使用公共API因使用频率过高导致的Rclone、网盘列目录程序OneManager-php、OneList、PyOne、Oneindex等等不稳定情况
+注意： 区分国际版和中国版(由世纪互联运营)
+Microsoft OneDrive网页登陆管理入口国际版、中国版(由世纪互联运营)
+申请空全局账号 国际版购买注册(A1、A3、A1P、EDU、个人版)、中国版(由世纪互联运营)购买注册随便选个套餐，点立即购买，按提示注册新账号，然后进入管理把付款取消掉,到此空全局账号已经撸到手了。
+登陆Azure创建API Microsoft Azure由世纪互联运营、国际版
+创建方法一样的，但是要注意区分国际版和中国特供版的登陆管理入口地区。
+创建Rclone的API 获取 CLIENT_ID 及 CLIENT_SECRET
+Microsoft Azure由世纪互联运营、国际版登陆并按以下步骤：
+左侧找到 Azure Active Directory 点击 左侧找到 应用注册 上方找到 新注册 点击 名称：Rclone 受支持的账户类型：任何组织目录(任何 Azure AD 目录 - 多租户)中的帐户、任何组织目录(任何 Azure AD 目录 - 多租户)中的帐户和个人 Microsoft 帐户(例如，Skype、Xbox) Web重定向 URL：http://localhost:53682 点击注册 找到 应用程序(客户端) ID 复制client_ID保存 左侧找到 证书和密码 点击 下方 客户端密码 - 新客户端密码 说明：Rclone 截止期限：默认 1年内改为从不 点击 添加，值 客户端密码 复制client_secret保存 左侧找到 API 权限 点击 添加权限 - Microsoft Graph - 委托的权限 - Files (7)全部勾选 选择应用程序权限 在下方Files里选择 Files.</description>
+    </item>
+    <item>
+      <title>使用Rclone挂载世纪互联OneDrive</title>
+      <link>https://567899.xyz/post/rclone-onedrive-cn/</link>
+      <pubDate>Sat, 01 Feb 2020 01:37:56 +0800</pubDate>
+      <guid>https://567899.xyz/post/rclone-onedrive-cn/</guid>
+      <description>世纪互联空全局订阅获取Azure+自建独享API 适用于可以使用API,但本身子账号不能创建API的。可以撸个空全局，利用空全局账号创建API来供不能创建API的子号使用。
+打开比较面向中小企业的中国版本计划和价格 随便选个套餐立即购买然后按提示注册新账号，左上角点进去,进入管理,把付款取消掉。
+API权限我们需要空全局管理员点击 代表XXXX授予管理员同意
+WINDOWS平台rclone获取token时需要在后面加上--onedrive-is-21vianet-version=true示范如下
+rclone authorize &amp;#34;onedrive&amp;#34; &amp;#34;client_ID&amp;#34; &amp;#34;client_secret&amp;#34; --onedrive-is-21vianet-version=true 世纪互联 OneDrive 获取 CLIENT_ID 及 CLIENT_SECRET 打开 https://portal.azure.cn/ 登陆并按以下步骤：
+左侧找到 Azure Active Directory 点击 左侧找到 应用注册 上方找到 新注册 点击 名称：onedrive 受支持的账户类型：	任何组织目录(任何 Azure AD 目录 - 多租户)中的帐户（第二个） 重定向 URL：http://localhost:53682 点击注册 找到 应用程序(客户端) ID 复制client_ID保存 左侧找到 证书和密码 点击 下方 客户端密码 - 新客户端密码 说明：onedrive 截止期限：默认 1年内 点击 添加，值 客户端密码 复制client_secret保存 左侧找到 API 权限 点击 添加权限 - Microsoft Graph - 委托的权限 - Files (7)全部勾选 选择应用程序权限 在下方Files里选择 Files.</description>
+    </item>
+  </channel>
+</rss>

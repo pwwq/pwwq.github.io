@@ -1,8 +1,71 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>docker on Xizi's Blog</title><link>https://567899.xyz/tags/docker/</link><description>Recent content in docker on Xizi's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Tue, 02 Jan 2024 13:27:16 +0800</lastBuildDate><atom:link href="https://567899.xyz/tags/docker/index.xml" rel="self" type="application/rss+xml"/><item><title>WSL2运行Ubuntu子系统并设置开机自动启动应用docker</title><link>https://567899.xyz/post/wsl/</link><pubDate>Tue, 02 Jan 2024 13:27:16 +0800</pubDate><guid>https://567899.xyz/post/wsl/</guid><description>去Microsoft官网下载 Windows 11版本要求23H2+ 打开启用或关闭Windows功能勾选适用于Linux的Windows子系统和Hyper-V重启系统生效 下载WSL2 Linux kernel update package for x64 machines安装。 WSL常用操作 查看WSL版本 wsl --version 可以在运行(win+R)或资源文件管理器的路径里</description></item><item><title>Cookie自动登陆签到、抓包提取制作HAR文件</title><link>https://567899.xyz/post/qiandao/</link><pubDate>Fri, 11 Mar 2022 22:04:59 +0800</pubDate><guid>https://567899.xyz/post/qiandao/</guid><description>通过自动签到(网页签到、APP签到)，可以有效防止某些站点规则中的因长时间未登陆不活跃而导致封号，还可以赚积分、领金币薅羊毛&amp;hellip; Docker安装签到 https://hub.docker.com/r/a76yyyy/qiandao https://github.com/qiandao-today/qiandao 安装、启用docker wget -qO- get.docker.com | bash systemctl enable docker systemctl start docker Docker部署a76yyyy/qiandao签到 docker run -d --name qiandao --restart=always --env PORT=8923 --net=host -v /root/qiandao:/usr/src/app/config</description></item><item><title>docker创建删除使用容器或镜像</title><link>https://567899.xyz/post/docker/</link><pubDate>Wed, 25 Jul 2018 01:37:56 +0800</pubDate><guid>https://567899.xyz/post/docker/</guid><description>&lt;p>&lt;em>更多容器可以访问&lt;a href="https://www.docker.com/">docker&lt;/a>的&lt;a href="https://hub.docker.com/">Docker Hub&lt;/a>&lt;/em>&lt;/p>
-&lt;p>操作系统内核大于等于 3.10 的都可以安装最新版 Docker 查看内核版本&lt;/p>
-&lt;div class="highlight">&lt;pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">uname -r
-&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="安装docker">安装docker&lt;/h2>
-&lt;div class="highlight">&lt;pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">wget -qO- get.docker.com | bash
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>安装完成后，运行下面的命令，验证是否安装成功。&lt;/p>
-&lt;div class="highlight">&lt;pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">docker version
-&lt;/code>&lt;/pre>&lt;/div></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Docker on Xizi&#39;s Blog</title>
+    <link>https://567899.xyz/tags/docker/</link>
+    <description>Recent content in Docker on Xizi&#39;s Blog</description>
+    <image>
+      <title>Xizi&#39;s Blog</title>
+      <url>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- 0.128.0</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 02 Jan 2024 13:27:16 +0800</lastBuildDate>
+    <atom:link href="https://567899.xyz/tags/docker/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>WSL2运行Ubuntu子系统并设置开机自动启动应用docker</title>
+      <link>https://567899.xyz/post/wsl/</link>
+      <pubDate>Tue, 02 Jan 2024 13:27:16 +0800</pubDate>
+      <guid>https://567899.xyz/post/wsl/</guid>
+      <description>去Microsoft官网下载 Windows 11版本要求23H2+ 打开启用或关闭Windows功能勾选适用于Linux的Windows子系统和Hyper-V重启系统生效 下载WSL2 Linux kernel update package for x64 machines安装。 WSL常用操作 查看WSL版本
+wsl --version 可以在运行(win+R)或资源文件管理器的路径里直接输入\\wsl$进入Ubuntu的目录
+更新 WSL：
+wsl --update --pre-release 关机、重启
+wsl --shutdown wsl 其它
+# 列出分发版本 wsl -l -v # 关闭指定版本 wsl -t Ubuntu # 启动指定版本 wsl -d Ubuntu 不能使用 systemctl 开启、停止或查看服务的运行，使用这些服务文件有许多功能 {start|stop|reload|force-reload|restart|try-restart|status}，WSL可以使用service或/etc/init.d/,例如
+service docker start /etc/init.d/nginx start WSL2+Docker 开机自启 WSL2子系统中的应用默认不会开机自动启动，这里以docker为例，安装docker
+wget -qO- get.docker.com | bash 可以手动启动docker
+service docker start 不过有时候我们希望它能开机自动启动，接下来使用
+WSL2内操作 echo &amp;#34;#! /bin/sh service docker start&amp;#34; &amp;gt; /etc/init.</description>
+    </item>
+    <item>
+      <title>Cookie自动登陆签到、抓包提取制作HAR文件</title>
+      <link>https://567899.xyz/post/qiandao/</link>
+      <pubDate>Fri, 11 Mar 2022 22:04:59 +0800</pubDate>
+      <guid>https://567899.xyz/post/qiandao/</guid>
+      <description>通过自动签到(网页签到、APP签到)，可以有效防止某些站点规则中的因长时间未登陆不活跃而导致封号，还可以赚积分、领金币薅羊毛&amp;hellip;
+Docker安装签到 https://hub.docker.com/r/a76yyyy/qiandao
+https://github.com/qiandao-today/qiandao
+安装、启用docker
+wget -qO- get.docker.com | bash systemctl enable docker systemctl start docker Docker部署a76yyyy/qiandao签到
+docker run -d --name qiandao --restart=always --env PORT=8923 --net=host -v /root/qiandao:/usr/src/app/config a76yyyy/qiandao 然后就可以访问 http://localhost:8923 网页管理签到
+8923端口可以随意，只要不被其它应用占用即可，/root/qiandao宿主机配置文件目录
+备份数据库只需要备份/root/qiandao目录下的database.db这个文件即可；
+还原数据库只需要先暂停docker stop qiandao然后将database.db复制替换掉原来/root/qiandao目录下的database.db这个文件。
+启动容器
+docker start qiandao 停止容器
+docker stop qiandao 删除容器
+docker rm qiandao 获取HAR文件 我们还可以使用Fiddler抓包软件来抓取，这里使用Chrome浏览器示范。
+打开Chrome浏览器，新建隐身窗口(重要)，登陆账号： 打开开发者工具（ctrl+shift+I，或者 鼠标右键 &amp;gt; 审查元素） 切换到 Network（网络）面板，勾选 Preserve log (非常重要) 直奔签到页，完成签到 找对签到链接(非常重要)，导出HAR文件。 使用HAR模板文件签到 以PT站点为例，因为大部分PT站点都是使用NexusPHP,大同小异，我们只需要抓取https://example.com/attendance.php保留这个链接，其它统统删掉。然后利用cookie登陆签到。
+注册、登陆到网页签到管理，上传导入HAR文件，编辑、删除多余的链接，只需要保留有效、正确的签到链接
+编辑HAR模板文件
+Request Headers全部勾选；cookie填写为{{cookie}}；Cookies全部删除；
+切换到测试/Test在Variables选项ADD中添加name为cookie</description>
+    </item>
+    <item>
+      <title>docker创建删除使用容器或镜像</title>
+      <link>https://567899.xyz/post/docker/</link>
+      <pubDate>Wed, 25 Jul 2018 01:37:56 +0800</pubDate>
+      <guid>https://567899.xyz/post/docker/</guid>
+      <description>&lt;p&gt;&lt;em&gt;更多容器可以访问&lt;a href=&#34;https://www.docker.com/&#34;&gt;docker&lt;/a&gt;的&lt;a href=&#34;https://hub.docker.com/&#34;&gt;Docker Hub&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;操作系统内核大于等于 3.10 的都可以安装最新版 Docker 查看内核版本&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;uname -r
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;安装docker&#34;&gt;安装docker&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;wget -qO- get.docker.com &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; bash 
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;安装完成后，运行下面的命令，验证是否安装成功。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker version 
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+    </item>
+  </channel>
+</rss>

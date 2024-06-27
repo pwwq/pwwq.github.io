@@ -1,40 +1,77 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>hexo on Xizi's Blog</title><link>https://567899.xyz/tags/hexo/</link><description>Recent content in hexo on Xizi's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Wed, 11 Apr 2018 01:37:56 +0800</lastBuildDate><atom:link href="https://567899.xyz/tags/hexo/index.xml" rel="self" type="application/rss+xml"/><item><title>hexo备份更换设备后同步编辑</title><link>https://567899.xyz/post/hexo-Backup-Synchronize-edit/</link><pubDate>Wed, 11 Apr 2018 01:37:56 +0800</pubDate><guid>https://567899.xyz/post/hexo-Backup-Synchronize-edit/</guid><description>备份hexo原始配置文件 压缩打包备份原始的hexo配置文件scaffolds, source, themes 和 _config.yml 在新电脑上重新布署安装一次hexo cd /d npm install hexo-cli -g hexo init blog cd blog npm install npm install hexo-deployer-git --save git init npm install hexo-generator-feed --save npm install hexo-generator-sitemap --save npm install hexo-generator-baidu-sitemap --save npm install hexo-generator-searchdb --save git clone https://github.com/iissnan/hexo-theme-next themes/next 然后覆盖替换掉原有的文件scaffolds, source, themes 和 _config.yml hexo远程同步到github</description></item><item><title>hexo同步布署在github-coding并实现国内外自动分流</title><link>https://567899.xyz/post/hexo-github-coding-sync-Diversion/</link><pubDate>Thu, 29 Mar 2018 01:37:56 +0800</pubDate><guid>https://567899.xyz/post/hexo-github-coding-sync-Diversion/</guid><description>&lt;p>建议单独托管在github上，因为国内大环境背景下，你懂的啦！&lt;/p>
-&lt;p>
-&lt;a data-fancybox="gallery" href="https://567899.xyz/images/coding-domain-Filing.png">
-&lt;img class="mx-auto" alt="" src="https://567899.xyz/images/coding-domain-Filing.png" />
-&lt;/a>
-&lt;/p>
-&lt;h2 id="域名解析">域名解析&lt;/h2>
-&lt;p>登陆&lt;a href="https://www.dnspod.cn">DNSPOD控制台&lt;/a> 在域名添加2条记录值&lt;/p>
-&lt;table>
-&lt;thead>
-&lt;tr>
-&lt;th>记录类型&lt;/th>
-&lt;th>线路类型&lt;/th>
-&lt;th>记录值&lt;/th>
-&lt;/tr>
-&lt;/thead>
-&lt;tbody>
-&lt;tr>
-&lt;td>CNAME&lt;/td>
-&lt;td>国外&lt;/td>
-&lt;td>username.github.io&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>CNAME&lt;/td>
-&lt;td>国内&lt;/td>
-&lt;td>username.coding.me&lt;/td>
-&lt;/tr>
-&lt;/tbody>
-&lt;/table></description></item><item><title>简要安装hexo和next主题</title><link>https://567899.xyz/post/hexo-next-install/</link><pubDate>Sat, 18 Feb 2017 01:37:56 +0800</pubDate><guid>https://567899.xyz/post/hexo-next-install/</guid><description>&lt;p>以下以Windows平台为例&lt;/p>
-&lt;h2 id="下载安装node和git">下载安装Node和git&lt;/h2>
-&lt;p>&lt;a href="https://git-scm.com/downloads">Git - Downloads&lt;/a> 和 &lt;a href="https://nodejs.org/zh-cn/download/">下载 | Node.js&lt;/a>&lt;/p>
-&lt;h2 id="安装hexo">安装hexo&lt;/h2>
-&lt;p>打开Git Bash依次执行&lt;/p>
-&lt;div class="highlight">&lt;pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">npm install hexo-cli -g
-&lt;span style="color:#0086b3">cd&lt;/span> /d &lt;span style="color:#998;font-style:italic">#这里以D盘为例&lt;/span>
-hexo init blog
-&lt;span style="color:#0086b3">cd&lt;/span> blog &lt;span style="color:#998;font-style:italic">#/d/blog为hexo的根目录&lt;/span>
-npm install
-hexo server
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>应该就能在浏览器中打开(http://localhost:4000) 看到效果了。&lt;/p></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Hexo on Xizi&#39;s Blog</title>
+    <link>https://567899.xyz/tags/hexo/</link>
+    <description>Recent content in Hexo on Xizi&#39;s Blog</description>
+    <image>
+      <title>Xizi&#39;s Blog</title>
+      <url>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- 0.128.0</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 11 Apr 2018 01:37:56 +0800</lastBuildDate>
+    <atom:link href="https://567899.xyz/tags/hexo/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>hexo备份更换设备后同步编辑</title>
+      <link>https://567899.xyz/post/hexo-backup-synchronize-edit/</link>
+      <pubDate>Wed, 11 Apr 2018 01:37:56 +0800</pubDate>
+      <guid>https://567899.xyz/post/hexo-backup-synchronize-edit/</guid>
+      <description>备份hexo原始配置文件 压缩打包备份原始的hexo配置文件scaffolds, source, themes 和 _config.yml
+在新电脑上重新布署安装一次hexo cd /d npm install hexo-cli -g hexo init blog cd blog npm install npm install hexo-deployer-git --save git init npm install hexo-generator-feed --save npm install hexo-generator-sitemap --save npm install hexo-generator-baidu-sitemap --save npm install hexo-generator-searchdb --save git clone https://github.com/iissnan/hexo-theme-next themes/next 然后覆盖替换掉原有的文件scaffolds, source, themes 和 _config.yml
+hexo远程同步到github 登陆GitHub并创建分支为username.github.io 可以点击Join GitHub注册账号
+git config --global user.name &amp;#34;username&amp;#34; git config --global user.email &amp;#34;youremail@gmail.com&amp;#34; ssh-keygen -t rsa -C &amp;#39;youremail@gmail.com&amp;#39; Your public key has been saved in /c/Users/admin/.</description>
+    </item>
+    <item>
+      <title>hexo同步布署在github-coding并实现国内外自动分流</title>
+      <link>https://567899.xyz/post/hexo-github-coding-sync-diversion/</link>
+      <pubDate>Thu, 29 Mar 2018 01:37:56 +0800</pubDate>
+      <guid>https://567899.xyz/post/hexo-github-coding-sync-diversion/</guid>
+      <description>&lt;p&gt;建议单独托管在github上，因为国内大环境背景下，你懂的啦！&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://567899.xyz/images/coding-domain-Filing.png&#34; alt=&#34;&#34;  /&gt;
+&lt;/p&gt;
+&lt;h2 id=&#34;域名解析&#34;&gt;域名解析&lt;/h2&gt;
+&lt;p&gt;登陆&lt;a href=&#34;https://www.dnspod.cn&#34;&gt;DNSPOD控制台&lt;/a&gt;  在域名添加2条记录值&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;记录类型&lt;/th&gt;
+&lt;th&gt;线路类型&lt;/th&gt;
+&lt;th&gt;记录值&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;CNAME&lt;/td&gt;
+&lt;td&gt;国外&lt;/td&gt;
+&lt;td&gt;username.github.io&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;CNAME&lt;/td&gt;
+&lt;td&gt;国内&lt;/td&gt;
+&lt;td&gt;username.coding.me&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;</description>
+    </item>
+    <item>
+      <title>简要安装hexo和next主题</title>
+      <link>https://567899.xyz/post/hexo-next-install/</link>
+      <pubDate>Sat, 18 Feb 2017 01:37:56 +0800</pubDate>
+      <guid>https://567899.xyz/post/hexo-next-install/</guid>
+      <description>&lt;p&gt;以下以Windows平台为例&lt;/p&gt;
+&lt;h2 id=&#34;下载安装node和git&#34;&gt;下载安装Node和git&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://git-scm.com/downloads&#34;&gt;Git - Downloads&lt;/a&gt; 和 &lt;a href=&#34;https://nodejs.org/zh-cn/download/&#34;&gt;下载 | Node.js&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;安装hexo&#34;&gt;安装hexo&lt;/h2&gt;
+&lt;p&gt;打开Git Bash依次执行&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;npm install hexo-cli -g
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; /d  &lt;span class=&#34;c1&#34;&gt;#这里以D盘为例&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;hexo init blog
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; blog &lt;span class=&#34;c1&#34;&gt;#/d/blog为hexo的根目录&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;npm install
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;hexo server
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;应该就能在浏览器中打开(http://localhost:4000) 看到效果了。&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

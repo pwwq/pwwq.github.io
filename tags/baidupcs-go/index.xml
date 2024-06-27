@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>BaiduPCS-Go on Xizi&#39;s Blog</title>
+    <link>https://567899.xyz/tags/baidupcs-go/</link>
+    <description>Recent content in BaiduPCS-Go on Xizi&#39;s Blog</description>
+    <image>
+      <title>Xizi&#39;s Blog</title>
+      <url>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- 0.128.0</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 13 Jan 2019 01:37:56 +0800</lastBuildDate>
+    <atom:link href="https://567899.xyz/tags/baidupcs-go/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>BaiduPCS-Go上传下载不限速的百度网盘客户端</title>
+      <link>https://567899.xyz/post/baidupcs-go/</link>
+      <pubDate>Sun, 13 Jan 2019 01:37:56 +0800</pubDate>
+      <guid>https://567899.xyz/post/baidupcs-go/</guid>
+      <description>BaiduPCS-Go项目地址(https://github.com/iikira/BaiduPCS-Go)
+Android运行BaiduPCS-Go 下载Termux 安装并运行
+termux-setup-storage 始终允许Termux获取存储权限
+安装方式一: 通过软件源安装 echo &amp;#34;deb [trusted=yes] http://termux.iikira.com stable main&amp;#34; &amp;gt;&amp;gt; /data/data/com.termux/files/usr/etc/apt/sources.list 添加更新软件源
+apt update 安装程序
+apt install baidupcs-go 安装方式二: 手动安装 apt update &amp;amp;&amp;amp; apt upgrade -y wget -O 1.zip https://github.com/iikira/BaiduPCS-Go/releases/download/v3.3.3/BaiduPCS-Go-v3.3.3-android-21-arm64.zip unzip 1.zip &amp;amp;&amp;amp; rm 1.zip mv BaiduPCS-Go-v3.3.3-android-21-arm64 BaiduPCS-Go cd ~/BaiduPCS-Go &amp;amp;&amp;amp; ./BaiduPCS-Go 按提示完成登陆
+BaiduPCS-Go login 配置文件所在的目录为家目录的情况
+config set -max_parallel 500 下载最大并发量建议值: 50~500, 太低下载速度提升不明显甚至速度会变为0, 太高可能会导致程序出错被操作系统结束掉
+更新程序
+apt update apt install baidupcs-go 卸载程序
+apt remove baidupcs-go BaiduPCS-Go 百度网盘客户端 仿 Linux shell 文件处理命令的百度网盘命令行客户端.</description>
+    </item>
+  </channel>
+</rss>

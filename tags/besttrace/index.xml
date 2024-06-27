@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>BestTrace on Xizi&#39;s Blog</title>
+    <link>https://567899.xyz/tags/besttrace/</link>
+    <description>Recent content in BestTrace on Xizi&#39;s Blog</description>
+    <image>
+      <title>Xizi&#39;s Blog</title>
+      <url>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- 0.128.0</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 07 Jan 2015 01:37:56 +0800</lastBuildDate>
+    <atom:link href="https://567899.xyz/tags/besttrace/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Linux VPS使用BestTrace进行路由跟踪</title>
+      <link>https://567899.xyz/post/besttrace/</link>
+      <pubDate>Wed, 07 Jan 2015 01:37:56 +0800</pubDate>
+      <guid>https://567899.xyz/post/besttrace/</guid>
+      <description>VPS回程路由指的是你的远程VPS的IP地址到你本地ISP的IP。
+使用traceroute命令进行路由跟踪,但不能显示IP归属地。
+下载BestTrace
+Windows Mac OS iOS Android Linux Linux使用方法如下
+wget https://cdn.ipip.net/17mon/besttrace4linux.zip unzip besttrace4linux.zip chmod +x besttrace ./besttrace -q1 -g cn IP地址 更多使用说明可输入./besttrace --help进行查看，完整的参数如下：
+-6， - ipv6 使用ipv6。 -J， - json 使用JSON格式打印traceroute结果。 -g， - lang string 语言现在仅支持cn和en。 -m， - maxhop int 指定traceroute将探测的最大跳数（最大生存时间值）。默认值为30.（默认为30） -a， - noas 显示时，请勿尝试将IP地址映射到AS。 -n， - nodomain 显示时，请勿尝试将IP地址映射到主机名。 -l， - location 显示时，请勿尝试将IP地址映射到位置。 -q， - query int 设置每跳的探测包数。默认值为3.（默认值为3） -z， - sendtime int 探针之间的最小时间间隔（默认为0）。 如果该值大于10，则它指定一个以毫秒为单位的数字，否则它是一个秒数（也允许浮点值）。 当某些路由器对ICMP消息使用速率限制时很有用。 -f， - stopop int 指定要启动的TTL。默认为1.</description>
+    </item>
+  </channel>
+</rss>

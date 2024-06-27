@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Bitwarden on Xizi&#39;s Blog</title>
+    <link>https://567899.xyz/tags/bitwarden/</link>
+    <description>Recent content in Bitwarden on Xizi&#39;s Blog</description>
+    <image>
+      <title>Xizi&#39;s Blog</title>
+      <url>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- 0.128.0</generator>
+    <language>en</language>
+    <lastBuildDate>Fri, 01 Jun 2018 01:37:56 +0800</lastBuildDate>
+    <atom:link href="https://567899.xyz/tags/bitwarden/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>使用bitwarden_rs搭建安全密码库服务器</title>
+      <link>https://567899.xyz/post/bitwarden/</link>
+      <pubDate>Fri, 01 Jun 2018 01:37:56 +0800</pubDate>
+      <guid>https://567899.xyz/post/bitwarden/</guid>
+      <description>bitwarden_rs是一个免费开源、能自己搭建服务端的安全密码库服务器
+https://bitwarden.com/ https://github.com/dani-garcia/bitwarden_rs https://hub.docker.com/r/bitwardenrs/server Docker安装 wget -qO- get.docker.com | bash 安装Docker Compose
+curl -L https://github.com/docker/compose/releases/download/1.16.1/docker-compose-`uname -s`-`uname -m` &amp;gt; ./docker-compose mv ./docker-compose /usr/bin/docker-compose chmod +x /usr/bin/docker-compose Docker进程管理
+systemctl enable docker systemctl start docker systemctl status docker 部署 Bitwarden https://github.com/dani-garcia/bitwarden_rs
+&amp;lsquo;bitwarden_rs&amp;rsquo;的docker镜像bitwardenrs/server现已变更为vaultwarden/server
+为了安全，可通过docker并创建一个临时容器，Generate an Argon2id PHC string using the &amp;lsquo;bitwarden&amp;rsquo; preset。
+docker run --rm -it vaultwarden/server /vaultwarden hash 得到用bitwarden生成的ADMIN_TOKEN值。类似如下值
+ADMIN_TOKEN=&amp;#39;$argon2id$v=19$m=65540,t=3,p=4$iK/BPqYwo02kukcDLJH+oUV1OSGkI0NRSgpGJam3Y6A$PTk/xhEI0bWQk8mWwk8HWdOQMwOipBAtMSEU8CAt274&amp;#39; 复制替换掉ADMIN_TOKEN值
+docker run -d --name bitwarden --restart=always -v /bw-data/:/data/ -p 45729:80 -e SIGNUPS_ALLOWED=false -e INVITATIONS_ALLOWED=false -e ADMIN_TOKEN=`ADMIN_TOKEN值` vaultwarden/server:latest 以下参数可自定义按需修改：</description>
+    </item>
+  </channel>
+</rss>

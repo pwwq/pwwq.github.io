@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>MySQL on Xizi&#39;s Blog</title>
+    <link>https://567899.xyz/tags/mysql/</link>
+    <description>Recent content in MySQL on Xizi&#39;s Blog</description>
+    <image>
+      <title>Xizi&#39;s Blog</title>
+      <url>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- 0.128.0</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 22 Sep 2020 16:40:38 +0000</lastBuildDate>
+    <atom:link href="https://567899.xyz/tags/mysql/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>纯净Linux系统手工配置独角数卡发卡站点环境</title>
+      <link>https://567899.xyz/post/dujiaoka/</link>
+      <pubDate>Tue, 22 Sep 2020 16:40:38 +0000</pubDate>
+      <guid>https://567899.xyz/post/dujiaoka/</guid>
+      <description>纯净系统纯手工打造独角数卡发卡站点环境，抛弃各种面板、一键网站环境。
+https://github.com/assimon/dujiaoka
+支付接口已集成 支付宝当面付 支付宝PC支付 支付宝手机支付 payjs微信扫码. Paysapi(支付宝/微信). 码支付(QQ/支付宝/微信) 微信企业扫码支付 Paypal支付(默认美元) 麻瓜宝数字货币支付 全网易支付支持(针对彩虹版) 基本环境要求 (PHP + PHPCLI) version &amp;gt;= 7.2 Nginx version &amp;gt;= 1.16 MYSQL version &amp;gt;= 5.6 Redis (高性能缓存服务) Supervisor (一个python编写的进程管理服务) Composer (PHP包管理器) Linux/Win (Win下未测试，建议直接Linux) 实测Supervisor不装也是可以运行的
+PHP环境要求 星号(*)为必须执行的要求，其他为建议内容
+*安装fileinfo扩展 *安装redis扩展 *终端需支持php-cli，测试php -v(版本必须一致) *需要开启的函数：putenv，proc_open，pcntl_signal，pcntl_alarm 安装opcache扩展 网络上各类发卡网站程序，比如ZFAKA、独角数卡环境搭建教程都是基于宝塔面板、LNMP等等环境搭建的教程。
+ZFAKA可以在宝塔面板后台一键部署安装，也可以使用Docker版
+为什么要手工搭建发卡网站环境
+怕有后门(被害妄想症) 近期某某面板强迫用户注册才能使用 享受折腾的乐趣 测试使用环境Debian 10，其它系统可以参考修改搭建。
+独角数卡发卡站环境搭建 Nginx、MYSQL的搭建具体教程请点击查看，这里重点只讲独角数卡发卡站环境搭建PHP环境的配置
+PHP和一些必要组件的安装 apt -y install php-fpm php-mysql php-redis php-fileinfo php-cli php-gd redis-server php-mbstring php-bcmath php-curl php-xml php-dom 配置PHP组件 配置PHP的redis缓存组件</description>
+    </item>
+    <item>
+      <title>Debian10手动搭建WEB环境Nginx,SSL,PHP,MySQL</title>
+      <link>https://567899.xyz/post/debian10-web-nginx-certbot-ssl-php-mysql/</link>
+      <pubDate>Thu, 10 Sep 2020 16:40:38 +0000</pubDate>
+      <guid>https://567899.xyz/post/debian10-web-nginx-certbot-ssl-php-mysql/</guid>
+      <description>手动搭建，使用apt,apt-get快速安装免编译
+安装nginx和php
+apt update apt install openssl nginx-full php-fpm php-mysql -y 创建站点，新建文件
+nano example.com.sh 内容如下
+#!/bin/bash # 创建站点目录和默认页面 mkdir /var/www/example.com chown -R www-data:www-data /var/www/example.com echo &amp;#34;hello word&amp;#34; &amp;gt; /var/www/example.com/index.html # 添加nginx配置文件 echo &amp;#34;server { listen 80; listen [::]:80; server_name example.com; root /var/www/example.com; index index.html; # return 301 https://$server_name$request_uri; } &amp;gt;&amp;gt; /etc/nginx/sites-available/default 把example.com替换成自己的域名
+sed -i &amp;#39;s/example.com/自己的域名/&amp;#39; example.com.sh 给予权限并执行
+chmod +x example.com.sh bash example.com.sh systemctl restart nginx Certbot申请Let’s Encrypt证书SSL，安装Certbot
+apt install certbot -y 获取SSL证书</description>
+    </item>
+    <item>
+      <title>Debian和Ubuntu安装最新的MySQL修改密码卸载清理</title>
+      <link>https://567899.xyz/post/debian-ubuntu-install-mysql-uninstall/</link>
+      <pubDate>Tue, 24 Jul 2018 01:37:56 +0800</pubDate>
+      <guid>https://567899.xyz/post/debian-ubuntu-install-mysql-uninstall/</guid>
+      <description>Debian 9上安装最新的MySQL
+在Debian 9中，MySQL项目的社区分支MariaDB被打包为默认的MySQL变体。虽然MariaDB在大多数情况下运行良好，但如果您需要仅在Oracle的MySQL中找到的功能，则可以从MySQL开发人员维护的存储库中安装和使用软件包。
+安装MySQL 首先添加MySQL软件库
+MySQL开发人员提供了一个.deb包，用于处理配置和安装官方MySQL软件存储库。一旦设置了存储库，我们就可以使用Ubuntu的标准apt命令来安装该软件。我们将使用wget下载此.deb文件，然后使用该dpkg命令进行安装。
+首先，在Web浏览器中加载MySQL下载页面。找到右下角的“ 下载”按钮，然后单击下一页。此页面将提示您登录或注册Oracle Web帐户。我们可以跳过这一点，而是寻找说不用的链接，只需启动我的下载。右键单击该链接并选择“ 复制链接地址”（此选项的措辞可能不同，具体取决于您的浏览器）。
+现在我们要下载文件了。在您的服务器上，移动到您可以写入的目录。使用wget下载文件，记住粘贴刚刚复制的地址代替下面突出显示的部分：
+cd /tmp wget https://dev.mysql.com/get/mysql-apt-config_0.8.13-1_all.deb 该文件现在应该下载到我们当前的目录中ls列出文件以确保：
+您应该看到列出的文件名：
+mysql-apt-config_0.8.13-1_all.deb 现在我们准备安装：
+dpkg -i mysql-apt-config* dpkg将会被用于安装，删除和检查.deb软件包。该-i标志表示我们要从指定的文件安装。
+在安装过程中，您将看到一个配置屏幕，您可以在其中指定您喜欢的MySQL版本，以及为其他MySQL相关工具安装存储库的选项。默认值将添加最新稳定版MySQL的存储库信息，而不是其他任何内容。这就是我们想要的，所以使用向下箭头导航到Ok菜单选项并点击ENTER。
+该包现在将完成添加存储库。刷新apt包缓存以使新软件包可用：
+dpkg-reconfigure mysql-apt-config apt-get update 添加了存储库并使用我们的软件包缓存进行了新近更新
+安装MySQL
+我们现在可以使用apt安装最新的MySQL服务器软件包：
+apt install mysql-server 状态查询
+systemctl status mysql 修改MYSQL的初使密码 mysql -u root -p 用安装时设置的密码登陆
+use mysql 开始修改密码
+update user set authentication_string=password(&amp;#39;yournewpassword&amp;#39;) where user=&amp;#39;root&amp;#39;; 退出
+exit 经过我们修改MYSQL的初使密码后，方可以顺利登陆phpMyAdmin管理
+用SET PASSWORD命令
+mysql -u root mysql&amp;gt; SET PASSWORD FOR &amp;#39;root&amp;#39;@&amp;#39;localhost&amp;#39; = PASSWORD(&amp;#39;yournewpassword&amp;#39;); 如果报以下错误提示</description>
+    </item>
+  </channel>
+</rss>

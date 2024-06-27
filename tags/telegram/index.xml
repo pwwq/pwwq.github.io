@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Telegram on Xizi&#39;s Blog</title>
+    <link>https://567899.xyz/tags/telegram/</link>
+    <description>Recent content in Telegram on Xizi&#39;s Blog</description>
+    <image>
+      <title>Xizi&#39;s Blog</title>
+      <url>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- 0.128.0</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 12 Jul 2020 01:37:56 +0800</lastBuildDate>
+    <atom:link href="https://567899.xyz/tags/telegram/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Telegram机器人Bot售卖自动发卡tg_faka_bot</title>
+      <link>https://567899.xyz/post/tg_faka_bot/</link>
+      <pubDate>Sun, 12 Jul 2020 01:37:56 +0800</pubDate>
+      <guid>https://567899.xyz/post/tg_faka_bot/</guid>
+      <description>项目地址: https://github.com/GAted0/tg_faka_bot
+优点:
+使用sqlite3作为数据库，轻量、便于备份; 运行环境易于搭建; 不需要域名，VPS安全不会被恶意攻击. 下载与安装环境 安装python3
+apt install python3-pip -y 下载tg_faka_bot并解压
+git clone https://github.com/GAted0/tg_faka_bot.git PS:作者删除了部分文件，会导致不能正常使用，推荐在本站下载tg_faka_bot可正常使用。
+进入文件目录
+cd ~/tg_faka_bot 重命名文件
+mv example.config.py config.py 安装依赖
+pip3 install -r requirements.txt 编辑配置文件 登陆Telegram
+@getidsbot获取自己的ID @BotFather创建bot机器人API Token 编辑文件config.py填写替换成自己的
+继续配置支付接口信息 编辑配置文件 vi ~/tg_faka_bot/config.py 现在存在的支付接口：
+PAYMENT_METHOD = { &amp;#39;epay&amp;#39;: &amp;#39;支付宝/微信/QQ&amp;#39;, &amp;#39;alifacepay&amp;#39;: &amp;#39;支付宝当面付&amp;#39; } 如果只需要易支付，那么可以这么配置：
+PAYMENT_METHOD = { &amp;#39;epay&amp;#39;: &amp;#39;支付宝/微信/QQ&amp;#39; } 如果这时候有一个新的文件名为mugglepay.py的支付接口，那么可以这么配置：
+PAYMENT_METHOD = { &amp;#39;epay&amp;#39;: &amp;#39;支付宝/微信/QQ&amp;#39;, &amp;#39;alifacepay&amp;#39;: &amp;#39;支付宝当面付&amp;#39;, &amp;#39;mugglepay&amp;#39;: &amp;#39;加密货币&amp;#39; } mugglepay.py的相对路径为getways/mugglepay/mugglepay.py
+并且请确保你安装了此支付插件需要的额外依赖（如果有），pip3 install -r ~/tg_faka_bot/getways/mugglepay/mugglepay.</description>
+    </item>
+    <item>
+      <title>Telegram解锁&#43;86聊天,加机器人spambot进行解锁.</title>
+      <link>https://567899.xyz/post/telegram/</link>
+      <pubDate>Mon, 04 Sep 2017 01:37:56 +0800</pubDate>
+      <guid>https://567899.xyz/post/telegram/</guid>
+      <description>Telegram Sorry, you can only send messages to mutual contacts at the moment. MORE INFO OK
+Telegram 抱歉，您目前只能向相互的联系人发送消息。 更多信息 好的
+@SpamBot发送/start
+Q: Good news, no limits are currently applied to your account. You’re free as a bird! But I can’t message non-contacts! Great. First, please confirm that you will never send this to strangers: - Unsolicited advertising of any kind - Promotional messages - Shocking materials Were you going to do anything like that?</description>
+    </item>
+  </channel>
+</rss>

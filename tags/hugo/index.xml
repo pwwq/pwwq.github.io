@@ -1,1 +1,42 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>hugo on Xizi's Blog</title><link>https://567899.xyz/tags/hugo/</link><description>Recent content in hugo on Xizi's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sun, 20 Jan 2019 01:37:56 +0800</lastBuildDate><atom:link href="https://567899.xyz/tags/hugo/index.xml" rel="self" type="application/rss+xml"/><item><title>利用Travis CI和Hugo將Blog自動部署到Github Pages</title><link>https://567899.xyz/post/Hugo-Travis-CI-Deploy-Github-Pages-Automatically/</link><pubDate>Sun, 20 Jan 2019 01:37:56 +0800</pubDate><guid>https://567899.xyz/post/Hugo-Travis-CI-Deploy-Github-Pages-Automatically/</guid><description>個人Blog採用靜態Blog形式託管在[Github][github]上。此前使用的是[Hexo][hexo]，因其包依賴關係複雜，部署流程繁瑣，故將整個部署環境封裝到Docker鏡像中以實現快速部署，但仍較爲繁瑣。現轉用執行速度快、操作簡便的[Hugo][hugo]。本文記錄如</description></item><item><title>静态网站生成器hugo安装配置主题</title><link>https://567899.xyz/post/hugo-install-themes/</link><pubDate>Thu, 19 Jul 2018 01:37:56 +0800</pubDate><guid>https://567899.xyz/post/hugo-install-themes/</guid><description>install-hugo 下载Hugo 对应平台解压得到二进制文件 Linux安装hugo 以64bit为例，此安装方法适用于debian ubuntu centos openwrt等X64位的系统 wget https://github.com/gohugoio/hugo/releases/download/v0.54.0/hugo_0.54.0_Linux-64bit.tar.gz tar zxvf hugo_0.54.0_Linux-64bit.tar.gz mv hugo /usr/bin/hugo Windows安装hugo 下载hugo_extended_0.54.0_Windows-64bit.zip 并解压缩 C:\Hugo\bin - hugo.exe -</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Hugo on Xizi&#39;s Blog</title>
+    <link>https://567899.xyz/tags/hugo/</link>
+    <description>Recent content in Hugo on Xizi&#39;s Blog</description>
+    <image>
+      <title>Xizi&#39;s Blog</title>
+      <url>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- 0.128.0</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 20 Jan 2019 01:37:56 +0800</lastBuildDate>
+    <atom:link href="https://567899.xyz/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>利用Travis CI和Hugo將Blog自動部署到Github Pages</title>
+      <link>https://567899.xyz/post/hugo-travis-ci-deploy-github-pages-automatically/</link>
+      <pubDate>Sun, 20 Jan 2019 01:37:56 +0800</pubDate>
+      <guid>https://567899.xyz/post/hugo-travis-ci-deploy-github-pages-automatically/</guid>
+      <description>個人Blog採用靜態Blog形式託管在[Github][github]上。此前使用的是[Hexo][hexo]，因其包依賴關係複雜，部署流程繁瑣，故將整個部署環境封裝到Docker鏡像中以實現快速部署，但仍較爲繁瑣。現轉用執行速度快、操作簡便的[Hugo][hugo]。本文記錄如何在GNU/Linux中通過[Travis CI][travisci]將[Hugo][hugo]生成的Blog內容自動同步到[Github][github]，實現持續集成、部署。
+转载自 利用Travis CI和Hugo將Blog自動部署到Github Pages
+官方文檔 本文中的相關操作皆以官方文檔爲操作依據
+Github GitHub Pages Basics User, Organization, and Project Pages Creating Project Pages using the command line Configuring a publishing source for GitHub Pages Hugo Host on GitHub Travis CI [GitHub Pages Deployment][travisci-github-page] Building a Python Project Best Practices in Securing Your Data Customizing the Build GitHub Pages 限制 GitHub Pages is a static site hosting service designed to host your personal, organization, or project pages directly from a GitHub repository.</description>
+    </item>
+    <item>
+      <title>静态网站生成器hugo安装配置主题</title>
+      <link>https://567899.xyz/post/hugo-install-themes/</link>
+      <pubDate>Thu, 19 Jul 2018 01:37:56 +0800</pubDate>
+      <guid>https://567899.xyz/post/hugo-install-themes/</guid>
+      <description>install-hugo 下载Hugo 对应平台解压得到二进制文件
+Linux安装hugo 以64bit为例，此安装方法适用于debian ubuntu centos openwrt等X64位的系统
+wget https://github.com/gohugoio/hugo/releases/download/v0.54.0/hugo_0.54.0_Linux-64bit.tar.gz tar zxvf hugo_0.54.0_Linux-64bit.tar.gz mv hugo /usr/bin/hugo Windows安装hugo 下载hugo_extended_0.54.0_Windows-64bit.zip 并解压缩
+C:\Hugo\bin - hugo.exe - LICENSE - README.md 添加到PATH
+set PATH=%PATH%;C:\Hugo\bin 验证是否安装成功 hugo version 能看到Hugo版本号说明已经成功安装好了hugo
+C:\Hugo&amp;gt;set PATH=%PATH%;C:\Hugo\bin C:\Hugo&amp;gt;hugo version Hugo Static Site Generator v0.54.0/extended windows/amd64 BuildDate: unknown C:\Hugo&amp;gt; Hugo新建网站 使用以下命令新建站点
+hugo new site blog Hugo会自动新建名为blog的文件夹
+C:\HUGO\BLOG ├─archetypes ├─content ├─data ├─layouts ├─static └─themes 文件夹描述相关
+archetypes使用hugu new post生成新文章的模板，可以自定义里面的值 content 存放网站内容 data 存储Hugo在生成您的网站时可以使用的配置文件 layouts 以.html文件的形式存储模板，指定如何将内容的视图呈现到静态网站中 static 存储所有静态内容：图像，CSS，JavaScript等，当Hugo构建您的站点时，静态目录中的所有资产都将按原样复制 themes 存放主题 config.</description>
+    </item>
+  </channel>
+</rss>

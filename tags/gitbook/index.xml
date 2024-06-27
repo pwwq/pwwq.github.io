@@ -1,1 +1,27 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>gitbook on Xizi's Blog</title><link>https://567899.xyz/tags/gitbook/</link><description>Recent content in gitbook on Xizi's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Thu, 17 May 2018 01:37:56 +0800</lastBuildDate><atom:link href="https://567899.xyz/tags/gitbook/index.xml" rel="self" type="application/rss+xml"/><item><title>gitbook安装和插件的使用</title><link>https://567899.xyz/post/gitbook-install-plugin/</link><pubDate>Thu, 17 May 2018 01:37:56 +0800</pubDate><guid>https://567899.xyz/post/gitbook-install-plugin/</guid><description>gitbook安装使用插件教程 安装gitbook 先下载安装Node.js,然后 npm install -g gitbook-cli gitbook init gitbook install ./ gitbook build gitbook serve 提示如下 D:\gitbook&amp;gt;gitbook serve Live reload server started on port: 35729 Press CTRL+C to quit ... info: 7 plugins are installed info: loading plugin &amp;#34;livereload&amp;#34;... OK info: loading plugin &amp;#34;highlight&amp;#34;... OK info: loading plugin &amp;#34;search&amp;#34;... OK info: loading plugin &amp;#34;lunr&amp;#34;... OK info: loading plugin &amp;#34;sharing&amp;#34;... OK info: loading plugin &amp;#34;fontsettings&amp;#34;... OK info: loading plugin &amp;#34;theme-default&amp;#34;... OK info: found 5 pages info: found 4 asset files info: &amp;gt;&amp;gt; generation finished with success in 1.0s ! Starting server ... Serving book on http://localhost:4000 你可以你的</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Gitbook on Xizi&#39;s Blog</title>
+    <link>https://567899.xyz/tags/gitbook/</link>
+    <description>Recent content in Gitbook on Xizi&#39;s Blog</description>
+    <image>
+      <title>Xizi&#39;s Blog</title>
+      <url>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- 0.128.0</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 17 May 2018 01:37:56 +0800</lastBuildDate>
+    <atom:link href="https://567899.xyz/tags/gitbook/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>gitbook安装和插件的使用</title>
+      <link>https://567899.xyz/post/gitbook-install-plugin/</link>
+      <pubDate>Thu, 17 May 2018 01:37:56 +0800</pubDate>
+      <guid>https://567899.xyz/post/gitbook-install-plugin/</guid>
+      <description>gitbook安装使用插件教程
+安装gitbook 先下载安装Node.js,然后
+npm install -g gitbook-cli gitbook init gitbook install ./ gitbook build gitbook serve 提示如下
+D:\gitbook&amp;gt;gitbook serve Live reload server started on port: 35729 Press CTRL+C to quit ... info: 7 plugins are installed info: loading plugin &amp;#34;livereload&amp;#34;... OK info: loading plugin &amp;#34;highlight&amp;#34;... OK info: loading plugin &amp;#34;search&amp;#34;... OK info: loading plugin &amp;#34;lunr&amp;#34;... OK info: loading plugin &amp;#34;sharing&amp;#34;... OK info: loading plugin &amp;#34;fontsettings&amp;#34;... OK info: loading plugin &amp;#34;theme-default&amp;#34;.</description>
+    </item>
+  </channel>
+</rss>

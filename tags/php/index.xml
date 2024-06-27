@@ -1,1 +1,94 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>php on Xizi's Blog</title><link>https://567899.xyz/tags/php/</link><description>Recent content in php on Xizi's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Wed, 11 Aug 2021 01:37:56 +0800</lastBuildDate><atom:link href="https://567899.xyz/tags/php/index.xml" rel="self" type="application/rss+xml"/><item><title>Tiny File Manager一款简洁的PHP文件管理器</title><link>https://567899.xyz/post/TinyFileManager/</link><pubDate>Wed, 11 Aug 2021 01:37:56 +0800</pubDate><guid>https://567899.xyz/post/TinyFileManager/</guid><description>Tiny File Manager一款简洁的PHP文件管理器 Tiny File Manager Demo GitHub Requirements PHP 5.5.0 or higher. Fileinfo, iconv, zip, tar and mbstring extensions are strongly recommended. 密码设置 Warning: Please set your own username and password in $auth_users before use. password is encrypted with password_hash(). to generate new password hash here 站点目录、权限设置 chown -R www-data:www-data /var/www/example.com chmod 775 /var/www/example.com chmod 664 /var/www/example.com/index.php Exclude Files &amp;amp; Folders you can specify files or directories that you&amp;rsquo;d like to exclude from the listing using configuration, in case same name file/folder in multiple place also excluded. // Files and folders to excluded from listing // e.g. array(&amp;#39;myfile.html&amp;#39;, &amp;#39;personal-folder&amp;#39;, &amp;#39;*.php&amp;#39;, ...) $exclude_items = array( &amp;#39;my-folder&amp;#39;, &amp;#39;secret-files&amp;#39;, &amp;#39;tinyfilemanger.php&amp;#39;, &amp;#39;*.php&amp;#39;, &amp;#39;*.js&amp;#39;</description></item><item><title>Files Photo Gallery漂亮的php目录列表源码</title><link>https://567899.xyz/post/Files-Photo-Gallery-php-folders/</link><pubDate>Tue, 05 Jan 2021 01:37:56 +0800</pubDate><guid>https://567899.xyz/post/Files-Photo-Gallery-php-folders/</guid><description>Files Photo Gallery Demo Requirements Any web server with PHP 5.5 or higher. Extensions GD and mbstring are required. Files app works in all modern browsers Chrome, Firefox, Safari, Opera and Edge, and almost all mobile devices. Files app does NOT work in Internet Explorer. Although Files app is a single file that loads files locally, it still requires an internet connection to load Javascripts loaded from CDN jsdelivr.com. Usage Examples Instantly create a gallery of all your files and folders. No setup required. Preview images, video, audio and code. Share files and images with clients, friends or family. Use as a simple yet beautiful and modern gallery on your website. Preview IPTC, EXIF, GPS, dimensions and size for your photos. Manage files and folders directly on your server. Coming soon! Faster and more comfortable than using FTP! Download Simply</description></item><item><title>纯净Linux系统手工配置独角数卡发卡站点环境</title><link>https://567899.xyz/post/dujiaoka/</link><pubDate>Tue, 22 Sep 2020 16:40:38 +0000</pubDate><guid>https://567899.xyz/post/dujiaoka/</guid><description>纯净系统纯手工打造独角数卡发卡站点环境，抛弃各种面板、一键网站环境。 https://github.com/assimon/dujiaoka 支付接口已集成 支付宝当面付 支付宝PC支付 支付宝手机支付 payjs微信扫码. Paysapi(支付宝/微信). 码支付(QQ/支付宝/微信) 微信企业扫码支付 Paypal支付(默认美元) 麻瓜宝数字货币支付 全网易支付支持</description></item><item><title>Debian10手动搭建WEB环境Nginx,SSL,PHP,MySQL</title><link>https://567899.xyz/post/Debian10-WEB-Nginx-Certbot-SSL-PHP-MySQL/</link><pubDate>Thu, 10 Sep 2020 16:40:38 +0000</pubDate><guid>https://567899.xyz/post/Debian10-WEB-Nginx-Certbot-SSL-PHP-MySQL/</guid><description>手动搭建，使用apt,apt-get快速安装免编译 安装nginx和php apt update apt install openssl nginx-full php-fpm php-mysql -y 创建站点，新建文件 nano example.com.sh 内容如下 #!/bin/bash # 创建站点目录和默认页面 mkdir /var/www/example.com chown -R www-data:www-data /var/www/example.com echo &amp;#34;hello word&amp;#34; &amp;gt; /var/www/example.com/index.html # 添加nginx配置文件 echo &amp;#34;server { listen 80; listen [::]:80; server_name example.com; root /var/www/example.com; index index.html; # return 301 https://$server_name$request_uri; } &amp;gt;&amp;gt; /etc/nginx/sites-available/default 把example.com替换成自己的域名 sed -i &amp;#</description></item><item><title>Ubuntu_Debian配置Apache2_PHP配置站点</title><link>https://567899.xyz/post/Ubuntu-Debian-Apache2-php-vhost-sites/</link><pubDate>Fri, 11 Jan 2019 01:37:56 +0800</pubDate><guid>https://567899.xyz/post/Ubuntu-Debian-Apache2-php-vhost-sites/</guid><description>日常更新 apt-get update -y apt-get upgrade -y 查找程序名 sudo apt-cache search apache | grep &amp;#39;apache2&amp;#39; 安装Apache2 apt-get install apache2 安装好后开服务 service apache2 start systemctl enable apache2 检查Apache2运行状态 systemctl status apache2 安装Apache的php支持模块 sudo apt-get install libapache2-mod-php 重启Apache2 /etc/init.d/apache2 restart 停止 /etc/init.d/apache2 stop 状态查询 /etc/init.d/apache2 status 在浏览器中输入IP地址，看到以下页面说明apache成功安装 Debian</description></item><item><title>Debian和Ubuntu安装php7.2</title><link>https://567899.xyz/post/Debian-Ubuntu-install-php7.2/</link><pubDate>Sat, 21 Jul 2018 01:37:56 +0800</pubDate><guid>https://567899.xyz/post/Debian-Ubuntu-install-php7.2/</guid><description>适用系统： Ubuntu 16.04 LTS Ubuntu 14.04 LTS Debian 9 stretch Debian 8 jessie 安装 PHP Ond?ej Sury 的 PHP PPA 为 Ubuntu 16.04/14.04 提供了 PHP7.2 版本，同时也有通过个人网站为 Debian 9/8 提供 PHP7.2 版本，因此 Ubuntu 是源于 Debian 所以基本可以通用，同时维护难度较低，软件源安装的 PHP 默认以 Unix Socket 的状态运行在 /run/php/php7.1-fpm.sock，比使用 TCP 以 localhost:9000 的方式性能更好。 添加软件</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>PHP on Xizi&#39;s Blog</title>
+    <link>https://567899.xyz/tags/php/</link>
+    <description>Recent content in PHP on Xizi&#39;s Blog</description>
+    <image>
+      <title>Xizi&#39;s Blog</title>
+      <url>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- 0.128.0</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 11 Aug 2021 01:37:56 +0800</lastBuildDate>
+    <atom:link href="https://567899.xyz/tags/php/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Tiny File Manager一款简洁的PHP文件管理器</title>
+      <link>https://567899.xyz/post/tinyfilemanager/</link>
+      <pubDate>Wed, 11 Aug 2021 01:37:56 +0800</pubDate>
+      <guid>https://567899.xyz/post/tinyfilemanager/</guid>
+      <description>Tiny File Manager一款简洁的PHP文件管理器
+Tiny File Manager Demo GitHub Requirements PHP 5.5.0 or higher. Fileinfo, iconv, zip, tar and mbstring extensions are strongly recommended. 密码设置 Warning: Please set your own username and password in $auth_users before use. password is encrypted with password_hash(). to generate new password hash here
+站点目录、权限设置 chown -R www-data:www-data /var/www/example.com chmod 775 /var/www/example.com chmod 664 /var/www/example.com/index.php Exclude Files &amp;amp; Folders you can specify files or directories that you&amp;rsquo;d like to exclude from the listing using configuration, in case same name file/folder in multiple place also excluded.</description>
+    </item>
+    <item>
+      <title>Files Photo Gallery漂亮的php目录列表源码</title>
+      <link>https://567899.xyz/post/files-photo-gallery-php-folders/</link>
+      <pubDate>Tue, 05 Jan 2021 01:37:56 +0800</pubDate>
+      <guid>https://567899.xyz/post/files-photo-gallery-php-folders/</guid>
+      <description>Files Photo Gallery Demo
+Requirements Any web server with PHP 5.5 or higher. Extensions GD and mbstring are required. Files app works in all modern browsers Chrome, Firefox, Safari, Opera and Edge, and almost all mobile devices. Files app does NOT work in Internet Explorer. Although Files app is a single file that loads files locally, it still requires an internet connection to load Javascripts loaded from CDN jsdelivr.com. Usage Examples Instantly create a gallery of all your files and folders.</description>
+    </item>
+    <item>
+      <title>纯净Linux系统手工配置独角数卡发卡站点环境</title>
+      <link>https://567899.xyz/post/dujiaoka/</link>
+      <pubDate>Tue, 22 Sep 2020 16:40:38 +0000</pubDate>
+      <guid>https://567899.xyz/post/dujiaoka/</guid>
+      <description>纯净系统纯手工打造独角数卡发卡站点环境，抛弃各种面板、一键网站环境。
+https://github.com/assimon/dujiaoka
+支付接口已集成 支付宝当面付 支付宝PC支付 支付宝手机支付 payjs微信扫码. Paysapi(支付宝/微信). 码支付(QQ/支付宝/微信) 微信企业扫码支付 Paypal支付(默认美元) 麻瓜宝数字货币支付 全网易支付支持(针对彩虹版) 基本环境要求 (PHP + PHPCLI) version &amp;gt;= 7.2 Nginx version &amp;gt;= 1.16 MYSQL version &amp;gt;= 5.6 Redis (高性能缓存服务) Supervisor (一个python编写的进程管理服务) Composer (PHP包管理器) Linux/Win (Win下未测试，建议直接Linux) 实测Supervisor不装也是可以运行的
+PHP环境要求 星号(*)为必须执行的要求，其他为建议内容
+*安装fileinfo扩展 *安装redis扩展 *终端需支持php-cli，测试php -v(版本必须一致) *需要开启的函数：putenv，proc_open，pcntl_signal，pcntl_alarm 安装opcache扩展 网络上各类发卡网站程序，比如ZFAKA、独角数卡环境搭建教程都是基于宝塔面板、LNMP等等环境搭建的教程。
+ZFAKA可以在宝塔面板后台一键部署安装，也可以使用Docker版
+为什么要手工搭建发卡网站环境
+怕有后门(被害妄想症) 近期某某面板强迫用户注册才能使用 享受折腾的乐趣 测试使用环境Debian 10，其它系统可以参考修改搭建。
+独角数卡发卡站环境搭建 Nginx、MYSQL的搭建具体教程请点击查看，这里重点只讲独角数卡发卡站环境搭建PHP环境的配置
+PHP和一些必要组件的安装 apt -y install php-fpm php-mysql php-redis php-fileinfo php-cli php-gd redis-server php-mbstring php-bcmath php-curl php-xml php-dom 配置PHP组件 配置PHP的redis缓存组件</description>
+    </item>
+    <item>
+      <title>Debian10手动搭建WEB环境Nginx,SSL,PHP,MySQL</title>
+      <link>https://567899.xyz/post/debian10-web-nginx-certbot-ssl-php-mysql/</link>
+      <pubDate>Thu, 10 Sep 2020 16:40:38 +0000</pubDate>
+      <guid>https://567899.xyz/post/debian10-web-nginx-certbot-ssl-php-mysql/</guid>
+      <description>手动搭建，使用apt,apt-get快速安装免编译
+安装nginx和php
+apt update apt install openssl nginx-full php-fpm php-mysql -y 创建站点，新建文件
+nano example.com.sh 内容如下
+#!/bin/bash # 创建站点目录和默认页面 mkdir /var/www/example.com chown -R www-data:www-data /var/www/example.com echo &amp;#34;hello word&amp;#34; &amp;gt; /var/www/example.com/index.html # 添加nginx配置文件 echo &amp;#34;server { listen 80; listen [::]:80; server_name example.com; root /var/www/example.com; index index.html; # return 301 https://$server_name$request_uri; } &amp;gt;&amp;gt; /etc/nginx/sites-available/default 把example.com替换成自己的域名
+sed -i &amp;#39;s/example.com/自己的域名/&amp;#39; example.com.sh 给予权限并执行
+chmod +x example.com.sh bash example.com.sh systemctl restart nginx Certbot申请Let’s Encrypt证书SSL，安装Certbot
+apt install certbot -y 获取SSL证书</description>
+    </item>
+    <item>
+      <title>Ubuntu_Debian配置Apache2_PHP配置站点</title>
+      <link>https://567899.xyz/post/ubuntu-debian-apache2-php-vhost-sites/</link>
+      <pubDate>Fri, 11 Jan 2019 01:37:56 +0800</pubDate>
+      <guid>https://567899.xyz/post/ubuntu-debian-apache2-php-vhost-sites/</guid>
+      <description>日常更新
+apt-get update -y apt-get upgrade -y 查找程序名
+sudo apt-cache search apache | grep &amp;#39;apache2&amp;#39; 安装Apache2 apt-get install apache2 安装好后开服务
+service apache2 start systemctl enable apache2 检查Apache2运行状态
+systemctl status apache2 安装Apache的php支持模块
+sudo apt-get install libapache2-mod-php 重启Apache2
+/etc/init.d/apache2 restart 停止
+/etc/init.d/apache2 stop 状态查询
+/etc/init.d/apache2 status 在浏览器中输入IP地址，看到以下页面说明apache成功安装
+Debian系统上Apache2 Web服务器安装的配置布局如下：
+/etc/apache2/ |-- apache2.conf | `-- ports.conf |-- mods-enabled | |-- *.load | `-- *.conf |-- conf-enabled | `-- *.conf |-- sites-enabled | `-- *.</description>
+    </item>
+    <item>
+      <title>Debian和Ubuntu安装php7.2</title>
+      <link>https://567899.xyz/post/debian-ubuntu-install-php7.2/</link>
+      <pubDate>Sat, 21 Jul 2018 01:37:56 +0800</pubDate>
+      <guid>https://567899.xyz/post/debian-ubuntu-install-php7.2/</guid>
+      <description>适用系统：
+Ubuntu 16.04 LTS Ubuntu 14.04 LTS Debian 9 stretch Debian 8 jessie 安装 PHP Ond?ej Sury 的 PHP PPA 为 Ubuntu 16.04/14.04 提供了 PHP7.2 版本，同时也有通过个人网站为 Debian 9/8 提供 PHP7.2 版本，因此 Ubuntu 是源于 Debian 所以基本可以通用，同时维护难度较低，软件源安装的 PHP 默认以 Unix Socket 的状态运行在 /run/php/php7.1-fpm.sock，比使用 TCP 以 localhost:9000 的方式性能更好。
+添加软件源 Ubuntu安装软件源拓展工具：
+apt -y install software-properties-common apt-transport-https lsb-release ca-certificates 添加 Ond?ej Sury 的 PHP PPA 源，需要按一次回车：
+add-apt-repository ppa:ondrej/php 更新软件源缓存：
+apt update Debian安装软件源拓展工具：
+apt -y install software-properties-common apt-transport-https lsb-release ca-certificates 添加 GPG</description>
+    </item>
+  </channel>
+</rss>

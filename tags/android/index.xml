@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Android on Xizi&#39;s Blog</title>
+    <link>https://567899.xyz/tags/android/</link>
+    <description>Recent content in Android on Xizi&#39;s Blog</description>
+    <image>
+      <title>Xizi&#39;s Blog</title>
+      <url>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- 0.128.0</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 23 Jan 2024 09:44:51 +0800</lastBuildDate>
+    <atom:link href="https://567899.xyz/tags/android/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>安卓隐藏root权限</title>
+      <link>https://567899.xyz/post/android-root/</link>
+      <pubDate>Tue, 23 Jan 2024 09:44:51 +0800</pubDate>
+      <guid>https://567899.xyz/post/android-root/</guid>
+      <description>Kitsune Magisk
+https://github.com/HuskyDG/magisk-files https://huskydg.github.io/magisk-files/ Magisk 安装Shamiko模块对软件隐藏Root权限，但是效果不是很好，比如过不了【数字人民币】、【反诈中心】APP，目前隐藏root权限效果出色的是KernelSU,但是KernelSU门槛较高，要编译安卓kernel内核,可使用修改版使用APatch
+德尔塔面具kitsune mask是Magisk修改改进版，在隐藏root这方面比原版Magisk好，其它功能、使用上差不多。
+同样是kernel内核级root,但KernelSU使用的是GKI,APatch使用的是init.
+万豪旅享家在kernelsu能过，但APatch会闪退。
+截止目前，使用APatch或kitsune mask能有效隐藏root，日后可能会升级到检测bootloader解锁状态。</description>
+    </item>
+    <item>
+      <title>联通TinyProxy百度直连UC动态直连免流IP模块Magisk</title>
+      <link>https://567899.xyz/post/tinyproxy_baidu_uc_ip_magisk/</link>
+      <pubDate>Mon, 20 Feb 2023 09:37:56 +0800</pubDate>
+      <guid>https://567899.xyz/post/tinyproxy_baidu_uc_ip_magisk/</guid>
+      <description>https://github.com/EternalPain/ZJL
+ZJL2.0beta30_clncUC动态(联通)_magisk、ZJL2.0beta30_clnc百度直连_magisk、ZJL2.0beta30_cns 百度直连不限制网速 三选一即可，安装完重启手机后进入目录/data/ZJL2.0_magisk修改编辑文件conf并执行开启.sh
+TinyProxy官方版：
+https://www.lanzoui.com/b004yxdhc 密码5fgw
+获取最新最快的百度直连IP ping cloudnproxy.baidu.com 目前可选IP地址
+# 联通 IP # 南京 153.3.236.22 # 苏州 157.0.148.53 # 保定 110.242.70.69 # 保定 110.242.70.68 # 广州 157.255.78.51 # 电信 IP # 南京 180.97.104.168 # 苏州 180.97.93.202 # 北京 220.181.7.1 # 北京 220.181.33.174 # 北京 220.181.111.189 # 广州 14.215.179.244 # 移动 IP # 南京 36.152.45.98 # 南京 36.152.45.97 # 北京 39.156.69.161 # 北京 39.156.69.198 # 广州 183.232.233.5 务必选择对应运营商的IP，否则不免流例如使用的是中国联通手机号就要选联通的IP</description>
+    </item>
+    <item>
+      <title>安卓手机跳过Google开机向导设置</title>
+      <link>https://567899.xyz/post/android-boot-settings/</link>
+      <pubDate>Sat, 12 Nov 2016 01:37:56 +0800</pubDate>
+      <guid>https://567899.xyz/post/android-boot-settings/</guid>
+      <description>build.prop关闭开机引导（推荐） 打开TWRP终端
+mount -o remount,rw /system #挂载 system 分区为读写 vi /system/build.prop #浏览build.prop #输入&amp;#34;i&amp;#34;进入Insert编辑模式 ro.setupwizard.mode=OPTIONAL #找到该行将&amp;#34;OPTIONAL&amp;#34;修改为&amp;#34;DISABLED&amp;#34; #按 ESC 回到 Normal 模式 :wq #输入:wq存盘并退出 reboot #重启手机 enjoy it ! 首屏四角跳过 从左上角开始，顺时针依次点击四个角（状态栏以下）
+路由器代理 在路由器系统中设置网络代理以连接 Google 服务器通过验证
+延后安装 刷写系统完毕并开机后再刷入 Gapps，存在 GooglePlay 服务 停止运行的问题
+删除验证程序 进入 TWRP，挂载 system，打开 文件管理，删除或重命名 setupwizard.apk
+system/priv-app/setupwizard/setupwizard.apk
+开机后，挂梯子登录谷歌账户，再把 setupwizard.apk 改回来（前提是不删除源文件，只重命名一下），完成通过向导即可。若未改回会存在任务键、返回键失灵、状态栏无法下拉等问题。
+终极方法 刷机前退出登陆谷歌账号及手机厂商的账号 取出SIM卡也不要连接WIFI网络 直到完成开机设置，顺利进入手机桌面 </description>
+    </item>
+    <item>
+      <title>Android安卓手机VPN热点中继USB蓝牙网络共享</title>
+      <link>https://567899.xyz/post/android-vpn-hotspot/</link>
+      <pubDate>Sun, 17 Jan 2016 01:37:56 +0800</pubDate>
+      <guid>https://567899.xyz/post/android-vpn-hotspot/</guid>
+      <description>Android安卓手机root后授权VPN Hotspot可以实现VPN热点中继USB蓝牙网络共享，P.S. You can also do the similar on Windows, Mac, and iOS. I don&amp;rsquo;t know about you but I can&amp;rsquo;t get my stupid Windows 10 to work with hosted network now that they introduced this Mobile hotspot.
+方法一： 安卓手机依次进入【设置】【网络和互联网】【热点和网络共享】打开启用【允许客户端使用VPN】
+方法二： Android安卓手机下载安装VPN 热点这个软件
+https://github.com/Mygod/VPNHotspot
+下载地址：VPN 热点 - Google Play 上的应用 or XDA Labs or GitHub
+本站下载vpnhotspot-v2.6.2.apk
+前提条件 VPN 热点这个软件必须有root权限
+Android安卓手机如何ROOT？
+方法在Google中输入手机机型+root
+常规的思路是解锁后用第三方TWRP-recovery卡刷Magisk
+如果不能用可尝试【全局】或者关闭【分应用代理】或者在【设置选项】关闭【网络共享硬件加速】
+以下是README.md原文
+VPN Hotspot Connecting things to your VPN made simple.</description>
+    </item>
+    <item>
+      <title>关于</title>
+      <link>https://567899.xyz/about/</link>
+      <pubDate>Tue, 10 Mar 2015 00:13:27 +0000</pubDate>
+      <guid>https://567899.xyz/about/</guid>
+      <description>如有侵权，请联系我E-mail删除。谢谢!
+记录下自己的VPS常用操作
+配置SSH使用密钥KEY登陆 mkdir .ssh chmod 700 .ssh touch .ssh/authorized_keys chmod 600 .ssh/authorized_keys 写入公钥内容,(替换成自己的公钥)
+echo &amp;#34;ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAw8G3KL6oxDQ92IkrAjKbmyXN4qiYSbVQ4iFF94mTN2muiAaYGBlP/fL5d/os5Qxs9lmEOPgJsLUbSmsVfpO6RCqzVXILNWT3FduEJ2T59YYv/nNdu2OJEHU6eZQjQrUMqmb6LRtKgORoNELqwCYgHasughlZb8cKcd9u1Icbd3CLaiZg9ebGvQf3+o/shoaRt75BgtWtrVXwy5iX1W6070Tw+GTpDKFPwdgg/IffvZ9MORGmHSWHHzELjQ7nnS9CgzWUsoC4qQrgNo6RkA75yps5OZ9GrtDVmuhuRdmTyDv7Yvp2UII78RpsW686HWK2cD5PV+JlJOkNbJklxI8AwQ==&amp;#34; &amp;gt; .ssh/authorized_keys 修改SSH配置文件/etc/ssh/sshd_config启用KEY登陆
+sed -i &amp;#39;s/#PubkeyAuthentication/PubkeyAuthentication/&amp;#39; /etc/ssh/sshd_config 重启SSH
+service sshd restart /etc/init.d/ssh restart 退出SSH登陆，使用KEY如果能顺利登陆的话就禁用密码登陆
+sed -i &amp;#39;s/PasswordAuthentication yes/PasswordAuthentication no/&amp;#39; /etc/ssh/sshd_config 更改SSH端口号(慎重，请确保正确配置好了防火墙)
+sed -i &amp;#39;s/#Port 22/Port 6789/&amp;#39; /etc/ssh/sshd_config DD系统 安装依赖软件
+Debian/Ubuntu:
+apt-get install -y xz-utils openssl gawk file RedHat/CentOS:
+yum install -y xz openssl gawk file DD系统Debian 10
+bash &amp;lt;(wget --no-check-certificate -qO- &amp;#39;https://raw.githubusercontent.com/MoeClub/Note/master/InstallNET.sh&amp;#39;) -d 10 -v 64 -p &amp;#34;自定义root密码&amp;#34; -port &amp;#34;自定义ssh端口&amp;#34; 甲骨文Debian 10配置ipv6地址</description>
+    </item>
+  </channel>
+</rss>

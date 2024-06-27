@@ -1,1 +1,44 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>联通 on Xizi's Blog</title><link>https://567899.xyz/tags/%E8%81%94%E9%80%9A/</link><description>Recent content in 联通 on Xizi's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Mon, 03 Aug 2020 01:37:56 +0800</lastBuildDate><atom:link href="https://567899.xyz/tags/%E8%81%94%E9%80%9A/index.xml" rel="self" type="application/rss+xml"/><item><title>联通用户免费办理流量封顶取消(长期有效)</title><link>https://567899.xyz/post/ChinaUnicom-Traffic-cap-canceled/</link><pubDate>Mon, 03 Aug 2020 01:37:56 +0800</pubDate><guid>https://567899.xyz/post/ChinaUnicom-Traffic-cap-canceled/</guid><description>中国联通手机用户免费办理流量封顶取消(长期有效)一次办理，终身有效。需要的小伙伴抓紧上车 以前办理订购的流量封顶取消是月底失效，次月达量后又要重新订购办理，对于无限流量套餐的用户很苦恼。 不过2020年8月开始 中国联通可以办理长期有效的流量封顶取消啦，这里免费公布办理入口，不要被女干</description></item><item><title>检测移动电信联通通讯运营商SIM卡分配给用户的最高速率、限速速率网速值</title><link>https://567899.xyz/post/Internet-SIM-AMBR-DL-UL-2G-3G-4G-LTE/</link><pubDate>Mon, 04 Nov 2019 01:37:56 +0800</pubDate><guid>https://567899.xyz/post/Internet-SIM-AMBR-DL-UL-2G-3G-4G-LTE/</guid><description>你想知道自己的SIM卡移动数据流量网速能跑多少？是不是达标符合通信运营商承诺的网络速率？&amp;hellip; &amp;hellip; 使用条件 拥有root权限的安卓Android手机设备 CPU品牌是高通 网络信号大师 点击下载 名词解译 【网络信号大师】【LTE小区配置】里面的参数，专业术语名词相信对于通信运营商不</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>联通 on Xizi&#39;s Blog</title>
+    <link>https://567899.xyz/tags/%E8%81%94%E9%80%9A/</link>
+    <description>Recent content in 联通 on Xizi&#39;s Blog</description>
+    <image>
+      <title>Xizi&#39;s Blog</title>
+      <url>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- 0.128.0</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 03 Aug 2020 01:37:56 +0800</lastBuildDate>
+    <atom:link href="https://567899.xyz/tags/%E8%81%94%E9%80%9A/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>联通用户免费办理流量封顶取消(长期有效)</title>
+      <link>https://567899.xyz/post/chinaunicom-traffic-cap-canceled/</link>
+      <pubDate>Mon, 03 Aug 2020 01:37:56 +0800</pubDate>
+      <guid>https://567899.xyz/post/chinaunicom-traffic-cap-canceled/</guid>
+      <description>中国联通手机用户免费办理流量封顶取消(长期有效)一次办理，终身有效。需要的小伙伴抓紧上车
+以前办理订购的流量封顶取消是月底失效，次月达量后又要重新订购办理，对于无限流量套餐的用户很苦恼。
+不过2020年8月开始 中国联通可以办理长期有效的流量封顶取消啦，这里免费公布办理入口，不要被女干商坑钱，打开中国联通官方APP 手机营业厅扫描以下二维码自助办理
+按提示就能订购办理
+成功后可在业务办理记录中查看
+其它：拜访地接入服务失效的解决方法
+打中国联通客服热线 10010 退订后付费拜访地接入服务然后订购消息计费拜访地接入服务 不知道这二者有什么区别，不过以用后付费拜访地接入服务时，每次用完到达流量封顶后就失效了，但消息计费拜访地接入服务则不会失效。</description>
+    </item>
+    <item>
+      <title>检测移动电信联通通讯运营商SIM卡分配给用户的最高速率、限速速率网速值</title>
+      <link>https://567899.xyz/post/internet-sim-ambr-dl-ul-2g-3g-4g-lte/</link>
+      <pubDate>Mon, 04 Nov 2019 01:37:56 +0800</pubDate>
+      <guid>https://567899.xyz/post/internet-sim-ambr-dl-ul-2g-3g-4g-lte/</guid>
+      <description>你想知道自己的SIM卡移动数据流量网速能跑多少？是不是达标符合通信运营商承诺的网络速率？&amp;hellip; &amp;hellip;
+使用条件 拥有root权限的安卓Android手机设备 CPU品牌是高通 网络信号大师 点击下载 名词解译 【网络信号大师】【LTE小区配置】里面的参数，专业术语名词相信对于通信运营商不会陌生，这里重点只涉及限速速率检测
+AMBR(Aggregated Maximum Bit Rate)聚合最大比特速率，也是常说的最高速率、限速速率 DL即downlink下行速率 UL即uplink上行速率 适用范围 适用于任意套餐资费的网速速率检测。所有电信、联通、移动的2G,3G,4G(5G未测试，目前没有条件测试)的任何APN\频段\制式。CDMA、GSM、TD-SCDMA、WCDMA、LTE、HSUPA、HSDPA、FDD-LTE、TD-LTE 零流量检测网速速率 ,测试过程中可以关闭流量。比如1Mbps,3Mbps,7Mbps&amp;hellip;
+温馨提示：针对24小时内，不同时段不同限速规则的，可能需要重启软件或者开关一次飞行模式才能刷新显示。
+使用方法 授予安卓软件网络信号大师ROOT权限，依次打开【网络信号大师】右上角的3点【锁频段】任意切换下频段再切换回原来默认的频段，然后左右滑动到【LTE小区配置】就能在右下角方位看到AMBP DL/UL就能看到1Mbps,3Mbps,7Mbps&amp;hellip;通信运营商实行分配给用户的网速速率值了
+用途 该方法检测值能作为投诉、举报到运营商、工信部的有力证据。
+2020年1月1日更新：三家都将“永久套餐”全改为有到期期限了，移动2099年，电信2050年，联通2029年。所以“永久套餐”不存在的。
+其它 酸酸乳免流host 混淆方式http_simple 远程端口80 APN接入点3gnet mbh.wotv.17wo.cn 沃视频 m.client.10010.com 中国联通手机营业厅 中国联通工行梦想e卡 v.icbc.com.cn m.icbc.com.cn m.mall.icbc.com.cn elife.icbc.com.cn act.icbc.com.cn hit.icbc.com.cn pv.mall.icbc.com.cn mybank.icbc.com.cn ===中国联通阿里宝卡== api.mobile.youku.com ===腾讯王卡=== qiniucdnct.inter.iqiyi.com APN:3gnet 远程端口: 80 混淆参数: szextshort.weixin.qq.com#Upgrade: mmtls\nUser-Agent: Microadminssenger Client\nAccept: */*\nConnection: close\nContent-Length: 533\nContent-Type: application/octet-stream #前面的是host \n是换行 SSR的http-simple只能伪装GET报头，不能伪装Post报头 诈骗高危地区存在局停的可能 广东省：江门，阳江，东莞，佛山，肇庆, 茂名,湛江，珠海，番禺区，潮州、惠州、河源 湖北省：孝感，黄冈，武汉，江汉(仙桃) 广西省：南宁，贵港，防城港，玉林，宾阳 湖南省：娄底，衡阳，怀化，长沙 河南省：驻马店、周口 河北省：承德、邯郸 安徽省：阜阳、安庆、蚌埠 福建省：泉州，漳州，龙岩 海南省：海口，儋州 云南省：普洱，临沧，西双版纳傣族自治州，景洪市，思茅，西双版纳，德宏 江西省：吉安，上饶 西藏、新疆 </description>
+    </item>
+  </channel>
+</rss>

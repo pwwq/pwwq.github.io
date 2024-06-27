@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>FODI on Xizi&#39;s Blog</title>
+    <link>https://567899.xyz/tags/fodi/</link>
+    <description>Recent content in FODI on Xizi&#39;s Blog</description>
+    <image>
+      <title>Xizi&#39;s Blog</title>
+      <url>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- 0.128.0</generator>
+    <language>en</language>
+    <lastBuildDate>Fri, 07 Feb 2020 01:37:56 +0800</lastBuildDate>
+    <atom:link href="https://567899.xyz/tags/fodi/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>在Cloudflare Workers和Github Pages部署FODI</title>
+      <link>https://567899.xyz/post/fodi/</link>
+      <pubDate>Fri, 07 Feb 2020 01:37:56 +0800</pubDate>
+      <guid>https://567899.xyz/post/fodi/</guid>
+      <description>Github地址：https://github.com/vcheckzen/FODI
+预览 DEMO
+获取 refresh_token 国际版、个人版、家庭版 、 中国世纪互联版
+点击其中的 Get a refresh_token，在打开的微软账号登录页面中，填写你的 OneDrive 账号和密码，完成登录。
+登录完毕后浏览器将跳转回上面的页面，此时修改网址，从左往右找到第一个?将其删除,再找到第一个 &amp;amp;将其改为? 注意要使用英文输入法
+下面是修改前后的网址对比：
+#修改前 https://service-36wivxsc-1256127833.ap-hongkong.apigateway.myqcloud.com/release/scf_onedrive_filelistor/?authorization_code&amp;amp;code=... #修改后 https://service-36wivxsc-1256127833.ap-hongkong.apigateway.myqcloud.com/release/scf_onedrive_filelistor/authorization_code?code=... 修改完毕后直接回车，稍等片刻页面将返回 refresh_token，复制保存。
+部署FODI后端 创建Cloudflare Workers编辑界面里面的代码替换成index.js
+找到并修改const ONEDRIVE_REFRESHTOKEN = &amp;quot;xxxxxxxxxxxxxxxxx&amp;quot;
+其中xxxxxxxxxxxxxxxxx为refresh_token的参数
+通过Github Pages部署前端 打开index.html在SCF_GATEWAY中填上你的Cloudflare Workers地址
+/** * SCF_GATEWAY：SCF 云函数网关地址 * SITE_NAME：站点名称 */ window.GLOBAL_CONFIG = { SCF_GATEWAY: &amp;#34;https://xxxx.xxx.workers.dev&amp;#34;, SITE_NAME: &amp;#34;FODI&amp;#34;, IS_CF: true }; 其它 在某个文件夹下添加.password文件加密码,README.mdMarkdown语法自述文件.注意文件必须以UTF-8无BOM格式编码且密码前后不能有空格或空行
+转载自：https://logi.im/back-end/fodi-on-cloudflare.html</description>
+    </item>
+  </channel>
+</rss>

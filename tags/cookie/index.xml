@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Cookie on Xizi&#39;s Blog</title>
+    <link>https://567899.xyz/tags/cookie/</link>
+    <description>Recent content in Cookie on Xizi&#39;s Blog</description>
+    <image>
+      <title>Xizi&#39;s Blog</title>
+      <url>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- 0.128.0</generator>
+    <language>en</language>
+    <lastBuildDate>Fri, 22 Sep 2017 01:37:56 +0800</lastBuildDate>
+    <atom:link href="https://567899.xyz/tags/cookie/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Cookie自动登陆签到、抓包提取制作HAR文件</title>
+      <link>https://567899.xyz/post/qiandao/</link>
+      <pubDate>Fri, 11 Mar 2022 22:04:59 +0800</pubDate>
+      <guid>https://567899.xyz/post/qiandao/</guid>
+      <description>通过自动签到(网页签到、APP签到)，可以有效防止某些站点规则中的因长时间未登陆不活跃而导致封号，还可以赚积分、领金币薅羊毛&amp;hellip;
+Docker安装签到 https://hub.docker.com/r/a76yyyy/qiandao
+https://github.com/qiandao-today/qiandao
+安装、启用docker
+wget -qO- get.docker.com | bash systemctl enable docker systemctl start docker Docker部署a76yyyy/qiandao签到
+docker run -d --name qiandao --restart=always --env PORT=8923 --net=host -v /root/qiandao:/usr/src/app/config a76yyyy/qiandao 然后就可以访问 http://localhost:8923 网页管理签到
+8923端口可以随意，只要不被其它应用占用即可，/root/qiandao宿主机配置文件目录
+备份数据库只需要备份/root/qiandao目录下的database.db这个文件即可；
+还原数据库只需要先暂停docker stop qiandao然后将database.db复制替换掉原来/root/qiandao目录下的database.db这个文件。
+启动容器
+docker start qiandao 停止容器
+docker stop qiandao 删除容器
+docker rm qiandao 获取HAR文件 我们还可以使用Fiddler抓包软件来抓取，这里使用Chrome浏览器示范。
+打开Chrome浏览器，新建隐身窗口(重要)，登陆账号： 打开开发者工具（ctrl+shift+I，或者 鼠标右键 &amp;gt; 审查元素） 切换到 Network（网络）面板，勾选 Preserve log (非常重要) 直奔签到页，完成签到 找对签到链接(非常重要)，导出HAR文件。 使用HAR模板文件签到 以PT站点为例，因为大部分PT站点都是使用NexusPHP,大同小异，我们只需要抓取https://example.com/attendance.php保留这个链接，其它统统删掉。然后利用cookie登陆签到。
+注册、登陆到网页签到管理，上传导入HAR文件，编辑、删除多余的链接，只需要保留有效、正确的签到链接
+编辑HAR模板文件
+Request Headers全部勾选；cookie填写为{{cookie}}；Cookies全部删除；
+切换到测试/Test在Variables选项ADD中添加name为cookie</description>
+    </item>
+  </channel>
+</rss>

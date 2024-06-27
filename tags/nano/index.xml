@@ -1,1 +1,52 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>nano on Xizi's Blog</title><link>https://567899.xyz/tags/nano/</link><description>Recent content in nano on Xizi's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Thu, 19 Feb 2015 01:37:56 +0800</lastBuildDate><atom:link href="https://567899.xyz/tags/nano/index.xml" rel="self" type="application/rss+xml"/><item><title>nano文本编辑器使用复制剪切粘贴查找替换</title><link>https://567899.xyz/post/nano/</link><pubDate>Thu, 19 Feb 2015 01:37:56 +0800</pubDate><guid>https://567899.xyz/post/nano/</guid><description>安装 CentOS执行 yum -y install nano Debian执行 apt-get install -y nano 新建/打开文件 nano 路径+文件名 如果改文件存在，上面的命令将打开这个文件； 如果文件不存在则将会创建一个新文件并打开。 光标控制 移动光标：使用用方向键移动。 选择文字：按住鼠标左键拖到。 复制、剪贴和粘贴 复制一整行：Alt+6 剪贴一整行：C</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Nano on Xizi&#39;s Blog</title>
+    <link>https://567899.xyz/tags/nano/</link>
+    <description>Recent content in Nano on Xizi&#39;s Blog</description>
+    <image>
+      <title>Xizi&#39;s Blog</title>
+      <url>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- 0.128.0</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 19 Feb 2015 01:37:56 +0800</lastBuildDate>
+    <atom:link href="https://567899.xyz/tags/nano/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>nano文本编辑器使用复制剪切粘贴查找替换</title>
+      <link>https://567899.xyz/post/nano/</link>
+      <pubDate>Thu, 19 Feb 2015 01:37:56 +0800</pubDate>
+      <guid>https://567899.xyz/post/nano/</guid>
+      <description>安装
+CentOS执行
+yum -y install nano Debian执行
+apt-get install -y nano 新建/打开文件
+nano 路径+文件名 如果改文件存在，上面的命令将打开这个文件； 如果文件不存在则将会创建一个新文件并打开。 光标控制
+移动光标：使用用方向键移动。 选择文字：按住鼠标左键拖到。 复制、剪贴和粘贴
+复制一整行：Alt+6 剪贴一整行：Ctrl+K 粘贴：Ctrl+U 如果需要复制/剪贴多行或者一行中的一部分，先将光标移动到需要复制／剪贴的文本的开头，按Ctrl+6或者Alt+A做标记，然后移动光标到 待复制／剪贴的文本末尾。这时选定的文本会反白，用Alt+6来复制Ctrl+K来剪贴。若在选择文本过程中要取消，只需要再按一次Ctrl+6。
+搜索
+按Ctrl+W然后输入你要搜索的关键字，回车确定。这将会定位到第一个匹配的文本，接着可以用Alt+W来定位到下一个匹配的文本。
+翻页
+用Ctrl+Y到上一页，Ctrl+V到下一页
+替换文本
+按Ctrl+\在编辑器的底部输入要替换的文本回车然后输入替换后的文本内容按A替换所有匹配的文本
+保存
+使用Ctrl+O来保存所做的修改
+退出
+按Ctrl+X
+如果你修改了文件，下面会询问你是否需要保存修改。输入Y确认保存，输入N不保存，按Ctrl+C取消返回。
+如果输入了Y，下一步会让你输入想要保存的文件名。如果不需要修改文件名直接回车就行；若想要保存成别的名字（也就是另存为）则输入新名称然后确 定。这个时候也可用Ctrl+C来取消返回。
+获得帮助
+进入nano界面后，下面有两行菜单，例如，“^G Get Help”。其意义如下：
+^G意味着快捷键是Ctrl+G，“Get Help”当然是功能了。
+根据这些提示就可以立刻开始使用nano了，也可以Ctrl+G看看帮助。
+Note：nano中，黑底白字表示快捷键操作。其中^表示Ctrl键，则Ctrl+G就表示成^G。M表示 Alt键，则Alt+W表示为M-W。
+编辑文件整行文本内容替换
+sed -i &amp;#39;s/替换前的整行原文本/替换后的整行文本/&amp;#39; 文件路径 文件路径示范/root/test.txt
+修改或替换整个文件
+echo &amp;#34;添加的文本内容&amp;#34; &amp;gt; 文件路径 在文件最后增加
+echo &amp;#34;添加的文本内容&amp;#34; &amp;gt;&amp;gt; 文件路径 </description>
+    </item>
+  </channel>
+</rss>

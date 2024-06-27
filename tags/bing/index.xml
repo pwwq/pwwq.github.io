@@ -1,1 +1,29 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>bing on Xizi's Blog</title><link>https://567899.xyz/tags/bing/</link><description>Recent content in bing on Xizi's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Thu, 09 Mar 2023 18:37:56 +0800</lastBuildDate><atom:link href="https://567899.xyz/tags/bing/index.xml" rel="self" type="application/rss+xml"/><item><title>Edge浏览器、Chrome使用扩展Header Editor使用新必应Bing AI</title><link>https://567899.xyz/post/header-editor-bing/</link><pubDate>Thu, 09 Mar 2023 18:37:56 +0800</pubDate><guid>https://567899.xyz/post/header-editor-bing/</guid><description>申请加入Bing AI 通过申请链接加入Bing AI等待获得批准通过 浏览器安装Header Editor规则 安装扩展Header Editor Microsoft Edge Chrome Mozilla 添加2条Header Editor规则，阻止https://www.bing.com跳转到https://cn.bing.com方法如下 ^http(s?)://www\.bing\.com/(.*) 头部名称x-f</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Bing on Xizi&#39;s Blog</title>
+    <link>https://567899.xyz/tags/bing/</link>
+    <description>Recent content in Bing on Xizi&#39;s Blog</description>
+    <image>
+      <title>Xizi&#39;s Blog</title>
+      <url>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- 0.128.0</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 09 Mar 2023 18:37:56 +0800</lastBuildDate>
+    <atom:link href="https://567899.xyz/tags/bing/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Edge浏览器、Chrome使用扩展Header Editor使用新必应Bing AI</title>
+      <link>https://567899.xyz/post/header-editor-bing/</link>
+      <pubDate>Thu, 09 Mar 2023 18:37:56 +0800</pubDate>
+      <guid>https://567899.xyz/post/header-editor-bing/</guid>
+      <description>申请加入Bing AI 通过申请链接加入Bing AI等待获得批准通过
+浏览器安装Header Editor规则 安装扩展Header Editor
+Microsoft Edge Chrome Mozilla 添加2条Header Editor规则，阻止https://www.bing.com跳转到https://cn.bing.com方法如下
+^http(s?)://www\.bing\.com/(.*) 头部名称x-forwarded-for头内容8.8.8.8
+匹配规则https://cn.bing.com重定向至https://www.bing.com
+保存规则后就能愉快的使用https://www.bing.com 不需要魔法了。</description>
+    </item>
+  </channel>
+</rss>

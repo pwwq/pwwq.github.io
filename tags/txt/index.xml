@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>TXT on Xizi&#39;s Blog</title>
+    <link>https://567899.xyz/tags/txt/</link>
+    <description>Recent content in TXT on Xizi&#39;s Blog</description>
+    <image>
+      <title>Xizi&#39;s Blog</title>
+      <url>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- 0.128.0</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 10 Dec 2020 01:37:56 +0800</lastBuildDate>
+    <atom:link href="https://567899.xyz/tags/txt/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>如何打开超大TXT文本文件</title>
+      <link>https://567899.xyz/post/glogg-open-large-file-txt/</link>
+      <pubDate>Thu, 10 Dec 2020 01:37:56 +0800</pubDate>
+      <guid>https://567899.xyz/post/glogg-open-large-file-txt/</guid>
+      <description>前阵子拿到了某个大佬分享的裤子文件，解压后都是超大的.txt文本文件，少则几个G,大的几十个G的
+尝试过用Windows自带的记事本（据说记事本最大只能打开1G的文件），PilotEdit Lite和LogViewer加载了很久还是失败了，Visual Studio Code也不行，也许是电脑配置太差吧。EmEditor也只能读取部分，附终身授权key
+DMAZM-WHY52-AX222-ZQJXN-79JXH 最终搜索找到了glogg
+18G的大文件(7亿行)完全加载不到1分钟左右，查找某个值也不到1分钟左右。</description>
+    </item>
+  </channel>
+</rss>

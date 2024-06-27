@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>ChatGPT on Xizi&#39;s Blog</title>
+    <link>https://567899.xyz/tags/chatgpt/</link>
+    <description>Recent content in ChatGPT on Xizi&#39;s Blog</description>
+    <image>
+      <title>Xizi&#39;s Blog</title>
+      <url>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- 0.128.0</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 05 Mar 2023 12:37:56 +0800</lastBuildDate>
+    <atom:link href="https://567899.xyz/tags/chatgpt/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>在VPS上搭建ChatGPT网页API</title>
+      <link>https://567899.xyz/post/chatgpt-web-openai-warp/</link>
+      <pubDate>Sun, 05 Mar 2023 12:37:56 +0800</pubDate>
+      <guid>https://567899.xyz/post/chatgpt-web-openai-warp/</guid>
+      <description>解锁ChatGPT节点(可选) 部分IP访问ChatGPT官网或新域名ai.com 会出现Access denied阻止访问，可以套用Cloudflare WARP
+wget -N https://gitlab.com/rwkgyg/CFwarp/raw/main/CFwarp.sh &amp;amp;&amp;amp; bash CFwarp.sh 依次选择 wgcf内核安装WARP、方案一：安装/切换WGCF-WARP、安装/切换wgcf-warp单栈IPV6
+如何刷新/更换 CloudFlare Warp IP
+systemctl restart wg-quick@wgcf 警告: Plus 用户请不要使用此方式，会掉 Plus 订阅
+配置 V2Ray
+修改 outbounds 和 routing 配置
+&amp;#34;outbounds&amp;#34;: [ { &amp;#34;tag&amp;#34;: &amp;#34;IP4_out&amp;#34;, &amp;#34;protocol&amp;#34;: &amp;#34;freedom&amp;#34;, &amp;#34;settings&amp;#34;: { &amp;#34;domainStrategy&amp;#34;: &amp;#34;UseIPv4&amp;#34; } }, { &amp;#34;tag&amp;#34;: &amp;#34;IP6_out&amp;#34;, &amp;#34;protocol&amp;#34;: &amp;#34;freedom&amp;#34;, &amp;#34;settings&amp;#34;: { &amp;#34;domainStrategy&amp;#34;: &amp;#34;UseIPv6&amp;#34; } }, { &amp;#34;protocol&amp;#34;: &amp;#34;blackhole&amp;#34;, &amp;#34;settings&amp;#34;: {}, &amp;#34;tag&amp;#34;: &amp;#34;blocked&amp;#34; } ], &amp;#34;routing&amp;#34;: { &amp;#34;rules&amp;#34;: [ { &amp;#34;type&amp;#34;: &amp;#34;field&amp;#34;, &amp;#34;domain&amp;#34;: [ &amp;#34;openai.</description>
+    </item>
+  </channel>
+</rss>

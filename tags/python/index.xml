@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Python on Xizi&#39;s Blog</title>
+    <link>https://567899.xyz/tags/python/</link>
+    <description>Recent content in Python on Xizi&#39;s Blog</description>
+    <image>
+      <title>Xizi&#39;s Blog</title>
+      <url>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- 0.128.0</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 19 Sep 2016 01:37:56 +0800</lastBuildDate>
+    <atom:link href="https://567899.xyz/tags/python/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>在Debian、Ubuntu系统上为Python 2/3安装和使用Pip的方法</title>
+      <link>https://567899.xyz/post/ubuntu-debian-install-python3-pin3-pip/</link>
+      <pubDate>Mon, 19 Sep 2016 01:37:56 +0800</pubDate>
+      <guid>https://567899.xyz/post/ubuntu-debian-install-python3-pin3-pip/</guid>
+      <description>为Python 3安装pip3 以具有sudo权限的非root用户身份执行以下步骤
+首先更新包列表：
+sudo apt update 使用以下命令为Python 3及其所有依赖项安装pip：
+sudo apt install python3-pip 查看pip3、Python版本以验证安装：
+pip3 --version python3 -V 版本号可能不同，但它看起来如下所示：
+pip 18.1 from /usr/lib/python3/dist-packages/pip (python 3.7) 为Python 2安装pip 以具有sudo权限的非root用户身份执行以下步骤
+首先更新包索引：
+sudo apt update 为Python 2及其所有依赖项安装pip：
+sudo apt install python-pip 通过输入以下命令来验证安装，该命令将打印pip版本：
+pip --version 版本号可能会有所不同，但它看起来像这样：
+pip 18.1 from /usr/lib/python2.7/dist-packages/pip (python 2.7) 安装软件
+pip install 软件包名 卸载包：
+pip uninstall package_name 从PyPI搜索包：
+pip search &amp;#34;search_query&amp;#34; 列出已安装的包：
+pip list 列出过时的包：
+pip list --outdated </description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Xshell on Xizi&#39;s Blog</title>
+    <link>https://567899.xyz/tags/xshell/</link>
+    <description>Recent content in Xshell on Xizi&#39;s Blog</description>
+    <image>
+      <title>Xizi&#39;s Blog</title>
+      <url>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- 0.128.0</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 07 Apr 2019 01:37:56 +0800</lastBuildDate>
+    <atom:link href="https://567899.xyz/tags/xshell/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>最新永久激活破解Xshell6和Xftp6</title>
+      <link>https://567899.xyz/post/xshell6/</link>
+      <pubDate>Sun, 07 Apr 2019 01:37:56 +0800</pubDate>
+      <guid>https://567899.xyz/post/xshell6/</guid>
+      <description>下载 Xshell 6 &amp;amp; Xftp 6 在 https://www.netsarang.com/zh/all-downloads/ 选择下载评估版。 填写邮箱信息
+收到下载地址后将下载地址加上r。
+例如 https://cdn.netsarang.net/f8a8d224/XmanagerPowerSuite-6.0.0009.exe
+改为 https://cdn.netsarang.net/f8a8d224/XmanagerPowerSuite-6.0.0009r.exe
+如果下载不带r的版本，无法输入序列号，注意不要下载到“思杰马克丁”特供版
+卸载旧版及清除注册表 卸载所有版本的Xshell，Xmanager，Xftp，Xldp和Netsarang产品，并从注册表中删除 NetSarang 目录 (HKEY_CURRENT_USER\Software\NetSarang)
+在CMD中执行
+REG DELETE HKEY_CURRENT_USER\Software\NetSarang /f 设置hosts 在文件C:\Windows\System32\drivers\etc\hosts 添加屏蔽相关域名
+# xshell 127.0.0.1 transact.netsarang.com 127.0.0.1 update.netsarang.com 127.0.0.1 www.netsarang.com 127.0.0.1 www.netsarang.co.kr 127.0.0.1 sales.netsarang.com 127.0.0.1 active.netsarang.com 安装 使用下面的序列号安装Xshell,任选其一：
+181231-111850-999729 181231-111753-999305 181231-111533-999913 181231-111713-999609 Xshell Plus 6 : 180505-117501-020791 Xmanager Power Suite 6 :180429-116253-999126 修改用户权限 安装完成后，将对应的xshell和xftp程序运行一次后（一定要先运行一次）。 打开注册表，将下列字段设置为当前用户拒绝全部权限，否则会反弹。
+HKEY_CURRENT_USER\Software\NetSarang\Xftp\6\LiveUpdate HKEY_CURRENT_USER\Software\NetSarang\Xlpd\6\LiveUpdate HKEY_CURRENT_USER\Software\NetSarang\Xmanager\6\LiveUpdate HKEY_CURRENT_USER\Software\NetSarang\Xshell\6\LiveUpdate 打开注册表程序（开始 -&amp;gt; 运行 -&amp;gt; regedit 或 win + R 打开运行输入 regedit 回车进入注册表编辑器）</description>
+    </item>
+  </channel>
+</rss>

@@ -1,13 +1,36 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>google on Xizi's Blog</title><link>https://567899.xyz/tags/google/</link><description>Recent content in google on Xizi's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Tue, 11 Feb 2020 01:37:56 +0800</lastBuildDate><atom:link href="https://567899.xyz/tags/google/index.xml" rel="self" type="application/rss+xml"/><item><title>利用Caddy,Nginx反向代理谷歌YouTube等网站</title><link>https://567899.xyz/post/nginx-caddy-proxy-google-youtube-wikipedia/</link><pubDate>Mon, 21 May 2018 01:37:56 +0800</pubDate><guid>https://567899.xyz/post/nginx-caddy-proxy-google-youtube-wikipedia/</guid><description>&lt;p>&lt;a href="https://caddyserver.com">Caddy&lt;/a> - The HTTP/2 Web Server with Automatic HTTPS&lt;/p>
-&lt;ul>
-&lt;li>go语言一个二进制单文件就是服务端&lt;/li>
-&lt;li>自动申请&lt;a href="https://letsencrypt.org">Let&amp;rsquo;s Encrypt&lt;/a>免费的SSL/TLS证书,自动续期。&lt;/li>
-&lt;/ul>
-&lt;h2 id="caddy一键安装脚本">Caddy一键安装脚本&lt;/h2>
-&lt;div class="highlight">&lt;pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">wget -N --no-check-certificate https://raw.githubusercontent.com/ojbk8/ToyoDAdoubiBackup/master/caddy_install.sh &lt;span style="color:#000;font-weight:bold">&amp;amp;&amp;amp;&lt;/span> chmod +x caddy_install.sh &lt;span style="color:#000;font-weight:bold">&amp;amp;&amp;amp;&lt;/span> bash caddy_install.sh
-&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
-&lt;li>caddy_conf_file=&amp;rdquo;/usr/local/caddy/Caddyfile&amp;rdquo;&lt;/li>
-&lt;li>日志文件：cat /tmp/caddy.log&lt;/li>
-&lt;li>使用说明：service caddy start | stop | restart | status&lt;/li>
-&lt;li>或者使用：/etc/init.d/caddy start | stop | restart | status&lt;/li>
-&lt;/ul></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Google on Xizi&#39;s Blog</title>
+    <link>https://567899.xyz/tags/google/</link>
+    <description>Recent content in Google on Xizi&#39;s Blog</description>
+    <image>
+      <title>Xizi&#39;s Blog</title>
+      <url>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- 0.128.0</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 21 May 2018 01:37:56 +0800</lastBuildDate>
+    <atom:link href="https://567899.xyz/tags/google/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>利用Caddy,Nginx反向代理谷歌YouTube等网站</title>
+      <link>https://567899.xyz/post/nginx-caddy-proxy-google-youtube-wikipedia/</link>
+      <pubDate>Mon, 21 May 2018 01:37:56 +0800</pubDate>
+      <guid>https://567899.xyz/post/nginx-caddy-proxy-google-youtube-wikipedia/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;https://caddyserver.com&#34;&gt;Caddy&lt;/a&gt; - The HTTP/2 Web Server with Automatic HTTPS&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;go语言一个二进制单文件就是服务端&lt;/li&gt;
+&lt;li&gt;自动申请&lt;a href=&#34;https://letsencrypt.org&#34;&gt;Let&amp;rsquo;s Encrypt&lt;/a&gt;免费的SSL/TLS证书,自动续期。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;caddy一键安装脚本&#34;&gt;Caddy一键安装脚本&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;wget -N --no-check-certificate https://raw.githubusercontent.com/ojbk8/ToyoDAdoubiBackup/master/caddy_install.sh &lt;span class=&#34;o&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; chmod +x caddy_install.sh &lt;span class=&#34;o&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; bash caddy_install.sh
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;caddy_conf_file=&amp;quot;/usr/local/caddy/Caddyfile&amp;quot;&lt;/li&gt;
+&lt;li&gt;日志文件：cat /tmp/caddy.log&lt;/li&gt;
+&lt;li&gt;使用说明：service caddy start | stop | restart | status&lt;/li&gt;
+&lt;li&gt;或者使用：/etc/init.d/caddy start | stop | restart | status&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+  </channel>
+</rss>

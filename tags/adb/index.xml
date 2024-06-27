@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>ADB on Xizi&#39;s Blog</title>
+    <link>https://567899.xyz/tags/adb/</link>
+    <description>Recent content in ADB on Xizi&#39;s Blog</description>
+    <image>
+      <title>Xizi&#39;s Blog</title>
+      <url>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- 0.128.0</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 13 Apr 2021 15:37:56 +0800</lastBuildDate>
+    <atom:link href="https://567899.xyz/tags/adb/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>安卓手机通过ADB刷入Magisk和recovery</title>
+      <link>https://567899.xyz/post/android-adb-magisk-recovery/</link>
+      <pubDate>Tue, 13 Apr 2021 15:37:56 +0800</pubDate>
+      <guid>https://567899.xyz/post/android-adb-magisk-recovery/</guid>
+      <description>从Google下载ADB档案 Windows Mac Linux
+解压后进入文件夹目录(也可设置环境变量)查看ADB版本号
+adb --version 查找已连接的安卓设备
+fastboot devices -l 安装Magisk Manager 从github下载Magisk Manager然后安装到手机即可
+修补boot.img文件 在原刷机包中找到boot.img文件，并复制到手机 打开Magisk Manager点击安装,选择并修补一个文件,然后找到boot.img文件,选中它.然后便会开始下载所需的文件,并且修补boot.img.成功后有文件路径放在Download文件夹中的提示 提取修补后的magisk_patched.img到PC电脑 刷入修补后的magisk_patched.img 进入bootloader
+adb reboot bootloader 也可在开机时，同时按住电源键+音量减，进入bootloader (不同的手机进入方式稍微有所差别)
+进入相关文件夹目录，刷入修补后的magisk_patched.img
+fastboot flash boot magisk_patched.img 然后重启
+fastboot reboot 开Magisk Manager,就能看见
+Magisk 已是最新版本 Magisk Manager 已是最新版本 recovery刷入TWRP fastboot flash recovery twrp-3.0.2-0-hammerhead.img </description>
+    </item>
+  </channel>
+</rss>

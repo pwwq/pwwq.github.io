@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Github on Xizi&#39;s Blog</title>
+    <link>https://567899.xyz/tags/github/</link>
+    <description>Recent content in Github on Xizi&#39;s Blog</description>
+    <image>
+      <title>Xizi&#39;s Blog</title>
+      <url>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- 0.128.0</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 12 Jan 2020 01:37:56 +0800</lastBuildDate>
+    <atom:link href="https://567899.xyz/tags/github/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>使用GitHub Actions云编译OpenWrt</title>
+      <link>https://567899.xyz/post/build-openwrt-with-github-actions/</link>
+      <pubDate>Sun, 12 Jan 2020 01:37:56 +0800</pubDate>
+      <guid>https://567899.xyz/post/build-openwrt-with-github-actions/</guid>
+      <description>前言 Github Ac­tions 是 GitHub 推出的持续集成 (Con­tin­u­ous in­te­gra­tion，简称 CI) 服务，它提供了配置非常不错的虚拟服务器环境（E5 2vCPU/​7G RAM），基于它可以进行构建、测试、打包、部署项目。对于公共仓库可免费无时间限制的使用（指累积时间），不过要使用它首先需要知道如何编写 workflow 文件。但这篇文章并不是教你如何枯燥的去编写 work­flow 文件，而是教你如何去使用博主已经编写好的 Open­Wrt 编译方案。
+教程更新 2020-02-01 新图文教程 2019-12-10 新增 macOS 编译方案使用说明 2019-12-06 添加 tmate 网页终端链接说明 2019-12-05 优化基础使用教程，添加 @lietxia 大佬的图文教程链接 2019-12-04 新增云menuconfig使用方法 2019-12-03 新增并发编译使用方法 2019-11-30 新增自定义源码编译使用方法 2019-11-14 全网独家首发 方案特点 免费 一键快速编译 定时自动编译 客制化编译 并发编译（可同时进行20+5个编译任务） 无需搭建编译环境（在线make menuconfig生成配置文件) 无需消耗自己的计算机与服务器的计算资源（性感E5在线编译） 无需担心磁盘空间不足（近60G磁盘空间） 无需使用清理文件（内核更新不怕 boom ） 编译速度快（编译时间1-2小时） 编译成功率提升200%（万兆自由网络环境） 全新环境（杜绝编译环境不干净导致编译失败） 本解决方案是一个开放平台，任何人都可以基于此打造自己专属的编译方案。
+项目地址 https://github.com/P3TERX/Actions-OpenWrt
+支持项目请随手点个 star，让更多的人发现、使用并受益。
+准备工作 注册 GitHub 账号 搭建编译环境，用于生成.config文件。(可选) TIPS: 关于编译环境的搭建，推荐去看我之前写的相关文章，Win­dows 10 可以使用 WSL ，ma­cOS、Linux 可以使用 Docker 。</description>
+    </item>
+    <item>
+      <title>推送发布到GitHub及错误提示</title>
+      <link>https://567899.xyz/post/git-push-error/</link>
+      <pubDate>Fri, 29 Mar 2019 01:37:56 +0800</pubDate>
+      <guid>https://567899.xyz/post/git-push-error/</guid>
+      <description>安装git
+apt-get install git -y 进入目录后初始化
+git init 排除不需要备份的文件和目录 在根目录下创建.gitignore文件，里面的文件或目录不会被上传到github. 例：
+public themes dev .git .DS_Store *.bak *_bak *.old *.log 使用 SSH 密钥登录 GitHub git config --global user.name &amp;#34;username&amp;#34; git config --global user.email &amp;#34;username168@gmail.com&amp;#34; ssh-keygen -t rsa -C &amp;#39;username@gmail.com&amp;#39; 然后使用
+cat /root/.ssh/id_rsa.pub 把里面的文本全部复制到 https://github.com/username/branchname/settings/keys Add deploy key
+ssh -T git@github.com 测试是否连接成功
+推送到github git commit -m &amp;#34;自定义描述&amp;#34; git remote add origin git@github.com:username/branchname.git git push -u origin master git push错误提示 使用git push -u origin master时弹出错误提示</description>
+    </item>
+    <item>
+      <title>利用Travis CI和Hugo將Blog自動部署到Github Pages</title>
+      <link>https://567899.xyz/post/hugo-travis-ci-deploy-github-pages-automatically/</link>
+      <pubDate>Sun, 20 Jan 2019 01:37:56 +0800</pubDate>
+      <guid>https://567899.xyz/post/hugo-travis-ci-deploy-github-pages-automatically/</guid>
+      <description>個人Blog採用靜態Blog形式託管在[Github][github]上。此前使用的是[Hexo][hexo]，因其包依賴關係複雜，部署流程繁瑣，故將整個部署環境封裝到Docker鏡像中以實現快速部署，但仍較爲繁瑣。現轉用執行速度快、操作簡便的[Hugo][hugo]。本文記錄如何在GNU/Linux中通過[Travis CI][travisci]將[Hugo][hugo]生成的Blog內容自動同步到[Github][github]，實現持續集成、部署。
+转载自 利用Travis CI和Hugo將Blog自動部署到Github Pages
+官方文檔 本文中的相關操作皆以官方文檔爲操作依據
+Github GitHub Pages Basics User, Organization, and Project Pages Creating Project Pages using the command line Configuring a publishing source for GitHub Pages Hugo Host on GitHub Travis CI [GitHub Pages Deployment][travisci-github-page] Building a Python Project Best Practices in Securing Your Data Customizing the Build GitHub Pages 限制 GitHub Pages is a static site hosting service designed to host your personal, organization, or project pages directly from a GitHub repository.</description>
+    </item>
+    <item>
+      <title>Linux下如何管理多个ssh密钥对github公钥私钥</title>
+      <link>https://567899.xyz/post/linux-github-id_rsa-pub/</link>
+      <pubDate>Fri, 29 Jul 2016 01:37:56 +0800</pubDate>
+      <guid>https://567899.xyz/post/linux-github-id_rsa-pub/</guid>
+      <description>列出已存在相应的ssh key密钥对 ls -al ~/.ssh 如果你已经有了一套名为id_rsa的公秘钥，将要生成另外一个公钥，比如new_id_rsa你也可以使用任何你喜欢的名字。
+步骤如下：
+生成一个新的自定义名称的公钥 git config --global user.name &amp;#34;username&amp;#34; git config --global user.email &amp;#34;youremail@gmail.com&amp;#34; ssh-keygen -t rsa -C &amp;#34;youremail@gmail.com&amp;#34; 修改文件名或路径
+Generating public/private rsa key pair. Enter file in which to save the key (/root/.ssh/id_rsa): /root/.ssh/new_id_rsa #这里替换成新的路径、文件名 或者直接使用以下命令生成
+ssh-keygen -t rsa -b 4096 -C &amp;#34;your_email@example.com&amp;#34; -f ~/.ssh/new_id_rsa your_email@example.com替换成你注册github所用的邮箱，执行命令后，执行完成后，会在~/.ssh/目录下生成一个new_id_rsa私钥和new_id_rsa.pub公钥文件。
+为ssh key 添加代理 ssh-add ~/.ssh/new_id_rsa 注意：如果执行ssh-add时显示错误Could not open a connection to your authentication agent.那么执行
+eval `ssh-agent -s` 后重新执行ssh-add那条命令即可。
+连接到github 查看~/.</description>
+    </item>
+    <item>
+      <title>Github同步更新Fork的项目</title>
+      <link>https://567899.xyz/post/github-fork-pull-request-update/</link>
+      <pubDate>Thu, 21 Jul 2016 01:37:56 +0800</pubDate>
+      <guid>https://567899.xyz/post/github-fork-pull-request-update/</guid>
+      <description>github上fork了别人的项目后，再同步更新别人的提交，github分支网站上操作，同步你的Fork 仓库
+Github网页同步更新Fork的项目，操作方便。不用命令行
+登陆进入自己已经fork的仓库名，切换到Code 按照截图操作即可。
+点击New pull request
+base repository选择自己的仓库分支 compare across forks head repository选择fork源头项目的仓库分支 Caeate pull request titel自定义 然后点击Create pull request
+adminrge pull request
+Confirm merge 到此完全了Github同步更新Fork的项目
+xxxx adminrge pull request #xxxx from xxxx/master
+刷新自己的github仓库，可以看到代码更新时间，已经同步成功，跟源项目仓库保持一样了</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>IP on Xizi&#39;s Blog</title>
+    <link>https://567899.xyz/tags/ip/</link>
+    <description>Recent content in IP on Xizi&#39;s Blog</description>
+    <image>
+      <title>Xizi&#39;s Blog</title>
+      <url>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- 0.128.0</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 09 Nov 2017 01:37:56 +0800</lastBuildDate>
+    <atom:link href="https://567899.xyz/tags/ip/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>IPv6的VPS连接IPv4和IPv4的VPS免费获取IPv6</title>
+      <link>https://567899.xyz/post/ipv4-ipv6-connect-access/</link>
+      <pubDate>Thu, 09 Nov 2017 01:37:56 +0800</pubDate>
+      <guid>https://567899.xyz/post/ipv4-ipv6-connect-access/</guid>
+      <description>只有IPv6的VPS连通IPV4 无ipv4纯ipv6先编辑/etc/resolv.conf改成DNS64地址
+nameserver 2001:67c:2b0::4 nameserver 2001:67c:27e4::64 然后执行
+chattr +i /etc/resolv.conf service systemd-resolved restart IPV4免费获得IPV6 只有IPV4的VPS通过Hurricane Electric Internet Services免费获得IPV6。
+Hurricane Electric Free IPv6 Tunnel Broker
+注册 登陆 按提示输入公网IPV4,选择地区区域，获得IPV6。
+选择自己VPS的系统对应版本按提示附加上去 enjoy
+Cloudflare WARP 一键安装脚本 转载自项目地址、Cloudflare WARP 一键安装脚本 使用教程
+无论 VPS 是 IPv4 还是 IPv6 又或都有，添加 WARP Wire­Guard 双栈全局网络，直接使用以下 WARP 脚本命令一把梭： # 自动配置 WARP WireGuard 双栈全局网络 bash &amp;lt;(curl -fsSL git.io/warp.sh) d 添加或更改 IPv4/​IPv6 网络中的一个出口走 WARP Wire­Guard 网络，使用以下 WARP 脚本命令一把梭： # 自动配置 WARP WireGuard IPv4 网络 bash &amp;lt;(curl -fsSL git.</description>
+    </item>
+  </channel>
+</rss>
