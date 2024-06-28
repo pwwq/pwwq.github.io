@@ -53,9 +53,9 @@ fastboot devices 列出Fastboot模式下的设备，如果未出现“XXXXXXXXXX
 fastboot flashing unlock Fastboot模式下刷入解锁指令,这时候手机会出现BL解锁的英文画面，用音量下键移动到第二行的UNLOCK THE BOOTLOADER上，再按一次开机按键，等待开机后就自动恢复出厂设置，并且解锁BL完成开机。
 如果不出意外，手机将会自动格式化后再重启，开机要加载一段时间，请耐心等待。
 进入系统界面后再次开启“开发者模式”，勾选允许USB调试即可。
-通过KernelSU获取ROOT权限 提取init_boot.img文件 下载对应机型的卡刷包，下载安装MT管理器，用MT管理器打开系统包里面 payload.bin长按 boot.img 解压复制一份出来。
+通过KernelSU获取ROOT权限 提取init_boot.img文件 下载对应机型的卡刷包，下载安装MT管理器，用MT管理器打开系统包里面 payload.bin长按 init_boot.img 解压复制一份出来。
 通过KernelSU修补 手机内核版本5.15+可以直接修补，使用LKM方式运行KernelSU，不再需要编译内核。
-通过KernelSU修补刚才提取到init_boot.img文件，成功后生成的新的文件在手机的下载目录，找到它并把它复制到上面的ADB解压目录下。
+下载安装KernelSU修补刚才提取到init_boot.img文件，成功后生成的新的文件在手机的下载目录，找到它并把它复制到上面的ADB解压目录下。
 ADB刷入修补过的init_boot.img文件 打开CMD定位到ADB目录下，然后执行
 fastboot flash init_boot init_boot.img fastboot reboot 重启手机后即可通过KernelSU的APP管理ROOT权限与安装模块应用了</description>
     </item>
