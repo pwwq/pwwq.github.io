@@ -10,7 +10,7 @@
       <link>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- 0.128.0</generator>
-    <language>en</language>
+    <language>zh</language>
     <lastBuildDate>Thu, 20 Jun 2024 09:44:56 +0800</lastBuildDate>
     <atom:link href="https://567899.xyz/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
@@ -1120,20 +1120,6 @@ scp -P 788 -i ~/.ssh/id_rsa -r /var/www/ root@server_ip:/var/www/ </description>
       <description>sudo iptables -P INPUT ACCEPT sudo iptables -P FORWARD ACCEPT sudo iptables -P OUTPUT ACCEPT sudo iptables -F iptables-save &amp;gt; /etc/iptables/rules.v4 </description>
     </item>
     <item>
-      <title>使用Aira2下载文件后自动上传到GoogleDrive网盘onedrive</title>
-      <link>https://567899.xyz/post/aira2-uploads-googledrive-onedrive/</link>
-      <pubDate>Wed, 11 Apr 2018 01:37:56 +0800</pubDate>
-      <guid>https://567899.xyz/post/aira2-uploads-googledrive-onedrive/</guid>
-      <description>更新 【2018.10.30】 这里分享下萌咖大佬的Aira2上传脚本，不过是精简版，全能版暂不分享，精简版包含以下功能： 1、脚本适用于Rclone挂载的网盘，比如Onedrive/Google Drive等。 2、判断上传文件的文件大小区间。 限制最低上传大小：可防止产生的.aria2后缀文件一起上传到网盘。 限制最高文件大小：适用于Onedrive等，官方限制上传不能超过15G，其它可自行更改其数值。 3、支持文件名中包含空格等特殊字符。 脚本说明: Aria2 一键安装管理脚本 系统支持: CentOS6+ / Debian6+ / Ubuntu14+
-wget -N --no-check-certificate https://raw.githubusercontent.com/ojbk8/doubi/master/aria2.sh &amp;amp;&amp;amp; chmod +x aria2.sh &amp;amp;&amp;amp; bash aria2.sh Aria2下载为什么会多出一个.aria2后缀的文件？
-找到force-save参数，进行设置
-force-save=true 会保存文件下载历史,但会在下载目录产生同名.aria2文件
-force-save=false不产生同名.aria2文件,同时也不能能保存下载历史
-使用方法 原理是当下载完后aria2会给脚本传3个参数$1、$2、$3分别为gid、文件数量、文件路径。我们对文件路径这个字符串处理一番就可以达到目的了。
-新建脚本文件rcloneupload.sh并复制下面代码：
-#!/bin/bash downloadpath=&amp;#39;/root/Download&amp;#39; #需要上传的目录，Aria2下载目录 name=&amp;#39;rclonename&amp;#39; #配置Rclone时填写的name folder=&amp;#39;/rclone&amp;#39; #网盘里的文件夹，留空为整个网盘。 MinSize=&amp;#39;0.01k&amp;#39; #限制最低上传大小，默认10k，BT下载时可防止上传其他无用文件。会删除文件，谨慎设置。 MaxSize=&amp;#39;15G&amp;#39; #限制最高文件大小，默认15G，OneDrive上传限制。 filepath=$3 #Aria2传递给脚本的原始路径，如果是单文件则为/root/Download/1.mp4，如果是文件夹则该值为文件夹内第一个文件比如/root/Download/a/b/1.mp4 rdp=${filepath#${downloadpath}/} #路径转换，去掉开头的下载路径。 path=${downloadpath}/${rdp%%/*} #文件或文件夹路径。如果是单个文件，应与原始路径一致。 if [ $2 -eq 0 ] then exit 0 fi while true; do if [ &amp;#34;$path&amp;#34; = &amp;#34;$filepath&amp;#34; ] &amp;amp;&amp;amp; [ $2 -eq 1 ] #如果下载的是单个文件 then rclone move -v &amp;#34;$filepath&amp;#34; ${name}:${folder} --min-size $MinSize --max-size $MaxSize rm -vf &amp;#34;$filepath&amp;#34;.</description>
-    </item>
-    <item>
       <title>免费申请开通支付宝当面付基础版费率0.38%对接ZFAKA教程</title>
       <link>https://567899.xyz/post/alipay-dangmianfu-zfaka/</link>
       <pubDate>Wed, 11 Apr 2018 01:37:56 +0800</pubDate>
@@ -1157,6 +1143,20 @@ MAC OSX：下载
 在支付宝【加签方式】【查看支付宝公钥】并把它复制到ZFAKA【后台管理】【设置中心】【支付设置】【支付宝当面付】【编辑】【ali_public_key】中
 把支付宝【APPID】复制到【ZFAKA】中
 把RSA 签名验签工具生成的商户应用私钥复制到【ZFAKA】应用密匙【rsa_private_key】中</description>
+    </item>
+    <item>
+      <title>使用Aira2下载文件后自动上传到GoogleDrive网盘onedrive</title>
+      <link>https://567899.xyz/post/aira2-uploads-googledrive-onedrive/</link>
+      <pubDate>Wed, 11 Apr 2018 01:37:56 +0800</pubDate>
+      <guid>https://567899.xyz/post/aira2-uploads-googledrive-onedrive/</guid>
+      <description>更新 【2018.10.30】 这里分享下萌咖大佬的Aira2上传脚本，不过是精简版，全能版暂不分享，精简版包含以下功能： 1、脚本适用于Rclone挂载的网盘，比如Onedrive/Google Drive等。 2、判断上传文件的文件大小区间。 限制最低上传大小：可防止产生的.aria2后缀文件一起上传到网盘。 限制最高文件大小：适用于Onedrive等，官方限制上传不能超过15G，其它可自行更改其数值。 3、支持文件名中包含空格等特殊字符。 脚本说明: Aria2 一键安装管理脚本 系统支持: CentOS6+ / Debian6+ / Ubuntu14+
+wget -N --no-check-certificate https://raw.githubusercontent.com/ojbk8/doubi/master/aria2.sh &amp;amp;&amp;amp; chmod +x aria2.sh &amp;amp;&amp;amp; bash aria2.sh Aria2下载为什么会多出一个.aria2后缀的文件？
+找到force-save参数，进行设置
+force-save=true 会保存文件下载历史,但会在下载目录产生同名.aria2文件
+force-save=false不产生同名.aria2文件,同时也不能能保存下载历史
+使用方法 原理是当下载完后aria2会给脚本传3个参数$1、$2、$3分别为gid、文件数量、文件路径。我们对文件路径这个字符串处理一番就可以达到目的了。
+新建脚本文件rcloneupload.sh并复制下面代码：
+#!/bin/bash downloadpath=&amp;#39;/root/Download&amp;#39; #需要上传的目录，Aria2下载目录 name=&amp;#39;rclonename&amp;#39; #配置Rclone时填写的name folder=&amp;#39;/rclone&amp;#39; #网盘里的文件夹，留空为整个网盘。 MinSize=&amp;#39;0.01k&amp;#39; #限制最低上传大小，默认10k，BT下载时可防止上传其他无用文件。会删除文件，谨慎设置。 MaxSize=&amp;#39;15G&amp;#39; #限制最高文件大小，默认15G，OneDrive上传限制。 filepath=$3 #Aria2传递给脚本的原始路径，如果是单文件则为/root/Download/1.mp4，如果是文件夹则该值为文件夹内第一个文件比如/root/Download/a/b/1.mp4 rdp=${filepath#${downloadpath}/} #路径转换，去掉开头的下载路径。 path=${downloadpath}/${rdp%%/*} #文件或文件夹路径。如果是单个文件，应与原始路径一致。 if [ $2 -eq 0 ] then exit 0 fi while true; do if [ &amp;#34;$path&amp;#34; = &amp;#34;$filepath&amp;#34; ] &amp;amp;&amp;amp; [ $2 -eq 1 ] #如果下载的是单个文件 then rclone move -v &amp;#34;$filepath&amp;#34; ${name}:${folder} --min-size $MinSize --max-size $MaxSize rm -vf &amp;#34;$filepath&amp;#34;.</description>
     </item>
     <item>
       <title>hexo同步布署在github-coding并实现国内外自动分流</title>
