@@ -3,7 +3,7 @@
 <a href=/tags/v2ray/index.xml title=RSS aria-label=RSS><svg viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" height="23"><path d="M4 11a9 9 0 019 9"/><path d="M4 4a16 16 0 0116 16"/><circle cx="5" cy="19" r="1"/></svg></a></h1></header><article class="post-entry tag-entry"><header class=entry-header><h2 class=entry-hint-parent>Hysteria2的安装、配置、使用</h2></header><div class=entry-content><p>Hysteria2是一个基于UDP协议的代理。
 https://github.com/apernet/hysteria https://v2.hysteria.network/zh/ 安装 bash &lt;(curl -fsSL https://get.hy2.sh/) 卸载
 bash &lt;(curl -fsSL https://get.hy2.sh/) --remove 默认的配置文件/etc/hysteria/config.yaml内容如下
-# listen: 443 acme: domains: - your.domain.net email: your@email.com auth: type: password password: /dKigjv9qEJrQbJvm3RMtIGg masquerade: type: proxy proxy: url: https://news.ycombinator.com/ rewriteHost: true 在线生成密码
+# listen: :443 acme: domains: - your.domain.net email: your@email.com auth: type: password password: /dKigjv9qEJrQbJvm3RMtIGg masquerade: type: proxy proxy: url: https://news.ycombinator.com/ rewriteHost: true 在线生成密码
 配置Hysteria2 分二种情况，拥有域名、没有域名
 拥有域名 拥有域名的话，只需要提前把域名解析到服务器的IP地址上，替换your.domain.net为自己的域名。域名SSL证书通过acme全自动申请。
 sed -i 's/your.domain.net/自己的域名/' /etc/hysteria/config.yaml 自己的域名改为实际域名。

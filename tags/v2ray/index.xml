@@ -21,7 +21,7 @@
       <description>Hysteria2是一个基于UDP协议的代理。
 https://github.com/apernet/hysteria https://v2.hysteria.network/zh/ 安装 bash &amp;lt;(curl -fsSL https://get.hy2.sh/) 卸载
 bash &amp;lt;(curl -fsSL https://get.hy2.sh/) --remove 默认的配置文件/etc/hysteria/config.yaml内容如下
-# listen: 443 acme: domains: - your.domain.net email: your@email.com auth: type: password password: /dKigjv9qEJrQbJvm3RMtIGg masquerade: type: proxy proxy: url: https://news.ycombinator.com/ rewriteHost: true 在线生成密码
+# listen: :443 acme: domains: - your.domain.net email: your@email.com auth: type: password password: /dKigjv9qEJrQbJvm3RMtIGg masquerade: type: proxy proxy: url: https://news.ycombinator.com/ rewriteHost: true 在线生成密码
 配置Hysteria2 分二种情况，拥有域名、没有域名
 拥有域名 拥有域名的话，只需要提前把域名解析到服务器的IP地址上，替换your.domain.net为自己的域名。域名SSL证书通过acme全自动申请。
 sed -i &amp;#39;s/your.domain.net/自己的域名/&amp;#39; /etc/hysteria/config.yaml 自己的域名改为实际域名。
