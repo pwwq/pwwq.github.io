@@ -18,7 +18,7 @@
       <link>https://567899.xyz/post/hysteria/</link>
       <pubDate>Tue, 12 Mar 2024 14:27:56 +0800</pubDate>
       <guid>https://567899.xyz/post/hysteria/</guid>
-      <description>Hysteria2是一个基于UDP协议的代理。
+      <description>Hysteria2是一个基于HTTP3的UDP协议代理。
 https://github.com/apernet/hysteria https://v2.hysteria.network/zh/ 安装 bash &amp;lt;(curl -fsSL https://get.hy2.sh/) 卸载
 bash &amp;lt;(curl -fsSL https://get.hy2.sh/) --remove 默认的配置文件/etc/hysteria/config.yaml内容如下
 # listen: :443 acme: domains: - your.domain.net email: your@email.com auth: type: password password: /dKigjv9qEJrQbJvm3RMtIGg masquerade: type: proxy proxy: url: https://news.ycombinator.com/ rewriteHost: true 在线生成密码
