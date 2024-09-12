@@ -1,0 +1,463 @@
+<!doctype html><html lang=zh dir=auto><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>使用Rclone挂载世纪互联OneDrive | Xizi's Blog</title>
+<meta name=keywords content="API,rclone,OneDrive"><meta name=description content='世纪互联空全局订阅获取Azure+自建独享API
+适用于可以使用API,但本身子账号不能创建API的。可以撸个空全局，利用空全局账号创建API来供不能创建API的子号使用。
+
+
+打开比较面向中小企业的中国版本计划和价格 随便选个套餐立即购买然后按提示注册新账号，左上角点进去,进入管理,把付款取消掉。
+API权限我们需要空全局管理员点击  代表XXXX授予管理员同意
+WINDOWS平台rclone获取token时需要在后面加上--onedrive-is-21vianet-version=true示范如下
+rclone authorize "onedrive" "client_ID" "client_secret" --onedrive-is-21vianet-version=true
+世纪互联 OneDrive 获取 CLIENT_ID 及 CLIENT_SECRET
+打开 https://portal.azure.cn/ 登陆并按以下步骤：
+
+左侧找到 Azure Active Directory 点击
+左侧找到 应用注册
+上方找到 新注册 点击
+名称：onedrive
+受支持的账户类型：	任何组织目录(任何 Azure AD 目录 - 多租户)中的帐户（第二个）
+重定向 URL：http://localhost:53682
+点击注册 找到 应用程序(客户端) ID  复制client_ID保存
+左侧找到 证书和密码 点击
+下方 客户端密码 - 新客户端密码
+说明：onedrive
+截止期限：默认 1年内
+点击 添加，值 客户端密码  复制client_secret保存
+左侧找到 API 权限 点击
+添加权限  - Microsoft Graph - 委托的权限 - Files (7)全部勾选
+选择应用程序权限 在下方Files里选择 Files.Read.All和Files.ReadWrite.All
+
+回到界面会发现该权限处于未授权状态，我们需要全局管理员点击  代表XXXX授予管理员同意'><meta name=author content="admin"><link rel=canonical href=https://567899.xyz/post/rclone-onedrive-cn/><meta name=google-site-verification content="XYZabc"><meta name=yandex-verification content="XYZabc"><meta name=msvalidate.01 content="XYZabc"><link crossorigin=anonymous href=/assets/css/stylesheet.e47a4660efa4fbc78073593cfd9c5a39a49f0ad0d1d33adf13d7f5183b23c238.css integrity="sha256-5HpGYO+k+8eAc1k8/ZxaOaSfCtDR0zrfE9f1GDsjwjg=" rel="preload stylesheet" as=style><link rel=icon href=https://567899.xyz/%3Clink%20/%20abs%20url%3E><link rel=icon type=image/png sizes=16x16 href=https://567899.xyz/%3Clink%20/%20abs%20url%3E><link rel=icon type=image/png sizes=32x32 href=https://567899.xyz/%3Clink%20/%20abs%20url%3E><link rel=apple-touch-icon href=https://567899.xyz/%3Clink%20/%20abs%20url%3E><link rel=mask-icon href=https://567899.xyz/%3Clink%20/%20abs%20url%3E><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=zh href=https://567899.xyz/post/rclone-onedrive-cn/><noscript><style>#theme-toggle,.top-link{display:none}</style><style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--code-block-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51)}.list{background:var(--theme)}.list:not(.dark)::-webkit-scrollbar-track{background:0 0}.list:not(.dark)::-webkit-scrollbar-thumb{border-color:var(--theme)}}</style></noscript><meta property="og:title" content="使用Rclone挂载世纪互联OneDrive"><meta property="og:description" content='世纪互联空全局订阅获取Azure+自建独享API
+适用于可以使用API,但本身子账号不能创建API的。可以撸个空全局，利用空全局账号创建API来供不能创建API的子号使用。
+
+
+打开比较面向中小企业的中国版本计划和价格 随便选个套餐立即购买然后按提示注册新账号，左上角点进去,进入管理,把付款取消掉。
+API权限我们需要空全局管理员点击  代表XXXX授予管理员同意
+WINDOWS平台rclone获取token时需要在后面加上--onedrive-is-21vianet-version=true示范如下
+rclone authorize "onedrive" "client_ID" "client_secret" --onedrive-is-21vianet-version=true
+世纪互联 OneDrive 获取 CLIENT_ID 及 CLIENT_SECRET
+打开 https://portal.azure.cn/ 登陆并按以下步骤：
+
+左侧找到 Azure Active Directory 点击
+左侧找到 应用注册
+上方找到 新注册 点击
+名称：onedrive
+受支持的账户类型：	任何组织目录(任何 Azure AD 目录 - 多租户)中的帐户（第二个）
+重定向 URL：http://localhost:53682
+点击注册 找到 应用程序(客户端) ID  复制client_ID保存
+左侧找到 证书和密码 点击
+下方 客户端密码 - 新客户端密码
+说明：onedrive
+截止期限：默认 1年内
+点击 添加，值 客户端密码  复制client_secret保存
+左侧找到 API 权限 点击
+添加权限  - Microsoft Graph - 委托的权限 - Files (7)全部勾选
+选择应用程序权限 在下方Files里选择 Files.Read.All和Files.ReadWrite.All
+
+回到界面会发现该权限处于未授权状态，我们需要全局管理员点击  代表XXXX授予管理员同意'><meta property="og:type" content="article"><meta property="og:url" content="https://567899.xyz/post/rclone-onedrive-cn/"><meta property="og:image" content="https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E"><meta property="article:section" content="post"><meta property="article:published_time" content="2020-02-01T01:37:56+08:00"><meta property="article:modified_time" content="2020-02-01T01:37:56+08:00"><meta property="og:site_name" content="Xizi's Blog"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E"><meta name=twitter:title content="使用Rclone挂载世纪互联OneDrive"><meta name=twitter:description content='世纪互联空全局订阅获取Azure+自建独享API
+适用于可以使用API,但本身子账号不能创建API的。可以撸个空全局，利用空全局账号创建API来供不能创建API的子号使用。
+
+
+打开比较面向中小企业的中国版本计划和价格 随便选个套餐立即购买然后按提示注册新账号，左上角点进去,进入管理,把付款取消掉。
+API权限我们需要空全局管理员点击  代表XXXX授予管理员同意
+WINDOWS平台rclone获取token时需要在后面加上--onedrive-is-21vianet-version=true示范如下
+rclone authorize "onedrive" "client_ID" "client_secret" --onedrive-is-21vianet-version=true
+世纪互联 OneDrive 获取 CLIENT_ID 及 CLIENT_SECRET
+打开 https://portal.azure.cn/ 登陆并按以下步骤：
+
+左侧找到 Azure Active Directory 点击
+左侧找到 应用注册
+上方找到 新注册 点击
+名称：onedrive
+受支持的账户类型：	任何组织目录(任何 Azure AD 目录 - 多租户)中的帐户（第二个）
+重定向 URL：http://localhost:53682
+点击注册 找到 应用程序(客户端) ID  复制client_ID保存
+左侧找到 证书和密码 点击
+下方 客户端密码 - 新客户端密码
+说明：onedrive
+截止期限：默认 1年内
+点击 添加，值 客户端密码  复制client_secret保存
+左侧找到 API 权限 点击
+添加权限  - Microsoft Graph - 委托的权限 - Files (7)全部勾选
+选择应用程序权限 在下方Files里选择 Files.Read.All和Files.ReadWrite.All
+
+回到界面会发现该权限处于未授权状态，我们需要全局管理员点击  代表XXXX授予管理员同意'><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Posts","item":"https://567899.xyz/post/"},{"@type":"ListItem","position":2,"name":"使用Rclone挂载世纪互联OneDrive","item":"https://567899.xyz/post/rclone-onedrive-cn/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"使用Rclone挂载世纪互联OneDrive","name":"使用Rclone挂载世纪互联OneDrive","description":"世纪互联空全局订阅获取Azure+自建独享API 适用于可以使用API,但本身子账号不能创建API的。可以撸个空全局，利用空全局账号创建API来供不能创建API的子号使用。\n打开比较面向中小企业的中国版本计划和价格 随便选个套餐立即购买然后按提示注册新账号，左上角点进去,进入管理,把付款取消掉。\nAPI权限我们需要空全局管理员点击 代表XXXX授予管理员同意\nWINDOWS平台rclone获取token时需要在后面加上--onedrive-is-21vianet-version=true示范如下\nrclone authorize \u0026#34;onedrive\u0026#34; \u0026#34;client_ID\u0026#34; \u0026#34;client_secret\u0026#34; --onedrive-is-21vianet-version=true 世纪互联 OneDrive 获取 CLIENT_ID 及 CLIENT_SECRET 打开 https://portal.azure.cn/ 登陆并按以下步骤：\n左侧找到 Azure Active Directory 点击 左侧找到 应用注册 上方找到 新注册 点击 名称：onedrive 受支持的账户类型：\t任何组织目录(任何 Azure AD 目录 - 多租户)中的帐户（第二个） 重定向 URL：http://localhost:53682 点击注册 找到 应用程序(客户端) ID 复制client_ID保存 左侧找到 证书和密码 点击 下方 客户端密码 - 新客户端密码 说明：onedrive 截止期限：默认 1年内 点击 添加，值 客户端密码 复制client_secret保存 左侧找到 API 权限 点击 添加权限 - Microsoft Graph - 委托的权限 - Files (7)全部勾选 选择应用程序权限 在下方Files里选择 Files.Read.All和Files.ReadWrite.All 回到界面会发现该权限处于未授权状态，我们需要全局管理员点击 代表XXXX授予管理员同意\n","keywords":["API","rclone","OneDrive"],"articleBody":"世纪互联空全局订阅获取Azure+自建独享API 适用于可以使用API,但本身子账号不能创建API的。可以撸个空全局，利用空全局账号创建API来供不能创建API的子号使用。\n打开比较面向中小企业的中国版本计划和价格 随便选个套餐立即购买然后按提示注册新账号，左上角点进去,进入管理,把付款取消掉。\nAPI权限我们需要空全局管理员点击 代表XXXX授予管理员同意\nWINDOWS平台rclone获取token时需要在后面加上--onedrive-is-21vianet-version=true示范如下\nrclone authorize \"onedrive\" \"client_ID\" \"client_secret\" --onedrive-is-21vianet-version=true 世纪互联 OneDrive 获取 CLIENT_ID 及 CLIENT_SECRET 打开 https://portal.azure.cn/ 登陆并按以下步骤：\n左侧找到 Azure Active Directory 点击 左侧找到 应用注册 上方找到 新注册 点击 名称：onedrive 受支持的账户类型：\t任何组织目录(任何 Azure AD 目录 - 多租户)中的帐户（第二个） 重定向 URL：http://localhost:53682 点击注册 找到 应用程序(客户端) ID 复制client_ID保存 左侧找到 证书和密码 点击 下方 客户端密码 - 新客户端密码 说明：onedrive 截止期限：默认 1年内 点击 添加，值 客户端密码 复制client_secret保存 左侧找到 API 权限 点击 添加权限 - Microsoft Graph - 委托的权限 - Files (7)全部勾选 选择应用程序权限 在下方Files里选择 Files.Read.All和Files.ReadWrite.All 回到界面会发现该权限处于未授权状态，我们需要全局管理员点击 代表XXXX授予管理员同意\nFiles.Read Files.Read.All Files.Read.Selected Files.ReadWrite Files.ReadWrite.All Files.ReadWrite.AppFolder Files.ReadWrite.Selected 安装配置 Rclone Rclone 世纪互联版地址：兼容世纪互联的 Rclone\n预编译兼容世纪互联的 Rclone v1.50.2\nLinux 32位 | Linux 64位 | Windows 32位 | Windows 64位\n下载解压上传到 /usr/bin 目录，然后\nchmod +x /usr/bin/rclone rclone config 完整配置过程如下\nMicrosoft Windows [版本 10.0.17763.316] (c) 2018 Microsoft Corporation。保留所有权利。 C:\\Users\\user\u003ecd C:\\Users\\user\\Desktop\\rclone-v1.50.2-windows-amd64-21vianet C:\\Users\\user\\Desktop\\rclone-v1.50.2-windows-amd64-21vianet\u003erclone config 2020/02/01 13:46:21 NOTICE: Config file \"C:\\\\Users\\\\user\\\\.config\\\\rclone\\\\rclone.conf\" not found - using defaults No remotes found - make a new one n) New remote s) Set configuration password q) Quit config n/s/q\u003e n name\u003e onedrive_cn Type of storage to configure. Enter a string value. Press Enter for the default (\"\"). Choose a number from below, or type in your own value 1 / 1Fichier \\ \"fichier\" 2 / Alias for an existing remote \\ \"alias\" 3 / Amazon Drive \\ \"amazon cloud drive\" 4 / Amazon S3 Compliant Storage Provider (AWS, Alibaba, Ceph, Digital Ocean, Dreamhost, IBM COS, Minio, etc) \\ \"s3\" 5 / Backblaze B2 \\ \"b2\" 6 / Box \\ \"box\" 7 / Cache a remote \\ \"cache\" 8 / Citrix Sharefile \\ \"sharefile\" 9 / Dropbox \\ \"dropbox\" 10 / Encrypt/Decrypt a remote \\ \"crypt\" 11 / FTP Connection \\ \"ftp\" 12 / Google Cloud Storage (this is not Google Drive) \\ \"google cloud storage\" 13 / Google Drive \\ \"drive\" 14 / Google Photos \\ \"google photos\" 15 / Hubic \\ \"hubic\" 16 / JottaCloud \\ \"jottacloud\" 17 / Koofr \\ \"koofr\" 18 / Local Disk \\ \"local\" 19 / Mail.ru Cloud \\ \"mailru\" 20 / adminga \\ \"mega\" 21 / Microsoft Azure Blob Storage \\ \"azureblob\" 22 / Microsoft OneDrive \\ \"onedrive\" 23 / OpenDrive \\ \"opendrive\" 24 / Openstack Swift (Rackspace Cloud Files, adminmset Memstore, OVH) \\ \"swift\" 25 / Pcloud \\ \"pcloud\" 26 / Put.io \\ \"putio\" 27 / QingCloud Object Storage \\ \"qingstor\" 28 / SSH/SFTP Connection \\ \"sftp\" 29 / Transparently chunk/split large files \\ \"chunker\" 30 / Union merges the contents of several remotes \\ \"union\" 31 / Webdav \\ \"webdav\" 32 / Yandex Disk \\ \"yandex\" 33 / http Connection \\ \"http\" 34 / premiumize.me \\ \"premiumizeme\" Storage\u003e 22 ** See help for onedrive backend at: https://rclone.org/onedrive/ ** Microsoft App Client Id Leave blank normally. Enter a string value. Press Enter for the default (\"\"). client_id\u003e 6b57cb03-3791-4823-9ce9-5dd027e***** Microsoft App Client Secret Leave blank normally. Enter a string value. Press Enter for the default (\"\"). client_secret\u003e l05:IBoAAVh4]Y]4M_?9lgw-L8****** OneDrive operated by 21Vianet (世纪互联). Enter a boolean value (true or false). Press Enter for the default (\"false\"). is_21vianet_version\u003e true Edit advanced config? (y/n) y) Yes n) No y/n\u003e y Chunk size to upload files with - must be multiple of 320k (327,680 bytes). Above this size files will be chunked - must be multiple of 320k (327,680 bytes). Note that the chunks will be buffered into memory. Enter a size with suffix k,M,G,T. Press Enter for the default (\"10M\"). chunk_size\u003e 10M The ID of the drive to use Enter a string value. Press Enter for the default (\"\"). drive_id\u003e The type of the drive ( personal | business | documentLibrary ) Enter a string value. Press Enter for the default (\"\"). drive_type\u003e business Set to make OneNote files show up in directory listings. By default rclone will hide OneNote files in directory listings because operations like \"Open\" and \"Update\" won't work on them. But this behaviour may also prevent you from deleting them. If you want to delete OneNote files or otherwise want them to show up in directory listing, set this option. Enter a boolean value (true or false). Press Enter for the default (\"false\"). expose_onenote_files\u003e Remote config Make sure your Redirect URL is set to \"http://localhost:53682/\" in your custom config. Use auto config? * Say Y if not sure * Say N if you are working on a remote or headless machine y) Yes n) No y/n\u003e Y If your browser doesn't open automatically go to the following link: http://127.0.0.1:53682/auth?state=3-n1fmI2XA7QsjnhQAjoQw Log in and authorize rclone for access Waiting for code... Got code Choose a number from below, or type in an existing value 1 / OneDrive Personal or Business \\ \"onedrive\" 2 / Root Sharepoint site \\ \"sharepoint\" 3 / Type in driveID \\ \"driveid\" 4 / Type in SiteID \\ \"siteid\" 5 / Search a Sharepoint site \\ \"search\" Your choice\u003e 1 Found 1 drives, please select the one you want to use: 0: OneDrive (business) id=b!Yb3jWYP2_EOgiOjYxlsv4iz1Y8ZSfhlEm48kp98Ew0Dzv4TUrSwSSK1sL5j***** Chose drive to use:\u003e 0 Found drive 'root' of type 'business', URL: https://*****-my.sharepoint.cn/personal/***_****_partner_onmschina_cn/Documents Is that okay? y) Yes n) No y/n\u003e y -------------------- [onedrive_cn] type = onedrive client_id = 6b57cb03-3791-4823-9ce9-5dd027e***** client_secret = l05:IBoAAVh4]Y]4M_?9lgw-L8****** is_21vianet_version = true chunk_size = 10M drive_type = business token = {\"access_token\":\"eyJ0eXAiOiJKV1Q********BtBs2OM8B1Euv7SAA\",\"expiry\":\"2020-02-01T14:50:32.8151941+08:00\"} drive_id = b!Yb3jWYP2_EOgiOjYxlsv4iz1Y8****************UrSwSSK1sL5jmrG0I -------------------- y) Yes this is OK e) Edit this remote d) Delete this remote y/e/d\u003e y Current remotes: Name Type ==== ==== onedrive_cn onedrive e) Edit existing remote n) New remote d) Delete remote r) Rename remote c) Copy remote s) Set configuration password q) Quit config e/n/d/r/c/s/q\u003e q 配置文件C:\\Users\\user\\.config\\rclone\\rclone.conf格式如下\n[onedrive_cn] type = onedrive client_id = 6b57cb03-3791-4823-9ce9-5dd027e***** client_secret = l05:IBoAAVh4]Y]4M_?9lgw-L8****** is_21vianet_version = true chunk_size = 10M drive_type = business token = {\"access_token\":\"eyJ0eXAiOiJKV1Q********BtBs2OM8B1Euv7SAA\",\"expiry\":\"2020-02-01T14:50:32.8151941+08:00\"} drive_id = b!Yb3jWYP2_EOgiOjYxlsv4iz1Y8****************UrSwSSK1sL5jmrG0I 挂载 apt -y update \u0026\u0026 apt install fuse 挂载命令：\nrclone mount onedrive:/ /mnt/ --copy-links --no-gzip-encoding --no-check-certificate --allow-other --allow-non-empty --umask 000 后台挂载命令：\nnohup rclone mount onedrive:/ /mnt --copy-links --no-gzip-encoding --no-check-certificate --allow-other --allow-non-empty --umask 000 \u003e/dev/null 2\u003e\u00261 \u0026 卸载命令：\nfusermount -qzu LocalFolder onedrive Rclone 开机启动（脚本来自：Rat’s Blog，二次修改支持多网盘挂载）\nnano /etc/init.d/rcloned 文本内容如下\n#!/bin/bash PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:~/bin export PATH NAME_BIN=\"rclone\" ### BEGIN INIT INFO # Provides: rclone # Required-Start: $all # Required-Stop: $all # Default-Start: 2 3 4 5 # Default-Stop: 0 1 6 # Short-Description: Start rclone at boot time # Description: Enable rclone by daemon. ### END INIT INFO NAME=\"\" #rclone name名 REMOTE='' #远程文件夹 LOCAL='' #挂在地址 NAME_1=\"\" REMOTE_1='' LOCAL_1='' Green_font_prefix=\"\\033[32m\" \u0026\u0026 Red_font_prefix=\"\\033[31m\" \u0026\u0026 Green_background_prefix=\"\\033[42;37m\" \u0026\u0026 Red_background_prefix=\"\\033[41;37m\" \u0026\u0026 Font_color_suffix=\"\\033[0m\" Info=\"${Green_font_prefix}[信息]${Font_color_suffix}\" Error=\"${Red_font_prefix}[错误]${Font_color_suffix}\" RETVAL=0 check_running(){ PID=\"$(ps -C $NAME_BIN -o pid= |head -n1 |grep -o '[0-9]\\{1,\\}')\" if [[ ! -z ${PID} ]]; then return 0 else return 1 fi } do_start(){ check_running if [[ $? -eq 0 ]]; then echo -e \"${Info} $NAME_BIN (PID ${PID}) 正在运行...\" \u0026\u0026 exit 0 else fusermount -zuq $LOCAL \u003e/dev/null 2\u003e\u00261 mkdir -p $LOCAL /usr/bin/rclone mount $NAME:$REMOTE $LOCAL --copy-links --no-gzip-encoding --no-check-certificate --allow-other --allow-non-empty --umask 000 \u003e/dev/null 2\u003e\u00261 \u0026 sleep 2s fusermount -zuq $LOCAL_1 \u003e/dev/null 2\u003e\u00261 mkdir -p $LOCAL_1 /usr/bin/rclone mount $NAME_1:$REMOTE_1 $LOCAL_1 --copy-links --no-gzip-encoding --no-check-certificate --allow-other --allow-non-empty --umask 000 \u003e/dev/null 2\u003e\u00261 \u0026 check_running if [[ $? -eq 0 ]]; then echo -e \"${Info} $NAME_BIN 启动成功 !\" else echo -e \"${Error} $NAME_BIN 启动失败 !\" fi fi } do_stop(){ check_running if [[ $? -eq 0 ]]; then kill -9 ${PID} RETVAL=$? if [[ $RETVAL -eq 0 ]]; then echo -e \"${Info} $NAME_BIN 停止成功 !\" else echo -e \"${Error} $NAME_BIN 停止失败 !\" fi else echo -e \"${Info} $NAME_BIN 未运行\" RETVAL=1 fi fusermount -zuq $LOCAL \u003e/dev/null 2\u003e\u00261 fusermount -zuq $LOCAL1 \u003e/dev/null 2\u003e\u00261 } do_status(){ check_running if [[ $? -eq 0 ]]; then echo -e \"${Info} $NAME_BIN (PID $(echo ${PID})) 正在运行...\" else echo -e \"${Info} $NAME_BIN 未运行 !\" RETVAL=1 fi } do_restart(){ do_stop do_start } case \"$1\" in start|stop|restart|status) do_$1 ;; *) echo \"使用方法: $0 { start | stop | restart | status }\" RETVAL=1 ;; esac exit $RETVAL 操作命令\nchmod +x /etc/init.d/rcloned /etc/init.d/rcloned start /etc/init.d/rcloned stop ","wordCount":"1271","inLanguage":"zh","image":"https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E","datePublished":"2020-02-01T01:37:56+08:00","dateModified":"2020-02-01T01:37:56+08:00","author":{"@type":"Person","name":"admin"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://567899.xyz/post/rclone-onedrive-cn/"},"publisher":{"@type":"Organization","name":"Xizi's Blog","logo":{"@type":"ImageObject","url":"https://567899.xyz/%3Clink%20/%20abs%20url%3E"}}}</script></head><body id=top><script>localStorage.getItem("pref-theme")==="dark"?document.body.classList.add("dark"):localStorage.getItem("pref-theme")==="light"?document.body.classList.remove("dark"):window.matchMedia("(prefers-color-scheme: dark)").matches&&document.body.classList.add("dark")</script><header class=header><nav class=nav><div class=logo><a href=https://567899.xyz/ accesskey=h title="Xizi's Blog (Alt + H)"><img src=https://567899.xyz/apple-touch-icon.png alt aria-label=logo height=35>Xizi's Blog</a><div class=logo-switches><button id=theme-toggle accesskey=t title="(Alt + T)"><svg id="moon" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu><li><a href=https://567899.xyz/archives/ title=归档><span>归档</span></a></li><li><a href=https://567899.xyz/tags/ title=标签><span>标签</span></a></li><li><a href=https://567899.xyz/about/ title=关于><span>关于</span></a></li><li><a href=https://567899.xyz/search/ title="搜索 (Alt + /)" accesskey=/><span>搜索</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><div class=breadcrumbs><a href=https://567899.xyz/>主页</a>&nbsp;»&nbsp;<a href=https://567899.xyz/post/>Posts</a></div><h1 class="post-title entry-hint-parent">使用Rclone挂载世纪互联OneDrive</h1><div class=post-meta><span title='2020-02-01 01:37:56 +0800 +0800'>二月 1, 2020</span>&nbsp;·&nbsp;admin&nbsp;|&nbsp;<a href=https://github.com/pwwq/hugo-code/tree/master/content/post/rclone-onedrive-cn.md rel="noopener noreferrer" target=_blank>编辑</a></div></header><div class=toc><details open><summary accesskey=c title="(Alt + C)"><div class=details>使用Rclone挂载世纪互联OneDrive</div></summary><div class=inner><ul><li><a href=#%e4%b8%96%e7%ba%aa%e4%ba%92%e8%81%94%e7%a9%ba%e5%85%a8%e5%b1%80%e8%ae%a2%e9%98%85%e8%8e%b7%e5%8f%96azure%e8%87%aa%e5%bb%ba%e7%8b%ac%e4%ba%abapi aria-label=世纪互联空全局订阅获取Azure+自建独享API>世纪互联空全局订阅获取Azure+自建独享API</a></li><li><a href=#%e4%b8%96%e7%ba%aa%e4%ba%92%e8%81%94-onedrive-%e8%8e%b7%e5%8f%96-client_id-%e5%8f%8a-client_secret aria-label="世纪互联 OneDrive 获取 CLIENT_ID 及 CLIENT_SECRET">世纪互联 OneDrive 获取 CLIENT_ID 及 CLIENT_SECRET</a></li><li><a href=#%e5%ae%89%e8%a3%85%e9%85%8d%e7%bd%ae-rclone aria-label="安装配置 Rclone">安装配置 Rclone</a></li><li><a href=#%e6%8c%82%e8%bd%bd aria-label=挂载>挂载</a></li></ul></div></details></div><div class=post-content><h2 id=世纪互联空全局订阅获取azure自建独享api>世纪互联空全局订阅获取Azure+自建独享API<a hidden class=anchor aria-hidden=true href=#世纪互联空全局订阅获取azure自建独享api>#</a></h2><p>适用于可以使用API,但本身子账号不能创建API的。可以撸个空全局，利用空全局账号创建API来供不能创建API的子号使用。</p><p><img loading=lazy src=/images/rclone-onedrive-cn-api.png alt></p><p>打开<a href=https://www.microsoft.com/zh-cn/microsoft-365/compare-china-global-versions-microsoft-365>比较面向中小企业的中国版本计划和价格</a> 随便选个套餐<code>立即购买</code>然后按提示注册新账号，左上角点进去,进入管理,把付款取消掉。</p><p>API权限<strong>我们需要空全局管理员点击</strong> <code>代表XXXX授予管理员同意</code></p><p>WINDOWS平台<code>rclone</code>获取<code>token</code>时需要在后面加上<code>--onedrive-is-21vianet-version=true</code>示范如下</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>rclone authorize <span class=s2>&#34;onedrive&#34;</span> <span class=s2>&#34;client_ID&#34;</span> <span class=s2>&#34;client_secret&#34;</span> --onedrive-is-21vianet-version<span class=o>=</span><span class=nb>true</span>
+</span></span></code></pre></div><h2 id=世纪互联-onedrive-获取-client_id-及-client_secret>世纪互联 OneDrive 获取 CLIENT_ID 及 CLIENT_SECRET<a hidden class=anchor aria-hidden=true href=#世纪互联-onedrive-获取-client_id-及-client_secret>#</a></h2><p>打开 <a href=https://portal.azure.cn/>https://portal.azure.cn/</a> 登陆并按以下步骤：</p><ol><li>左侧找到 <code>Azure Active Directory</code> 点击</li><li>左侧找到 <a href=https://portal.azure.cn/#blade/Microsoft_AAD_IAM/ActiveDirectoryadminnuBlade/RegisteredApps>应用注册</a></li><li>上方找到 <code>新注册</code> 点击</li><li>名称：<code>onedrive</code></li><li>受支持的账户类型： <code>任何组织目录(任何 Azure AD 目录 - 多租户)中的帐户</code>（第二个）</li><li>重定向 URL：<code>http://localhost:53682</code></li><li>点击注册 找到 <code>应用程序(客户端) ID</code> <strong>复制client_ID保存</strong></li><li>左侧找到 <code>证书和密码</code> 点击</li><li>下方 <code>客户端密码</code> - <code>新客户端密码</code></li><li>说明：<code>onedrive</code></li><li>截止期限：默认 <code>1年内</code></li><li>点击 添加，<code>值</code> 客户端密码 <strong>复制client_secret保存</strong></li><li>左侧找到 <code>API 权限</code> 点击</li><li><code>添加权限</code> - <code>Microsoft Graph</code> - <code>委托的权限</code> - <code>Files (7)</code>全部勾选</li><li>选择<code>应用程序权限</code> 在下方<code>Files</code>里选择 <code>Files.Read.All</code>和<code>Files.ReadWrite.All</code></li></ol><p>回到界面会发现该权限处于未授权状态，<strong>我们需要全局管理员点击</strong> <code>代表XXXX授予管理员同意</code></p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>Files.Read
+</span></span><span class=line><span class=cl>Files.Read.All
+</span></span><span class=line><span class=cl>Files.Read.Selected
+</span></span><span class=line><span class=cl>Files.ReadWrite
+</span></span><span class=line><span class=cl>Files.ReadWrite.All
+</span></span><span class=line><span class=cl>Files.ReadWrite.AppFolder
+</span></span><span class=line><span class=cl>Files.ReadWrite.Selected
+</span></span></code></pre></div><h2 id=安装配置-rclone>安装配置 Rclone<a hidden class=anchor aria-hidden=true href=#安装配置-rclone>#</a></h2><p>Rclone 世纪互联版地址：<a href=https://www.hostloc.com/thread-612579-1-1.html>兼容世纪互联的 Rclone</a></p><p>预编译兼容世纪互联的 Rclone v1.50.2</p><p><a href=/uploads/rclone-v1.50.2-linux-386-21vianet.zip>Linux 32位</a> | <a href=/uploads/rclone-v1.50.2-linux-amd64-21vianet.zip>Linux 64位</a> | <a href=/uploads/rclone-v1.50.2-windows-386-21vianet.zip>Windows 32位</a> | <a href=/uploads/rclone-v1.50.2-windows-amd64-21vianet.zip>Windows 64位</a></p><p>下载解压上传到 <code>/usr/bin</code> 目录，然后</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>chmod +x /usr/bin/rclone
+</span></span><span class=line><span class=cl>rclone config
+</span></span></code></pre></div><p>完整配置过程如下</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>Microsoft Windows <span class=o>[</span>版本 10.0.17763.316<span class=o>]</span>
+</span></span><span class=line><span class=cl><span class=o>(</span>c<span class=o>)</span> <span class=m>2018</span> Microsoft Corporation。保留所有权利。
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>C:<span class=se>\U</span>sers<span class=se>\u</span>ser&gt;cd C:<span class=se>\U</span>sers<span class=se>\u</span>ser<span class=se>\D</span>esktop<span class=se>\r</span>clone-v1.50.2-windows-amd64-21vianet
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>C:<span class=se>\U</span>sers<span class=se>\u</span>ser<span class=se>\D</span>esktop<span class=se>\r</span>clone-v1.50.2-windows-amd64-21vianet&gt;rclone config
+</span></span><span class=line><span class=cl>2020/02/01 13:46:21 NOTICE: Config file <span class=s2>&#34;C:\\Users\\user\\.config\\rclone\\rclone.conf&#34;</span> not found - using defaults
+</span></span><span class=line><span class=cl>No remotes found - make a new one
+</span></span><span class=line><span class=cl>n<span class=o>)</span> New remote
+</span></span><span class=line><span class=cl>s<span class=o>)</span> Set configuration password
+</span></span><span class=line><span class=cl>q<span class=o>)</span> Quit config
+</span></span><span class=line><span class=cl>n/s/q&gt; n
+</span></span><span class=line><span class=cl>name&gt; onedrive_cn
+</span></span><span class=line><span class=cl>Type of storage to configure.
+</span></span><span class=line><span class=cl>Enter a string value. Press Enter <span class=k>for</span> the default <span class=o>(</span><span class=s2>&#34;&#34;</span><span class=o>)</span>.
+</span></span><span class=line><span class=cl>Choose a number from below, or <span class=nb>type</span> in your own value
+</span></span><span class=line><span class=cl> <span class=m>1</span> / 1Fichier
+</span></span><span class=line><span class=cl>   <span class=se>\ </span><span class=s2>&#34;fichier&#34;</span>
+</span></span><span class=line><span class=cl> <span class=m>2</span> / Alias <span class=k>for</span> an existing remote
+</span></span><span class=line><span class=cl>   <span class=se>\ </span><span class=s2>&#34;alias&#34;</span>
+</span></span><span class=line><span class=cl> <span class=m>3</span> / Amazon Drive
+</span></span><span class=line><span class=cl>   <span class=se>\ </span><span class=s2>&#34;amazon cloud drive&#34;</span>
+</span></span><span class=line><span class=cl> <span class=m>4</span> / Amazon S3 Compliant Storage Provider <span class=o>(</span>AWS, Alibaba, Ceph, Digital Ocean, Dreamhost, IBM COS, Minio, etc<span class=o>)</span>
+</span></span><span class=line><span class=cl>   <span class=se>\ </span><span class=s2>&#34;s3&#34;</span>
+</span></span><span class=line><span class=cl> <span class=m>5</span> / Backblaze B2
+</span></span><span class=line><span class=cl>   <span class=se>\ </span><span class=s2>&#34;b2&#34;</span>
+</span></span><span class=line><span class=cl> <span class=m>6</span> / Box
+</span></span><span class=line><span class=cl>   <span class=se>\ </span><span class=s2>&#34;box&#34;</span>
+</span></span><span class=line><span class=cl> <span class=m>7</span> / Cache a remote
+</span></span><span class=line><span class=cl>   <span class=se>\ </span><span class=s2>&#34;cache&#34;</span>
+</span></span><span class=line><span class=cl> <span class=m>8</span> / Citrix Sharefile
+</span></span><span class=line><span class=cl>   <span class=se>\ </span><span class=s2>&#34;sharefile&#34;</span>
+</span></span><span class=line><span class=cl> <span class=m>9</span> / Dropbox
+</span></span><span class=line><span class=cl>   <span class=se>\ </span><span class=s2>&#34;dropbox&#34;</span>
+</span></span><span class=line><span class=cl><span class=m>10</span> / Encrypt/Decrypt a remote
+</span></span><span class=line><span class=cl>   <span class=se>\ </span><span class=s2>&#34;crypt&#34;</span>
+</span></span><span class=line><span class=cl><span class=m>11</span> / FTP Connection
+</span></span><span class=line><span class=cl>   <span class=se>\ </span><span class=s2>&#34;ftp&#34;</span>
+</span></span><span class=line><span class=cl><span class=m>12</span> / Google Cloud Storage <span class=o>(</span>this is not Google Drive<span class=o>)</span>
+</span></span><span class=line><span class=cl>   <span class=se>\ </span><span class=s2>&#34;google cloud storage&#34;</span>
+</span></span><span class=line><span class=cl><span class=m>13</span> / Google Drive
+</span></span><span class=line><span class=cl>   <span class=se>\ </span><span class=s2>&#34;drive&#34;</span>
+</span></span><span class=line><span class=cl><span class=m>14</span> / Google Photos
+</span></span><span class=line><span class=cl>   <span class=se>\ </span><span class=s2>&#34;google photos&#34;</span>
+</span></span><span class=line><span class=cl><span class=m>15</span> / Hubic
+</span></span><span class=line><span class=cl>   <span class=se>\ </span><span class=s2>&#34;hubic&#34;</span>
+</span></span><span class=line><span class=cl><span class=m>16</span> / JottaCloud
+</span></span><span class=line><span class=cl>   <span class=se>\ </span><span class=s2>&#34;jottacloud&#34;</span>
+</span></span><span class=line><span class=cl><span class=m>17</span> / Koofr
+</span></span><span class=line><span class=cl>   <span class=se>\ </span><span class=s2>&#34;koofr&#34;</span>
+</span></span><span class=line><span class=cl><span class=m>18</span> / Local Disk
+</span></span><span class=line><span class=cl>   <span class=se>\ </span><span class=s2>&#34;local&#34;</span>
+</span></span><span class=line><span class=cl><span class=m>19</span> / Mail.ru Cloud
+</span></span><span class=line><span class=cl>   <span class=se>\ </span><span class=s2>&#34;mailru&#34;</span>
+</span></span><span class=line><span class=cl><span class=m>20</span> / adminga
+</span></span><span class=line><span class=cl>   <span class=se>\ </span><span class=s2>&#34;mega&#34;</span>
+</span></span><span class=line><span class=cl><span class=m>21</span> / Microsoft Azure Blob Storage
+</span></span><span class=line><span class=cl>   <span class=se>\ </span><span class=s2>&#34;azureblob&#34;</span>
+</span></span><span class=line><span class=cl><span class=m>22</span> / Microsoft OneDrive
+</span></span><span class=line><span class=cl>   <span class=se>\ </span><span class=s2>&#34;onedrive&#34;</span>
+</span></span><span class=line><span class=cl><span class=m>23</span> / OpenDrive
+</span></span><span class=line><span class=cl>   <span class=se>\ </span><span class=s2>&#34;opendrive&#34;</span>
+</span></span><span class=line><span class=cl><span class=m>24</span> / Openstack Swift <span class=o>(</span>Rackspace Cloud Files, adminmset Memstore, OVH<span class=o>)</span>
+</span></span><span class=line><span class=cl>   <span class=se>\ </span><span class=s2>&#34;swift&#34;</span>
+</span></span><span class=line><span class=cl><span class=m>25</span> / Pcloud
+</span></span><span class=line><span class=cl>   <span class=se>\ </span><span class=s2>&#34;pcloud&#34;</span>
+</span></span><span class=line><span class=cl><span class=m>26</span> / Put.io
+</span></span><span class=line><span class=cl>   <span class=se>\ </span><span class=s2>&#34;putio&#34;</span>
+</span></span><span class=line><span class=cl><span class=m>27</span> / QingCloud Object Storage
+</span></span><span class=line><span class=cl>   <span class=se>\ </span><span class=s2>&#34;qingstor&#34;</span>
+</span></span><span class=line><span class=cl><span class=m>28</span> / SSH/SFTP Connection
+</span></span><span class=line><span class=cl>   <span class=se>\ </span><span class=s2>&#34;sftp&#34;</span>
+</span></span><span class=line><span class=cl><span class=m>29</span> / Transparently chunk/split large files
+</span></span><span class=line><span class=cl>   <span class=se>\ </span><span class=s2>&#34;chunker&#34;</span>
+</span></span><span class=line><span class=cl><span class=m>30</span> / Union merges the contents of several remotes
+</span></span><span class=line><span class=cl>   <span class=se>\ </span><span class=s2>&#34;union&#34;</span>
+</span></span><span class=line><span class=cl><span class=m>31</span> / Webdav
+</span></span><span class=line><span class=cl>   <span class=se>\ </span><span class=s2>&#34;webdav&#34;</span>
+</span></span><span class=line><span class=cl><span class=m>32</span> / Yandex Disk
+</span></span><span class=line><span class=cl>   <span class=se>\ </span><span class=s2>&#34;yandex&#34;</span>
+</span></span><span class=line><span class=cl><span class=m>33</span> / http Connection
+</span></span><span class=line><span class=cl>   <span class=se>\ </span><span class=s2>&#34;http&#34;</span>
+</span></span><span class=line><span class=cl><span class=m>34</span> / premiumize.me
+</span></span><span class=line><span class=cl>   <span class=se>\ </span><span class=s2>&#34;premiumizeme&#34;</span>
+</span></span><span class=line><span class=cl>Storage&gt; <span class=m>22</span>
+</span></span><span class=line><span class=cl>** See <span class=nb>help</span> <span class=k>for</span> onedrive backend at: https://rclone.org/onedrive/ **
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Microsoft App Client Id
+</span></span><span class=line><span class=cl>Leave blank normally.
+</span></span><span class=line><span class=cl>Enter a string value. Press Enter <span class=k>for</span> the default <span class=o>(</span><span class=s2>&#34;&#34;</span><span class=o>)</span>.
+</span></span><span class=line><span class=cl>client_id&gt; 6b57cb03-3791-4823-9ce9-5dd027e*****
+</span></span><span class=line><span class=cl>Microsoft App Client Secret
+</span></span><span class=line><span class=cl>Leave blank normally.
+</span></span><span class=line><span class=cl>Enter a string value. Press Enter <span class=k>for</span> the default <span class=o>(</span><span class=s2>&#34;&#34;</span><span class=o>)</span>.
+</span></span><span class=line><span class=cl>client_secret&gt; l05:IBoAAVh4<span class=o>]</span>Y<span class=o>]</span>4M_?9lgw-L8******
+</span></span><span class=line><span class=cl>OneDrive operated by 21Vianet <span class=o>(</span>世纪互联<span class=o>)</span>.
+</span></span><span class=line><span class=cl>Enter a boolean value <span class=o>(</span><span class=nb>true</span> or <span class=nb>false</span><span class=o>)</span>. Press Enter <span class=k>for</span> the default <span class=o>(</span><span class=s2>&#34;false&#34;</span><span class=o>)</span>.
+</span></span><span class=line><span class=cl>is_21vianet_version&gt; <span class=nb>true</span>
+</span></span><span class=line><span class=cl>Edit advanced config? <span class=o>(</span>y/n<span class=o>)</span>
+</span></span><span class=line><span class=cl>y<span class=o>)</span> Yes
+</span></span><span class=line><span class=cl>n<span class=o>)</span> No
+</span></span><span class=line><span class=cl>y/n&gt; y
+</span></span><span class=line><span class=cl>Chunk size to upload files with - must be multiple of 320k <span class=o>(</span>327,680 bytes<span class=o>)</span>.
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Above this size files will be chunked - must be multiple of 320k <span class=o>(</span>327,680 bytes<span class=o>)</span>. Note
+</span></span><span class=line><span class=cl>that the chunks will be buffered into memory.
+</span></span><span class=line><span class=cl>Enter a size with suffix k,M,G,T. Press Enter <span class=k>for</span> the default <span class=o>(</span><span class=s2>&#34;10M&#34;</span><span class=o>)</span>.
+</span></span><span class=line><span class=cl>chunk_size&gt; 10M
+</span></span><span class=line><span class=cl>The ID of the drive to use
+</span></span><span class=line><span class=cl>Enter a string value. Press Enter <span class=k>for</span> the default <span class=o>(</span><span class=s2>&#34;&#34;</span><span class=o>)</span>.
+</span></span><span class=line><span class=cl>drive_id&gt;
+</span></span><span class=line><span class=cl>The <span class=nb>type</span> of the drive <span class=o>(</span> personal <span class=p>|</span> business <span class=p>|</span> documentLibrary <span class=o>)</span>
+</span></span><span class=line><span class=cl>Enter a string value. Press Enter <span class=k>for</span> the default <span class=o>(</span><span class=s2>&#34;&#34;</span><span class=o>)</span>.
+</span></span><span class=line><span class=cl>drive_type&gt; business
+</span></span><span class=line><span class=cl>Set to make OneNote files show up in directory listings.
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>By default rclone will hide OneNote files in directory listings because
+</span></span><span class=line><span class=cl>operations like <span class=s2>&#34;Open&#34;</span> and <span class=s2>&#34;Update&#34;</span> won<span class=s1>&#39;t work on them.  But this
+</span></span></span><span class=line><span class=cl><span class=s1>behaviour may also prevent you from deleting them.  If you want to
+</span></span></span><span class=line><span class=cl><span class=s1>delete OneNote files or otherwise want them to show up in directory
+</span></span></span><span class=line><span class=cl><span class=s1>listing, set this option.
+</span></span></span><span class=line><span class=cl><span class=s1>Enter a boolean value (true or false). Press Enter for the default (&#34;false&#34;).
+</span></span></span><span class=line><span class=cl><span class=s1>expose_onenote_files&gt;
+</span></span></span><span class=line><span class=cl><span class=s1>Remote config
+</span></span></span><span class=line><span class=cl><span class=s1>Make sure your Redirect URL is set to &#34;http://localhost:53682/&#34; in your custom config.
+</span></span></span><span class=line><span class=cl><span class=s1>Use auto config?
+</span></span></span><span class=line><span class=cl><span class=s1> * Say Y if not sure
+</span></span></span><span class=line><span class=cl><span class=s1> * Say N if you are working on a remote or headless machine
+</span></span></span><span class=line><span class=cl><span class=s1>y) Yes
+</span></span></span><span class=line><span class=cl><span class=s1>n) No
+</span></span></span><span class=line><span class=cl><span class=s1>y/n&gt; Y
+</span></span></span><span class=line><span class=cl><span class=s1>If your browser doesn&#39;</span>t open automatically go to the following link: http://127.0.0.1:53682/auth?state<span class=o>=</span>3-n1fmI2XA7QsjnhQAjoQw
+</span></span><span class=line><span class=cl>Log in and authorize rclone <span class=k>for</span> access
+</span></span><span class=line><span class=cl>Waiting <span class=k>for</span> code...
+</span></span><span class=line><span class=cl>Got code
+</span></span><span class=line><span class=cl>Choose a number from below, or <span class=nb>type</span> in an existing value
+</span></span><span class=line><span class=cl> <span class=m>1</span> / OneDrive Personal or Business
+</span></span><span class=line><span class=cl>   <span class=se>\ </span><span class=s2>&#34;onedrive&#34;</span>
+</span></span><span class=line><span class=cl> <span class=m>2</span> / Root Sharepoint site
+</span></span><span class=line><span class=cl>   <span class=se>\ </span><span class=s2>&#34;sharepoint&#34;</span>
+</span></span><span class=line><span class=cl> <span class=m>3</span> / Type in driveID
+</span></span><span class=line><span class=cl>   <span class=se>\ </span><span class=s2>&#34;driveid&#34;</span>
+</span></span><span class=line><span class=cl> <span class=m>4</span> / Type in SiteID
+</span></span><span class=line><span class=cl>   <span class=se>\ </span><span class=s2>&#34;siteid&#34;</span>
+</span></span><span class=line><span class=cl> <span class=m>5</span> / Search a Sharepoint site
+</span></span><span class=line><span class=cl>   <span class=se>\ </span><span class=s2>&#34;search&#34;</span>
+</span></span><span class=line><span class=cl>Your choice&gt; <span class=m>1</span>
+</span></span><span class=line><span class=cl>Found <span class=m>1</span> drives, please <span class=k>select</span> the one you want to use:
+</span></span><span class=line><span class=cl>0: OneDrive <span class=o>(</span>business<span class=o>)</span> <span class=nv>id</span><span class=o>=</span>b!Yb3jWYP2_EOgiOjYxlsv4iz1Y8ZSfhlEm48kp98Ew0Dzv4TUrSwSSK1sL5j*****
+</span></span><span class=line><span class=cl>Chose drive to use:&gt; <span class=m>0</span>
+</span></span><span class=line><span class=cl>Found drive <span class=s1>&#39;root&#39;</span> of <span class=nb>type</span> <span class=s1>&#39;business&#39;</span>, URL: https://*****-my.sharepoint.cn/personal/***_****_partner_onmschina_cn/Documents
+</span></span><span class=line><span class=cl>Is that okay?
+</span></span><span class=line><span class=cl>y<span class=o>)</span> Yes
+</span></span><span class=line><span class=cl>n<span class=o>)</span> No
+</span></span><span class=line><span class=cl>y/n&gt; y
+</span></span><span class=line><span class=cl>--------------------
+</span></span><span class=line><span class=cl><span class=o>[</span>onedrive_cn<span class=o>]</span>
+</span></span><span class=line><span class=cl><span class=nb>type</span> <span class=o>=</span> onedrive
+</span></span><span class=line><span class=cl><span class=nv>client_id</span> <span class=o>=</span> 6b57cb03-3791-4823-9ce9-5dd027e*****
+</span></span><span class=line><span class=cl><span class=nv>client_secret</span> <span class=o>=</span> l05:IBoAAVh4<span class=o>]</span>Y<span class=o>]</span>4M_?9lgw-L8******
+</span></span><span class=line><span class=cl><span class=nv>is_21vianet_version</span> <span class=o>=</span> <span class=nb>true</span>
+</span></span><span class=line><span class=cl><span class=nv>chunk_size</span> <span class=o>=</span> 10M
+</span></span><span class=line><span class=cl><span class=nv>drive_type</span> <span class=o>=</span> business
+</span></span><span class=line><span class=cl><span class=nv>token</span> <span class=o>=</span> <span class=o>{</span><span class=s2>&#34;access_token&#34;</span>:<span class=s2>&#34;eyJ0eXAiOiJKV1Q********BtBs2OM8B1Euv7SAA&#34;</span>,<span class=s2>&#34;expiry&#34;</span>:<span class=s2>&#34;2020-02-01T14:50:32.8151941+08:00&#34;</span><span class=o>}</span>
+</span></span><span class=line><span class=cl><span class=nv>drive_id</span> <span class=o>=</span> b!Yb3jWYP2_EOgiOjYxlsv4iz1Y8****************UrSwSSK1sL5jmrG0I
+</span></span><span class=line><span class=cl>--------------------
+</span></span><span class=line><span class=cl>y<span class=o>)</span> Yes this is OK
+</span></span><span class=line><span class=cl>e<span class=o>)</span> Edit this remote
+</span></span><span class=line><span class=cl>d<span class=o>)</span> Delete this remote
+</span></span><span class=line><span class=cl>y/e/d&gt; y
+</span></span><span class=line><span class=cl>Current remotes:
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Name                 <span class=nv>Type</span>
+</span></span><span class=line><span class=cl><span class=o>====</span>                 <span class=o>====</span>
+</span></span><span class=line><span class=cl>onedrive_cn        onedrive
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>e<span class=o>)</span> Edit existing remote
+</span></span><span class=line><span class=cl>n<span class=o>)</span> New remote
+</span></span><span class=line><span class=cl>d<span class=o>)</span> Delete remote
+</span></span><span class=line><span class=cl>r<span class=o>)</span> Rename remote
+</span></span><span class=line><span class=cl>c<span class=o>)</span> Copy remote
+</span></span><span class=line><span class=cl>s<span class=o>)</span> Set configuration password
+</span></span><span class=line><span class=cl>q<span class=o>)</span> Quit config
+</span></span><span class=line><span class=cl>e/n/d/r/c/s/q&gt; q
+</span></span></code></pre></div><p>配置文件<code>C:\Users\user\.config\rclone\rclone.conf</code>格式如下</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=o>[</span>onedrive_cn<span class=o>]</span>
+</span></span><span class=line><span class=cl><span class=nb>type</span> <span class=o>=</span> onedrive
+</span></span><span class=line><span class=cl><span class=nv>client_id</span> <span class=o>=</span> 6b57cb03-3791-4823-9ce9-5dd027e*****
+</span></span><span class=line><span class=cl><span class=nv>client_secret</span> <span class=o>=</span> l05:IBoAAVh4<span class=o>]</span>Y<span class=o>]</span>4M_?9lgw-L8******
+</span></span><span class=line><span class=cl><span class=nv>is_21vianet_version</span> <span class=o>=</span> <span class=nb>true</span>
+</span></span><span class=line><span class=cl><span class=nv>chunk_size</span> <span class=o>=</span> 10M
+</span></span><span class=line><span class=cl><span class=nv>drive_type</span> <span class=o>=</span> business
+</span></span><span class=line><span class=cl><span class=nv>token</span> <span class=o>=</span> <span class=o>{</span><span class=s2>&#34;access_token&#34;</span>:<span class=s2>&#34;eyJ0eXAiOiJKV1Q********BtBs2OM8B1Euv7SAA&#34;</span>,<span class=s2>&#34;expiry&#34;</span>:<span class=s2>&#34;2020-02-01T14:50:32.8151941+08:00&#34;</span><span class=o>}</span>
+</span></span><span class=line><span class=cl><span class=nv>drive_id</span> <span class=o>=</span> b!Yb3jWYP2_EOgiOjYxlsv4iz1Y8****************UrSwSSK1sL5jmrG0I
+</span></span></code></pre></div><h2 id=挂载>挂载<a hidden class=anchor aria-hidden=true href=#挂载>#</a></h2><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>apt -y update <span class=o>&amp;&amp;</span> apt install fuse
+</span></span></code></pre></div><p>挂载命令：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>rclone mount onedrive:/ /mnt/ --copy-links --no-gzip-encoding --no-check-certificate --allow-other --allow-non-empty --umask <span class=m>000</span>
+</span></span></code></pre></div><p>后台挂载命令：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>nohup rclone mount onedrive:/ /mnt --copy-links --no-gzip-encoding --no-check-certificate --allow-other --allow-non-empty --umask <span class=m>000</span> &gt;/dev/null 2&gt;<span class=p>&amp;</span><span class=m>1</span> <span class=p>&amp;</span>
+</span></span></code></pre></div><p>卸载命令：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>fusermount -qzu LocalFolder onedrive
+</span></span></code></pre></div><p>Rclone 开机启动（脚本来自：Rat&rsquo;s Blog，二次修改支持多网盘挂载）</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>nano /etc/init.d/rcloned
+</span></span></code></pre></div><p>文本内容如下</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=cp>#!/bin/bash
+</span></span></span><span class=line><span class=cl><span class=cp></span>
+</span></span><span class=line><span class=cl><span class=nv>PATH</span><span class=o>=</span>/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:~/bin
+</span></span><span class=line><span class=cl><span class=nb>export</span> PATH
+</span></span><span class=line><span class=cl><span class=nv>NAME_BIN</span><span class=o>=</span><span class=s2>&#34;rclone&#34;</span>
+</span></span><span class=line><span class=cl><span class=c1>### BEGIN INIT INFO</span>
+</span></span><span class=line><span class=cl><span class=c1># Provides:          rclone</span>
+</span></span><span class=line><span class=cl><span class=c1># Required-Start:    $all</span>
+</span></span><span class=line><span class=cl><span class=c1># Required-Stop:     $all</span>
+</span></span><span class=line><span class=cl><span class=c1># Default-Start:     2 3 4 5</span>
+</span></span><span class=line><span class=cl><span class=c1># Default-Stop:      0 1 6</span>
+</span></span><span class=line><span class=cl><span class=c1># Short-Description: Start rclone at boot time</span>
+</span></span><span class=line><span class=cl><span class=c1># Description:       Enable rclone by daemon.</span>
+</span></span><span class=line><span class=cl><span class=c1>### END INIT INFO</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nv>NAME</span><span class=o>=</span><span class=s2>&#34;&#34;</span> <span class=c1>#rclone name名</span>
+</span></span><span class=line><span class=cl><span class=nv>REMOTE</span><span class=o>=</span><span class=s1>&#39;&#39;</span> <span class=c1>#远程文件夹</span>
+</span></span><span class=line><span class=cl><span class=nv>LOCAL</span><span class=o>=</span><span class=s1>&#39;&#39;</span> <span class=c1>#挂在地址</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nv>NAME_1</span><span class=o>=</span><span class=s2>&#34;&#34;</span>
+</span></span><span class=line><span class=cl><span class=nv>REMOTE_1</span><span class=o>=</span><span class=s1>&#39;&#39;</span>
+</span></span><span class=line><span class=cl><span class=nv>LOCAL_1</span><span class=o>=</span><span class=s1>&#39;&#39;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nv>Green_font_prefix</span><span class=o>=</span><span class=s2>&#34;\033[32m&#34;</span> <span class=o>&amp;&amp;</span> <span class=nv>Red_font_prefix</span><span class=o>=</span><span class=s2>&#34;\033[31m&#34;</span> <span class=o>&amp;&amp;</span> <span class=nv>Green_background_prefix</span><span class=o>=</span><span class=s2>&#34;\033[42;37m&#34;</span> <span class=o>&amp;&amp;</span> <span class=nv>Red_background_prefix</span><span class=o>=</span><span class=s2>&#34;\033[41;37m&#34;</span> <span class=o>&amp;&amp;</span> <span class=nv>Font_color_suffix</span><span class=o>=</span><span class=s2>&#34;\033[0m&#34;</span>
+</span></span><span class=line><span class=cl><span class=nv>Info</span><span class=o>=</span><span class=s2>&#34;</span><span class=si>${</span><span class=nv>Green_font_prefix</span><span class=si>}</span><span class=s2>[信息]</span><span class=si>${</span><span class=nv>Font_color_suffix</span><span class=si>}</span><span class=s2>&#34;</span>
+</span></span><span class=line><span class=cl><span class=nv>Error</span><span class=o>=</span><span class=s2>&#34;</span><span class=si>${</span><span class=nv>Red_font_prefix</span><span class=si>}</span><span class=s2>[错误]</span><span class=si>${</span><span class=nv>Font_color_suffix</span><span class=si>}</span><span class=s2>&#34;</span>
+</span></span><span class=line><span class=cl><span class=nv>RETVAL</span><span class=o>=</span><span class=m>0</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>check_running<span class=o>(){</span>
+</span></span><span class=line><span class=cl>    <span class=nv>PID</span><span class=o>=</span><span class=s2>&#34;</span><span class=k>$(</span>ps -C <span class=nv>$NAME_BIN</span> -o <span class=nv>pid</span><span class=o>=</span> <span class=p>|</span>head -n1 <span class=p>|</span>grep -o <span class=s1>&#39;[0-9]\{1,\}&#39;</span><span class=k>)</span><span class=s2>&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=o>[[</span> ! -z <span class=si>${</span><span class=nv>PID</span><span class=si>}</span> <span class=o>]]</span><span class=p>;</span> <span class=k>then</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=m>0</span>
+</span></span><span class=line><span class=cl>    <span class=k>else</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=m>1</span>
+</span></span><span class=line><span class=cl>    <span class=k>fi</span>
+</span></span><span class=line><span class=cl><span class=o>}</span>
+</span></span><span class=line><span class=cl>do_start<span class=o>(){</span>
+</span></span><span class=line><span class=cl>    check_running
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=o>[[</span> <span class=nv>$?</span> -eq <span class=m>0</span> <span class=o>]]</span><span class=p>;</span> <span class=k>then</span>
+</span></span><span class=line><span class=cl>        <span class=nb>echo</span> -e <span class=s2>&#34;</span><span class=si>${</span><span class=nv>Info</span><span class=si>}</span><span class=s2> </span><span class=nv>$NAME_BIN</span><span class=s2> (PID </span><span class=si>${</span><span class=nv>PID</span><span class=si>}</span><span class=s2>) 正在运行...&#34;</span> <span class=o>&amp;&amp;</span> <span class=nb>exit</span> <span class=m>0</span>
+</span></span><span class=line><span class=cl>    <span class=k>else</span>
+</span></span><span class=line><span class=cl>        fusermount -zuq <span class=nv>$LOCAL</span> &gt;/dev/null 2&gt;<span class=p>&amp;</span><span class=m>1</span>
+</span></span><span class=line><span class=cl>        mkdir -p <span class=nv>$LOCAL</span>
+</span></span><span class=line><span class=cl>        /usr/bin/rclone mount <span class=nv>$NAME</span>:<span class=nv>$REMOTE</span> <span class=nv>$LOCAL</span> --copy-links --no-gzip-encoding --no-check-certificate --allow-other --allow-non-empty --umask <span class=m>000</span> &gt;/dev/null 2&gt;<span class=p>&amp;</span><span class=m>1</span> <span class=p>&amp;</span>
+</span></span><span class=line><span class=cl>        sleep 2s
+</span></span><span class=line><span class=cl>        fusermount -zuq <span class=nv>$LOCAL_1</span> &gt;/dev/null 2&gt;<span class=p>&amp;</span><span class=m>1</span>
+</span></span><span class=line><span class=cl>        mkdir -p <span class=nv>$LOCAL_1</span>
+</span></span><span class=line><span class=cl>        /usr/bin/rclone mount <span class=nv>$NAME_1</span>:<span class=nv>$REMOTE_1</span> <span class=nv>$LOCAL_1</span> --copy-links --no-gzip-encoding --no-check-certificate --allow-other --allow-non-empty --umask <span class=m>000</span> &gt;/dev/null 2&gt;<span class=p>&amp;</span><span class=m>1</span> <span class=p>&amp;</span>
+</span></span><span class=line><span class=cl>        check_running
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=o>[[</span> <span class=nv>$?</span> -eq <span class=m>0</span> <span class=o>]]</span><span class=p>;</span> <span class=k>then</span>
+</span></span><span class=line><span class=cl>            <span class=nb>echo</span> -e <span class=s2>&#34;</span><span class=si>${</span><span class=nv>Info</span><span class=si>}</span><span class=s2> </span><span class=nv>$NAME_BIN</span><span class=s2> 启动成功 !&#34;</span>
+</span></span><span class=line><span class=cl>        <span class=k>else</span>
+</span></span><span class=line><span class=cl>            <span class=nb>echo</span> -e <span class=s2>&#34;</span><span class=si>${</span><span class=nv>Error</span><span class=si>}</span><span class=s2> </span><span class=nv>$NAME_BIN</span><span class=s2> 启动失败 !&#34;</span>
+</span></span><span class=line><span class=cl>        <span class=k>fi</span>
+</span></span><span class=line><span class=cl>    <span class=k>fi</span>
+</span></span><span class=line><span class=cl><span class=o>}</span>
+</span></span><span class=line><span class=cl>do_stop<span class=o>(){</span>
+</span></span><span class=line><span class=cl>    check_running
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=o>[[</span> <span class=nv>$?</span> -eq <span class=m>0</span> <span class=o>]]</span><span class=p>;</span> <span class=k>then</span>
+</span></span><span class=line><span class=cl>        <span class=nb>kill</span> -9 <span class=si>${</span><span class=nv>PID</span><span class=si>}</span>
+</span></span><span class=line><span class=cl>        <span class=nv>RETVAL</span><span class=o>=</span><span class=nv>$?</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=o>[[</span> <span class=nv>$RETVAL</span> -eq <span class=m>0</span> <span class=o>]]</span><span class=p>;</span> <span class=k>then</span>
+</span></span><span class=line><span class=cl>            <span class=nb>echo</span> -e <span class=s2>&#34;</span><span class=si>${</span><span class=nv>Info</span><span class=si>}</span><span class=s2> </span><span class=nv>$NAME_BIN</span><span class=s2> 停止成功 !&#34;</span>
+</span></span><span class=line><span class=cl>        <span class=k>else</span>
+</span></span><span class=line><span class=cl>            <span class=nb>echo</span> -e <span class=s2>&#34;</span><span class=si>${</span><span class=nv>Error</span><span class=si>}</span><span class=s2> </span><span class=nv>$NAME_BIN</span><span class=s2> 停止失败 !&#34;</span>
+</span></span><span class=line><span class=cl>        <span class=k>fi</span>
+</span></span><span class=line><span class=cl>    <span class=k>else</span>
+</span></span><span class=line><span class=cl>        <span class=nb>echo</span> -e <span class=s2>&#34;</span><span class=si>${</span><span class=nv>Info</span><span class=si>}</span><span class=s2> </span><span class=nv>$NAME_BIN</span><span class=s2> 未运行&#34;</span>
+</span></span><span class=line><span class=cl>        <span class=nv>RETVAL</span><span class=o>=</span><span class=m>1</span>
+</span></span><span class=line><span class=cl>    <span class=k>fi</span>
+</span></span><span class=line><span class=cl>    fusermount -zuq <span class=nv>$LOCAL</span> &gt;/dev/null 2&gt;<span class=p>&amp;</span><span class=m>1</span>
+</span></span><span class=line><span class=cl>    fusermount -zuq <span class=nv>$LOCAL1</span> &gt;/dev/null 2&gt;<span class=p>&amp;</span><span class=m>1</span>
+</span></span><span class=line><span class=cl><span class=o>}</span>
+</span></span><span class=line><span class=cl>do_status<span class=o>(){</span>
+</span></span><span class=line><span class=cl>    check_running
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=o>[[</span> <span class=nv>$?</span> -eq <span class=m>0</span> <span class=o>]]</span><span class=p>;</span> <span class=k>then</span>
+</span></span><span class=line><span class=cl>        <span class=nb>echo</span> -e <span class=s2>&#34;</span><span class=si>${</span><span class=nv>Info</span><span class=si>}</span><span class=s2> </span><span class=nv>$NAME_BIN</span><span class=s2> (PID </span><span class=k>$(</span><span class=nb>echo</span> <span class=si>${</span><span class=nv>PID</span><span class=si>}</span><span class=k>)</span><span class=s2>) 正在运行...&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=k>else</span>
+</span></span><span class=line><span class=cl>        <span class=nb>echo</span> -e <span class=s2>&#34;</span><span class=si>${</span><span class=nv>Info</span><span class=si>}</span><span class=s2> </span><span class=nv>$NAME_BIN</span><span class=s2> 未运行 !&#34;</span>
+</span></span><span class=line><span class=cl>        <span class=nv>RETVAL</span><span class=o>=</span><span class=m>1</span>
+</span></span><span class=line><span class=cl>    <span class=k>fi</span>
+</span></span><span class=line><span class=cl><span class=o>}</span>
+</span></span><span class=line><span class=cl>do_restart<span class=o>(){</span>
+</span></span><span class=line><span class=cl>    do_stop
+</span></span><span class=line><span class=cl>    do_start
+</span></span><span class=line><span class=cl><span class=o>}</span>
+</span></span><span class=line><span class=cl><span class=k>case</span> <span class=s2>&#34;</span><span class=nv>$1</span><span class=s2>&#34;</span> in
+</span></span><span class=line><span class=cl>    start<span class=p>|</span>stop<span class=p>|</span>restart<span class=p>|</span>status<span class=o>)</span>
+</span></span><span class=line><span class=cl>    do_<span class=nv>$1</span>
+</span></span><span class=line><span class=cl>    <span class=p>;;</span>
+</span></span><span class=line><span class=cl>    *<span class=o>)</span>
+</span></span><span class=line><span class=cl>    <span class=nb>echo</span> <span class=s2>&#34;使用方法: </span><span class=nv>$0</span><span class=s2> { start | stop | restart | status }&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=nv>RETVAL</span><span class=o>=</span><span class=m>1</span>
+</span></span><span class=line><span class=cl>    <span class=p>;;</span>
+</span></span><span class=line><span class=cl><span class=k>esac</span>
+</span></span><span class=line><span class=cl><span class=nb>exit</span> <span class=nv>$RETVAL</span>
+</span></span></code></pre></div><p>操作命令</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>chmod +x /etc/init.d/rcloned
+</span></span><span class=line><span class=cl>/etc/init.d/rcloned start
+</span></span><span class=line><span class=cl>/etc/init.d/rcloned stop
+</span></span></code></pre></div></div><footer class=post-footer><ul class=post-tags><li><a href=https://567899.xyz/tags/api/>API</a></li><li><a href=https://567899.xyz/tags/rclone/>Rclone</a></li><li><a href=https://567899.xyz/tags/onedrive/>OneDrive</a></li></ul><nav class=paginav><a class=prev href=https://567899.xyz/post/onelist/><span class=title>« 上一页</span><br><span>OneList又一款OneDrive列目录程序,解决API抽风问题</span>
+</a><a class=next href=https://567899.xyz/post/cn-onedrive-oneindex/><span class=title>下一页 »</span><br><span>OneIndex搭建世纪互联版OneDrive</span></a></nav><ul class=share-buttons><li><a target=_blank rel="noopener noreferrer" aria-label="share 使用Rclone挂载世纪互联OneDrive on x" href="https://x.com/intent/tweet/?text=%e4%bd%bf%e7%94%a8Rclone%e6%8c%82%e8%bd%bd%e4%b8%96%e7%ba%aa%e4%ba%92%e8%81%94OneDrive&amp;url=https%3a%2f%2f567899.xyz%2fpost%2frclone-onedrive-cn%2f&amp;hashtags=API%2crclone%2cOneDrive"><svg viewBox="0 0 512 512" height="30" width="30" fill="currentcolor"><path d="M512 62.554V449.446C512 483.97 483.97 512 449.446 512H62.554C28.03 512 0 483.97.0 449.446V62.554C0 28.03 28.029.0 62.554.0H449.446C483.971.0 512 28.03 512 62.554zM269.951 190.75 182.567 75.216H56L207.216 272.95 63.9 436.783h61.366L235.9 310.383l96.667 126.4H456L298.367 228.367l134-153.151H371.033zM127.633 110h36.468l219.38 290.065H349.5z"/></svg></a></li><li><a target=_blank rel="noopener noreferrer" aria-label="share 使用Rclone挂载世纪互联OneDrive on linkedin" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2f567899.xyz%2fpost%2frclone-onedrive-cn%2f&amp;title=%e4%bd%bf%e7%94%a8Rclone%e6%8c%82%e8%bd%bd%e4%b8%96%e7%ba%aa%e4%ba%92%e8%81%94OneDrive&amp;summary=%e4%bd%bf%e7%94%a8Rclone%e6%8c%82%e8%bd%bd%e4%b8%96%e7%ba%aa%e4%ba%92%e8%81%94OneDrive&amp;source=https%3a%2f%2f567899.xyz%2fpost%2frclone-onedrive-cn%2f"><svg viewBox="0 0 512 512" height="30" width="30" fill="currentcolor"><path d="M449.446.0C483.971.0 512 28.03 512 62.554v386.892C512 483.97 483.97 512 449.446 512H62.554c-34.524.0-62.554-28.03-62.554-62.554V62.554c0-34.524 28.029-62.554 62.554-62.554h386.892zM160.461 423.278V197.561h-75.04v225.717h75.04zm270.539.0V293.839c0-69.333-37.018-101.586-86.381-101.586-39.804.0-57.634 21.891-67.617 37.266v-31.958h-75.021c.995 21.181.0 225.717.0 225.717h75.02V297.222c0-6.748.486-13.492 2.474-18.315 5.414-13.475 17.767-27.434 38.494-27.434 27.135.0 38.007 20.707 38.007 51.037v120.768H431zM123.448 88.722C97.774 88.722 81 105.601 81 127.724c0 21.658 16.264 39.002 41.455 39.002h.484c26.165.0 42.452-17.344 42.452-39.002-.485-22.092-16.241-38.954-41.943-39.002z"/></svg></a></li><li><a target=_blank rel="noopener noreferrer" aria-label="share 使用Rclone挂载世纪互联OneDrive on reddit" href="https://reddit.com/submit?url=https%3a%2f%2f567899.xyz%2fpost%2frclone-onedrive-cn%2f&title=%e4%bd%bf%e7%94%a8Rclone%e6%8c%82%e8%bd%bd%e4%b8%96%e7%ba%aa%e4%ba%92%e8%81%94OneDrive"><svg viewBox="0 0 512 512" height="30" width="30" fill="currentcolor"><path d="M449.446.0C483.971.0 512 28.03 512 62.554v386.892C512 483.97 483.97 512 449.446 512H62.554c-34.524.0-62.554-28.03-62.554-62.554V62.554c0-34.524 28.029-62.554 62.554-62.554h386.892zM446 265.638c0-22.964-18.616-41.58-41.58-41.58-11.211.0-21.361 4.457-28.841 11.666-28.424-20.508-67.586-33.757-111.204-35.278l18.941-89.121 61.884 13.157c.756 15.734 13.642 28.29 29.56 28.29 16.407.0 29.706-13.299 29.706-29.701.0-16.403-13.299-29.702-29.706-29.702-11.666.0-21.657 6.792-26.515 16.578l-69.105-14.69c-1.922-.418-3.939-.042-5.585 1.036-1.658 1.073-2.811 2.761-3.224 4.686l-21.152 99.438c-44.258 1.228-84.046 14.494-112.837 35.232-7.468-7.164-17.589-11.591-28.757-11.591-22.965.0-41.585 18.616-41.585 41.58.0 16.896 10.095 31.41 24.568 37.918-.639 4.135-.99 8.328-.99 12.576.0 63.977 74.469 115.836 166.33 115.836s166.334-51.859 166.334-115.836c0-4.218-.347-8.387-.977-12.493 14.564-6.47 24.735-21.034 24.735-38.001zM326.526 373.831c-20.27 20.241-59.115 21.816-70.534 21.816-11.428.0-50.277-1.575-70.522-21.82-3.007-3.008-3.007-7.882.0-10.889 3.003-2.999 7.882-3.003 10.885.0 12.777 12.781 40.11 17.317 59.637 17.317 19.522.0 46.86-4.536 59.657-17.321 3.016-2.999 7.886-2.995 10.885.008 3.008 3.011 3.003 7.882-.008 10.889zm-5.23-48.781c-16.373.0-29.701-13.324-29.701-29.698.0-16.381 13.328-29.714 29.701-29.714 16.378.0 29.706 13.333 29.706 29.714.0 16.374-13.328 29.698-29.706 29.698zM160.91 295.348c0-16.381 13.328-29.71 29.714-29.71 16.369.0 29.689 13.329 29.689 29.71.0 16.373-13.32 29.693-29.689 29.693-16.386.0-29.714-13.32-29.714-29.693z"/></svg></a></li><li><a target=_blank rel="noopener noreferrer" aria-label="share 使用Rclone挂载世纪互联OneDrive on facebook" href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2f567899.xyz%2fpost%2frclone-onedrive-cn%2f"><svg viewBox="0 0 512 512" height="30" width="30" fill="currentcolor"><path d="M449.446.0C483.971.0 512 28.03 512 62.554v386.892C512 483.97 483.97 512 449.446 512H342.978V319.085h66.6l12.672-82.621h-79.272v-53.617c0-22.603 11.073-44.636 46.58-44.636H425.6v-70.34s-32.71-5.582-63.982-5.582c-65.288.0-107.96 39.569-107.96 111.204v62.971h-72.573v82.621h72.573V512h-191.104c-34.524.0-62.554-28.03-62.554-62.554V62.554c0-34.524 28.029-62.554 62.554-62.554h386.892z"/></svg></a></li><li><a target=_blank rel="noopener noreferrer" aria-label="share 使用Rclone挂载世纪互联OneDrive on whatsapp" href="https://api.whatsapp.com/send?text=%e4%bd%bf%e7%94%a8Rclone%e6%8c%82%e8%bd%bd%e4%b8%96%e7%ba%aa%e4%ba%92%e8%81%94OneDrive%20-%20https%3a%2f%2f567899.xyz%2fpost%2frclone-onedrive-cn%2f"><svg viewBox="0 0 512 512" height="30" width="30" fill="currentcolor"><path d="M449.446.0C483.971.0 512 28.03 512 62.554v386.892C512 483.97 483.97 512 449.446 512H62.554c-34.524.0-62.554-28.03-62.554-62.554V62.554c0-34.524 28.029-62.554 62.554-62.554h386.892zm-58.673 127.703c-33.842-33.881-78.847-52.548-126.798-52.568-98.799.0-179.21 80.405-179.249 179.234-.013 31.593 8.241 62.428 23.927 89.612l-25.429 92.884 95.021-24.925c26.181 14.28 55.659 21.807 85.658 21.816h.074c98.789.0 179.206-80.413 179.247-179.243.018-47.895-18.61-92.93-52.451-126.81zM263.976 403.485h-.06c-26.734-.01-52.954-7.193-75.828-20.767l-5.441-3.229-56.386 14.792 15.05-54.977-3.542-5.637c-14.913-23.72-22.791-51.136-22.779-79.287.033-82.142 66.867-148.971 149.046-148.971 39.793.014 77.199 15.531 105.329 43.692 28.128 28.16 43.609 65.592 43.594 105.4-.034 82.149-66.866 148.983-148.983 148.984zm81.721-111.581c-4.479-2.242-26.499-13.075-30.604-14.571-4.105-1.495-7.091-2.241-10.077 2.241-2.986 4.483-11.569 14.572-14.182 17.562-2.612 2.988-5.225 3.364-9.703 1.12-4.479-2.241-18.91-6.97-36.017-22.23C231.8 264.15 222.81 249.484 220.198 245s-.279-6.908 1.963-9.14c2.016-2.007 4.48-5.232 6.719-7.847 2.24-2.615 2.986-4.484 4.479-7.472 1.493-2.99.747-5.604-.374-7.846-1.119-2.241-10.077-24.288-13.809-33.256-3.635-8.733-7.327-7.55-10.077-7.688-2.609-.13-5.598-.158-8.583-.158-2.986.0-7.839 1.121-11.944 5.604-4.105 4.484-15.675 15.32-15.675 37.364.0 22.046 16.048 43.342 18.287 46.332 2.24 2.99 31.582 48.227 76.511 67.627 10.685 4.615 19.028 7.371 25.533 9.434 10.728 3.41 20.492 2.929 28.209 1.775 8.605-1.285 26.499-10.833 30.231-21.295 3.732-10.464 3.732-19.431 2.612-21.298-1.119-1.869-4.105-2.99-8.583-5.232z"/></svg></a></li><li><a target=_blank rel="noopener noreferrer" aria-label="share 使用Rclone挂载世纪互联OneDrive on telegram" href="https://telegram.me/share/url?text=%e4%bd%bf%e7%94%a8Rclone%e6%8c%82%e8%bd%bd%e4%b8%96%e7%ba%aa%e4%ba%92%e8%81%94OneDrive&amp;url=https%3a%2f%2f567899.xyz%2fpost%2frclone-onedrive-cn%2f"><svg viewBox="2 2 28 28" height="30" width="30" fill="currentcolor"><path d="M26.49 29.86H5.5a3.37 3.37.0 01-2.47-1 3.35 3.35.0 01-1-2.47V5.48A3.36 3.36.0 013 3 3.37 3.37.0 015.5 2h21A3.38 3.38.0 0129 3a3.36 3.36.0 011 2.46V26.37a3.35 3.35.0 01-1 2.47 3.38 3.38.0 01-2.51 1.02zm-5.38-6.71a.79.79.0 00.85-.66L24.73 9.24a.55.55.0 00-.18-.46.62.62.0 00-.41-.17q-.08.0-16.53 6.11a.59.59.0 00-.41.59.57.57.0 00.43.52l4 1.24 1.61 4.83a.62.62.0 00.63.43.56.56.0 00.4-.17L16.54 20l4.09 3A.9.9.0 0021.11 23.15zM13.8 20.71l-1.21-4q8.72-5.55 8.78-5.55c.15.0.23.0.23.16a.18.18.0 010 .06s-2.51 2.3-7.52 6.8z"/></svg></a></li><li><a target=_blank rel="noopener noreferrer" aria-label="share 使用Rclone挂载世纪互联OneDrive on ycombinator" href="https://news.ycombinator.com/submitlink?t=%e4%bd%bf%e7%94%a8Rclone%e6%8c%82%e8%bd%bd%e4%b8%96%e7%ba%aa%e4%ba%92%e8%81%94OneDrive&u=https%3a%2f%2f567899.xyz%2fpost%2frclone-onedrive-cn%2f"><svg width="30" height="30" viewBox="0 0 512 512" fill="currentcolor" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"><path d="M449.446.0C483.971.0 512 28.03 512 62.554V449.446C512 483.97 483.97 512 449.446 512H62.554C28.03 512 0 483.97.0 449.446V62.554C0 28.03 28.029.0 62.554.0H449.446zM183.8767 87.9921h-62.034L230.6673 292.4508V424.0079h50.6655V292.4508L390.1575 87.9921H328.1233L256 238.2489z"/></svg></a></li></ul></footer><link rel=stylesheet href=https://unpkg.com/@waline/client@v2/dist/waline.css><div id=waline></div><script type=module>
+    import { init } from 'https://unpkg.com/@waline/client@v2/dist/waline.mjs';
+    const locale = {
+        nick: '昵称(必填)',
+        nickError: '请填写昵称',
+        mail: '邮箱',
+        mailError: '请填写正确的邮件地址',
+        link: '网址',
+        optional: '可选',
+        placeholder: '说点什么吧...\n填写邮箱可收到回复提醒。\n评论区支持 Markdown 语法及预览。\n',
+        sofa: '来发评论吧~',
+        submit: '提交',
+        like: '喜欢',
+        cancelLike: '取消喜欢',
+        reply: '回复',
+        cancelReply: '取消回复',
+        comment: '评论',
+        refresh: '刷新',
+        more: '加载更多...',
+        preview: '预览',
+        emoji: '表情',
+        uploadImage: '上传图片',
+        seconds: '秒前',
+        minutes: '分钟前',
+        hours: '小时前',
+        days: '天前',
+        now: '刚刚',
+        uploading: '正在上传',
+        login: '登录',
+        logout: '退出',
+        admin: '博主',
+        sticky: '置顶',
+        word: '字',
+        wordHint: '评论字数应在 $0 到 $1 字之间！\n当前字数：$2',
+        anonymous: '匿名',
+        level0: '潜水',
+        level1: '冒泡',
+        level2: '吐槽',
+        level3: '活跃',
+        level4: '话痨',
+        level5: '传说',
+        gif: '表情包',
+        gifSearchPlaceholder: '搜索表情包',
+        profile: '个人资料',
+        approved: '通过',
+        waiting: '待审核',
+        spam: '垃圾',
+        unsticky: '取消置顶',
+        oldest: '按倒序',
+        latest: '按正序',
+        hottest: '按热度',
+        reactionTitle: '你认为这篇文章怎么样？',
+    };
+    init({
+        
+        el: '#waline',
+        serverURL: 'https://comments.567899.xyz',
+        locale,
+        emoji: true,     
+        search: true,    
+        reaction: false,  
+        requiredMeta: ['nick'],
+        pageSize: 10,
+        imageUploader: true,
+        copyright: true,
+        pageview: true,
+        like: true,
+    });
+</script></article></main><footer class=footer><span>&copy; 2024 <a href=https://567899.xyz/>Xizi's Blog</a></span> ·
+<span>Powered by
+<a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
+        <a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg>
+</a><script>let menu=document.getElementById("menu");menu&&(menu.scrollLeft=localStorage.getItem("menu-scroll-position"),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}),document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{document.body.className.includes("dark")?(document.body.classList.remove("dark"),localStorage.setItem("pref-theme","light")):(document.body.classList.add("dark"),localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="复制";function s(){t.innerHTML="已复制！",setTimeout(()=>{t.innerHTML="复制"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>

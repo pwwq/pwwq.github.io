@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Docker on Xizi&#39;s Blog</title>
+    <link>https://567899.xyz/tags/docker/</link>
+    <description>Recent content in Docker on Xizi&#39;s Blog</description>
+    <image>
+      <title>Xizi&#39;s Blog</title>
+      <url>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- 0.134.2</generator>
+    <language>zh</language>
+    <lastBuildDate>Tue, 13 Aug 2024 11:37:56 +0800</lastBuildDate>
+    <atom:link href="https://567899.xyz/tags/docker/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>fly.io部署alist与vaultwarden版本的Bitwarden</title>
+      <link>https://567899.xyz/post/alist-vaultwarden-fly-io/</link>
+      <pubDate>Tue, 13 Aug 2024 11:37:56 +0800</pubDate>
+      <guid>https://567899.xyz/post/alist-vaultwarden-fly-io/</guid>
+      <description>&lt;p&gt;现在&lt;a href=&#34;https://fly.io/app/sign-in&#34;&gt;注册fly.io账号&lt;/a&gt;&lt;strong&gt;需要绑定信用卡并验证(扣款10刀以下随机金额)后方可&lt;/strong&gt;免费试用三个256MB内存的服务,每个1GB大小，最多3G的持久化存储&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;分类&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;限额&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;说明&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;VM: shared-cpu&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;每个月 2340 小时&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;可以全天候运行 3 个 256 MB 内存的共享 CPU 的 VM&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Volumes&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;3GB&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;提供 3GB 永久存储&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Bandwidth&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;160 GB/每月&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;亚洲、印度30G，美国、欧洲100G的outbound流量&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Anycast IPs&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;无限的 IPv6, 每个应用一个 IPv4&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;每一个额外的 IPv4 地址需要额外每个月 $2&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Certificates&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;10 个活跃的证书&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;最多 10 个证书&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://fly.io/docs/about/pricing/&#34;&gt;资源定价&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://fly.io/docs/about/billing/&#34;&gt;Fly.io 计费&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href=&#34;https://fly.io/user/personal_access_tokens&#34;&gt;获取FLY_API_TOKEN&lt;/a&gt; 或在本地执行&lt;code&gt;flyctl auth token&lt;/code&gt;查看&lt;/p&gt;
+&lt;p&gt;Linux安装&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;curl -L https://fly.io/install.sh | sh
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;移动到&lt;code&gt;/usr/bin&lt;/code&gt;目录下&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;cp /root/.fly/bin/flyctl /usr/bin
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;登陆fly.io&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt; flyctl auth login
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;复制提示里面的网址在浏览器中打开完成登陆&lt;/p&gt;
+&lt;h2 id=&#34;部署bitwarden&#34;&gt;部署Bitwarden&lt;/h2&gt;
+&lt;p&gt;使用 SQLite 数据库安装 Vaultwarden。但是您需要为数据库创建卷&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;flyctl volumes create vaultwarden_data -a APP_NAME -s 1
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;在 Fly 上启动创建应用&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>WSL2运行Ubuntu子系统并设置开机自动启动应用docker</title>
+      <link>https://567899.xyz/post/wsl/</link>
+      <pubDate>Tue, 02 Jan 2024 13:27:16 +0800</pubDate>
+      <guid>https://567899.xyz/post/wsl/</guid>
+      <description>&lt;ol&gt;
+&lt;li&gt;去Microsoft官网下载 &lt;a href=&#34;https://www.microsoft.com/zh-cn/software-download/windows11&#34;&gt;Windows 11&lt;/a&gt;版本要求23H2+&lt;/li&gt;
+&lt;li&gt;打开&lt;code&gt;启用或关闭Windows功能&lt;/code&gt;勾选&lt;code&gt;适用于Linux的Windows子系统&lt;/code&gt;和&lt;code&gt;Hyper-V&lt;/code&gt;重启系统生效&lt;/li&gt;
+&lt;li&gt;下载&lt;a href=&#34;https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi&#34;&gt;WSL2 Linux kernel update package for x64 machines&lt;/a&gt;安装。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;wsl常用操作&#34;&gt;WSL常用操作&lt;/h2&gt;
+&lt;p&gt;查看WSL版本&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;wsl --version
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;可以在运行(win+R)或资源文件管理器的路径里直接输入&lt;code&gt;\\wsl$&lt;/code&gt;进入Ubuntu的目录&lt;/p&gt;
+&lt;p&gt;更新 WSL：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;wsl --update --pre-release
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;关机、重启&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;wsl --shutdown
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;wsl
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;其它&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 列出分发版本&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;wsl -l -v
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 关闭指定版本&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;wsl -t Ubuntu
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 启动指定版本&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;wsl -d Ubuntu
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;不能使用 &lt;code&gt;systemctl&lt;/code&gt; 开启、停止或查看服务的运行，使用这些服务文件有许多功能 {start|stop|reload|force-reload|restart|try-restart|status}，WSL可以使用&lt;code&gt;service&lt;/code&gt;或&lt;code&gt;/etc/init.d/&lt;/code&gt;,例如&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;service docker start
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/etc/init.d/nginx start
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;wsl2docker-开机自启&#34;&gt;WSL2+Docker 开机自启&lt;/h2&gt;
+&lt;p&gt;WSL2子系统中的应用默认不会开机自动启动，这里以docker为例，安装docker&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;wget -qO- get.docker.com &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; bash
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;可以手动启动docker&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;service docker start
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;不过有时候我们希望它能开机自动启动，接下来使用&lt;/p&gt;
+&lt;h3 id=&#34;wsl2内操作&#34;&gt;WSL2内操作&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;#! /bin/sh
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s2&#34;&gt;service docker start&amp;#34;&lt;/span&gt; &amp;gt; /etc/init.wsl
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;chmod +x /etc/init.wsl
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;windows内操作&#34;&gt;Windows内操作&lt;/h3&gt;
+&lt;p&gt;使用&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Cookie自动登陆签到、抓包提取制作HAR文件</title>
+      <link>https://567899.xyz/post/qiandao/</link>
+      <pubDate>Fri, 11 Mar 2022 22:04:59 +0800</pubDate>
+      <guid>https://567899.xyz/post/qiandao/</guid>
+      <description>&lt;p&gt;通过自动签到(网页签到、APP签到)，可以有效防止某些站点规则中的因长时间未登陆不活跃而导致封号，还可以赚积分、领金币薅羊毛&amp;hellip;&lt;/p&gt;
+&lt;h2 id=&#34;docker安装签到&#34;&gt;Docker安装签到&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://hub.docker.com/r/a76yyyy/qiandao&#34;&gt;https://hub.docker.com/r/a76yyyy/qiandao&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/qiandao-today/qiandao&#34;&gt;https://github.com/qiandao-today/qiandao&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;安装、启用docker&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;wget -qO- get.docker.com &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; bash
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;systemctl &lt;span class=&#34;nb&#34;&gt;enable&lt;/span&gt; docker
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;systemctl start docker
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Docker部署&lt;code&gt;a76yyyy/qiandao&lt;/code&gt;签到&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker run -d --name qiandao --restart&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;always --env &lt;span class=&#34;nv&#34;&gt;PORT&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;8923&lt;/span&gt; --net&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;host -v /root/qiandao:/usr/src/app/config a76yyyy/qiandao
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;然后就可以访问  &lt;a href=&#34;http://localhost:8923&#34;&gt;http://localhost:8923&lt;/a&gt;  网页管理签到&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;8923&lt;/code&gt;端口可以随意，只要不被其它应用占用即可，&lt;code&gt;/root/qiandao&lt;/code&gt;宿主机配置文件目录&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;备份数据库&lt;/strong&gt;只需要备份&lt;code&gt;/root/qiandao&lt;/code&gt;目录下的&lt;code&gt;database.db&lt;/code&gt;这个文件即可；&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;还原数据库&lt;/strong&gt;只需要先暂停&lt;code&gt;docker stop qiandao&lt;/code&gt;然后将&lt;code&gt;database.db&lt;/code&gt;复制替换掉原来&lt;code&gt;/root/qiandao&lt;/code&gt;目录下的&lt;code&gt;database.db&lt;/code&gt;这个文件。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;启动容器&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker start qiandao
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;停止容器&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker stop qiandao
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;删除容器&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker rm qiandao
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;获取har文件&#34;&gt;获取HAR文件&lt;/h2&gt;
+&lt;p&gt;我们还可以使用&lt;code&gt;Fiddler&lt;/code&gt;抓包软件来抓取，这里使用Chrome浏览器示范。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;打开Chrome浏览器，新建隐身窗口(重要)，登陆账号：&lt;/li&gt;
+&lt;li&gt;打开开发者工具（ctrl+shift+I，或者 鼠标右键 &amp;gt; 审查元素）&lt;/li&gt;
+&lt;li&gt;切换到 &lt;code&gt;Network&lt;/code&gt;（网络）面板，勾选 &lt;code&gt;Preserve log&lt;/code&gt; (非常重要)&lt;/li&gt;
+&lt;li&gt;直奔签到页，完成签到&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;找对签到链接(非常重要)&lt;/strong&gt;，导出HAR文件。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;使用har模板文件签到&#34;&gt;使用HAR模板文件签到&lt;/h2&gt;
+&lt;p&gt;以PT站点为例，因为大部分PT站点都是使用&lt;a href=&#34;http://www.nexusphp.com&#34;&gt;NexusPHP&lt;/a&gt;,大同小异，我们只需要抓取&lt;code&gt;https://example.com/attendance.php&lt;/code&gt;保留这个链接，其它统统删掉。然后利用&lt;code&gt;cookie&lt;/code&gt;登陆签到。&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://567899.xyz/images/har_save.png&#34; alt=&#34;&#34;  /&gt;
+&lt;/p&gt;
+&lt;p&gt;注册、登陆到网页签到管理，上传导入HAR文件，编辑、删除多余的链接，只需要保留有效、正确的签到链接&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://567899.xyz/images/har_attendance.png&#34; alt=&#34;&#34;  /&gt;
+&lt;/p&gt;
+&lt;p&gt;编辑HAR模板文件&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://567899.xyz/images/har_355.png&#34; alt=&#34;&#34;  /&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Request Headers&lt;/code&gt;全部勾选；&lt;code&gt;cookie&lt;/code&gt;填写为&lt;code&gt;{{cookie}}&lt;/code&gt;；&lt;code&gt;Cookies&lt;/code&gt;全部删除；&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>docker创建删除使用容器或镜像</title>
+      <link>https://567899.xyz/post/docker/</link>
+      <pubDate>Wed, 25 Jul 2018 01:37:56 +0800</pubDate>
+      <guid>https://567899.xyz/post/docker/</guid>
+      <description>&lt;p&gt;&lt;em&gt;更多容器可以访问&lt;a href=&#34;https://www.docker.com/&#34;&gt;docker&lt;/a&gt;的&lt;a href=&#34;https://hub.docker.com/&#34;&gt;Docker Hub&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;操作系统内核大于等于 3.10 的都可以安装最新版 Docker 查看内核版本&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;uname -r
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;安装docker&#34;&gt;安装docker&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;wget -qO- get.docker.com &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; bash 
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;安装完成后，运行下面的命令，验证是否安装成功。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker version 
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,369 @@
+<!doctype html><html lang=zh dir=auto><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>Debian10手动搭建WEB环境Nginx,SSL,PHP,MySQL | Xizi's Blog</title>
+<meta name=keywords content="Debian,Nginx,Certbot,SSL,PHP,MySQL"><meta name=description content='手动搭建，使用apt,apt-get快速安装免编译
+安装nginx和php
+apt update
+apt install openssl nginx-full php-fpm php-mysql -y
+创建站点，新建文件
+nano example.com.sh
+内容如下
+#!/bin/bash
+# 创建站点目录和默认页面
+mkdir /var/www/example.com
+chown -R www-data:www-data /var/www/example.com
+echo "hello word" > /var/www/example.com/index.html
+# 添加nginx配置文件
+echo "server {
+	listen 80;
+	listen [::]:80;
+	server_name example.com;
+	root /var/www/example.com;
+	index index.html;
+	# return 301 https://$server_name$request_uri;
+} >> /etc/nginx/sites-available/default
+把example.com替换成自己的域名
+sed -i &#39;s/example.com/自己的域名/&#39; example.com.sh
+给予权限并执行
+chmod +x example.com.sh
+bash example.com.sh
+systemctl restart nginx
+Certbot申请Let’s Encrypt证书SSL，安装Certbot'><meta name=author content="admin"><link rel=canonical href=https://567899.xyz/post/debian10-web-nginx-certbot-ssl-php-mysql/><meta name=google-site-verification content="XYZabc"><meta name=yandex-verification content="XYZabc"><meta name=msvalidate.01 content="XYZabc"><link crossorigin=anonymous href=/assets/css/stylesheet.e47a4660efa4fbc78073593cfd9c5a39a49f0ad0d1d33adf13d7f5183b23c238.css integrity="sha256-5HpGYO+k+8eAc1k8/ZxaOaSfCtDR0zrfE9f1GDsjwjg=" rel="preload stylesheet" as=style><link rel=icon href=https://567899.xyz/%3Clink%20/%20abs%20url%3E><link rel=icon type=image/png sizes=16x16 href=https://567899.xyz/%3Clink%20/%20abs%20url%3E><link rel=icon type=image/png sizes=32x32 href=https://567899.xyz/%3Clink%20/%20abs%20url%3E><link rel=apple-touch-icon href=https://567899.xyz/%3Clink%20/%20abs%20url%3E><link rel=mask-icon href=https://567899.xyz/%3Clink%20/%20abs%20url%3E><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=zh href=https://567899.xyz/post/debian10-web-nginx-certbot-ssl-php-mysql/><noscript><style>#theme-toggle,.top-link{display:none}</style><style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--code-block-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51)}.list{background:var(--theme)}.list:not(.dark)::-webkit-scrollbar-track{background:0 0}.list:not(.dark)::-webkit-scrollbar-thumb{border-color:var(--theme)}}</style></noscript><meta property="og:title" content="Debian10手动搭建WEB环境Nginx,SSL,PHP,MySQL"><meta property="og:description" content='手动搭建，使用apt,apt-get快速安装免编译
+安装nginx和php
+apt update
+apt install openssl nginx-full php-fpm php-mysql -y
+创建站点，新建文件
+nano example.com.sh
+内容如下
+#!/bin/bash
+# 创建站点目录和默认页面
+mkdir /var/www/example.com
+chown -R www-data:www-data /var/www/example.com
+echo "hello word" > /var/www/example.com/index.html
+# 添加nginx配置文件
+echo "server {
+	listen 80;
+	listen [::]:80;
+	server_name example.com;
+	root /var/www/example.com;
+	index index.html;
+	# return 301 https://$server_name$request_uri;
+} >> /etc/nginx/sites-available/default
+把example.com替换成自己的域名
+sed -i &#39;s/example.com/自己的域名/&#39; example.com.sh
+给予权限并执行
+chmod +x example.com.sh
+bash example.com.sh
+systemctl restart nginx
+Certbot申请Let’s Encrypt证书SSL，安装Certbot'><meta property="og:type" content="article"><meta property="og:url" content="https://567899.xyz/post/debian10-web-nginx-certbot-ssl-php-mysql/"><meta property="og:image" content="https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E"><meta property="article:section" content="post"><meta property="article:published_time" content="2020-09-10T16:40:38+00:00"><meta property="article:modified_time" content="2020-09-10T16:40:38+00:00"><meta property="og:site_name" content="Xizi's Blog"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E"><meta name=twitter:title content="Debian10手动搭建WEB环境Nginx,SSL,PHP,MySQL"><meta name=twitter:description content='手动搭建，使用apt,apt-get快速安装免编译
+安装nginx和php
+apt update
+apt install openssl nginx-full php-fpm php-mysql -y
+创建站点，新建文件
+nano example.com.sh
+内容如下
+#!/bin/bash
+# 创建站点目录和默认页面
+mkdir /var/www/example.com
+chown -R www-data:www-data /var/www/example.com
+echo "hello word" > /var/www/example.com/index.html
+# 添加nginx配置文件
+echo "server {
+	listen 80;
+	listen [::]:80;
+	server_name example.com;
+	root /var/www/example.com;
+	index index.html;
+	# return 301 https://$server_name$request_uri;
+} >> /etc/nginx/sites-available/default
+把example.com替换成自己的域名
+sed -i &#39;s/example.com/自己的域名/&#39; example.com.sh
+给予权限并执行
+chmod +x example.com.sh
+bash example.com.sh
+systemctl restart nginx
+Certbot申请Let’s Encrypt证书SSL，安装Certbot'><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Posts","item":"https://567899.xyz/post/"},{"@type":"ListItem","position":2,"name":"Debian10手动搭建WEB环境Nginx,SSL,PHP,MySQL","item":"https://567899.xyz/post/debian10-web-nginx-certbot-ssl-php-mysql/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"Debian10手动搭建WEB环境Nginx,SSL,PHP,MySQL","name":"Debian10手动搭建WEB环境Nginx,SSL,PHP,MySQL","description":"手动搭建，使用apt,apt-get快速安装免编译\n安装nginx和php\napt update apt install openssl nginx-full php-fpm php-mysql -y 创建站点，新建文件\nnano example.com.sh 内容如下\n#!/bin/bash # 创建站点目录和默认页面 mkdir /var/www/example.com chown -R www-data:www-data /var/www/example.com echo \u0026#34;hello word\u0026#34; \u0026gt; /var/www/example.com/index.html # 添加nginx配置文件 echo \u0026#34;server { listen 80; listen [::]:80; server_name example.com; root /var/www/example.com; index index.html; # return 301 https://$server_name$request_uri; } \u0026gt;\u0026gt; /etc/nginx/sites-available/default 把example.com替换成自己的域名\nsed -i \u0026#39;s/example.com/自己的域名/\u0026#39; example.com.sh 给予权限并执行\nchmod +x example.com.sh bash example.com.sh systemctl restart nginx Certbot申请Let’s Encrypt证书SSL，安装Certbot\n","keywords":["Debian","Nginx","Certbot","SSL","PHP","MySQL"],"articleBody":"手动搭建，使用apt,apt-get快速安装免编译\n安装nginx和php\napt update apt install openssl nginx-full php-fpm php-mysql -y 创建站点，新建文件\nnano example.com.sh 内容如下\n#!/bin/bash # 创建站点目录和默认页面 mkdir /var/www/example.com chown -R www-data:www-data /var/www/example.com echo \"hello word\" \u003e /var/www/example.com/index.html # 添加nginx配置文件 echo \"server { listen 80; listen [::]:80; server_name example.com; root /var/www/example.com; index index.html; # return 301 https://$server_name$request_uri; } \u003e\u003e /etc/nginx/sites-available/default 把example.com替换成自己的域名\nsed -i 's/example.com/自己的域名/' example.com.sh 给予权限并执行\nchmod +x example.com.sh bash example.com.sh systemctl restart nginx Certbot申请Let’s Encrypt证书SSL，安装Certbot\napt install certbot -y 获取SSL证书\ncertbot certonly --webroot -w /var/www/example.com -d example.com --register-unsafely-without-email 输入A同意，即可顺利签发SSL证书,使用SSL证书\nnginx+php+ssl\necho \"server { listen 443 ssl http2; listen [::]:443 ssl http2; server_name example.com; root /var/www/example.com; index index.html index.htm index.php; #php location ~ \\.php$ { include snippets/fastcgi-php.conf; fastcgi_pass unix:/run/php/php7.4-fpm.sock; } ssl on; ssl_protocols TLSv1 TLSv1.1 TLSv1.2 TLSv1.3; ssl_certificate /etc/letsencrypt/live/example.com/fullchain.pem; ssl_certificate_key /etc/letsencrypt/live/example.com/privkey.pem; } \u003e\u003e /etc/nginx/sites-available/default nginx反向代理+ssl\necho \"server { listen 443 ssl http2; listen [::]:443 ssl http2; server_name example.com; location / { proxy_pass http://127.0.0.1:45729; proxy_redirect off; proxy_set_header X-Real-IP $remote_addr; proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; } ssl on; ssl_protocols TLSv1 TLSv1.1 TLSv1.2 TLSv1.3; ssl_certificate /etc/letsencrypt/live/example.com/fullchain.pem; ssl_certificate_key /etc/letsencrypt/live/example.com/privkey.pem; } \u003e\u003e /etc/nginx/sites-available/default 把example.com替换成自己的域名\nsed -i 's/example.com/自己的域名/' /etc/nginx/sites-available/default systemctl restart nginx 更新Let’s Encrypt证书\n#systemctl stop xray #sed -i 's/81/80/' /etc/nginx/sites-available/default systemctl restart nginx certbot renew #sed -i 's/80/81/' /etc/nginx/sites-available/default systemctl restart nginx #systemctl restart xray 更新软件源\napt update 来更新软件源。\nNginx 这里使用Nginx作为WEB服务器。\n安装Nginx apt install openssl nginx -y 完成安装后可以用\nnginx -V 查看到版本号nginx/1.14.2,OpenSSL 1.1.1d及相关文件位置路径等\nnginx version: nginx/1.14.2 built with OpenSSL 1.1.1d 10 Sep 2019 TLS SNI support enabled configure arguments: --with-cc-opt='-g -O2 -fdebug-prefix-map=/build/nginx-hfVZV6/nginx-1.14.2=. -fstack-protector-strong -Wformat -Werror=format-security -fPIC -Wdate-time -D_FORTIFY_SOURCE=2' --with-ld-opt='-Wl,-z,relro -Wl,-z,now -fPIC' --prefix=/usr/share/nginx --conf-path=/etc/nginx/nginx.conf --http-log-path=/var/log/nginx/access.log --error-log-path=/var/log/nginx/error.log --lock-path=/var/lock/nginx.lock --pid-path=/run/nginx.pid --modules-path=/usr/lib/nginx/modules --http-client-body-temp-path=/var/lib/nginx/body --http-fastcgi-temp-path=/var/lib/nginx/fastcgi --http-proxy-temp-path=/var/lib/nginx/proxy --http-scgi-temp-path=/var/lib/nginx/scgi --http-uwsgi-temp-path=/var/lib/nginx/uwsgi --with-debug --with-pcre-jit --with-http_ssl_module --with-http_stub_status_module --with-http_realip_module --with-http_auth_request_module --with-http_v2_module --with-http_dav_module --with-http_slice_module --with-threads --with-http_addition_module --with-http_geoip_module=dynamic --with-http_gunzip_module --with-http_gzip_static_module --with-http_image_filter_module=dynamic --with-http_sub_module --with-http_xslt_module=dynamic --with-stream=dynamic --with-stream_ssl_module --with-stream_ssl_preread_module --with-mail=dynamic --with-mail_ssl_module --add-dynamic-module=/build/nginx-hfVZV6/nginx-1.14.2/debian/modules/http-auth-pam --add-dynamic-module=/build/nginx-hfVZV6/nginx-1.14.2/debian/modules/http-dav-ext --add-dynamic-module=/build/nginx-hfVZV6/nginx-1.14.2/debian/modules/http-echo --add-dynamic-module=/build/nginx-hfVZV6/nginx-1.14.2/debian/modules/http-upstream-fair --add-dynamic-module=/build/nginx-hfVZV6/nginx-1.14.2/debian/modules/http-subs-filter Nginx安装完成后默认已经启动了，此时访问http://IP就能看到Welcome to nginx!\n配置网站 把域名的A记录解析到你的IPv4或者AAAA解析到IPvv6且已经生效\n创建站点目录和默认页面\nmkdir /var/www/example.com echo \"hello word\" \u003e /var/www/example.com/index.html 创建站点配置文件\necho \"server { listen 80; listen [::]:80; server_name example.com; root /var/www/example.com; index index.html index.htm index.php; }\" \u003e /etc/nginx/sites-available/example.com 创建软链接\nln -s /etc/nginx/sites-available/example.com /etc/nginx/sites-enabled/ 使用nginx -t检查配置文件是否有错误，提示ok,successful就可以重启了\nsystemctl restart nginx 文件位置 /usr/sbin/nginx #主程序 /etc/nginx #存放配置文件 /usr/share/nginx #存放静态文件 /var/log/nginx #存放日志 /etc/nginx/nginx.conf #默认nginx配置文件 Nginx管理命令 #启动 systemctl enable nginx #重启 systemctl restart nginx #停止 systemctl stop nginx #也可以使用 /etc/init.d/nginx start # 启动Nginx服务 /etc/init.d/nginx stop # 停止Nginx服务 /etc/init.d/nginx restart # 重启Nginx服务 Certbot申请Let’s Encrypt证书SSL 在申请Let’s Encrypt证书前确保站点http://example.com能正常访问。\n安装Certbot\napt install certbot -y 获取SSL证书\ncertbot certonly --webroot -w /var/www/example.com -d example.com --register-unsafely-without-email 输入A同意，即可顺利签发SSL证书\n这个命令会为域名example.com生成一个证书，使用–webroot模式会在/var/www/example.com站点根目录中创建.well-known文件夹，这个文件夹里面包含了一些验证文件，certbot会通过访问example.com/.well-known/acme-challenge来验证你的域名是否绑定的这个服务器。\nSSL证书保存路径\nIMPORTANT NOTES: - Congratulations! Your certificate and chain have been saved at: /etc/letsencrypt/live/example.com/fullchain.pem Your key file has been saved at: /etc/letsencrypt/live/example.com/privkey.pem Your cert will expire on 2020-12-09. To obtain a new or tweaked version of this certificate in the future, simply run certbot again. To non-interactively renew *all* of your certificates, run \"certbot renew\" - Your account credentials have been saved in your Certbot configuration directory at /etc/letsencrypt. You should make a secure backup of this folder now. This configuration directory will also contain certificates and private keys obtained by Certbot so making regular backups of this folder is ideal. - If you like Certbot, please consider supporting our work by: Donating to ISRG / Let's Encrypt: https://letsencrypt.org/donate Donating to EFF: https://eff.org/donate-le 自动更新SSL证书\nLet’s Encrypt提供的证书只有90天的有效期，certbot运行\ncertbot renew 可添加一个cron计划19 4 * * 3 root certbot renew意为每周三的00:19执行定时更新SSL证书计划\n泛域名证书\ncertbot certonly --preferred-challenges dns --manual -d *.example.com --server https://acme-v02.api.letsencrypt.org/directory –preferred-challenges dns: 认证方式选择DNS, 泛域名支持DNS –manual: 手动模式, 这里为了简单就使用手动认证了, 下面会说自动模式的使用. -d *.bysir.cn: 就是要申请的泛域名了 –server https://acme-v02.api.letsencrypt.org/directory 手动配置TXT记录后回车\n使用SSL证书 编辑/etc/nginx/sites-available/example.com站点配置文件修改为\nserver { listen 443 ssl; listen [::]:443 ssl; server_name example.com; root /var/www/example.com; index index.html index.htm index.php; ssl on; ssl_protocols TLSv1 TLSv1.1 TLSv1.2 TLSv1.3; ssl_certificate /etc/letsencrypt/live/example.com/fullchain.pem; ssl_certificate_key /etc/letsencrypt/live/example.com/privkey.pem; } server { listen 80; listen [::]:80; server_name example.com; root /var/www/example.com; index index.html index.htm index.php; return 301 https://$server_name$request_uri; } 重启Nginx\nsystemctl restart nginx PHP Debian10系统自带的软件包源的PHP版本是PHP 7.3.19-1~deb10u1 (cli)\n安装PHP apt -y install php-fpm php-mysql #其它组件(可选)\napt -y install php-zip php-gd php-mbstring php-curl php-xml php-pear php-bcmath PHP配置文件/etc/php/7.3/fpm/php.ini\n更多操作：\nphp -v #查看PHP版本号 systemctl restart php7.3-fpm #重启 systemctl start php7.3-fpm #启动 systemctl stop php7.3-fpm #关闭 systemctl status php7.3-fpm #检查状态 Nginx使用PHP 编辑/etc/nginx/sites-available/example.com站点配置文件修改为\nserver { listen 443 ssl; listen [::]:443 ssl; server_name example.com; root /var/www/example.com; index index.html index.htm index.php; ssl on; ssl_protocols TLSv1 TLSv1.1 TLSv1.2 TLSv1.3; ssl_certificate /etc/letsencrypt/live/example.com/fullchain.pem; ssl_certificate_key /etc/letsencrypt/live/example.com/privkey.pem; #php location ~ \\.php$ { include snippets/fastcgi-php.conf; fastcgi_pass unix:/run/php/php7.3-fpm.sock; } #WebSocket端口转发 location /ray { proxy_redirect off; proxy_pass http://127.0.0.1:23433; proxy_http_version 1.1; proxy_set_header Upgrade $http_upgrade; proxy_set_header Connection \"upgrade\"; proxy_set_header Host $http_host; proxy_read_timeout 300s; } } server { listen 80; listen [::]:80; server_name example.com; root /var/www/example.com; index index.html index.htm index.php; return 301 https://$server_name$request_uri; } 重启下Nginx和php\nsystemctl restart nginx systemctl restart php7.3-fpm 为PHP7.3添加yaf扩展(可选)\n# 编译安装yaf扩展 apt-get install php-dev -y wget https://raw.githubusercontent.com/pwwq/files/master/yaf-3.0.8.tar.gz tar -zxvf yaf-3.0.8.tar.gz cd yaf-yaf-3.0.8 \u0026\u0026 phpize ./configure --with-php-config=/usr/local/php/bin/php-config ./configure \u0026\u0026 make \u0026\u0026 make install # 配置PHP支持yaf扩展 echo \"extension=yaf.so yaf.environ='product' yaf.use_namespace=1\" \u003e\u003e /etc/php/7.3/fpm/php.ini # 重启PHP systemctl restart php7.3-fpm 安装redis扩展(可选)\napt install php-redis -y echo \"extension=redis.so\" \u003e\u003e /etc/php/7.3/fpm/php.ini 安装Composer(可选)\nphp -r \"copy('https://install.phpcomposer.com/installer', 'composer-setup.php');\" php composer-setup.php mv composer.phar /usr/local/bin/composer 输入composer验证Composer (PHP包管理器)\nMySQL数据库 MariaDB 是 Debian 10 中的默认数据库系统， Mysql 并不包含在 Debian 的默认软件存储库\n配置 MySQL软件源 从MySQL Apt存储库并使用以下 wget 命令下载最新的发行包\napt install lsb-release gnupg -y wget https://dev.mysql.com/get/mysql-apt-config_0.8.13-1_all.deb dpkg -i mysql-apt-config_0.8.13-1_all.deb 安装 MySQL apt update apt install mysql-server 选择MYSQL5.7的低版本就行，版本越高越占用系统资源\n使用mysql -u root -p登陆管理MYSQL\n用phpMyAdmin使用网页管理更方便下载phpMyAdmin_v5.0.2解压后放置到站点根目录即可，无需额外设置。\nwget https://files.phpmyadmin.net/phpMyAdmin/5.0.2/phpMyAdmin-5.0.2-all-languages.zip unzip phpMyAdmin-5.0.2-all-languages.zip mv phpMyAdmin-5.0.2-all-languages /var/www/example.com/phpMyAdmin rm phpMyAdmin-5.0.2-all-languages.zip 访问https://example.com/phpMyAdmin 网页管理MySQL\n","wordCount":"831","inLanguage":"zh","image":"https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E","datePublished":"2020-09-10T16:40:38Z","dateModified":"2020-09-10T16:40:38Z","author":{"@type":"Person","name":"admin"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://567899.xyz/post/debian10-web-nginx-certbot-ssl-php-mysql/"},"publisher":{"@type":"Organization","name":"Xizi's Blog","logo":{"@type":"ImageObject","url":"https://567899.xyz/%3Clink%20/%20abs%20url%3E"}}}</script></head><body id=top><script>localStorage.getItem("pref-theme")==="dark"?document.body.classList.add("dark"):localStorage.getItem("pref-theme")==="light"?document.body.classList.remove("dark"):window.matchMedia("(prefers-color-scheme: dark)").matches&&document.body.classList.add("dark")</script><header class=header><nav class=nav><div class=logo><a href=https://567899.xyz/ accesskey=h title="Xizi's Blog (Alt + H)"><img src=https://567899.xyz/apple-touch-icon.png alt aria-label=logo height=35>Xizi's Blog</a><div class=logo-switches><button id=theme-toggle accesskey=t title="(Alt + T)"><svg id="moon" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu><li><a href=https://567899.xyz/archives/ title=归档><span>归档</span></a></li><li><a href=https://567899.xyz/tags/ title=标签><span>标签</span></a></li><li><a href=https://567899.xyz/about/ title=关于><span>关于</span></a></li><li><a href=https://567899.xyz/search/ title="搜索 (Alt + /)" accesskey=/><span>搜索</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><div class=breadcrumbs><a href=https://567899.xyz/>主页</a>&nbsp;»&nbsp;<a href=https://567899.xyz/post/>Posts</a></div><h1 class="post-title entry-hint-parent">Debian10手动搭建WEB环境Nginx,SSL,PHP,MySQL</h1><div class=post-meta><span title='2020-09-10 16:40:38 +0000 UTC'>九月 10, 2020</span>&nbsp;·&nbsp;admin&nbsp;|&nbsp;<a href=https://github.com/pwwq/hugo-code/tree/master/content/post/Debian10-WEB-Nginx-Certbot-SSL-PHP-MySQL.md rel="noopener noreferrer" target=_blank>编辑</a></div></header><div class=toc><details open><summary accesskey=c title="(Alt + C)"><div class=details>Debian10手动搭建WEB环境Nginx,SSL,PHP,MySQL</div></summary><div class=inner><ul><li><a href=#nginx aria-label=Nginx>Nginx</a></li><li><a href=#%e5%ae%89%e8%a3%85nginx aria-label=安装Nginx>安装Nginx</a></li><li><a href=#%e9%85%8d%e7%bd%ae%e7%bd%91%e7%ab%99 aria-label=配置网站>配置网站</a></li><li><a href=#%e6%96%87%e4%bb%b6%e4%bd%8d%e7%bd%ae aria-label=文件位置>文件位置</a></li><li><a href=#nginx%e7%ae%a1%e7%90%86%e5%91%bd%e4%bb%a4 aria-label=Nginx管理命令>Nginx管理命令</a></li><li><a href=#certbot%e7%94%b3%e8%af%b7lets-encrypt%e8%af%81%e4%b9%a6ssl aria-label="Certbot申请Let’s Encrypt证书SSL">Certbot申请Let’s Encrypt证书SSL</a></li><li><a href=#%e4%bd%bf%e7%94%a8ssl%e8%af%81%e4%b9%a6 aria-label=使用SSL证书>使用SSL证书</a></li><li><a href=#php aria-label=PHP>PHP</a></li><li><a href=#%e5%ae%89%e8%a3%85php aria-label=安装PHP>安装PHP</a></li><li><a href=#nginx%e4%bd%bf%e7%94%a8php aria-label=Nginx使用PHP>Nginx使用PHP</a></li><li><a href=#mysql%e6%95%b0%e6%8d%ae%e5%ba%93 aria-label=MySQL数据库>MySQL数据库</a></li><li><a href=#%e9%85%8d%e7%bd%ae-mysql%e8%bd%af%e4%bb%b6%e6%ba%90 aria-label="配置 MySQL软件源">配置 MySQL软件源</a></li><li><a href=#%e5%ae%89%e8%a3%85-mysql aria-label="安装 MySQL">安装 MySQL</a></li></ul></div></details></div><div class=post-content><p>手动搭建，使用<code>apt</code>,<code>apt-get</code>快速安装免编译</p><p>安装nginx和php</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>apt update
+</span></span><span class=line><span class=cl>apt install openssl nginx-full php-fpm php-mysql -y
+</span></span></code></pre></div><p>创建站点，新建文件</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>nano example.com.sh
+</span></span></code></pre></div><p>内容如下</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=cp>#!/bin/bash
+</span></span></span><span class=line><span class=cl><span class=cp></span><span class=c1># 创建站点目录和默认页面</span>
+</span></span><span class=line><span class=cl>mkdir /var/www/example.com
+</span></span><span class=line><span class=cl>chown -R www-data:www-data /var/www/example.com
+</span></span><span class=line><span class=cl><span class=nb>echo</span> <span class=s2>&#34;hello word&#34;</span> &gt; /var/www/example.com/index.html
+</span></span><span class=line><span class=cl><span class=c1># 添加nginx配置文件</span>
+</span></span><span class=line><span class=cl><span class=nb>echo</span> <span class=s2>&#34;server {
+</span></span></span><span class=line><span class=cl><span class=s2>	listen 80;
+</span></span></span><span class=line><span class=cl><span class=s2>	listen [::]:80;
+</span></span></span><span class=line><span class=cl><span class=s2>	server_name example.com;
+</span></span></span><span class=line><span class=cl><span class=s2>	root /var/www/example.com;
+</span></span></span><span class=line><span class=cl><span class=s2>	index index.html;
+</span></span></span><span class=line><span class=cl><span class=s2>	# return 301 https://</span><span class=nv>$server_name$request_uri</span><span class=s2>;
+</span></span></span><span class=line><span class=cl><span class=s2>} &gt;&gt; /etc/nginx/sites-available/default
+</span></span></span></code></pre></div><p>把<code>example.com</code>替换成自己的域名</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sed -i <span class=s1>&#39;s/example.com/自己的域名/&#39;</span> example.com.sh
+</span></span></code></pre></div><p>给予权限并执行</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>chmod +x example.com.sh
+</span></span><span class=line><span class=cl>bash example.com.sh
+</span></span><span class=line><span class=cl>systemctl restart nginx
+</span></span></code></pre></div><p>Certbot申请Let’s Encrypt证书SSL，安装Certbot</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>apt install certbot -y
+</span></span></code></pre></div><p>获取SSL证书</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>certbot certonly --webroot -w /var/www/example.com -d example.com --register-unsafely-without-email
+</span></span></code></pre></div><p>输入A同意，即可顺利签发SSL证书,使用SSL证书</p><p>nginx+php+ssl</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=nb>echo</span> <span class=s2>&#34;server {
+</span></span></span><span class=line><span class=cl><span class=s2>	listen 443 ssl http2;
+</span></span></span><span class=line><span class=cl><span class=s2>	listen [::]:443 ssl http2;
+</span></span></span><span class=line><span class=cl><span class=s2>	server_name example.com;
+</span></span></span><span class=line><span class=cl><span class=s2>	root /var/www/example.com;
+</span></span></span><span class=line><span class=cl><span class=s2>	index index.html index.htm index.php;
+</span></span></span><span class=line><span class=cl><span class=s2>	#php
+</span></span></span><span class=line><span class=cl><span class=s2>	location ~ \.php</span>$<span class=s2> {
+</span></span></span><span class=line><span class=cl><span class=s2>	include snippets/fastcgi-php.conf;
+</span></span></span><span class=line><span class=cl><span class=s2>	fastcgi_pass unix:/run/php/php7.4-fpm.sock;
+</span></span></span><span class=line><span class=cl><span class=s2>	}
+</span></span></span><span class=line><span class=cl><span class=s2>	ssl on;
+</span></span></span><span class=line><span class=cl><span class=s2>	ssl_protocols TLSv1 TLSv1.1 TLSv1.2 TLSv1.3;
+</span></span></span><span class=line><span class=cl><span class=s2>	ssl_certificate      /etc/letsencrypt/live/example.com/fullchain.pem;
+</span></span></span><span class=line><span class=cl><span class=s2>	ssl_certificate_key  /etc/letsencrypt/live/example.com/privkey.pem;
+</span></span></span><span class=line><span class=cl><span class=s2>} &gt;&gt; /etc/nginx/sites-available/default
+</span></span></span></code></pre></div><p>nginx反向代理+ssl</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=nb>echo</span> <span class=s2>&#34;server {
+</span></span></span><span class=line><span class=cl><span class=s2>  listen 443 ssl http2;
+</span></span></span><span class=line><span class=cl><span class=s2>  listen [::]:443 ssl http2;
+</span></span></span><span class=line><span class=cl><span class=s2>  server_name example.com;
+</span></span></span><span class=line><span class=cl><span class=s2>  location / {
+</span></span></span><span class=line><span class=cl><span class=s2>  proxy_pass http://127.0.0.1:45729;
+</span></span></span><span class=line><span class=cl><span class=s2>  proxy_redirect off;
+</span></span></span><span class=line><span class=cl><span class=s2>  proxy_set_header X-Real-IP </span><span class=nv>$remote_addr</span><span class=s2>;
+</span></span></span><span class=line><span class=cl><span class=s2>  proxy_set_header X-Forwarded-For </span><span class=nv>$proxy_add_x_forwarded_for</span><span class=s2>;
+</span></span></span><span class=line><span class=cl><span class=s2>  }
+</span></span></span><span class=line><span class=cl><span class=s2>  ssl on;
+</span></span></span><span class=line><span class=cl><span class=s2>  ssl_protocols TLSv1 TLSv1.1 TLSv1.2 TLSv1.3;
+</span></span></span><span class=line><span class=cl><span class=s2>  ssl_certificate      /etc/letsencrypt/live/example.com/fullchain.pem;
+</span></span></span><span class=line><span class=cl><span class=s2>  ssl_certificate_key  /etc/letsencrypt/live/example.com/privkey.pem;
+</span></span></span><span class=line><span class=cl><span class=s2>} &gt;&gt; /etc/nginx/sites-available/default
+</span></span></span></code></pre></div><p>把<code>example.com</code>替换成自己的域名</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sed -i <span class=s1>&#39;s/example.com/自己的域名/&#39;</span> /etc/nginx/sites-available/default
+</span></span><span class=line><span class=cl>systemctl restart nginx
+</span></span></code></pre></div><p>更新Let’s Encrypt证书</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1>#systemctl stop xray</span>
+</span></span><span class=line><span class=cl><span class=c1>#sed -i &#39;s/81/80/&#39; /etc/nginx/sites-available/default</span>
+</span></span><span class=line><span class=cl>systemctl restart nginx
+</span></span><span class=line><span class=cl>certbot renew
+</span></span><span class=line><span class=cl><span class=c1>#sed -i &#39;s/80/81/&#39; /etc/nginx/sites-available/default</span>
+</span></span><span class=line><span class=cl>systemctl restart nginx
+</span></span><span class=line><span class=cl><span class=c1>#systemctl restart xray</span>
+</span></span></code></pre></div><hr><p>更新软件源</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>apt update
+</span></span></code></pre></div><p>来更新软件源。</p><h2 id=nginx>Nginx<a hidden class=anchor aria-hidden=true href=#nginx>#</a></h2><p>这里使用<a href=https://nginx.org>Nginx</a>作为WEB服务器。</p><h2 id=安装nginx>安装Nginx<a hidden class=anchor aria-hidden=true href=#安装nginx>#</a></h2><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>apt install openssl nginx -y
+</span></span></code></pre></div><p>完成安装后可以用</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>nginx -V
+</span></span></code></pre></div><p>查看到版本号<code>nginx/1.14.2</code>,<code>OpenSSL 1.1.1d</code>及相关文件位置路径等</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>nginx version: nginx/1.14.2
+</span></span><span class=line><span class=cl>built with OpenSSL 1.1.1d  <span class=m>10</span> Sep <span class=m>2019</span>
+</span></span><span class=line><span class=cl>TLS SNI support enabled
+</span></span><span class=line><span class=cl>configure arguments: --with-cc-opt<span class=o>=</span><span class=s1>&#39;-g -O2 -fdebug-prefix-map=/build/nginx-hfVZV6/nginx-1.14.2=. -fstack-protector-strong -Wformat -Werror=format-security -fPIC -Wdate-time -D_FORTIFY_SOURCE=2&#39;</span> --with-ld-opt<span class=o>=</span><span class=s1>&#39;-Wl,-z,relro -Wl,-z,now -fPIC&#39;</span> --prefix<span class=o>=</span>/usr/share/nginx --conf-path<span class=o>=</span>/etc/nginx/nginx.conf --http-log-path<span class=o>=</span>/var/log/nginx/access.log --error-log-path<span class=o>=</span>/var/log/nginx/error.log --lock-path<span class=o>=</span>/var/lock/nginx.lock --pid-path<span class=o>=</span>/run/nginx.pid --modules-path<span class=o>=</span>/usr/lib/nginx/modules --http-client-body-temp-path<span class=o>=</span>/var/lib/nginx/body --http-fastcgi-temp-path<span class=o>=</span>/var/lib/nginx/fastcgi --http-proxy-temp-path<span class=o>=</span>/var/lib/nginx/proxy --http-scgi-temp-path<span class=o>=</span>/var/lib/nginx/scgi --http-uwsgi-temp-path<span class=o>=</span>/var/lib/nginx/uwsgi --with-debug --with-pcre-jit --with-http_ssl_module --with-http_stub_status_module --with-http_realip_module --with-http_auth_request_module --with-http_v2_module --with-http_dav_module --with-http_slice_module --with-threads --with-http_addition_module --with-http_geoip_module<span class=o>=</span>dynamic --with-http_gunzip_module --with-http_gzip_static_module --with-http_image_filter_module<span class=o>=</span>dynamic --with-http_sub_module --with-http_xslt_module<span class=o>=</span>dynamic --with-stream<span class=o>=</span>dynamic --with-stream_ssl_module --with-stream_ssl_preread_module --with-mail<span class=o>=</span>dynamic --with-mail_ssl_module --add-dynamic-module<span class=o>=</span>/build/nginx-hfVZV6/nginx-1.14.2/debian/modules/http-auth-pam --add-dynamic-module<span class=o>=</span>/build/nginx-hfVZV6/nginx-1.14.2/debian/modules/http-dav-ext --add-dynamic-module<span class=o>=</span>/build/nginx-hfVZV6/nginx-1.14.2/debian/modules/http-echo --add-dynamic-module<span class=o>=</span>/build/nginx-hfVZV6/nginx-1.14.2/debian/modules/http-upstream-fair --add-dynamic-module<span class=o>=</span>/build/nginx-hfVZV6/nginx-1.14.2/debian/modules/http-subs-filter
+</span></span></code></pre></div><p>Nginx安装完成后默认已经启动了，此时访问<code>http://IP</code>就能看到<code>Welcome to nginx!</code></p><h2 id=配置网站>配置网站<a hidden class=anchor aria-hidden=true href=#配置网站>#</a></h2><p>把域名的A记录解析到你的IPv4或者AAAA解析到IPvv6且已经生效</p><p>创建站点目录和默认页面</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>mkdir /var/www/example.com
+</span></span><span class=line><span class=cl><span class=nb>echo</span> <span class=s2>&#34;hello word&#34;</span> &gt; /var/www/example.com/index.html
+</span></span></code></pre></div><p>创建站点配置文件</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=nb>echo</span> <span class=s2>&#34;server {
+</span></span></span><span class=line><span class=cl><span class=s2>  listen 80;
+</span></span></span><span class=line><span class=cl><span class=s2>  listen [::]:80;
+</span></span></span><span class=line><span class=cl><span class=s2>  server_name example.com;
+</span></span></span><span class=line><span class=cl><span class=s2>  root /var/www/example.com;
+</span></span></span><span class=line><span class=cl><span class=s2>  index index.html index.htm index.php;
+</span></span></span><span class=line><span class=cl><span class=s2>}&#34;</span> &gt; /etc/nginx/sites-available/example.com
+</span></span></code></pre></div><p>创建软链接</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>ln -s /etc/nginx/sites-available/example.com /etc/nginx/sites-enabled/
+</span></span></code></pre></div><p>使用<code>nginx -t</code>检查配置文件是否有错误，提示<code>ok</code>,<code>successful</code>就可以重启了</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>systemctl restart nginx
+</span></span></code></pre></div><h2 id=文件位置>文件位置<a hidden class=anchor aria-hidden=true href=#文件位置>#</a></h2><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>/usr/sbin/nginx
+</span></span><span class=line><span class=cl><span class=c1>#主程序</span>
+</span></span><span class=line><span class=cl>/etc/nginx
+</span></span><span class=line><span class=cl><span class=c1>#存放配置文件</span>
+</span></span><span class=line><span class=cl>/usr/share/nginx
+</span></span><span class=line><span class=cl><span class=c1>#存放静态文件</span>
+</span></span><span class=line><span class=cl>/var/log/nginx
+</span></span><span class=line><span class=cl><span class=c1>#存放日志</span>
+</span></span><span class=line><span class=cl>/etc/nginx/nginx.conf
+</span></span><span class=line><span class=cl><span class=c1>#默认nginx配置文件</span>
+</span></span></code></pre></div><h2 id=nginx管理命令>Nginx管理命令<a hidden class=anchor aria-hidden=true href=#nginx管理命令>#</a></h2><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1>#启动</span>
+</span></span><span class=line><span class=cl>systemctl <span class=nb>enable</span> nginx
+</span></span><span class=line><span class=cl><span class=c1>#重启</span>
+</span></span><span class=line><span class=cl>systemctl restart nginx
+</span></span><span class=line><span class=cl><span class=c1>#停止</span>
+</span></span><span class=line><span class=cl>systemctl stop nginx
+</span></span><span class=line><span class=cl><span class=c1>#也可以使用</span>
+</span></span><span class=line><span class=cl>/etc/init.d/nginx start <span class=c1># 启动Nginx服务</span>
+</span></span><span class=line><span class=cl>/etc/init.d/nginx stop <span class=c1># 停止Nginx服务</span>
+</span></span><span class=line><span class=cl>/etc/init.d/nginx  restart <span class=c1># 重启Nginx服务</span>
+</span></span></code></pre></div><h2 id=certbot申请lets-encrypt证书ssl>Certbot申请Let’s Encrypt证书SSL<a hidden class=anchor aria-hidden=true href=#certbot申请lets-encrypt证书ssl>#</a></h2><p>在申请Let’s Encrypt证书前确保站点http://example.com能正常访问。</p><p>安装Certbot</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>apt install certbot -y
+</span></span></code></pre></div><p>获取SSL证书</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>certbot certonly --webroot -w /var/www/example.com -d example.com --register-unsafely-without-email
+</span></span></code></pre></div><p>输入<code>A</code>同意，即可顺利签发SSL证书</p><p>这个命令会为域名<code>example.com</code>生成一个证书，使用&ndash;webroot模式会在/var/www/example.com站点根目录中创建.well-known文件夹，这个文件夹里面包含了一些验证文件，certbot会通过访问example.com/.well-known/acme-challenge来验证你的域名是否绑定的这个服务器。</p><p>SSL证书保存路径</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>IMPORTANT NOTES:
+</span></span><span class=line><span class=cl> - Congratulations! Your certificate and chain have been saved at:
+</span></span><span class=line><span class=cl>   /etc/letsencrypt/live/example.com/fullchain.pem
+</span></span><span class=line><span class=cl>   Your key file has been saved at:
+</span></span><span class=line><span class=cl>   /etc/letsencrypt/live/example.com/privkey.pem
+</span></span><span class=line><span class=cl>   Your cert will expire on 2020-12-09. To obtain a new or tweaked
+</span></span><span class=line><span class=cl>   version of this certificate in the future, simply run certbot
+</span></span><span class=line><span class=cl>   again. To non-interactively renew *all* of your certificates, run
+</span></span><span class=line><span class=cl>   <span class=s2>&#34;certbot renew&#34;</span>
+</span></span><span class=line><span class=cl> - Your account credentials have been saved in your Certbot
+</span></span><span class=line><span class=cl>   configuration directory at /etc/letsencrypt. You should make a
+</span></span><span class=line><span class=cl>   secure backup of this folder now. This configuration directory will
+</span></span><span class=line><span class=cl>   also contain certificates and private keys obtained by Certbot so
+</span></span><span class=line><span class=cl>   making regular backups of this folder is ideal.
+</span></span><span class=line><span class=cl> - If you like Certbot, please consider supporting our work by:
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>   Donating to ISRG / Let<span class=err>&#39;</span>s Encrypt:   https://letsencrypt.org/donate
+</span></span><span class=line><span class=cl>   Donating to EFF:                    https://eff.org/donate-le
+</span></span></code></pre></div><p>自动更新SSL证书</p><p>Let’s Encrypt提供的证书只有90天的有效期，<code>certbot</code>运行</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>certbot renew
+</span></span></code></pre></div><p>可添加一个<code>cron</code>计划<code>19 4 * * 3 root certbot renew</code>意为每周三的00:19执行定时更新SSL证书计划</p><p>泛域名证书</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>certbot certonly --preferred-challenges dns --manual  -d *.example.com --server https://acme-v02.api.letsencrypt.org/directory
+</span></span></code></pre></div><ol><li>&ndash;preferred-challenges dns: 认证方式选择DNS, 泛域名支持DNS</li><li>&ndash;manual: 手动模式, 这里为了简单就使用手动认证了, 下面会说自动模式的使用.</li><li>-d *.bysir.cn: 就是要申请的泛域名了</li><li>&ndash;server <a href=https://acme-v02.api.letsencrypt.org/directory>https://acme-v02.api.letsencrypt.org/directory</a></li></ol><p>手动配置TXT记录后回车</p><h2 id=使用ssl证书>使用SSL证书<a hidden class=anchor aria-hidden=true href=#使用ssl证书>#</a></h2><p>编辑<code>/etc/nginx/sites-available/example.com</code>站点配置文件修改为</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>server <span class=o>{</span>
+</span></span><span class=line><span class=cl>	listen <span class=m>443</span> ssl<span class=p>;</span>
+</span></span><span class=line><span class=cl>	listen <span class=o>[</span>::<span class=o>]</span>:443 ssl<span class=p>;</span>
+</span></span><span class=line><span class=cl>	server_name example.com<span class=p>;</span>
+</span></span><span class=line><span class=cl>	root /var/www/example.com<span class=p>;</span>
+</span></span><span class=line><span class=cl>	index index.html index.htm index.php<span class=p>;</span>
+</span></span><span class=line><span class=cl>	ssl on<span class=p>;</span>
+</span></span><span class=line><span class=cl>	ssl_protocols TLSv1 TLSv1.1 TLSv1.2 TLSv1.3<span class=p>;</span>
+</span></span><span class=line><span class=cl>	ssl_certificate      /etc/letsencrypt/live/example.com/fullchain.pem<span class=p>;</span>
+</span></span><span class=line><span class=cl>	ssl_certificate_key  /etc/letsencrypt/live/example.com/privkey.pem<span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=o>}</span>
+</span></span><span class=line><span class=cl>server <span class=o>{</span>
+</span></span><span class=line><span class=cl>	listen 80<span class=p>;</span>
+</span></span><span class=line><span class=cl>	listen <span class=o>[</span>::<span class=o>]</span>:80<span class=p>;</span>
+</span></span><span class=line><span class=cl>	server_name example.com<span class=p>;</span>
+</span></span><span class=line><span class=cl>	root /var/www/example.com<span class=p>;</span>
+</span></span><span class=line><span class=cl>	index index.html index.htm index.php<span class=p>;</span>
+</span></span><span class=line><span class=cl>	<span class=k>return</span> <span class=m>301</span> https://<span class=nv>$server_name$request_uri</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=o>}</span>
+</span></span></code></pre></div><p>重启Nginx</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>systemctl restart nginx
+</span></span></code></pre></div><h2 id=php>PHP<a hidden class=anchor aria-hidden=true href=#php>#</a></h2><p>Debian10系统自带的软件包源的PHP版本是PHP 7.3.19-1~deb10u1 (cli)</p><h2 id=安装php>安装PHP<a hidden class=anchor aria-hidden=true href=#安装php>#</a></h2><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>apt -y install php-fpm php-mysql
+</span></span></code></pre></div><p>#其它组件(可选)</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>apt -y install php-zip php-gd  php-mbstring php-curl php-xml php-pear php-bcmath
+</span></span></code></pre></div><p>PHP配置文件<code>/etc/php/7.3/fpm/php.ini</code></p><p>更多操作：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>php -v <span class=c1>#查看PHP版本号</span>
+</span></span><span class=line><span class=cl>systemctl restart php7.3-fpm <span class=c1>#重启</span>
+</span></span><span class=line><span class=cl>systemctl start php7.3-fpm <span class=c1>#启动</span>
+</span></span><span class=line><span class=cl>systemctl stop php7.3-fpm <span class=c1>#关闭</span>
+</span></span><span class=line><span class=cl>systemctl status php7.3-fpm <span class=c1>#检查状态</span>
+</span></span></code></pre></div><h2 id=nginx使用php>Nginx使用PHP<a hidden class=anchor aria-hidden=true href=#nginx使用php>#</a></h2><p>编辑<code>/etc/nginx/sites-available/example.com</code>站点配置文件修改为</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>server <span class=o>{</span>
+</span></span><span class=line><span class=cl>	listen <span class=m>443</span> ssl<span class=p>;</span>
+</span></span><span class=line><span class=cl>	listen <span class=o>[</span>::<span class=o>]</span>:443 ssl<span class=p>;</span>
+</span></span><span class=line><span class=cl>	server_name example.com<span class=p>;</span>
+</span></span><span class=line><span class=cl>	root /var/www/example.com<span class=p>;</span>
+</span></span><span class=line><span class=cl>	index index.html index.htm index.php<span class=p>;</span>
+</span></span><span class=line><span class=cl>	ssl on<span class=p>;</span>
+</span></span><span class=line><span class=cl>	ssl_protocols TLSv1 TLSv1.1 TLSv1.2 TLSv1.3<span class=p>;</span>
+</span></span><span class=line><span class=cl>	ssl_certificate      /etc/letsencrypt/live/example.com/fullchain.pem<span class=p>;</span>
+</span></span><span class=line><span class=cl>	ssl_certificate_key  /etc/letsencrypt/live/example.com/privkey.pem<span class=p>;</span>
+</span></span><span class=line><span class=cl>	<span class=c1>#php</span>
+</span></span><span class=line><span class=cl>	location ~ <span class=se>\.</span>php$ <span class=o>{</span>
+</span></span><span class=line><span class=cl>	include snippets/fastcgi-php.conf<span class=p>;</span>
+</span></span><span class=line><span class=cl>	fastcgi_pass unix:/run/php/php7.3-fpm.sock<span class=p>;</span>
+</span></span><span class=line><span class=cl>	<span class=o>}</span>
+</span></span><span class=line><span class=cl>	<span class=c1>#WebSocket端口转发</span>
+</span></span><span class=line><span class=cl>	location /ray <span class=o>{</span>
+</span></span><span class=line><span class=cl>	proxy_redirect off<span class=p>;</span>
+</span></span><span class=line><span class=cl>	proxy_pass http://127.0.0.1:23433<span class=p>;</span>
+</span></span><span class=line><span class=cl>	proxy_http_version 1.1<span class=p>;</span>
+</span></span><span class=line><span class=cl>	proxy_set_header Upgrade <span class=nv>$http_upgrade</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>	proxy_set_header Connection <span class=s2>&#34;upgrade&#34;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>	proxy_set_header Host <span class=nv>$http_host</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>	proxy_read_timeout 300s<span class=p>;</span>
+</span></span><span class=line><span class=cl>	<span class=o>}</span>
+</span></span><span class=line><span class=cl><span class=o>}</span>
+</span></span><span class=line><span class=cl>server <span class=o>{</span>
+</span></span><span class=line><span class=cl>	listen 80<span class=p>;</span>
+</span></span><span class=line><span class=cl>	listen <span class=o>[</span>::<span class=o>]</span>:80<span class=p>;</span>
+</span></span><span class=line><span class=cl>	server_name example.com<span class=p>;</span>
+</span></span><span class=line><span class=cl>	root /var/www/example.com<span class=p>;</span>
+</span></span><span class=line><span class=cl>	index index.html index.htm index.php<span class=p>;</span>
+</span></span><span class=line><span class=cl>	<span class=k>return</span> <span class=m>301</span> https://<span class=nv>$server_name$request_uri</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=o>}</span>
+</span></span></code></pre></div><p>重启下Nginx和php</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>systemctl restart nginx
+</span></span><span class=line><span class=cl>systemctl restart php7.3-fpm
+</span></span></code></pre></div><p><strong>为PHP7.3添加yaf扩展(可选)</strong></p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># 编译安装yaf扩展</span>
+</span></span><span class=line><span class=cl>apt-get install php-dev -y
+</span></span><span class=line><span class=cl>wget https://raw.githubusercontent.com/pwwq/files/master/yaf-3.0.8.tar.gz
+</span></span><span class=line><span class=cl>tar -zxvf yaf-3.0.8.tar.gz
+</span></span><span class=line><span class=cl><span class=nb>cd</span> yaf-yaf-3.0.8 <span class=o>&amp;&amp;</span> phpize
+</span></span><span class=line><span class=cl>./configure --with-php-config<span class=o>=</span>/usr/local/php/bin/php-config
+</span></span><span class=line><span class=cl>./configure <span class=o>&amp;&amp;</span> make <span class=o>&amp;&amp;</span> make install
+</span></span><span class=line><span class=cl><span class=c1># 配置PHP支持yaf扩展</span>
+</span></span><span class=line><span class=cl><span class=nb>echo</span> <span class=s2>&#34;extension=yaf.so
+</span></span></span><span class=line><span class=cl><span class=s2>yaf.environ=&#39;product&#39;
+</span></span></span><span class=line><span class=cl><span class=s2>yaf.use_namespace=1&#34;</span> &gt;&gt; /etc/php/7.3/fpm/php.ini
+</span></span><span class=line><span class=cl><span class=c1># 重启PHP</span>
+</span></span><span class=line><span class=cl>systemctl restart php7.3-fpm
+</span></span></code></pre></div><p><strong>安装redis扩展(可选)</strong></p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>apt install php-redis -y
+</span></span><span class=line><span class=cl><span class=nb>echo</span> <span class=s2>&#34;extension=redis.so&#34;</span> &gt;&gt; /etc/php/7.3/fpm/php.ini
+</span></span></code></pre></div><p><strong>安装Composer(可选)</strong></p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>php -r <span class=s2>&#34;copy(&#39;https://install.phpcomposer.com/installer&#39;, &#39;composer-setup.php&#39;);&#34;</span>
+</span></span><span class=line><span class=cl>php composer-setup.php
+</span></span><span class=line><span class=cl>mv composer.phar /usr/local/bin/composer
+</span></span></code></pre></div><p>输入<code>composer</code>验证Composer (PHP包管理器)</p><h2 id=mysql数据库>MySQL数据库<a hidden class=anchor aria-hidden=true href=#mysql数据库>#</a></h2><p>MariaDB 是 Debian 10 中的默认数据库系统， Mysql 并不包含在 Debian 的默认软件存储库</p><h2 id=配置-mysql软件源>配置 MySQL软件源<a hidden class=anchor aria-hidden=true href=#配置-mysql软件源>#</a></h2><p>从<a href=https://dev.mysql.com/downloads/repo/apt/>MySQL Apt存储库</a>并使用以下 wget 命令下载最新的发行包</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>apt install lsb-release gnupg -y
+</span></span><span class=line><span class=cl>wget https://dev.mysql.com/get/mysql-apt-config_0.8.13-1_all.deb
+</span></span><span class=line><span class=cl>dpkg -i mysql-apt-config_0.8.13-1_all.deb
+</span></span></code></pre></div><h2 id=安装-mysql>安装 MySQL<a hidden class=anchor aria-hidden=true href=#安装-mysql>#</a></h2><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>apt update
+</span></span><span class=line><span class=cl>apt install mysql-server
+</span></span></code></pre></div><p>选择MYSQL5.7的低版本就行，版本越高越占用系统资源</p><p>使用<code>mysql -u root -p</code>登陆管理MYSQL</p><p>用<a href=https://www.phpmyadmin.net>phpMyAdmin</a>使用网页管理更方便<a href=https://files.phpmyadmin.net/phpMyAdmin/5.0.2/phpMyAdmin-5.0.2-all-languages.zip>下载phpMyAdmin_v5.0.2</a>解压后放置到站点根目录即可，无需额外设置。</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>wget https://files.phpmyadmin.net/phpMyAdmin/5.0.2/phpMyAdmin-5.0.2-all-languages.zip 
+</span></span><span class=line><span class=cl>unzip phpMyAdmin-5.0.2-all-languages.zip
+</span></span><span class=line><span class=cl>mv phpMyAdmin-5.0.2-all-languages /var/www/example.com/phpMyAdmin
+</span></span><span class=line><span class=cl>rm phpMyAdmin-5.0.2-all-languages.zip
+</span></span></code></pre></div><p>访问https://example.com/phpMyAdmin 网页管理MySQL</p></div><footer class=post-footer><ul class=post-tags><li><a href=https://567899.xyz/tags/debian/>Debian</a></li><li><a href=https://567899.xyz/tags/nginx/>Nginx</a></li><li><a href=https://567899.xyz/tags/certbot/>Certbot</a></li><li><a href=https://567899.xyz/tags/ssl/>SSL</a></li><li><a href=https://567899.xyz/tags/php/>PHP</a></li><li><a href=https://567899.xyz/tags/mysql/>MySQL</a></li></ul><nav class=paginav><a class=prev href=https://567899.xyz/post/dujiaoka/><span class=title>« 上一页</span><br><span>纯净Linux系统手工配置独角数卡发卡站点环境</span>
+</a><a class=next href=https://567899.xyz/post/cloudflare-cdn-ip/><span class=title>下一页 »</span><br><span>自动查找Cloudflare最优(丢包、延迟)节点Ip</span></a></nav><ul class=share-buttons><li><a target=_blank rel="noopener noreferrer" aria-label="share Debian10手动搭建WEB环境Nginx,SSL,PHP,MySQL on x" href="https://x.com/intent/tweet/?text=Debian10%e6%89%8b%e5%8a%a8%e6%90%ad%e5%bb%baWEB%e7%8e%af%e5%a2%83Nginx%2cSSL%2cPHP%2cMySQL&amp;url=https%3a%2f%2f567899.xyz%2fpost%2fdebian10-web-nginx-certbot-ssl-php-mysql%2f&amp;hashtags=Debian%2cNginx%2cCertbot%2cSSL%2cPHP%2cMySQL"><svg viewBox="0 0 512 512" height="30" width="30" fill="currentcolor"><path d="M512 62.554V449.446C512 483.97 483.97 512 449.446 512H62.554C28.03 512 0 483.97.0 449.446V62.554C0 28.03 28.029.0 62.554.0H449.446C483.971.0 512 28.03 512 62.554zM269.951 190.75 182.567 75.216H56L207.216 272.95 63.9 436.783h61.366L235.9 310.383l96.667 126.4H456L298.367 228.367l134-153.151H371.033zM127.633 110h36.468l219.38 290.065H349.5z"/></svg></a></li><li><a target=_blank rel="noopener noreferrer" aria-label="share Debian10手动搭建WEB环境Nginx,SSL,PHP,MySQL on linkedin" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2f567899.xyz%2fpost%2fdebian10-web-nginx-certbot-ssl-php-mysql%2f&amp;title=Debian10%e6%89%8b%e5%8a%a8%e6%90%ad%e5%bb%baWEB%e7%8e%af%e5%a2%83Nginx%2cSSL%2cPHP%2cMySQL&amp;summary=Debian10%e6%89%8b%e5%8a%a8%e6%90%ad%e5%bb%baWEB%e7%8e%af%e5%a2%83Nginx%2cSSL%2cPHP%2cMySQL&amp;source=https%3a%2f%2f567899.xyz%2fpost%2fdebian10-web-nginx-certbot-ssl-php-mysql%2f"><svg viewBox="0 0 512 512" height="30" width="30" fill="currentcolor"><path d="M449.446.0C483.971.0 512 28.03 512 62.554v386.892C512 483.97 483.97 512 449.446 512H62.554c-34.524.0-62.554-28.03-62.554-62.554V62.554c0-34.524 28.029-62.554 62.554-62.554h386.892zM160.461 423.278V197.561h-75.04v225.717h75.04zm270.539.0V293.839c0-69.333-37.018-101.586-86.381-101.586-39.804.0-57.634 21.891-67.617 37.266v-31.958h-75.021c.995 21.181.0 225.717.0 225.717h75.02V297.222c0-6.748.486-13.492 2.474-18.315 5.414-13.475 17.767-27.434 38.494-27.434 27.135.0 38.007 20.707 38.007 51.037v120.768H431zM123.448 88.722C97.774 88.722 81 105.601 81 127.724c0 21.658 16.264 39.002 41.455 39.002h.484c26.165.0 42.452-17.344 42.452-39.002-.485-22.092-16.241-38.954-41.943-39.002z"/></svg></a></li><li><a target=_blank rel="noopener noreferrer" aria-label="share Debian10手动搭建WEB环境Nginx,SSL,PHP,MySQL on reddit" href="https://reddit.com/submit?url=https%3a%2f%2f567899.xyz%2fpost%2fdebian10-web-nginx-certbot-ssl-php-mysql%2f&title=Debian10%e6%89%8b%e5%8a%a8%e6%90%ad%e5%bb%baWEB%e7%8e%af%e5%a2%83Nginx%2cSSL%2cPHP%2cMySQL"><svg viewBox="0 0 512 512" height="30" width="30" fill="currentcolor"><path d="M449.446.0C483.971.0 512 28.03 512 62.554v386.892C512 483.97 483.97 512 449.446 512H62.554c-34.524.0-62.554-28.03-62.554-62.554V62.554c0-34.524 28.029-62.554 62.554-62.554h386.892zM446 265.638c0-22.964-18.616-41.58-41.58-41.58-11.211.0-21.361 4.457-28.841 11.666-28.424-20.508-67.586-33.757-111.204-35.278l18.941-89.121 61.884 13.157c.756 15.734 13.642 28.29 29.56 28.29 16.407.0 29.706-13.299 29.706-29.701.0-16.403-13.299-29.702-29.706-29.702-11.666.0-21.657 6.792-26.515 16.578l-69.105-14.69c-1.922-.418-3.939-.042-5.585 1.036-1.658 1.073-2.811 2.761-3.224 4.686l-21.152 99.438c-44.258 1.228-84.046 14.494-112.837 35.232-7.468-7.164-17.589-11.591-28.757-11.591-22.965.0-41.585 18.616-41.585 41.58.0 16.896 10.095 31.41 24.568 37.918-.639 4.135-.99 8.328-.99 12.576.0 63.977 74.469 115.836 166.33 115.836s166.334-51.859 166.334-115.836c0-4.218-.347-8.387-.977-12.493 14.564-6.47 24.735-21.034 24.735-38.001zM326.526 373.831c-20.27 20.241-59.115 21.816-70.534 21.816-11.428.0-50.277-1.575-70.522-21.82-3.007-3.008-3.007-7.882.0-10.889 3.003-2.999 7.882-3.003 10.885.0 12.777 12.781 40.11 17.317 59.637 17.317 19.522.0 46.86-4.536 59.657-17.321 3.016-2.999 7.886-2.995 10.885.008 3.008 3.011 3.003 7.882-.008 10.889zm-5.23-48.781c-16.373.0-29.701-13.324-29.701-29.698.0-16.381 13.328-29.714 29.701-29.714 16.378.0 29.706 13.333 29.706 29.714.0 16.374-13.328 29.698-29.706 29.698zM160.91 295.348c0-16.381 13.328-29.71 29.714-29.71 16.369.0 29.689 13.329 29.689 29.71.0 16.373-13.32 29.693-29.689 29.693-16.386.0-29.714-13.32-29.714-29.693z"/></svg></a></li><li><a target=_blank rel="noopener noreferrer" aria-label="share Debian10手动搭建WEB环境Nginx,SSL,PHP,MySQL on facebook" href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2f567899.xyz%2fpost%2fdebian10-web-nginx-certbot-ssl-php-mysql%2f"><svg viewBox="0 0 512 512" height="30" width="30" fill="currentcolor"><path d="M449.446.0C483.971.0 512 28.03 512 62.554v386.892C512 483.97 483.97 512 449.446 512H342.978V319.085h66.6l12.672-82.621h-79.272v-53.617c0-22.603 11.073-44.636 46.58-44.636H425.6v-70.34s-32.71-5.582-63.982-5.582c-65.288.0-107.96 39.569-107.96 111.204v62.971h-72.573v82.621h72.573V512h-191.104c-34.524.0-62.554-28.03-62.554-62.554V62.554c0-34.524 28.029-62.554 62.554-62.554h386.892z"/></svg></a></li><li><a target=_blank rel="noopener noreferrer" aria-label="share Debian10手动搭建WEB环境Nginx,SSL,PHP,MySQL on whatsapp" href="https://api.whatsapp.com/send?text=Debian10%e6%89%8b%e5%8a%a8%e6%90%ad%e5%bb%baWEB%e7%8e%af%e5%a2%83Nginx%2cSSL%2cPHP%2cMySQL%20-%20https%3a%2f%2f567899.xyz%2fpost%2fdebian10-web-nginx-certbot-ssl-php-mysql%2f"><svg viewBox="0 0 512 512" height="30" width="30" fill="currentcolor"><path d="M449.446.0C483.971.0 512 28.03 512 62.554v386.892C512 483.97 483.97 512 449.446 512H62.554c-34.524.0-62.554-28.03-62.554-62.554V62.554c0-34.524 28.029-62.554 62.554-62.554h386.892zm-58.673 127.703c-33.842-33.881-78.847-52.548-126.798-52.568-98.799.0-179.21 80.405-179.249 179.234-.013 31.593 8.241 62.428 23.927 89.612l-25.429 92.884 95.021-24.925c26.181 14.28 55.659 21.807 85.658 21.816h.074c98.789.0 179.206-80.413 179.247-179.243.018-47.895-18.61-92.93-52.451-126.81zM263.976 403.485h-.06c-26.734-.01-52.954-7.193-75.828-20.767l-5.441-3.229-56.386 14.792 15.05-54.977-3.542-5.637c-14.913-23.72-22.791-51.136-22.779-79.287.033-82.142 66.867-148.971 149.046-148.971 39.793.014 77.199 15.531 105.329 43.692 28.128 28.16 43.609 65.592 43.594 105.4-.034 82.149-66.866 148.983-148.983 148.984zm81.721-111.581c-4.479-2.242-26.499-13.075-30.604-14.571-4.105-1.495-7.091-2.241-10.077 2.241-2.986 4.483-11.569 14.572-14.182 17.562-2.612 2.988-5.225 3.364-9.703 1.12-4.479-2.241-18.91-6.97-36.017-22.23C231.8 264.15 222.81 249.484 220.198 245s-.279-6.908 1.963-9.14c2.016-2.007 4.48-5.232 6.719-7.847 2.24-2.615 2.986-4.484 4.479-7.472 1.493-2.99.747-5.604-.374-7.846-1.119-2.241-10.077-24.288-13.809-33.256-3.635-8.733-7.327-7.55-10.077-7.688-2.609-.13-5.598-.158-8.583-.158-2.986.0-7.839 1.121-11.944 5.604-4.105 4.484-15.675 15.32-15.675 37.364.0 22.046 16.048 43.342 18.287 46.332 2.24 2.99 31.582 48.227 76.511 67.627 10.685 4.615 19.028 7.371 25.533 9.434 10.728 3.41 20.492 2.929 28.209 1.775 8.605-1.285 26.499-10.833 30.231-21.295 3.732-10.464 3.732-19.431 2.612-21.298-1.119-1.869-4.105-2.99-8.583-5.232z"/></svg></a></li><li><a target=_blank rel="noopener noreferrer" aria-label="share Debian10手动搭建WEB环境Nginx,SSL,PHP,MySQL on telegram" href="https://telegram.me/share/url?text=Debian10%e6%89%8b%e5%8a%a8%e6%90%ad%e5%bb%baWEB%e7%8e%af%e5%a2%83Nginx%2cSSL%2cPHP%2cMySQL&amp;url=https%3a%2f%2f567899.xyz%2fpost%2fdebian10-web-nginx-certbot-ssl-php-mysql%2f"><svg viewBox="2 2 28 28" height="30" width="30" fill="currentcolor"><path d="M26.49 29.86H5.5a3.37 3.37.0 01-2.47-1 3.35 3.35.0 01-1-2.47V5.48A3.36 3.36.0 013 3 3.37 3.37.0 015.5 2h21A3.38 3.38.0 0129 3a3.36 3.36.0 011 2.46V26.37a3.35 3.35.0 01-1 2.47 3.38 3.38.0 01-2.51 1.02zm-5.38-6.71a.79.79.0 00.85-.66L24.73 9.24a.55.55.0 00-.18-.46.62.62.0 00-.41-.17q-.08.0-16.53 6.11a.59.59.0 00-.41.59.57.57.0 00.43.52l4 1.24 1.61 4.83a.62.62.0 00.63.43.56.56.0 00.4-.17L16.54 20l4.09 3A.9.9.0 0021.11 23.15zM13.8 20.71l-1.21-4q8.72-5.55 8.78-5.55c.15.0.23.0.23.16a.18.18.0 010 .06s-2.51 2.3-7.52 6.8z"/></svg></a></li><li><a target=_blank rel="noopener noreferrer" aria-label="share Debian10手动搭建WEB环境Nginx,SSL,PHP,MySQL on ycombinator" href="https://news.ycombinator.com/submitlink?t=Debian10%e6%89%8b%e5%8a%a8%e6%90%ad%e5%bb%baWEB%e7%8e%af%e5%a2%83Nginx%2cSSL%2cPHP%2cMySQL&u=https%3a%2f%2f567899.xyz%2fpost%2fdebian10-web-nginx-certbot-ssl-php-mysql%2f"><svg width="30" height="30" viewBox="0 0 512 512" fill="currentcolor" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"><path d="M449.446.0C483.971.0 512 28.03 512 62.554V449.446C512 483.97 483.97 512 449.446 512H62.554C28.03 512 0 483.97.0 449.446V62.554C0 28.03 28.029.0 62.554.0H449.446zM183.8767 87.9921h-62.034L230.6673 292.4508V424.0079h50.6655V292.4508L390.1575 87.9921H328.1233L256 238.2489z"/></svg></a></li></ul></footer><link rel=stylesheet href=https://unpkg.com/@waline/client@v2/dist/waline.css><div id=waline></div><script type=module>
+    import { init } from 'https://unpkg.com/@waline/client@v2/dist/waline.mjs';
+    const locale = {
+        nick: '昵称(必填)',
+        nickError: '请填写昵称',
+        mail: '邮箱',
+        mailError: '请填写正确的邮件地址',
+        link: '网址',
+        optional: '可选',
+        placeholder: '说点什么吧...\n填写邮箱可收到回复提醒。\n评论区支持 Markdown 语法及预览。\n',
+        sofa: '来发评论吧~',
+        submit: '提交',
+        like: '喜欢',
+        cancelLike: '取消喜欢',
+        reply: '回复',
+        cancelReply: '取消回复',
+        comment: '评论',
+        refresh: '刷新',
+        more: '加载更多...',
+        preview: '预览',
+        emoji: '表情',
+        uploadImage: '上传图片',
+        seconds: '秒前',
+        minutes: '分钟前',
+        hours: '小时前',
+        days: '天前',
+        now: '刚刚',
+        uploading: '正在上传',
+        login: '登录',
+        logout: '退出',
+        admin: '博主',
+        sticky: '置顶',
+        word: '字',
+        wordHint: '评论字数应在 $0 到 $1 字之间！\n当前字数：$2',
+        anonymous: '匿名',
+        level0: '潜水',
+        level1: '冒泡',
+        level2: '吐槽',
+        level3: '活跃',
+        level4: '话痨',
+        level5: '传说',
+        gif: '表情包',
+        gifSearchPlaceholder: '搜索表情包',
+        profile: '个人资料',
+        approved: '通过',
+        waiting: '待审核',
+        spam: '垃圾',
+        unsticky: '取消置顶',
+        oldest: '按倒序',
+        latest: '按正序',
+        hottest: '按热度',
+        reactionTitle: '你认为这篇文章怎么样？',
+    };
+    init({
+        
+        el: '#waline',
+        serverURL: 'https://comments.567899.xyz',
+        locale,
+        emoji: true,     
+        search: true,    
+        reaction: false,  
+        requiredMeta: ['nick'],
+        pageSize: 10,
+        imageUploader: true,
+        copyright: true,
+        pageview: true,
+        like: true,
+    });
+</script></article></main><footer class=footer><span>&copy; 2024 <a href=https://567899.xyz/>Xizi's Blog</a></span> ·
+<span>Powered by
+<a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
+        <a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg>
+</a><script>let menu=document.getElementById("menu");menu&&(menu.scrollLeft=localStorage.getItem("menu-scroll-position"),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}),document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{document.body.className.includes("dark")?(document.body.classList.remove("dark"),localStorage.setItem("pref-theme","light")):(document.body.classList.add("dark"),localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="复制";function s(){t.innerHTML="已复制！",setTimeout(()=>{t.innerHTML="复制"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>

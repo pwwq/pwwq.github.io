@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Folderclone on Xizi&#39;s Blog</title>
+    <link>https://567899.xyz/tags/folderclone/</link>
+    <description>Recent content in Folderclone on Xizi&#39;s Blog</description>
+    <image>
+      <title>Xizi&#39;s Blog</title>
+      <url>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- 0.134.2</generator>
+    <language>zh</language>
+    <lastBuildDate>Tue, 11 Feb 2020 01:37:56 +0800</lastBuildDate>
+    <atom:link href="https://567899.xyz/tags/folderclone/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[更新]Folderclone谷歌Google Drive共享云端硬盘转存相互转移拷贝复制文件的正确姿势</title>
+      <link>https://567899.xyz/post/google_drive_folderclone/</link>
+      <pubDate>Tue, 11 Feb 2020 01:37:56 +0800</pubDate>
+      <guid>https://567899.xyz/post/google_drive_folderclone/</guid>
+      <description>&lt;p&gt;超级详细Folderclone使用的图文教程，更新新版Folderclone的使用方法&lt;/p&gt;
+&lt;h2 id=&#34;更新新版folderclone使用方法&#34;&gt;更新新版folderclone使用方法&lt;/h2&gt;
+&lt;p&gt;详情https://github.com/Spazzlo/folderclone&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;可选加入google-drive团队盘&#34;&gt;[可选]加入Google Drive团队盘&lt;/h2&gt;
+&lt;p&gt;没有Google Drive团队盘的小伙伴可以自助添加&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;英国谢菲尔德大学：https://gdrive.zppcw.cn/&lt;/li&gt;
+&lt;li&gt;404 NOT FOUND：https://gd.404edu.workers.dev/&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://gd.zxd.workers.dev/&#34;&gt;https://gd.zxd.workers.dev/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://leon.educationhost.cloud/&#34;&gt;http://leon.educationhost.cloud/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;swccd.edu团队盘：https://teamdrive.xcpx.workers.dev/&lt;/li&gt;
+&lt;li&gt;洛杉矶加利福尼亚大学团队盘：https://ucla.ur.workers.dev/&lt;/li&gt;
+&lt;li&gt;日本国際大学团队盘：https://iuj.ur.workers.dev/&lt;/li&gt;
+&lt;li&gt;自动创建：https://www.teamdrive.workers.dev&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;感谢大佬提供的Google Drive团队盘&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;===新版folderclone教程开始===&lt;/p&gt;
+&lt;h2 id=&#34;第一步-安装folderclone&#34;&gt;第一步 安装folderclone&lt;/h2&gt;
+&lt;p&gt;Linux&lt;/p&gt;
+&lt;p&gt;Debian/Ubuntu安装&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;apt update
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;apt install python3-pip git screen -y
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git clone https://github.com/Spazzlo/folderclone.git
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; folderclone
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;pip3 install folderclone
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;code&gt;CentOS&lt;/code&gt;把&lt;code&gt;apt-get&lt;/code&gt;替换成&lt;code&gt;yum&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;因拷贝时间长，防止中断，强烈建议使用&lt;code&gt;screen&lt;/code&gt;后台运行。&lt;code&gt;screen&lt;/code&gt;简单使用方法&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 创建screen窗口,folderclone名字可自定义&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;screen -S folderclone
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 临时退出使用screen后台运行,按组合键&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;【Ctrl】【a】【d】
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 回到screen窗口&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;screen -r folderclone
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Windows安装&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.python.org/downloads/&#34;&gt;下载Python&lt;/a&gt;安装&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.python.org/ftp/python/3.7.4/python-3.7.4-amd64.exe&#34;&gt;Python 3.7.4 64-bit&lt;/a&gt; 、 &lt;a href=&#34;https://www.python.org/ftp/python/3.8.1/python-3.8.1.exe&#34;&gt;Python 3.8.1&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/Spazzlo/folderclone/archive/master.zip&#34;&gt;下载folderclone源码&lt;/a&gt;并解压，比如我的放置在&lt;code&gt;E:\folderclone-master&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;以管理员身份运行&lt;/strong&gt;  &lt;code&gt;cmd&lt;/code&gt;或&lt;code&gt;Windows PowerShell&lt;/code&gt;执行,且&lt;strong&gt;确保本地cmd或Windows PowerShell稳定的外网环境。&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 进入folderclone解压根目录&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; E:&lt;span class=&#34;se&#34;&gt;\f&lt;/span&gt;olderclone-master
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;pip install folderclone
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;第二步-开启drive-api服务&#34;&gt;第二步 开启Drive API服务&lt;/h2&gt;
+&lt;p&gt;打开登陆&lt;a href=&#34;https://developers.google.com/drive/api/v3/quickstart/python&#34;&gt;Python Quickstart&lt;/a&gt;  点击&lt;code&gt;Enable the Drive API&lt;/code&gt;&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Hugo on Xizi&#39;s Blog</title>
+    <link>https://567899.xyz/tags/hugo/</link>
+    <description>Recent content in Hugo on Xizi&#39;s Blog</description>
+    <image>
+      <title>Xizi&#39;s Blog</title>
+      <url>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- 0.134.2</generator>
+    <language>zh</language>
+    <lastBuildDate>Sun, 18 Aug 2024 16:55:56 +0800</lastBuildDate>
+    <atom:link href="https://567899.xyz/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>PaperMod主题添加valine评论</title>
+      <link>https://567899.xyz/post/valine/</link>
+      <pubDate>Sun, 18 Aug 2024 16:55:56 +0800</pubDate>
+      <guid>https://567899.xyz/post/valine/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;https://valine.js.org/&#34;&gt;Valine&lt;/a&gt; 一款快速、简洁且高效的无后端评论系统。服务端可以借助&lt;a href=&#34;https://leancloud.app&#34;&gt;LeanCloud&lt;/a&gt;免费部署到&lt;a href=&#34;https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fwalinejs%2Fwaline%2Ftree%2Fmain%2Fexample&#34;&gt;Vercel 部署 (服务端)&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;配置valine&#34;&gt;配置Valine&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;注册LeanCloud 账号：&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;进入 &lt;a href=&#34;https://leancloud.app&#34;&gt;LeanCloud 官网&lt;/a&gt;注册一个国际账号。&lt;/li&gt;
+&lt;li&gt;创建一个新的应用以便使用 LeanCloud 提供的后端服务。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;在&lt;a href=&#34;https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fwalinejs%2Fwaline%2Ftree%2Fmain%2Fexample&#34;&gt;Vercel 部署 (服务端)&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;关联github账号登陆，创建Valine应用，名称任意,例如&lt;code&gt;Valine&lt;/code&gt;&lt;/p&gt;
+&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;获取 Valine App ID 和 App Key：&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;在 LeanCloud 控制台中，进入你创建的应用。&lt;/li&gt;
+&lt;li&gt;在左侧导航栏中找到“设置”选项。&lt;/li&gt;
+&lt;li&gt;在应用凭证部分，复制 &lt;code&gt;App ID&lt;/code&gt;、&lt;code&gt;App Key&lt;/code&gt;、&lt;code&gt;REST API 服务器地址&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start=&#34;4&#34;&gt;
+&lt;li&gt;在Vercel的应用中依次进入【settings】、【environment-variables】添加上面获取的环境变量&lt;code&gt;LEAN_KEY&lt;/code&gt;与&lt;code&gt;LEAN_ID&lt;/code&gt;值。然后进入【deployments】【Redeploy】重新部署生效。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;完成后会自动分配一个二级域名,类似&lt;code&gt;xxx-xxx-xxxx-projects.vercel.app&lt;/code&gt;【可选】进入【settings】【domains】绑定自己的域名&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://waline.js.org/guide/features/notification.html&#34;&gt;评论通知&lt;/a&gt;的环境设置在在进入leancloud应用的&lt;code&gt;Play&lt;/code&gt;=== &lt;code&gt;CLIENT ENGINE&lt;/code&gt; === &lt;code&gt;设置&lt;/code&gt; 添加&lt;code&gt;自定义环境变量&lt;/code&gt; 【Redeploy】重新部署生效。&lt;/p&gt;
+&lt;ol start=&#34;5&#34;&gt;
+&lt;li&gt;valine评论数据管理&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;点击&lt;code&gt;Visit&lt;/code&gt;打开进入https://xxx-xxx-xxxx-projects.vercel.app 是一个独立的网页单面。  在域名后边加上&lt;code&gt;/ui/register&lt;/code&gt;注册，&lt;strong&gt;默认首次注册的用户是为评论管理员&lt;/strong&gt;，可以删除评论等操作,也可以进入LeanCloud的控制台找到数据存储=&amp;gt;结构化数据=&amp;gt;Comment,在这里你可以对评论的数据进行管理&lt;/p&gt;
+&lt;h2 id=&#34;在hugo主题中引入valine&#34;&gt;在Hugo主题中引入Valine&lt;/h2&gt;
+&lt;p&gt;以&lt;a href=&#34;https://github.com/adityatelange/hugo-PaperMod/&#34;&gt;PaperMod&lt;/a&gt;主题为例，找到需要添加Valine的页面或模板文件，以下方法二选一&lt;/p&gt;
+&lt;p&gt;方法一：在&lt;code&gt;~/themes/PaperMod/layouts/_default/single.html&lt;/code&gt;添加以下代码&lt;/p&gt;
+&lt;p&gt;复制替换 LeanCloud 控制台中的【设置】【应用凭证】的&lt;code&gt;App ID&lt;/code&gt;、&lt;code&gt;App Key&lt;/code&gt;、&lt;code&gt;REST API 服务器地址&lt;/code&gt;值&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;&amp;lt;div id=&amp;#34;comments&amp;#34;&amp;gt;&amp;lt;/div&amp;gt;
+&amp;lt;script src=&amp;#34;https://cdn.jsdelivr.net/npm/vue&amp;#34;&amp;gt;&amp;lt;/script&amp;gt;
+&amp;lt;script src=&amp;#34;https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js&amp;#34;&amp;gt;&amp;lt;/script&amp;gt;
+&amp;lt;script&amp;gt;
+  new Valine({
+    el: &amp;#39;#comments&amp;#39;,
+    appId: &amp;#39;App-ID&amp;#39;,
+    appKey: &amp;#39;App-Key&amp;#39;,
+    serverURLs: &amp;#34;REST API 服务器地址&amp;#34;,
+    placeholder: &amp;#39;说点什么吧...&amp;#39;,
+  });
+&amp;lt;/script&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;方法二： 修改&lt;code&gt;~/themes/PaperMod/layouts/partials/comments.html&lt;/code&gt;的内容如下&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>利用Travis CI和Hugo將Blog自動部署到Github Pages</title>
+      <link>https://567899.xyz/post/hugo-travis-ci-deploy-github-pages-automatically/</link>
+      <pubDate>Sun, 20 Jan 2019 01:37:56 +0800</pubDate>
+      <guid>https://567899.xyz/post/hugo-travis-ci-deploy-github-pages-automatically/</guid>
+      <description>&lt;p&gt;個人Blog採用靜態Blog形式託管在[Github][github]上。此前使用的是[Hexo][hexo]，因其包依賴關係複雜，部署流程繁瑣，故將整個部署環境封裝到Docker鏡像中以實現快速部署，但仍較爲繁瑣。現轉用執行速度快、操作簡便的[Hugo][hugo]。本文記錄如何在GNU/Linux中通過[Travis CI][travisci]將[Hugo][hugo]生成的Blog內容自動同步到[Github][github]，實現持續集成、部署。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;转载自 &lt;a href=&#34;https://axdlog.com/zh/2018/using-hugo-and-travis-ci-to-deploy-blog-to-github-pages-automatically/&#34;&gt;利用Travis CI和Hugo將Blog自動部署到Github Pages&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;官方文檔&#34;&gt;官方文檔&lt;/h2&gt;
+&lt;p&gt;本文中的相關操作皆以官方文檔爲操作依據&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Github
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://help.github.com/categories/github-pages-basics/&#34;&gt;GitHub Pages Basics&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://help.github.com/articles/user-organization-and-project-pages/&#34;&gt;User, Organization, and Project Pages&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://help.github.com/articles/creating-project-pages-using-the-command-line/&#34;&gt;Creating Project Pages using the command line&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://help.github.com/articles/configuring-a-publishing-source-for-github-pages/&#34;&gt;Configuring a publishing source for GitHub Pages&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Hugo
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://gohugo.io/hosting-and-deployment/hosting-on-github/&#34;&gt;Host on GitHub&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Travis CI
+&lt;ul&gt;
+&lt;li&gt;[GitHub Pages Deployment][travisci-github-page]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://docs.travis-ci.com/user/languages/python/&#34;&gt;Building a Python Project&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://docs.travis-ci.com/user/best-practices-security/&#34;&gt;Best Practices in Securing Your Data&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://docs.travis-ci.com/user/customizing-the-build/&#34;&gt;Customizing the Build&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;github-pages-限制&#34;&gt;GitHub Pages 限制&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;GitHub Pages is a static site hosting service designed to host your personal, organization, or project pages directly from a GitHub repository.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>静态网站生成器hugo安装配置主题</title>
+      <link>https://567899.xyz/post/hugo-install-themes/</link>
+      <pubDate>Thu, 19 Jul 2018 01:37:56 +0800</pubDate>
+      <guid>https://567899.xyz/post/hugo-install-themes/</guid>
+      <description>&lt;h2 id=&#34;install-hugo&#34;&gt;install-hugo&lt;/h2&gt;
+&lt;p&gt;下载&lt;a href=&#34;https://github.com/gohugoio/hugo/releases&#34;&gt;Hugo&lt;/a&gt; 对应平台解压得到二进制文件&lt;/p&gt;
+&lt;h2 id=&#34;linux安装hugo&#34;&gt;Linux安装hugo&lt;/h2&gt;
+&lt;p&gt;以64bit为例，此安装方法适用于debian ubuntu centos openwrt等X64位的系统&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;wget https://github.com/gohugoio/hugo/releases/download/v0.54.0/hugo_0.54.0_Linux-64bit.tar.gz
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;tar zxvf hugo_0.54.0_Linux-64bit.tar.gz
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;mv hugo /usr/bin/hugo
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;windows安装hugo&#34;&gt;Windows安装hugo&lt;/h2&gt;
+&lt;p&gt;下载&lt;a href=&#34;https://github.com/gohugoio/hugo/releases/download/v0.54.0/hugo_extended_0.54.0_Windows-64bit.zip&#34;&gt;hugo_extended_0.54.0_Windows-64bit.zip&lt;/a&gt; 并解压缩&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;C:&lt;span class=&#34;se&#34;&gt;\H&lt;/span&gt;ugo&lt;span class=&#34;se&#34;&gt;\b&lt;/span&gt;in
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; - hugo.exe
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; - LICENSE
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; - README.md
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;添加到PATH&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;set&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;PATH&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;%PATH%&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;C:&lt;span class=&#34;se&#34;&gt;\H&lt;/span&gt;ugo&lt;span class=&#34;se&#34;&gt;\b&lt;/span&gt;in
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;验证是否安装成功&#34;&gt;验证是否安装成功&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;hugo version
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;能看到Hugo版本号说明已经成功安装好了hugo&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;C:&lt;span class=&#34;se&#34;&gt;\H&lt;/span&gt;ugo&amp;gt;set &lt;span class=&#34;nv&#34;&gt;PATH&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;%PATH%&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;C:&lt;span class=&#34;se&#34;&gt;\H&lt;/span&gt;ugo&lt;span class=&#34;se&#34;&gt;\b&lt;/span&gt;in
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;C:&lt;span class=&#34;se&#34;&gt;\H&lt;/span&gt;ugo&amp;gt;hugo version
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Hugo Static Site Generator v0.54.0/extended windows/amd64 BuildDate: unknown
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;C:&lt;span class=&#34;se&#34;&gt;\H&lt;/span&gt;ugo&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;hugo新建网站&#34;&gt;Hugo新建网站&lt;/h2&gt;
+&lt;p&gt;使用以下命令新建站点&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;hugo new site blog
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Hugo会自动新建名为&lt;code&gt;blog&lt;/code&gt;的文件夹&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;C:&lt;span class=&#34;se&#34;&gt;\H&lt;/span&gt;UGO&lt;span class=&#34;se&#34;&gt;\B&lt;/span&gt;LOG
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;├─archetypes
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;├─content
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;├─data
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;├─layouts
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;├─static
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;└─themes
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;文件夹描述相关&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;archetypes&lt;/code&gt;使用hugu new post生成新文章的模板，可以自定义里面的值&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;content&lt;/code&gt; 存放网站内容&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;data&lt;/code&gt; 存储Hugo在生成您的网站时可以使用的配置文件&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;layouts&lt;/code&gt; 以.html文件的形式存储模板，指定如何将内容的视图呈现到静态网站中&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;static&lt;/code&gt; 存储所有静态内容：图像，CSS，JavaScript等，当Hugo构建您的站点时，静态目录中的所有资产都将按原样复制&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;themes&lt;/code&gt; 存放主题&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;config.toml&lt;/code&gt; 配置文件&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;进入&lt;code&gt;blog&lt;/code&gt;的文件夹&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

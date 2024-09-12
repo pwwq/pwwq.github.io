@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Windows on Xizi&#39;s Blog</title>
+    <link>https://567899.xyz/tags/windows/</link>
+    <description>Recent content in Windows on Xizi&#39;s Blog</description>
+    <image>
+      <title>Xizi&#39;s Blog</title>
+      <url>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- 0.134.2</generator>
+    <language>zh</language>
+    <lastBuildDate>Thu, 02 Mar 2023 17:37:56 +0800</lastBuildDate>
+    <atom:link href="https://567899.xyz/tags/windows/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>在Windows11上启用bbr2</title>
+      <link>https://567899.xyz/post/windows11-bbr2-powershell/</link>
+      <pubDate>Thu, 02 Mar 2023 17:37:56 +0800</pubDate>
+      <guid>https://567899.xyz/post/windows11-bbr2-powershell/</guid>
+      <description>&lt;p&gt;使用管理员身份运行powershell&lt;/p&gt;
+&lt;p&gt;Change TCP congestion control to BBR:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;netsh int tcp &lt;span class=&#34;nb&#34;&gt;set&lt;/span&gt; supplemental &lt;span class=&#34;nv&#34;&gt;Template&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;Internet &lt;span class=&#34;nv&#34;&gt;CongestionProvider&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;bbr2
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;netsh int tcp &lt;span class=&#34;nb&#34;&gt;set&lt;/span&gt; supplemental &lt;span class=&#34;nv&#34;&gt;Template&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;Datacenter &lt;span class=&#34;nv&#34;&gt;CongestionProvider&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;bbr2
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;netsh int tcp &lt;span class=&#34;nb&#34;&gt;set&lt;/span&gt; supplemental &lt;span class=&#34;nv&#34;&gt;Template&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;Compat &lt;span class=&#34;nv&#34;&gt;CongestionProvider&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;bbr2
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;netsh int tcp &lt;span class=&#34;nb&#34;&gt;set&lt;/span&gt; supplemental &lt;span class=&#34;nv&#34;&gt;Template&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;DatacenterCustom &lt;span class=&#34;nv&#34;&gt;CongestionProvider&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;bbr2
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;netsh int tcp &lt;span class=&#34;nb&#34;&gt;set&lt;/span&gt; supplemental &lt;span class=&#34;nv&#34;&gt;Template&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;InternetCustom &lt;span class=&#34;nv&#34;&gt;CongestionProvider&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;bbr2
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Verify:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Get-NetTCPSetting &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; Select SettingName, CongestionProvider
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;返回以下结果则成功开启了bbr2&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;SettingName      CongestionProvider
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;-----------      ------------------
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Automatic
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;InternetCustom   BBR2
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;DatacenterCustom BBR2
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Compat           BBR2
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Datacenter       BBR2
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Internet         BBR2
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+    </item>
+    <item>
+      <title>win10系统音量图标灰色无法调节的解决方法</title>
+      <link>https://567899.xyz/post/win10-sound-not-work/</link>
+      <pubDate>Wed, 02 Jun 2021 01:37:56 +0800</pubDate>
+      <guid>https://567899.xyz/post/win10-sound-not-work/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;解决方法如下&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ol&gt;
+&lt;li&gt;按&lt;code&gt;Win+R&lt;/code&gt;打开运行，输入&lt;code&gt;regedit&lt;/code&gt;回车打开注册表编辑器;&lt;/li&gt;
+&lt;li&gt;依次展开到以下位置：&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;计算机&lt;span class=&#34;se&#34;&gt;\H&lt;/span&gt;KEY_LOCAL_MACHINE&lt;span class=&#34;se&#34;&gt;\S&lt;/span&gt;OFTWARE&lt;span class=&#34;se&#34;&gt;\M&lt;/span&gt;icrosoft&lt;span class=&#34;se&#34;&gt;\W&lt;/span&gt;indows&lt;span class=&#34;se&#34;&gt;\C&lt;/span&gt;urrentVersion&lt;span class=&#34;se&#34;&gt;\R&lt;/span&gt;un
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;在右侧新建名为&lt;code&gt;systray.exe&lt;/code&gt;的字符串值;&lt;/li&gt;
+&lt;li&gt;重启PC电脑.&lt;/li&gt;
+&lt;/ol&gt;</description>
+    </item>
+    <item>
+      <title>Windows10 LTSC 2019 安装和卸载 linux 子系统</title>
+      <link>https://567899.xyz/post/windows10-ltsc-2019-linux/</link>
+      <pubDate>Fri, 18 Oct 2019 01:37:56 +0800</pubDate>
+      <guid>https://567899.xyz/post/windows10-ltsc-2019-linux/</guid>
+      <description>&lt;h2 id=&#34;开启&#34;&gt;开启&lt;/h2&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://567899.xyz/images/win10-ltsc-linux.png&#34; alt=&#34;&#34;  /&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://567899.xyz/images/win10-ltsc-linux1.webp&#34; alt=&#34;&#34;  /&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://567899.xyz/images/win10-ltsc-linux2.png&#34; alt=&#34;&#34;  /&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://567899.xyz/images/win10-ltsc-linux3.png&#34; alt=&#34;&#34;  /&gt;
+&lt;/p&gt;
+&lt;p&gt;按提示操作，重启电脑。&lt;/p&gt;
+&lt;h2 id=&#34;下载发行版&#34;&gt;下载发行版&lt;/h2&gt;
+&lt;p&gt;手动下载适用于 Linux 的 Windows 子系统发行版包&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://docs.microsoft.com/zh-cn/windows/wsl/install-manual&#34;&gt;https://docs.microsoft.com/zh-cn/windows/wsl/install-manual&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;如果 Microsoft Store 应用不可用，则可以通过单击以下链接下载并手动安装 Linux 发行版：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;https://aka.ms/wsl-ubuntu-1804&#34;&gt;Ubuntu 18.04&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://aka.ms/wsl-ubuntu-1804-arm&#34;&gt;Ubuntu 18.04 ARM&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://aka.ms/wsl-ubuntu-1604&#34;&gt;Ubuntu 16.04&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://aka.ms/wsl-debian-gnulinux&#34;&gt;Debian GNU/Linux&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://aka.ms/wsl-kali-linux-new&#34;&gt;Kali Linux&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://aka.ms/wsl-opensuse-42&#34;&gt;OpenSUSE Leap 42&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://aka.ms/wsl-sles-12&#34;&gt;SUSE Linux Enterprise Server 12&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/WhitewaterFoundry/WSLFedoraRemix/releases/&#34;&gt;WSL 的 Fedora Remix&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;安装&#34;&gt;安装&lt;/h2&gt;
+&lt;p&gt;解压&lt;code&gt;app_name.appx&lt;/code&gt;以管理员身份运行&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://567899.xyz/images/win10-ltsc-linux4.png&#34; alt=&#34;&#34;  /&gt;
+&lt;/p&gt;
+&lt;h2 id=&#34;使用linux&#34;&gt;使用Linux&lt;/h2&gt;
+&lt;p&gt;在&lt;code&gt;cmd&lt;/code&gt;或者&lt;code&gt;PowerShell&lt;/code&gt;命令行中输入&lt;code&gt;bash&lt;/code&gt;就可以启动，或者在存放在linux系统，点击 ubuntu1604.exe 也可以启动，两种方式启动的默认路径不一样&lt;/p&gt;
+&lt;h2 id=&#34;卸载&#34;&gt;卸载&lt;/h2&gt;
+&lt;p&gt;以管理员身份运行PowerShell&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;wslconfig
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;wslconfig /l
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;wslconfig /u Debian
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;示范如下&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Windows PowerShell
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;版权所有 &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;C&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; Microsoft Corporation。保留所有权利。
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;PS C:&lt;span class=&#34;se&#34;&gt;\W&lt;/span&gt;indows&lt;span class=&#34;se&#34;&gt;\s&lt;/span&gt;ystem32&amp;gt; wslconfig
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;对 Windows 上的 Linux 子系统进行操作管理
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;用途：
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    /l, /list &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;/all&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        列出已注册的分发版。
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        /all - 有选择地列出所有分发版，包括
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;               当前正在安装或卸载的分发版。
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    /s, /setdefault &amp;lt;DistributionName&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        将该分发版设为默认。
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    /t, /terminate &amp;lt;DistributionName&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        终止分发。
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    /u, /unregister &amp;lt;DistributionName&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        取消分发版注册。
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    /upgrade &amp;lt;DistributionName&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        将分发版升级至 WslFs 文件系统格式。
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;PS C:&lt;span class=&#34;se&#34;&gt;\W&lt;/span&gt;indows&lt;span class=&#34;se&#34;&gt;\s&lt;/span&gt;ystem32&amp;gt; wslconfig /l
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;适用于 Linux 的 Windows 子系统:
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Debian &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;默认&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;PS C:&lt;span class=&#34;se&#34;&gt;\W&lt;/span&gt;indows&lt;span class=&#34;se&#34;&gt;\s&lt;/span&gt;ystem32&amp;gt; wslconfig /u Debian
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;正在注销...
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;PS C:&lt;span class=&#34;se&#34;&gt;\W&lt;/span&gt;indows&lt;span class=&#34;se&#34;&gt;\s&lt;/span&gt;ystem32&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;wsl-docker无法启动&#34;&gt;wsl docker无法启动&lt;/h2&gt;
+&lt;p&gt;问题描述：在wsl中安装docker正常结束,不过启动总是失败.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Win7用户福音：微软集成2019更新的新版Windows 7镜像</title>
+      <link>https://567899.xyz/post/microsoft-windows7-2019update-iso-download/</link>
+      <pubDate>Mon, 25 Mar 2019 01:37:56 +0800</pubDate>
+      <guid>https://567899.xyz/post/microsoft-windows7-2019update-iso-download/</guid>
+      <description>&lt;p&gt;近期微软放出了官方 Windows 7 （2019版） 全补丁集成版ISO映像文件，分别是2018年8月1日编译的旗舰版、专业版、家庭高级版的64位和32位镜像，版本号Build 7601.24214，目前只有英文版。&lt;/p&gt;
+&lt;p&gt;主要特点如下：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;集成最新的.net Framework框架.net Framework 4.7.2。&lt;/li&gt;
+&lt;li&gt;集成了SP1以后发布的有效更新186个&lt;/li&gt;
+&lt;li&gt;官方支持 UEFI 和 NVME 启动。&lt;/li&gt;
+&lt;li&gt;集成 USB 3.0/3.1。&lt;/li&gt;
+&lt;li&gt;Internet Explorer 11。&lt;/li&gt;
+&lt;li&gt;Win 10 模式的EFI。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;真正官方原生编译集成，绝非民间自制版本！。&lt;/p&gt;
+&lt;h1 id=&#34;64位系统镜像下载地址&#34;&gt;64位系统镜像下载地址&lt;/h1&gt;
+&lt;p&gt;旗舰版: &lt;a href=&#34;http://download.microsoft.com/download/5/1/9/5195A765-3A41-4A72-87D8-200D897CBE21/7601.24214.180801-1700.win7sp1_ldr_escrow_CLIENT_ULTIMATE_x64FRE_en-us.iso&#34;&gt;7601.24214.180801-1700.win7sp1_ldr_escrow_CLIENT_ULTIMATE_x64FRE_en-us.iso&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;SHA1: 7CC76B0015220DE956328FB934D61B710A94293D&lt;/p&gt;
+&lt;p&gt;专业版：&lt;a href=&#34;http://download.microsoft.com/download/0/6/3/06365375-C346-4D65-87C7-EE41F55F736B/7601.24214.180801-1700.win7sp1_ldr_escrow_CLIENT_PROFESSIONAL_x64FRE_en-us.iso&#34;&gt;7601.24214.180801-1700.win7sp1_ldr_escrow_CLIENT_PROFESSIONAL_x64FRE_en-us.iso&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;SHA1: B3260CE8C339E13C4E6D327E1310B06C8E1402B0&lt;/p&gt;
+&lt;p&gt;家庭高级版：&lt;a href=&#34;http://download.microsoft.com/download/E/A/8/EA804D86-C3DF-4719-9966-6A66C9306598/7601.24214.180801-1700.win7sp1_ldr_escrow_CLIENT_HOMEPREMIUM_x64FRE_en-us.iso&#34;&gt;7601.24214.180801-1700.win7sp1_ldr_escrow_CLIENT_HOMEPREMIUM_x64FRE_en-us.iso&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;SHA1: C15BB9873548BD4A69371BC7966560C13162128C&lt;/p&gt;
+&lt;h1 id=&#34;32位系统镜像下载地址&#34;&gt;32位系统镜像下载地址&lt;/h1&gt;
+&lt;p&gt;旗舰版：&lt;a href=&#34;http://download.microsoft.com/download/1/E/6/1E6B4803-DD2A-49DF-8468-69C0E6E36218/7601.24214.180801-1700.win7sp1_ldr_escrow_CLIENT_ULTIMATE_x86FRE_en-us.iso&#34;&gt;7601.24214.180801-1700.win7sp1_ldr_escrow_CLIENT_ULTIMATE_x86FRE_en-us.iso&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;SHA1：6F8791FBB4E883FF96B7FFC202640B0A8053D122&lt;/p&gt;
+&lt;p&gt;专业版：&lt;a href=&#34;https://download.microsoft.com/download/C/0/6/C067D0CD-3785-4727-898E-60DC3120BB14/7601.24214.180801-1700.win7sp1_ldr_escrow_CLIENT_PROFESSIONAL_x86FRE_en-us.iso&#34;&gt;7601.24214.180801-1700.win7sp1_ldr_escrow_CLIENT_PROFESSIONAL_x86FRE_en-us.iso&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;SHA1：F1B6B81C6F6C7BAB91DCAF711502706468B3D09A&lt;/p&gt;
+&lt;p&gt;家庭高级版：&lt;a href=&#34;http://download.microsoft.com/download/E/D/A/EDA6B508-7663-4E30-86F9-949932F443D0/7601.24214.180801-1700.win7sp1_ldr_escrow_CLIENT_HOMEPREMIUM_x86FRE_en-us.iso&#34;&gt;7601.24214.180801-1700.win7sp1_ldr_escrow_CLIENT_HOMEPREMIUM_x86FRE_en-us.iso&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;SHA1：110674427B27F7216A95C4D659AE9F211C91FEFD&lt;/p&gt;
+&lt;h1 id=&#34;简体中文语言包下载地址&#34;&gt;简体中文语言包下载地址&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&#34;http://download.windowsupdate.com/msdownload/update/software/updt/2011/02/windows6.1-kb2483139-x64-zh-cn_2c1884b4fdf6c8e91986369d88bbcaae01c6f187.exe&#34;&gt;64位&lt;/a&gt; or &lt;a href=&#34;http://download.windowsupdate.com/msdownload/update/software/updt/2009/08/windows6.1-kb972813-x86-zh-cn_ab024143b556395e6638e26712b1e0f3bc031fcf.exe&#34;&gt;32位&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;ps:微软做的这个新镜像很赞，集成到2018年11月的所有更新，适合于想要长期继续使用Windows 7的用户。毕竟微软上一次发布Windows 7的镜像还是在SP1那时候，在遥远的2011年5月12日，安装那版镜像后要装很多更新，非常不便。现在微软做了集成更新的Windows 7镜像，对广大Windows 7用户以及企业IT管理员无疑是个福音。最后还是希望微软能发布全语言版的新Windows 7镜像。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Windows中将OneDrive映射为本地磁盘</title>
+      <link>https://567899.xyz/post/windows-map-a-network-drive/</link>
+      <pubDate>Thu, 20 Apr 2017 01:37:56 +0800</pubDate>
+      <guid>https://567899.xyz/post/windows-map-a-network-drive/</guid>
+      <description>&lt;p&gt;将 OneDrive 映射为本地网络驱动器
+登录到 &lt;a href=&#34;https://onedrive.live.com/&#34;&gt;OneDrive&lt;/a&gt; 在浏览器地址栏即可获取账户 ID。类似：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;https://onedrive.live.com/?id&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;root&lt;span class=&#34;p&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;cid&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;xxxxxxxxxxx
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;其中xxxxxxxxxxx为Onedrive账户ID&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://567899.xyz/images/onedriveid.png&#34; alt=&#34;&#34;  /&gt;
+&lt;/p&gt;
+&lt;p&gt;打开&lt;code&gt;此电脑&lt;/code&gt; &lt;code&gt;计算机&lt;/code&gt; &lt;code&gt;映射网络驱动器&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://567899.xyz/images/windows-map-a-network-drive.png&#34; alt=&#34;&#34;  /&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;映射网络驱动器&lt;/code&gt;在&lt;code&gt;文件夹&lt;/code&gt;输入&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;https://d.docs.live.net/xxxxxxxxxxx
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;按提示输入账号密码即能完成映射网络驱动器&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://567899.xyz/images/windows-map-a-network-drive1.png&#34; alt=&#34;&#34;  /&gt;
+&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

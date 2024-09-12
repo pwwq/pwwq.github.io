@@ -1,0 +1,686 @@
+<!doctype html><html lang=zh dir=auto><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>在Linux_VPS上使用rclone挂载GoogleDrive云端硬盘和MicrosoftOneDrive | Xizi's Blog</title>
+<meta name=keywords content="rclone,GoogleDrive,OneDrive"><meta name=description content="rclone可以在Linux上挂载包括
+Rclone is a command line program to sync files and directories to and from:
+
+Alibaba Cloud (Aliyun) Object Storage System (OSS)  
+Amazon Drive   (See note)
+Amazon S3  
+Backblaze B2  
+Box  
+Ceph  
+DigitalOcean Spaces  
+Dreamhost  
+Dropbox  
+FTP  
+Google Cloud Storage  
+Google Drive  
+HTTP  
+Hubic  
+Jottacloud  
+IBM COS S3  
+Koofr  
+adminmset Memstore  
+adminga  
+Microsoft Azure Blob Storage  
+Microsoft OneDrive  
+Minio  
+Nextcloud  
+OVH  
+OpenDrive  
+Openstack Swift  
+Oracle Cloud Storage  
+ownCloud  
+pCloud  
+put.io  
+QingStor  
+Rackspace Cloud Files  
+Scaleway  
+SFTP  
+Wasabi  
+WebDAV  
+Yandex Disk  
+The local filesystem  
+且不会占用本地硬盘空间"><meta name=author content="admin"><link rel=canonical href=https://567899.xyz/post/linux-vps-rclone-googledrive-microsoftonedrive/><meta name=google-site-verification content="XYZabc"><meta name=yandex-verification content="XYZabc"><meta name=msvalidate.01 content="XYZabc"><link crossorigin=anonymous href=/assets/css/stylesheet.e47a4660efa4fbc78073593cfd9c5a39a49f0ad0d1d33adf13d7f5183b23c238.css integrity="sha256-5HpGYO+k+8eAc1k8/ZxaOaSfCtDR0zrfE9f1GDsjwjg=" rel="preload stylesheet" as=style><link rel=icon href=https://567899.xyz/%3Clink%20/%20abs%20url%3E><link rel=icon type=image/png sizes=16x16 href=https://567899.xyz/%3Clink%20/%20abs%20url%3E><link rel=icon type=image/png sizes=32x32 href=https://567899.xyz/%3Clink%20/%20abs%20url%3E><link rel=apple-touch-icon href=https://567899.xyz/%3Clink%20/%20abs%20url%3E><link rel=mask-icon href=https://567899.xyz/%3Clink%20/%20abs%20url%3E><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=zh href=https://567899.xyz/post/linux-vps-rclone-googledrive-microsoftonedrive/><noscript><style>#theme-toggle,.top-link{display:none}</style><style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--code-block-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51)}.list{background:var(--theme)}.list:not(.dark)::-webkit-scrollbar-track{background:0 0}.list:not(.dark)::-webkit-scrollbar-thumb{border-color:var(--theme)}}</style></noscript><meta property="og:title" content="在Linux_VPS上使用rclone挂载GoogleDrive云端硬盘和MicrosoftOneDrive"><meta property="og:description" content="rclone可以在Linux上挂载包括
+Rclone is a command line program to sync files and directories to and from:
+
+Alibaba Cloud (Aliyun) Object Storage System (OSS)  
+Amazon Drive   (See note)
+Amazon S3  
+Backblaze B2  
+Box  
+Ceph  
+DigitalOcean Spaces  
+Dreamhost  
+Dropbox  
+FTP  
+Google Cloud Storage  
+Google Drive  
+HTTP  
+Hubic  
+Jottacloud  
+IBM COS S3  
+Koofr  
+adminmset Memstore  
+adminga  
+Microsoft Azure Blob Storage  
+Microsoft OneDrive  
+Minio  
+Nextcloud  
+OVH  
+OpenDrive  
+Openstack Swift  
+Oracle Cloud Storage  
+ownCloud  
+pCloud  
+put.io  
+QingStor  
+Rackspace Cloud Files  
+Scaleway  
+SFTP  
+Wasabi  
+WebDAV  
+Yandex Disk  
+The local filesystem  
+且不会占用本地硬盘空间"><meta property="og:type" content="article"><meta property="og:url" content="https://567899.xyz/post/linux-vps-rclone-googledrive-microsoftonedrive/"><meta property="og:image" content="https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E"><meta property="article:section" content="post"><meta property="article:published_time" content="2018-06-13T01:37:56+08:00"><meta property="article:modified_time" content="2018-06-13T01:37:56+08:00"><meta property="og:site_name" content="Xizi's Blog"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E"><meta name=twitter:title content="在Linux_VPS上使用rclone挂载GoogleDrive云端硬盘和MicrosoftOneDrive"><meta name=twitter:description content="rclone可以在Linux上挂载包括
+Rclone is a command line program to sync files and directories to and from:
+
+Alibaba Cloud (Aliyun) Object Storage System (OSS)  
+Amazon Drive   (See note)
+Amazon S3  
+Backblaze B2  
+Box  
+Ceph  
+DigitalOcean Spaces  
+Dreamhost  
+Dropbox  
+FTP  
+Google Cloud Storage  
+Google Drive  
+HTTP  
+Hubic  
+Jottacloud  
+IBM COS S3  
+Koofr  
+adminmset Memstore  
+adminga  
+Microsoft Azure Blob Storage  
+Microsoft OneDrive  
+Minio  
+Nextcloud  
+OVH  
+OpenDrive  
+Openstack Swift  
+Oracle Cloud Storage  
+ownCloud  
+pCloud  
+put.io  
+QingStor  
+Rackspace Cloud Files  
+Scaleway  
+SFTP  
+Wasabi  
+WebDAV  
+Yandex Disk  
+The local filesystem  
+且不会占用本地硬盘空间"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Posts","item":"https://567899.xyz/post/"},{"@type":"ListItem","position":2,"name":"在Linux_VPS上使用rclone挂载GoogleDrive云端硬盘和MicrosoftOneDrive","item":"https://567899.xyz/post/linux-vps-rclone-googledrive-microsoftonedrive/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"在Linux_VPS上使用rclone挂载GoogleDrive云端硬盘和MicrosoftOneDrive","name":"在Linux_VPS上使用rclone挂载GoogleDrive云端硬盘和MicrosoftOneDrive","description":"rclone可以在Linux上挂载包括\nRclone is a command line program to sync files and directories to and from: Alibaba Cloud (Aliyun) Object Storage System (OSS) Amazon Drive (See note) Amazon S3 Backblaze B2 Box Ceph DigitalOcean Spaces Dreamhost Dropbox FTP Google Cloud Storage Google Drive HTTP Hubic Jottacloud IBM COS S3 Koofr adminmset Memstore adminga Microsoft Azure Blob Storage Microsoft OneDrive Minio Nextcloud OVH OpenDrive Openstack Swift Oracle Cloud Storage ownCloud pCloud put.io QingStor Rackspace Cloud Files Scaleway SFTP Wasabi WebDAV Yandex Disk The local filesystem 且不会占用本地硬盘空间\n","keywords":["rclone","GoogleDrive","OneDrive"],"articleBody":"rclone可以在Linux上挂载包括\nRclone is a command line program to sync files and directories to and from: Alibaba Cloud (Aliyun) Object Storage System (OSS) Amazon Drive (See note) Amazon S3 Backblaze B2 Box Ceph DigitalOcean Spaces Dreamhost Dropbox FTP Google Cloud Storage Google Drive HTTP Hubic Jottacloud IBM COS S3 Koofr adminmset Memstore adminga Microsoft Azure Blob Storage Microsoft OneDrive Minio Nextcloud OVH OpenDrive Openstack Swift Oracle Cloud Storage ownCloud pCloud put.io QingStor Rackspace Cloud Files Scaleway SFTP Wasabi WebDAV Yandex Disk The local filesystem 且不会占用本地硬盘空间\n安装rclone 以Debian为例\napt-get install fuse -y curl https://rclone.org/install.sh | sudo bash 运行以下命令开始配置rclone\nrclone config 配置文件路径\n/root/.config/rclone/rclone.conf rclone挂载Google Drive root@MonstrousPointed-VM:~# rclone config Current remotes: Name Type ==== ==== gdname drive odname onedrive e) Edit existing remote n) New remote d) Delete remote r) Rename remote c) Copy remote s) Set configuration password q) Quit config e/n/d/r/c/s/q\u003e n #选择n新建 name\u003e googledrive #名字随意例如googledrive Type of storage to configure. Enter a string value. Press Enter for the default (\"\"). Choose a number from below, or type in your own value 1 / A stackable unification remote, which can appear to merge the contents of s everal remotes \\ \"union\" 2 / Alias for a existing remote \\ \"alias\" 3 / Amazon Drive \\ \"amazon cloud drive\" 4 / Amazon S3 Compliant Storage Provider (AWS, Alibaba, Ceph, Digital Ocean, Dr eamhost, IBM COS, Minio, etc) \\ \"s3\" 5 / Backblaze B2 \\ \"b2\" 6 / Box \\ \"box\" 7 / Cache a remote \\ \"cache\" 8 / Dropbox \\ \"dropbox\" 9 / Encrypt/Decrypt a remote \\ \"crypt\" 10 / FTP Connection \\ \"ftp\" 11 / Google Cloud Storage (this is not Google Drive) \\ \"google cloud storage\" 12 / Google Drive \\ \"drive\" 13 / Hubic \\ \"hubic\" 14 / JottaCloud \\ \"jottacloud\" 15 / Koofr \\ \"koofr\" 16 / Local Disk \\ \"local\" 17 / adminga \\ \"mega\" 18 / Microsoft Azure Blob Storage \\ \"azureblob\" 19 / Microsoft OneDrive \\ \"onedrive\" 20 / OpenDrive \\ \"opendrive\" 21 / Openstack Swift (Rackspace Cloud Files, adminmset Memstore, OVH) \\ \"swift\" 22 / Pcloud \\ \"pcloud\" 23 / QingCloud Object Storage \\ \"qingstor\" 24 / SSH/SFTP Connection \\ \"sftp\" 25 / Webdav \\ \"webdav\" 26 / Yandex Disk \\ \"yandex\" 27 / http Connection \\ \"http\" Storage\u003e 12 #选12选定Google Drive ** See help for drive backend at: https://rclone.org/drive/ ** Google Application Client Id Setting your own is recommended. See https://rclone.org/drive/#making-your-own-client-id for how to create your o wn. If you leave this blank, it will use an internal key which is low performance. Enter a string value. Press Enter for the default (\"\"). client_id\u003e Google Application Client Secret Setting your own is recommended. Enter a string value. Press Enter for the default (\"\"). client_secret\u003e Scope that rclone should use when requesting access from drive. Enter a string value. Press Enter for the default (\"\"). Choose a number from below, or type in your own value 1 / Full access all files, excluding Application Data Folder. \\ \"drive\" 2 / Read-only access to file metadata and file contents. \\ \"drive.readonly\" / Access to files created by rclone only. 3 | These are visible in the drive website. | File authorization is revoked when the user deauthorizes the app. \\ \"drive.file\" / Allows read and write access to the Application Data folder. 4 | This is not visible in the drive website. \\ \"drive.appfolder\" / Allows read-only access to file metadata but 5 | does not allow any access to read or download file content. \\ \"drive.metadata.readonly\" scope\u003e 1 ID of the root folder Leave blank normally. Fill in to access \"Computers\" folders. (see docs). Enter a string value. Press Enter for the default (\"\"). root_folder_id\u003e Service Account Credentials JSON file path Leave blank normally. Needed only if you want use SA instead of interactive login. Enter a string value. Press Enter for the default (\"\"). service_account_file\u003e Edit advanced config? (y/n) y) Yes n) No y/n\u003e n Remote config Use auto config? * Say Y if not sure * Say N if you are working on a remote or headless machine y) Yes n) No y/n\u003e n If your browser doesn't open automatically go to the following link: https://accounts.google.com/o/oauth2/auth?access_type=offline\u0026client_id=202xxxxxx5644.apps.gc6d8875f163240ea0bf58 #注意网址不能有空格，在浏览器中打开并按提示完成授权，获得code码 Enter verification code\u003e xxxxxxxxxxxxx #这里填写你刚才获得的code码 Configure this as a team drive? y) Yes n) No y/n\u003e y y) Yes this is OK e) Edit this remote d) Delete this remote y/e/d\u003e y Current remotes: Name Type ==== ==== gd googledrive e) Edit existing remote n) New remote d) Delete remote r) Rename remote c) Copy remote s) Set configuration password q) Quit config e/n/d/r/c/s/q\u003e q rclone挂载Microsoft OneDrive 客户端授权 在本地Windows电脑上下载rclone 点我下载rclone客户端 然后解压出来，进入文件夹，按住shift键后右击在此处打开命令窗口键入\nrclone authorize \"onedrive\" 这时会自动打开浏览器按提示登陆授权，当网页显示\nSuccess! All done. Please go back to rclone. 回到CMD界面\nC:\\Users\\Users\u003ecd /d d:\\rclone d:\\rclone\u003erclone authorize \"onedrive\" 2018/12/24 19:14:35 NOTICE: Config file \"C:\\\\Users\\\\Users\\\\.config\\\\rclone\\\\rclone.conf\" not found - using defaults If your browser doesn't open automatically go to the following link: http://127.0.0.1:53682/auth Log in and authorize rclone for access Waiting for code... Got code Paste the following into your remote machine ---\u003e {\"access_token\":\"EwBwA8l6BxxxxxxxxxxxxacbtK!VgGItbS7sxc\",\"expiry\":\"2018-12-24T20:15:31.0560991+08:00\"} \u003c---End paste d:\\rclone\u003e 其中中括号在内就是VPS挂载所需要的result值，包括**{}**中括号在内\n{\"access_token\":\"EwBwA8l6BxxxxxxxxxxxxacbtK!VgGItbS7sxc\",\"expiry\":\"2018-12-24T20:15:31.0560991+08:00\"} linux上挂载Microsoft OneDrive rclone config 开始配置\nroot@MonstrousPointed-VM:~# rclone config Current remotes: e) Edit existing remote n) New remote d) Delete remote r) Rename remote c) Copy remote s) Set configuration password q) Quit config e/n/d/r/c/s/q\u003e n name\u003e onedrive #名字自定义 Type of storage to configure. Enter a string value. Press Enter for the default (\"\"). Choose a number from below, or type in your own value 1 / A stackable unification remote, which can appear to merge the contents of several remotes \\ \"union\" 2 / Alias for a existing remote \\ \"alias\" 3 / Amazon Drive \\ \"amazon cloud drive\" 4 / Amazon S3 Compliant Storage Providers (AWS, Ceph, Dreamhost, IBM COS, Minio) \\ \"s3\" 5 / Backblaze B2 \\ \"b2\" 6 / Box \\ \"box\" 7 / Cache a remote \\ \"cache\" 8 / Dropbox \\ \"dropbox\" 9 / Encrypt/Decrypt a remote \\ \"crypt\" 10 / FTP Connection \\ \"ftp\" 11 / Google Cloud Storage (this is not Google Drive) \\ \"google cloud storage\" 12 / Google Drive \\ \"drive\" 13 / Hubic \\ \"hubic\" 14 / JottaCloud \\ \"jottacloud\" 15 / Local Disk \\ \"local\" 16 / adminga \\ \"mega\" 17 / Microsoft Azure Blob Storage \\ \"azureblob\" 18 / Microsoft OneDrive \\ \"onedrive\" 19 / OpenDrive \\ \"opendrive\" 20 / Openstack Swift (Rackspace Cloud Files, adminmset Memstore, OVH) \\ \"swift\" 21 / Pcloud \\ \"pcloud\" 22 / QingCloud Object Storage \\ \"qingstor\" 23 / SSH/SFTP Connection \\ \"sftp\" 24 / Webdav \\ \"webdav\" 25 / Yandex Disk \\ \"yandex\" 26 / http Connection \\ \"http\" Storage\u003e 18 #Microsoft OneDrive ** See help for onedrive backend at: https://rclone.org/onedrive/ ** Microsoft App Client Id Leave blank normally. Enter a string value. Press Enter for the default (\"\"). client_id\u003e Microsoft App Client Secret Leave blank normally. Enter a string value. Press Enter for the default (\"\"). client_secret\u003e Edit advanced config? (y/n) y) Yes n) No y/n\u003e n Remote config Use auto config? * Say Y if not sure * Say N if you are working on a remote or headless machine y) Yes n) No y/n\u003e n For this to work, you will need rclone available on a machine that has a web browser available. Execute the following on your machine: rclone authorize \"onedrive\" Then paste the result below: result\u003e {\"access_token\":\"EwBwA8l6BAAURxxxxxxxxxxxxxxxxxxxxxxxxxxxCMszTZEI27EacbtK!VgGItbS7sxc\",\"expiry\":\"2018-12-24T20:15:31.0560991+08:00\"} 2018/12/24 06:39:03 ERROR : Failed to save new token in config file: section 'od100' not found Choose a number from below, or type in an existing value 1 / OneDrive Personal or Business \\ \"onedrive\" 2 / Root Sharepoint site \\ \"sharepoint\" 3 / Type in driveID \\ \"driveid\" 4 / Type in SiteID \\ \"siteid\" 5 / Search a Sharepoint site \\ \"search\" Your choice\u003e 1 Found 1 drives, please select the one you want to use: 0: (personal) id=xxxxxxxxxxxxxx Chose drive to use:\u003e 0 #0: 这里输入0 Found drive 'root' of type 'personal', URL: https://onedrive.live.com/?cid=e164800991cb8f79 Is that okay? y) Yes n) No y/n\u003e y -------------------- [onedrive] type = onedrive token = {\"access_token\":\"EwBwA8l6BAAURxxxxxxxxxxxxxxxxxxxxxxxxxxxCMszTZEI27EacbtK!VgGItbS7sxc\",\"expiry\":\"2018-12-24T20:15:31.0560991+08:00\"} drive_id = xxxxxxxxxxxxxx drive_type = personal #personal个人版,Business挂载方法类似。 -------------------- y) Yes this is OK e) Edit this remote d) Delete this remote y/e/d\u003e y Current remotes: Name Type ==== ==== onedrive onedrive #这里能看到上面自定义名称说明成功了 e) Edit existing remote n) New remote d) Delete remote r) Rename remote c) Copy remote s) Set configuration password q) Quit config e/n/d/r/c/s/q\u003e q # 退出 配置rclone开机自动挂载为本地磁盘 echo \"#!/bin/bash PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:~/bin export PATH NAME_BIN=\"rclone\" ### BEGIN INIT INFO # Provides: rclone # Required-Start: $all # Required-Stop: $all # Default-Start: 2 3 4 5 # Default-Stop: 0 1 6 # Short-Description: Start rclone at boot time # Description: Enable rclone by daemon. ### END INIT INFO NAME=\"rclone_name\" #rclone name名 REMOTE='/rclone' #远程文件夹，Google Drive网盘里的挂载的一个文件夹 LOCAL='/mnt/gdrive' #VPS本地挂载目录 Green_font_prefix=\"\\033[32m\" \u0026\u0026 Red_font_prefix=\"\\033[31m\" \u0026\u0026 Green_background_prefix=\"\\033[42;37m\" \u0026\u0026 Red_background_prefix=\"\\033[41;37m\" \u0026\u0026 Font_color_suffix=\"\\033[0m\" Info=\"${Green_font_prefix}[信息]${Font_color_suffix}\" Error=\"${Red_font_prefix}[错误]${Font_color_suffix}\" RETVAL=0 check_running(){ PID=\"$(ps -C $NAME_BIN -o pid= |head -n1 |grep -o '[0-9]\\{1,\\}')\" if [[ ! -z ${PID} ]]; then return 0 else return 1 fi } do_start(){ check_running if [[ $? -eq 0 ]]; then echo -e \"${Info} $NAME_BIN (PID ${PID}) 正在运行...\" \u0026\u0026 exit 0 else fusermount -zuq $LOCAL \u003e/dev/null 2\u003e\u00261 mkdir -p $LOCAL sudo /usr/bin/rclone mount $NAME:$REMOTE $LOCAL --copy-links --no-gzip-encoding --no-check-certificate --allow-other --allow-non-empty --umask 000 \u003e/dev/null 2\u003e\u00261 \u0026 sleep 2s check_running if [[ $? -eq 0 ]]; then echo -e \"${Info} $NAME_BIN 启动成功 !\" else echo -e \"${Error} $NAME_BIN 启动失败 !\" fi fi } do_stop(){ check_running if [[ $? -eq 0 ]]; then kill -9 ${PID} RETVAL=$? if [[ $RETVAL -eq 0 ]]; then echo -e \"${Info} $NAME_BIN 停止成功 !\" else echo -e \"${Error} $NAME_BIN 停止失败 !\" fi else echo -e \"${Info} $NAME_BIN 未运行\" RETVAL=1 fi fusermount -zuq $LOCAL \u003e/dev/null 2\u003e\u00261 } do_status(){ check_running if [[ $? -eq 0 ]]; then echo -e \"${Info} $NAME_BIN (PID $(echo ${PID})) 正在运行...\" else echo -e \"${Info} $NAME_BIN 未运行 !\" RETVAL=1 fi } do_restart(){ do_stop do_start } case \"$1\" in start|stop|restart|status) do_$1 ;; *) echo \"使用方法: $0 { start | stop | restart | status }\" RETVAL=1 ;; esac exit $RETVAL\" \u003e\u003e /etc/init.d/rcloned 修改一下内容：\nNAME=\"rclone_name\" #rclone name名 REMOTE='/rclone' #远程文件夹，Google Drive网盘里的挂载的一个文件夹 LOCAL='/mnt/gdrive' #VPS本地挂载目录 然后\nchmod +x /etc/init.d/rcloned update-rc.d -f rcloned defaults bash /etc/init.d/rcloned start 重启一下查看是否成功\ndf -h 如果上面脚本的挂载失败,可以手动挂载，以onedrive为例:\n先新建一个目录,用于挂载\nmkdir -p /mnt/onedrive 挂载命令\nrclone mount onedrive: /mnt/onedrive --allow-other --allow-non-empty --vfs-cache-mode writes 相关命令 ### 文件上传 rclone copy /home/backup gdrive:backup # 本地路径 配置名字:谷歌文件夹名字 ### 文件下载 rclone copy gdrive:backup /home/backup ### 列表 rclone ls gdrive:backup rclone lsl gdrive:backup # 比上面多一个显示上传时间 rclone lsd gdrive:backup # 只显示文件夹 ### 新建文件夹 rclone mkdir gdrive:backup ### 挂载 rclone mount gdrive:mm /root/mm \u0026 ### 卸载 fusermount -u /root/mm 其他 rclone config - 以控制会话的形式添加rclone的配置，配置保存在.rclone.conf文件中。 rclone copy - 将文件从源复制到目的地址，跳过已复制完成的。 rclone sync - 将源数据同步到目的地址，只更新目的地址的数据。 –dry-run标志来检查要复制、删除的数据 rclone move - 将源数据移动到目的地址。 rclone delete - 删除指定路径下的文件内容。 rclone purge - 清空指定路径下所有文件数据。 rclone mkdir - 创建一个新目录。 rclone rmdir - 删除空目录。 rclone check - 检查源和目的地址数据是否匹配。 rclone ls - 列出指定路径下所有的文件以及文件大小和路径。 rclone lsd - 列出指定路径下所有的目录/容器/桶。 rclone lsl - 列出指定路径下所有文件以及修改时间、文件大小和路径。 rclone md5sum - 为指定路径下的所有文件产生一个md5sum文件。 rclone sha1sum - 为指定路径下的所有文件产生一个sha1sum文件。 rclone size - 获取指定路径下，文件内容的总大小。. rclone version - 查看当前版本。 rclone cleanup - 清空remote。 rclone dedupe - 交互式查找重复文件，进行删除/重命名操作。 挂载服务器\napt-get install -y nload htop fuse p7zip-full 挂载为磁盘 rclone mount DriveName:Folder LocalFolder --copy-links --no-gzip-encoding --no-check-certificate --allow-other --allow-non-empty --umask 000 卸载磁盘 fusermount -qzu LocalFolder 多线程下载\n--transfers 64 直接通过文件的下载链接保存到网盘\nrclone copyurl https://xxx.com/xxx.zip rcloneconfigname:directory/ -a -vP 自定义名字\nrclone copyurl https://xxx.com/xxx.zip rcloneconfigname:directory/yyy.zip -vP ","wordCount":"1852","inLanguage":"zh","image":"https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E","datePublished":"2018-06-13T01:37:56+08:00","dateModified":"2018-06-13T01:37:56+08:00","author":{"@type":"Person","name":"admin"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://567899.xyz/post/linux-vps-rclone-googledrive-microsoftonedrive/"},"publisher":{"@type":"Organization","name":"Xizi's Blog","logo":{"@type":"ImageObject","url":"https://567899.xyz/%3Clink%20/%20abs%20url%3E"}}}</script></head><body id=top><script>localStorage.getItem("pref-theme")==="dark"?document.body.classList.add("dark"):localStorage.getItem("pref-theme")==="light"?document.body.classList.remove("dark"):window.matchMedia("(prefers-color-scheme: dark)").matches&&document.body.classList.add("dark")</script><header class=header><nav class=nav><div class=logo><a href=https://567899.xyz/ accesskey=h title="Xizi's Blog (Alt + H)"><img src=https://567899.xyz/apple-touch-icon.png alt aria-label=logo height=35>Xizi's Blog</a><div class=logo-switches><button id=theme-toggle accesskey=t title="(Alt + T)"><svg id="moon" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu><li><a href=https://567899.xyz/archives/ title=归档><span>归档</span></a></li><li><a href=https://567899.xyz/tags/ title=标签><span>标签</span></a></li><li><a href=https://567899.xyz/about/ title=关于><span>关于</span></a></li><li><a href=https://567899.xyz/search/ title="搜索 (Alt + /)" accesskey=/><span>搜索</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><div class=breadcrumbs><a href=https://567899.xyz/>主页</a>&nbsp;»&nbsp;<a href=https://567899.xyz/post/>Posts</a></div><h1 class="post-title entry-hint-parent">在Linux_VPS上使用rclone挂载GoogleDrive云端硬盘和MicrosoftOneDrive</h1><div class=post-meta><span title='2018-06-13 01:37:56 +0800 +0800'>六月 13, 2018</span>&nbsp;·&nbsp;admin&nbsp;|&nbsp;<a href=https://github.com/pwwq/hugo-code/tree/master/content/post/Linux-VPS-rclone-GoogleDrive-MicrosoftOneDrive.md rel="noopener noreferrer" target=_blank>编辑</a></div></header><div class=toc><details open><summary accesskey=c title="(Alt + C)"><div class=details>在Linux_VPS上使用rclone挂载GoogleDrive云端硬盘和MicrosoftOneDrive</div></summary><div class=inner><ul><li><a href=#%e5%ae%89%e8%a3%85rclone aria-label=安装rclone>安装rclone</a><ul><li><a href=#rclone%e6%8c%82%e8%bd%bdgoogle-drive aria-label="rclone挂载Google Drive">rclone挂载Google Drive</a></li><li><a href=#rclone%e6%8c%82%e8%bd%bdmicrosoft-onedrive aria-label="rclone挂载Microsoft OneDrive">rclone挂载Microsoft OneDrive</a><ul><li><a href=#%e5%ae%a2%e6%88%b7%e7%ab%af%e6%8e%88%e6%9d%83 aria-label=客户端授权>客户端授权</a></li><li><a href=#linux%e4%b8%8a%e6%8c%82%e8%bd%bdmicrosoft-onedrive aria-label="linux上挂载Microsoft OneDrive">linux上挂载Microsoft OneDrive</a></li></ul></li></ul></li><li><a href=#%e9%85%8d%e7%bd%aerclone%e5%bc%80%e6%9c%ba%e8%87%aa%e5%8a%a8%e6%8c%82%e8%bd%bd%e4%b8%ba%e6%9c%ac%e5%9c%b0%e7%a3%81%e7%9b%98 aria-label=配置rclone开机自动挂载为本地磁盘>配置rclone开机自动挂载为本地磁盘</a></li><li><a href=#%e7%9b%b8%e5%85%b3%e5%91%bd%e4%bb%a4 aria-label=相关命令>相关命令</a><ul><li><a href=#%e5%85%b6%e4%bb%96 aria-label=其他>其他</a></li></ul></li><li><a href=#%e6%8c%82%e8%bd%bd%e4%b8%ba%e7%a3%81%e7%9b%98 aria-label=挂载为磁盘>挂载为磁盘</a></li><li><a href=#%e5%8d%b8%e8%bd%bd%e7%a3%81%e7%9b%98 aria-label=卸载磁盘>卸载磁盘</a></li></ul></div></details></div><div class=post-content><p><a href=https://rclone.org/>rclone</a>可以在Linux上挂载包括</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>Rclone is a <span class=nb>command</span> line program to sync files and directories to and from:
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Alibaba Cloud <span class=o>(</span>Aliyun<span class=o>)</span> Object Storage System <span class=o>(</span>OSS<span class=o>)</span>  
+</span></span><span class=line><span class=cl>Amazon Drive   <span class=o>(</span>See note<span class=o>)</span>
+</span></span><span class=line><span class=cl>Amazon S3  
+</span></span><span class=line><span class=cl>Backblaze B2  
+</span></span><span class=line><span class=cl>Box  
+</span></span><span class=line><span class=cl>Ceph  
+</span></span><span class=line><span class=cl>DigitalOcean Spaces  
+</span></span><span class=line><span class=cl>Dreamhost  
+</span></span><span class=line><span class=cl>Dropbox  
+</span></span><span class=line><span class=cl>FTP  
+</span></span><span class=line><span class=cl>Google Cloud Storage  
+</span></span><span class=line><span class=cl>Google Drive  
+</span></span><span class=line><span class=cl>HTTP  
+</span></span><span class=line><span class=cl>Hubic  
+</span></span><span class=line><span class=cl>Jottacloud  
+</span></span><span class=line><span class=cl>IBM COS S3  
+</span></span><span class=line><span class=cl>Koofr  
+</span></span><span class=line><span class=cl>adminmset Memstore  
+</span></span><span class=line><span class=cl>adminga  
+</span></span><span class=line><span class=cl>Microsoft Azure Blob Storage  
+</span></span><span class=line><span class=cl>Microsoft OneDrive  
+</span></span><span class=line><span class=cl>Minio  
+</span></span><span class=line><span class=cl>Nextcloud  
+</span></span><span class=line><span class=cl>OVH  
+</span></span><span class=line><span class=cl>OpenDrive  
+</span></span><span class=line><span class=cl>Openstack Swift  
+</span></span><span class=line><span class=cl>Oracle Cloud Storage  
+</span></span><span class=line><span class=cl>ownCloud  
+</span></span><span class=line><span class=cl>pCloud  
+</span></span><span class=line><span class=cl>put.io  
+</span></span><span class=line><span class=cl>QingStor  
+</span></span><span class=line><span class=cl>Rackspace Cloud Files  
+</span></span><span class=line><span class=cl>Scaleway  
+</span></span><span class=line><span class=cl>SFTP  
+</span></span><span class=line><span class=cl>Wasabi  
+</span></span><span class=line><span class=cl>WebDAV  
+</span></span><span class=line><span class=cl>Yandex Disk  
+</span></span><span class=line><span class=cl>The <span class=nb>local</span> filesystem  
+</span></span></code></pre></div><p>且不会占用本地硬盘空间</p><h1 id=安装rclone>安装rclone<a hidden class=anchor aria-hidden=true href=#安装rclone>#</a></h1><p>以Debian为例</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>apt-get install fuse -y
+</span></span><span class=line><span class=cl>curl https://rclone.org/install.sh <span class=p>|</span> sudo bash
+</span></span></code></pre></div><p>运行以下命令开始配置rclone</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>rclone config
+</span></span></code></pre></div><p>配置文件路径</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>/root/.config/rclone/rclone.conf
+</span></span></code></pre></div><h2 id=rclone挂载google-drive>rclone挂载Google Drive<a hidden class=anchor aria-hidden=true href=#rclone挂载google-drive>#</a></h2><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>root@MonstrousPointed-VM:~# rclone config
+</span></span><span class=line><span class=cl>Current remotes:
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Name                 <span class=nv>Type</span>
+</span></span><span class=line><span class=cl><span class=o>====</span>                 <span class=o>====</span>
+</span></span><span class=line><span class=cl>gdname               drive
+</span></span><span class=line><span class=cl>odname               onedrive
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>e<span class=o>)</span> Edit existing remote
+</span></span><span class=line><span class=cl>n<span class=o>)</span> New remote
+</span></span><span class=line><span class=cl>d<span class=o>)</span> Delete remote
+</span></span><span class=line><span class=cl>r<span class=o>)</span> Rename remote
+</span></span><span class=line><span class=cl>c<span class=o>)</span> Copy remote
+</span></span><span class=line><span class=cl>s<span class=o>)</span> Set configuration password
+</span></span><span class=line><span class=cl>q<span class=o>)</span> Quit config
+</span></span><span class=line><span class=cl>e/n/d/r/c/s/q&gt; n   <span class=c1>#选择n新建</span>
+</span></span><span class=line><span class=cl>name&gt; googledrive   <span class=c1>#名字随意例如googledrive</span>
+</span></span><span class=line><span class=cl>Type of storage to configure.
+</span></span><span class=line><span class=cl>Enter a string value. Press Enter <span class=k>for</span> the default <span class=o>(</span><span class=s2>&#34;&#34;</span><span class=o>)</span>.
+</span></span><span class=line><span class=cl>Choose a number from below, or <span class=nb>type</span> in your own value
+</span></span><span class=line><span class=cl> <span class=m>1</span> / A stackable unification remote, which can appear to merge the contents of s                                                                                        everal remotes
+</span></span><span class=line><span class=cl>   <span class=se>\ </span><span class=s2>&#34;union&#34;</span>
+</span></span><span class=line><span class=cl> <span class=m>2</span> / Alias <span class=k>for</span> a existing remote
+</span></span><span class=line><span class=cl>   <span class=se>\ </span><span class=s2>&#34;alias&#34;</span>
+</span></span><span class=line><span class=cl> <span class=m>3</span> / Amazon Drive
+</span></span><span class=line><span class=cl>   <span class=se>\ </span><span class=s2>&#34;amazon cloud drive&#34;</span>
+</span></span><span class=line><span class=cl> <span class=m>4</span> / Amazon S3 Compliant Storage Provider <span class=o>(</span>AWS, Alibaba, Ceph, Digital Ocean, Dr                                                                                        eamhost, IBM COS, Minio, etc<span class=o>)</span>
+</span></span><span class=line><span class=cl>   <span class=se>\ </span><span class=s2>&#34;s3&#34;</span>
+</span></span><span class=line><span class=cl> <span class=m>5</span> / Backblaze B2
+</span></span><span class=line><span class=cl>   <span class=se>\ </span><span class=s2>&#34;b2&#34;</span>
+</span></span><span class=line><span class=cl> <span class=m>6</span> / Box
+</span></span><span class=line><span class=cl>   <span class=se>\ </span><span class=s2>&#34;box&#34;</span>
+</span></span><span class=line><span class=cl> <span class=m>7</span> / Cache a remote
+</span></span><span class=line><span class=cl>   <span class=se>\ </span><span class=s2>&#34;cache&#34;</span>
+</span></span><span class=line><span class=cl> <span class=m>8</span> / Dropbox
+</span></span><span class=line><span class=cl>   <span class=se>\ </span><span class=s2>&#34;dropbox&#34;</span>
+</span></span><span class=line><span class=cl> <span class=m>9</span> / Encrypt/Decrypt a remote
+</span></span><span class=line><span class=cl>   <span class=se>\ </span><span class=s2>&#34;crypt&#34;</span>
+</span></span><span class=line><span class=cl><span class=m>10</span> / FTP Connection
+</span></span><span class=line><span class=cl>   <span class=se>\ </span><span class=s2>&#34;ftp&#34;</span>
+</span></span><span class=line><span class=cl><span class=m>11</span> / Google Cloud Storage <span class=o>(</span>this is not Google Drive<span class=o>)</span>
+</span></span><span class=line><span class=cl>   <span class=se>\ </span><span class=s2>&#34;google cloud storage&#34;</span>
+</span></span><span class=line><span class=cl><span class=m>12</span> / Google Drive
+</span></span><span class=line><span class=cl>   <span class=se>\ </span><span class=s2>&#34;drive&#34;</span>
+</span></span><span class=line><span class=cl><span class=m>13</span> / Hubic
+</span></span><span class=line><span class=cl>   <span class=se>\ </span><span class=s2>&#34;hubic&#34;</span>
+</span></span><span class=line><span class=cl><span class=m>14</span> / JottaCloud
+</span></span><span class=line><span class=cl>   <span class=se>\ </span><span class=s2>&#34;jottacloud&#34;</span>
+</span></span><span class=line><span class=cl><span class=m>15</span> / Koofr
+</span></span><span class=line><span class=cl>   <span class=se>\ </span><span class=s2>&#34;koofr&#34;</span>
+</span></span><span class=line><span class=cl><span class=m>16</span> / Local Disk
+</span></span><span class=line><span class=cl>   <span class=se>\ </span><span class=s2>&#34;local&#34;</span>
+</span></span><span class=line><span class=cl><span class=m>17</span> / adminga
+</span></span><span class=line><span class=cl>   <span class=se>\ </span><span class=s2>&#34;mega&#34;</span>
+</span></span><span class=line><span class=cl><span class=m>18</span> / Microsoft Azure Blob Storage
+</span></span><span class=line><span class=cl>   <span class=se>\ </span><span class=s2>&#34;azureblob&#34;</span>
+</span></span><span class=line><span class=cl><span class=m>19</span> / Microsoft OneDrive
+</span></span><span class=line><span class=cl>   <span class=se>\ </span><span class=s2>&#34;onedrive&#34;</span>
+</span></span><span class=line><span class=cl><span class=m>20</span> / OpenDrive
+</span></span><span class=line><span class=cl>   <span class=se>\ </span><span class=s2>&#34;opendrive&#34;</span>
+</span></span><span class=line><span class=cl><span class=m>21</span> / Openstack Swift <span class=o>(</span>Rackspace Cloud Files, adminmset Memstore, OVH<span class=o>)</span>
+</span></span><span class=line><span class=cl>   <span class=se>\ </span><span class=s2>&#34;swift&#34;</span>
+</span></span><span class=line><span class=cl><span class=m>22</span> / Pcloud
+</span></span><span class=line><span class=cl>   <span class=se>\ </span><span class=s2>&#34;pcloud&#34;</span>
+</span></span><span class=line><span class=cl><span class=m>23</span> / QingCloud Object Storage
+</span></span><span class=line><span class=cl>   <span class=se>\ </span><span class=s2>&#34;qingstor&#34;</span>
+</span></span><span class=line><span class=cl><span class=m>24</span> / SSH/SFTP Connection
+</span></span><span class=line><span class=cl>   <span class=se>\ </span><span class=s2>&#34;sftp&#34;</span>
+</span></span><span class=line><span class=cl><span class=m>25</span> / Webdav
+</span></span><span class=line><span class=cl>   <span class=se>\ </span><span class=s2>&#34;webdav&#34;</span>
+</span></span><span class=line><span class=cl><span class=m>26</span> / Yandex Disk
+</span></span><span class=line><span class=cl>   <span class=se>\ </span><span class=s2>&#34;yandex&#34;</span>
+</span></span><span class=line><span class=cl><span class=m>27</span> / http Connection
+</span></span><span class=line><span class=cl>   <span class=se>\ </span><span class=s2>&#34;http&#34;</span>
+</span></span><span class=line><span class=cl>Storage&gt; <span class=m>12</span>  <span class=c1>#选12选定Google Drive</span>
+</span></span><span class=line><span class=cl>** See <span class=nb>help</span> <span class=k>for</span> drive backend at: https://rclone.org/drive/ **
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Google Application Client Id
+</span></span><span class=line><span class=cl>Setting your own is recommended.
+</span></span><span class=line><span class=cl>See https://rclone.org/drive/#making-your-own-client-id <span class=k>for</span> how to create your o                                                                                        wn.
+</span></span><span class=line><span class=cl>If you leave this blank, it will use an internal key which is low performance.
+</span></span><span class=line><span class=cl>Enter a string value. Press Enter <span class=k>for</span> the default <span class=o>(</span><span class=s2>&#34;&#34;</span><span class=o>)</span>.
+</span></span><span class=line><span class=cl>client_id&gt;
+</span></span><span class=line><span class=cl>Google Application Client Secret
+</span></span><span class=line><span class=cl>Setting your own is recommended.
+</span></span><span class=line><span class=cl>Enter a string value. Press Enter <span class=k>for</span> the default <span class=o>(</span><span class=s2>&#34;&#34;</span><span class=o>)</span>.
+</span></span><span class=line><span class=cl>client_secret&gt;
+</span></span><span class=line><span class=cl>Scope that rclone should use when requesting access from drive.
+</span></span><span class=line><span class=cl>Enter a string value. Press Enter <span class=k>for</span> the default <span class=o>(</span><span class=s2>&#34;&#34;</span><span class=o>)</span>.
+</span></span><span class=line><span class=cl>Choose a number from below, or <span class=nb>type</span> in your own value
+</span></span><span class=line><span class=cl> <span class=m>1</span> / Full access all files, excluding Application Data Folder.
+</span></span><span class=line><span class=cl>   <span class=se>\ </span><span class=s2>&#34;drive&#34;</span>
+</span></span><span class=line><span class=cl> <span class=m>2</span> / Read-only access to file metadata and file contents.
+</span></span><span class=line><span class=cl>   <span class=se>\ </span><span class=s2>&#34;drive.readonly&#34;</span>
+</span></span><span class=line><span class=cl>   / Access to files created by rclone only.
+</span></span><span class=line><span class=cl> <span class=m>3</span> <span class=p>|</span> These are visible in the drive website.
+</span></span><span class=line><span class=cl>   <span class=p>|</span> File authorization is revoked when the user deauthorizes the app.
+</span></span><span class=line><span class=cl>   <span class=se>\ </span><span class=s2>&#34;drive.file&#34;</span>
+</span></span><span class=line><span class=cl>   / Allows <span class=nb>read</span> and write access to the Application Data folder.
+</span></span><span class=line><span class=cl> <span class=m>4</span> <span class=p>|</span> This is not visible in the drive website.
+</span></span><span class=line><span class=cl>   <span class=se>\ </span><span class=s2>&#34;drive.appfolder&#34;</span>
+</span></span><span class=line><span class=cl>   / Allows read-only access to file metadata but
+</span></span><span class=line><span class=cl> <span class=m>5</span> <span class=p>|</span> does not allow any access to <span class=nb>read</span> or download file content.
+</span></span><span class=line><span class=cl>   <span class=se>\ </span><span class=s2>&#34;drive.metadata.readonly&#34;</span>
+</span></span><span class=line><span class=cl>scope&gt; <span class=m>1</span>
+</span></span><span class=line><span class=cl>ID of the root folder
+</span></span><span class=line><span class=cl>Leave blank normally.
+</span></span><span class=line><span class=cl>Fill in to access <span class=s2>&#34;Computers&#34;</span> folders. <span class=o>(</span>see docs<span class=o>)</span>.
+</span></span><span class=line><span class=cl>Enter a string value. Press Enter <span class=k>for</span> the default <span class=o>(</span><span class=s2>&#34;&#34;</span><span class=o>)</span>.
+</span></span><span class=line><span class=cl>root_folder_id&gt;
+</span></span><span class=line><span class=cl>Service Account Credentials JSON file path
+</span></span><span class=line><span class=cl>Leave blank normally.
+</span></span><span class=line><span class=cl>Needed only <span class=k>if</span> you want use SA instead of interactive login.
+</span></span><span class=line><span class=cl>Enter a string value. Press Enter <span class=k>for</span> the default <span class=o>(</span><span class=s2>&#34;&#34;</span><span class=o>)</span>.
+</span></span><span class=line><span class=cl>service_account_file&gt;
+</span></span><span class=line><span class=cl>Edit advanced config? <span class=o>(</span>y/n<span class=o>)</span>
+</span></span><span class=line><span class=cl>y<span class=o>)</span> Yes
+</span></span><span class=line><span class=cl>n<span class=o>)</span> No
+</span></span><span class=line><span class=cl>y/n&gt; n
+</span></span><span class=line><span class=cl>Remote config
+</span></span><span class=line><span class=cl>Use auto config?
+</span></span><span class=line><span class=cl> * Say Y <span class=k>if</span> not sure
+</span></span><span class=line><span class=cl> * Say N <span class=k>if</span> you are working on a remote or headless machine
+</span></span><span class=line><span class=cl>y<span class=o>)</span> Yes
+</span></span><span class=line><span class=cl>n<span class=o>)</span> No
+</span></span><span class=line><span class=cl>y/n&gt; n
+</span></span><span class=line><span class=cl>If your browser doesn<span class=err>&#39;</span>t open automatically go to the following link: https://accounts.google.com/o/oauth2/auth?access_type<span class=o>=</span>offline<span class=p>&amp;</span><span class=nv>client_id</span><span class=o>=</span>202xxxxxx5644.apps.gc6d8875f163240ea0bf58
+</span></span><span class=line><span class=cl><span class=c1>#注意网址不能有空格，在浏览器中打开并按提示完成授权，获得code码</span>
+</span></span><span class=line><span class=cl>Enter verification code&gt; xxxxxxxxxxxxx  <span class=c1>#这里填写你刚才获得的code码</span>
+</span></span><span class=line><span class=cl>Configure this as a team drive?
+</span></span><span class=line><span class=cl>y<span class=o>)</span> Yes
+</span></span><span class=line><span class=cl>n<span class=o>)</span> No
+</span></span><span class=line><span class=cl>y/n&gt; y
+</span></span><span class=line><span class=cl>y<span class=o>)</span> Yes this is OK
+</span></span><span class=line><span class=cl>e<span class=o>)</span> Edit this remote
+</span></span><span class=line><span class=cl>d<span class=o>)</span> Delete this remote
+</span></span><span class=line><span class=cl>y/e/d&gt; y
+</span></span><span class=line><span class=cl>Current remotes:
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Name                 <span class=nv>Type</span>
+</span></span><span class=line><span class=cl><span class=o>====</span>                 <span class=o>====</span>
+</span></span><span class=line><span class=cl>gd                   googledrive
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>e<span class=o>)</span> Edit existing remote
+</span></span><span class=line><span class=cl>n<span class=o>)</span> New remote
+</span></span><span class=line><span class=cl>d<span class=o>)</span> Delete remote
+</span></span><span class=line><span class=cl>r<span class=o>)</span> Rename remote
+</span></span><span class=line><span class=cl>c<span class=o>)</span> Copy remote
+</span></span><span class=line><span class=cl>s<span class=o>)</span> Set configuration password
+</span></span><span class=line><span class=cl>q<span class=o>)</span> Quit config
+</span></span><span class=line><span class=cl>e/n/d/r/c/s/q&gt; q
+</span></span></code></pre></div><h2 id=rclone挂载microsoft-onedrive>rclone挂载Microsoft OneDrive<a hidden class=anchor aria-hidden=true href=#rclone挂载microsoft-onedrive>#</a></h2><h3 id=客户端授权>客户端授权<a hidden class=anchor aria-hidden=true href=#客户端授权>#</a></h3><p>在本地Windows电脑上下载<a href=https://rclone.org/downloads>rclone</a> <a href=https://downloads.rclone.org/v1.47.0/rclone-v1.47.0-windows-386.zip>点我下载rclone客户端</a>
+然后解压出来，进入文件夹，按住<code>shift</code>键后右击<code>在此处打开命令窗口</code>键入</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>rclone authorize <span class=s2>&#34;onedrive&#34;</span>
+</span></span></code></pre></div><p>这时会自动打开浏览器按提示登陆授权，当网页显示</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>Success!
+</span></span><span class=line><span class=cl>All <span class=k>done</span>. Please go back to rclone.
+</span></span></code></pre></div><p>回到CMD界面</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>C:<span class=se>\U</span>sers<span class=se>\U</span>sers&gt;cd /d d:<span class=se>\r</span>clone
+</span></span><span class=line><span class=cl>d:<span class=se>\r</span>clone&gt;rclone authorize <span class=s2>&#34;onedrive&#34;</span>
+</span></span><span class=line><span class=cl>2018/12/24 19:14:35 NOTICE: Config file <span class=s2>&#34;C:\\Users\\Users\\.config\\rclone\\rclone.conf&#34;</span> not found - using defaults
+</span></span><span class=line><span class=cl>If your browser doesn<span class=err>&#39;</span>t open automatically go to the following link: http://127.0.0.1:53682/auth
+</span></span><span class=line><span class=cl>Log in and authorize rclone <span class=k>for</span> access
+</span></span><span class=line><span class=cl>Waiting <span class=k>for</span> code...
+</span></span><span class=line><span class=cl>Got code
+</span></span><span class=line><span class=cl>Paste the following into your remote machine ---&gt;
+</span></span><span class=line><span class=cl><span class=o>{</span><span class=s2>&#34;access_token&#34;</span>:<span class=s2>&#34;EwBwA8l6BxxxxxxxxxxxxacbtK!VgGItbS7sxc&#34;</span>,<span class=s2>&#34;expiry&#34;</span>:<span class=s2>&#34;2018-12-24T20:15:31.0560991+08:00&#34;</span><span class=o>}</span>
+</span></span><span class=line><span class=cl>&lt;---End paste
+</span></span><span class=line><span class=cl>d:<span class=se>\r</span>clone&gt;
+</span></span></code></pre></div><p>其中中括号在内就是VPS挂载所需要的result值，包括**{}**中括号在内</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=o>{</span><span class=s2>&#34;access_token&#34;</span>:<span class=s2>&#34;EwBwA8l6BxxxxxxxxxxxxacbtK!VgGItbS7sxc&#34;</span>,<span class=s2>&#34;expiry&#34;</span>:<span class=s2>&#34;2018-12-24T20:15:31.0560991+08:00&#34;</span><span class=o>}</span>
+</span></span></code></pre></div><h3 id=linux上挂载microsoft-onedrive>linux上挂载Microsoft OneDrive<a hidden class=anchor aria-hidden=true href=#linux上挂载microsoft-onedrive>#</a></h3><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>rclone config
+</span></span></code></pre></div><p>开始配置</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>root@MonstrousPointed-VM:~# rclone config
+</span></span><span class=line><span class=cl>Current remotes:
+</span></span><span class=line><span class=cl>e<span class=o>)</span> Edit existing remote
+</span></span><span class=line><span class=cl>n<span class=o>)</span> New remote
+</span></span><span class=line><span class=cl>d<span class=o>)</span> Delete remote
+</span></span><span class=line><span class=cl>r<span class=o>)</span> Rename remote
+</span></span><span class=line><span class=cl>c<span class=o>)</span> Copy remote
+</span></span><span class=line><span class=cl>s<span class=o>)</span> Set configuration password
+</span></span><span class=line><span class=cl>q<span class=o>)</span> Quit config
+</span></span><span class=line><span class=cl>e/n/d/r/c/s/q&gt; n
+</span></span><span class=line><span class=cl>name&gt; onedrive    <span class=c1>#名字自定义</span>
+</span></span><span class=line><span class=cl>Type of storage to configure.
+</span></span><span class=line><span class=cl>Enter a string value. Press Enter <span class=k>for</span> the default <span class=o>(</span><span class=s2>&#34;&#34;</span><span class=o>)</span>.
+</span></span><span class=line><span class=cl>Choose a number from below, or <span class=nb>type</span> in your own value
+</span></span><span class=line><span class=cl> <span class=m>1</span> / A stackable unification remote, which can appear to merge the contents of several remotes
+</span></span><span class=line><span class=cl>   <span class=se>\ </span><span class=s2>&#34;union&#34;</span>
+</span></span><span class=line><span class=cl> <span class=m>2</span> / Alias <span class=k>for</span> a existing remote
+</span></span><span class=line><span class=cl>   <span class=se>\ </span><span class=s2>&#34;alias&#34;</span>
+</span></span><span class=line><span class=cl> <span class=m>3</span> / Amazon Drive
+</span></span><span class=line><span class=cl>   <span class=se>\ </span><span class=s2>&#34;amazon cloud drive&#34;</span>
+</span></span><span class=line><span class=cl> <span class=m>4</span> / Amazon S3 Compliant Storage Providers <span class=o>(</span>AWS, Ceph, Dreamhost, IBM COS, Minio<span class=o>)</span>
+</span></span><span class=line><span class=cl>   <span class=se>\ </span><span class=s2>&#34;s3&#34;</span>
+</span></span><span class=line><span class=cl> <span class=m>5</span> / Backblaze B2
+</span></span><span class=line><span class=cl>   <span class=se>\ </span><span class=s2>&#34;b2&#34;</span>
+</span></span><span class=line><span class=cl> <span class=m>6</span> / Box
+</span></span><span class=line><span class=cl>   <span class=se>\ </span><span class=s2>&#34;box&#34;</span>
+</span></span><span class=line><span class=cl> <span class=m>7</span> / Cache a remote
+</span></span><span class=line><span class=cl>   <span class=se>\ </span><span class=s2>&#34;cache&#34;</span>
+</span></span><span class=line><span class=cl> <span class=m>8</span> / Dropbox
+</span></span><span class=line><span class=cl>   <span class=se>\ </span><span class=s2>&#34;dropbox&#34;</span>
+</span></span><span class=line><span class=cl> <span class=m>9</span> / Encrypt/Decrypt a remote
+</span></span><span class=line><span class=cl>   <span class=se>\ </span><span class=s2>&#34;crypt&#34;</span>
+</span></span><span class=line><span class=cl><span class=m>10</span> / FTP Connection
+</span></span><span class=line><span class=cl>   <span class=se>\ </span><span class=s2>&#34;ftp&#34;</span>
+</span></span><span class=line><span class=cl><span class=m>11</span> / Google Cloud Storage <span class=o>(</span>this is not Google Drive<span class=o>)</span>
+</span></span><span class=line><span class=cl>   <span class=se>\ </span><span class=s2>&#34;google cloud storage&#34;</span>
+</span></span><span class=line><span class=cl><span class=m>12</span> / Google Drive
+</span></span><span class=line><span class=cl>   <span class=se>\ </span><span class=s2>&#34;drive&#34;</span>
+</span></span><span class=line><span class=cl><span class=m>13</span> / Hubic
+</span></span><span class=line><span class=cl>   <span class=se>\ </span><span class=s2>&#34;hubic&#34;</span>
+</span></span><span class=line><span class=cl><span class=m>14</span> / JottaCloud
+</span></span><span class=line><span class=cl>   <span class=se>\ </span><span class=s2>&#34;jottacloud&#34;</span>
+</span></span><span class=line><span class=cl><span class=m>15</span> / Local Disk
+</span></span><span class=line><span class=cl>   <span class=se>\ </span><span class=s2>&#34;local&#34;</span>
+</span></span><span class=line><span class=cl><span class=m>16</span> / adminga
+</span></span><span class=line><span class=cl>   <span class=se>\ </span><span class=s2>&#34;mega&#34;</span>
+</span></span><span class=line><span class=cl><span class=m>17</span> / Microsoft Azure Blob Storage
+</span></span><span class=line><span class=cl>   <span class=se>\ </span><span class=s2>&#34;azureblob&#34;</span>
+</span></span><span class=line><span class=cl><span class=m>18</span> / Microsoft OneDrive
+</span></span><span class=line><span class=cl>   <span class=se>\ </span><span class=s2>&#34;onedrive&#34;</span>
+</span></span><span class=line><span class=cl><span class=m>19</span> / OpenDrive
+</span></span><span class=line><span class=cl>   <span class=se>\ </span><span class=s2>&#34;opendrive&#34;</span>
+</span></span><span class=line><span class=cl><span class=m>20</span> / Openstack Swift <span class=o>(</span>Rackspace Cloud Files, adminmset Memstore, OVH<span class=o>)</span>
+</span></span><span class=line><span class=cl>   <span class=se>\ </span><span class=s2>&#34;swift&#34;</span>
+</span></span><span class=line><span class=cl><span class=m>21</span> / Pcloud
+</span></span><span class=line><span class=cl>   <span class=se>\ </span><span class=s2>&#34;pcloud&#34;</span>
+</span></span><span class=line><span class=cl><span class=m>22</span> / QingCloud Object Storage
+</span></span><span class=line><span class=cl>   <span class=se>\ </span><span class=s2>&#34;qingstor&#34;</span>
+</span></span><span class=line><span class=cl><span class=m>23</span> / SSH/SFTP Connection
+</span></span><span class=line><span class=cl>   <span class=se>\ </span><span class=s2>&#34;sftp&#34;</span>
+</span></span><span class=line><span class=cl><span class=m>24</span> / Webdav
+</span></span><span class=line><span class=cl>   <span class=se>\ </span><span class=s2>&#34;webdav&#34;</span>
+</span></span><span class=line><span class=cl><span class=m>25</span> / Yandex Disk
+</span></span><span class=line><span class=cl>   <span class=se>\ </span><span class=s2>&#34;yandex&#34;</span>
+</span></span><span class=line><span class=cl><span class=m>26</span> / http Connection
+</span></span><span class=line><span class=cl>   <span class=se>\ </span><span class=s2>&#34;http&#34;</span>
+</span></span><span class=line><span class=cl>Storage&gt; <span class=m>18</span>  <span class=c1>#Microsoft OneDrive</span>
+</span></span><span class=line><span class=cl>** See <span class=nb>help</span> <span class=k>for</span> onedrive backend at: https://rclone.org/onedrive/ **
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Microsoft App Client Id
+</span></span><span class=line><span class=cl>Leave blank normally.
+</span></span><span class=line><span class=cl>Enter a string value. Press Enter <span class=k>for</span> the default <span class=o>(</span><span class=s2>&#34;&#34;</span><span class=o>)</span>.
+</span></span><span class=line><span class=cl>client_id&gt;
+</span></span><span class=line><span class=cl>Microsoft App Client Secret
+</span></span><span class=line><span class=cl>Leave blank normally.
+</span></span><span class=line><span class=cl>Enter a string value. Press Enter <span class=k>for</span> the default <span class=o>(</span><span class=s2>&#34;&#34;</span><span class=o>)</span>.
+</span></span><span class=line><span class=cl>client_secret&gt;
+</span></span><span class=line><span class=cl>Edit advanced config? <span class=o>(</span>y/n<span class=o>)</span>
+</span></span><span class=line><span class=cl>y<span class=o>)</span> Yes
+</span></span><span class=line><span class=cl>n<span class=o>)</span> No
+</span></span><span class=line><span class=cl>y/n&gt; n
+</span></span><span class=line><span class=cl>Remote config
+</span></span><span class=line><span class=cl>Use auto config?
+</span></span><span class=line><span class=cl> * Say Y <span class=k>if</span> not sure
+</span></span><span class=line><span class=cl> * Say N <span class=k>if</span> you are working on a remote or headless machine
+</span></span><span class=line><span class=cl>y<span class=o>)</span> Yes
+</span></span><span class=line><span class=cl>n<span class=o>)</span> No
+</span></span><span class=line><span class=cl>y/n&gt; n
+</span></span><span class=line><span class=cl>For this to work, you will need rclone available on a machine that has a web browser available.
+</span></span><span class=line><span class=cl>Execute the following on your machine:
+</span></span><span class=line><span class=cl>        rclone authorize <span class=s2>&#34;onedrive&#34;</span>
+</span></span><span class=line><span class=cl>Then paste the result below:
+</span></span><span class=line><span class=cl>result&gt; <span class=o>{</span><span class=s2>&#34;access_token&#34;</span>:<span class=s2>&#34;EwBwA8l6BAAURxxxxxxxxxxxxxxxxxxxxxxxxxxxCMszTZEI27EacbtK!VgGItbS7sxc&#34;</span>,<span class=s2>&#34;expiry&#34;</span>:<span class=s2>&#34;2018-12-24T20:15:31.0560991+08:00&#34;</span><span class=o>}</span>
+</span></span><span class=line><span class=cl>2018/12/24 06:39:03 ERROR : Failed to save new token in config file: section <span class=s1>&#39;od100&#39;</span> not found
+</span></span><span class=line><span class=cl>Choose a number from below, or <span class=nb>type</span> in an existing value
+</span></span><span class=line><span class=cl> <span class=m>1</span> / OneDrive Personal or Business
+</span></span><span class=line><span class=cl>   <span class=se>\ </span><span class=s2>&#34;onedrive&#34;</span>
+</span></span><span class=line><span class=cl> <span class=m>2</span> / Root Sharepoint site
+</span></span><span class=line><span class=cl>   <span class=se>\ </span><span class=s2>&#34;sharepoint&#34;</span>
+</span></span><span class=line><span class=cl> <span class=m>3</span> / Type in driveID
+</span></span><span class=line><span class=cl>   <span class=se>\ </span><span class=s2>&#34;driveid&#34;</span>
+</span></span><span class=line><span class=cl> <span class=m>4</span> / Type in SiteID
+</span></span><span class=line><span class=cl>   <span class=se>\ </span><span class=s2>&#34;siteid&#34;</span>
+</span></span><span class=line><span class=cl> <span class=m>5</span> / Search a Sharepoint site
+</span></span><span class=line><span class=cl>   <span class=se>\ </span><span class=s2>&#34;search&#34;</span>
+</span></span><span class=line><span class=cl>Your choice&gt; <span class=m>1</span>
+</span></span><span class=line><span class=cl>Found <span class=m>1</span> drives, please <span class=k>select</span> the one you want to use:
+</span></span><span class=line><span class=cl>0:  <span class=o>(</span>personal<span class=o>)</span> <span class=nv>id</span><span class=o>=</span>xxxxxxxxxxxxxx
+</span></span><span class=line><span class=cl>Chose drive to use:&gt; <span class=m>0</span>  <span class=c1>#0: 这里输入0</span>
+</span></span><span class=line><span class=cl>Found drive <span class=s1>&#39;root&#39;</span> of <span class=nb>type</span> <span class=s1>&#39;personal&#39;</span>, URL: https://onedrive.live.com/?cid<span class=o>=</span>e164800991cb8f79
+</span></span><span class=line><span class=cl>Is that okay?
+</span></span><span class=line><span class=cl>y<span class=o>)</span> Yes
+</span></span><span class=line><span class=cl>n<span class=o>)</span> No
+</span></span><span class=line><span class=cl>y/n&gt; y
+</span></span><span class=line><span class=cl>--------------------
+</span></span><span class=line><span class=cl><span class=o>[</span>onedrive<span class=o>]</span>
+</span></span><span class=line><span class=cl><span class=nb>type</span> <span class=o>=</span> onedrive
+</span></span><span class=line><span class=cl><span class=nv>token</span> <span class=o>=</span> <span class=o>{</span><span class=s2>&#34;access_token&#34;</span>:<span class=s2>&#34;EwBwA8l6BAAURxxxxxxxxxxxxxxxxxxxxxxxxxxxCMszTZEI27EacbtK!VgGItbS7sxc&#34;</span>,<span class=s2>&#34;expiry&#34;</span>:<span class=s2>&#34;2018-12-24T20:15:31.0560991+08:00&#34;</span><span class=o>}</span>
+</span></span><span class=line><span class=cl><span class=nv>drive_id</span> <span class=o>=</span> xxxxxxxxxxxxxx
+</span></span><span class=line><span class=cl><span class=nv>drive_type</span> <span class=o>=</span> personal  <span class=c1>#personal个人版,Business挂载方法类似。</span>
+</span></span><span class=line><span class=cl>--------------------
+</span></span><span class=line><span class=cl>y<span class=o>)</span> Yes this is OK
+</span></span><span class=line><span class=cl>e<span class=o>)</span> Edit this remote
+</span></span><span class=line><span class=cl>d<span class=o>)</span> Delete this remote
+</span></span><span class=line><span class=cl>y/e/d&gt; y
+</span></span><span class=line><span class=cl>Current remotes:
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Name                 <span class=nv>Type</span>
+</span></span><span class=line><span class=cl><span class=o>====</span>                 <span class=o>====</span>
+</span></span><span class=line><span class=cl>onedrive                onedrive
+</span></span><span class=line><span class=cl><span class=c1>#这里能看到上面自定义名称说明成功了</span>
+</span></span><span class=line><span class=cl>e<span class=o>)</span> Edit existing remote
+</span></span><span class=line><span class=cl>n<span class=o>)</span> New remote
+</span></span><span class=line><span class=cl>d<span class=o>)</span> Delete remote
+</span></span><span class=line><span class=cl>r<span class=o>)</span> Rename remote
+</span></span><span class=line><span class=cl>c<span class=o>)</span> Copy remote
+</span></span><span class=line><span class=cl>s<span class=o>)</span> Set configuration password
+</span></span><span class=line><span class=cl>q<span class=o>)</span> Quit config
+</span></span><span class=line><span class=cl>e/n/d/r/c/s/q&gt; q
+</span></span><span class=line><span class=cl><span class=c1># 退出</span>
+</span></span></code></pre></div><h1 id=配置rclone开机自动挂载为本地磁盘>配置rclone开机自动挂载为本地磁盘<a hidden class=anchor aria-hidden=true href=#配置rclone开机自动挂载为本地磁盘>#</a></h1><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=nb>echo</span> <span class=s2>&#34;#!/bin/bash
+</span></span></span><span class=line><span class=cl><span class=s2>
+</span></span></span><span class=line><span class=cl><span class=s2>PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:~/bin
+</span></span></span><span class=line><span class=cl><span class=s2>export PATH
+</span></span></span><span class=line><span class=cl><span class=s2>NAME_BIN=&#34;</span>rclone<span class=s2>&#34;
+</span></span></span><span class=line><span class=cl><span class=s2>### BEGIN INIT INFO
+</span></span></span><span class=line><span class=cl><span class=s2># Provides:          rclone
+</span></span></span><span class=line><span class=cl><span class=s2># Required-Start:    </span><span class=nv>$all</span><span class=s2>
+</span></span></span><span class=line><span class=cl><span class=s2># Required-Stop:     </span><span class=nv>$all</span><span class=s2>
+</span></span></span><span class=line><span class=cl><span class=s2># Default-Start:     2 3 4 5
+</span></span></span><span class=line><span class=cl><span class=s2># Default-Stop:      0 1 6
+</span></span></span><span class=line><span class=cl><span class=s2># Short-Description: Start rclone at boot time
+</span></span></span><span class=line><span class=cl><span class=s2># Description:       Enable rclone by daemon.
+</span></span></span><span class=line><span class=cl><span class=s2>### END INIT INFO
+</span></span></span><span class=line><span class=cl><span class=s2>
+</span></span></span><span class=line><span class=cl><span class=s2>NAME=&#34;</span>rclone_name<span class=s2>&#34; #rclone name名
+</span></span></span><span class=line><span class=cl><span class=s2>REMOTE=&#39;/rclone&#39; #远程文件夹，Google Drive网盘里的挂载的一个文件夹
+</span></span></span><span class=line><span class=cl><span class=s2>LOCAL=&#39;/mnt/gdrive&#39; #VPS本地挂载目录
+</span></span></span><span class=line><span class=cl><span class=s2>
+</span></span></span><span class=line><span class=cl><span class=s2>Green_font_prefix=&#34;</span><span class=se>\0</span>33<span class=o>[</span>32m<span class=s2>&#34; &amp;&amp; Red_font_prefix=&#34;</span><span class=se>\0</span>33<span class=o>[</span>31m<span class=s2>&#34; &amp;&amp; Green_background_prefix=&#34;</span><span class=se>\0</span>33<span class=o>[</span>42<span class=p>;</span>37m<span class=s2>&#34; &amp;&amp; Red_background_prefix=&#34;</span><span class=se>\0</span>33<span class=o>[</span>41<span class=p>;</span>37m<span class=s2>&#34; &amp;&amp; Font_color_suffix=&#34;</span><span class=se>\0</span>33<span class=o>[</span>0m<span class=s2>&#34;
+</span></span></span><span class=line><span class=cl><span class=s2>Info=&#34;</span><span class=si>${</span><span class=nv>Green_font_prefix</span><span class=si>}</span><span class=o>[</span>信息<span class=o>]</span><span class=si>${</span><span class=nv>Font_color_suffix</span><span class=si>}</span><span class=s2>&#34;
+</span></span></span><span class=line><span class=cl><span class=s2>Error=&#34;</span><span class=si>${</span><span class=nv>Red_font_prefix</span><span class=si>}</span><span class=o>[</span>错误<span class=o>]</span><span class=si>${</span><span class=nv>Font_color_suffix</span><span class=si>}</span><span class=s2>&#34;
+</span></span></span><span class=line><span class=cl><span class=s2>RETVAL=0
+</span></span></span><span class=line><span class=cl><span class=s2>
+</span></span></span><span class=line><span class=cl><span class=s2>check_running(){
+</span></span></span><span class=line><span class=cl><span class=s2>	PID=&#34;</span><span class=k>$(</span>ps -C <span class=nv>$NAME_BIN</span> -o <span class=nv>pid</span><span class=o>=</span> <span class=p>|</span>head -n1 <span class=p>|</span>grep -o <span class=s1>&#39;[0-9]\{1,\}&#39;</span><span class=k>)</span><span class=s2>&#34;
+</span></span></span><span class=line><span class=cl><span class=s2>	if [[ ! -z </span><span class=si>${</span><span class=nv>PID</span><span class=si>}</span><span class=s2> ]]; then
+</span></span></span><span class=line><span class=cl><span class=s2>		return 0
+</span></span></span><span class=line><span class=cl><span class=s2>	else
+</span></span></span><span class=line><span class=cl><span class=s2>		return 1
+</span></span></span><span class=line><span class=cl><span class=s2>	fi
+</span></span></span><span class=line><span class=cl><span class=s2>}
+</span></span></span><span class=line><span class=cl><span class=s2>do_start(){
+</span></span></span><span class=line><span class=cl><span class=s2>	check_running
+</span></span></span><span class=line><span class=cl><span class=s2>	if [[ </span><span class=nv>$?</span><span class=s2> -eq 0 ]]; then
+</span></span></span><span class=line><span class=cl><span class=s2>		echo -e &#34;</span><span class=si>${</span><span class=nv>Info</span><span class=si>}</span> <span class=nv>$NAME_BIN</span> <span class=o>(</span>PID <span class=si>${</span><span class=nv>PID</span><span class=si>}</span><span class=o>)</span> 正在运行...<span class=s2>&#34; &amp;&amp; exit 0
+</span></span></span><span class=line><span class=cl><span class=s2>	else
+</span></span></span><span class=line><span class=cl><span class=s2>		fusermount -zuq </span><span class=nv>$LOCAL</span><span class=s2> &gt;/dev/null 2&gt;&amp;1
+</span></span></span><span class=line><span class=cl><span class=s2>		mkdir -p </span><span class=nv>$LOCAL</span><span class=s2>
+</span></span></span><span class=line><span class=cl><span class=s2>		sudo /usr/bin/rclone mount </span><span class=nv>$NAME</span><span class=s2>:</span><span class=nv>$REMOTE</span><span class=s2> </span><span class=nv>$LOCAL</span><span class=s2> --copy-links --no-gzip-encoding --no-check-certificate --allow-other --allow-non-empty --umask 000 &gt;/dev/null 2&gt;&amp;1 &amp;
+</span></span></span><span class=line><span class=cl><span class=s2>		sleep 2s
+</span></span></span><span class=line><span class=cl><span class=s2>		check_running
+</span></span></span><span class=line><span class=cl><span class=s2>		if [[ </span><span class=nv>$?</span><span class=s2> -eq 0 ]]; then
+</span></span></span><span class=line><span class=cl><span class=s2>			echo -e &#34;</span><span class=si>${</span><span class=nv>Info</span><span class=si>}</span> <span class=nv>$NAME_BIN</span> 启动成功 !<span class=s2>&#34;
+</span></span></span><span class=line><span class=cl><span class=s2>		else
+</span></span></span><span class=line><span class=cl><span class=s2>			echo -e &#34;</span><span class=si>${</span><span class=nv>Error</span><span class=si>}</span> <span class=nv>$NAME_BIN</span> 启动失败 !<span class=s2>&#34;
+</span></span></span><span class=line><span class=cl><span class=s2>		fi
+</span></span></span><span class=line><span class=cl><span class=s2>	fi
+</span></span></span><span class=line><span class=cl><span class=s2>}
+</span></span></span><span class=line><span class=cl><span class=s2>do_stop(){
+</span></span></span><span class=line><span class=cl><span class=s2>	check_running
+</span></span></span><span class=line><span class=cl><span class=s2>	if [[ </span><span class=nv>$?</span><span class=s2> -eq 0 ]]; then
+</span></span></span><span class=line><span class=cl><span class=s2>		kill -9 </span><span class=si>${</span><span class=nv>PID</span><span class=si>}</span><span class=s2>
+</span></span></span><span class=line><span class=cl><span class=s2>		RETVAL=</span><span class=nv>$?</span><span class=s2>
+</span></span></span><span class=line><span class=cl><span class=s2>		if [[ </span><span class=nv>$RETVAL</span><span class=s2> -eq 0 ]]; then
+</span></span></span><span class=line><span class=cl><span class=s2>			echo -e &#34;</span><span class=si>${</span><span class=nv>Info</span><span class=si>}</span> <span class=nv>$NAME_BIN</span> 停止成功 !<span class=s2>&#34;
+</span></span></span><span class=line><span class=cl><span class=s2>		else
+</span></span></span><span class=line><span class=cl><span class=s2>			echo -e &#34;</span><span class=si>${</span><span class=nv>Error</span><span class=si>}</span> <span class=nv>$NAME_BIN</span> 停止失败 !<span class=s2>&#34;
+</span></span></span><span class=line><span class=cl><span class=s2>		fi
+</span></span></span><span class=line><span class=cl><span class=s2>	else
+</span></span></span><span class=line><span class=cl><span class=s2>		echo -e &#34;</span><span class=si>${</span><span class=nv>Info</span><span class=si>}</span> <span class=nv>$NAME_BIN</span> 未运行<span class=s2>&#34;
+</span></span></span><span class=line><span class=cl><span class=s2>		RETVAL=1
+</span></span></span><span class=line><span class=cl><span class=s2>	fi
+</span></span></span><span class=line><span class=cl><span class=s2>	fusermount -zuq </span><span class=nv>$LOCAL</span><span class=s2> &gt;/dev/null 2&gt;&amp;1
+</span></span></span><span class=line><span class=cl><span class=s2>}
+</span></span></span><span class=line><span class=cl><span class=s2>do_status(){
+</span></span></span><span class=line><span class=cl><span class=s2>	check_running
+</span></span></span><span class=line><span class=cl><span class=s2>	if [[ </span><span class=nv>$?</span><span class=s2> -eq 0 ]]; then
+</span></span></span><span class=line><span class=cl><span class=s2>		echo -e &#34;</span><span class=si>${</span><span class=nv>Info</span><span class=si>}</span> <span class=nv>$NAME_BIN</span> <span class=o>(</span>PID <span class=k>$(</span><span class=nb>echo</span> <span class=si>${</span><span class=nv>PID</span><span class=si>}</span><span class=k>)</span><span class=o>)</span> 正在运行...<span class=s2>&#34;
+</span></span></span><span class=line><span class=cl><span class=s2>	else
+</span></span></span><span class=line><span class=cl><span class=s2>		echo -e &#34;</span><span class=si>${</span><span class=nv>Info</span><span class=si>}</span> <span class=nv>$NAME_BIN</span> 未运行 !<span class=s2>&#34;
+</span></span></span><span class=line><span class=cl><span class=s2>		RETVAL=1
+</span></span></span><span class=line><span class=cl><span class=s2>	fi
+</span></span></span><span class=line><span class=cl><span class=s2>}
+</span></span></span><span class=line><span class=cl><span class=s2>do_restart(){
+</span></span></span><span class=line><span class=cl><span class=s2>	do_stop
+</span></span></span><span class=line><span class=cl><span class=s2>	do_start
+</span></span></span><span class=line><span class=cl><span class=s2>}
+</span></span></span><span class=line><span class=cl><span class=s2>case &#34;</span><span class=nv>$1</span><span class=s2>&#34; in
+</span></span></span><span class=line><span class=cl><span class=s2>	start|stop|restart|status)
+</span></span></span><span class=line><span class=cl><span class=s2>	do_</span><span class=nv>$1</span><span class=s2>
+</span></span></span><span class=line><span class=cl><span class=s2>	;;
+</span></span></span><span class=line><span class=cl><span class=s2>	*)
+</span></span></span><span class=line><span class=cl><span class=s2>	echo &#34;</span>使用方法: <span class=nv>$0</span> <span class=o>{</span> start <span class=p>|</span> stop <span class=p>|</span> restart <span class=p>|</span> status <span class=o>}</span><span class=s2>&#34;
+</span></span></span><span class=line><span class=cl><span class=s2>	RETVAL=1
+</span></span></span><span class=line><span class=cl><span class=s2>	;;
+</span></span></span><span class=line><span class=cl><span class=s2>esac
+</span></span></span><span class=line><span class=cl><span class=s2>exit </span><span class=nv>$RETVAL</span><span class=s2>&#34;</span> &gt;&gt; /etc/init.d/rcloned
+</span></span></code></pre></div><p>修改一下内容：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=nv>NAME</span><span class=o>=</span><span class=s2>&#34;rclone_name&#34;</span> <span class=c1>#rclone name名</span>
+</span></span><span class=line><span class=cl><span class=nv>REMOTE</span><span class=o>=</span><span class=s1>&#39;/rclone&#39;</span> <span class=c1>#远程文件夹，Google Drive网盘里的挂载的一个文件夹</span>
+</span></span><span class=line><span class=cl><span class=nv>LOCAL</span><span class=o>=</span><span class=s1>&#39;/mnt/gdrive&#39;</span> <span class=c1>#VPS本地挂载目录</span>
+</span></span></code></pre></div><p>然后</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>chmod +x /etc/init.d/rcloned
+</span></span><span class=line><span class=cl>update-rc.d -f rcloned defaults
+</span></span><span class=line><span class=cl>bash /etc/init.d/rcloned start
+</span></span></code></pre></div><p>重启一下查看是否成功</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>df -h
+</span></span></code></pre></div><p><img loading=lazy src=/images/df-honedrivegdrive.png alt></p><p>如果上面脚本的挂载失败,可以手动挂载，以onedrive为例:</p><p>先新建一个目录,用于挂载</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>mkdir -p /mnt/onedrive
+</span></span></code></pre></div><p>挂载命令</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>rclone mount onedrive: /mnt/onedrive --allow-other --allow-non-empty 
+</span></span><span class=line><span class=cl>--vfs-cache-mode writes
+</span></span></code></pre></div><h1 id=相关命令>相关命令<a hidden class=anchor aria-hidden=true href=#相关命令>#</a></h1><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1>### 文件上传</span>
+</span></span><span class=line><span class=cl>rclone copy /home/backup gdrive:backup <span class=c1># 本地路径 配置名字:谷歌文件夹名字</span>
+</span></span><span class=line><span class=cl><span class=c1>### 文件下载</span>
+</span></span><span class=line><span class=cl>rclone copy gdrive:backup /home/backup
+</span></span><span class=line><span class=cl><span class=c1>### 列表</span>
+</span></span><span class=line><span class=cl>rclone ls gdrive:backup
+</span></span><span class=line><span class=cl>rclone lsl gdrive:backup <span class=c1># 比上面多一个显示上传时间</span>
+</span></span><span class=line><span class=cl>rclone lsd gdrive:backup <span class=c1># 只显示文件夹</span>
+</span></span><span class=line><span class=cl><span class=c1>### 新建文件夹</span>
+</span></span><span class=line><span class=cl>rclone mkdir gdrive:backup
+</span></span><span class=line><span class=cl><span class=c1>### 挂载</span>
+</span></span><span class=line><span class=cl>rclone mount gdrive:mm /root/mm <span class=p>&amp;</span>
+</span></span><span class=line><span class=cl><span class=c1>### 卸载</span>
+</span></span><span class=line><span class=cl>fusermount -u  /root/mm
+</span></span></code></pre></div><h2 id=其他>其他<a hidden class=anchor aria-hidden=true href=#其他>#</a></h2><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>rclone config - 以控制会话的形式添加rclone的配置，配置保存在.rclone.conf文件中。
+</span></span><span class=line><span class=cl>rclone copy - 将文件从源复制到目的地址，跳过已复制完成的。
+</span></span><span class=line><span class=cl>rclone sync - 将源数据同步到目的地址，只更新目的地址的数据。   –dry-run标志来检查要复制、删除的数据
+</span></span><span class=line><span class=cl>rclone move - 将源数据移动到目的地址。
+</span></span><span class=line><span class=cl>rclone delete - 删除指定路径下的文件内容。
+</span></span><span class=line><span class=cl>rclone purge - 清空指定路径下所有文件数据。
+</span></span><span class=line><span class=cl>rclone mkdir - 创建一个新目录。
+</span></span><span class=line><span class=cl>rclone rmdir - 删除空目录。
+</span></span><span class=line><span class=cl>rclone check - 检查源和目的地址数据是否匹配。
+</span></span><span class=line><span class=cl>rclone ls - 列出指定路径下所有的文件以及文件大小和路径。
+</span></span><span class=line><span class=cl>rclone lsd - 列出指定路径下所有的目录/容器/桶。
+</span></span><span class=line><span class=cl>rclone lsl - 列出指定路径下所有文件以及修改时间、文件大小和路径。
+</span></span><span class=line><span class=cl>rclone md5sum - 为指定路径下的所有文件产生一个md5sum文件。
+</span></span><span class=line><span class=cl>rclone sha1sum - 为指定路径下的所有文件产生一个sha1sum文件。
+</span></span><span class=line><span class=cl>rclone size - 获取指定路径下，文件内容的总大小。.
+</span></span><span class=line><span class=cl>rclone version - 查看当前版本。
+</span></span><span class=line><span class=cl>rclone cleanup - 清空remote。
+</span></span><span class=line><span class=cl>rclone dedupe - 交互式查找重复文件，进行删除/重命名操作。
+</span></span></code></pre></div><p>挂载服务器</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>apt-get install -y nload htop fuse p7zip-full
+</span></span></code></pre></div><h1 id=挂载为磁盘>挂载为磁盘<a hidden class=anchor aria-hidden=true href=#挂载为磁盘>#</a></h1><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>rclone mount DriveName:Folder LocalFolder --copy-links --no-gzip-encoding --no-check-certificate --allow-other --allow-non-empty --umask <span class=m>000</span>
+</span></span></code></pre></div><h1 id=卸载磁盘>卸载磁盘<a hidden class=anchor aria-hidden=true href=#卸载磁盘>#</a></h1><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>fusermount -qzu LocalFolder
+</span></span></code></pre></div><p>多线程下载</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>--transfers <span class=m>64</span>
+</span></span></code></pre></div><p>直接通过文件的下载链接保存到网盘</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>rclone copyurl https://xxx.com/xxx.zip rcloneconfigname:directory/ -a -vP
+</span></span></code></pre></div><p>自定义名字</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>rclone copyurl https://xxx.com/xxx.zip rcloneconfigname:directory/yyy.zip -vP
+</span></span></code></pre></div></div><footer class=post-footer><ul class=post-tags><li><a href=https://567899.xyz/tags/rclone/>Rclone</a></li><li><a href=https://567899.xyz/tags/googledrive/>GoogleDrive</a></li><li><a href=https://567899.xyz/tags/onedrive/>OneDrive</a></li></ul><nav class=paginav><a class=prev href=https://567899.xyz/post/hugo-install-themes/><span class=title>« 上一页</span><br><span>静态网站生成器hugo安装配置主题</span>
+</a><a class=next href=https://567899.xyz/post/bitwarden/><span class=title>下一页 »</span><br><span>使用bitwarden_rs搭建安全密码库服务器</span></a></nav><ul class=share-buttons><li><a target=_blank rel="noopener noreferrer" aria-label="share 在Linux_VPS上使用rclone挂载GoogleDrive云端硬盘和MicrosoftOneDrive on x" href="https://x.com/intent/tweet/?text=%e5%9c%a8Linux_VPS%e4%b8%8a%e4%bd%bf%e7%94%a8rclone%e6%8c%82%e8%bd%bdGoogleDrive%e4%ba%91%e7%ab%af%e7%a1%ac%e7%9b%98%e5%92%8cMicrosoftOneDrive&amp;url=https%3a%2f%2f567899.xyz%2fpost%2flinux-vps-rclone-googledrive-microsoftonedrive%2f&amp;hashtags=rclone%2cGoogleDrive%2cOneDrive"><svg viewBox="0 0 512 512" height="30" width="30" fill="currentcolor"><path d="M512 62.554V449.446C512 483.97 483.97 512 449.446 512H62.554C28.03 512 0 483.97.0 449.446V62.554C0 28.03 28.029.0 62.554.0H449.446C483.971.0 512 28.03 512 62.554zM269.951 190.75 182.567 75.216H56L207.216 272.95 63.9 436.783h61.366L235.9 310.383l96.667 126.4H456L298.367 228.367l134-153.151H371.033zM127.633 110h36.468l219.38 290.065H349.5z"/></svg></a></li><li><a target=_blank rel="noopener noreferrer" aria-label="share 在Linux_VPS上使用rclone挂载GoogleDrive云端硬盘和MicrosoftOneDrive on linkedin" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2f567899.xyz%2fpost%2flinux-vps-rclone-googledrive-microsoftonedrive%2f&amp;title=%e5%9c%a8Linux_VPS%e4%b8%8a%e4%bd%bf%e7%94%a8rclone%e6%8c%82%e8%bd%bdGoogleDrive%e4%ba%91%e7%ab%af%e7%a1%ac%e7%9b%98%e5%92%8cMicrosoftOneDrive&amp;summary=%e5%9c%a8Linux_VPS%e4%b8%8a%e4%bd%bf%e7%94%a8rclone%e6%8c%82%e8%bd%bdGoogleDrive%e4%ba%91%e7%ab%af%e7%a1%ac%e7%9b%98%e5%92%8cMicrosoftOneDrive&amp;source=https%3a%2f%2f567899.xyz%2fpost%2flinux-vps-rclone-googledrive-microsoftonedrive%2f"><svg viewBox="0 0 512 512" height="30" width="30" fill="currentcolor"><path d="M449.446.0C483.971.0 512 28.03 512 62.554v386.892C512 483.97 483.97 512 449.446 512H62.554c-34.524.0-62.554-28.03-62.554-62.554V62.554c0-34.524 28.029-62.554 62.554-62.554h386.892zM160.461 423.278V197.561h-75.04v225.717h75.04zm270.539.0V293.839c0-69.333-37.018-101.586-86.381-101.586-39.804.0-57.634 21.891-67.617 37.266v-31.958h-75.021c.995 21.181.0 225.717.0 225.717h75.02V297.222c0-6.748.486-13.492 2.474-18.315 5.414-13.475 17.767-27.434 38.494-27.434 27.135.0 38.007 20.707 38.007 51.037v120.768H431zM123.448 88.722C97.774 88.722 81 105.601 81 127.724c0 21.658 16.264 39.002 41.455 39.002h.484c26.165.0 42.452-17.344 42.452-39.002-.485-22.092-16.241-38.954-41.943-39.002z"/></svg></a></li><li><a target=_blank rel="noopener noreferrer" aria-label="share 在Linux_VPS上使用rclone挂载GoogleDrive云端硬盘和MicrosoftOneDrive on reddit" href="https://reddit.com/submit?url=https%3a%2f%2f567899.xyz%2fpost%2flinux-vps-rclone-googledrive-microsoftonedrive%2f&title=%e5%9c%a8Linux_VPS%e4%b8%8a%e4%bd%bf%e7%94%a8rclone%e6%8c%82%e8%bd%bdGoogleDrive%e4%ba%91%e7%ab%af%e7%a1%ac%e7%9b%98%e5%92%8cMicrosoftOneDrive"><svg viewBox="0 0 512 512" height="30" width="30" fill="currentcolor"><path d="M449.446.0C483.971.0 512 28.03 512 62.554v386.892C512 483.97 483.97 512 449.446 512H62.554c-34.524.0-62.554-28.03-62.554-62.554V62.554c0-34.524 28.029-62.554 62.554-62.554h386.892zM446 265.638c0-22.964-18.616-41.58-41.58-41.58-11.211.0-21.361 4.457-28.841 11.666-28.424-20.508-67.586-33.757-111.204-35.278l18.941-89.121 61.884 13.157c.756 15.734 13.642 28.29 29.56 28.29 16.407.0 29.706-13.299 29.706-29.701.0-16.403-13.299-29.702-29.706-29.702-11.666.0-21.657 6.792-26.515 16.578l-69.105-14.69c-1.922-.418-3.939-.042-5.585 1.036-1.658 1.073-2.811 2.761-3.224 4.686l-21.152 99.438c-44.258 1.228-84.046 14.494-112.837 35.232-7.468-7.164-17.589-11.591-28.757-11.591-22.965.0-41.585 18.616-41.585 41.58.0 16.896 10.095 31.41 24.568 37.918-.639 4.135-.99 8.328-.99 12.576.0 63.977 74.469 115.836 166.33 115.836s166.334-51.859 166.334-115.836c0-4.218-.347-8.387-.977-12.493 14.564-6.47 24.735-21.034 24.735-38.001zM326.526 373.831c-20.27 20.241-59.115 21.816-70.534 21.816-11.428.0-50.277-1.575-70.522-21.82-3.007-3.008-3.007-7.882.0-10.889 3.003-2.999 7.882-3.003 10.885.0 12.777 12.781 40.11 17.317 59.637 17.317 19.522.0 46.86-4.536 59.657-17.321 3.016-2.999 7.886-2.995 10.885.008 3.008 3.011 3.003 7.882-.008 10.889zm-5.23-48.781c-16.373.0-29.701-13.324-29.701-29.698.0-16.381 13.328-29.714 29.701-29.714 16.378.0 29.706 13.333 29.706 29.714.0 16.374-13.328 29.698-29.706 29.698zM160.91 295.348c0-16.381 13.328-29.71 29.714-29.71 16.369.0 29.689 13.329 29.689 29.71.0 16.373-13.32 29.693-29.689 29.693-16.386.0-29.714-13.32-29.714-29.693z"/></svg></a></li><li><a target=_blank rel="noopener noreferrer" aria-label="share 在Linux_VPS上使用rclone挂载GoogleDrive云端硬盘和MicrosoftOneDrive on facebook" href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2f567899.xyz%2fpost%2flinux-vps-rclone-googledrive-microsoftonedrive%2f"><svg viewBox="0 0 512 512" height="30" width="30" fill="currentcolor"><path d="M449.446.0C483.971.0 512 28.03 512 62.554v386.892C512 483.97 483.97 512 449.446 512H342.978V319.085h66.6l12.672-82.621h-79.272v-53.617c0-22.603 11.073-44.636 46.58-44.636H425.6v-70.34s-32.71-5.582-63.982-5.582c-65.288.0-107.96 39.569-107.96 111.204v62.971h-72.573v82.621h72.573V512h-191.104c-34.524.0-62.554-28.03-62.554-62.554V62.554c0-34.524 28.029-62.554 62.554-62.554h386.892z"/></svg></a></li><li><a target=_blank rel="noopener noreferrer" aria-label="share 在Linux_VPS上使用rclone挂载GoogleDrive云端硬盘和MicrosoftOneDrive on whatsapp" href="https://api.whatsapp.com/send?text=%e5%9c%a8Linux_VPS%e4%b8%8a%e4%bd%bf%e7%94%a8rclone%e6%8c%82%e8%bd%bdGoogleDrive%e4%ba%91%e7%ab%af%e7%a1%ac%e7%9b%98%e5%92%8cMicrosoftOneDrive%20-%20https%3a%2f%2f567899.xyz%2fpost%2flinux-vps-rclone-googledrive-microsoftonedrive%2f"><svg viewBox="0 0 512 512" height="30" width="30" fill="currentcolor"><path d="M449.446.0C483.971.0 512 28.03 512 62.554v386.892C512 483.97 483.97 512 449.446 512H62.554c-34.524.0-62.554-28.03-62.554-62.554V62.554c0-34.524 28.029-62.554 62.554-62.554h386.892zm-58.673 127.703c-33.842-33.881-78.847-52.548-126.798-52.568-98.799.0-179.21 80.405-179.249 179.234-.013 31.593 8.241 62.428 23.927 89.612l-25.429 92.884 95.021-24.925c26.181 14.28 55.659 21.807 85.658 21.816h.074c98.789.0 179.206-80.413 179.247-179.243.018-47.895-18.61-92.93-52.451-126.81zM263.976 403.485h-.06c-26.734-.01-52.954-7.193-75.828-20.767l-5.441-3.229-56.386 14.792 15.05-54.977-3.542-5.637c-14.913-23.72-22.791-51.136-22.779-79.287.033-82.142 66.867-148.971 149.046-148.971 39.793.014 77.199 15.531 105.329 43.692 28.128 28.16 43.609 65.592 43.594 105.4-.034 82.149-66.866 148.983-148.983 148.984zm81.721-111.581c-4.479-2.242-26.499-13.075-30.604-14.571-4.105-1.495-7.091-2.241-10.077 2.241-2.986 4.483-11.569 14.572-14.182 17.562-2.612 2.988-5.225 3.364-9.703 1.12-4.479-2.241-18.91-6.97-36.017-22.23C231.8 264.15 222.81 249.484 220.198 245s-.279-6.908 1.963-9.14c2.016-2.007 4.48-5.232 6.719-7.847 2.24-2.615 2.986-4.484 4.479-7.472 1.493-2.99.747-5.604-.374-7.846-1.119-2.241-10.077-24.288-13.809-33.256-3.635-8.733-7.327-7.55-10.077-7.688-2.609-.13-5.598-.158-8.583-.158-2.986.0-7.839 1.121-11.944 5.604-4.105 4.484-15.675 15.32-15.675 37.364.0 22.046 16.048 43.342 18.287 46.332 2.24 2.99 31.582 48.227 76.511 67.627 10.685 4.615 19.028 7.371 25.533 9.434 10.728 3.41 20.492 2.929 28.209 1.775 8.605-1.285 26.499-10.833 30.231-21.295 3.732-10.464 3.732-19.431 2.612-21.298-1.119-1.869-4.105-2.99-8.583-5.232z"/></svg></a></li><li><a target=_blank rel="noopener noreferrer" aria-label="share 在Linux_VPS上使用rclone挂载GoogleDrive云端硬盘和MicrosoftOneDrive on telegram" href="https://telegram.me/share/url?text=%e5%9c%a8Linux_VPS%e4%b8%8a%e4%bd%bf%e7%94%a8rclone%e6%8c%82%e8%bd%bdGoogleDrive%e4%ba%91%e7%ab%af%e7%a1%ac%e7%9b%98%e5%92%8cMicrosoftOneDrive&amp;url=https%3a%2f%2f567899.xyz%2fpost%2flinux-vps-rclone-googledrive-microsoftonedrive%2f"><svg viewBox="2 2 28 28" height="30" width="30" fill="currentcolor"><path d="M26.49 29.86H5.5a3.37 3.37.0 01-2.47-1 3.35 3.35.0 01-1-2.47V5.48A3.36 3.36.0 013 3 3.37 3.37.0 015.5 2h21A3.38 3.38.0 0129 3a3.36 3.36.0 011 2.46V26.37a3.35 3.35.0 01-1 2.47 3.38 3.38.0 01-2.51 1.02zm-5.38-6.71a.79.79.0 00.85-.66L24.73 9.24a.55.55.0 00-.18-.46.62.62.0 00-.41-.17q-.08.0-16.53 6.11a.59.59.0 00-.41.59.57.57.0 00.43.52l4 1.24 1.61 4.83a.62.62.0 00.63.43.56.56.0 00.4-.17L16.54 20l4.09 3A.9.9.0 0021.11 23.15zM13.8 20.71l-1.21-4q8.72-5.55 8.78-5.55c.15.0.23.0.23.16a.18.18.0 010 .06s-2.51 2.3-7.52 6.8z"/></svg></a></li><li><a target=_blank rel="noopener noreferrer" aria-label="share 在Linux_VPS上使用rclone挂载GoogleDrive云端硬盘和MicrosoftOneDrive on ycombinator" href="https://news.ycombinator.com/submitlink?t=%e5%9c%a8Linux_VPS%e4%b8%8a%e4%bd%bf%e7%94%a8rclone%e6%8c%82%e8%bd%bdGoogleDrive%e4%ba%91%e7%ab%af%e7%a1%ac%e7%9b%98%e5%92%8cMicrosoftOneDrive&u=https%3a%2f%2f567899.xyz%2fpost%2flinux-vps-rclone-googledrive-microsoftonedrive%2f"><svg width="30" height="30" viewBox="0 0 512 512" fill="currentcolor" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"><path d="M449.446.0C483.971.0 512 28.03 512 62.554V449.446C512 483.97 483.97 512 449.446 512H62.554C28.03 512 0 483.97.0 449.446V62.554C0 28.03 28.029.0 62.554.0H449.446zM183.8767 87.9921h-62.034L230.6673 292.4508V424.0079h50.6655V292.4508L390.1575 87.9921H328.1233L256 238.2489z"/></svg></a></li></ul></footer><link rel=stylesheet href=https://unpkg.com/@waline/client@v2/dist/waline.css><div id=waline></div><script type=module>
+    import { init } from 'https://unpkg.com/@waline/client@v2/dist/waline.mjs';
+    const locale = {
+        nick: '昵称(必填)',
+        nickError: '请填写昵称',
+        mail: '邮箱',
+        mailError: '请填写正确的邮件地址',
+        link: '网址',
+        optional: '可选',
+        placeholder: '说点什么吧...\n填写邮箱可收到回复提醒。\n评论区支持 Markdown 语法及预览。\n',
+        sofa: '来发评论吧~',
+        submit: '提交',
+        like: '喜欢',
+        cancelLike: '取消喜欢',
+        reply: '回复',
+        cancelReply: '取消回复',
+        comment: '评论',
+        refresh: '刷新',
+        more: '加载更多...',
+        preview: '预览',
+        emoji: '表情',
+        uploadImage: '上传图片',
+        seconds: '秒前',
+        minutes: '分钟前',
+        hours: '小时前',
+        days: '天前',
+        now: '刚刚',
+        uploading: '正在上传',
+        login: '登录',
+        logout: '退出',
+        admin: '博主',
+        sticky: '置顶',
+        word: '字',
+        wordHint: '评论字数应在 $0 到 $1 字之间！\n当前字数：$2',
+        anonymous: '匿名',
+        level0: '潜水',
+        level1: '冒泡',
+        level2: '吐槽',
+        level3: '活跃',
+        level4: '话痨',
+        level5: '传说',
+        gif: '表情包',
+        gifSearchPlaceholder: '搜索表情包',
+        profile: '个人资料',
+        approved: '通过',
+        waiting: '待审核',
+        spam: '垃圾',
+        unsticky: '取消置顶',
+        oldest: '按倒序',
+        latest: '按正序',
+        hottest: '按热度',
+        reactionTitle: '你认为这篇文章怎么样？',
+    };
+    init({
+        
+        el: '#waline',
+        serverURL: 'https://comments.567899.xyz',
+        locale,
+        emoji: true,     
+        search: true,    
+        reaction: false,  
+        requiredMeta: ['nick'],
+        pageSize: 10,
+        imageUploader: true,
+        copyright: true,
+        pageview: true,
+        like: true,
+    });
+</script></article></main><footer class=footer><span>&copy; 2024 <a href=https://567899.xyz/>Xizi's Blog</a></span> ·
+<span>Powered by
+<a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
+        <a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg>
+</a><script>let menu=document.getElementById("menu");menu&&(menu.scrollLeft=localStorage.getItem("menu-scroll-position"),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}),document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{document.body.className.includes("dark")?(document.body.classList.remove("dark"),localStorage.setItem("pref-theme","light")):(document.body.classList.add("dark"),localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="复制";function s(){t.innerHTML="已复制！",setTimeout(()=>{t.innerHTML="复制"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>

@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Github on Xizi&#39;s Blog</title>
+    <link>https://567899.xyz/tags/github/</link>
+    <description>Recent content in Github on Xizi&#39;s Blog</description>
+    <image>
+      <title>Xizi&#39;s Blog</title>
+      <url>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- 0.134.2</generator>
+    <language>zh</language>
+    <lastBuildDate>Sun, 12 Jan 2020 01:37:56 +0800</lastBuildDate>
+    <atom:link href="https://567899.xyz/tags/github/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>使用GitHub Actions云编译OpenWrt</title>
+      <link>https://567899.xyz/post/build-openwrt-with-github-actions/</link>
+      <pubDate>Sun, 12 Jan 2020 01:37:56 +0800</pubDate>
+      <guid>https://567899.xyz/post/build-openwrt-with-github-actions/</guid>
+      <description>&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
+&lt;p&gt;Github Ac­tions 是 GitHub 推出的持续集成 (Con­tin­u­ous in­te­gra­tion，简称 CI) 服务，它提供了配置非常不错的虚拟服务器环境（E5 2vCPU/​7G RAM），基于它可以进行构建、测试、打包、部署项目。对于公共仓库可免费无时间限制的使用（指累积时间），不过要使用它首先需要知道如何编写 workflow 文件。但这篇文章并不是教你如何枯燥的去编写 work­flow 文件，而是教你如何去使用博主已经编写好的 Open­Wrt 编译方案。&lt;/p&gt;
+&lt;h2 id=&#34;教程更新&#34;&gt;教程更新&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;2020-02-01 新图文教程&lt;/li&gt;
+&lt;li&gt;2019-12-10 新增 macOS 编译方案使用说明&lt;/li&gt;
+&lt;li&gt;2019-12-06 添加 tmate 网页终端链接说明&lt;/li&gt;
+&lt;li&gt;2019-12-05 优化基础使用教程，添加 @lietxia 大佬的图文教程链接&lt;/li&gt;
+&lt;li&gt;2019-12-04 新增云menuconfig使用方法&lt;/li&gt;
+&lt;li&gt;2019-12-03 新增并发编译使用方法&lt;/li&gt;
+&lt;li&gt;2019-11-30 新增自定义源码编译使用方法&lt;/li&gt;
+&lt;li&gt;2019-11-14 全网独家首发&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;方案特点&#34;&gt;方案特点&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;免费&lt;/li&gt;
+&lt;li&gt;一键快速编译&lt;/li&gt;
+&lt;li&gt;定时自动编译&lt;/li&gt;
+&lt;li&gt;客制化编译&lt;/li&gt;
+&lt;li&gt;并发编译（可同时进行20+5个编译任务）&lt;/li&gt;
+&lt;li&gt;无需搭建编译环境（在线make menuconfig生成配置文件)&lt;/li&gt;
+&lt;li&gt;无需消耗自己的计算机与服务器的计算资源（性感E5在线编译）&lt;/li&gt;
+&lt;li&gt;无需担心磁盘空间不足（近60G磁盘空间）&lt;/li&gt;
+&lt;li&gt;无需使用清理文件（内核更新不怕 boom ）&lt;/li&gt;
+&lt;li&gt;编译速度快（编译时间1-2小时）&lt;/li&gt;
+&lt;li&gt;编译成功率提升200%（万兆自由网络环境）&lt;/li&gt;
+&lt;li&gt;全新环境（杜绝编译环境不干净导致编译失败）&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;本解决方案是一个开放平台，任何人都可以基于此打造自己专属的编译方案。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;项目地址&#34;&gt;项目地址&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/P3TERX/Actions-OpenWrt&#34;&gt;https://github.com/P3TERX/Actions-OpenWrt&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;支持项目请随手点个 star，让更多的人发现、使用并受益。&lt;/p&gt;
+&lt;h2 id=&#34;准备工作&#34;&gt;准备工作&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;注册 GitHub 账号&lt;/li&gt;
+&lt;li&gt;搭建编译环境，用于生成&lt;code&gt;.config&lt;/code&gt;文件。(可选)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;TIPS: 关于编译环境的搭建，推荐去看我之前写的相关文章，Win­dows 10 可以使用 WSL ，ma­cOS、Linux 可以使用 Docker 。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>推送发布到GitHub及错误提示</title>
+      <link>https://567899.xyz/post/git-push-error/</link>
+      <pubDate>Fri, 29 Mar 2019 01:37:56 +0800</pubDate>
+      <guid>https://567899.xyz/post/git-push-error/</guid>
+      <description>&lt;p&gt;安装git&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;apt-get install git -y
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;进入目录后初始化&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git init
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;排除不需要备份的文件和目录&#34;&gt;排除不需要备份的文件和目录&lt;/h2&gt;
+&lt;p&gt;在根目录下创建&lt;code&gt;.gitignore&lt;/code&gt;文件，里面的文件或目录不会被上传到github. 例：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;public
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;themes
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;dev
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;.git
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;.DS_Store
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;*.bak
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;*_bak
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;*.old
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;*.log
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;使用-ssh-密钥登录-github&#34;&gt;使用 SSH 密钥登录 GitHub&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git config --global user.name &lt;span class=&#34;s2&#34;&gt;&amp;#34;username&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git config --global user.email &lt;span class=&#34;s2&#34;&gt;&amp;#34;username168@gmail.com&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ssh-keygen -t rsa -C &lt;span class=&#34;s1&#34;&gt;&amp;#39;username@gmail.com&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;然后使用&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;cat /root/.ssh/id_rsa.pub
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;把里面的文本全部复制到
+&lt;a href=&#34;https://github.com/username/branchname/settings/keys&#34;&gt;https://github.com/username/branchname/settings/keys&lt;/a&gt; &lt;code&gt;Add deploy key&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ssh -T git@github.com
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;测试是否连接成功&lt;/p&gt;
+&lt;h2 id=&#34;推送到github&#34;&gt;推送到github&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git commit -m &lt;span class=&#34;s2&#34;&gt;&amp;#34;自定义描述&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git remote add origin git@github.com:username/branchname.git
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git push -u origin master
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;git-push错误提示&#34;&gt;git push错误提示&lt;/h2&gt;
+&lt;p&gt;使用&lt;code&gt;git push -u origin master&lt;/code&gt;时弹出错误提示&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;src refspec master does not match any.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;error: src refspec master does not match any.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;error: failed to push some refs to &lt;span class=&#34;s1&#34;&gt;&amp;#39;git@github.com:username/branchname.git&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;然后用如下方法解决了：&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>利用Travis CI和Hugo將Blog自動部署到Github Pages</title>
+      <link>https://567899.xyz/post/hugo-travis-ci-deploy-github-pages-automatically/</link>
+      <pubDate>Sun, 20 Jan 2019 01:37:56 +0800</pubDate>
+      <guid>https://567899.xyz/post/hugo-travis-ci-deploy-github-pages-automatically/</guid>
+      <description>&lt;p&gt;個人Blog採用靜態Blog形式託管在[Github][github]上。此前使用的是[Hexo][hexo]，因其包依賴關係複雜，部署流程繁瑣，故將整個部署環境封裝到Docker鏡像中以實現快速部署，但仍較爲繁瑣。現轉用執行速度快、操作簡便的[Hugo][hugo]。本文記錄如何在GNU/Linux中通過[Travis CI][travisci]將[Hugo][hugo]生成的Blog內容自動同步到[Github][github]，實現持續集成、部署。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;转载自 &lt;a href=&#34;https://axdlog.com/zh/2018/using-hugo-and-travis-ci-to-deploy-blog-to-github-pages-automatically/&#34;&gt;利用Travis CI和Hugo將Blog自動部署到Github Pages&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;官方文檔&#34;&gt;官方文檔&lt;/h2&gt;
+&lt;p&gt;本文中的相關操作皆以官方文檔爲操作依據&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Github
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://help.github.com/categories/github-pages-basics/&#34;&gt;GitHub Pages Basics&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://help.github.com/articles/user-organization-and-project-pages/&#34;&gt;User, Organization, and Project Pages&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://help.github.com/articles/creating-project-pages-using-the-command-line/&#34;&gt;Creating Project Pages using the command line&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://help.github.com/articles/configuring-a-publishing-source-for-github-pages/&#34;&gt;Configuring a publishing source for GitHub Pages&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Hugo
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://gohugo.io/hosting-and-deployment/hosting-on-github/&#34;&gt;Host on GitHub&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Travis CI
+&lt;ul&gt;
+&lt;li&gt;[GitHub Pages Deployment][travisci-github-page]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://docs.travis-ci.com/user/languages/python/&#34;&gt;Building a Python Project&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://docs.travis-ci.com/user/best-practices-security/&#34;&gt;Best Practices in Securing Your Data&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://docs.travis-ci.com/user/customizing-the-build/&#34;&gt;Customizing the Build&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;github-pages-限制&#34;&gt;GitHub Pages 限制&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;GitHub Pages is a static site hosting service designed to host your personal, organization, or project pages directly from a GitHub repository.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Linux下如何管理多个ssh密钥对github公钥私钥</title>
+      <link>https://567899.xyz/post/linux-github-id_rsa-pub/</link>
+      <pubDate>Fri, 29 Jul 2016 01:37:56 +0800</pubDate>
+      <guid>https://567899.xyz/post/linux-github-id_rsa-pub/</guid>
+      <description>&lt;h2 id=&#34;列出已存在相应的ssh-key密钥对&#34;&gt;列出已存在相应的ssh key密钥对&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ls -al ~/.ssh
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;如果你已经有了一套名为&lt;code&gt;id_rsa&lt;/code&gt;的公秘钥，将要生成另外一个公钥，比如&lt;code&gt;new_id_rsa&lt;/code&gt;你也可以使用任何你喜欢的名字。&lt;/p&gt;
+&lt;p&gt;步骤如下：&lt;/p&gt;
+&lt;h2 id=&#34;生成一个新的自定义名称的公钥&#34;&gt;生成一个新的自定义名称的公钥&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git config --global user.name &lt;span class=&#34;s2&#34;&gt;&amp;#34;username&amp;#34;&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git config --global user.email &lt;span class=&#34;s2&#34;&gt;&amp;#34;youremail@gmail.com&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ssh-keygen -t rsa -C &lt;span class=&#34;s2&#34;&gt;&amp;#34;youremail@gmail.com&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;修改文件名或路径&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Generating public/private rsa key pair.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Enter file in which to save the key &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;/root/.ssh/id_rsa&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;: /root/.ssh/new_id_rsa &lt;span class=&#34;c1&#34;&gt;#这里替换成新的路径、文件名 &lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;或者直接使用以下命令生成&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ssh-keygen -t rsa -b &lt;span class=&#34;m&#34;&gt;4096&lt;/span&gt; -C &lt;span class=&#34;s2&#34;&gt;&amp;#34;your_email@example.com&amp;#34;&lt;/span&gt; -f ~/.ssh/new_id_rsa
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;code&gt;your_email@example.com&lt;/code&gt;替换成你注册github所用的邮箱，执行命令后，执行完成后，会在&lt;code&gt;~/.ssh/&lt;/code&gt;目录下生成一个&lt;code&gt;new_id_rsa&lt;/code&gt;私钥和&lt;code&gt;new_id_rsa.pub&lt;/code&gt;公钥文件。&lt;/p&gt;
+&lt;h2 id=&#34;为ssh-key-添加代理&#34;&gt;为ssh key 添加代理&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ssh-add ~/.ssh/new_id_rsa
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;注意：如果执行&lt;code&gt;ssh-add&lt;/code&gt;时显示错误&lt;code&gt;Could not open a connection to your authentication agent.&lt;/code&gt;那么执行&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;eval&lt;/span&gt; &lt;span class=&#34;sb&#34;&gt;`&lt;/span&gt;ssh-agent -s&lt;span class=&#34;sb&#34;&gt;`&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;后重新执行&lt;code&gt;ssh-add&lt;/code&gt;那条命令即可。&lt;/p&gt;
+&lt;h2 id=&#34;连接到github&#34;&gt;连接到github&lt;/h2&gt;
+&lt;p&gt;查看&lt;code&gt;~/.ssh/new_id_rsa.pub&lt;/code&gt;复制内容到github的Key里面&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;cat ~/.ssh/new_id_rsa.pub
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;连接测试&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ssh -T git@github.com
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;hr&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git init
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git add .
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git commit -m &lt;span class=&#34;s2&#34;&gt;&amp;#34;first commit&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git remote add origin https://github.com/username/username.github.io.git
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git push -u origin master
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+    </item>
+    <item>
+      <title>Github同步更新Fork的项目</title>
+      <link>https://567899.xyz/post/github-fork-pull-request-update/</link>
+      <pubDate>Thu, 21 Jul 2016 01:37:56 +0800</pubDate>
+      <guid>https://567899.xyz/post/github-fork-pull-request-update/</guid>
+      <description>&lt;p&gt;github上fork了别人的项目后，再同步更新别人的提交，github分支网站上操作，同步你的Fork 仓库&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com&#34;&gt;Github&lt;/a&gt;网页同步更新Fork的项目，操作方便。不用命令行&lt;/p&gt;
+&lt;p&gt;登陆进入自己已经fork的仓库名，切换到&lt;code&gt;Code&lt;/code&gt;  按照截图操作即可。&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://567899.xyz/images/github-pull-request-Synchronize-Update1.png&#34; alt=&#34;&#34;  /&gt;
+&lt;/p&gt;
+&lt;p&gt;点击&lt;code&gt;New pull request&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://567899.xyz/images/github-pull-request-Synchronize-Update2.png&#34; alt=&#34;&#34;  /&gt;
+&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;base repository&lt;/code&gt;选择自己的仓库分支&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;compare across forks&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;head repository&lt;/code&gt;选择fork源头项目的仓库分支&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Caeate pull request&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://567899.xyz/images/github-pull-request-Synchronize-Update3.png&#34; alt=&#34;&#34;  /&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;titel&lt;/code&gt;自定义  然后点击&lt;code&gt;Create pull request&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://567899.xyz/images/github-pull-request-Synchronize-Update4.png&#34; alt=&#34;&#34;  /&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;adminrge pull request&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://567899.xyz/images/github-pull-request-Synchronize-Update5.png&#34; alt=&#34;&#34;  /&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Confirm merge&lt;/code&gt; 到此完全了Github同步更新Fork的项目&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;xxxx adminrge pull request #xxxx from xxxx/master&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;刷新自己的github仓库，可以看到代码更新时间，已经同步成功，跟源项目仓库保持一样了&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

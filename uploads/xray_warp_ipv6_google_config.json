@@ -1,0 +1,146 @@
+{
+    "log": {
+        "loglevel": "warning"
+    },
+    "inbounds": [
+        {
+            "port": 443,
+            "protocol": "vless",
+            "settings": {
+                "clients": [
+                    {
+                        "id": "UUID", // 填写你的 UUID
+                        "flow": "xtls-rprx-direct",
+                        "level": 0,
+                        "email": "love@v2fly.org"
+                    }
+                ],
+                "decryption": "none",
+                "fallbacks": [
+                    {
+                        "dest": 80
+                    },
+                    {
+                        "path": "/websocket", // 必须换成自定义的 PATH
+                        "dest": 1234,
+                        "xver": 1
+                    }
+                ]
+            },
+            "streamSettings": {
+                "network": "tcp",
+                "security": "xtls",
+                "xtlsSettings": {
+                    "alpn": [
+                        "h2",
+                        "http/1.1"
+                    ],
+                    "certificates": [
+                        {
+                            "certificateFile": "/etc/letsencrypt/live/example.com/fullchain.pem", // 换成你的证书，绝对路径
+                            "keyFile": "/etc/letsencrypt/live/example.com/privkey.pem" // 换成你的私钥，绝对路径
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "port": 1234,
+            "listen": "127.0.0.1",
+            "protocol": "vless",
+            "settings": {
+                "clients": [
+                    {
+                        "id": "UUID", // 填写你的 UUID
+                        "level": 0,
+                        "email": "love@v2fly.org"
+                    }
+                ],
+                "decryption": "none"
+            },
+            "streamSettings": {
+                "network": "ws",
+                "security": "none",
+                "wsSettings": {
+                    "acceptProxyProtocol": true, // 提醒：若你用 Nginx/Caddy 等反代 WS，需要删掉这行
+                    "path": "/websocket" // 必须换成自定义的 PATH，需要和分流的一致
+                }
+            }
+        },
+        {
+            "protocol": "shadowsocks",
+            "port": 1038,
+            "settings": {
+            "method": "chacha20-ietf-poly1305",
+            "password": "yourpassword",
+            "udp": true
+            }
+        },
+        {
+            "protocol": "shadowsocks",
+            "port": 1039,
+            "settings": {
+            "method": "aes-128-gcm",
+            "password": "youpassword",
+            "udp": true
+            }
+        },
+		{
+			"port": 5678,
+			"protocol": "vmess",
+			"settings": {
+			"clients": [
+				{
+					"id": "UUID",
+					"alterId": 0
+				}
+			]
+			},
+			"streamSettings": {
+			"network": "kcp",
+			"security": "aes-128-gcm",
+			"kcpSettings": {
+					"mtu": 1350,
+					"tti": 20,
+					"uplinkCapacity": 5,
+					"downlinkCapacity": 100,
+					"congestion": false,
+					"readBufferSize": 1,
+					"writeBufferSize": 1,
+					"header": {
+						"type": "none"
+					},
+					"seed": "Password"
+				}
+			}
+		}
+    ],
+	"outbounds": [
+             {
+               "tag":"IP4_out",
+               "protocol": "freedom",
+               "settings": {}
+             },
+            {
+               "tag":"IP6_out",
+               "protocol": "freedom",
+              "settings": {
+                   "domainStrategy": "UseIPv6" // 指定使用 IPv6
+                   }
+             }
+            ],
+	"routing": {
+            "rules": [
+                {
+                 "type": "field",
+                 "outboundTag": "IP6_out",
+                 "domain": ["domain:www.google.com"] // google走 IPv6
+                 },
+                {
+                   "type": "field",
+                   "outboundTag": "IP4_out",
+                   "network": "udp,tcp"// 其余走 IPv4
+                 }
+             ]
+          }
+}

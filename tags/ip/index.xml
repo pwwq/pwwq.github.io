@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>IP on Xizi&#39;s Blog</title>
+    <link>https://567899.xyz/tags/ip/</link>
+    <description>Recent content in IP on Xizi&#39;s Blog</description>
+    <image>
+      <title>Xizi&#39;s Blog</title>
+      <url>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- 0.134.2</generator>
+    <language>zh</language>
+    <lastBuildDate>Thu, 09 Nov 2017 01:37:56 +0800</lastBuildDate>
+    <atom:link href="https://567899.xyz/tags/ip/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>IPv6的VPS连接IPv4和IPv4的VPS免费获取IPv6</title>
+      <link>https://567899.xyz/post/ipv4-ipv6-connect-access/</link>
+      <pubDate>Thu, 09 Nov 2017 01:37:56 +0800</pubDate>
+      <guid>https://567899.xyz/post/ipv4-ipv6-connect-access/</guid>
+      <description>&lt;h1 id=&#34;只有ipv6的vps连通ipv4&#34;&gt;只有IPv6的VPS连通IPV4&lt;/h1&gt;
+&lt;p&gt;无ipv4纯ipv6先编辑&lt;code&gt;/etc/resolv.conf&lt;/code&gt;改成DNS64地址&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;nameserver 2001:67c:2b0::4
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;nameserver 2001:67c:27e4::64
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;然后执行&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;chattr +i /etc/resolv.conf
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;service systemd-resolved restart
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;ipv4免费获得ipv6&#34;&gt;IPV4免费获得IPV6&lt;/h1&gt;
+&lt;p&gt;只有IPV4的VPS通过&lt;a href=&#34;https://he.net/&#34;&gt;Hurricane Electric Internet Services&lt;/a&gt;免费获得IPV6。&lt;/p&gt;
+&lt;p&gt;Hurricane Electric Free IPv6 Tunnel Broker&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;https://tunnelbroker.net/register.php&#34;&gt;注册&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tunnelbroker.net&#34;&gt;登陆&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;按提示输入公网IPV4,选择地区区域，获得IPV6。&lt;/p&gt;
+&lt;p&gt;选择自己VPS的系统对应版本按提示附加上去  enjoy&lt;/p&gt;
+&lt;h1 id=&#34;cloudflare-warp-一键安装脚本&#34;&gt;Cloudflare WARP 一键安装脚本&lt;/h1&gt;
+&lt;p&gt;转载自&lt;a href=&#34;https://github.com/P3TERX/warp.sh&#34;&gt;项目地址&lt;/a&gt;、&lt;a href=&#34;https://p3terx.com/archives/cloudflare-warp-configuration-script.html&#34;&gt;Cloudflare WARP 一键安装脚本 使用教程&lt;/a&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;无论 VPS 是 IPv4 还是 IPv6 又或都有，添加 WARP Wire­Guard 双栈全局网络，直接使用以下 WARP 脚本命令一把梭：&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 自动配置 WARP WireGuard 双栈全局网络&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;bash &amp;lt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;curl -fsSL git.io/warp.sh&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; d
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;添加或更改 IPv4/​IPv6 网络中的一个出口走 WARP Wire­Guard 网络，使用以下 WARP 脚本命令一把梭：&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 自动配置 WARP WireGuard IPv4 网络&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;bash &amp;lt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;curl -fsSL git.io/warp.sh&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;4&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 自动配置 WARP WireGuard IPv6 网络&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;bash &amp;lt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;curl -fsSL git.io/warp.sh&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;6&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;其它相关命令：&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 查看 WARP 脚本子命令列表&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;bash &amp;lt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;curl -fsSL git.io/warp.sh&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;help&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 重启 WARP WireGuard 网络接口&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;systemctl restart wg-quick@wgcf
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 禁用 WARP WireGuard 网络接口&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;systemctl disable wg-quick@wgcf --now
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+    </item>
+  </channel>
+</rss>

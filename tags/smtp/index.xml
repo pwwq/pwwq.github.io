@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>SMTP on Xizi&#39;s Blog</title>
+    <link>https://567899.xyz/tags/smtp/</link>
+    <description>Recent content in SMTP on Xizi&#39;s Blog</description>
+    <image>
+      <title>Xizi&#39;s Blog</title>
+      <url>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- 0.134.2</generator>
+    <language>zh</language>
+    <lastBuildDate>Mon, 02 Sep 2024 17:40:38 +0000</lastBuildDate>
+    <atom:link href="https://567899.xyz/tags/smtp/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Serv00.com搭建使用</title>
+      <link>https://567899.xyz/post/serv00/</link>
+      <pubDate>Mon, 02 Sep 2024 17:40:38 +0000</pubDate>
+      <guid>https://567899.xyz/post/serv00/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;https://www.serv00.com/&#34;&gt;Serv00.com&lt;/a&gt;Revolutionary Free Hosting&lt;/p&gt;
+&lt;p&gt;提供免费的PHP,MYSQL,SMTP,PostgreSQL,MongoDB,可以SSH连接创建自己的应用,可以绑定域名,无广告。&lt;/p&gt;
+&lt;h2 id=&#34;注册&#34;&gt;注册&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.serv00.com/offer/create_new_account&#34;&gt;注册Serv00&lt;/a&gt; 建议用gmail邮箱,不要用微软邮箱,因为就是提示成功它也收不到邮件.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;注册小技巧&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;gmail邮箱可以无限别名,假设已经有一个yourname@gmail.com那么可以使用别名在用户名后面添加&lt;code&gt;+&lt;/code&gt;或者&lt;code&gt;.&lt;/code&gt;后面加其它随机字母数字,比如使用yourname+6dhj68kkm@gmail.com 或者  &lt;a href=&#34;mailto:yourname.jdjjs64kpo@gmail.com&#34;&gt;yourname.jdjjs64kpo@gmail.com&lt;/a&gt;  达到使用1个gmail邮箱来注册多个serv00账号,账号信息邮件在yourname@gmail.com接收。注册成功就能在邮件里面看到相关账号信息&lt;/p&gt;
+&lt;h2 id=&#34;搭建&#34;&gt;搭建&lt;/h2&gt;
+&lt;p&gt;面板设置&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;打开&lt;code&gt;Additional services&lt;/code&gt;  , &lt;code&gt;Run your own applications&lt;/code&gt;  使状态&lt;code&gt; Status&lt;/code&gt;改为
+&lt;code&gt;Enabled&lt;/code&gt;开启&lt;/li&gt;
+&lt;li&gt;可最多3个端口号,在&lt;code&gt;Port reservation&lt;/code&gt;,&lt;code&gt;Add port&lt;/code&gt;中设置添加。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;搭建hy2tuicvmess&#34;&gt;搭建hy2,tuic,vmess&lt;/h3&gt;
+&lt;p&gt;提前在面板添加1个tcp端口给vmess使用,2个udp端口分别给tuic和hy2用&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/yixiu001/serv00-singbox&#34;&gt;https://github.com/yixiu001/serv00-singbox&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;wget https://raw.githubusercontent.com/yixiu001/serv00-singbox/main/yixiu.sh
+chmod +x yixiu.sh
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;编辑&lt;code&gt;yixiu.sh&lt;/code&gt;修改tcp与udp端口为面板对应添加的端口,修改uuid为自己的&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://1024tools.com/uuid&#34;&gt;UUID在线生成&lt;/a&gt;或者命令行生成&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;cat /proc/sys/kernel/random/uuid
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;然后创建screen窗口&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;curl -O https://raw.githubusercontent.com/eooce/ssh_tool/main/index.js &amp;amp;&amp;amp; curl -O https://raw.githubusercontent.com/eooce/nodejs-argo/main/package.json &amp;amp;&amp;amp; npm install &amp;amp;&amp;amp; chmod +x index.js &amp;amp;&amp;amp; screen node index.js
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;再次执行&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;./yixiu.sh
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;复制节点信息使用&lt;/p&gt;
+&lt;h3 id=&#34;搭建vmessargo&#34;&gt;搭建vmess+argo&lt;/h3&gt;
+&lt;p&gt;如果ip端口被xxx了,可套用cloudflare的argo,实现CDN减速&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/eooce/scripts&#34;&gt;https://github.com/eooce/scripts&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;vmess-ws-tls(argo)一键脚本&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;必填变量：PORT=TCP端口&lt;/li&gt;
+&lt;li&gt;可选变量：UUID NEZHA_SERVER NEZHA_PORT NEZHA_KEY CFIP CFPORT&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;bash &amp;lt;(curl -Ls https://raw.githubusercontent.com/eooce/scripts/master/containers-shell/00_vmess.sh)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;修改&lt;code&gt;00_vmess.sh&lt;/code&gt;中的TCP端口,uuid,argo的token域名&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Gmail邮件客户端中SMTP的设置</title>
+      <link>https://567899.xyz/post/gmail-smtp/</link>
+      <pubDate>Tue, 22 Oct 2013 01:37:56 +0800</pubDate>
+      <guid>https://567899.xyz/post/gmail-smtp/</guid>
+      <description>&lt;h2 id=&#34;启用安全性较低的应用的访问权限&#34;&gt;启用安全性较低的应用的访问权限&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;个人邮箱登录google账号输入网址&lt;a href=&#34;https://myaccount.google.com/lesssecureapps&#34;&gt;安全性较低的应用的访问权限&lt;/a&gt;开启启用【允许安全性较低的应用】即可正常发送邮件。&lt;/li&gt;
+&lt;li&gt;企业邮箱登录之后，打开网址&lt;a href=&#34;https://myaccount.google.com/lesssecureapps&#34;&gt;安全性&lt;/a&gt; 查看 &lt;a href=&#34;https://support.google.com/a/answer/6260879?hl=zh-Hans&#34;&gt;具体设置方法&lt;/a&gt; 或者 &lt;a href=&#34;https://admin.google.com/AdminHome#ServiceSettings/notab=1&amp;amp;service=securitysetting&amp;amp;subtab=lesssecureappsaccess&#34;&gt;直接打开&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.google.com/accounts/DisplayUnlockCaptcha&#34;&gt;允许访问您的 Google 帐号&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;电子邮件客户端中更改-smtp-和其他设置&#34;&gt;电子邮件客户端中更改 SMTP 和其他设置&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://support.google.com/mail/answer/7126229?hl=zh-Hans&#34;&gt;参考链接&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;接收邮件 &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;IMAP&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; 服务器:imap.gmail.com
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;要求 SSL：是
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;端口：993
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;发送邮件 &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;SMTP&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; 服务器:smtp.gmail.com
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;要求 SSL：是
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;要求 TLS：是（如适用）
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;使用身份验证：是
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;SSL 端口：465
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;TLS/STARTTLS 端口：587
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;完整名称或显示名称:您的姓名
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;帐号名、用户名或电子邮件地址:您的完整电子邮件地址
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;密码:您的 Gmail 密码
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+    </item>
+  </channel>
+</rss>

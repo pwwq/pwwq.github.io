@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Google on Xizi&#39;s Blog</title>
+    <link>https://567899.xyz/tags/google/</link>
+    <description>Recent content in Google on Xizi&#39;s Blog</description>
+    <image>
+      <title>Xizi&#39;s Blog</title>
+      <url>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- 0.134.2</generator>
+    <language>zh</language>
+    <lastBuildDate>Thu, 13 Jan 2022 17:40:38 +0000</lastBuildDate>
+    <atom:link href="https://567899.xyz/tags/google/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>谷歌邮箱别名设置Gmail邮箱</title>
+      <link>https://567899.xyz/post/gmail-alias/</link>
+      <pubDate>Thu, 13 Jan 2022 17:40:38 +0000</pubDate>
+      <guid>https://567899.xyz/post/gmail-alias/</guid>
+      <description>&lt;p&gt;Gmail邮箱别名设置&lt;/p&gt;
+&lt;p&gt;这里我们假设你的Gmail邮箱为：&lt;code&gt;abcdef@gmail.com&lt;/code&gt; ，那就可以通过以下办法得到无限的谷歌邮箱别名。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;用户名之间加 . （英文半角）&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;例如： &lt;code&gt;abc.def@gmail.com&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;因为Gmail的用户名是不区分 . 符号的，所以下面其实都是同一个用户名&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;abcde.f@gmail.com
+a.bcdef@gmail.com
+ab.cdef@gmail.com
+a.b.cdef@gmail.com
+abc.d.ef@gmail.com
+&lt;/code&gt;&lt;/pre&gt;&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;用户名后面加 +任意字符&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;例如： &lt;code&gt;abcdef+dev@gmail.com&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;+&lt;/code&gt;号后面可以是任意字符，例如：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;abcdef+dev@gmail.com
+abcdef+my@gmail.com
+abcdef+sub@gmail.com
+……
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;PS：使用“+”号法，在许多网站注册时候，并不识别邮箱地址中的“+”，会提示你邮箱错误。&lt;/p&gt;
+&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;改变用户名中任意字符的大小写&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;例如： &lt;code&gt;aBCdef@gmail.com&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;可以是用户名里的某个或多个字符，&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;Abcdef@gmail.com
+AbcDeF@gmail.com
+abcdEf@gmail.com
+&lt;/code&gt;&lt;/pre&gt;&lt;ol start=&#34;4&#34;&gt;
+&lt;li&gt;把后缀变为&lt;code&gt;googlemail.com&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;因为之前Gmail在某些国家的商标没有谈好，不能使用Gmail商标，只好用googlemail，这个很好理解。（貌似现在全球的商标都已经谈妥了）&lt;/p&gt;
+&lt;p&gt;例如： &lt;code&gt;abcdef@googlemail.com&lt;/code&gt;&lt;/p&gt;
+&lt;ol start=&#34;5&#34;&gt;
+&lt;li&gt;以上４种方法的结合&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;可以结合上面的4种方法来实现理论上的无限别名。例如：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;aBcdef+dev@googlemail.com
+AbcDEf+sub@googlemail.com
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;总结&lt;/p&gt;
+&lt;p&gt;了解了上面的Gmail别名设置的方法后，当你要注册一些服务的时候，只要在填写Gmail邮箱的时候填写通过上述的方法得到的别名邮箱就可以了。无需到Gmail设置，所有的别名邮箱的邮件都会发送到你原来的邮箱 &lt;a href=&#34;mailto:abcdef@gmail.com&#34;&gt;abcdef@gmail.com&lt;/a&gt; 中。&lt;/p&gt;
+&lt;p&gt;转载自 &lt;a href=&#34;https://nies.live/d/51&#34;&gt;https://nies.live/d/51&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>利用Caddy,Nginx反向代理谷歌YouTube等网站</title>
+      <link>https://567899.xyz/post/nginx-caddy-proxy-google-youtube-wikipedia/</link>
+      <pubDate>Mon, 21 May 2018 01:37:56 +0800</pubDate>
+      <guid>https://567899.xyz/post/nginx-caddy-proxy-google-youtube-wikipedia/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;https://caddyserver.com&#34;&gt;Caddy&lt;/a&gt; - The HTTP/2 Web Server with Automatic HTTPS&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;go语言一个二进制单文件就是服务端&lt;/li&gt;
+&lt;li&gt;自动申请&lt;a href=&#34;https://letsencrypt.org&#34;&gt;Let&amp;rsquo;s Encrypt&lt;/a&gt;免费的SSL/TLS证书,自动续期。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;caddy一键安装脚本&#34;&gt;Caddy一键安装脚本&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;wget -N --no-check-certificate https://raw.githubusercontent.com/ojbk8/ToyoDAdoubiBackup/master/caddy_install.sh &lt;span class=&#34;o&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; chmod +x caddy_install.sh &lt;span class=&#34;o&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; bash caddy_install.sh
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;caddy_conf_file=&amp;quot;/usr/local/caddy/Caddyfile&amp;quot;&lt;/li&gt;
+&lt;li&gt;日志文件：cat /tmp/caddy.log&lt;/li&gt;
+&lt;li&gt;使用说明：service caddy start | stop | restart | status&lt;/li&gt;
+&lt;li&gt;或者使用：/etc/init.d/caddy start | stop | restart | status&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+  </channel>
+</rss>

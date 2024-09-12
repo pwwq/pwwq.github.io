@@ -1,0 +1,305 @@
+<!doctype html><html lang=zh dir=auto><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>PaperMod主题添加valine评论 | Xizi's Blog</title>
+<meta name=keywords content="hugo"><meta name=description content="Valine 一款快速、简洁且高效的无后端评论系统。服务端可以借助LeanCloud免费部署到Vercel 部署 (服务端)
+配置Valine
+
+注册LeanCloud 账号：
+
+
+进入 LeanCloud 官网注册一个国际账号。
+创建一个新的应用以便使用 LeanCloud 提供的后端服务。
+
+
+在Vercel 部署 (服务端)
+
+关联github账号登陆，创建Valine应用，名称任意,例如Valine
+
+获取 Valine App ID 和 App Key：
+
+
+在 LeanCloud 控制台中，进入你创建的应用。
+在左侧导航栏中找到“设置”选项。
+在应用凭证部分，复制 App ID、App Key、REST API 服务器地址
+
+
+在Vercel的应用中依次进入【settings】、【environment-variables】添加上面获取的环境变量LEAN_KEY与LEAN_ID值。然后进入【deployments】【Redeploy】重新部署生效。
+
+完成后会自动分配一个二级域名,类似xxx-xxx-xxxx-projects.vercel.app【可选】进入【settings】【domains】绑定自己的域名
+评论通知的环境设置在在进入leancloud应用的Play=== CLIENT ENGINE === 设置 添加自定义环境变量 【Redeploy】重新部署生效。
+
+valine评论数据管理
+
+点击Visit打开进入https://xxx-xxx-xxxx-projects.vercel.app 是一个独立的网页单面。  在域名后边加上/ui/register注册，默认首次注册的用户是为评论管理员，可以删除评论等操作,也可以进入LeanCloud的控制台找到数据存储=>结构化数据=>Comment,在这里你可以对评论的数据进行管理
+在Hugo主题中引入Valine
+以PaperMod主题为例，找到需要添加Valine的页面或模板文件，以下方法二选一
+方法一：在~/themes/PaperMod/layouts/_default/single.html添加以下代码
+复制替换 LeanCloud 控制台中的【设置】【应用凭证】的App ID、App Key、REST API 服务器地址值
+<div id=&#34;comments&#34;></div>
+<script src=&#34;https://cdn.jsdelivr.net/npm/vue&#34;></script>
+<script src=&#34;https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js&#34;></script>
+<script>
+  new Valine({
+    el: '#comments',
+    appId: 'App-ID',
+    appKey: 'App-Key',
+    serverURLs: &#34;REST API 服务器地址&#34;,
+    placeholder: '说点什么吧...',
+  });
+</script>
+方法二： 修改~/themes/PaperMod/layouts/partials/comments.html的内容如下"><meta name=author content="admin"><link rel=canonical href=https://567899.xyz/post/valine/><meta name=google-site-verification content="XYZabc"><meta name=yandex-verification content="XYZabc"><meta name=msvalidate.01 content="XYZabc"><link crossorigin=anonymous href=/assets/css/stylesheet.e47a4660efa4fbc78073593cfd9c5a39a49f0ad0d1d33adf13d7f5183b23c238.css integrity="sha256-5HpGYO+k+8eAc1k8/ZxaOaSfCtDR0zrfE9f1GDsjwjg=" rel="preload stylesheet" as=style><link rel=icon href=https://567899.xyz/%3Clink%20/%20abs%20url%3E><link rel=icon type=image/png sizes=16x16 href=https://567899.xyz/%3Clink%20/%20abs%20url%3E><link rel=icon type=image/png sizes=32x32 href=https://567899.xyz/%3Clink%20/%20abs%20url%3E><link rel=apple-touch-icon href=https://567899.xyz/%3Clink%20/%20abs%20url%3E><link rel=mask-icon href=https://567899.xyz/%3Clink%20/%20abs%20url%3E><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=zh href=https://567899.xyz/post/valine/><noscript><style>#theme-toggle,.top-link{display:none}</style><style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--code-block-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51)}.list{background:var(--theme)}.list:not(.dark)::-webkit-scrollbar-track{background:0 0}.list:not(.dark)::-webkit-scrollbar-thumb{border-color:var(--theme)}}</style></noscript><meta property="og:title" content="PaperMod主题添加valine评论"><meta property="og:description" content="Valine 一款快速、简洁且高效的无后端评论系统。服务端可以借助LeanCloud免费部署到Vercel 部署 (服务端)
+配置Valine
+
+注册LeanCloud 账号：
+
+
+进入 LeanCloud 官网注册一个国际账号。
+创建一个新的应用以便使用 LeanCloud 提供的后端服务。
+
+
+在Vercel 部署 (服务端)
+
+关联github账号登陆，创建Valine应用，名称任意,例如Valine
+
+获取 Valine App ID 和 App Key：
+
+
+在 LeanCloud 控制台中，进入你创建的应用。
+在左侧导航栏中找到“设置”选项。
+在应用凭证部分，复制 App ID、App Key、REST API 服务器地址
+
+
+在Vercel的应用中依次进入【settings】、【environment-variables】添加上面获取的环境变量LEAN_KEY与LEAN_ID值。然后进入【deployments】【Redeploy】重新部署生效。
+
+完成后会自动分配一个二级域名,类似xxx-xxx-xxxx-projects.vercel.app【可选】进入【settings】【domains】绑定自己的域名
+评论通知的环境设置在在进入leancloud应用的Play=== CLIENT ENGINE === 设置 添加自定义环境变量 【Redeploy】重新部署生效。
+
+valine评论数据管理
+
+点击Visit打开进入https://xxx-xxx-xxxx-projects.vercel.app 是一个独立的网页单面。  在域名后边加上/ui/register注册，默认首次注册的用户是为评论管理员，可以删除评论等操作,也可以进入LeanCloud的控制台找到数据存储=>结构化数据=>Comment,在这里你可以对评论的数据进行管理
+在Hugo主题中引入Valine
+以PaperMod主题为例，找到需要添加Valine的页面或模板文件，以下方法二选一
+方法一：在~/themes/PaperMod/layouts/_default/single.html添加以下代码
+复制替换 LeanCloud 控制台中的【设置】【应用凭证】的App ID、App Key、REST API 服务器地址值
+<div id=&#34;comments&#34;></div>
+<script src=&#34;https://cdn.jsdelivr.net/npm/vue&#34;></script>
+<script src=&#34;https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js&#34;></script>
+<script>
+  new Valine({
+    el: '#comments',
+    appId: 'App-ID',
+    appKey: 'App-Key',
+    serverURLs: &#34;REST API 服务器地址&#34;,
+    placeholder: '说点什么吧...',
+  });
+</script>
+方法二： 修改~/themes/PaperMod/layouts/partials/comments.html的内容如下"><meta property="og:type" content="article"><meta property="og:url" content="https://567899.xyz/post/valine/"><meta property="og:image" content="https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E"><meta property="article:section" content="post"><meta property="article:published_time" content="2024-08-18T16:55:56+08:00"><meta property="article:modified_time" content="2024-08-18T16:55:56+08:00"><meta property="og:site_name" content="Xizi's Blog"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E"><meta name=twitter:title content="PaperMod主题添加valine评论"><meta name=twitter:description content="Valine 一款快速、简洁且高效的无后端评论系统。服务端可以借助LeanCloud免费部署到Vercel 部署 (服务端)
+配置Valine
+
+注册LeanCloud 账号：
+
+
+进入 LeanCloud 官网注册一个国际账号。
+创建一个新的应用以便使用 LeanCloud 提供的后端服务。
+
+
+在Vercel 部署 (服务端)
+
+关联github账号登陆，创建Valine应用，名称任意,例如Valine
+
+获取 Valine App ID 和 App Key：
+
+
+在 LeanCloud 控制台中，进入你创建的应用。
+在左侧导航栏中找到“设置”选项。
+在应用凭证部分，复制 App ID、App Key、REST API 服务器地址
+
+
+在Vercel的应用中依次进入【settings】、【environment-variables】添加上面获取的环境变量LEAN_KEY与LEAN_ID值。然后进入【deployments】【Redeploy】重新部署生效。
+
+完成后会自动分配一个二级域名,类似xxx-xxx-xxxx-projects.vercel.app【可选】进入【settings】【domains】绑定自己的域名
+评论通知的环境设置在在进入leancloud应用的Play=== CLIENT ENGINE === 设置 添加自定义环境变量 【Redeploy】重新部署生效。
+
+valine评论数据管理
+
+点击Visit打开进入https://xxx-xxx-xxxx-projects.vercel.app 是一个独立的网页单面。  在域名后边加上/ui/register注册，默认首次注册的用户是为评论管理员，可以删除评论等操作,也可以进入LeanCloud的控制台找到数据存储=>结构化数据=>Comment,在这里你可以对评论的数据进行管理
+在Hugo主题中引入Valine
+以PaperMod主题为例，找到需要添加Valine的页面或模板文件，以下方法二选一
+方法一：在~/themes/PaperMod/layouts/_default/single.html添加以下代码
+复制替换 LeanCloud 控制台中的【设置】【应用凭证】的App ID、App Key、REST API 服务器地址值
+<div id=&#34;comments&#34;></div>
+<script src=&#34;https://cdn.jsdelivr.net/npm/vue&#34;></script>
+<script src=&#34;https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js&#34;></script>
+<script>
+  new Valine({
+    el: '#comments',
+    appId: 'App-ID',
+    appKey: 'App-Key',
+    serverURLs: &#34;REST API 服务器地址&#34;,
+    placeholder: '说点什么吧...',
+  });
+</script>
+方法二： 修改~/themes/PaperMod/layouts/partials/comments.html的内容如下"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Posts","item":"https://567899.xyz/post/"},{"@type":"ListItem","position":2,"name":"PaperMod主题添加valine评论","item":"https://567899.xyz/post/valine/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"PaperMod主题添加valine评论","name":"PaperMod主题添加valine评论","description":"Valine 一款快速、简洁且高效的无后端评论系统。服务端可以借助LeanCloud免费部署到Vercel 部署 (服务端)\n配置Valine 注册LeanCloud 账号： 进入 LeanCloud 官网注册一个国际账号。 创建一个新的应用以便使用 LeanCloud 提供的后端服务。 在Vercel 部署 (服务端) 关联github账号登陆，创建Valine应用，名称任意,例如Valine\n获取 Valine App ID 和 App Key： 在 LeanCloud 控制台中，进入你创建的应用。 在左侧导航栏中找到“设置”选项。 在应用凭证部分，复制 App ID、App Key、REST API 服务器地址 在Vercel的应用中依次进入【settings】、【environment-variables】添加上面获取的环境变量LEAN_KEY与LEAN_ID值。然后进入【deployments】【Redeploy】重新部署生效。 完成后会自动分配一个二级域名,类似xxx-xxx-xxxx-projects.vercel.app【可选】进入【settings】【domains】绑定自己的域名\n评论通知的环境设置在在进入leancloud应用的Play=== CLIENT ENGINE === 设置 添加自定义环境变量 【Redeploy】重新部署生效。\nvaline评论数据管理 点击Visit打开进入https://xxx-xxx-xxxx-projects.vercel.app 是一个独立的网页单面。 在域名后边加上/ui/register注册，默认首次注册的用户是为评论管理员，可以删除评论等操作,也可以进入LeanCloud的控制台找到数据存储=\u0026gt;结构化数据=\u0026gt;Comment,在这里你可以对评论的数据进行管理\n在Hugo主题中引入Valine 以PaperMod主题为例，找到需要添加Valine的页面或模板文件，以下方法二选一\n方法一：在~/themes/PaperMod/layouts/_default/single.html添加以下代码\n复制替换 LeanCloud 控制台中的【设置】【应用凭证】的App ID、App Key、REST API 服务器地址值\n\u0026lt;div id=\u0026#34;comments\u0026#34;\u0026gt;\u0026lt;/div\u0026gt; \u0026lt;script src=\u0026#34;https://cdn.jsdelivr.net/npm/vue\u0026#34;\u0026gt;\u0026lt;/script\u0026gt; \u0026lt;script src=\u0026#34;https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js\u0026#34;\u0026gt;\u0026lt;/script\u0026gt; \u0026lt;script\u0026gt; new Valine({ el: \u0026#39;#comments\u0026#39;, appId: \u0026#39;App-ID\u0026#39;, appKey: \u0026#39;App-Key\u0026#39;, serverURLs: \u0026#34;REST API 服务器地址\u0026#34;, placeholder: \u0026#39;说点什么吧...\u0026#39;, }); \u0026lt;/script\u0026gt; 方法二： 修改~/themes/PaperMod/layouts/partials/comments.html的内容如下\n","keywords":["hugo"],"articleBody":"Valine 一款快速、简洁且高效的无后端评论系统。服务端可以借助LeanCloud免费部署到Vercel 部署 (服务端)\n配置Valine 注册LeanCloud 账号： 进入 LeanCloud 官网注册一个国际账号。 创建一个新的应用以便使用 LeanCloud 提供的后端服务。 在Vercel 部署 (服务端) 关联github账号登陆，创建Valine应用，名称任意,例如Valine\n获取 Valine App ID 和 App Key： 在 LeanCloud 控制台中，进入你创建的应用。 在左侧导航栏中找到“设置”选项。 在应用凭证部分，复制 App ID、App Key、REST API 服务器地址 在Vercel的应用中依次进入【settings】、【environment-variables】添加上面获取的环境变量LEAN_KEY与LEAN_ID值。然后进入【deployments】【Redeploy】重新部署生效。 完成后会自动分配一个二级域名,类似xxx-xxx-xxxx-projects.vercel.app【可选】进入【settings】【domains】绑定自己的域名\n评论通知的环境设置在在进入leancloud应用的Play=== CLIENT ENGINE === 设置 添加自定义环境变量 【Redeploy】重新部署生效。\nvaline评论数据管理 点击Visit打开进入https://xxx-xxx-xxxx-projects.vercel.app 是一个独立的网页单面。 在域名后边加上/ui/register注册，默认首次注册的用户是为评论管理员，可以删除评论等操作,也可以进入LeanCloud的控制台找到数据存储=\u003e结构化数据=\u003eComment,在这里你可以对评论的数据进行管理\n在Hugo主题中引入Valine 以PaperMod主题为例，找到需要添加Valine的页面或模板文件，以下方法二选一\n方法一：在~/themes/PaperMod/layouts/_default/single.html添加以下代码\n复制替换 LeanCloud 控制台中的【设置】【应用凭证】的App ID、App Key、REST API 服务器地址值\n方法二： 修改~/themes/PaperMod/layouts/partials/comments.html的内容如下\n{{- /* Comments area start */ -}} {{- /* to add comments read =\u003e https://gohugo.io/content-management/comments/ */ -}} {{- /* Comments area end */ -}} 全局设置，修改hugo站点配置文件config.yaml将comments: true开启全站默认允许评论 运行hugo server重新生成站点后生效 单篇设置，在post文章中设置comments: false关闭评论，不加comments参数选项=全局设置 placeholder 【可选】评论框占位提示符。 serverURLs 【可选】该配置适用于国内自定义域名用户, 海外版本会自动检测(无需手动填写) v1.3.10+ 如果你遇到了 CDN 加载速度较慢的问题，你可以尝试使用其他的 CDN 地址来加载这些文件，如：\n参考 https://valine.js.org/configuration.html\nLeanCloud 国际版国内不能用？ LeanCloud 国际版国为你懂的原因，在国内是不能正常访问的。可以导出数据切换到国内版，要备案域名，所以放弃。可以通过CNAME别名绑定2个子域名解决。\n在LeanCloud控制面板的【设置】==【域名绑定】中的【API 访问域名】按提示绑定自己的域名 vercel应用中【settings】【environment-variables】添加环境变量名为LEAN_SERVER值是上面绑定自己的域名 重新部署vercel应用生效，然后【settings】【domains】中再次绑定另一个域名。外部serverURLs可直接调用它。 Valine-Admin添加邮件通知 !!! 自带的邮件提醒功能将在v1.4.0发布时下线，请使用自带邮件提醒的用户注意更改为第三方邮件提醒\n快速开始 首先需要确保 Valine 的基础功能是正常的，参考 Valine Docs。\n然后进入 Leancloud 对应的 Valine 应用中。\n点击 云引擎 -\u003e 设置 填写代码库并保存：https://github.com/zhaojun1998/Valine-Admin\n切换到部署标签页，分支使用 master，点击部署即可：\n首先是登录Leancloud，然后点击创建的应用,点击左侧的【云引擎】-\u003e【管理部署】-\u003e【创建分组】在弹出来的窗口中，填写【分组名称】，选择【web后端】，【免费版】即可\n创建完成之后，看到以下内容，然后点击【未部署】，进入到我们刚刚创建的分组之中,【设置】，配置自定义环境变量\n必选参数\nSITE_NAME : 网站名称。 SITE_URL : 网站地址, 最后不要加 / 。 SMTP_USER : SMTP 服务用户名，一般为邮箱地址。 SMTP_PASS : SMTP 密码，一般为授权码，而不是邮箱的登陆密码，请自行查询对应邮件服务商的获取方式 SMTP_SERVICE : 邮件服务提供商，支持 QQ、163、126、Gmail、\"Yahoo\"、...... : 全部支持请参考。 — 如这里没有你使用的邮件提供商，请查看自定义邮件服务器 SENDER_NAME : 寄件人名称。 配置环境变量中 TO_EMAIL 字段 : 指定站长收信邮箱，默认值为 SITE_USER。用于 SMTP 发件人与站长收件人不一致的情况下使用。\nLeanCloud 休眠策略 免费版的 LeanCloud 容器，是有强制性休眠策略的，不能 24 小时运行：\n每天必须休眠 6 个小时 30 分钟内没有外部请求，则休眠。 休眠后如果有新的外部请求实例则马上启动（但激活时此次发送邮件会失败）。 分析了一下上方的策略，如果不想付费的话，最佳使用方案就设置定时器，每天 7 - 23 点每 20 分钟访问一次，这样可以保持每天的绝大多数时间邮件服务是正常的。\n首先需要先配置下 Web 主机的域名，使用定时器时要用到。配置方式如下。\n后台登录需要账号密码，需要在这里设置，只需要填写 email、password、username，这三个字段即可, 使用 email 作为账号登陆即可。（为了安全考虑，此 email 必须为配置中的 SMTP_USER 或 TO_EMAIL， 否则不允许登录） LeanCloud 自带定时器[推荐] 首先需要添加环境变量，ADMIN_URL：Web 主机域名，如图所示（添加后重启容器才会生效）：\n然后点击云引擎 - 定时任务，新增定时器，按照图片上填写：\n注意, LeanCloud 最近更新了定时器校验规则, 需要将 Cron 表达式写为: 0 */20 7-23 * * ? !!!\n添加后要记得点击启用：\n启用成功后，每 20 分钟在云引擎的 - 应用日志中可以看到提示：\nLinux 定时器[老版本方式] 附 Linux crontab 定时器代码：\n*/20 7-23 * * * curl https://你配置的域名前缀.leanapp.cn 注 : 这里是 Linux 的 crontab 定时器，会用的自行添加即可，推荐使用上面的 LeanCloud 自带定时器。\n自定义邮件服务器 如 SMTP_SERVICE 中没有你使用的邮件服务提供商, 也可以进行自定义。\n参数配置如下:\nSMTP_HOST : 邮件服务提供商 SMTP 地址，如 qq : smtp.qq.com，此项需要自行查询或询问其服务商。 SMTP_PORT : 邮件服务提供商 SMTP 端口, 此项需要自行查询或询问其服务商。 SMTP_SECURE : 是否启用加密, 默认为 true，一般不需要设置，如有特殊请自行配置。 此项需要自行查询或询问其服务商。 注: 配置自定义邮件服务器的话，请不要同时配置 SMTP_SERVICE。当 SMTP_SERVICE 未配置时才会启用自定义邮件服务\n经测试163网易邮箱SMTP发送邮件成功\n","wordCount":"471","inLanguage":"zh","image":"https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E","datePublished":"2024-08-18T16:55:56+08:00","dateModified":"2024-08-18T16:55:56+08:00","author":{"@type":"Person","name":"admin"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://567899.xyz/post/valine/"},"publisher":{"@type":"Organization","name":"Xizi's Blog","logo":{"@type":"ImageObject","url":"https://567899.xyz/%3Clink%20/%20abs%20url%3E"}}}</script></head><body id=top><script>localStorage.getItem("pref-theme")==="dark"?document.body.classList.add("dark"):localStorage.getItem("pref-theme")==="light"?document.body.classList.remove("dark"):window.matchMedia("(prefers-color-scheme: dark)").matches&&document.body.classList.add("dark")</script><header class=header><nav class=nav><div class=logo><a href=https://567899.xyz/ accesskey=h title="Xizi's Blog (Alt + H)"><img src=https://567899.xyz/apple-touch-icon.png alt aria-label=logo height=35>Xizi's Blog</a><div class=logo-switches><button id=theme-toggle accesskey=t title="(Alt + T)"><svg id="moon" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu><li><a href=https://567899.xyz/archives/ title=归档><span>归档</span></a></li><li><a href=https://567899.xyz/tags/ title=标签><span>标签</span></a></li><li><a href=https://567899.xyz/about/ title=关于><span>关于</span></a></li><li><a href=https://567899.xyz/search/ title="搜索 (Alt + /)" accesskey=/><span>搜索</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><div class=breadcrumbs><a href=https://567899.xyz/>主页</a>&nbsp;»&nbsp;<a href=https://567899.xyz/post/>Posts</a></div><h1 class="post-title entry-hint-parent">PaperMod主题添加valine评论</h1><div class=post-meta><span title='2024-08-18 16:55:56 +0800 +0800'>八月 18, 2024</span>&nbsp;·&nbsp;admin&nbsp;|&nbsp;<a href=https://github.com/pwwq/hugo-code/tree/master/content/post/valine.md rel="noopener noreferrer" target=_blank>编辑</a></div></header><div class=toc><details open><summary accesskey=c title="(Alt + C)"><div class=details>PaperMod主题添加valine评论</div></summary><div class=inner><ul><li><a href=#%e9%85%8d%e7%bd%aevaline aria-label=配置Valine>配置Valine</a></li><li><a href=#%e5%9c%a8hugo%e4%b8%bb%e9%a2%98%e4%b8%ad%e5%bc%95%e5%85%a5valine aria-label=在Hugo主题中引入Valine>在Hugo主题中引入Valine</a></li><li><a href=#leancloud-%e5%9b%bd%e9%99%85%e7%89%88%e5%9b%bd%e5%86%85%e4%b8%8d%e8%83%bd%e7%94%a8 aria-label="LeanCloud 国际版国内不能用？">LeanCloud 国际版国内不能用？</a></li><li><a href=#valine-adminhttpsgithubcomzhaojun1998valine-admin%e6%b7%bb%e5%8a%a0%e9%82%ae%e4%bb%b6%e9%80%9a%e7%9f%a5 aria-label=Valine-Admin添加邮件通知><a href=https://github.com/zhaojun1998/Valine-Admin>Valine-Admin</a>添加邮件通知</a><ul><li><a href=#%e5%bf%ab%e9%80%9f%e5%bc%80%e5%a7%8b aria-label=快速开始>快速开始</a></li><li><a href=#leancloud-%e4%bc%91%e7%9c%a0%e7%ad%96%e7%95%a5 aria-label="LeanCloud 休眠策略">LeanCloud 休眠策略</a><ul><li><a href=#leancloud-%e8%87%aa%e5%b8%a6%e5%ae%9a%e6%97%b6%e5%99%a8%e6%8e%a8%e8%8d%90 aria-label="LeanCloud 自带定时器[推荐]">LeanCloud 自带定时器[推荐]</a></li><li><a href=#linux-%e5%ae%9a%e6%97%b6%e5%99%a8%e8%80%81%e7%89%88%e6%9c%ac%e6%96%b9%e5%bc%8f aria-label="Linux 定时器[老版本方式]">Linux 定时器[老版本方式]</a></li></ul></li><li><a href=#%e8%87%aa%e5%ae%9a%e4%b9%89%e9%82%ae%e4%bb%b6%e6%9c%8d%e5%8a%a1%e5%99%a8 aria-label=自定义邮件服务器>自定义邮件服务器</a></li></ul></li></ul></div></details></div><div class=post-content><p><a href=https://valine.js.org/>Valine</a> 一款快速、简洁且高效的无后端评论系统。服务端可以借助<a href=https://leancloud.app>LeanCloud</a>免费部署到<a href="https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fwalinejs%2Fwaline%2Ftree%2Fmain%2Fexample">Vercel 部署 (服务端)</a></p><h2 id=配置valine>配置Valine<a hidden class=anchor aria-hidden=true href=#配置valine>#</a></h2><ol><li>注册LeanCloud 账号：</li></ol><ul><li>进入 <a href=https://leancloud.app>LeanCloud 官网</a>注册一个国际账号。</li><li>创建一个新的应用以便使用 LeanCloud 提供的后端服务。</li></ul><ol start=2><li>在<a href="https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fwalinejs%2Fwaline%2Ftree%2Fmain%2Fexample">Vercel 部署 (服务端)</a></li></ol><p>关联github账号登陆，创建Valine应用，名称任意,例如<code>Valine</code></p><ol start=3><li>获取 Valine App ID 和 App Key：</li></ol><ul><li>在 LeanCloud 控制台中，进入你创建的应用。</li><li>在左侧导航栏中找到“设置”选项。</li><li>在应用凭证部分，复制 <code>App ID</code>、<code>App Key</code>、<code>REST API 服务器地址</code></li></ul><ol start=4><li>在Vercel的应用中依次进入【settings】、【environment-variables】添加上面获取的环境变量<code>LEAN_KEY</code>与<code>LEAN_ID</code>值。然后进入【deployments】【Redeploy】重新部署生效。</li></ol><p>完成后会自动分配一个二级域名,类似<code>xxx-xxx-xxxx-projects.vercel.app</code>【可选】进入【settings】【domains】绑定自己的域名</p><p><a href=https://waline.js.org/guide/features/notification.html>评论通知</a>的环境设置在在进入leancloud应用的<code>Play</code>=== <code>CLIENT ENGINE</code> === <code>设置</code> 添加<code>自定义环境变量</code> 【Redeploy】重新部署生效。</p><ol start=5><li>valine评论数据管理</li></ol><p>点击<code>Visit</code>打开进入https://xxx-xxx-xxxx-projects.vercel.app 是一个独立的网页单面。 在域名后边加上<code>/ui/register</code>注册，<strong>默认首次注册的用户是为评论管理员</strong>，可以删除评论等操作,也可以进入LeanCloud的控制台找到数据存储=>结构化数据=>Comment,在这里你可以对评论的数据进行管理</p><h2 id=在hugo主题中引入valine>在Hugo主题中引入Valine<a hidden class=anchor aria-hidden=true href=#在hugo主题中引入valine>#</a></h2><p>以<a href=https://github.com/adityatelange/hugo-PaperMod/>PaperMod</a>主题为例，找到需要添加Valine的页面或模板文件，以下方法二选一</p><p>方法一：在<code>~/themes/PaperMod/layouts/_default/single.html</code>添加以下代码</p><p>复制替换 LeanCloud 控制台中的【设置】【应用凭证】的<code>App ID</code>、<code>App Key</code>、<code>REST API 服务器地址</code>值</p><pre tabindex=0><code>&lt;div id=&#34;comments&#34;&gt;&lt;/div&gt;
+&lt;script src=&#34;https://cdn.jsdelivr.net/npm/vue&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js&#34;&gt;&lt;/script&gt;
+&lt;script&gt;
+  new Valine({
+    el: &#39;#comments&#39;,
+    appId: &#39;App-ID&#39;,
+    appKey: &#39;App-Key&#39;,
+    serverURLs: &#34;REST API 服务器地址&#34;,
+    placeholder: &#39;说点什么吧...&#39;,
+  });
+&lt;/script&gt;
+</code></pre><p>方法二： 修改<code>~/themes/PaperMod/layouts/partials/comments.html</code>的内容如下</p><pre tabindex=0><code>{{- /* Comments area start */ -}}
+{{- /* to add comments read =&gt; https://gohugo.io/content-management/comments/ */ -}}
+
+&lt;link rel=&#34;stylesheet&#34; href=&#34;https://unpkg.com/@waline/client@v2/dist/waline.css&#34; /&gt;
+
+&lt;div id=&#34;waline&#34;&gt;&lt;/div&gt;
+&lt;script type=&#34;module&#34;&gt;
+    import { init } from &#39;https://unpkg.com/@waline/client@v2/dist/waline.mjs&#39;;
+    const locale = {
+        nick: &#39;昵称&#39;,
+        nickError: &#39;请填写昵称&#39;,
+        mail: &#39;邮箱&#39;,
+        mailError: &#39;请填写正确的邮件地址&#39;,
+        link: &#39;网址&#39;,
+        optional: &#39;可选&#39;,
+        placeholder: &#39;仅填写昵称即可发表回复。\n填写邮箱可收到回复提醒。\n评论区支持 Markdown 语法及预览。\n&#39;,
+        sofa: &#39;来发评论吧~&#39;,
+        submit: &#39;提交&#39;,
+        like: &#39;喜欢&#39;,
+        cancelLike: &#39;取消喜欢&#39;,
+        reply: &#39;回复&#39;,
+        cancelReply: &#39;取消回复&#39;,
+        comment: &#39;评论&#39;,
+        refresh: &#39;刷新&#39;,
+        more: &#39;加载更多...&#39;,
+        preview: &#39;预览&#39;,
+        emoji: &#39;表情&#39;,
+        uploadImage: &#39;上传图片&#39;,
+        seconds: &#39;秒前&#39;,
+        minutes: &#39;分钟前&#39;,
+        hours: &#39;小时前&#39;,
+        days: &#39;天前&#39;,
+        now: &#39;刚刚&#39;,
+        uploading: &#39;正在上传&#39;,
+        login: &#39;管理&#39;,
+        logout: &#39;退出&#39;,
+        admin: &#39;博主&#39;,
+        sticky: &#39;置顶&#39;,
+        word: &#39;字&#39;,
+        wordHint: &#39;评论字数应在 $0 到 $1 字之间！\n当前字数：$2&#39;,
+        anonymous: &#39;匿名&#39;,
+        level0: &#39;潜水&#39;,
+        level1: &#39;冒泡&#39;,
+        level2: &#39;吐槽&#39;,
+        level3: &#39;活跃&#39;,
+        level4: &#39;话痨&#39;,
+        level5: &#39;传说&#39;,
+        gif: &#39;表情包&#39;,
+        gifSearchPlaceholder: &#39;搜索表情包&#39;,
+        profile: &#39;个人资料&#39;,
+        approved: &#39;通过&#39;,
+        waiting: &#39;待审核&#39;,
+        spam: &#39;垃圾&#39;,
+        unsticky: &#39;取消置顶&#39;,
+        oldest: &#39;按倒序&#39;,
+        latest: &#39;按正序&#39;,
+        hottest: &#39;按热度&#39;,
+        reactionTitle: &#39;你认为这篇文章怎么样？&#39;,
+    };
+    init({
+        // options
+        el: &#39;#waline&#39;,
+        serverURL: &#39;REST API 服务器地址&#39;,
+        locale,
+        emoji: false,     // 表情
+        search: false,    // GIF 表情包
+        reaction: false,  // 文章反应
+        requiredMeta: [&#39;nick&#39;],
+        pageSize: 10,
+        imageUploader: false,
+        copyright: true,
+        pageview: true,
+        like: false,
+    });
+&lt;/script&gt;
+
+{{- /* Comments area end */ -}}
+</code></pre><ol><li>全局设置，修改hugo站点配置文件<code>config.yaml</code>将<code>comments: true</code>开启全站默认允许评论 运行<code>hugo server</code>重新生成站点后生效</li><li>单篇设置，在post文章中设置<code>comments: false</code>关闭评论，不加<code>comments</code>参数选项=全局设置</li></ol><ul><li><code>placeholder</code> 【可选】评论框占位提示符。</li><li><code>serverURLs</code> 【可选】该配置适用于国内自定义域名用户, 海外版本会自动检测(无需手动填写) v1.3.10+</li></ul><p>如果你遇到了 CDN 加载速度较慢的问题，你可以尝试使用其他的 CDN 地址来加载这些文件，如：</p><pre tabindex=0><code>&lt;script src=&#34;https://unpkg.com/vue&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://unpkg.com/valine/dist/Valine.min.js&#34;&gt;&lt;/script&gt;
+</code></pre><p>参考 <a href=https://valine.js.org/configuration.html>https://valine.js.org/configuration.html</a></p><h2 id=leancloud-国际版国内不能用>LeanCloud 国际版国内不能用？<a hidden class=anchor aria-hidden=true href=#leancloud-国际版国内不能用>#</a></h2><p>LeanCloud 国际版国为你懂的原因，在国内是不能正常访问的。可以导出数据切换到国内版，要备案域名，所以放弃。可以通过CNAME别名绑定2个子域名解决。</p><ol><li>在LeanCloud控制面板的【设置】==【域名绑定】中的【API 访问域名】按提示绑定自己的域名</li><li>vercel应用中【settings】【environment-variables】添加环境变量名为<code>LEAN_SERVER</code>值是上面绑定自己的域名</li><li>重新部署vercel应用生效，然后【settings】【domains】中再次绑定另一个域名。外部<code>serverURLs</code>可直接调用它。</li></ol><h2 id=valine-adminhttpsgithubcomzhaojun1998valine-admin添加邮件通知><a href=https://github.com/zhaojun1998/Valine-Admin>Valine-Admin</a>添加邮件通知<a hidden class=anchor aria-hidden=true href=#valine-adminhttpsgithubcomzhaojun1998valine-admin添加邮件通知>#</a></h2><p>!!! 自带的邮件提醒功能将在v1.4.0发布时下线，请使用自带邮件提醒的用户注意更改为第三方邮件提醒</p><h3 id=快速开始>快速开始<a hidden class=anchor aria-hidden=true href=#快速开始>#</a></h3><p>首先需要确保 Valine 的基础功能是正常的，参考 <a href=https://valine.js.org>Valine Docs</a>。</p><p>然后进入 <a href=https://leancloud.cn/dashboard/applist.html#/apps>Leancloud</a> 对应的 Valine 应用中。</p><p>点击 <code>云引擎 -> 设置</code> 填写代码库并保存：<code>https://github.com/zhaojun1998/Valine-Admin</code></p><p>切换到部署标签页，分支使用 master，点击部署即可：</p><p>首先是登录Leancloud，然后点击创建的应用,点击左侧的【云引擎】->【管理部署】->【创建分组】在弹出来的窗口中，填写【分组名称】，选择【web后端】，【免费版】即可</p><p>创建完成之后，看到以下内容，然后点击【未部署】，进入到我们刚刚创建的分组之中,【设置】，配置自定义环境变量</p><p><strong>必选参数</strong></p><ul><li><code>SITE_NAME</code> : 网站名称。</li><li><code>SITE_URL</code> : 网站地址, <strong>最后不要加 <code>/</code> 。</strong></li><li><code>SMTP_USER</code> : SMTP 服务用户名，一般为邮箱地址。</li><li><code>SMTP_PASS</code> : SMTP 密码，一般为授权码，而不是邮箱的登陆密码，请自行查询对应邮件服务商的获取方式</li><li><code>SMTP_SERVICE</code> : 邮件服务提供商，支持 <code>QQ</code>、<code>163</code>、<code>126</code>、<code>Gmail</code>、<code>"Yahoo"</code>、<code>......</code> : <a href=https://github.com/nodemailer/nodemailer/blob/master/lib/well-known/services.json>全部支持请参考</a>。 &mdash; <em>如这里没有你使用的邮件提供商，请查看<a href=/%E9%AB%98%E7%BA%A7%E9%85%8D%E7%BD%AE.md#%E8%87%AA%E5%AE%9A%E4%B9%89%E9%82%AE%E4%BB%B6%E6%9C%8D%E5%8A%A1%E5%99%A8>自定义邮件服务器</a></em></li><li><code>SENDER_NAME</code> : 寄件人名称。</li></ul><p>配置环境变量中 <code>TO_EMAIL</code> 字段 : 指定站长收信邮箱，默认值为 <code>SITE_USER</code>。用于 SMTP 发件人与站长收件人不一致的情况下使用。</p><h3 id=leancloud-休眠策略>LeanCloud 休眠策略<a hidden class=anchor aria-hidden=true href=#leancloud-休眠策略>#</a></h3><p>免费版的 LeanCloud 容器，是有强制性休眠策略的，不能 24 小时运行：</p><ul><li>每天必须休眠 6 个小时</li><li>30 分钟内没有外部请求，则休眠。</li><li>休眠后如果有新的外部请求实例则马上启动（但激活时此次发送邮件会失败）。</li></ul><p>分析了一下上方的策略，如果不想付费的话，最佳使用方案就设置定时器，每天 7 - 23 点每 20 分钟访问一次，这样可以保持每天的绝大多数时间邮件服务是正常的。</p><p>首先需要先配置下 Web 主机的域名，使用定时器时要用到。配置方式如下。</p><p>后台登录需要账号密码，需要在这里设置，只需要填写 <code>email</code>、<code>password</code>、<code>username</code>，这三个字段即可, 使用 <code>email</code> 作为账号登陆即可。（为了安全考虑，此 <code>email</code> 必须为配置中的 <code>SMTP_USER</code> 或 <code>TO_EMAIL</code>， 否则不允许登录）</p><h4 id=leancloud-自带定时器推荐>LeanCloud 自带定时器[推荐]<a hidden class=anchor aria-hidden=true href=#leancloud-自带定时器推荐>#</a></h4><p>首先需要添加环境变量，<code>ADMIN_URL</code>：<code>Web 主机域名</code>，如图所示（添加后重启容器才会生效）：</p><p>然后点击云引擎 - 定时任务，新增定时器，按照图片上填写：</p><blockquote><p>注意, LeanCloud 最近更新了定时器校验规则, 需要将 Cron 表达式写为: <code>0 */20 7-23 * * ?</code> !!!</p></blockquote><p>添加后要记得<strong>点击启用</strong>：</p><p><img loading=lazy src=https://cdn.jun6.net/201812011434_118.png alt></p><p>启用成功后，每 20 分钟在云引擎的 - 应用日志中可以看到提示：</p><h4 id=linux-定时器老版本方式>Linux 定时器[老版本方式]<a hidden class=anchor aria-hidden=true href=#linux-定时器老版本方式>#</a></h4><p>附 <code>Linux crontab</code> 定时器代码：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>*/20 7-23 * * * curl https://你配置的域名前缀.leanapp.cn
+</span></span></code></pre></div><blockquote><p>注 : 这里是 <code>Linux</code> 的 <code>crontab</code> 定时器，会用的自行添加即可，推荐使用上面的 LeanCloud 自带定时器。</p></blockquote><h3 id=自定义邮件服务器>自定义邮件服务器<a hidden class=anchor aria-hidden=true href=#自定义邮件服务器>#</a></h3><p>如 <code>SMTP_SERVICE</code> 中没有你使用的邮件服务提供商, 也可以进行自定义。</p><p>参数配置如下:</p><ul><li><code>SMTP_HOST</code> : 邮件服务提供商 SMTP 地址，如 qq : <code>smtp.qq.com</code>，<em>此项需要自行查询或询问其服务商</em>。</li><li><code>SMTP_PORT</code> : 邮件服务提供商 SMTP 端口, <em>此项需要自行查询或询问其服务商</em>。</li><li><code>SMTP_SECURE</code> : 是否启用加密, 默认为 <code>true</code>，一般不需要设置，如有特殊请自行配置。 <em>此项需要自行查询或询问其服务商</em>。</li></ul><blockquote><p>注: 配置自定义邮件服务器的话，请不要同时配置 SMTP_SERVICE。当 SMTP_SERVICE 未配置时才会启用自定义邮件服务</p></blockquote><p>经测试163网易邮箱SMTP发送邮件成功</p></div><footer class=post-footer><ul class=post-tags><li><a href=https://567899.xyz/tags/hugo/>Hugo</a></li></ul><nav class=paginav><a class=prev href=https://567899.xyz/post/debian-gnome-ibus-table-wubi/><span class=title>« 上一页</span><br><span>Debian12 Gnome桌面安装ibus五笔输入法</span>
+</a><a class=next href=https://567899.xyz/post/alist-vaultwarden-fly-io/><span class=title>下一页 »</span><br><span>fly.io部署alist与vaultwarden版本的Bitwarden</span></a></nav><ul class=share-buttons><li><a target=_blank rel="noopener noreferrer" aria-label="share PaperMod主题添加valine评论 on x" href="https://x.com/intent/tweet/?text=PaperMod%e4%b8%bb%e9%a2%98%e6%b7%bb%e5%8a%a0valine%e8%af%84%e8%ae%ba&amp;url=https%3a%2f%2f567899.xyz%2fpost%2fvaline%2f&amp;hashtags=hugo"><svg viewBox="0 0 512 512" height="30" width="30" fill="currentcolor"><path d="M512 62.554V449.446C512 483.97 483.97 512 449.446 512H62.554C28.03 512 0 483.97.0 449.446V62.554C0 28.03 28.029.0 62.554.0H449.446C483.971.0 512 28.03 512 62.554zM269.951 190.75 182.567 75.216H56L207.216 272.95 63.9 436.783h61.366L235.9 310.383l96.667 126.4H456L298.367 228.367l134-153.151H371.033zM127.633 110h36.468l219.38 290.065H349.5z"/></svg></a></li><li><a target=_blank rel="noopener noreferrer" aria-label="share PaperMod主题添加valine评论 on linkedin" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2f567899.xyz%2fpost%2fvaline%2f&amp;title=PaperMod%e4%b8%bb%e9%a2%98%e6%b7%bb%e5%8a%a0valine%e8%af%84%e8%ae%ba&amp;summary=PaperMod%e4%b8%bb%e9%a2%98%e6%b7%bb%e5%8a%a0valine%e8%af%84%e8%ae%ba&amp;source=https%3a%2f%2f567899.xyz%2fpost%2fvaline%2f"><svg viewBox="0 0 512 512" height="30" width="30" fill="currentcolor"><path d="M449.446.0C483.971.0 512 28.03 512 62.554v386.892C512 483.97 483.97 512 449.446 512H62.554c-34.524.0-62.554-28.03-62.554-62.554V62.554c0-34.524 28.029-62.554 62.554-62.554h386.892zM160.461 423.278V197.561h-75.04v225.717h75.04zm270.539.0V293.839c0-69.333-37.018-101.586-86.381-101.586-39.804.0-57.634 21.891-67.617 37.266v-31.958h-75.021c.995 21.181.0 225.717.0 225.717h75.02V297.222c0-6.748.486-13.492 2.474-18.315 5.414-13.475 17.767-27.434 38.494-27.434 27.135.0 38.007 20.707 38.007 51.037v120.768H431zM123.448 88.722C97.774 88.722 81 105.601 81 127.724c0 21.658 16.264 39.002 41.455 39.002h.484c26.165.0 42.452-17.344 42.452-39.002-.485-22.092-16.241-38.954-41.943-39.002z"/></svg></a></li><li><a target=_blank rel="noopener noreferrer" aria-label="share PaperMod主题添加valine评论 on reddit" href="https://reddit.com/submit?url=https%3a%2f%2f567899.xyz%2fpost%2fvaline%2f&title=PaperMod%e4%b8%bb%e9%a2%98%e6%b7%bb%e5%8a%a0valine%e8%af%84%e8%ae%ba"><svg viewBox="0 0 512 512" height="30" width="30" fill="currentcolor"><path d="M449.446.0C483.971.0 512 28.03 512 62.554v386.892C512 483.97 483.97 512 449.446 512H62.554c-34.524.0-62.554-28.03-62.554-62.554V62.554c0-34.524 28.029-62.554 62.554-62.554h386.892zM446 265.638c0-22.964-18.616-41.58-41.58-41.58-11.211.0-21.361 4.457-28.841 11.666-28.424-20.508-67.586-33.757-111.204-35.278l18.941-89.121 61.884 13.157c.756 15.734 13.642 28.29 29.56 28.29 16.407.0 29.706-13.299 29.706-29.701.0-16.403-13.299-29.702-29.706-29.702-11.666.0-21.657 6.792-26.515 16.578l-69.105-14.69c-1.922-.418-3.939-.042-5.585 1.036-1.658 1.073-2.811 2.761-3.224 4.686l-21.152 99.438c-44.258 1.228-84.046 14.494-112.837 35.232-7.468-7.164-17.589-11.591-28.757-11.591-22.965.0-41.585 18.616-41.585 41.58.0 16.896 10.095 31.41 24.568 37.918-.639 4.135-.99 8.328-.99 12.576.0 63.977 74.469 115.836 166.33 115.836s166.334-51.859 166.334-115.836c0-4.218-.347-8.387-.977-12.493 14.564-6.47 24.735-21.034 24.735-38.001zM326.526 373.831c-20.27 20.241-59.115 21.816-70.534 21.816-11.428.0-50.277-1.575-70.522-21.82-3.007-3.008-3.007-7.882.0-10.889 3.003-2.999 7.882-3.003 10.885.0 12.777 12.781 40.11 17.317 59.637 17.317 19.522.0 46.86-4.536 59.657-17.321 3.016-2.999 7.886-2.995 10.885.008 3.008 3.011 3.003 7.882-.008 10.889zm-5.23-48.781c-16.373.0-29.701-13.324-29.701-29.698.0-16.381 13.328-29.714 29.701-29.714 16.378.0 29.706 13.333 29.706 29.714.0 16.374-13.328 29.698-29.706 29.698zM160.91 295.348c0-16.381 13.328-29.71 29.714-29.71 16.369.0 29.689 13.329 29.689 29.71.0 16.373-13.32 29.693-29.689 29.693-16.386.0-29.714-13.32-29.714-29.693z"/></svg></a></li><li><a target=_blank rel="noopener noreferrer" aria-label="share PaperMod主题添加valine评论 on facebook" href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2f567899.xyz%2fpost%2fvaline%2f"><svg viewBox="0 0 512 512" height="30" width="30" fill="currentcolor"><path d="M449.446.0C483.971.0 512 28.03 512 62.554v386.892C512 483.97 483.97 512 449.446 512H342.978V319.085h66.6l12.672-82.621h-79.272v-53.617c0-22.603 11.073-44.636 46.58-44.636H425.6v-70.34s-32.71-5.582-63.982-5.582c-65.288.0-107.96 39.569-107.96 111.204v62.971h-72.573v82.621h72.573V512h-191.104c-34.524.0-62.554-28.03-62.554-62.554V62.554c0-34.524 28.029-62.554 62.554-62.554h386.892z"/></svg></a></li><li><a target=_blank rel="noopener noreferrer" aria-label="share PaperMod主题添加valine评论 on whatsapp" href="https://api.whatsapp.com/send?text=PaperMod%e4%b8%bb%e9%a2%98%e6%b7%bb%e5%8a%a0valine%e8%af%84%e8%ae%ba%20-%20https%3a%2f%2f567899.xyz%2fpost%2fvaline%2f"><svg viewBox="0 0 512 512" height="30" width="30" fill="currentcolor"><path d="M449.446.0C483.971.0 512 28.03 512 62.554v386.892C512 483.97 483.97 512 449.446 512H62.554c-34.524.0-62.554-28.03-62.554-62.554V62.554c0-34.524 28.029-62.554 62.554-62.554h386.892zm-58.673 127.703c-33.842-33.881-78.847-52.548-126.798-52.568-98.799.0-179.21 80.405-179.249 179.234-.013 31.593 8.241 62.428 23.927 89.612l-25.429 92.884 95.021-24.925c26.181 14.28 55.659 21.807 85.658 21.816h.074c98.789.0 179.206-80.413 179.247-179.243.018-47.895-18.61-92.93-52.451-126.81zM263.976 403.485h-.06c-26.734-.01-52.954-7.193-75.828-20.767l-5.441-3.229-56.386 14.792 15.05-54.977-3.542-5.637c-14.913-23.72-22.791-51.136-22.779-79.287.033-82.142 66.867-148.971 149.046-148.971 39.793.014 77.199 15.531 105.329 43.692 28.128 28.16 43.609 65.592 43.594 105.4-.034 82.149-66.866 148.983-148.983 148.984zm81.721-111.581c-4.479-2.242-26.499-13.075-30.604-14.571-4.105-1.495-7.091-2.241-10.077 2.241-2.986 4.483-11.569 14.572-14.182 17.562-2.612 2.988-5.225 3.364-9.703 1.12-4.479-2.241-18.91-6.97-36.017-22.23C231.8 264.15 222.81 249.484 220.198 245s-.279-6.908 1.963-9.14c2.016-2.007 4.48-5.232 6.719-7.847 2.24-2.615 2.986-4.484 4.479-7.472 1.493-2.99.747-5.604-.374-7.846-1.119-2.241-10.077-24.288-13.809-33.256-3.635-8.733-7.327-7.55-10.077-7.688-2.609-.13-5.598-.158-8.583-.158-2.986.0-7.839 1.121-11.944 5.604-4.105 4.484-15.675 15.32-15.675 37.364.0 22.046 16.048 43.342 18.287 46.332 2.24 2.99 31.582 48.227 76.511 67.627 10.685 4.615 19.028 7.371 25.533 9.434 10.728 3.41 20.492 2.929 28.209 1.775 8.605-1.285 26.499-10.833 30.231-21.295 3.732-10.464 3.732-19.431 2.612-21.298-1.119-1.869-4.105-2.99-8.583-5.232z"/></svg></a></li><li><a target=_blank rel="noopener noreferrer" aria-label="share PaperMod主题添加valine评论 on telegram" href="https://telegram.me/share/url?text=PaperMod%e4%b8%bb%e9%a2%98%e6%b7%bb%e5%8a%a0valine%e8%af%84%e8%ae%ba&amp;url=https%3a%2f%2f567899.xyz%2fpost%2fvaline%2f"><svg viewBox="2 2 28 28" height="30" width="30" fill="currentcolor"><path d="M26.49 29.86H5.5a3.37 3.37.0 01-2.47-1 3.35 3.35.0 01-1-2.47V5.48A3.36 3.36.0 013 3 3.37 3.37.0 015.5 2h21A3.38 3.38.0 0129 3a3.36 3.36.0 011 2.46V26.37a3.35 3.35.0 01-1 2.47 3.38 3.38.0 01-2.51 1.02zm-5.38-6.71a.79.79.0 00.85-.66L24.73 9.24a.55.55.0 00-.18-.46.62.62.0 00-.41-.17q-.08.0-16.53 6.11a.59.59.0 00-.41.59.57.57.0 00.43.52l4 1.24 1.61 4.83a.62.62.0 00.63.43.56.56.0 00.4-.17L16.54 20l4.09 3A.9.9.0 0021.11 23.15zM13.8 20.71l-1.21-4q8.72-5.55 8.78-5.55c.15.0.23.0.23.16a.18.18.0 010 .06s-2.51 2.3-7.52 6.8z"/></svg></a></li><li><a target=_blank rel="noopener noreferrer" aria-label="share PaperMod主题添加valine评论 on ycombinator" href="https://news.ycombinator.com/submitlink?t=PaperMod%e4%b8%bb%e9%a2%98%e6%b7%bb%e5%8a%a0valine%e8%af%84%e8%ae%ba&u=https%3a%2f%2f567899.xyz%2fpost%2fvaline%2f"><svg width="30" height="30" viewBox="0 0 512 512" fill="currentcolor" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"><path d="M449.446.0C483.971.0 512 28.03 512 62.554V449.446C512 483.97 483.97 512 449.446 512H62.554C28.03 512 0 483.97.0 449.446V62.554C0 28.03 28.029.0 62.554.0H449.446zM183.8767 87.9921h-62.034L230.6673 292.4508V424.0079h50.6655V292.4508L390.1575 87.9921H328.1233L256 238.2489z"/></svg></a></li></ul></footer><link rel=stylesheet href=https://unpkg.com/@waline/client@v2/dist/waline.css><div id=waline></div><script type=module>
+    import { init } from 'https://unpkg.com/@waline/client@v2/dist/waline.mjs';
+    const locale = {
+        nick: '昵称(必填)',
+        nickError: '请填写昵称',
+        mail: '邮箱',
+        mailError: '请填写正确的邮件地址',
+        link: '网址',
+        optional: '可选',
+        placeholder: '说点什么吧...\n填写邮箱可收到回复提醒。\n评论区支持 Markdown 语法及预览。\n',
+        sofa: '来发评论吧~',
+        submit: '提交',
+        like: '喜欢',
+        cancelLike: '取消喜欢',
+        reply: '回复',
+        cancelReply: '取消回复',
+        comment: '评论',
+        refresh: '刷新',
+        more: '加载更多...',
+        preview: '预览',
+        emoji: '表情',
+        uploadImage: '上传图片',
+        seconds: '秒前',
+        minutes: '分钟前',
+        hours: '小时前',
+        days: '天前',
+        now: '刚刚',
+        uploading: '正在上传',
+        login: '登录',
+        logout: '退出',
+        admin: '博主',
+        sticky: '置顶',
+        word: '字',
+        wordHint: '评论字数应在 $0 到 $1 字之间！\n当前字数：$2',
+        anonymous: '匿名',
+        level0: '潜水',
+        level1: '冒泡',
+        level2: '吐槽',
+        level3: '活跃',
+        level4: '话痨',
+        level5: '传说',
+        gif: '表情包',
+        gifSearchPlaceholder: '搜索表情包',
+        profile: '个人资料',
+        approved: '通过',
+        waiting: '待审核',
+        spam: '垃圾',
+        unsticky: '取消置顶',
+        oldest: '按倒序',
+        latest: '按正序',
+        hottest: '按热度',
+        reactionTitle: '你认为这篇文章怎么样？',
+    };
+    init({
+        
+        el: '#waline',
+        serverURL: 'https://comments.567899.xyz',
+        locale,
+        emoji: true,     
+        search: true,    
+        reaction: false,  
+        requiredMeta: ['nick'],
+        pageSize: 10,
+        imageUploader: true,
+        copyright: true,
+        pageview: true,
+        like: true,
+    });
+</script></article></main><footer class=footer><span>&copy; 2024 <a href=https://567899.xyz/>Xizi's Blog</a></span> ·
+<span>Powered by
+<a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
+        <a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg>
+</a><script>let menu=document.getElementById("menu");menu&&(menu.scrollLeft=localStorage.getItem("menu-scroll-position"),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}),document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{document.body.className.includes("dark")?(document.body.classList.remove("dark"),localStorage.setItem("pref-theme","light")):(document.body.classList.add("dark"),localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="复制";function s(){t.innerHTML="已复制！",setTimeout(()=>{t.innerHTML="复制"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>

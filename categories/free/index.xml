@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Free on Xizi&#39;s Blog</title>
+    <link>https://567899.xyz/categories/free/</link>
+    <description>Recent content in Free on Xizi&#39;s Blog</description>
+    <image>
+      <title>Xizi&#39;s Blog</title>
+      <url>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- 0.134.2</generator>
+    <language>zh</language>
+    <lastBuildDate>Thu, 10 Oct 2019 01:37:56 +0800</lastBuildDate>
+    <atom:link href="https://567899.xyz/categories/free/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>甲骨文Oracle通过API或Chrome脚本获得免费VPS</title>
+      <link>https://567899.xyz/post/oracle/</link>
+      <pubDate>Thu, 10 Oct 2019 01:37:56 +0800</pubDate>
+      <guid>https://567899.xyz/post/oracle/</guid>
+      <description>&lt;p&gt;甲骨文Oracle通过API或Chrome脚本获得2台免费VPS及DD成win7或debian&lt;/p&gt;
+&lt;p&gt;收获Oracle云资源&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;m&#34;&gt;2&lt;/span&gt; 个 Autonomous Database （自主数据仓库或自主事务处理），每个 Autonomous Database 都有 &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt; 个 OCPU 和 &lt;span class=&#34;m&#34;&gt;20&lt;/span&gt; GB 存储资源；
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;m&#34;&gt;2&lt;/span&gt; 个 Compute VM，每个 Compute VM 有 1⁄8 OCPU 和 &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt; GB 内存；
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;m&#34;&gt;2&lt;/span&gt; 个 Block Volumes，总共 &lt;span class=&#34;m&#34;&gt;100&lt;/span&gt; GB，最多 &lt;span class=&#34;m&#34;&gt;5&lt;/span&gt; 个免费备份；
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;m&#34;&gt;10&lt;/span&gt; GB Object Storage、10 GB Archive Storage 和每月 &lt;span class=&#34;m&#34;&gt;50000&lt;/span&gt; 个 API 请求；
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;m&#34;&gt;1&lt;/span&gt; 个 Load Balancer，10 Mbps 带宽；
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;每月 &lt;span class=&#34;m&#34;&gt;10&lt;/span&gt; TB 的出站数据传输；
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;m&#34;&gt;5&lt;/span&gt; 亿个摄取数据点和 &lt;span class=&#34;m&#34;&gt;10&lt;/span&gt; 亿个服务监测数据点；
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;每月传递 &lt;span class=&#34;m&#34;&gt;100&lt;/span&gt; 万个通知的选项和每月 &lt;span class=&#34;m&#34;&gt;1000&lt;/span&gt; 封电子邮件。
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;进入 oracle官网 的 &lt;a href=&#34;https://www.oracle.com/cn/cloud/free/&#34;&gt;活动页面&lt;/a&gt; 注册oracle cloud账号&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;创建免费计算实例&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;可以手动创建，也可以使用API或者浏览器脚本刷鸡。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;通过oracle API方式刷鸡&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;依次打开【计算】【实例】【创建实例】&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://567899.xyz/images/oracle_new_vm.png&#34; alt=&#34;&#34;  /&gt;
+&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

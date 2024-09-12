@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>WireGuard on Xizi&#39;s Blog</title>
+    <link>https://567899.xyz/tags/wireguard/</link>
+    <description>Recent content in WireGuard on Xizi&#39;s Blog</description>
+    <image>
+      <title>Xizi&#39;s Blog</title>
+      <url>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- 0.134.2</generator>
+    <language>zh</language>
+    <lastBuildDate>Fri, 08 Feb 2019 01:37:56 +0800</lastBuildDate>
+    <atom:link href="https://567899.xyz/tags/wireguard/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>手动配置安装WireGuard服务端</title>
+      <link>https://567899.xyz/post/wireguard-service-install/</link>
+      <pubDate>Fri, 08 Feb 2019 01:37:56 +0800</pubDate>
+      <guid>https://567899.xyz/post/wireguard-service-install/</guid>
+      <description>&lt;h2 id=&#34;wireguard简单介绍&#34;&gt;WireGuard简单介绍&lt;/h2&gt;
+&lt;p&gt;WireGuard是通过UDP协议传输数据的，这意味着它可以搭建在被墙的服务器上使用，复活被墙IP！&lt;/p&gt;
+&lt;p&gt;更安全的加密&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Curve25519 目前最高水平的秘钥交换算法。&lt;/li&gt;
+&lt;li&gt;ChaCha20 对称加解密算法，比 AES 更快更高效。&lt;/li&gt;
+&lt;li&gt;Poly1305 是一种 MAC (adminssage Authentication Code) 标准，用于验证数据的完整性和消息的真实性。&lt;/li&gt;
+&lt;li&gt;BLAKE2 一种更安全的 HASH 算法（类似的有 SHA1, SHA256, MD5）&lt;/li&gt;
+&lt;li&gt;SipHash24 另一种 HASH 算法。&lt;/li&gt;
+&lt;li&gt;HKDF 一种秘钥衍生算法。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;前提要求&#34;&gt;前提要求&lt;/h2&gt;
+&lt;p&gt;系统要求：Debian 8 / 9、Ubuntu 14.04 / 16.04 / 18.04 / 18.10
+服务器要求：OpenVZ 虚拟化的服务器不支持安装该VPN，其他虚拟化均可。
+注意：如果你用的是 Vultr、DO，且你本地没有 IPv6 地址,那就不要勾选 Enable IPv6否则可能客户端链接时可能会出错。
+&lt;a href=&#34;https://www.wireguard.com/install/#red-hat-enterprise-linux-centos-module-tools&#34;&gt;CentOS7官方安装代码&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

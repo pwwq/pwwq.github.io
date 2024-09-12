@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Git on Xizi&#39;s Blog</title>
+    <link>https://567899.xyz/tags/git/</link>
+    <description>Recent content in Git on Xizi&#39;s Blog</description>
+    <image>
+      <title>Xizi&#39;s Blog</title>
+      <url>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- 0.134.2</generator>
+    <language>zh</language>
+    <lastBuildDate>Fri, 24 Jun 2016 01:37:56 +0800</lastBuildDate>
+    <atom:link href="https://567899.xyz/tags/git/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Git push/pull提交记住保存用户名和密码</title>
+      <link>https://567899.xyz/post/git-push-pull-password/</link>
+      <pubDate>Fri, 24 Jun 2016 01:37:56 +0800</pubDate>
+      <guid>https://567899.xyz/post/git-push-pull-password/</guid>
+      <description>&lt;p&gt;Git可以将用户名，密码和仓库链接保存在硬盘中，而不用在每次push的时候都输入密码。保存密码到硬盘一条命令就可以&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git config credential.helper store
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;当git push的时候输入一次用户名和密码就会被记录,以后git pull/push就不再需要填写用户名密码了&lt;/p&gt;
+&lt;p&gt;这样保存的密码是明文的，保存在用户目录~的.git-credentials文件中&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;cat ~/.git-credentials
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Bing on Xizi&#39;s Blog</title>
+    <link>https://567899.xyz/tags/bing/</link>
+    <description>Recent content in Bing on Xizi&#39;s Blog</description>
+    <image>
+      <title>Xizi&#39;s Blog</title>
+      <url>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- 0.134.2</generator>
+    <language>zh</language>
+    <lastBuildDate>Thu, 09 Mar 2023 18:37:56 +0800</lastBuildDate>
+    <atom:link href="https://567899.xyz/tags/bing/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Edge浏览器、Chrome使用扩展Header Editor使用新必应Bing AI</title>
+      <link>https://567899.xyz/post/header-editor-bing/</link>
+      <pubDate>Thu, 09 Mar 2023 18:37:56 +0800</pubDate>
+      <guid>https://567899.xyz/post/header-editor-bing/</guid>
+      <description>&lt;h2 id=&#34;申请加入bing-ai&#34;&gt;申请加入Bing AI&lt;/h2&gt;
+&lt;p&gt;通过&lt;a href=&#34;https://www.bing.com/new&#34;&gt;申请链接&lt;/a&gt;加入Bing AI等待获得批准通过&lt;/p&gt;
+&lt;h2 id=&#34;浏览器安装header-editor规则&#34;&gt;浏览器安装Header Editor规则&lt;/h2&gt;
+&lt;p&gt;安装扩展Header Editor&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;https://microsoftedge.microsoft.com/addons/detail/header-editor/afopnekiinpekooejpchnkgfffaeceko&#34;&gt;Microsoft Edge&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://chrome.google.com/webstore/detail/header-editor/eningockdidmgiojffjmkdblpjocbhgh&#34;&gt;Chrome&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://addons.mozilla.org/en-US/firefox/addon/header-editor/&#34;&gt;Mozilla&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;添加2条Header Editor规则，阻止&lt;a href=&#34;https://www.bing.com&#34;&gt;https://www.bing.com&lt;/a&gt;跳转到&lt;a href=&#34;https://cn.bing.com&#34;&gt;https://cn.bing.com&lt;/a&gt;方法如下&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;^http&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;s?&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;://www&lt;span class=&#34;se&#34;&gt;\.&lt;/span&gt;bing&lt;span class=&#34;se&#34;&gt;\.&lt;/span&gt;com/&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;.*&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;头部名称&lt;code&gt;x-forwarded-for&lt;/code&gt;头内容&lt;code&gt;8.8.8.8&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://567899.xyz/images/Header_Editor_Bing_1.png&#34; alt=&#34;&#34;  /&gt;
+&lt;/p&gt;
+&lt;p&gt;匹配规则&lt;code&gt;https://cn.bing.com&lt;/code&gt;重定向至&lt;code&gt;https://www.bing.com&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://567899.xyz/images/Header_Editor_Bing_2.png&#34; alt=&#34;&#34;  /&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;保存规则&lt;/strong&gt;后就能愉快的使用&lt;a href=&#34;https://www.bing.com&#34;&gt;https://www.bing.com&lt;/a&gt;  不需要魔法了。&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
