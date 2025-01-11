@@ -9,7 +9,7 @@
       <url>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
-    <generator>Hugo -- 0.134.2</generator>
+    <generator>Hugo -- 0.123.8</generator>
     <language>zh</language>
     <lastBuildDate>Wed, 15 May 2019 01:37:56 +0800</lastBuildDate>
     <atom:link href="https://567899.xyz/tags/ubuntu/index.xml" rel="self" type="application/rss+xml" />
@@ -18,257 +18,116 @@
       <link>https://567899.xyz/post/linux-vps-dd-debian-ubuntu-centos/</link>
       <pubDate>Wed, 15 May 2019 01:37:56 +0800</pubDate>
       <guid>https://567899.xyz/post/linux-vps-dd-debian-ubuntu-centos/</guid>
-      <description>&lt;p&gt;背景:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;适用于由GRUB引导的CentOS,Ubuntu,Debian系统.&lt;/li&gt;
-&lt;li&gt;使用官方发行版去掉模板预装的软件.&lt;/li&gt;
-&lt;li&gt;同时也可以解决内核版本与软件不兼容的问题。&lt;/li&gt;
-&lt;li&gt;只要有root权限,还您一个纯净的系统。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;注意:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;全自动安装默认root密码:MoeClub.org&lt;/li&gt;
-&lt;li&gt;安装完成后请立即更改密码.&lt;/li&gt;
-&lt;li&gt;能够全自动重装Debian/Ubuntu/CentOS等系统.&lt;/li&gt;
-&lt;li&gt;同时提供dd安装镜像功能,例如: 全自动无救援dd安装windows系统&lt;/li&gt;
-&lt;li&gt;全自动安装CentOS时默认提供VNC功能,可使用VNC Viewer查看进度,&lt;/li&gt;
-&lt;li&gt;VNC端口为1或者5901,可自行尝试连接.(成功后VNC功能会消失.)&lt;/li&gt;
-&lt;li&gt;目前CentOS系统只支持任意版本重装为 CentOS 6.x 及以下版本.&lt;/li&gt;
-&lt;li&gt;特别注意:OpenVZ构架不适用.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;依赖包:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#二进制文件    Debian/Ubuntu    RedHat/CentOS&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;iconv         &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;libc-bin&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;       &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;glibc-common&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;xz            &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;xz-utils&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;       &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;xz&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;awk           &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;gawk&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;           &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;gawk&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sed           &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;sed&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;            &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;sed&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;file          &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;file&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;           &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;file&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;grep          &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;grep&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;           &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;grep&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;openssl       &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;openssl&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;        &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;openssl&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;cpio          &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;cpio&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;           &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;cpio&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;gzip          &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;gzip&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;           &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;gzip&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;cat,cut..     &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;coreutils&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;      &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;coreutils&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;确保安装了所需软件:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#Debian/Ubuntu:&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;apt-get install -y xz-utils openssl gawk file
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#RedHat/CentOS:&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;yum install -y xz openssl gawk file
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;如果出现了错误,请运行:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#Debian/Ubuntu:&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;apt-get update
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#RedHat/CentOS:&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;yum update
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;快速使用示例:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;bash &amp;lt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;wget --no-check-certificate -qO- &lt;span class=&#34;s1&#34;&gt;&amp;#39;https://moeclub.org/attachment/LinuxShell/InstallNET.sh&amp;#39;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; -d &lt;span class=&#34;m&#34;&gt;8&lt;/span&gt; -v &lt;span class=&#34;m&#34;&gt;64&lt;/span&gt; -a
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;下载及说明:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;wget --no-check-certificate -qO InstallNET.sh &lt;span class=&#34;s1&#34;&gt;&amp;#39;https://moeclub.org/attachment/LinuxShell/InstallNET.sh&amp;#39;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; chmod a+x InstallNET.sh
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;一些说明&lt;/p&gt;</description>
+      <description>背景:
+适用于由GRUB引导的CentOS,Ubuntu,Debian系统. 使用官方发行版去掉模板预装的软件. 同时也可以解决内核版本与软件不兼容的问题。 只要有root权限,还您一个纯净的系统。 注意:
+全自动安装默认root密码:MoeClub.org 安装完成后请立即更改密码. 能够全自动重装Debian/Ubuntu/CentOS等系统. 同时提供dd安装镜像功能,例如: 全自动无救援dd安装windows系统 全自动安装CentOS时默认提供VNC功能,可使用VNC Viewer查看进度, VNC端口为1或者5901,可自行尝试连接.(成功后VNC功能会消失.) 目前CentOS系统只支持任意版本重装为 CentOS 6.x 及以下版本. 特别注意:OpenVZ构架不适用. 依赖包:
+#二进制文件 Debian/Ubuntu RedHat/CentOS iconv [libc-bin] [glibc-common] xz [xz-utils] [xz] awk [gawk] [gawk] sed [sed] [sed] file [file] [file] grep [grep] [grep] openssl [openssl] [openssl] cpio [cpio] [cpio] gzip [gzip] [gzip] cat,cut.. [coreutils] [coreutils] 确保安装了所需软件:
+#Debian/Ubuntu: apt-get install -y xz-utils openssl gawk file #RedHat/CentOS: yum install -y xz openssl gawk file 如果出现了错误,请运行:</description>
     </item>
     <item>
       <title>Ubuntu_Debian配置Apache2_PHP配置站点</title>
       <link>https://567899.xyz/post/ubuntu-debian-apache2-php-vhost-sites/</link>
       <pubDate>Fri, 11 Jan 2019 01:37:56 +0800</pubDate>
       <guid>https://567899.xyz/post/ubuntu-debian-apache2-php-vhost-sites/</guid>
-      <description>&lt;p&gt;日常更新&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;apt-get update -y
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;apt-get upgrade -y
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;查找程序名&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo apt-cache search apache &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; grep &lt;span class=&#34;s1&#34;&gt;&amp;#39;apache2&amp;#39;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;安装apache2&#34;&gt;安装Apache2&lt;/h1&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;apt-get install apache2
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;安装好后开服务&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;service apache2 start
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;systemctl &lt;span class=&#34;nb&#34;&gt;enable&lt;/span&gt; apache2
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;检查Apache2运行状态&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;systemctl status apache2
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;安装Apache的php支持模块&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo apt-get install libapache2-mod-php
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;重启Apache2&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/etc/init.d/apache2 restart
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;停止&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/etc/init.d/apache2 stop
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;状态查询&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/etc/init.d/apache2 status
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;在浏览器中输入IP地址，看到以下页面说明apache成功安装&lt;/p&gt;
-&lt;p&gt;Debian系统上Apache2 Web服务器安装的配置布局如下：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/etc/apache2/
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;-- apache2.conf
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;       &lt;span class=&#34;sb&#34;&gt;`&lt;/span&gt;--  ports.conf
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;-- mods-enabled
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;       &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;-- *.load
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;       &lt;span class=&#34;sb&#34;&gt;`&lt;/span&gt;-- *.conf
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;-- conf-enabled
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;       &lt;span class=&#34;sb&#34;&gt;`&lt;/span&gt;-- *.conf
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;-- sites-enabled
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;       &lt;span class=&#34;sb&#34;&gt;`&lt;/span&gt;-- *.conf
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ol&gt;
-&lt;li&gt;apache2.conf is the main configuration file. It puts the pieces together by including all remaining configuration files when starting up the web server.&lt;/li&gt;
-&lt;li&gt;ports.conf is always included from the main configuration file. It is used to determine the listening ports for incoming connections, and this file can be customized anytime.&lt;/li&gt;
-&lt;li&gt;Configuration files in the mods-enabled/, conf-enabled/ and sites-enabled/ directories contain particular configuration snippets which manage modules, global configuration fragments, or virtual host configurations, respectively.&lt;/li&gt;
-&lt;li&gt;They are activated by symlinking available configuration files from their respective *-available/ counterparts. These should be managed by using our helpers a2enmod, a2dismod, a2ensite, a2dissite, and a2enconf, a2disconf . See their respective man pages for detailed information.&lt;/li&gt;
-&lt;li&gt;The binary is called apache2. Due to the use of environment variables, in the default configuration, apache2 needs to be started/stopped with /etc/init.d/apache2 or apache2ctl. Calling /usr/bin/apache2 directly will not work with the default configuration.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;Document Roots&lt;/p&gt;</description>
+      <description>日常更新
+apt-get update -y apt-get upgrade -y 查找程序名
+sudo apt-cache search apache | grep &amp;#39;apache2&amp;#39; 安装Apache2 apt-get install apache2 安装好后开服务
+service apache2 start systemctl enable apache2 检查Apache2运行状态
+systemctl status apache2 安装Apache的php支持模块
+sudo apt-get install libapache2-mod-php 重启Apache2
+/etc/init.d/apache2 restart 停止
+/etc/init.d/apache2 stop 状态查询
+/etc/init.d/apache2 status 在浏览器中输入IP地址，看到以下页面说明apache成功安装
+Debian系统上Apache2 Web服务器安装的配置布局如下：
+/etc/apache2/ |-- apache2.conf | `-- ports.conf |-- mods-enabled | |-- *.load | `-- *.conf |-- conf-enabled | `-- *.conf |-- sites-enabled | `-- *.</description>
     </item>
     <item>
       <title>Debian和Ubuntu安装最新的MySQL修改密码卸载清理</title>
       <link>https://567899.xyz/post/debian-ubuntu-install-mysql-uninstall/</link>
       <pubDate>Tue, 24 Jul 2018 01:37:56 +0800</pubDate>
       <guid>https://567899.xyz/post/debian-ubuntu-install-mysql-uninstall/</guid>
-      <description>&lt;p&gt;Debian 9上安装最新的MySQL&lt;/p&gt;
-&lt;p&gt;在Debian 9中，MySQL项目的社区分支MariaDB被打包为默认的MySQL变体。虽然MariaDB在大多数情况下运行良好，但如果您需要仅在Oracle的MySQL中找到的功能，则可以从MySQL开发人员维护的存储库中安装和使用软件包。&lt;/p&gt;
-&lt;h1 id=&#34;安装mysql&#34;&gt;安装MySQL&lt;/h1&gt;
-&lt;p&gt;首先添加MySQL软件库&lt;/p&gt;
-&lt;p&gt;MySQL开发人员提供了一个.deb包，用于处理配置和安装官方MySQL软件存储库。一旦设置了存储库，我们就可以使用Ubuntu的标准apt命令来安装该软件。我们将使用wget下载此.deb文件，然后使用该dpkg命令进行安装。&lt;/p&gt;
-&lt;p&gt;首先，在Web浏览器中加载&lt;a href=&#34;https://dev.mysql.com/downloads/repo/apt/&#34;&gt;MySQL下载页面&lt;/a&gt;。找到右下角的“ 下载”按钮，然后单击下一页。此页面将提示您登录或注册Oracle Web帐户。我们可以跳过这一点，而是寻找说不用的链接，只需启动我的下载。右键单击该链接并选择“ 复制链接地址”（此选项的措辞可能不同，具体取决于您的浏览器）。&lt;/p&gt;
-&lt;p&gt;现在我们要下载文件了。在您的服务器上，移动到您可以写入的目录。使用wget下载文件，记住粘贴刚刚复制的地址代替下面突出显示的部分：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; /tmp
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;wget https://dev.mysql.com/get/mysql-apt-config_0.8.13-1_all.deb
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;该文件现在应该下载到我们当前的目录中&lt;code&gt;ls&lt;/code&gt;列出文件以确保：&lt;/p&gt;
-&lt;p&gt;您应该看到列出的文件名：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;mysql-apt-config_0.8.13-1_all.deb
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;现在我们准备安装：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;dpkg -i mysql-apt-config*
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;dpkg将会被用于安装，删除和检查.deb软件包。该-i标志表示我们要从指定的文件安装。&lt;/p&gt;
-&lt;p&gt;在安装过程中，您将看到一个配置屏幕，您可以在其中指定您喜欢的MySQL版本，以及为其他MySQL相关工具安装存储库的选项。默认值将添加最新稳定版MySQL的存储库信息，而不是其他任何内容。这就是我们想要的，所以使用向下箭头导航到Ok菜单选项并点击ENTER。&lt;/p&gt;
-&lt;p&gt;该包现在将完成添加存储库。刷新apt包缓存以使新软件包可用：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;dpkg-reconfigure mysql-apt-config
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;apt-get update
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;添加了存储库并使用我们的软件包缓存进行了新近更新&lt;/p&gt;
-&lt;p&gt;安装MySQL&lt;/p&gt;
-&lt;p&gt;我们现在可以使用apt安装最新的MySQL服务器软件包：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;apt install mysql-server
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;状态查询&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;systemctl status mysql
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;修改mysql的初使密码&#34;&gt;修改MYSQL的初使密码&lt;/h1&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;mysql -u root -p
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;用安装时设置的密码登陆&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;use mysql
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;开始修改密码&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;update user &lt;span class=&#34;nb&#34;&gt;set&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;authentication_string&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;password&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;yournewpassword&amp;#39;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; where &lt;span class=&#34;nv&#34;&gt;user&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;root&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;退出&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;exit&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;经过我们修改MYSQL的初使密码后，方可以顺利登陆phpMyAdmin管理&lt;/p&gt;
-&lt;p&gt;用SET PASSWORD命令&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;mysql -u root
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;mysql&amp;gt; SET PASSWORD FOR &lt;span class=&#34;s1&#34;&gt;&amp;#39;root&amp;#39;&lt;/span&gt;@&lt;span class=&#34;s1&#34;&gt;&amp;#39;localhost&amp;#39;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; PASSWORD&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;yournewpassword&amp;#39;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;如果报以下错误提示&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &#39;SETPASSWORD = PASSWORD(&#39;123456&#39;)&#39; at line 1&lt;/code&gt;&lt;/p&gt;</description>
+      <description>Debian 9上安装最新的MySQL
+在Debian 9中，MySQL项目的社区分支MariaDB被打包为默认的MySQL变体。虽然MariaDB在大多数情况下运行良好，但如果您需要仅在Oracle的MySQL中找到的功能，则可以从MySQL开发人员维护的存储库中安装和使用软件包。
+安装MySQL 首先添加MySQL软件库
+MySQL开发人员提供了一个.deb包，用于处理配置和安装官方MySQL软件存储库。一旦设置了存储库，我们就可以使用Ubuntu的标准apt命令来安装该软件。我们将使用wget下载此.deb文件，然后使用该dpkg命令进行安装。
+首先，在Web浏览器中加载MySQL下载页面。找到右下角的“ 下载”按钮，然后单击下一页。此页面将提示您登录或注册Oracle Web帐户。我们可以跳过这一点，而是寻找说不用的链接，只需启动我的下载。右键单击该链接并选择“ 复制链接地址”（此选项的措辞可能不同，具体取决于您的浏览器）。
+现在我们要下载文件了。在您的服务器上，移动到您可以写入的目录。使用wget下载文件，记住粘贴刚刚复制的地址代替下面突出显示的部分：
+cd /tmp wget https://dev.mysql.com/get/mysql-apt-config_0.8.13-1_all.deb 该文件现在应该下载到我们当前的目录中ls列出文件以确保：
+您应该看到列出的文件名：
+mysql-apt-config_0.8.13-1_all.deb 现在我们准备安装：
+dpkg -i mysql-apt-config* dpkg将会被用于安装，删除和检查.deb软件包。该-i标志表示我们要从指定的文件安装。
+在安装过程中，您将看到一个配置屏幕，您可以在其中指定您喜欢的MySQL版本，以及为其他MySQL相关工具安装存储库的选项。默认值将添加最新稳定版MySQL的存储库信息，而不是其他任何内容。这就是我们想要的，所以使用向下箭头导航到Ok菜单选项并点击ENTER。
+该包现在将完成添加存储库。刷新apt包缓存以使新软件包可用：
+dpkg-reconfigure mysql-apt-config apt-get update 添加了存储库并使用我们的软件包缓存进行了新近更新
+安装MySQL
+我们现在可以使用apt安装最新的MySQL服务器软件包：
+apt install mysql-server 状态查询
+systemctl status mysql 修改MYSQL的初使密码 mysql -u root -p 用安装时设置的密码登陆
+use mysql 开始修改密码
+update user set authentication_string=password(&amp;#39;yournewpassword&amp;#39;) where user=&amp;#39;root&amp;#39;; 退出
+exit 经过我们修改MYSQL的初使密码后，方可以顺利登陆phpMyAdmin管理
+用SET PASSWORD命令
+mysql -u root mysql&amp;gt; SET PASSWORD FOR &amp;#39;root&amp;#39;@&amp;#39;localhost&amp;#39; = PASSWORD(&amp;#39;yournewpassword&amp;#39;); 如果报以下错误提示</description>
     </item>
     <item>
       <title>Debian和Ubuntu安装php7.2</title>
       <link>https://567899.xyz/post/debian-ubuntu-install-php7.2/</link>
       <pubDate>Sat, 21 Jul 2018 01:37:56 +0800</pubDate>
       <guid>https://567899.xyz/post/debian-ubuntu-install-php7.2/</guid>
-      <description>&lt;p&gt;适用系统：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Ubuntu 16.04 LTS&lt;/li&gt;
-&lt;li&gt;Ubuntu 14.04 LTS&lt;/li&gt;
-&lt;li&gt;Debian 9 stretch&lt;/li&gt;
-&lt;li&gt;Debian 8 jessie&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1 id=&#34;安装-php&#34;&gt;安装 PHP&lt;/h1&gt;
-&lt;p&gt;Ond?ej Sury 的 PHP PPA 为 Ubuntu 16.04/14.04 提供了 PHP7.2 版本，同时也有通过个人网站为 Debian 9/8 提供 PHP7.2 版本，因此 Ubuntu 是源于 Debian 所以基本可以通用，同时维护难度较低，软件源安装的 PHP 默认以 Unix Socket 的状态运行在 /run/php/php7.1-fpm.sock，比使用 TCP 以 localhost:9000 的方式性能更好。&lt;/p&gt;
-&lt;h1 id=&#34;添加软件源&#34;&gt;添加软件源&lt;/h1&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Ubuntu安装软件源拓展工具：&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;apt -y install software-properties-common apt-transport-https lsb-release ca-certificates
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;添加 Ond?ej Sury 的 PHP PPA 源，需要按一次回车：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;add-apt-repository ppa:ondrej/php
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;更新软件源缓存：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;apt update
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
-&lt;p&gt;Debian安装软件源拓展工具：&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;apt -y install software-properties-common apt-transport-https lsb-release ca-certificates
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;添加 GPG&lt;/p&gt;</description>
+      <description>适用系统：
+Ubuntu 16.04 LTS Ubuntu 14.04 LTS Debian 9 stretch Debian 8 jessie 安装 PHP Ond?ej Sury 的 PHP PPA 为 Ubuntu 16.04/14.04 提供了 PHP7.2 版本，同时也有通过个人网站为 Debian 9/8 提供 PHP7.2 版本，因此 Ubuntu 是源于 Debian 所以基本可以通用，同时维护难度较低，软件源安装的 PHP 默认以 Unix Socket 的状态运行在 /run/php/php7.1-fpm.sock，比使用 TCP 以 localhost:9000 的方式性能更好。
+添加软件源 Ubuntu安装软件源拓展工具：
+apt -y install software-properties-common apt-transport-https lsb-release ca-certificates 添加 Ond?ej Sury 的 PHP PPA 源，需要按一次回车：
+add-apt-repository ppa:ondrej/php 更新软件源缓存：
+apt update Debian安装软件源拓展工具：
+apt -y install software-properties-common apt-transport-https lsb-release ca-certificates 添加 GPG</description>
     </item>
     <item>
       <title>Ubuntu18.04关闭iptables防火墙开放所有端口</title>
       <link>https://567899.xyz/post/ubuntu-iptables/</link>
       <pubDate>Wed, 11 Apr 2018 01:37:56 +0800</pubDate>
       <guid>https://567899.xyz/post/ubuntu-iptables/</guid>
-      <description>&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo iptables -P INPUT ACCEPT
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo iptables -P FORWARD ACCEPT
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo iptables -P OUTPUT ACCEPT
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo iptables -F
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;iptables-save &amp;gt; /etc/iptables/rules.v4
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+      <description>sudo iptables -P INPUT ACCEPT sudo iptables -P FORWARD ACCEPT sudo iptables -P OUTPUT ACCEPT sudo iptables -F iptables-save &amp;gt; /etc/iptables/rules.v4 </description>
     </item>
     <item>
       <title>Debian/Ubuntu系统手动更新内核并启用TCP BBR拥塞控制算法</title>
       <link>https://567899.xyz/post/debian-ubuntu-kernel-update-bbr/</link>
       <pubDate>Thu, 21 Dec 2017 01:37:56 +0800</pubDate>
       <guid>https://567899.xyz/post/debian-ubuntu-kernel-update-bbr/</guid>
-      <description>&lt;p&gt;查看内核版本&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;uname -r
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;BBR要求内核为kernel4.9以上版本。&lt;/p&gt;
-&lt;p&gt;如果大于或等于4.9的可以直接开启BBR,开启步骤如下&lt;/p&gt;
-&lt;p&gt;配置文件&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;net.core.default_qdisc=fq&amp;#34;&lt;/span&gt; &amp;gt;&amp;gt; /etc/sysctl.conf
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;net.ipv4.tcp_congestion_control=bbr&amp;#34;&lt;/span&gt; &amp;gt;&amp;gt; /etc/sysctl.conf
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;加载配置到内核参数中&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sysctl -p
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sysctl net.ipv4.tcp_available_congestion_control
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;顺利的话下面的命令就能看到bbr模块了&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;lsmod &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; grep bbr
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sysctl net.ipv4.tcp_available_congestion_control
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;返回值一般为：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;net.ipv4.tcp_available_congestion_control &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; bbr cubic reno
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sysctl net.ipv4.tcp_congestion_control
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;返回值一般为：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;net.ipv4.tcp_congestion_control &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; bbr
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sysctl net.core.default_qdisc
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;返回值一般为：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;net.core.default_qdisc &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; fq
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;如果内核版本低于4.9的需要手动升级到4.9或以上才能开启&lt;/p&gt;
-&lt;p&gt;去这里&lt;a href=&#34;https://kernel.ubuntu.com/~kernel-ppa/mainline/&#34;&gt;下载最新版的内核 deb 安装包&lt;/a&gt;&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;如果系统是 64 位，则下载 amd64 的 linux-image 中含有 generic 这个 deb 包；&lt;/li&gt;
-&lt;li&gt;如果系统是 32 位，则下载 i386 的 linux-image 中含有 generic 这个 deb 包；&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;安装的命令如下（以最新版的 64 位 4.12.4 举例而已，请替换为下载好的 deb 包）：&lt;/p&gt;</description>
+      <description>查看内核版本
+uname -r BBR要求内核为kernel4.9以上版本。
+如果大于或等于4.9的可以直接开启BBR,开启步骤如下
+配置文件
+echo &amp;#34;net.core.default_qdisc=fq&amp;#34; &amp;gt;&amp;gt; /etc/sysctl.conf echo &amp;#34;net.ipv4.tcp_congestion_control=bbr&amp;#34; &amp;gt;&amp;gt; /etc/sysctl.conf 加载配置到内核参数中
+sysctl -p sysctl net.ipv4.tcp_available_congestion_control 顺利的话下面的命令就能看到bbr模块了
+lsmod | grep bbr sysctl net.ipv4.tcp_available_congestion_control 返回值一般为：
+net.ipv4.tcp_available_congestion_control = bbr cubic reno sysctl net.ipv4.tcp_congestion_control 返回值一般为：
+net.ipv4.tcp_congestion_control = bbr sysctl net.core.default_qdisc 返回值一般为：
+net.core.default_qdisc = fq 如果内核版本低于4.9的需要手动升级到4.9或以上才能开启
+去这里下载最新版的内核 deb 安装包
+如果系统是 64 位，则下载 amd64 的 linux-image 中含有 generic 这个 deb 包； 如果系统是 32 位，则下载 i386 的 linux-image 中含有 generic 这个 deb 包； 安装的命令如下（以最新版的 64 位 4.</description>
     </item>
     <item>
       <title>在Debian、Ubuntu系统上为Python 2/3安装和使用Pip的方法</title>
       <link>https://567899.xyz/post/ubuntu-debian-install-python3-pin3-pip/</link>
       <pubDate>Mon, 19 Sep 2016 01:37:56 +0800</pubDate>
       <guid>https://567899.xyz/post/ubuntu-debian-install-python3-pin3-pip/</guid>
-      <description>&lt;h2 id=&#34;为python-3安装pip3&#34;&gt;为Python 3安装pip3&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;以具有sudo权限的非root用户身份执行&lt;/strong&gt;以下步骤&lt;/p&gt;
-&lt;p&gt;首先更新包列表：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo apt update
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;使用以下命令为Python 3及其所有依赖项安装pip：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo apt install python3-pip
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;查看pip3、Python版本以验证安装：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;pip3 --version
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;python3 -V
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;版本号可能不同，但它看起来如下所示：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;pip 18.1 from /usr/lib/python3/dist-packages/pip &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;python 3.7&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;为python-2安装pip&#34;&gt;为Python 2安装pip&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;以具有sudo权限的非root用户身份执行&lt;/strong&gt;以下步骤&lt;/p&gt;
-&lt;p&gt;首先更新包索引：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo apt update
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;为Python 2及其所有依赖项安装pip：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo apt install python-pip
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;通过输入以下命令来验证安装，该命令将打印pip版本：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;pip --version
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;版本号可能会有所不同，但它看起来像这样：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;pip 18.1 from /usr/lib/python2.7/dist-packages/pip &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;python 2.7&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;安装软件&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;pip install 软件包名
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;卸载包：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;pip uninstall package_name
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;从PyPI搜索包：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;pip search &lt;span class=&#34;s2&#34;&gt;&amp;#34;search_query&amp;#34;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;列出已安装的包：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;pip list
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;列出过时的包：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;pip list --outdated
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+      <description>为Python 3安装pip3 以具有sudo权限的非root用户身份执行以下步骤
+首先更新包列表：
+sudo apt update 使用以下命令为Python 3及其所有依赖项安装pip：
+sudo apt install python3-pip 查看pip3、Python版本以验证安装：
+pip3 --version python3 -V 版本号可能不同，但它看起来如下所示：
+pip 18.1 from /usr/lib/python3/dist-packages/pip (python 3.7) 为Python 2安装pip 以具有sudo权限的非root用户身份执行以下步骤
+首先更新包索引：
+sudo apt update 为Python 2及其所有依赖项安装pip：
+sudo apt install python-pip 通过输入以下命令来验证安装，该命令将打印pip版本：
+pip --version 版本号可能会有所不同，但它看起来像这样：
+pip 18.1 from /usr/lib/python2.7/dist-packages/pip (python 2.7) 安装软件
+pip install 软件包名 卸载包：
+pip uninstall package_name 从PyPI搜索包：
+pip search &amp;#34;search_query&amp;#34; 列出已安装的包：
+pip list 列出过时的包：
+pip list --outdated </description>
     </item>
   </channel>
 </rss>

@@ -9,7 +9,7 @@
       <url>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
-    <generator>Hugo -- 0.134.2</generator>
+    <generator>Hugo -- 0.123.8</generator>
     <language>zh</language>
     <lastBuildDate>Tue, 15 Jan 2019 01:37:56 +0800</lastBuildDate>
     <atom:link href="https://567899.xyz/tags/npm/index.xml" rel="self" type="application/rss+xml" />
@@ -18,34 +18,17 @@
       <link>https://567899.xyz/post/debian-nodejs-npm/</link>
       <pubDate>Tue, 15 Jan 2019 01:37:56 +0800</pubDate>
       <guid>https://567899.xyz/post/debian-nodejs-npm/</guid>
-      <description>&lt;p&gt;&lt;code&gt;Node.js&lt;/code&gt;是一个基于Chrome V8 JavaScript引擎构建的平台.Nodejs可用于轻松构建快速，可扩展的网络应用程序。最新版本node.js ppa由其官方网站维护。我们可以将这个PPA添加到Debian 9（Stretch） Debian 8（Jessie）和Debian 7（Wheezy）系统中。这篇我抄来的文章可以帮助你在Debian 9/8/7系统上安装最新的Nodejs和NPM。&lt;/p&gt;
-&lt;h2 id=&#34;添加nodejs-ppa&#34;&gt;添加Node.js PPA&lt;/h2&gt;
-&lt;p&gt;首先，您需要在我们的系统中由Nodejs官方网站提供node.js PPA。如果尚未安装，我们还需要安装python-software-properties软件包。您可以选择安装最新的Node.js版本或LTS版本。&lt;/p&gt;
-&lt;p&gt;最新版安装命令：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;curl -sL https://deb.nodesource.com/setup_9.x &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; sudo bash
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;安装LTS长期维护版：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;apt-get install curl python-software-properties
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;curl -sL https://deb.nodesource.com/setup_8.x &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;  bash
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;安装nodejs和npm&#34;&gt;安装Node.js和NPM&lt;/h2&gt;
-&lt;p&gt;添加所需的PPA文件后，可以安装Nodejs包。NPM也将与node.js一起安装。该命令还会在您的系统上安装许多其他相关软件包。&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;apt-get install nodejs
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;检查nodejs和npm版本&#34;&gt;检查Node.js和NPM版本&lt;/h2&gt;
-&lt;p&gt;安装node.js后，验证并检查安装的版本。你可以在node.js 官方网站上找到关于当前版本的更多细节。&lt;/p&gt;
-&lt;p&gt;检查Node.js版本&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;node -v 
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;检查npm版本&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;npm -v 
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;下载 Node.js 源码或预编译安装包 Latest Current Version: 12.11.1 (includes npm 6.11.3)。&lt;/p&gt;
-&lt;p&gt;从官网 &lt;a href=&#34;https://nodejs.org/zh-cn/download/&#34;&gt;下载 | Node.js&lt;/a&gt; 的编译好的二进制文件&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;wget https://nodejs.org/dist/v12.11.1/node-v12.11.1-linux-x64.tar.xz
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;tar xf node-v12.11.1-linux-x64.tar.xz
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;cp node-v12.11.1-linux-x64/bin/node /usr/local/bin/node
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;cp node-v12.11.1-linux-x64/bin/npm /usr/local/bin/npm
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;cp node-v12.11.1-linux-x64/bin/npx /usr/local/bin/npx
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;rm -rf node-v12.11.1-linux-x64
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;node -v
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;npm -v
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;del&gt;删除卸载&lt;/del&gt;&lt;/p&gt;</description>
+      <description>Node.js是一个基于Chrome V8 JavaScript引擎构建的平台.Nodejs可用于轻松构建快速，可扩展的网络应用程序。最新版本node.js ppa由其官方网站维护。我们可以将这个PPA添加到Debian 9（Stretch） Debian 8（Jessie）和Debian 7（Wheezy）系统中。这篇我抄来的文章可以帮助你在Debian 9/8/7系统上安装最新的Nodejs和NPM。
+添加Node.js PPA 首先，您需要在我们的系统中由Nodejs官方网站提供node.js PPA。如果尚未安装，我们还需要安装python-software-properties软件包。您可以选择安装最新的Node.js版本或LTS版本。
+最新版安装命令：
+curl -sL https://deb.nodesource.com/setup_9.x | sudo bash 安装LTS长期维护版：
+apt-get install curl python-software-properties curl -sL https://deb.nodesource.com/setup_8.x | bash 安装Node.js和NPM 添加所需的PPA文件后，可以安装Nodejs包。NPM也将与node.js一起安装。该命令还会在您的系统上安装许多其他相关软件包。
+apt-get install nodejs 检查Node.js和NPM版本 安装node.js后，验证并检查安装的版本。你可以在node.js 官方网站上找到关于当前版本的更多细节。
+检查Node.js版本
+node -v 检查npm版本
+npm -v 下载 Node.js 源码或预编译安装包 Latest Current Version: 12.11.1 (includes npm 6.11.3)。
+从官网 下载 | Node.js 的编译好的二进制文件
+wget https://nodejs.org/dist/v12.11.1/node-v12.11.1-linux-x64.tar.xz tar xf node-v12.11.1-linux-x64.tar.xz cp node-v12.11.1-linux-x64/bin/node /usr/local/bin/node cp node-v12.11.1-linux-x64/bin/npm /usr/local/bin/npm cp node-v12.</description>
     </item>
   </channel>
 </rss>

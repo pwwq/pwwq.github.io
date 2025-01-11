@@ -9,7 +9,7 @@
       <url>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
-    <generator>Hugo -- 0.134.2</generator>
+    <generator>Hugo -- 0.123.8</generator>
     <language>zh</language>
     <lastBuildDate>Sat, 04 Jul 2015 01:37:56 +0800</lastBuildDate>
     <atom:link href="https://567899.xyz/tags/swap/index.xml" rel="self" type="application/rss+xml" />
@@ -18,47 +18,23 @@
       <link>https://567899.xyz/post/swap/</link>
       <pubDate>Sat, 04 Jul 2015 01:37:56 +0800</pubDate>
       <guid>https://567899.xyz/post/swap/</guid>
-      <description>&lt;p&gt;配置低的VPS在运行部分程序时会被&lt;code&gt;killed&lt;/code&gt;进程，通常使用swap交换分区，间接给VPS提高一下性能。&lt;/p&gt;
-&lt;p&gt;VPS添加swap交换分区的方法(只有虚拟化为&lt;code&gt;Xen&lt;/code&gt;、&lt;code&gt;KVM&lt;/code&gt;、&lt;code&gt;VMWare&lt;/code&gt;的VPS可以，&lt;strong&gt;OpenVZ不支持添加swap&lt;/strong&gt;)。&lt;/p&gt;
-&lt;p&gt;确认是否有SWAP，可以执行&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;free -m
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;命令查看，如果有swap一行且total项下不为零的话就是存在swap，就不适合再进行添加swap。&lt;/p&gt;
-&lt;h2 id=&#34;添加swap交换分区&#34;&gt;添加SWAP交换分区&lt;/h2&gt;
-&lt;p&gt;以下以添加2GB SWAP为例，生成文件块：（SWAP一般设置为内存的2倍，并非完全以此为标准，只适合4GB以下内存，count后面的数为要设置的swap大小xxMB）&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;dd &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;/dev/zero &lt;span class=&#34;nv&#34;&gt;of&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;/var/swapfile &lt;span class=&#34;nv&#34;&gt;bs&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;1M &lt;span class=&#34;nv&#34;&gt;count&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;2048&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;创建swap文件&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/sbin/mkswap /var/swapfile
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;激活swap文件&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/sbin/swapon /var/swapfile
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;查看一下swap是否正确：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/sbin/swapon -s
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;另外为了安全建议执行：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;chmod &lt;span class=&#34;m&#34;&gt;0600&lt;/span&gt; /var/swapfile
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;改一下权限&lt;/p&gt;
-&lt;p&gt;到fstab文件中添加开机自动挂载设置&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;vi /etc/fstab
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;在末尾增加以下内容：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/var/swapfile swap swap defaults &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;也可以执行如下命令，感觉这样更方便&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;/var/swapfile swap swap defaults 0 0&amp;#34;&lt;/span&gt; &amp;gt;&amp;gt;/etc/fstab
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;SWAP删除方法：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/sbin/swapoff /var/swapfile
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;rm -f /var/swapfile
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;删掉添加的自动挂载swap的设置&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;vi /etc/fstab
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;顺便附上DD命令的参数介绍：
-dd命令
-功能：把指定的输入文件拷贝到指定的输出文件中，并且在拷贝过程中可以进行格式转换。可以用该命令实现DOS下的diskcopy命令的作用。先用dd命令把软盘上的数据写成硬盘的一个寄存文件，再把这个寄存文件写入第二张软盘上，完成diskcopy的功能。需要注意的是，应该将硬盘上的寄存文件用rm命令删除掉。系统默认使用标准输入文件和标准输出文件。
-语法：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;dd &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;选项&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;输入文件（或设备名称）。
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;of&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;输出文件（或设备名称）。
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;ibs&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; bytes 一次读取bytes字节，即读入缓冲区的字节数。
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;skip&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; blocks 跳过读入缓冲区开头的ibs*blocks块。
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;obs&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; bytes 一次写入bytes字节，即写入缓冲区的字节数。
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;bs&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; bytes 同时设置读/写缓冲区的字节数（等于设置ibs和obs）。
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;cbs&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; byte 一次转换bytes字节。
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;count&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;blocks 只拷贝输入的blocks块。
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;转载自https://www.vpser.net/opt/vps-add-swap.html&lt;/p&gt;</description>
+      <description>配置低的VPS在运行部分程序时会被killed进程，通常使用swap交换分区，间接给VPS提高一下性能。
+VPS添加swap交换分区的方法(只有虚拟化为Xen、KVM、VMWare的VPS可以，OpenVZ不支持添加swap)。
+确认是否有SWAP，可以执行
+free -m 命令查看，如果有swap一行且total项下不为零的话就是存在swap，就不适合再进行添加swap。
+添加SWAP交换分区 以下以添加2GB SWAP为例，生成文件块：（SWAP一般设置为内存的2倍，并非完全以此为标准，只适合4GB以下内存，count后面的数为要设置的swap大小xxMB）
+dd if=/dev/zero of=/var/swapfile bs=1M count=2048 创建swap文件
+/sbin/mkswap /var/swapfile 激活swap文件
+/sbin/swapon /var/swapfile 查看一下swap是否正确：
+/sbin/swapon -s 另外为了安全建议执行：
+chmod 0600 /var/swapfile 改一下权限
+到fstab文件中添加开机自动挂载设置
+vi /etc/fstab 在末尾增加以下内容：
+/var/swapfile swap swap defaults 0 0 也可以执行如下命令，感觉这样更方便
+echo &amp;#34;/var/swapfile swap swap defaults 0 0&amp;#34; &amp;gt;&amp;gt;/etc/fstab SWAP删除方法：
+/sbin/swapoff /var/swapfile rm -f /var/swapfile 删掉添加的自动挂载swap的设置
+vi /etc/fstab 顺便附上DD命令的参数介绍： dd命令 功能：把指定的输入文件拷贝到指定的输出文件中，并且在拷贝过程中可以进行格式转换。可以用该命令实现DOS下的diskcopy命令的作用。先用dd命令把软盘上的数据写成硬盘的一个寄存文件，再把这个寄存文件写入第二张软盘上，完成diskcopy的功能。需要注意的是，应该将硬盘上的寄存文件用rm命令删除掉。系统默认使用标准输入文件和标准输出文件。 语法：
+dd [选项] if =输入文件（或设备名称）。 of =输出文件（或设备名称）。 ibs = bytes 一次读取bytes字节，即读入缓冲区的字节数。 skip = blocks 跳过读入缓冲区开头的ibs*blocks块。 obs = bytes 一次写入bytes字节，即写入缓冲区的字节数。 bs = bytes 同时设置读/写缓冲区的字节数（等于设置ibs和obs）。 cbs = byte 一次转换bytes字节。 count=blocks 只拷贝输入的blocks块。 转载自https://www.</description>
     </item>
   </channel>
 </rss>

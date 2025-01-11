@@ -9,7 +9,7 @@
       <url>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
-    <generator>Hugo -- 0.134.2</generator>
+    <generator>Hugo -- 0.123.8</generator>
     <language>zh</language>
     <lastBuildDate>Fri, 25 Oct 2019 01:37:56 +0800</lastBuildDate>
     <atom:link href="https://567899.xyz/tags/qq/index.xml" rel="self" type="application/rss+xml" />
@@ -18,34 +18,15 @@
       <link>https://567899.xyz/post/qq-for-linux/</link>
       <pubDate>Fri, 25 Oct 2019 01:37:56 +0800</pubDate>
       <guid>https://567899.xyz/post/qq-for-linux/</guid>
-      <description>&lt;p&gt;鹅厂Tencent QQ for Linux&lt;/p&gt;
-&lt;p&gt;从2008年7月31日开始到2019年10月24日，历时11年终于更新了&lt;/p&gt;
-&lt;p&gt;版本特性&lt;/p&gt;
-&lt;p&gt;Linux QQ 2.0.0 Beta（New）2019/10/24&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Linux QQ全新回归&lt;/li&gt;
-&lt;li&gt;支持x64、ARM64、MIPS64三种架构&lt;/li&gt;
-&lt;li&gt;优化消息体验，完善消息收发能力&lt;/li&gt;
-&lt;li&gt;性能优化&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;QQ·Linux版 &lt;a href=&#34;https://im.qq.com/linuxqq/download.html&#34;&gt;下载列表&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;如何安装？
-请参考你所使用的系统安装包管理器的使用说明来安装你所选择的Linux QQ安装程序，注意你需要root权限才能完成安装。在一些发行版中你可以通过双击文件管理器中的安装程序完成安装。以下是一些使用命令行来安装的例子：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo ./linuxqq_1.0.1-b1-100_x86_64.sh
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo rpm -ivh linuxqq_1.0.1-b1-100_mips64el.rpm
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo dpkg -i linuxqq_1.0.1-b1-100_armhf.deb
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo apt install -y /path/to/linuxqq_1.0.1-b1-100_amd64.deb
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo pacman -U linuxqq_1.0.1-ci-94_x86_64.pkg.tar.xz
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;如何卸载？
-请尽量使用你安装时使用的对应方式来卸载Linux QQ（参考你所使用的系统安装包管理器说明）。同样需要root权限才能完成卸载。以下是一些例子：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo rpm -e linuxqq
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo dpkg -r linuxqq
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;注意：&lt;/strong&gt;&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;需要安装桌面环境&lt;/li&gt;
-&lt;li&gt;只能扫码登陆1个QQ&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;linux VPS又多了一个功能，QQ挂机&lt;/p&gt;</description>
+      <description>鹅厂Tencent QQ for Linux
+从2008年7月31日开始到2019年10月24日，历时11年终于更新了
+版本特性
+Linux QQ 2.0.0 Beta（New）2019/10/24
+Linux QQ全新回归 支持x64、ARM64、MIPS64三种架构 优化消息体验，完善消息收发能力 性能优化 QQ·Linux版 下载列表
+如何安装？ 请参考你所使用的系统安装包管理器的使用说明来安装你所选择的Linux QQ安装程序，注意你需要root权限才能完成安装。在一些发行版中你可以通过双击文件管理器中的安装程序完成安装。以下是一些使用命令行来安装的例子：
+sudo ./linuxqq_1.0.1-b1-100_x86_64.sh sudo rpm -ivh linuxqq_1.0.1-b1-100_mips64el.rpm sudo dpkg -i linuxqq_1.0.1-b1-100_armhf.deb sudo apt install -y /path/to/linuxqq_1.0.1-b1-100_amd64.deb sudo pacman -U linuxqq_1.0.1-ci-94_x86_64.pkg.tar.xz 如何卸载？ 请尽量使用你安装时使用的对应方式来卸载Linux QQ（参考你所使用的系统安装包管理器说明）。同样需要root权限才能完成卸载。以下是一些例子：
+sudo rpm -e linuxqq sudo dpkg -r linuxqq 注意：
+需要安装桌面环境 只能扫码登陆1个QQ linux VPS又多了一个功能，QQ挂机</description>
     </item>
   </channel>
 </rss>

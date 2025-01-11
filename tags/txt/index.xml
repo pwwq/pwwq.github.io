@@ -9,7 +9,7 @@
       <url>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
-    <generator>Hugo -- 0.134.2</generator>
+    <generator>Hugo -- 0.123.8</generator>
     <language>zh</language>
     <lastBuildDate>Thu, 10 Dec 2020 01:37:56 +0800</lastBuildDate>
     <atom:link href="https://567899.xyz/tags/txt/index.xml" rel="self" type="application/rss+xml" />
@@ -18,13 +18,10 @@
       <link>https://567899.xyz/post/glogg-open-large-file-txt/</link>
       <pubDate>Thu, 10 Dec 2020 01:37:56 +0800</pubDate>
       <guid>https://567899.xyz/post/glogg-open-large-file-txt/</guid>
-      <description>&lt;blockquote&gt;
-&lt;p&gt;前阵子拿到了某个大佬分享的裤子文件，解压后都是超大的.txt文本文件，少则几个G,大的几十个G的&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;尝试过用Windows自带的记事本（据说记事本最大只能打开1G的文件），&lt;a href=&#34;https://www.pilotedit.com/&#34;&gt;PilotEdit Lite&lt;/a&gt;和&lt;a href=&#34;http://www.uvviewsoft.com/logviewer/&#34;&gt;LogViewer&lt;/a&gt;加载了很久还是失败了，&lt;a href=&#34;https://code.visualstudio.com&#34;&gt;Visual Studio Code&lt;/a&gt;也不行，也许是电脑配置太差吧。&lt;a href=&#34;https://www.emeditor.com/download&#34;&gt;EmEditor&lt;/a&gt;也只能读取部分，附终身授权key&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;DMAZM-WHY52-AX222-ZQJXN-79JXH
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;最终搜索找到了&lt;a href=&#34;http://glogg.bonnefon.org/download.html&#34;&gt;glogg&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;18G的大文件(7亿行)完全加载不到1分钟左右，查找某个值也不到1分钟左右。&lt;/p&gt;</description>
+      <description>前阵子拿到了某个大佬分享的裤子文件，解压后都是超大的.txt文本文件，少则几个G,大的几十个G的
+尝试过用Windows自带的记事本（据说记事本最大只能打开1G的文件），PilotEdit Lite和LogViewer加载了很久还是失败了，Visual Studio Code也不行，也许是电脑配置太差吧。EmEditor也只能读取部分，附终身授权key
+DMAZM-WHY52-AX222-ZQJXN-79JXH 最终搜索找到了glogg
+18G的大文件(7亿行)完全加载不到1分钟左右，查找某个值也不到1分钟左右。</description>
     </item>
   </channel>
 </rss>

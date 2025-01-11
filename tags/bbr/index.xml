@@ -9,7 +9,7 @@
       <url>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
-    <generator>Hugo -- 0.134.2</generator>
+    <generator>Hugo -- 0.123.8</generator>
     <language>zh</language>
     <lastBuildDate>Thu, 21 Dec 2017 01:37:56 +0800</lastBuildDate>
     <atom:link href="https://567899.xyz/tags/bbr/index.xml" rel="self" type="application/rss+xml" />
@@ -18,56 +18,29 @@
       <link>https://567899.xyz/post/debian-ubuntu-kernel-update-bbr/</link>
       <pubDate>Thu, 21 Dec 2017 01:37:56 +0800</pubDate>
       <guid>https://567899.xyz/post/debian-ubuntu-kernel-update-bbr/</guid>
-      <description>&lt;p&gt;查看内核版本&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;uname -r
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;BBR要求内核为kernel4.9以上版本。&lt;/p&gt;
-&lt;p&gt;如果大于或等于4.9的可以直接开启BBR,开启步骤如下&lt;/p&gt;
-&lt;p&gt;配置文件&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;net.core.default_qdisc=fq&amp;#34;&lt;/span&gt; &amp;gt;&amp;gt; /etc/sysctl.conf
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;net.ipv4.tcp_congestion_control=bbr&amp;#34;&lt;/span&gt; &amp;gt;&amp;gt; /etc/sysctl.conf
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;加载配置到内核参数中&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sysctl -p
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sysctl net.ipv4.tcp_available_congestion_control
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;顺利的话下面的命令就能看到bbr模块了&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;lsmod &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; grep bbr
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sysctl net.ipv4.tcp_available_congestion_control
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;返回值一般为：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;net.ipv4.tcp_available_congestion_control &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; bbr cubic reno
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sysctl net.ipv4.tcp_congestion_control
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;返回值一般为：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;net.ipv4.tcp_congestion_control &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; bbr
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sysctl net.core.default_qdisc
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;返回值一般为：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;net.core.default_qdisc &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; fq
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;如果内核版本低于4.9的需要手动升级到4.9或以上才能开启&lt;/p&gt;
-&lt;p&gt;去这里&lt;a href=&#34;https://kernel.ubuntu.com/~kernel-ppa/mainline/&#34;&gt;下载最新版的内核 deb 安装包&lt;/a&gt;&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;如果系统是 64 位，则下载 amd64 的 linux-image 中含有 generic 这个 deb 包；&lt;/li&gt;
-&lt;li&gt;如果系统是 32 位，则下载 i386 的 linux-image 中含有 generic 这个 deb 包；&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;安装的命令如下（以最新版的 64 位 4.12.4 举例而已，请替换为下载好的 deb 包）：&lt;/p&gt;</description>
+      <description>查看内核版本
+uname -r BBR要求内核为kernel4.9以上版本。
+如果大于或等于4.9的可以直接开启BBR,开启步骤如下
+配置文件
+echo &amp;#34;net.core.default_qdisc=fq&amp;#34; &amp;gt;&amp;gt; /etc/sysctl.conf echo &amp;#34;net.ipv4.tcp_congestion_control=bbr&amp;#34; &amp;gt;&amp;gt; /etc/sysctl.conf 加载配置到内核参数中
+sysctl -p sysctl net.ipv4.tcp_available_congestion_control 顺利的话下面的命令就能看到bbr模块了
+lsmod | grep bbr sysctl net.ipv4.tcp_available_congestion_control 返回值一般为：
+net.ipv4.tcp_available_congestion_control = bbr cubic reno sysctl net.ipv4.tcp_congestion_control 返回值一般为：
+net.ipv4.tcp_congestion_control = bbr sysctl net.core.default_qdisc 返回值一般为：
+net.core.default_qdisc = fq 如果内核版本低于4.9的需要手动升级到4.9或以上才能开启
+去这里下载最新版的内核 deb 安装包
+如果系统是 64 位，则下载 amd64 的 linux-image 中含有 generic 这个 deb 包； 如果系统是 32 位，则下载 i386 的 linux-image 中含有 generic 这个 deb 包； 安装的命令如下（以最新版的 64 位 4.</description>
     </item>
     <item>
       <title>TCP加速bbr魔改plus锐速lotserver一键安装包</title>
       <link>https://567899.xyz/post/linux-tcp-bbr-lotserver/</link>
       <pubDate>Wed, 23 Aug 2017 01:37:56 +0800</pubDate>
       <guid>https://567899.xyz/post/linux-tcp-bbr-lotserver/</guid>
-      <description>&lt;p&gt;整出了一个集合BBR、BBR魔改、BBR plus、锐速四合一的脚本
-本脚本支持KVM架构的VPS，不支持OpenVZ。&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;项目地址：(&lt;a href=&#34;https://github.com/cx9208/Linux-NetSpeed&#34;&gt;https://github.com/cx9208/Linux-NetSpeed&lt;/a&gt;)&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h1 id=&#34;安装&#34;&gt;安装&lt;/h1&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;wget https://github.com/ojbk8/Linux-NetSpeed/raw/master/tcp.sh
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;chmod +x tcp.sh
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;./tcp.sh
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;先换成对应加速
-出现弹窗按&lt;code&gt;TAB键&lt;/code&gt;切换选择&lt;code&gt;No&lt;/code&gt;回车删除原内核&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://567899.xyz/images/tcp-bbrplus-lotserver.png&#34; alt=&#34;&#34;  /&gt;
-&lt;/p&gt;
-&lt;p&gt;重启后&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;./tcp.sh
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;开启加速&lt;/p&gt;</description>
+      <description>整出了一个集合BBR、BBR魔改、BBR plus、锐速四合一的脚本 本脚本支持KVM架构的VPS，不支持OpenVZ。
+项目地址：(https://github.com/cx9208/Linux-NetSpeed)
+安装 wget https://github.com/ojbk8/Linux-NetSpeed/raw/master/tcp.sh chmod +x tcp.sh ./tcp.sh 先换成对应加速 出现弹窗按TAB键切换选择No回车删除原内核
+重启后
+./tcp.sh 开启加速</description>
     </item>
   </channel>
 </rss>

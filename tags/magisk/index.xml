@@ -9,7 +9,7 @@
       <url>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
-    <generator>Hugo -- 0.134.2</generator>
+    <generator>Hugo -- 0.123.8</generator>
     <language>zh</language>
     <lastBuildDate>Tue, 13 Apr 2021 15:37:56 +0800</lastBuildDate>
     <atom:link href="https://567899.xyz/tags/magisk/index.xml" rel="self" type="application/rss+xml" />
@@ -18,34 +18,16 @@
       <link>https://567899.xyz/post/android-adb-magisk-recovery/</link>
       <pubDate>Tue, 13 Apr 2021 15:37:56 +0800</pubDate>
       <guid>https://567899.xyz/post/android-adb-magisk-recovery/</guid>
-      <description>&lt;h2 id=&#34;从google下载adb档案&#34;&gt;从Google下载ADB档案&lt;/h2&gt;
-&lt;p&gt;&lt;a href=&#34;https://dl.google.com/android/repository/platform-tools-latest-windows.zip&#34;&gt;Windows&lt;/a&gt; &lt;a href=&#34;https://dl.google.com/android/repository/platform-tools-latest-darwin.zip&#34;&gt;Mac&lt;/a&gt; &lt;a href=&#34;https://dl.google.com/android/repository/platform-tools-latest-linux.zip&#34;&gt;Linux&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;解压后进入文件夹目录(也可设置环境变量)查看ADB版本号&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;adb --version
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;查找已连接的安卓设备&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;fastboot devices -l
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;安装magisk-manager&#34;&gt;安装Magisk Manager&lt;/h2&gt;
-&lt;p&gt;从github&lt;a href=&#34;https://github.com/topjohnwu/Magisk&#34;&gt;下载Magisk Manager&lt;/a&gt;然后安装到手机即可&lt;/p&gt;
-&lt;h2 id=&#34;修补bootimg文件&#34;&gt;修补boot.img文件&lt;/h2&gt;
-&lt;ol&gt;
-&lt;li&gt;在原刷机包中找到boot.img文件，并复制到手机&lt;/li&gt;
-&lt;li&gt;打开Magisk Manager点击安装,选择并修补一个文件,然后找到boot.img文件,选中它.然后便会开始下载所需的文件,并且修补boot.img.成功后有文件路径放在Download文件夹中的提示&lt;/li&gt;
-&lt;li&gt;提取修补后的magisk_patched.img到PC电脑&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id=&#34;刷入修补后的magisk_patchedimg&#34;&gt;刷入修补后的magisk_patched.img&lt;/h2&gt;
-&lt;p&gt;进入bootloader&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;adb reboot bootloader
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;也可在开机时，同时按住电源键+音量减，进入bootloader (不同的手机进入方式稍微有所差别)&lt;/p&gt;
-&lt;p&gt;进入相关文件夹目录，刷入修补后的magisk_patched.img&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;fastboot flash boot magisk_patched.img
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;然后重启&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;fastboot reboot
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;开Magisk Manager,就能看见&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Magisk 已是最新版本
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Magisk Manager 已是最新版本
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;recovery刷入twrp&#34;&gt;recovery刷入TWRP&lt;/h2&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;fastboot flash recovery twrp-3.0.2-0-hammerhead.img
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+      <description>从Google下载ADB档案 Windows Mac Linux
+解压后进入文件夹目录(也可设置环境变量)查看ADB版本号
+adb --version 查找已连接的安卓设备
+fastboot devices -l 安装Magisk Manager 从github下载Magisk Manager然后安装到手机即可
+修补boot.img文件 在原刷机包中找到boot.img文件，并复制到手机 打开Magisk Manager点击安装,选择并修补一个文件,然后找到boot.img文件,选中它.然后便会开始下载所需的文件,并且修补boot.img.成功后有文件路径放在Download文件夹中的提示 提取修补后的magisk_patched.img到PC电脑 刷入修补后的magisk_patched.img 进入bootloader
+adb reboot bootloader 也可在开机时，同时按住电源键+音量减，进入bootloader (不同的手机进入方式稍微有所差别)
+进入相关文件夹目录，刷入修补后的magisk_patched.img
+fastboot flash boot magisk_patched.img 然后重启
+fastboot reboot 开Magisk Manager,就能看见
+Magisk 已是最新版本 Magisk Manager 已是最新版本 recovery刷入TWRP fastboot flash recovery twrp-3.0.2-0-hammerhead.img </description>
     </item>
   </channel>
 </rss>

@@ -9,7 +9,7 @@
       <url>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
-    <generator>Hugo -- 0.134.2</generator>
+    <generator>Hugo -- 0.123.8</generator>
     <language>zh</language>
     <lastBuildDate>Sun, 30 Aug 2020 01:37:56 +0800</lastBuildDate>
     <atom:link href="https://567899.xyz/tags/rclone/index.xml" rel="self" type="application/rss+xml" />
@@ -18,117 +18,35 @@
       <link>https://567899.xyz/post/onedrive-api/</link>
       <pubDate>Sun, 30 Aug 2020 01:37:56 +0800</pubDate>
       <guid>https://567899.xyz/post/onedrive-api/</guid>
-      <description>&lt;p&gt;OneDrive申请空全局账号，然后登陆Azure自建API(Rclone、OneManager-php)使用，可避免使用公共API因使用频率过高导致的Rclone、网盘列目录程序OneManager-php、OneList、PyOne、Oneindex等等不稳定情况&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;注意：&lt;/strong&gt; 区分国际版和中国版(由世纪互联运营)&lt;/p&gt;
-&lt;p&gt;Microsoft OneDrive网页登陆管理入口&lt;a href=&#34;https://onedrive.live.com&#34;&gt;国际版&lt;/a&gt;、&lt;a href=&#34;https://portal.partner.microsoftonline.cn&#34;&gt;中国版(由世纪互联运营)&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&#34;申请空全局账号&#34;&gt;申请空全局账号&lt;/h2&gt;
-&lt;p&gt;&lt;a href=&#34;https://www.microsoft.com/zh-cn/microsoft-365/business/compare-all-microsoft-365-business-products?&amp;amp;activetab=tab:primaryr2&#34;&gt;国际版购买注册(A1、A3、A1P、EDU、个人版)&lt;/a&gt;、&lt;a href=&#34;https://www.microsoft.com/zh-cn/microsoft-365/compare-china-global-versions-microsoft-365&#34;&gt;中国版(由世纪互联运营)购买注册&lt;/a&gt;随便选个套餐，点&lt;code&gt;立即购买&lt;/code&gt;，按提示注册新账号，然后进入&lt;code&gt;管理&lt;/code&gt;把付款取消掉,到此空全局账号已经撸到手了。&lt;/p&gt;
-&lt;h2 id=&#34;登陆azure创建api&#34;&gt;登陆Azure创建API&lt;/h2&gt;
-&lt;p&gt;&lt;a href=&#34;https://portal.azure.cn&#34;&gt;Microsoft Azure由世纪互联运营&lt;/a&gt;、&lt;a href=&#34;https://portal.azure.com&#34;&gt;国际版&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;创建方法一样的，但是要注意区分国际版和中国特供版的登陆管理入口地区。&lt;/p&gt;
-&lt;h3 id=&#34;创建rclone的api&#34;&gt;创建Rclone的API&lt;/h3&gt;
-&lt;p&gt;获取 CLIENT_ID 及 CLIENT_SECRET&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://portal.azure.cn&#34;&gt;Microsoft Azure由世纪互联运营&lt;/a&gt;、&lt;a href=&#34;https://portal.azure.com&#34;&gt;国际版&lt;/a&gt;登陆并按以下步骤：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;左侧找到 &lt;code&gt;Azure Active Directory&lt;/code&gt; 点击&lt;/li&gt;
-&lt;li&gt;左侧找到 &lt;code&gt;应用注册&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;上方找到 &lt;code&gt;新注册&lt;/code&gt; 点击&lt;/li&gt;
-&lt;li&gt;名称：&lt;code&gt;Rclone&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;受支持的账户类型：&lt;code&gt;任何组织目录(任何 Azure AD 目录 - 多租户)中的帐户&lt;/code&gt;、&lt;code&gt;任何组织目录(任何 Azure AD 目录 - 多租户)中的帐户和个人 Microsoft 帐户(例如，Skype、Xbox)&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Web重定向 URL：&lt;code&gt;http://localhost:53682&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;点击注册 找到 &lt;code&gt;应用程序(客户端) ID&lt;/code&gt;  &lt;strong&gt;复制client_ID保存&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;左侧找到 &lt;code&gt;证书和密码&lt;/code&gt; 点击&lt;/li&gt;
-&lt;li&gt;下方 &lt;code&gt;客户端密码&lt;/code&gt; - &lt;code&gt;新客户端密码&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;说明：&lt;code&gt;Rclone&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;截止期限：默认 &lt;code&gt;1年内&lt;/code&gt;改为&lt;code&gt;从不&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;点击 添加，&lt;code&gt;值&lt;/code&gt; 客户端密码  &lt;strong&gt;复制client_secret保存&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;左侧找到 &lt;code&gt;API 权限&lt;/code&gt; 点击&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;添加权限&lt;/code&gt;  - &lt;code&gt;Microsoft Graph&lt;/code&gt; - &lt;code&gt;委托的权限&lt;/code&gt; - &lt;code&gt;Files (7)&lt;/code&gt;全部勾选&lt;/li&gt;
-&lt;li&gt;选择&lt;code&gt;应用程序权限&lt;/code&gt; 在下方&lt;code&gt;Files&lt;/code&gt;里选择 &lt;code&gt;Files.Read.All&lt;/code&gt;和&lt;code&gt;Files.ReadWrite.All&lt;/code&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;回到界面会发现该权限处于未授权状态，&lt;strong&gt;我们需要全局管理员点击&lt;/strong&gt;  &lt;code&gt;代表XXXX授予管理员同意&lt;/code&gt;&lt;/p&gt;</description>
+      <description>OneDrive申请空全局账号，然后登陆Azure自建API(Rclone、OneManager-php)使用，可避免使用公共API因使用频率过高导致的Rclone、网盘列目录程序OneManager-php、OneList、PyOne、Oneindex等等不稳定情况
+注意： 区分国际版和中国版(由世纪互联运营)
+Microsoft OneDrive网页登陆管理入口国际版、中国版(由世纪互联运营)
+申请空全局账号 国际版购买注册(A1、A3、A1P、EDU、个人版)、中国版(由世纪互联运营)购买注册随便选个套餐，点立即购买，按提示注册新账号，然后进入管理把付款取消掉,到此空全局账号已经撸到手了。
+登陆Azure创建API Microsoft Azure由世纪互联运营、国际版
+创建方法一样的，但是要注意区分国际版和中国特供版的登陆管理入口地区。
+创建Rclone的API 获取 CLIENT_ID 及 CLIENT_SECRET
+Microsoft Azure由世纪互联运营、国际版登陆并按以下步骤：
+左侧找到 Azure Active Directory 点击 左侧找到 应用注册 上方找到 新注册 点击 名称：Rclone 受支持的账户类型：任何组织目录(任何 Azure AD 目录 - 多租户)中的帐户、任何组织目录(任何 Azure AD 目录 - 多租户)中的帐户和个人 Microsoft 帐户(例如，Skype、Xbox) Web重定向 URL：http://localhost:53682 点击注册 找到 应用程序(客户端) ID 复制client_ID保存 左侧找到 证书和密码 点击 下方 客户端密码 - 新客户端密码 说明：Rclone 截止期限：默认 1年内改为从不 点击 添加，值 客户端密码 复制client_secret保存 左侧找到 API 权限 点击 添加权限 - Microsoft Graph - 委托的权限 - Files (7)全部勾选 选择应用程序权限 在下方Files里选择 Files.</description>
     </item>
     <item>
       <title>使用Rclone挂载世纪互联OneDrive</title>
       <link>https://567899.xyz/post/rclone-onedrive-cn/</link>
       <pubDate>Sat, 01 Feb 2020 01:37:56 +0800</pubDate>
       <guid>https://567899.xyz/post/rclone-onedrive-cn/</guid>
-      <description>&lt;h2 id=&#34;世纪互联空全局订阅获取azure自建独享api&#34;&gt;世纪互联空全局订阅获取Azure+自建独享API&lt;/h2&gt;
-&lt;p&gt;适用于可以使用API,但本身子账号不能创建API的。可以撸个空全局，利用空全局账号创建API来供不能创建API的子号使用。&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://567899.xyz/images/rclone-onedrive-cn-api.png&#34; alt=&#34;&#34;  /&gt;
-&lt;/p&gt;
-&lt;p&gt;打开&lt;a href=&#34;https://www.microsoft.com/zh-cn/microsoft-365/compare-china-global-versions-microsoft-365&#34;&gt;比较面向中小企业的中国版本计划和价格&lt;/a&gt; 随便选个套餐&lt;code&gt;立即购买&lt;/code&gt;然后按提示注册新账号，左上角点进去,进入管理,把付款取消掉。&lt;/p&gt;
-&lt;p&gt;API权限&lt;strong&gt;我们需要空全局管理员点击&lt;/strong&gt;  &lt;code&gt;代表XXXX授予管理员同意&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;WINDOWS平台&lt;code&gt;rclone&lt;/code&gt;获取&lt;code&gt;token&lt;/code&gt;时需要在后面加上&lt;code&gt;--onedrive-is-21vianet-version=true&lt;/code&gt;示范如下&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;rclone authorize &lt;span class=&#34;s2&#34;&gt;&amp;#34;onedrive&amp;#34;&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;client_ID&amp;#34;&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;client_secret&amp;#34;&lt;/span&gt; --onedrive-is-21vianet-version&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;true&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;世纪互联-onedrive-获取-client_id-及-client_secret&#34;&gt;世纪互联 OneDrive 获取 CLIENT_ID 及 CLIENT_SECRET&lt;/h2&gt;
-&lt;p&gt;打开 &lt;a href=&#34;https://portal.azure.cn/&#34;&gt;https://portal.azure.cn/&lt;/a&gt; 登陆并按以下步骤：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;左侧找到 &lt;code&gt;Azure Active Directory&lt;/code&gt; 点击&lt;/li&gt;
-&lt;li&gt;左侧找到 &lt;a href=&#34;https://portal.azure.cn/#blade/Microsoft_AAD_IAM/ActiveDirectoryadminnuBlade/RegisteredApps&#34;&gt;应用注册&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;上方找到 &lt;code&gt;新注册&lt;/code&gt; 点击&lt;/li&gt;
-&lt;li&gt;名称：&lt;code&gt;onedrive&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;受支持的账户类型：	&lt;code&gt;任何组织目录(任何 Azure AD 目录 - 多租户)中的帐户&lt;/code&gt;（第二个）&lt;/li&gt;
-&lt;li&gt;重定向 URL：&lt;code&gt;http://localhost:53682&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;点击注册 找到 &lt;code&gt;应用程序(客户端) ID&lt;/code&gt;  &lt;strong&gt;复制client_ID保存&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;左侧找到 &lt;code&gt;证书和密码&lt;/code&gt; 点击&lt;/li&gt;
-&lt;li&gt;下方 &lt;code&gt;客户端密码&lt;/code&gt; - &lt;code&gt;新客户端密码&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;说明：&lt;code&gt;onedrive&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;截止期限：默认 &lt;code&gt;1年内&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;点击 添加，&lt;code&gt;值&lt;/code&gt; 客户端密码  &lt;strong&gt;复制client_secret保存&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;左侧找到 &lt;code&gt;API 权限&lt;/code&gt; 点击&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;添加权限&lt;/code&gt;  - &lt;code&gt;Microsoft Graph&lt;/code&gt; - &lt;code&gt;委托的权限&lt;/code&gt; - &lt;code&gt;Files (7)&lt;/code&gt;全部勾选&lt;/li&gt;
-&lt;li&gt;选择&lt;code&gt;应用程序权限&lt;/code&gt; 在下方&lt;code&gt;Files&lt;/code&gt;里选择 &lt;code&gt;Files.Read.All&lt;/code&gt;和&lt;code&gt;Files.ReadWrite.All&lt;/code&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;回到界面会发现该权限处于未授权状态，&lt;strong&gt;我们需要全局管理员点击&lt;/strong&gt;  &lt;code&gt;代表XXXX授予管理员同意&lt;/code&gt;&lt;/p&gt;</description>
+      <description>世纪互联空全局订阅获取Azure+自建独享API 适用于可以使用API,但本身子账号不能创建API的。可以撸个空全局，利用空全局账号创建API来供不能创建API的子号使用。
+打开比较面向中小企业的中国版本计划和价格 随便选个套餐立即购买然后按提示注册新账号，左上角点进去,进入管理,把付款取消掉。
+API权限我们需要空全局管理员点击 代表XXXX授予管理员同意
+WINDOWS平台rclone获取token时需要在后面加上--onedrive-is-21vianet-version=true示范如下
+rclone authorize &amp;#34;onedrive&amp;#34; &amp;#34;client_ID&amp;#34; &amp;#34;client_secret&amp;#34; --onedrive-is-21vianet-version=true 世纪互联 OneDrive 获取 CLIENT_ID 及 CLIENT_SECRET 打开 https://portal.azure.cn/ 登陆并按以下步骤：
+左侧找到 Azure Active Directory 点击 左侧找到 应用注册 上方找到 新注册 点击 名称：onedrive 受支持的账户类型：	任何组织目录(任何 Azure AD 目录 - 多租户)中的帐户（第二个） 重定向 URL：http://localhost:53682 点击注册 找到 应用程序(客户端) ID 复制client_ID保存 左侧找到 证书和密码 点击 下方 客户端密码 - 新客户端密码 说明：onedrive 截止期限：默认 1年内 点击 添加，值 客户端密码 复制client_secret保存 左侧找到 API 权限 点击 添加权限 - Microsoft Graph - 委托的权限 - Files (7)全部勾选 选择应用程序权限 在下方Files里选择 Files.</description>
     </item>
     <item>
       <title>在Linux_VPS上使用rclone挂载GoogleDrive云端硬盘和MicrosoftOneDrive</title>
       <link>https://567899.xyz/post/linux-vps-rclone-googledrive-microsoftonedrive/</link>
       <pubDate>Wed, 13 Jun 2018 01:37:56 +0800</pubDate>
       <guid>https://567899.xyz/post/linux-vps-rclone-googledrive-microsoftonedrive/</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;https://rclone.org/&#34;&gt;rclone&lt;/a&gt;可以在Linux上挂载包括&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Rclone is a &lt;span class=&#34;nb&#34;&gt;command&lt;/span&gt; line program to sync files and directories to and from:
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Alibaba Cloud &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;Aliyun&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; Object Storage System &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;OSS&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;  
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Amazon Drive   &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;See note&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Amazon S3  
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Backblaze B2  
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Box  
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Ceph  
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;DigitalOcean Spaces  
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Dreamhost  
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Dropbox  
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;FTP  
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Google Cloud Storage  
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Google Drive  
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;HTTP  
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Hubic  
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Jottacloud  
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;IBM COS S3  
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Koofr  
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;adminmset Memstore  
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;adminga  
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Microsoft Azure Blob Storage  
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Microsoft OneDrive  
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Minio  
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Nextcloud  
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;OVH  
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;OpenDrive  
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Openstack Swift  
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Oracle Cloud Storage  
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ownCloud  
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;pCloud  
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;put.io  
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;QingStor  
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Rackspace Cloud Files  
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Scaleway  
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;SFTP  
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Wasabi  
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;WebDAV  
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Yandex Disk  
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;The &lt;span class=&#34;nb&#34;&gt;local&lt;/span&gt; filesystem  
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;且不会占用本地硬盘空间&lt;/p&gt;</description>
+      <description>rclone可以在Linux上挂载包括
+Rclone is a command line program to sync files and directories to and from: Alibaba Cloud (Aliyun) Object Storage System (OSS) Amazon Drive (See note) Amazon S3 Backblaze B2 Box Ceph DigitalOcean Spaces Dreamhost Dropbox FTP Google Cloud Storage Google Drive HTTP Hubic Jottacloud IBM COS S3 Koofr adminmset Memstore adminga Microsoft Azure Blob Storage Microsoft OneDrive Minio Nextcloud OVH OpenDrive Openstack Swift Oracle Cloud Storage ownCloud pCloud put.io QingStor Rackspace Cloud Files Scaleway SFTP Wasabi WebDAV Yandex Disk The local filesystem 且不会占用本地硬盘空间</description>
     </item>
   </channel>
 </rss>

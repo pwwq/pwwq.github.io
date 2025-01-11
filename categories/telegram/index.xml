@@ -9,7 +9,7 @@
       <url>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
-    <generator>Hugo -- 0.134.2</generator>
+    <generator>Hugo -- 0.123.8</generator>
     <language>zh</language>
     <lastBuildDate>Mon, 04 Sep 2017 01:37:56 +0800</lastBuildDate>
     <atom:link href="https://567899.xyz/categories/telegram/index.xml" rel="self" type="application/rss+xml" />
@@ -18,26 +18,10 @@
       <link>https://567899.xyz/post/telegram/</link>
       <pubDate>Mon, 04 Sep 2017 01:37:56 +0800</pubDate>
       <guid>https://567899.xyz/post/telegram/</guid>
-      <description>&lt;blockquote&gt;
-&lt;p&gt;Telegram Sorry, you can only send messages to mutual contacts at the moment.
-MORE INFO   OK&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Telegram 抱歉，您目前只能向相互的联系人发送消息。 更多信息 好的&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://t.me/SpamBot&#34;&gt;@SpamBot&lt;/a&gt;发送&lt;code&gt;/start&lt;/code&gt;&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Q: Good news, no limits are currently applied to your account. You’re free as a bird!
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;But I can’t message non-contacts!
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Great. First, please confirm that you will never send this to strangers:
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;- Unsolicited advertising of any kind
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;- Promotional messages
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;- Shocking materials
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Were you going to &lt;span class=&#34;k&#34;&gt;do&lt;/span&gt; anything like that?
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;A: No, I’ll never &lt;span class=&#34;k&#34;&gt;do&lt;/span&gt; any of this!
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Q: Great! I’m very sorry &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; your account was limited by mistake. Please write me some details about your &lt;span class=&#34;k&#34;&gt;case&lt;/span&gt;, I will forward it to the supervisor. Why &lt;span class=&#34;k&#34;&gt;do&lt;/span&gt; you think your account was limited, what went wrong?
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;A: accident
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Q: Thank you! Your complaint has been successfully submitted. Our team’s supervisors will check it as soon as possible. If this was a mistake, all limitations will be lifted from your account soon.
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;等待处理&amp;hellip; &amp;hellip;&lt;/p&gt;</description>
+      <description>Telegram Sorry, you can only send messages to mutual contacts at the moment. MORE INFO OK
+Telegram 抱歉，您目前只能向相互的联系人发送消息。 更多信息 好的
+@SpamBot发送/start
+Q: Good news, no limits are currently applied to your account. You’re free as a bird! But I can’t message non-contacts! Great. First, please confirm that you will never send this to strangers: - Unsolicited advertising of any kind - Promotional messages - Shocking materials Were you going to do anything like that?</description>
     </item>
   </channel>
 </rss>

@@ -9,7 +9,7 @@
       <url>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
-    <generator>Hugo -- 0.134.2</generator>
+    <generator>Hugo -- 0.123.8</generator>
     <language>zh</language>
     <lastBuildDate>Wed, 11 Apr 2018 01:37:56 +0800</lastBuildDate>
     <atom:link href="https://567899.xyz/tags/hexo/index.xml" rel="self" type="application/rss+xml" />
@@ -18,33 +18,10 @@
       <link>https://567899.xyz/post/hexo-backup-synchronize-edit/</link>
       <pubDate>Wed, 11 Apr 2018 01:37:56 +0800</pubDate>
       <guid>https://567899.xyz/post/hexo-backup-synchronize-edit/</guid>
-      <description>&lt;h2 id=&#34;备份hexo原始配置文件&#34;&gt;备份hexo原始配置文件&lt;/h2&gt;
-&lt;p&gt;压缩打包备份原始的hexo配置文件scaffolds, source, themes 和 _config.yml&lt;/p&gt;
-&lt;h2 id=&#34;在新电脑上重新布署安装一次hexo&#34;&gt;在新电脑上重新布署安装一次hexo&lt;/h2&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; /d
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;npm install hexo-cli -g
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;hexo init blog
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; blog
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;npm install
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;npm install hexo-deployer-git --save
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git init
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;npm install hexo-generator-feed --save
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;npm install hexo-generator-sitemap --save
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;npm install hexo-generator-baidu-sitemap --save
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;npm install hexo-generator-searchdb --save
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git clone https://github.com/iissnan/hexo-theme-next themes/next
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;然后覆盖替换掉原有的文件scaffolds, source, themes 和 _config.yml&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;h2 id=&#34;hexo远程同步到github&#34;&gt;hexo远程同步到github&lt;/h2&gt;
-&lt;p&gt;&lt;a href=&#34;https://github.com/login&#34;&gt;登陆GitHub&lt;/a&gt;并创建分支为username.github.io 可以点击&lt;a href=&#34;https://github.com/join?source=header-home&#34;&gt;Join GitHub&lt;/a&gt;注册账号&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git config --global user.name &lt;span class=&#34;s2&#34;&gt;&amp;#34;username&amp;#34;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git config --global user.email &lt;span class=&#34;s2&#34;&gt;&amp;#34;youremail@gmail.com&amp;#34;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ssh-keygen -t rsa -C &lt;span class=&#34;s1&#34;&gt;&amp;#39;youremail@gmail.com&amp;#39;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Your public key has been saved in /c/Users/admin/.ssh/id_rsa.pub.
-按提示一路回车即可以得到KEY,并收到邮件提醒。
-用文本编辑器打开/c/Users/admin/.ssh/id_rsa.pub这个文件将里面的所有文本文字
-复制到repo－Settings－Deploy keys－Add deploy key中，Title可以随便填写
-回到Git Bash&lt;/p&gt;</description>
+      <description>备份hexo原始配置文件 压缩打包备份原始的hexo配置文件scaffolds, source, themes 和 _config.yml
+在新电脑上重新布署安装一次hexo cd /d npm install hexo-cli -g hexo init blog cd blog npm install npm install hexo-deployer-git --save git init npm install hexo-generator-feed --save npm install hexo-generator-sitemap --save npm install hexo-generator-baidu-sitemap --save npm install hexo-generator-searchdb --save git clone https://github.com/iissnan/hexo-theme-next themes/next 然后覆盖替换掉原有的文件scaffolds, source, themes 和 _config.yml
+hexo远程同步到github 登陆GitHub并创建分支为username.github.io 可以点击Join GitHub注册账号
+git config --global user.name &amp;#34;username&amp;#34; git config --global user.email &amp;#34;youremail@gmail.com&amp;#34; ssh-keygen -t rsa -C &amp;#39;youremail@gmail.com&amp;#39; Your public key has been saved in /c/Users/admin/.</description>
     </item>
     <item>
       <title>hexo同步布署在github-coding并实现国内外自动分流</title>
@@ -57,25 +34,25 @@
 &lt;h2 id=&#34;域名解析&#34;&gt;域名解析&lt;/h2&gt;
 &lt;p&gt;登陆&lt;a href=&#34;https://www.dnspod.cn&#34;&gt;DNSPOD控制台&lt;/a&gt;  在域名添加2条记录值&lt;/p&gt;
 &lt;table&gt;
-  &lt;thead&gt;
-      &lt;tr&gt;
-          &lt;th style=&#34;text-align: left&#34;&gt;记录类型&lt;/th&gt;
-          &lt;th style=&#34;text-align: left&#34;&gt;线路类型&lt;/th&gt;
-          &lt;th style=&#34;text-align: left&#34;&gt;记录值&lt;/th&gt;
-      &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-      &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;CNAME&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;国外&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;username.github.io&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;CNAME&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;国内&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;username.coding.me&lt;/td&gt;
-      &lt;/tr&gt;
-  &lt;/tbody&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;记录类型&lt;/th&gt;
+&lt;th&gt;线路类型&lt;/th&gt;
+&lt;th&gt;记录值&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;CNAME&lt;/td&gt;
+&lt;td&gt;国外&lt;/td&gt;
+&lt;td&gt;username.github.io&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;CNAME&lt;/td&gt;
+&lt;td&gt;国内&lt;/td&gt;
+&lt;td&gt;username.coding.me&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
 &lt;/table&gt;</description>
     </item>
     <item>

@@ -9,7 +9,7 @@
       <url>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
-    <generator>Hugo -- 0.134.2</generator>
+    <generator>Hugo -- 0.123.8</generator>
     <language>zh</language>
     <lastBuildDate>Mon, 02 Sep 2024 17:40:38 +0000</lastBuildDate>
     <atom:link href="https://567899.xyz/tags/sing-box/index.xml" rel="self" type="application/rss+xml" />
@@ -18,131 +18,46 @@
       <link>https://567899.xyz/post/serv00/</link>
       <pubDate>Mon, 02 Sep 2024 17:40:38 +0000</pubDate>
       <guid>https://567899.xyz/post/serv00/</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;https://www.serv00.com/&#34;&gt;Serv00.com&lt;/a&gt;Revolutionary Free Hosting&lt;/p&gt;
-&lt;p&gt;提供免费的PHP,MYSQL,SMTP,PostgreSQL,MongoDB,可以SSH连接创建自己的应用,可以绑定域名,无广告。&lt;/p&gt;
-&lt;h2 id=&#34;注册&#34;&gt;注册&lt;/h2&gt;
-&lt;p&gt;&lt;a href=&#34;https://www.serv00.com/offer/create_new_account&#34;&gt;注册Serv00&lt;/a&gt; 建议用gmail邮箱,不要用微软邮箱,因为就是提示成功它也收不到邮件.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;注册小技巧&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;gmail邮箱可以无限别名,假设已经有一个yourname@gmail.com那么可以使用别名在用户名后面添加&lt;code&gt;+&lt;/code&gt;或者&lt;code&gt;.&lt;/code&gt;后面加其它随机字母数字,比如使用yourname+6dhj68kkm@gmail.com 或者  &lt;a href=&#34;mailto:yourname.jdjjs64kpo@gmail.com&#34;&gt;yourname.jdjjs64kpo@gmail.com&lt;/a&gt;  达到使用1个gmail邮箱来注册多个serv00账号,账号信息邮件在yourname@gmail.com接收。注册成功就能在邮件里面看到相关账号信息&lt;/p&gt;
-&lt;h2 id=&#34;搭建&#34;&gt;搭建&lt;/h2&gt;
-&lt;p&gt;面板设置&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;打开&lt;code&gt;Additional services&lt;/code&gt;  , &lt;code&gt;Run your own applications&lt;/code&gt;  使状态&lt;code&gt; Status&lt;/code&gt;改为
-&lt;code&gt;Enabled&lt;/code&gt;开启&lt;/li&gt;
-&lt;li&gt;可最多3个端口号,在&lt;code&gt;Port reservation&lt;/code&gt;,&lt;code&gt;Add port&lt;/code&gt;中设置添加。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h3 id=&#34;搭建hy2tuicvmess&#34;&gt;搭建hy2,tuic,vmess&lt;/h3&gt;
-&lt;p&gt;提前在面板添加1个tcp端口给vmess使用,2个udp端口分别给tuic和hy2用&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&#34;https://github.com/yixiu001/serv00-singbox&#34;&gt;https://github.com/yixiu001/serv00-singbox&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;wget https://raw.githubusercontent.com/yixiu001/serv00-singbox/main/yixiu.sh
-chmod +x yixiu.sh
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;编辑&lt;code&gt;yixiu.sh&lt;/code&gt;修改tcp与udp端口为面板对应添加的端口,修改uuid为自己的&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://1024tools.com/uuid&#34;&gt;UUID在线生成&lt;/a&gt;或者命令行生成&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;cat /proc/sys/kernel/random/uuid
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;然后创建screen窗口&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;curl -O https://raw.githubusercontent.com/eooce/ssh_tool/main/index.js &amp;amp;&amp;amp; curl -O https://raw.githubusercontent.com/eooce/nodejs-argo/main/package.json &amp;amp;&amp;amp; npm install &amp;amp;&amp;amp; chmod +x index.js &amp;amp;&amp;amp; screen node index.js
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;再次执行&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;./yixiu.sh
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;复制节点信息使用&lt;/p&gt;
-&lt;h3 id=&#34;搭建vmessargo&#34;&gt;搭建vmess+argo&lt;/h3&gt;
-&lt;p&gt;如果ip端口被xxx了,可套用cloudflare的argo,实现CDN减速&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&#34;https://github.com/eooce/scripts&#34;&gt;https://github.com/eooce/scripts&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;vmess-ws-tls(argo)一键脚本&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;必填变量：PORT=TCP端口&lt;/li&gt;
-&lt;li&gt;可选变量：UUID NEZHA_SERVER NEZHA_PORT NEZHA_KEY CFIP CFPORT&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;bash &amp;lt;(curl -Ls https://raw.githubusercontent.com/eooce/scripts/master/containers-shell/00_vmess.sh)
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;修改&lt;code&gt;00_vmess.sh&lt;/code&gt;中的TCP端口,uuid,argo的token域名&lt;/p&gt;</description>
+      <description>Serv00.comRevolutionary Free Hosting
+提供免费的PHP,MYSQL,SMTP,PostgreSQL,MongoDB,可以SSH连接创建自己的应用,可以绑定域名,无广告。
+注册 注册Serv00 建议用gmail邮箱,不要用微软邮箱,因为就是提示成功它也收不到邮件.
+注册小技巧
+gmail邮箱可以无限别名,假设已经有一个yourname@gmail.com那么可以使用别名在用户名后面添加+或者.后面加其它随机字母数字,比如使用yourname+6dhj68kkm@gmail.com 或者 yourname.jdjjs64kpo@gmail.com 达到使用1个gmail邮箱来注册多个serv00账号,账号信息邮件在yourname@gmail.com接收。注册成功就能在邮件里面看到相关账号信息
+搭建 面板设置
+打开Additional services , Run your own applications 使状态 Status改为 Enabled开启 可最多3个端口号,在Port reservation,Add port中设置添加。 搭建hy2,tuic,vmess 提前在面板添加1个tcp端口给vmess使用,2个udp端口分别给tuic和hy2用
+https://github.com/yixiu001/serv00-singbox
+wget https://raw.githubusercontent.com/yixiu001/serv00-singbox/main/yixiu.sh chmod +x yixiu.sh 编辑yixiu.sh修改tcp与udp端口为面板对应添加的端口,修改uuid为自己的
+UUID在线生成或者命令行生成
+cat /proc/sys/kernel/random/uuid 然后创建screen窗口
+curl -O https://raw.githubusercontent.com/eooce/ssh_tool/main/index.js &amp;amp;&amp;amp; curl -O https://raw.githubusercontent.com/eooce/nodejs-argo/main/package.json &amp;amp;&amp;amp; npm install &amp;amp;&amp;amp; chmod +x index.js &amp;amp;&amp;amp; screen node index.js 再次执行
+./yixiu.sh 复制节点信息使用
+搭建vmess+argo 如果ip端口被xxx了,可套用cloudflare的argo,实现CDN减速
+https://github.com/eooce/scripts
+vmess-ws-tls(argo)一键脚本
+必填变量：PORT=TCP端口 可选变量：UUID NEZHA_SERVER NEZHA_PORT NEZHA_KEY CFIP CFPORT bash &amp;lt;(curl -Ls https://raw.</description>
     </item>
     <item>
       <title>Hysteria2的安装、配置、使用</title>
       <link>https://567899.xyz/post/hysteria/</link>
       <pubDate>Tue, 12 Mar 2024 14:27:56 +0800</pubDate>
       <guid>https://567899.xyz/post/hysteria/</guid>
-      <description>&lt;p&gt;Hysteria2是一个基于HTTP3的UDP协议代理。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/apernet/hysteria&#34;&gt;https://github.com/apernet/hysteria&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://v2.hysteria.network/zh/&#34;&gt;https://v2.hysteria.network/zh/&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;安装&#34;&gt;安装&lt;/h2&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;bash &amp;lt;(curl -fsSL https://get.hy2.sh/)
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;卸载&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;bash &amp;lt;(curl -fsSL https://get.hy2.sh/) --remove
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;默认的配置文件&lt;code&gt;/etc/hysteria/config.yaml&lt;/code&gt;内容如下&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c&#34;&gt;# listen: :443&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;acme&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;domains&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;- &lt;span class=&#34;l&#34;&gt;your.domain.net&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;email&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;your@email.com&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;auth&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;type&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;password&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;password&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;/dKigjv9qEJrQbJvm3RMtIGg&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;masquerade&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;type&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;proxy&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;proxy&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;url&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;https://news.ycombinator.com/&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;rewriteHost&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kc&#34;&gt;true&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;a href=&#34;https://1password.com/zh-cn/password-generator/&#34;&gt;在线生成密码&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&#34;配置hysteria2&#34;&gt;配置Hysteria2&lt;/h2&gt;
-&lt;p&gt;分二种情况，拥有域名、没有域名&lt;/p&gt;
-&lt;h3 id=&#34;拥有域名&#34;&gt;拥有域名&lt;/h3&gt;
-&lt;p&gt;拥有域名的话，只需要提前把域名解析到服务器的IP地址上，替换&lt;code&gt;your.domain.net&lt;/code&gt;为自己的域名。域名SSL证书通过acme全自动申请。&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;sed -i &amp;#39;s/your.domain.net/自己的域名/&amp;#39; /etc/hysteria/config.yaml
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;code&gt;自己的域名&lt;/code&gt;改为实际域名。&lt;/p&gt;
-&lt;h3 id=&#34;若无域名生成自签证书&#34;&gt;若无域名，生成自签证书&lt;/h3&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;openssl req -x509 -nodes -newkey ec:&amp;lt;(openssl ecparam -name prime256v1) -keyout /etc/hysteria/server.key -out /etc/hysteria/server.crt -subj &amp;#34;/CN=bing.com&amp;#34; -days 36500 &amp;amp;&amp;amp; chown hysteria /etc/hysteria/server.key &amp;amp;&amp;amp; chown hysteria /etc/hysteria/server.crt
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;修改配置文件&lt;code&gt;/etc/hysteria/config.yaml&lt;/code&gt;&lt;/p&gt;</description>
+      <description>Hysteria2是一个基于HTTP3的UDP协议代理。
+https://github.com/apernet/hysteria https://v2.hysteria.network/zh/ 安装 bash &amp;lt;(curl -fsSL https://get.hy2.sh/) 卸载
+bash &amp;lt;(curl -fsSL https://get.hy2.sh/) --remove 默认的配置文件/etc/hysteria/config.yaml内容如下
+# listen: :443 acme: domains: - your.domain.net email: your@email.com auth: type: password password: /dKigjv9qEJrQbJvm3RMtIGg masquerade: type: proxy proxy: url: https://news.ycombinator.com/ rewriteHost: true 在线生成密码
+配置Hysteria2 分二种情况，拥有域名、没有域名
+拥有域名 拥有域名的话，只需要提前把域名解析到服务器的IP地址上，替换your.domain.net为自己的域名。域名SSL证书通过acme全自动申请。
+sed -i &amp;#39;s/your.domain.net/自己的域名/&amp;#39; /etc/hysteria/config.yaml 自己的域名改为实际域名。
+若无域名，生成自签证书 openssl req -x509 -nodes -newkey ec:&amp;lt;(openssl ecparam -name prime256v1) -keyout /etc/hysteria/server.key -out /etc/hysteria/server.crt -subj &amp;#34;/CN=bing.com&amp;#34; -days 36500 &amp;amp;&amp;amp; chown hysteria /etc/hysteria/server.key &amp;amp;&amp;amp; chown hysteria /etc/hysteria/server.</description>
     </item>
     <item>
       <title>神秘模块sing-box的使用</title>
       <link>https://567899.xyz/post/sing-box-magisk/</link>
       <pubDate>Thu, 08 Jun 2023 13:37:56 +0800</pubDate>
       <guid>https://567899.xyz/post/sing-box-magisk/</guid>
-      <description>&lt;p&gt;神秘发布渠道为 Telegram 话题组 &lt;a href=&#34;https://t.me/+1-1lPvQxklVlZjA1&#34;&gt;原始人，启洞！&lt;/a&gt; 下的 “啊？” 话题（特殊时期，已修改为私人群聊）&lt;/p&gt;
-&lt;p&gt;发送&lt;code&gt;/notes&lt;/code&gt;机器人会回复&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;CFM SFM 交流｜闲聊吹水 中的备忘录列表：
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; - captiveportal
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; - cmfm摆烂版
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; - disable_flag_secure_magisk_module
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; - eu本地化
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; - linux命令行与shell脚本编程大全
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; - log
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; - macrodroid
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; - mt管理器下载
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; - powertoolsactivity
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; - sing-box部分相关
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; - stellariumplus星图
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; - termux
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; - 代理模块地址导航
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; - 免重启重启神秘
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; - 固定热点ip
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; - 快速获取多个应用包名
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; - 最新神秘
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; - 最新神秘win
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; - 核心相关
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; - 流浪地球2
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; - 百度直连
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; - 神秘开启tproxy模式
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; - 神秘模块详细教程
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; - 神秘状态切换
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; - 神秘的第二种百度献祭模板空格写法
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; - 禁用ipv6
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; - 网络是怎样连接的
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; - 网络联通性测试地址
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; - 规则文件
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; - 锐评
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; - 面板
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; - 高亮语法
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; - 鸡蛋问题
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;您可以使用&lt;code&gt;/get notename&lt;/code&gt; 或 &lt;code&gt;#notename&lt;/code&gt; 去检索这些备忘录&lt;/p&gt;</description>
+      <description>神秘发布渠道为 Telegram 话题组 原始人，启洞！ 下的 “啊？” 话题（特殊时期，已修改为私人群聊）
+发送/notes机器人会回复
+CFM SFM 交流｜闲聊吹水 中的备忘录列表： - captiveportal - cmfm摆烂版 - disable_flag_secure_magisk_module - eu本地化 - linux命令行与shell脚本编程大全 - log - macrodroid - mt管理器下载 - powertoolsactivity - sing-box部分相关 - stellariumplus星图 - termux - 代理模块地址导航 - 免重启重启神秘 - 固定热点ip - 快速获取多个应用包名 - 最新神秘 - 最新神秘win - 核心相关 - 流浪地球2 - 百度直连 - 神秘开启tproxy模式 - 神秘模块详细教程 - 神秘状态切换 - 神秘的第二种百度献祭模板空格写法 - 禁用ipv6 - 网络是怎样连接的 - 网络联通性测试地址 - 规则文件 - 锐评 - 面板 - 高亮语法 - 鸡蛋问题 您可以使用/get notename 或 #notename 去检索这些备忘录</description>
     </item>
   </channel>
 </rss>

@@ -1,218 +1,26 @@
 <!doctype html><html lang=zh dir=auto><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>sing-box安装使用 | Xizi's Blog</title>
 <meta name=keywords content><meta name=description content="sing-box支持的协议众多，可分流，全平台免费，包括IOS、MAC平台。
-
-https://sing-box.sagernet.org/zh/
-https://github.com/SagerNet/sing-box
-
-安装
+https://sing-box.sagernet.org/zh/ https://github.com/SagerNet/sing-box 安装
 安装方法官网文档有详细介绍，以Debian12为例
-bash <(curl -fsSL https://sing-box.app/deb-install.sh)
-修改默认的配置文件/etc/sing-box/config.json
+bash <(curl -fsSL https://sing-box.app/deb-install.sh) 修改默认的配置文件/etc/sing-box/config.json
 修改/lib/systemd/system/sing-box.service内容如下
-[Unit]
-Description=sing-box service
-Documentation=https://sing-box.sagernet.org
-After=network.target nss-lookup.target network-online.target
-
-[Service]
-CapabilityBoundingSet=CAP_NET_ADMIN CAP_NET_BIND_SERVICE CAP_SYS_PTRACE CAP_DAC_READ_SEARCH
-AmbientCapabilities=CAP_NET_ADMIN CAP_NET_BIND_SERVICE CAP_SYS_PTRACE CAP_DAC_READ_SEARCH
-# ExecStart=/usr/bin/sing-box -D /var/lib/sing-box -C /etc/sing-box run
-ExecStart=/usr/bin/sing-box -D /var/lib/sing-box -c /etc/sing-box/config.json run
-ExecReload=/bin/kill -HUP $MAINPID
-Restart=on-failure
-RestartSec=10s
-LimitNOFILE=infinity
-
-[Install]
-WantedBy=multi-user.target
-服务管理
+[Unit] Description=sing-box service Documentation=https://sing-box.sagernet.org After=network.target nss-lookup.target network-online.target [Service] CapabilityBoundingSet=CAP_NET_ADMIN CAP_NET_BIND_SERVICE CAP_SYS_PTRACE CAP_DAC_READ_SEARCH AmbientCapabilities=CAP_NET_ADMIN CAP_NET_BIND_SERVICE CAP_SYS_PTRACE CAP_DAC_READ_SEARCH # ExecStart=/usr/bin/sing-box -D /var/lib/sing-box -C /etc/sing-box run ExecStart=/usr/bin/sing-box -D /var/lib/sing-box -c /etc/sing-box/config.json run ExecReload=/bin/kill -HUP $MAINPID Restart=on-failure RestartSec=10s LimitNOFILE=infinity [Install] WantedBy=multi-user.target 服务管理
 对于带有 systemd 的 Linux 系统，通常安装已经包含 sing-box 服务， 您可以使用以下命令管理服务：
-
-  
-      
-          行动
-          命令
-      
-  
-  
-      
-          开机自启
-          sudo systemctl enable sing-box
-      
-      
-          禁用
-          sudo systemctl disable sing-box
-      
-      
-          启动
-          sudo systemctl start sing-box
-      
-      
-          停止
-          sudo systemctl stop sing-box
-      
-      
-          强行停止
-          sudo systemctl kill sing-box
-      
-      
-          重新启动
-          sudo systemctl restart sing-box
-      
-      
-          查看日志
-          sudo journalctl -u sing-box &ndash;output cat -e
-      
-      
-          实时日志
-          sudo journalctl -u sing-box &ndash;output cat -f
-      
-  
-
-更新订阅"><meta name=author content="admin"><link rel=canonical href=https://567899.xyz/post/sing-box/><meta name=google-site-verification content="XYZabc"><meta name=yandex-verification content="XYZabc"><meta name=msvalidate.01 content="XYZabc"><link crossorigin=anonymous href=/assets/css/stylesheet.e47a4660efa4fbc78073593cfd9c5a39a49f0ad0d1d33adf13d7f5183b23c238.css integrity="sha256-5HpGYO+k+8eAc1k8/ZxaOaSfCtDR0zrfE9f1GDsjwjg=" rel="preload stylesheet" as=style><link rel=icon href=https://567899.xyz/%3Clink%20/%20abs%20url%3E><link rel=icon type=image/png sizes=16x16 href=https://567899.xyz/%3Clink%20/%20abs%20url%3E><link rel=icon type=image/png sizes=32x32 href=https://567899.xyz/%3Clink%20/%20abs%20url%3E><link rel=apple-touch-icon href=https://567899.xyz/%3Clink%20/%20abs%20url%3E><link rel=mask-icon href=https://567899.xyz/%3Clink%20/%20abs%20url%3E><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=zh href=https://567899.xyz/post/sing-box/><noscript><style>#theme-toggle,.top-link{display:none}</style><style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--code-block-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51)}.list{background:var(--theme)}.list:not(.dark)::-webkit-scrollbar-track{background:0 0}.list:not(.dark)::-webkit-scrollbar-thumb{border-color:var(--theme)}}</style></noscript><meta property="og:title" content="sing-box安装使用"><meta property="og:description" content="sing-box支持的协议众多，可分流，全平台免费，包括IOS、MAC平台。
-
-https://sing-box.sagernet.org/zh/
-https://github.com/SagerNet/sing-box
-
-安装
+行动 命令 开机自启 sudo systemctl enable sing-box 禁用 sudo systemctl disable sing-box 启动 sudo systemctl start sing-box 停止 sudo systemctl stop sing-box 强行停止 sudo systemctl kill sing-box 重新启动 sudo systemctl restart sing-box 查看日志 sudo journalctl -u sing-box &ndash;output cat -e 实时日志 sudo journalctl -u sing-box &ndash;output cat -f 更新订阅"><meta name=author content="admin"><link rel=canonical href=https://567899.xyz/post/sing-box/><meta name=google-site-verification content="XYZabc"><meta name=yandex-verification content="XYZabc"><meta name=msvalidate.01 content="XYZabc"><link crossorigin=anonymous href=/assets/css/stylesheet.e47a4660efa4fbc78073593cfd9c5a39a49f0ad0d1d33adf13d7f5183b23c238.css integrity="sha256-5HpGYO+k+8eAc1k8/ZxaOaSfCtDR0zrfE9f1GDsjwjg=" rel="preload stylesheet" as=style><link rel=icon href=https://567899.xyz/%3Clink%20/%20abs%20url%3E><link rel=icon type=image/png sizes=16x16 href=https://567899.xyz/%3Clink%20/%20abs%20url%3E><link rel=icon type=image/png sizes=32x32 href=https://567899.xyz/%3Clink%20/%20abs%20url%3E><link rel=apple-touch-icon href=https://567899.xyz/%3Clink%20/%20abs%20url%3E><link rel=mask-icon href=https://567899.xyz/%3Clink%20/%20abs%20url%3E><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=zh href=https://567899.xyz/post/sing-box/><noscript><style>#theme-toggle,.top-link{display:none}</style><style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--code-block-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51)}.list{background:var(--theme)}.list:not(.dark)::-webkit-scrollbar-track{background:0 0}.list:not(.dark)::-webkit-scrollbar-thumb{border-color:var(--theme)}}</style></noscript><meta property="og:title" content="sing-box安装使用"><meta property="og:description" content="sing-box支持的协议众多，可分流，全平台免费，包括IOS、MAC平台。
+https://sing-box.sagernet.org/zh/ https://github.com/SagerNet/sing-box 安装
 安装方法官网文档有详细介绍，以Debian12为例
-bash <(curl -fsSL https://sing-box.app/deb-install.sh)
-修改默认的配置文件/etc/sing-box/config.json
+bash <(curl -fsSL https://sing-box.app/deb-install.sh) 修改默认的配置文件/etc/sing-box/config.json
 修改/lib/systemd/system/sing-box.service内容如下
-[Unit]
-Description=sing-box service
-Documentation=https://sing-box.sagernet.org
-After=network.target nss-lookup.target network-online.target
-
-[Service]
-CapabilityBoundingSet=CAP_NET_ADMIN CAP_NET_BIND_SERVICE CAP_SYS_PTRACE CAP_DAC_READ_SEARCH
-AmbientCapabilities=CAP_NET_ADMIN CAP_NET_BIND_SERVICE CAP_SYS_PTRACE CAP_DAC_READ_SEARCH
-# ExecStart=/usr/bin/sing-box -D /var/lib/sing-box -C /etc/sing-box run
-ExecStart=/usr/bin/sing-box -D /var/lib/sing-box -c /etc/sing-box/config.json run
-ExecReload=/bin/kill -HUP $MAINPID
-Restart=on-failure
-RestartSec=10s
-LimitNOFILE=infinity
-
-[Install]
-WantedBy=multi-user.target
-服务管理
+[Unit] Description=sing-box service Documentation=https://sing-box.sagernet.org After=network.target nss-lookup.target network-online.target [Service] CapabilityBoundingSet=CAP_NET_ADMIN CAP_NET_BIND_SERVICE CAP_SYS_PTRACE CAP_DAC_READ_SEARCH AmbientCapabilities=CAP_NET_ADMIN CAP_NET_BIND_SERVICE CAP_SYS_PTRACE CAP_DAC_READ_SEARCH # ExecStart=/usr/bin/sing-box -D /var/lib/sing-box -C /etc/sing-box run ExecStart=/usr/bin/sing-box -D /var/lib/sing-box -c /etc/sing-box/config.json run ExecReload=/bin/kill -HUP $MAINPID Restart=on-failure RestartSec=10s LimitNOFILE=infinity [Install] WantedBy=multi-user.target 服务管理
 对于带有 systemd 的 Linux 系统，通常安装已经包含 sing-box 服务， 您可以使用以下命令管理服务：
-
-  
-      
-          行动
-          命令
-      
-  
-  
-      
-          开机自启
-          sudo systemctl enable sing-box
-      
-      
-          禁用
-          sudo systemctl disable sing-box
-      
-      
-          启动
-          sudo systemctl start sing-box
-      
-      
-          停止
-          sudo systemctl stop sing-box
-      
-      
-          强行停止
-          sudo systemctl kill sing-box
-      
-      
-          重新启动
-          sudo systemctl restart sing-box
-      
-      
-          查看日志
-          sudo journalctl -u sing-box &ndash;output cat -e
-      
-      
-          实时日志
-          sudo journalctl -u sing-box &ndash;output cat -f
-      
-  
-
-更新订阅"><meta property="og:type" content="article"><meta property="og:url" content="https://567899.xyz/post/sing-box/"><meta property="og:image" content="https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E"><meta property="article:section" content="post"><meta property="article:published_time" content="2023-08-21T07:37:56+08:00"><meta property="article:modified_time" content="2023-08-21T07:37:56+08:00"><meta property="og:site_name" content="Xizi's Blog"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E"><meta name=twitter:title content="sing-box安装使用"><meta name=twitter:description content="sing-box支持的协议众多，可分流，全平台免费，包括IOS、MAC平台。
-
-https://sing-box.sagernet.org/zh/
-https://github.com/SagerNet/sing-box
-
-安装
+行动 命令 开机自启 sudo systemctl enable sing-box 禁用 sudo systemctl disable sing-box 启动 sudo systemctl start sing-box 停止 sudo systemctl stop sing-box 强行停止 sudo systemctl kill sing-box 重新启动 sudo systemctl restart sing-box 查看日志 sudo journalctl -u sing-box &ndash;output cat -e 实时日志 sudo journalctl -u sing-box &ndash;output cat -f 更新订阅"><meta property="og:type" content="article"><meta property="og:url" content="https://567899.xyz/post/sing-box/"><meta property="og:image" content="https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E"><meta property="article:section" content="post"><meta property="article:published_time" content="2023-08-21T07:37:56+08:00"><meta property="article:modified_time" content="2023-08-21T07:37:56+08:00"><meta property="og:site_name" content="Xizi's Blog"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E"><meta name=twitter:title content="sing-box安装使用"><meta name=twitter:description content="sing-box支持的协议众多，可分流，全平台免费，包括IOS、MAC平台。
+https://sing-box.sagernet.org/zh/ https://github.com/SagerNet/sing-box 安装
 安装方法官网文档有详细介绍，以Debian12为例
-bash <(curl -fsSL https://sing-box.app/deb-install.sh)
-修改默认的配置文件/etc/sing-box/config.json
+bash <(curl -fsSL https://sing-box.app/deb-install.sh) 修改默认的配置文件/etc/sing-box/config.json
 修改/lib/systemd/system/sing-box.service内容如下
-[Unit]
-Description=sing-box service
-Documentation=https://sing-box.sagernet.org
-After=network.target nss-lookup.target network-online.target
-
-[Service]
-CapabilityBoundingSet=CAP_NET_ADMIN CAP_NET_BIND_SERVICE CAP_SYS_PTRACE CAP_DAC_READ_SEARCH
-AmbientCapabilities=CAP_NET_ADMIN CAP_NET_BIND_SERVICE CAP_SYS_PTRACE CAP_DAC_READ_SEARCH
-# ExecStart=/usr/bin/sing-box -D /var/lib/sing-box -C /etc/sing-box run
-ExecStart=/usr/bin/sing-box -D /var/lib/sing-box -c /etc/sing-box/config.json run
-ExecReload=/bin/kill -HUP $MAINPID
-Restart=on-failure
-RestartSec=10s
-LimitNOFILE=infinity
-
-[Install]
-WantedBy=multi-user.target
-服务管理
+[Unit] Description=sing-box service Documentation=https://sing-box.sagernet.org After=network.target nss-lookup.target network-online.target [Service] CapabilityBoundingSet=CAP_NET_ADMIN CAP_NET_BIND_SERVICE CAP_SYS_PTRACE CAP_DAC_READ_SEARCH AmbientCapabilities=CAP_NET_ADMIN CAP_NET_BIND_SERVICE CAP_SYS_PTRACE CAP_DAC_READ_SEARCH # ExecStart=/usr/bin/sing-box -D /var/lib/sing-box -C /etc/sing-box run ExecStart=/usr/bin/sing-box -D /var/lib/sing-box -c /etc/sing-box/config.json run ExecReload=/bin/kill -HUP $MAINPID Restart=on-failure RestartSec=10s LimitNOFILE=infinity [Install] WantedBy=multi-user.target 服务管理
 对于带有 systemd 的 Linux 系统，通常安装已经包含 sing-box 服务， 您可以使用以下命令管理服务：
-
-  
-      
-          行动
-          命令
-      
-  
-  
-      
-          开机自启
-          sudo systemctl enable sing-box
-      
-      
-          禁用
-          sudo systemctl disable sing-box
-      
-      
-          启动
-          sudo systemctl start sing-box
-      
-      
-          停止
-          sudo systemctl stop sing-box
-      
-      
-          强行停止
-          sudo systemctl kill sing-box
-      
-      
-          重新启动
-          sudo systemctl restart sing-box
-      
-      
-          查看日志
-          sudo journalctl -u sing-box &ndash;output cat -e
-      
-      
-          实时日志
-          sudo journalctl -u sing-box &ndash;output cat -f
-      
-  
-
-更新订阅"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Posts","item":"https://567899.xyz/post/"},{"@type":"ListItem","position":2,"name":"sing-box安装使用","item":"https://567899.xyz/post/sing-box/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"sing-box安装使用","name":"sing-box安装使用","description":"sing-box支持的协议众多，可分流，全平台免费，包括IOS、MAC平台。\nhttps://sing-box.sagernet.org/zh/ https://github.com/SagerNet/sing-box 安装\n安装方法官网文档有详细介绍，以Debian12为例\nbash \u0026lt;(curl -fsSL https://sing-box.app/deb-install.sh) 修改默认的配置文件/etc/sing-box/config.json\n修改/lib/systemd/system/sing-box.service内容如下\n[Unit] Description=sing-box service Documentation=https://sing-box.sagernet.org After=network.target nss-lookup.target network-online.target [Service] CapabilityBoundingSet=CAP_NET_ADMIN CAP_NET_BIND_SERVICE CAP_SYS_PTRACE CAP_DAC_READ_SEARCH AmbientCapabilities=CAP_NET_ADMIN CAP_NET_BIND_SERVICE CAP_SYS_PTRACE CAP_DAC_READ_SEARCH # ExecStart=/usr/bin/sing-box -D /var/lib/sing-box -C /etc/sing-box run ExecStart=/usr/bin/sing-box -D /var/lib/sing-box -c /etc/sing-box/config.json run ExecReload=/bin/kill -HUP $MAINPID Restart=on-failure RestartSec=10s LimitNOFILE=infinity [Install] WantedBy=multi-user.target 服务管理\n对于带有 systemd 的 Linux 系统，通常安装已经包含 sing-box 服务， 您可以使用以下命令管理服务：\n行动 命令 开机自启 sudo systemctl enable sing-box 禁用 sudo systemctl disable sing-box 启动 sudo systemctl start sing-box 停止 sudo systemctl stop sing-box 强行停止 sudo systemctl kill sing-box 重新启动 sudo systemctl restart sing-box 查看日志 sudo journalctl -u sing-box \u0026ndash;output cat -e 实时日志 sudo journalctl -u sing-box \u0026ndash;output cat -f 更新订阅\n","keywords":[],"articleBody":"sing-box支持的协议众多，可分流，全平台免费，包括IOS、MAC平台。\nhttps://sing-box.sagernet.org/zh/ https://github.com/SagerNet/sing-box 安装\n安装方法官网文档有详细介绍，以Debian12为例\nbash \u003c(curl -fsSL https://sing-box.app/deb-install.sh) 修改默认的配置文件/etc/sing-box/config.json\n修改/lib/systemd/system/sing-box.service内容如下\n[Unit] Description=sing-box service Documentation=https://sing-box.sagernet.org After=network.target nss-lookup.target network-online.target [Service] CapabilityBoundingSet=CAP_NET_ADMIN CAP_NET_BIND_SERVICE CAP_SYS_PTRACE CAP_DAC_READ_SEARCH AmbientCapabilities=CAP_NET_ADMIN CAP_NET_BIND_SERVICE CAP_SYS_PTRACE CAP_DAC_READ_SEARCH # ExecStart=/usr/bin/sing-box -D /var/lib/sing-box -C /etc/sing-box run ExecStart=/usr/bin/sing-box -D /var/lib/sing-box -c /etc/sing-box/config.json run ExecReload=/bin/kill -HUP $MAINPID Restart=on-failure RestartSec=10s LimitNOFILE=infinity [Install] WantedBy=multi-user.target 服务管理\n对于带有 systemd 的 Linux 系统，通常安装已经包含 sing-box 服务， 您可以使用以下命令管理服务：\n行动 命令 开机自启 sudo systemctl enable sing-box 禁用 sudo systemctl disable sing-box 启动 sudo systemctl start sing-box 停止 sudo systemctl stop sing-box 强行停止 sudo systemctl kill sing-box 重新启动 sudo systemctl restart sing-box 查看日志 sudo journalctl -u sing-box –output cat -e 实时日志 sudo journalctl -u sing-box –output cat -f 更新订阅\n订阅转换教程 生成sing-box配置 转换不支持sing-box订阅的机场订阅链接以便支持，格式如下\nhttps://sing-box-subscribe-doraemon.vercel.app/config/替换成机场订阅链接\u0026file=https://github.com/Toperlock/sing-box-subscribe/raw/main/config_template/config_template_groups_rule_set_tun.json 创建一个定时计划任务\nnano /etc/crontab 添加以下内容,示范每8小时自动更新订阅\n11 */8 * * * root wget -O /etc/sing-box/config.json 转换后的订阅链接 2\u003e\u00261 \u0026＆ sudo systemctl start sing-box \u0026＆ 重启rontab进程\n/etc/init.d/cron restart systemctl restart cron.service windows平台去 Releases · SagerNet/sing-box 下载对应的文件，解压后，将配置文件托到与sing-box.exe同级目录下，\n更新订阅,如果系统已经安装好了WSL子系统进入解压目录后，按住Shift键选择在此处打开 Linux shell(L)使用以下命令更新订阅下载\nwget -O config.json 转换后的订阅链接 2\u003e\u00261 (以管理员身份运行)打开CMD然后`cd｀到指定目录，运行\nsing-box.exe run -c config.json 又或者创建执行文件run-singbox.bat双击即可更新订阅并运行Sing-box\n@echo off :: 设置工作目录为批处理文件所在目录 cd /d \"%~dp0\" :: 调用WSL的子系统Debian下载更新订阅文件config.json wsl -d Debian -- wget -O config.json https://sing-box-subscribe-doraemon.vercel.app/config/替换成机场订阅链接\u0026file=https://github.com/Toperlock/sing-box-subscribe/raw/main/config_template/config_template_groups_rule_set_tun.json 2\u003e\u00261 :: 检查是否以管理员权限运行 net session \u003enul 2\u003e\u00261 if %errorlevel% neq 0 ( echo 请求管理员权限... PowerShell -Command \"Start-Process '%~dpnx0' -Verb RunAs\" exit /b ) :: 设置工作目录为批处理文件所在目录 cd /d \"%~dp0\" :: 以下是你的实际批处理命令 sing-box.exe -c config.json run pause 然后打开网页 http://127.0.0.1:9090 管理切换节点、模式。\n","wordCount":"211","inLanguage":"zh","image":"https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E","datePublished":"2023-08-21T07:37:56+08:00","dateModified":"2023-08-21T07:37:56+08:00","author":{"@type":"Person","name":"admin"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://567899.xyz/post/sing-box/"},"publisher":{"@type":"Organization","name":"Xizi's Blog","logo":{"@type":"ImageObject","url":"https://567899.xyz/%3Clink%20/%20abs%20url%3E"}}}</script></head><body id=top><script>localStorage.getItem("pref-theme")==="dark"?document.body.classList.add("dark"):localStorage.getItem("pref-theme")==="light"?document.body.classList.remove("dark"):window.matchMedia("(prefers-color-scheme: dark)").matches&&document.body.classList.add("dark")</script><header class=header><nav class=nav><div class=logo><a href=https://567899.xyz/ accesskey=h title="Xizi's Blog (Alt + H)"><img src=https://567899.xyz/apple-touch-icon.png alt aria-label=logo height=35>Xizi's Blog</a><div class=logo-switches><button id=theme-toggle accesskey=t title="(Alt + T)"><svg id="moon" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu><li><a href=https://567899.xyz/archives/ title=归档><span>归档</span></a></li><li><a href=https://567899.xyz/tags/ title=标签><span>标签</span></a></li><li><a href=https://567899.xyz/about/ title=关于><span>关于</span></a></li><li><a href=https://567899.xyz/search/ title="搜索 (Alt + /)" accesskey=/><span>搜索</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><div class=breadcrumbs><a href=https://567899.xyz/>主页</a>&nbsp;»&nbsp;<a href=https://567899.xyz/post/>Posts</a></div><h1 class="post-title entry-hint-parent">sing-box安装使用</h1><div class=post-meta><span title='2023-08-21 07:37:56 +0800 +0800'>八月 21, 2023</span>&nbsp;·&nbsp;admin&nbsp;|&nbsp;<a href=https://github.com/pwwq/hugo-code/tree/master/content/post/sing-box.md rel="noopener noreferrer" target=_blank>编辑</a></div></header><div class=post-content><p>sing-box支持的协议众多，可分流，全平台免费，包括IOS、MAC平台。</p><ul><li><a href=https://sing-box.sagernet.org/zh/>https://sing-box.sagernet.org/zh/</a></li><li><a href=https://github.com/SagerNet/sing-box>https://github.com/SagerNet/sing-box</a></li></ul><p>安装</p><p><a href=https://sing-box.sagernet.org/zh/installation/package-manager/>安装</a>方法官网文档有详细介绍，以Debian12为例</p><pre tabindex=0><code>bash &lt;(curl -fsSL https://sing-box.app/deb-install.sh)
+行动 命令 开机自启 sudo systemctl enable sing-box 禁用 sudo systemctl disable sing-box 启动 sudo systemctl start sing-box 停止 sudo systemctl stop sing-box 强行停止 sudo systemctl kill sing-box 重新启动 sudo systemctl restart sing-box 查看日志 sudo journalctl -u sing-box &ndash;output cat -e 实时日志 sudo journalctl -u sing-box &ndash;output cat -f 更新订阅"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Posts","item":"https://567899.xyz/post/"},{"@type":"ListItem","position":2,"name":"sing-box安装使用","item":"https://567899.xyz/post/sing-box/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"sing-box安装使用","name":"sing-box安装使用","description":"sing-box支持的协议众多，可分流，全平台免费，包括IOS、MAC平台。\nhttps://sing-box.sagernet.org/zh/ https://github.com/SagerNet/sing-box 安装\n安装方法官网文档有详细介绍，以Debian12为例\nbash \u0026lt;(curl -fsSL https://sing-box.app/deb-install.sh) 修改默认的配置文件/etc/sing-box/config.json\n修改/lib/systemd/system/sing-box.service内容如下\n[Unit] Description=sing-box service Documentation=https://sing-box.sagernet.org After=network.target nss-lookup.target network-online.target [Service] CapabilityBoundingSet=CAP_NET_ADMIN CAP_NET_BIND_SERVICE CAP_SYS_PTRACE CAP_DAC_READ_SEARCH AmbientCapabilities=CAP_NET_ADMIN CAP_NET_BIND_SERVICE CAP_SYS_PTRACE CAP_DAC_READ_SEARCH # ExecStart=/usr/bin/sing-box -D /var/lib/sing-box -C /etc/sing-box run ExecStart=/usr/bin/sing-box -D /var/lib/sing-box -c /etc/sing-box/config.json run ExecReload=/bin/kill -HUP $MAINPID Restart=on-failure RestartSec=10s LimitNOFILE=infinity [Install] WantedBy=multi-user.target 服务管理\n对于带有 systemd 的 Linux 系统，通常安装已经包含 sing-box 服务， 您可以使用以下命令管理服务：\n行动 命令 开机自启 sudo systemctl enable sing-box 禁用 sudo systemctl disable sing-box 启动 sudo systemctl start sing-box 停止 sudo systemctl stop sing-box 强行停止 sudo systemctl kill sing-box 重新启动 sudo systemctl restart sing-box 查看日志 sudo journalctl -u sing-box \u0026ndash;output cat -e 实时日志 sudo journalctl -u sing-box \u0026ndash;output cat -f 更新订阅","keywords":[],"articleBody":"sing-box支持的协议众多，可分流，全平台免费，包括IOS、MAC平台。\nhttps://sing-box.sagernet.org/zh/ https://github.com/SagerNet/sing-box 安装\n安装方法官网文档有详细介绍，以Debian12为例\nbash \u003c(curl -fsSL https://sing-box.app/deb-install.sh) 修改默认的配置文件/etc/sing-box/config.json\n修改/lib/systemd/system/sing-box.service内容如下\n[Unit] Description=sing-box service Documentation=https://sing-box.sagernet.org After=network.target nss-lookup.target network-online.target [Service] CapabilityBoundingSet=CAP_NET_ADMIN CAP_NET_BIND_SERVICE CAP_SYS_PTRACE CAP_DAC_READ_SEARCH AmbientCapabilities=CAP_NET_ADMIN CAP_NET_BIND_SERVICE CAP_SYS_PTRACE CAP_DAC_READ_SEARCH # ExecStart=/usr/bin/sing-box -D /var/lib/sing-box -C /etc/sing-box run ExecStart=/usr/bin/sing-box -D /var/lib/sing-box -c /etc/sing-box/config.json run ExecReload=/bin/kill -HUP $MAINPID Restart=on-failure RestartSec=10s LimitNOFILE=infinity [Install] WantedBy=multi-user.target 服务管理\n对于带有 systemd 的 Linux 系统，通常安装已经包含 sing-box 服务， 您可以使用以下命令管理服务：\n行动 命令 开机自启 sudo systemctl enable sing-box 禁用 sudo systemctl disable sing-box 启动 sudo systemctl start sing-box 停止 sudo systemctl stop sing-box 强行停止 sudo systemctl kill sing-box 重新启动 sudo systemctl restart sing-box 查看日志 sudo journalctl -u sing-box –output cat -e 实时日志 sudo journalctl -u sing-box –output cat -f 更新订阅\n订阅转换教程 生成sing-box配置 转换不支持sing-box订阅的机场订阅链接以便支持，格式如下\nhttps://sing-box-subscribe-doraemon.vercel.app/config/替换成机场订阅链接\u0026file=https://github.com/Toperlock/sing-box-subscribe/raw/main/config_template/config_template_groups_rule_set_tun.json 创建一个定时计划任务\nnano /etc/crontab 添加以下内容,示范每8小时自动更新订阅\n11 */8 * * * root wget -O /etc/sing-box/config.json 转换后的订阅链接 2\u003e\u00261 \u0026＆ sudo systemctl start sing-box \u0026＆ 重启rontab进程\n/etc/init.d/cron restart systemctl restart cron.service windows平台去 Releases · SagerNet/sing-box 下载对应的文件，解压后，将配置文件托到与sing-box.exe同级目录下，\n更新订阅,如果系统已经安装好了WSL子系统进入解压目录后，按住Shift键选择在此处打开 Linux shell(L)使用以下命令更新订阅下载\nwget -O config.json 转换后的订阅链接 2\u003e\u00261 (以管理员身份运行)打开CMD然后`cd｀到指定目录，运行\nsing-box.exe run -c config.json 又或者创建执行文件run-singbox.bat双击即可更新订阅并运行Sing-box\n@echo off :: 设置工作目录为批处理文件所在目录 cd /d \"%~dp0\" :: 调用WSL的子系统Debian下载更新订阅文件config.json wsl -d Debian -- wget -O config.json https://sing-box-subscribe-doraemon.vercel.app/config/替换成机场订阅链接\u0026file=https://github.com/Toperlock/sing-box-subscribe/raw/main/config_template/config_template_groups_rule_set_tun.json 2\u003e\u00261 :: 检查是否以管理员权限运行 net session \u003enul 2\u003e\u00261 if %errorlevel% neq 0 ( echo 请求管理员权限... PowerShell -Command \"Start-Process '%~dpnx0' -Verb RunAs\" exit /b ) :: 设置工作目录为批处理文件所在目录 cd /d \"%~dp0\" :: 以下是你的实际批处理命令 sing-box.exe -c config.json run pause 然后打开网页 http://127.0.0.1:9090 管理切换节点、模式。\n","wordCount":"211","inLanguage":"zh","image":"https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E","datePublished":"2023-08-21T07:37:56+08:00","dateModified":"2023-08-21T07:37:56+08:00","author":{"@type":"Person","name":"admin"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://567899.xyz/post/sing-box/"},"publisher":{"@type":"Organization","name":"Xizi's Blog","logo":{"@type":"ImageObject","url":"https://567899.xyz/%3Clink%20/%20abs%20url%3E"}}}</script></head><body id=top><script>localStorage.getItem("pref-theme")==="dark"?document.body.classList.add("dark"):localStorage.getItem("pref-theme")==="light"?document.body.classList.remove("dark"):window.matchMedia("(prefers-color-scheme: dark)").matches&&document.body.classList.add("dark")</script><header class=header><nav class=nav><div class=logo><a href=https://567899.xyz/ accesskey=h title="Xizi's Blog (Alt + H)"><img src=https://567899.xyz/apple-touch-icon.png alt aria-label=logo height=35>Xizi's Blog</a><div class=logo-switches><button id=theme-toggle accesskey=t title="(Alt + T)"><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu><li><a href=https://567899.xyz/archives/ title=归档><span>归档</span></a></li><li><a href=https://567899.xyz/tags/ title=标签><span>标签</span></a></li><li><a href=https://567899.xyz/about/ title=关于><span>关于</span></a></li><li><a href=https://567899.xyz/search/ title="搜索 (Alt + /)" accesskey=/><span>搜索</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><div class=breadcrumbs><a href=https://567899.xyz/>主页</a>&nbsp;»&nbsp;<a href=https://567899.xyz/post/>Posts</a></div><h1 class="post-title entry-hint-parent">sing-box安装使用</h1><div class=post-meta><span title='2023-08-21 07:37:56 +0800 +0800'>八月 21, 2023</span>&nbsp;·&nbsp;admin&nbsp;|&nbsp;<a href=https://github.com/pwwq/hugo-code/tree/master/content/post/sing-box.md rel="noopener noreferrer" target=_blank>编辑</a></div></header><div class=post-content><p>sing-box支持的协议众多，可分流，全平台免费，包括IOS、MAC平台。</p><ul><li><a href=https://sing-box.sagernet.org/zh/>https://sing-box.sagernet.org/zh/</a></li><li><a href=https://github.com/SagerNet/sing-box>https://github.com/SagerNet/sing-box</a></li></ul><p>安装</p><p><a href=https://sing-box.sagernet.org/zh/installation/package-manager/>安装</a>方法官网文档有详细介绍，以Debian12为例</p><pre tabindex=0><code>bash &lt;(curl -fsSL https://sing-box.app/deb-install.sh)
 </code></pre><p>修改默认的配置文件<code>/etc/sing-box/config.json</code></p><p>修改<code>/lib/systemd/system/sing-box.service</code>内容如下</p><pre tabindex=0><code>[Unit]
 Description=sing-box service
 Documentation=https://sing-box.sagernet.org
@@ -230,7 +38,7 @@ LimitNOFILE=infinity
 
 [Install]
 WantedBy=multi-user.target
-</code></pre><p>服务管理</p><p>对于带有 systemd 的 Linux 系统，通常安装已经包含 sing-box 服务， 您可以使用以下命令管理服务：</p><table><thead><tr><th style=text-align:left>行动</th><th style=text-align:left>命令</th></tr></thead><tbody><tr><td style=text-align:left>开机自启</td><td style=text-align:left>sudo systemctl enable sing-box</td></tr><tr><td style=text-align:left>禁用</td><td style=text-align:left>sudo systemctl disable sing-box</td></tr><tr><td style=text-align:left>启动</td><td style=text-align:left>sudo systemctl start sing-box</td></tr><tr><td style=text-align:left>停止</td><td style=text-align:left>sudo systemctl stop sing-box</td></tr><tr><td style=text-align:left>强行停止</td><td style=text-align:left>sudo systemctl kill sing-box</td></tr><tr><td style=text-align:left>重新启动</td><td style=text-align:left>sudo systemctl restart sing-box</td></tr><tr><td style=text-align:left>查看日志</td><td style=text-align:left>sudo journalctl -u sing-box &ndash;output cat -e</td></tr><tr><td style=text-align:left>实时日志</td><td style=text-align:left>sudo journalctl -u sing-box &ndash;output cat -f</td></tr></tbody></table><p>更新订阅</p><ul><li><a href=https://github.com/Toperlock/sing-box-subscribe>订阅转换教程</a></li><li><a href=https://sing-box-subscribe-doraemon.vercel.app>生成sing-box配置</a></li></ul><p>转换不支持sing-box订阅的机场订阅链接以便支持，格式如下</p><pre tabindex=0><code>https://sing-box-subscribe-doraemon.vercel.app/config/替换成机场订阅链接&amp;file=https://github.com/Toperlock/sing-box-subscribe/raw/main/config_template/config_template_groups_rule_set_tun.json
+</code></pre><p>服务管理</p><p>对于带有 systemd 的 Linux 系统，通常安装已经包含 sing-box 服务， 您可以使用以下命令管理服务：</p><table><thead><tr><th>行动</th><th>命令</th></tr></thead><tbody><tr><td>开机自启</td><td>sudo systemctl enable sing-box</td></tr><tr><td>禁用</td><td>sudo systemctl disable sing-box</td></tr><tr><td>启动</td><td>sudo systemctl start sing-box</td></tr><tr><td>停止</td><td>sudo systemctl stop sing-box</td></tr><tr><td>强行停止</td><td>sudo systemctl kill sing-box</td></tr><tr><td>重新启动</td><td>sudo systemctl restart sing-box</td></tr><tr><td>查看日志</td><td>sudo journalctl -u sing-box &ndash;output cat -e</td></tr><tr><td>实时日志</td><td>sudo journalctl -u sing-box &ndash;output cat -f</td></tr></tbody></table><p>更新订阅</p><ul><li><a href=https://github.com/Toperlock/sing-box-subscribe>订阅转换教程</a></li><li><a href=https://sing-box-subscribe-doraemon.vercel.app>生成sing-box配置</a></li></ul><p>转换不支持sing-box订阅的机场订阅链接以便支持，格式如下</p><pre tabindex=0><code>https://sing-box-subscribe-doraemon.vercel.app/config/替换成机场订阅链接&amp;file=https://github.com/Toperlock/sing-box-subscribe/raw/main/config_template/config_template_groups_rule_set_tun.json
 </code></pre><p>创建一个定时计划任务</p><pre tabindex=0><code>nano /etc/crontab
 </code></pre><p>添加以下内容,示范每8小时自动更新订阅</p><pre tabindex=0><code>11 */8 * * *  root wget -O /etc/sing-box/config.json 转换后的订阅链接  2&gt;&amp;1  &amp;＆ sudo systemctl start sing-box &amp;＆
 </code></pre><p>重启rontab进程</p><pre tabindex=0><code>/etc/init.d/cron restart
@@ -323,8 +131,8 @@ pause
         pageview: true,
         like: true,
     });
-</script></article></main><footer class=footer><span>&copy; 2024 <a href=https://567899.xyz/>Xizi's Blog</a></span> ·
+</script></article></main><footer class=footer><span>&copy; 2025 <a href=https://567899.xyz/>Xizi's Blog</a></span> ·
 <span>Powered by
 <a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
-        <a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg>
+        <a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg>
 </a><script>let menu=document.getElementById("menu");menu&&(menu.scrollLeft=localStorage.getItem("menu-scroll-position"),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}),document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{document.body.className.includes("dark")?(document.body.classList.remove("dark"),localStorage.setItem("pref-theme","light")):(document.body.classList.add("dark"),localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="复制";function s(){t.innerHTML="已复制！",setTimeout(()=>{t.innerHTML="复制"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>

@@ -9,7 +9,7 @@
       <url>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
-    <generator>Hugo -- 0.134.2</generator>
+    <generator>Hugo -- 0.123.8</generator>
     <language>zh</language>
     <lastBuildDate>Wed, 15 May 2019 01:37:56 +0800</lastBuildDate>
     <atom:link href="https://567899.xyz/tags/dd/index.xml" rel="self" type="application/rss+xml" />
@@ -18,53 +18,11 @@
       <link>https://567899.xyz/post/linux-vps-dd-debian-ubuntu-centos/</link>
       <pubDate>Wed, 15 May 2019 01:37:56 +0800</pubDate>
       <guid>https://567899.xyz/post/linux-vps-dd-debian-ubuntu-centos/</guid>
-      <description>&lt;p&gt;背景:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;适用于由GRUB引导的CentOS,Ubuntu,Debian系统.&lt;/li&gt;
-&lt;li&gt;使用官方发行版去掉模板预装的软件.&lt;/li&gt;
-&lt;li&gt;同时也可以解决内核版本与软件不兼容的问题。&lt;/li&gt;
-&lt;li&gt;只要有root权限,还您一个纯净的系统。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;注意:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;全自动安装默认root密码:MoeClub.org&lt;/li&gt;
-&lt;li&gt;安装完成后请立即更改密码.&lt;/li&gt;
-&lt;li&gt;能够全自动重装Debian/Ubuntu/CentOS等系统.&lt;/li&gt;
-&lt;li&gt;同时提供dd安装镜像功能,例如: 全自动无救援dd安装windows系统&lt;/li&gt;
-&lt;li&gt;全自动安装CentOS时默认提供VNC功能,可使用VNC Viewer查看进度,&lt;/li&gt;
-&lt;li&gt;VNC端口为1或者5901,可自行尝试连接.(成功后VNC功能会消失.)&lt;/li&gt;
-&lt;li&gt;目前CentOS系统只支持任意版本重装为 CentOS 6.x 及以下版本.&lt;/li&gt;
-&lt;li&gt;特别注意:OpenVZ构架不适用.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;依赖包:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#二进制文件    Debian/Ubuntu    RedHat/CentOS&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;iconv         &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;libc-bin&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;       &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;glibc-common&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;xz            &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;xz-utils&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;       &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;xz&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;awk           &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;gawk&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;           &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;gawk&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sed           &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;sed&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;            &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;sed&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;file          &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;file&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;           &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;file&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;grep          &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;grep&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;           &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;grep&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;openssl       &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;openssl&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;        &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;openssl&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;cpio          &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;cpio&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;           &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;cpio&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;gzip          &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;gzip&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;           &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;gzip&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;cat,cut..     &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;coreutils&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;      &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;coreutils&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;确保安装了所需软件:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#Debian/Ubuntu:&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;apt-get install -y xz-utils openssl gawk file
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#RedHat/CentOS:&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;yum install -y xz openssl gawk file
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;如果出现了错误,请运行:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#Debian/Ubuntu:&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;apt-get update
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#RedHat/CentOS:&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;yum update
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;快速使用示例:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;bash &amp;lt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;wget --no-check-certificate -qO- &lt;span class=&#34;s1&#34;&gt;&amp;#39;https://moeclub.org/attachment/LinuxShell/InstallNET.sh&amp;#39;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; -d &lt;span class=&#34;m&#34;&gt;8&lt;/span&gt; -v &lt;span class=&#34;m&#34;&gt;64&lt;/span&gt; -a
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;下载及说明:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;wget --no-check-certificate -qO InstallNET.sh &lt;span class=&#34;s1&#34;&gt;&amp;#39;https://moeclub.org/attachment/LinuxShell/InstallNET.sh&amp;#39;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; chmod a+x InstallNET.sh
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;一些说明&lt;/p&gt;</description>
+      <description>背景:
+适用于由GRUB引导的CentOS,Ubuntu,Debian系统. 使用官方发行版去掉模板预装的软件. 同时也可以解决内核版本与软件不兼容的问题。 只要有root权限,还您一个纯净的系统。 注意:
+全自动安装默认root密码:MoeClub.org 安装完成后请立即更改密码. 能够全自动重装Debian/Ubuntu/CentOS等系统. 同时提供dd安装镜像功能,例如: 全自动无救援dd安装windows系统 全自动安装CentOS时默认提供VNC功能,可使用VNC Viewer查看进度, VNC端口为1或者5901,可自行尝试连接.(成功后VNC功能会消失.) 目前CentOS系统只支持任意版本重装为 CentOS 6.x 及以下版本. 特别注意:OpenVZ构架不适用. 依赖包:
+#二进制文件 Debian/Ubuntu RedHat/CentOS iconv [libc-bin] [glibc-common] xz [xz-utils] [xz] awk [gawk] [gawk] sed [sed] [sed] file [file] [file] grep [grep] [grep] openssl [openssl] [openssl] cpio [cpio] [cpio] gzip [gzip] [gzip] cat,cut.. [coreutils] [coreutils] 确保安装了所需软件:
+#Debian/Ubuntu: apt-get install -y xz-utils openssl gawk file #RedHat/CentOS: yum install -y xz openssl gawk file 如果出现了错误,请运行:</description>
     </item>
   </channel>
 </rss>

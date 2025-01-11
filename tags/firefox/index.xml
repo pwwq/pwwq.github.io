@@ -9,7 +9,7 @@
       <url>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
-    <generator>Hugo -- 0.134.2</generator>
+    <generator>Hugo -- 0.123.8</generator>
     <language>zh</language>
     <lastBuildDate>Fri, 13 Nov 2015 01:37:56 +0800</lastBuildDate>
     <atom:link href="https://567899.xyz/tags/firefox/index.xml" rel="self" type="application/rss+xml" />
@@ -18,57 +18,15 @@
       <link>https://567899.xyz/post/extensions-chrome-edge-firefox/</link>
       <pubDate>Fri, 13 Nov 2015 01:37:56 +0800</pubDate>
       <guid>https://567899.xyz/post/extensions-chrome-edge-firefox/</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;https://greasyfork.org/zh-CN&#34;&gt;Greasy Fork - 安全、实用的用户脚本大全&lt;/a&gt;  油猴&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://greasyfork.org/scripts/418804&#34;&gt;https://greasyfork.org/scripts/418804&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Edge扩展&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://microsoftedge.microsoft.com/addons/detail/tampermonkey/iikmkjmpaadaobahmlepeloendndfphd&#34;&gt;tampermonkey油猴&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://microsoftedge.microsoft.com/addons/detail/adblock-plus-%E5%85%8D%E8%B4%B9%E7%9A%84%E5%B9%BF%E5%91%8A%E6%8B%A6%E6%88%AA%E5%99%A8/gmgoamodcdcjnbaobigkjelfplakmdhh&#34;&gt;Adblock Plus - 免费的广告拦截器&lt;/a&gt;、&lt;a href=&#34;https://microsoftedge.microsoft.com/addons/detail/ublock-origin/odfafepnkmbhccpbejgmiehpchacaeak&#34;&gt;uBlock Origin&lt;/a&gt;二款去广告插件扩展二选一&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://microsoftedge.microsoft.com/addons/detail/bitwarden-%E5%85%8D%E8%B4%B9%E5%AF%86%E7%A0%81%E7%AE%A1%E7%90%86%E5%99%A8/jbkfoedolllekgbhcbcoahefnbanhhlh&#34;&gt;Bitwarden - 免费密码管理器&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://microsoftedge.microsoft.com/addons/detail/header-editor/afopnekiinpekooejpchnkgfffaeceko&#34;&gt;Header Editor&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;不***显示谷歌人机验证器验证码，导入在线配置&lt;a href=&#34;https://567899.xyz/HE-GoogleRedirect.json&#34;&gt;HE-GoogleRedirect&lt;/a&gt;&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;s2&#34;&gt;&amp;#34;request&amp;#34;&lt;/span&gt;: &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;		&lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;			&lt;span class=&#34;s2&#34;&gt;&amp;#34;enable&amp;#34;&lt;/span&gt;: true,
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;			&lt;span class=&#34;s2&#34;&gt;&amp;#34;name&amp;#34;&lt;/span&gt;: &lt;span class=&#34;s2&#34;&gt;&amp;#34;Google APIs&amp;#34;&lt;/span&gt;,
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;			&lt;span class=&#34;s2&#34;&gt;&amp;#34;ruleType&amp;#34;&lt;/span&gt;: &lt;span class=&#34;s2&#34;&gt;&amp;#34;redirect&amp;#34;&lt;/span&gt;,
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;			&lt;span class=&#34;s2&#34;&gt;&amp;#34;matchType&amp;#34;&lt;/span&gt;: &lt;span class=&#34;s2&#34;&gt;&amp;#34;regexp&amp;#34;&lt;/span&gt;,
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;			&lt;span class=&#34;s2&#34;&gt;&amp;#34;pattern&amp;#34;&lt;/span&gt;: &lt;span class=&#34;s2&#34;&gt;&amp;#34;^http(s?)://ajax\\.googleapis\\.com/(.*)&amp;#34;&lt;/span&gt;,
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;			&lt;span class=&#34;s2&#34;&gt;&amp;#34;exclude&amp;#34;&lt;/span&gt;: &lt;span class=&#34;s2&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;,
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;			&lt;span class=&#34;s2&#34;&gt;&amp;#34;isFunction&amp;#34;&lt;/span&gt;: false,
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;			&lt;span class=&#34;s2&#34;&gt;&amp;#34;action&amp;#34;&lt;/span&gt;: &lt;span class=&#34;s2&#34;&gt;&amp;#34;redirect&amp;#34;&lt;/span&gt;,
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;			&lt;span class=&#34;s2&#34;&gt;&amp;#34;to&amp;#34;&lt;/span&gt;: &lt;span class=&#34;s2&#34;&gt;&amp;#34;https://gapis.geekzu.org/ajax/&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$2&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;,
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;			&lt;span class=&#34;s2&#34;&gt;&amp;#34;group&amp;#34;&lt;/span&gt;: &lt;span class=&#34;s2&#34;&gt;&amp;#34;Google Redirect&amp;#34;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;		&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;,
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;		&lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;			&lt;span class=&#34;s2&#34;&gt;&amp;#34;enable&amp;#34;&lt;/span&gt;: true,
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;			&lt;span class=&#34;s2&#34;&gt;&amp;#34;name&amp;#34;&lt;/span&gt;: &lt;span class=&#34;s2&#34;&gt;&amp;#34;reCaptcha&amp;#34;&lt;/span&gt;,
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;			&lt;span class=&#34;s2&#34;&gt;&amp;#34;ruleType&amp;#34;&lt;/span&gt;: &lt;span class=&#34;s2&#34;&gt;&amp;#34;redirect&amp;#34;&lt;/span&gt;,
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;			&lt;span class=&#34;s2&#34;&gt;&amp;#34;matchType&amp;#34;&lt;/span&gt;: &lt;span class=&#34;s2&#34;&gt;&amp;#34;regexp&amp;#34;&lt;/span&gt;,
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;			&lt;span class=&#34;s2&#34;&gt;&amp;#34;pattern&amp;#34;&lt;/span&gt;: &lt;span class=&#34;s2&#34;&gt;&amp;#34;^http(s?)://(?:www\\.|recaptcha\\.|)google\\.com/recaptcha/(.*)&amp;#34;&lt;/span&gt;,
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;			&lt;span class=&#34;s2&#34;&gt;&amp;#34;exclude&amp;#34;&lt;/span&gt;: &lt;span class=&#34;s2&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;,
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;			&lt;span class=&#34;s2&#34;&gt;&amp;#34;isFunction&amp;#34;&lt;/span&gt;: false,
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;			&lt;span class=&#34;s2&#34;&gt;&amp;#34;action&amp;#34;&lt;/span&gt;: &lt;span class=&#34;s2&#34;&gt;&amp;#34;redirect&amp;#34;&lt;/span&gt;,
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;			&lt;span class=&#34;s2&#34;&gt;&amp;#34;to&amp;#34;&lt;/span&gt;: &lt;span class=&#34;s2&#34;&gt;&amp;#34;https://recaptcha.net/recaptcha/&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$2&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;,
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;			&lt;span class=&#34;s2&#34;&gt;&amp;#34;group&amp;#34;&lt;/span&gt;: &lt;span class=&#34;s2&#34;&gt;&amp;#34;Google Redirect&amp;#34;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;		&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;,
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;s2&#34;&gt;&amp;#34;sendHeader&amp;#34;&lt;/span&gt;: &lt;span class=&#34;o&#34;&gt;[]&lt;/span&gt;,
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;s2&#34;&gt;&amp;#34;receiveHeader&amp;#34;&lt;/span&gt;: &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;		&lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;			&lt;span class=&#34;s2&#34;&gt;&amp;#34;enable&amp;#34;&lt;/span&gt;: true,
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;			&lt;span class=&#34;s2&#34;&gt;&amp;#34;name&amp;#34;&lt;/span&gt;: &lt;span class=&#34;s2&#34;&gt;&amp;#34;Content Security Policy Header Modification&amp;#34;&lt;/span&gt;,
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;			&lt;span class=&#34;s2&#34;&gt;&amp;#34;ruleType&amp;#34;&lt;/span&gt;: &lt;span class=&#34;s2&#34;&gt;&amp;#34;modifyReceiveHeader&amp;#34;&lt;/span&gt;,
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;			&lt;span class=&#34;s2&#34;&gt;&amp;#34;matchType&amp;#34;&lt;/span&gt;: &lt;span class=&#34;s2&#34;&gt;&amp;#34;all&amp;#34;&lt;/span&gt;,
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;			&lt;span class=&#34;s2&#34;&gt;&amp;#34;pattern&amp;#34;&lt;/span&gt;: &lt;span class=&#34;s2&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;,
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;			&lt;span class=&#34;s2&#34;&gt;&amp;#34;exclude&amp;#34;&lt;/span&gt;: &lt;span class=&#34;s2&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;,
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;			&lt;span class=&#34;s2&#34;&gt;&amp;#34;isFunction&amp;#34;&lt;/span&gt;: true,
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;			&lt;span class=&#34;s2&#34;&gt;&amp;#34;code&amp;#34;&lt;/span&gt;: &lt;span class=&#34;s2&#34;&gt;&amp;#34;let rt = detail.type;\nif (rt === &amp;#39;script&amp;#39; || rt === &amp;#39;stylesheet&amp;#39; || rt === &amp;#39;main_frame&amp;#39; || rt === &amp;#39;sub_frame&amp;#39;) {\n  for (let i in val) {\n    if (val[i].name.toLowerCase() === &amp;#39;content-security-policy&amp;#39;) {\n      let s = val[i].value;\n      s = s.replace(/googleapis\\.com/g, &amp;#39;&lt;/span&gt;$&lt;span class=&#34;s2&#34;&gt;&amp;amp; https://gapis.geekzu.org&amp;#39;);\n      s = s.replace(/recaptcha\\.google\\.com/g, &amp;#39;&lt;/span&gt;$&lt;span class=&#34;s2&#34;&gt;&amp;amp; https://recaptcha.net&amp;#39;);\n      s = s.replace(/google\\.com/g, &amp;#39;&lt;/span&gt;$&lt;span class=&#34;s2&#34;&gt;&amp;amp; https://recaptcha.net&amp;#39;);\n      s = s.replace(/gstatic\\.com/g, &amp;#39;&lt;/span&gt;$&lt;span class=&#34;s2&#34;&gt;&amp;amp; https://*.gstatic.cn&amp;#39;);\n      val[i].value = s;\n    }\n  }\n}&amp;#34;&lt;/span&gt;,
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;			&lt;span class=&#34;s2&#34;&gt;&amp;#34;group&amp;#34;&lt;/span&gt;: &lt;span class=&#34;s2&#34;&gt;&amp;#34;Google Redirect&amp;#34;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;		&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;a href=&#34;https://567899.xyz/post/Russia-pronhub-VKontakte-adblock-Via/&#34;&gt;俄罗斯IP上P站添加规则跳过VK免登陆验证安卓Via浏览器AdBlock&lt;/a&gt;，在Adblock Plus&lt;code&gt;或&lt;/code&gt;uBlock Origin`中添加如下规则&lt;/p&gt;</description>
+      <description>Greasy Fork - 安全、实用的用户脚本大全 油猴
+https://greasyfork.org/scripts/418804
+Edge扩展
+tampermonkey油猴
+Adblock Plus - 免费的广告拦截器、uBlock Origin二款去广告插件扩展二选一
+Bitwarden - 免费密码管理器
+Header Editor
+不***显示谷歌人机验证器验证码，导入在线配置HE-GoogleRedirect
+{ &amp;#34;request&amp;#34;: [ { &amp;#34;enable&amp;#34;: true, &amp;#34;name&amp;#34;: &amp;#34;Google APIs&amp;#34;, &amp;#34;ruleType&amp;#34;: &amp;#34;redirect&amp;#34;, &amp;#34;matchType&amp;#34;: &amp;#34;regexp&amp;#34;, &amp;#34;pattern&amp;#34;: &amp;#34;^http(s?)://ajax\\.googleapis\\.com/(.*)&amp;#34;, &amp;#34;exclude&amp;#34;: &amp;#34;&amp;#34;, &amp;#34;isFunction&amp;#34;: false, &amp;#34;action&amp;#34;: &amp;#34;redirect&amp;#34;, &amp;#34;to&amp;#34;: &amp;#34;https://gapis.geekzu.org/ajax/$2&amp;#34;, &amp;#34;group&amp;#34;: &amp;#34;Google Redirect&amp;#34; }, { &amp;#34;enable&amp;#34;: true, &amp;#34;name&amp;#34;: &amp;#34;reCaptcha&amp;#34;, &amp;#34;ruleType&amp;#34;: &amp;#34;redirect&amp;#34;, &amp;#34;matchType&amp;#34;: &amp;#34;regexp&amp;#34;, &amp;#34;pattern&amp;#34;: &amp;#34;^http(s?)://(?:www\\.|recaptcha\\.|)google\\.com/recaptcha/(.*)&amp;#34;, &amp;#34;exclude&amp;#34;: &amp;#34;&amp;#34;, &amp;#34;isFunction&amp;#34;: false, &amp;#34;action&amp;#34;: &amp;#34;redirect&amp;#34;, &amp;#34;to&amp;#34;: &amp;#34;https://recaptcha.net/recaptcha/$2&amp;#34;, &amp;#34;group&amp;#34;: &amp;#34;Google Redirect&amp;#34; } ], &amp;#34;sendHeader&amp;#34;: [], &amp;#34;receiveHeader&amp;#34;: [ { &amp;#34;enable&amp;#34;: true, &amp;#34;name&amp;#34;: &amp;#34;Content Security Policy Header Modification&amp;#34;, &amp;#34;ruleType&amp;#34;: &amp;#34;modifyReceiveHeader&amp;#34;, &amp;#34;matchType&amp;#34;: &amp;#34;all&amp;#34;, &amp;#34;pattern&amp;#34;: &amp;#34;&amp;#34;, &amp;#34;exclude&amp;#34;: &amp;#34;&amp;#34;, &amp;#34;isFunction&amp;#34;: true, &amp;#34;code&amp;#34;: &amp;#34;let rt = detail.</description>
     </item>
   </channel>
 </rss>

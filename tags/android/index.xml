@@ -9,7 +9,7 @@
       <url>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
-    <generator>Hugo -- 0.134.2</generator>
+    <generator>Hugo -- 0.123.8</generator>
     <language>zh</language>
     <lastBuildDate>Thu, 20 Jun 2024 09:44:56 +0800</lastBuildDate>
     <atom:link href="https://567899.xyz/tags/android/index.xml" rel="self" type="application/rss+xml" />
@@ -18,204 +18,100 @@
       <link>https://567899.xyz/post/oneplus-bootloader/</link>
       <pubDate>Thu, 20 Jun 2024 09:44:56 +0800</pubDate>
       <guid>https://567899.xyz/post/oneplus-bootloader/</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;https://www.oneplus.com&#34;&gt;一加手机&lt;/a&gt;是OPPO旗下的子品牌，俗称厂妹机、绿厂机。&lt;/p&gt;
-&lt;h3 id=&#34;解锁bootloader&#34;&gt;解锁Bootloader&lt;/h3&gt;
-&lt;p&gt;一加手机解锁无任何限制，到手就能秒解锁Bootloader，没有套路。好评！！&lt;/p&gt;
-&lt;p&gt;一、首先激活“开发者模式”：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;“设置“→“关于手机“→“版本信息“→点击五次“版本号”输入密码即可&lt;/li&gt;
-&lt;li&gt;返回到“设置“→“系统“→“开发者选项“&lt;/li&gt;
-&lt;li&gt;“开发者选项“里，找到“OEM解锁”并勾选允许&lt;/li&gt;
-&lt;li&gt;“开发者选项“里，打开USB调试，以便连接电脑&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;Tips：OEM解锁保持开启，因为这是解锁BootLoader的硬性开关&lt;/p&gt;
-&lt;p&gt;二、安装驱动&lt;/p&gt;
-&lt;p&gt;下载&lt;a href=&#34;https://files.567899.xyz/%E4%B8%80%E5%8A%A0%E6%89%8B%E6%9C%BAoneplus%E7%94%B5%E8%84%91%E9%A9%B1%E5%8A%A8.zip&#34;&gt;一加手机oneplus电脑驱动.zip&lt;/a&gt;解压并依次安装里面的&lt;code&gt;adb驱动&lt;/code&gt;、&lt;code&gt;高通驱动&lt;/code&gt;、&lt;code&gt;一加驱动&lt;/code&gt;。&lt;/p&gt;
-&lt;p&gt;三、通过ADB进入解锁bootloader&lt;/p&gt;
-&lt;p&gt;从Google下载&lt;a href=&#34;https://dl.google.com/android/repository/platform-tools-latest-windows.zip&#34;&gt;ADB档案&lt;/a&gt;并解压，打开CMD命令行定位到ADB解压目录下输入&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;adb devices
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;检测手机是否连接到电脑 如果出现“XXXXXXXXXXXXXXXXX device”，表示连接成功，然后继续输入&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;adb reboot bootloader
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;此时手机将开机状态下重启进入到Fastboot模式，然后再输入&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;fastboot devices
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;列出Fastboot模式下的设备，如果未出现“XXXXXXXXXXXXXXXXX device”，表示设备未连接成功,成功后，再次输入&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;fastboot flashing unlock
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Fastboot模式下刷入解锁指令,这时候手机会出现BL解锁的英文画面，用音量下键移动到第二行的&lt;code&gt;UNLOCK THE BOOTLOADER&lt;/code&gt;上，再按一次开机按键，等待开机后就自动恢复出厂设置，并且解锁BL完成开机。&lt;/p&gt;
-&lt;p&gt;如果不出意外，手机将会自动格式化后再重启，开机要加载一段时间，请耐心等待。&lt;/p&gt;
-&lt;p&gt;进入系统界面后再次开启“开发者模式”，勾选允许USB调试即可。&lt;/p&gt;
-&lt;h3 id=&#34;通过kernelsu获取root权限&#34;&gt;通过KernelSU获取ROOT权限&lt;/h3&gt;
-&lt;ol&gt;
-&lt;li&gt;提取&lt;code&gt;init_boot.img&lt;/code&gt;文件&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;下载对应机型的卡刷包，下载安装&lt;a href=&#34;https://mt2.cn/download/&#34;&gt;MT管理器&lt;/a&gt;，用MT管理器打开系统包里面 &lt;code&gt;payload.bin&lt;/code&gt;长按 &lt;code&gt;init_boot.img&lt;/code&gt; 解压复制一份出来。&lt;/p&gt;
-&lt;ol start=&#34;2&#34;&gt;
-&lt;li&gt;通过KernelSU修补&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;手机内核版本5.15+可以直接修补，使用LKM方式运行KernelSU，不再需要编译内核。&lt;/p&gt;
-&lt;p&gt;下载安装&lt;a href=&#34;https://github.com/tiann/KernelSU/releases&#34;&gt;KernelSU&lt;/a&gt;修补刚才提取到&lt;code&gt;init_boot.img&lt;/code&gt;文件，成功后生成的新的文件在手机的下载目录，找到它并把它复制到上面的ADB解压目录下。&lt;/p&gt;
-&lt;ol start=&#34;3&#34;&gt;
-&lt;li&gt;ADB刷入修补过的&lt;code&gt;init_boot.img&lt;/code&gt;文件&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;打开CMD定位到ADB目录下，然后执行&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;fastboot flash init_boot init_boot.img
-fastboot reboot
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;重启手机后即可通过KernelSU的APP管理ROOT权限与安装模块应用了&lt;/p&gt;</description>
+      <description>一加手机是OPPO旗下的子品牌，俗称厂妹机、绿厂机。
+解锁Bootloader 一加手机解锁无任何限制，到手就能秒解锁Bootloader，没有套路。好评！！
+一、首先激活“开发者模式”：
+“设置“→“关于手机“→“版本信息“→点击五次“版本号”输入密码即可 返回到“设置“→“系统“→“开发者选项“ “开发者选项“里，找到“OEM解锁”并勾选允许 “开发者选项“里，打开USB调试，以便连接电脑 Tips：OEM解锁保持开启，因为这是解锁BootLoader的硬性开关
+二、安装驱动
+下载一加手机oneplus电脑驱动.zip解压并依次安装里面的adb驱动、高通驱动、一加驱动。
+三、通过ADB进入解锁bootloader
+从Google下载ADB档案并解压，打开CMD命令行定位到ADB解压目录下输入
+adb devices 检测手机是否连接到电脑 如果出现“XXXXXXXXXXXXXXXXX device”，表示连接成功，然后继续输入
+adb reboot bootloader 此时手机将开机状态下重启进入到Fastboot模式，然后再输入
+fastboot devices 列出Fastboot模式下的设备，如果未出现“XXXXXXXXXXXXXXXXX device”，表示设备未连接成功,成功后，再次输入
+fastboot flashing unlock Fastboot模式下刷入解锁指令,这时候手机会出现BL解锁的英文画面，用音量下键移动到第二行的UNLOCK THE BOOTLOADER上，再按一次开机按键，等待开机后就自动恢复出厂设置，并且解锁BL完成开机。
+如果不出意外，手机将会自动格式化后再重启，开机要加载一段时间，请耐心等待。
+进入系统界面后再次开启“开发者模式”，勾选允许USB调试即可。
+通过KernelSU获取ROOT权限 提取init_boot.img文件 下载对应机型的卡刷包，下载安装MT管理器，用MT管理器打开系统包里面 payload.bin长按 init_boot.img 解压复制一份出来。
+通过KernelSU修补 手机内核版本5.15+可以直接修补，使用LKM方式运行KernelSU，不再需要编译内核。
+下载安装KernelSU修补刚才提取到init_boot.img文件，成功后生成的新的文件在手机的下载目录，找到它并把它复制到上面的ADB解压目录下。
+ADB刷入修补过的init_boot.img文件 打开CMD定位到ADB目录下，然后执行
+fastboot flash init_boot init_boot.img fastboot reboot 重启手机后即可通过KernelSU的APP管理ROOT权限与安装模块应用了</description>
     </item>
     <item>
       <title>安卓隐藏root权限</title>
       <link>https://567899.xyz/post/android-root/</link>
       <pubDate>Tue, 23 Jan 2024 09:44:51 +0800</pubDate>
       <guid>https://567899.xyz/post/android-root/</guid>
-      <description>&lt;p&gt;Kitsune Magisk&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/HuskyDG/magisk-files&#34;&gt;https://github.com/HuskyDG/magisk-files&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://huskydg.github.io/magisk-files/&#34;&gt;https://huskydg.github.io/magisk-files/&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;a href=&#34;https://github.com/topjohnwu/Magisk&#34;&gt;Magisk&lt;/a&gt; 安装&lt;a href=&#34;https://github.com/LSPosed/LSPosed.github.io/releases&#34;&gt;Shamiko&lt;/a&gt;模块对软件隐藏Root权限，但是效果不是很好，比如过不了【数字人民币】、【反诈中心】APP，目前隐藏root权限效果出色的是&lt;a href=&#34;https://kernelsu.org/&#34;&gt;KernelSU&lt;/a&gt;,但是KernelSU门槛较高，要编译安卓kernel内核,可使用修改版使用&lt;a href=&#34;https://github.com/bmax121/APatch&#34;&gt;APatch&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;德尔塔面具kitsune mask是Magisk修改改进版，在隐藏root这方面比原版Magisk好，其它功能、使用上差不多。&lt;/p&gt;
-&lt;p&gt;同样是kernel内核级root,但&lt;a href=&#34;https://kernelsu.org/&#34;&gt;KernelSU&lt;/a&gt;使用的是GKI,&lt;a href=&#34;https://github.com/bmax121/APatch&#34;&gt;APatch&lt;/a&gt;使用的是init.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://play.google.com/store/apps/details?id=com.marriott.mrt&#34;&gt;万豪旅享家&lt;/a&gt;在kernelsu能过，但APatch会闪退。&lt;/p&gt;
-&lt;p&gt;截止目前，使用&lt;a href=&#34;https://github.com/bmax121/APatch&#34;&gt;APatch&lt;/a&gt;或kitsune mask能有效隐藏root，日后可能会升级到检测bootloader解锁状态。&lt;/p&gt;</description>
+      <description>Kitsune Magisk
+https://github.com/HuskyDG/magisk-files https://huskydg.github.io/magisk-files/ Magisk 安装Shamiko模块对软件隐藏Root权限，但是效果不是很好，比如过不了【数字人民币】、【反诈中心】APP，目前隐藏root权限效果出色的是KernelSU,但是KernelSU门槛较高，要编译安卓kernel内核,可使用修改版使用APatch
+德尔塔面具kitsune mask是Magisk修改改进版，在隐藏root这方面比原版Magisk好，其它功能、使用上差不多。
+同样是kernel内核级root,但KernelSU使用的是GKI,APatch使用的是init.
+万豪旅享家在kernelsu能过，但APatch会闪退。
+截止目前，使用APatch或kitsune mask能有效隐藏root，日后可能会升级到检测bootloader解锁状态。</description>
     </item>
     <item>
       <title>联通TinyProxy百度直连UC动态直连免流IP模块Magisk</title>
       <link>https://567899.xyz/post/tinyproxy_baidu_uc_ip_magisk/</link>
       <pubDate>Mon, 20 Feb 2023 09:37:56 +0800</pubDate>
       <guid>https://567899.xyz/post/tinyproxy_baidu_uc_ip_magisk/</guid>
-      <description>&lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&#34;https://github.com/EternalPain/ZJL&#34;&gt;https://github.com/EternalPain/ZJL&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;&lt;a href=&#34;https://567899.xyz/uploads/ZJL2.0beta30_clnc_UC_magisk.zip&#34;&gt;ZJL2.0beta30_clncUC动态(联通)_magisk&lt;/a&gt;、&lt;a href=&#34;https://567899.xyz/uploads/ZJL2.0beta30_clnc_baidu_magisk.zip&#34;&gt;ZJL2.0beta30_clnc百度直连_magisk&lt;/a&gt;、&lt;a href=&#34;https://567899.xyz/uploads/ZJL2.0beta30_cns_baidu_speed.zip&#34;&gt;ZJL2.0beta30_cns 百度直连不限制网速&lt;/a&gt; 三选一即可，安装完重启手机后进入目录&lt;code&gt;/data/ZJL2.0_magisk&lt;/code&gt;修改编辑文件conf并执行&lt;code&gt;开启.sh&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;TinyProxy官方版：&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://www.lanzoui.com/b004yxdhc&#34;&gt;https://www.lanzoui.com/b004yxdhc&lt;/a&gt; 密码5fgw&lt;/p&gt;
-&lt;h2 id=&#34;获取最新最快的百度直连ip&#34;&gt;获取最新最快的百度直连IP&lt;/h2&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ping cloudnproxy.baidu.com
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;目前可选IP地址&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 联通 IP&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 南京 153.3.236.22&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 苏州 157.0.148.53&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 保定 110.242.70.69&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 保定 110.242.70.68&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 广州 157.255.78.51&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 电信 IP&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 南京 180.97.104.168&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 苏州 180.97.93.202&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 北京 220.181.7.1&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 北京 220.181.33.174&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 北京 220.181.111.189&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 广州 14.215.179.244&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 移动 IP&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 南京 36.152.45.98&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 南京 36.152.45.97&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 北京 39.156.69.161&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 北京 39.156.69.198&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 广州 183.232.233.5&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;务必选择对应运营商的IP，否则不免流&lt;/strong&gt;例如使用的是中国联通手机号就要选联通的IP&lt;/p&gt;</description>
+      <description>https://github.com/EternalPain/ZJL
+ZJL2.0beta30_clncUC动态(联通)_magisk、ZJL2.0beta30_clnc百度直连_magisk、ZJL2.0beta30_cns 百度直连不限制网速 三选一即可，安装完重启手机后进入目录/data/ZJL2.0_magisk修改编辑文件conf并执行开启.sh
+TinyProxy官方版：
+https://www.lanzoui.com/b004yxdhc 密码5fgw
+获取最新最快的百度直连IP ping cloudnproxy.baidu.com 目前可选IP地址
+# 联通 IP # 南京 153.3.236.22 # 苏州 157.0.148.53 # 保定 110.242.70.69 # 保定 110.242.70.68 # 广州 157.255.78.51 # 电信 IP # 南京 180.97.104.168 # 苏州 180.97.93.202 # 北京 220.181.7.1 # 北京 220.181.33.174 # 北京 220.181.111.189 # 广州 14.215.179.244 # 移动 IP # 南京 36.152.45.98 # 南京 36.152.45.97 # 北京 39.156.69.161 # 北京 39.156.69.198 # 广州 183.232.233.5 务必选择对应运营商的IP，否则不免流例如使用的是中国联通手机号就要选联通的IP</description>
     </item>
     <item>
       <title>安卓手机跳过Google开机向导设置</title>
       <link>https://567899.xyz/post/android-boot-settings/</link>
       <pubDate>Sat, 12 Nov 2016 01:37:56 +0800</pubDate>
       <guid>https://567899.xyz/post/android-boot-settings/</guid>
-      <description>&lt;h2 id=&#34;buildprop关闭开机引导推荐&#34;&gt;build.prop关闭开机引导（推荐）&lt;/h2&gt;
-&lt;p&gt;打开TWRP终端&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;mount -o remount,rw /system
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#挂载 system 分区为读写&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;vi /system/build.prop
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#浏览build.prop&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#输入&amp;#34;i&amp;#34;进入Insert编辑模式&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ro.setupwizard.mode&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;OPTIONAL
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#找到该行将&amp;#34;OPTIONAL&amp;#34;修改为&amp;#34;DISABLED&amp;#34;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#按 ESC 回到 Normal 模式&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;:wq
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#输入:wq存盘并退出&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;reboot
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#重启手机 enjoy it !&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;首屏四角跳过&#34;&gt;首屏四角跳过&lt;/h2&gt;
-&lt;p&gt;从左上角开始，顺时针依次点击四个角（状态栏以下）&lt;/p&gt;
-&lt;h2 id=&#34;路由器代理&#34;&gt;路由器代理&lt;/h2&gt;
-&lt;p&gt;在路由器系统中设置网络代理以连接 Google 服务器通过验证&lt;/p&gt;
-&lt;h2 id=&#34;延后安装&#34;&gt;延后安装&lt;/h2&gt;
-&lt;p&gt;刷写系统完毕并开机后再刷入 Gapps，存在 GooglePlay 服务 停止运行的问题&lt;/p&gt;
-&lt;h2 id=&#34;删除验证程序&#34;&gt;删除验证程序&lt;/h2&gt;
-&lt;p&gt;进入 TWRP，挂载 system，打开 文件管理，删除或重命名 setupwizard.apk&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;system/priv-app/setupwizard/setupwizard.apk&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;开机后，挂梯子登录谷歌账户，再把 setupwizard.apk 改回来（前提是不删除源文件，只重命名一下），完成通过向导即可。若未改回会存在任务键、返回键失灵、状态栏无法下拉等问题。&lt;/p&gt;
-&lt;h1 id=&#34;终极方法&#34;&gt;终极方法&lt;/h1&gt;
-&lt;ol&gt;
-&lt;li&gt;刷机前退出登陆谷歌账号及手机厂商的账号&lt;/li&gt;
-&lt;li&gt;取出SIM卡也不要连接WIFI网络&lt;/li&gt;
-&lt;li&gt;直到完成开机设置，顺利进入手机桌面&lt;/li&gt;
-&lt;/ol&gt;</description>
+      <description>build.prop关闭开机引导（推荐） 打开TWRP终端
+mount -o remount,rw /system #挂载 system 分区为读写 vi /system/build.prop #浏览build.prop #输入&amp;#34;i&amp;#34;进入Insert编辑模式 ro.setupwizard.mode=OPTIONAL #找到该行将&amp;#34;OPTIONAL&amp;#34;修改为&amp;#34;DISABLED&amp;#34; #按 ESC 回到 Normal 模式 :wq #输入:wq存盘并退出 reboot #重启手机 enjoy it ! 首屏四角跳过 从左上角开始，顺时针依次点击四个角（状态栏以下）
+路由器代理 在路由器系统中设置网络代理以连接 Google 服务器通过验证
+延后安装 刷写系统完毕并开机后再刷入 Gapps，存在 GooglePlay 服务 停止运行的问题
+删除验证程序 进入 TWRP，挂载 system，打开 文件管理，删除或重命名 setupwizard.apk
+system/priv-app/setupwizard/setupwizard.apk
+开机后，挂梯子登录谷歌账户，再把 setupwizard.apk 改回来（前提是不删除源文件，只重命名一下），完成通过向导即可。若未改回会存在任务键、返回键失灵、状态栏无法下拉等问题。
+终极方法 刷机前退出登陆谷歌账号及手机厂商的账号 取出SIM卡也不要连接WIFI网络 直到完成开机设置，顺利进入手机桌面 </description>
     </item>
     <item>
       <title>Android安卓手机VPN热点中继USB蓝牙网络共享</title>
       <link>https://567899.xyz/post/android-vpn-hotspot/</link>
       <pubDate>Sun, 17 Jan 2016 01:37:56 +0800</pubDate>
       <guid>https://567899.xyz/post/android-vpn-hotspot/</guid>
-      <description>&lt;p&gt;Android安卓手机root后授权VPN Hotspot可以实现VPN热点中继USB蓝牙网络共享，P.S. You can also do the similar on Windows, Mac, and iOS. I don&amp;rsquo;t know about you but I can&amp;rsquo;t get my stupid Windows 10 to work with hosted network now that they introduced this Mobile hotspot.&lt;/p&gt;
-&lt;p&gt;方法一： 安卓手机依次进入【设置】【网络和互联网】【热点和网络共享】打开启用【允许客户端使用VPN】&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://567899.xyz/images/android-vpn-hotspot-egerre435366.png&#34; alt=&#34;&#34;  /&gt;
-&lt;/p&gt;
-&lt;p&gt;方法二： Android安卓手机下载安装&lt;code&gt;VPN 热点&lt;/code&gt;这个软件&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://github.com/Mygod/VPNHotspot&#34;&gt;https://github.com/Mygod/VPNHotspot&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;下载地址：&lt;a href=&#34;https://play.google.com/store/apps/details?id=be.mygod.vpnhotspot&#34;&gt;VPN 热点 - Google Play 上的应用&lt;/a&gt; or &lt;a href=&#34;https://labs.xda-developers.com/store/app/be.mygod.vpnhotspot&#34;&gt;XDA Labs&lt;/a&gt; or &lt;a href=&#34;https://github.com/Mygod/VPNHotspot/releases&#34;&gt;GitHub&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://567899.xyz/uploads/vpnhotspot-v2.6.2.apk&#34;&gt;本站下载vpnhotspot-v2.6.2.apk&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;前提条件&lt;/strong&gt;
-&lt;code&gt;VPN 热点&lt;/code&gt;这个软件必须有root权限&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Android安卓手机如何ROOT？&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;方法在&lt;a href=&#34;https://www.google.com&#34;&gt;Google&lt;/a&gt;中输入&lt;code&gt;手机机型+root&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;常规的思路是解锁后用第三方&lt;a href=&#34;https://twrp.me&#34;&gt;TWRP-recovery&lt;/a&gt;卡刷&lt;a href=&#34;https://github.com/topjohnwu/Magisk/releases&#34;&gt;Magisk&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;如果不能用可尝试【全局】或者关闭【分应用代理】或者在【设置选项】关闭【网络共享硬件加速】&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://567899.xyz/images/v2rayn-Setting.png&#34; alt=&#34;&#34;  /&gt;
-&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://567899.xyz/images/android-vpn-hotspot.png&#34; alt=&#34;&#34;  /&gt;
-&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://567899.xyz/images/android-vpn-hotspot1.png&#34; alt=&#34;&#34;  /&gt;
-&lt;/p&gt;
-&lt;p&gt;以下是README.md原文&lt;/p&gt;</description>
+      <description>Android安卓手机root后授权VPN Hotspot可以实现VPN热点中继USB蓝牙网络共享，P.S. You can also do the similar on Windows, Mac, and iOS. I don&amp;rsquo;t know about you but I can&amp;rsquo;t get my stupid Windows 10 to work with hosted network now that they introduced this Mobile hotspot.
+方法一： 安卓手机依次进入【设置】【网络和互联网】【热点和网络共享】打开启用【允许客户端使用VPN】
+方法二： Android安卓手机下载安装VPN 热点这个软件
+https://github.com/Mygod/VPNHotspot
+下载地址：VPN 热点 - Google Play 上的应用 or XDA Labs or GitHub
+本站下载vpnhotspot-v2.6.2.apk
+前提条件 VPN 热点这个软件必须有root权限
+Android安卓手机如何ROOT？
+方法在Google中输入手机机型+root
+常规的思路是解锁后用第三方TWRP-recovery卡刷Magisk
+如果不能用可尝试【全局】或者关闭【分应用代理】或者在【设置选项】关闭【网络共享硬件加速】
+以下是README.md原文
+VPN Hotspot Connecting things to your VPN made simple.</description>
     </item>
     <item>
       <title>关于</title>
       <link>https://567899.xyz/about/</link>
       <pubDate>Tue, 10 Mar 2015 00:13:27 +0000</pubDate>
       <guid>https://567899.xyz/about/</guid>
-      <description>&lt;p&gt;如有侵权，请联系我&lt;a href=&#34;mailto:admin@567899.xyz&#34;&gt;E-mail&lt;/a&gt;删除。谢谢!&lt;/p&gt;
-&lt;hr&gt;
-
-
-    
-    &lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;&gt;
-      &lt;iframe allow=&#34;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share&#34; allowfullscreen=&#34;allowfullscreen&#34; loading=&#34;eager&#34; referrerpolicy=&#34;strict-origin-when-cross-origin&#34; src=&#34;https://www.youtube.com/embed/0RKpf3rK57I?autoplay=0&amp;controls=1&amp;end=0&amp;loop=0&amp;mute=0&amp;start=0&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; title=&#34;YouTube video&#34;
-      &gt;&lt;/iframe&gt;
-    &lt;/div&gt;
-
-&lt;p&gt;记录下自己的VPS常用操作&lt;/p&gt;
-&lt;h2 id=&#34;配置ssh使用密钥key登陆&#34;&gt;配置SSH使用密钥KEY登陆&lt;/h2&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;mkdir .ssh
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;chmod &lt;span class=&#34;m&#34;&gt;700&lt;/span&gt; .ssh
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;touch .ssh/authorized_keys
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;chmod &lt;span class=&#34;m&#34;&gt;600&lt;/span&gt; .ssh/authorized_keys
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;写入公钥内容,(&lt;strong&gt;替换成自己的公钥&lt;/strong&gt;)&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAw8G3KL6oxDQ92IkrAjKbmyXN4qiYSbVQ4iFF94mTN2muiAaYGBlP/fL5d/os5Qxs9lmEOPgJsLUbSmsVfpO6RCqzVXILNWT3FduEJ2T59YYv/nNdu2OJEHU6eZQjQrUMqmb6LRtKgORoNELqwCYgHasughlZb8cKcd9u1Icbd3CLaiZg9ebGvQf3+o/shoaRt75BgtWtrVXwy5iX1W6070Tw+GTpDKFPwdgg/IffvZ9MORGmHSWHHzELjQ7nnS9CgzWUsoC4qQrgNo6RkA75yps5OZ9GrtDVmuhuRdmTyDv7Yvp2UII78RpsW686HWK2cD5PV+JlJOkNbJklxI8AwQ==&amp;#34;&lt;/span&gt; &amp;gt; .ssh/authorized_keys
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;修改SSH配置文件&lt;code&gt;/etc/ssh/sshd_config&lt;/code&gt;启用KEY登陆&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sed -i &lt;span class=&#34;s1&#34;&gt;&amp;#39;s/#PubkeyAuthentication/PubkeyAuthentication/&amp;#39;&lt;/span&gt; /etc/ssh/sshd_config
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;重启SSH&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;service sshd restart
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/etc/init.d/ssh restart
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;退出SSH登陆，使用KEY如果能顺利登陆的话就禁用密码登陆&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sed -i &lt;span class=&#34;s1&#34;&gt;&amp;#39;s/PasswordAuthentication yes/PasswordAuthentication no/&amp;#39;&lt;/span&gt; /etc/ssh/sshd_config
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;更改SSH端口号(慎重，请确保正确配置好了防火墙)&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sed -i &lt;span class=&#34;s1&#34;&gt;&amp;#39;s/#Port 22/Port 6789/&amp;#39;&lt;/span&gt; /etc/ssh/sshd_config
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;dd系统&#34;&gt;DD系统&lt;/h2&gt;
-&lt;p&gt;安装依赖软件&lt;/p&gt;
-&lt;p&gt;Debian/Ubuntu:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;apt-get install -y xz-utils openssl gawk file
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;RedHat/CentOS:&lt;/p&gt;</description>
+      <description>如有侵权，请联系我E-mail删除。谢谢!
+记录下自己的VPS常用操作
+配置SSH使用密钥KEY登陆 mkdir .ssh chmod 700 .ssh touch .ssh/authorized_keys chmod 600 .ssh/authorized_keys 写入公钥内容,(替换成自己的公钥)
+echo &amp;#34;ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAw8G3KL6oxDQ92IkrAjKbmyXN4qiYSbVQ4iFF94mTN2muiAaYGBlP/fL5d/os5Qxs9lmEOPgJsLUbSmsVfpO6RCqzVXILNWT3FduEJ2T59YYv/nNdu2OJEHU6eZQjQrUMqmb6LRtKgORoNELqwCYgHasughlZb8cKcd9u1Icbd3CLaiZg9ebGvQf3+o/shoaRt75BgtWtrVXwy5iX1W6070Tw+GTpDKFPwdgg/IffvZ9MORGmHSWHHzELjQ7nnS9CgzWUsoC4qQrgNo6RkA75yps5OZ9GrtDVmuhuRdmTyDv7Yvp2UII78RpsW686HWK2cD5PV+JlJOkNbJklxI8AwQ==&amp;#34; &amp;gt; .ssh/authorized_keys 修改SSH配置文件/etc/ssh/sshd_config启用KEY登陆
+sed -i &amp;#39;s/#PubkeyAuthentication/PubkeyAuthentication/&amp;#39; /etc/ssh/sshd_config 重启SSH
+service sshd restart /etc/init.d/ssh restart 退出SSH登陆，使用KEY如果能顺利登陆的话就禁用密码登陆
+sed -i &amp;#39;s/PasswordAuthentication yes/PasswordAuthentication no/&amp;#39; /etc/ssh/sshd_config 更改SSH端口号(慎重，请确保正确配置好了防火墙)
+sed -i &amp;#39;s/#Port 22/Port 6789/&amp;#39; /etc/ssh/sshd_config DD系统 安装依赖软件
+Debian/Ubuntu:
+apt-get install -y xz-utils openssl gawk file RedHat/CentOS:
+yum install -y xz openssl gawk file DD系统Debian 10
+bash &amp;lt;(wget --no-check-certificate -qO- &amp;#39;https://raw.githubusercontent.com/MoeClub/Note/master/InstallNET.sh&amp;#39;) -d 10 -v 64 -p &amp;#34;自定义root密码&amp;#34; -port &amp;#34;自定义ssh端口&amp;#34; 甲骨文Debian 10配置ipv6地址</description>
     </item>
   </channel>
 </rss>

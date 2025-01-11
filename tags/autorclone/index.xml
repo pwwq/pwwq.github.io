@@ -9,7 +9,7 @@
       <url>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
-    <generator>Hugo -- 0.134.2</generator>
+    <generator>Hugo -- 0.123.8</generator>
     <language>zh</language>
     <lastBuildDate>Mon, 10 Feb 2020 01:37:56 +0800</lastBuildDate>
     <atom:link href="https://567899.xyz/tags/autorclone/index.xml" rel="self" type="application/rss+xml" />
@@ -18,38 +18,17 @@
       <link>https://567899.xyz/post/autorclone/</link>
       <pubDate>Mon, 10 Feb 2020 01:37:56 +0800</pubDate>
       <guid>https://567899.xyz/post/autorclone/</guid>
-      <description>&lt;p&gt;怎么快速拷贝1000T资源到我的Google Drive？&lt;/p&gt;
-&lt;p&gt;必须是Rclone/AutoRclone啊！一直不想写关于AutoRclone的（中文）教程，因为其一直处于测试阶段，如果后面代码有大的更新那么前面的教程对于后面的人来说就是一个误导。但是现在应该不会有大的更新了，而且这么长时间的测试发现如果没有一个详细的教程的话，会让很多不会程序的小白错过这么好的工具 :)&lt;/p&gt;
-&lt;p&gt;AutoRclone是一个用Python写的小程序的集合，其&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;学习了folderclone利用service accounts来替代普通Google账号进行拷贝/上传；&lt;/li&gt;
-&lt;li&gt;通过rclone rc来做到对Rclone任务的监、控；&lt;/li&gt;
-&lt;li&gt;还可以用Google Groups的形式对成百上千的service accounts进行管理。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;从而方便快速地&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;从本地到 Team Drive，&lt;/li&gt;
-&lt;li&gt;从公共分享目录到 Team Drive，&lt;/li&gt;
-&lt;li&gt;再或者从 Team Drive 到 Team Drive。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;其食用方法极其简单！&lt;/p&gt;
-&lt;h2 id=&#34;步骤-1-下载代码&#34;&gt;步骤 1 下载代码&lt;/h2&gt;
-&lt;p&gt;首先不管你是哪个操作系统，需要安装Python。对于Linux和Windows分别用以下方式安装相关脚本&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Linux:&lt;/strong&gt; 安装screen，git和最新的Rclone。如果是Debian/Ubuntu，直接输入以下命令&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo apt-get update
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo apt-get install -y python3-pip screen git curl
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;curl https://rclone.org/install.sh &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; sudo bash
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;CentOS&lt;/strong&gt;把&lt;code&gt;apt-get&lt;/code&gt;替换成&lt;code&gt;yum&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;然后从Github下载代码并安装相关Python依赖包&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo git clone https://github.com/xyou365/AutoRclone &lt;span class=&#34;o&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; AutoRclone &lt;span class=&#34;o&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; sudo pip3 install -r requirements.txt
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;Windows:&lt;/strong&gt; 安装最新的&lt;a href=&#34;https://rclone.org/downloads/&#34;&gt;Rclone&lt;/a&gt;，直接从Github下载&lt;a href=&#34;https://github.com/xyou365/AutoRclone&#34;&gt;AutoRclone&lt;/a&gt;后在Windows的cmd或PowerShell中切换到AutoRclone的目录，输入以下命令安装相关Python依赖包&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;pip3 install -r requirements.txt
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
-&lt;li&gt;以上步骤如果输入python3没有反应，请输入python或者py3&lt;/li&gt;
-&lt;li&gt;以下所有步骤由于需要用到谷歌服务，请确保cmd或者vps能够翻墙&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;步骤-2-生成service-accounts&#34;&gt;步骤 2 生成service accounts&lt;/h2&gt;
-&lt;p&gt;首先开启Drive API&lt;a href=&#34;https://developers.google.com/drive/api/v3/quickstart/python&#34;&gt;Enable the Drive API&lt;/a&gt;并将&lt;code&gt;credentials.json&lt;/code&gt;保存到你的AutoRclone目录下面&lt;/p&gt;</description>
+      <description>怎么快速拷贝1000T资源到我的Google Drive？
+必须是Rclone/AutoRclone啊！一直不想写关于AutoRclone的（中文）教程，因为其一直处于测试阶段，如果后面代码有大的更新那么前面的教程对于后面的人来说就是一个误导。但是现在应该不会有大的更新了，而且这么长时间的测试发现如果没有一个详细的教程的话，会让很多不会程序的小白错过这么好的工具 :)
+AutoRclone是一个用Python写的小程序的集合，其
+学习了folderclone利用service accounts来替代普通Google账号进行拷贝/上传； 通过rclone rc来做到对Rclone任务的监、控； 还可以用Google Groups的形式对成百上千的service accounts进行管理。 从而方便快速地
+从本地到 Team Drive， 从公共分享目录到 Team Drive， 再或者从 Team Drive 到 Team Drive。 其食用方法极其简单！
+步骤 1 下载代码 首先不管你是哪个操作系统，需要安装Python。对于Linux和Windows分别用以下方式安装相关脚本
+Linux: 安装screen，git和最新的Rclone。如果是Debian/Ubuntu，直接输入以下命令
+sudo apt-get update sudo apt-get install -y python3-pip screen git curl curl https://rclone.org/install.sh | sudo bash CentOS把apt-get替换成yum
+然后从Github下载代码并安装相关Python依赖包
+sudo git clone https://github.com/xyou365/AutoRclone &amp;amp;&amp;amp; cd AutoRclone &amp;amp;&amp;amp; sudo pip3 install -r requirements.txt Windows: 安装最新的Rclone，直接从Github下载AutoRclone后在Windows的cmd或PowerShell中切换到AutoRclone的目录，输入以下命令安装相关Python依赖包
+pip3 install -r requirements.txt 以上步骤如果输入python3没有反应，请输入python或者py3 以下所有步骤由于需要用到谷歌服务，请确保cmd或者vps能够翻墙 步骤 2 生成service accounts 首先开启Drive APIEnable the Drive API并将credentials.</description>
     </item>
   </channel>
 </rss>

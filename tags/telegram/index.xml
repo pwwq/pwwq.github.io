@@ -9,7 +9,7 @@
       <url>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
-    <generator>Hugo -- 0.134.2</generator>
+    <generator>Hugo -- 0.123.8</generator>
     <language>zh</language>
     <lastBuildDate>Sun, 12 Jul 2020 01:37:56 +0800</lastBuildDate>
     <atom:link href="https://567899.xyz/tags/telegram/index.xml" rel="self" type="application/rss+xml" />
@@ -18,86 +18,31 @@
       <link>https://567899.xyz/post/tg_faka_bot/</link>
       <pubDate>Sun, 12 Jul 2020 01:37:56 +0800</pubDate>
       <guid>https://567899.xyz/post/tg_faka_bot/</guid>
-      <description>&lt;blockquote&gt;
-&lt;p&gt;项目地址: &lt;a href=&#34;https://github.com/GAted0/tg_faka_bot&#34;&gt;https://github.com/GAted0/tg_faka_bot&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;&lt;strong&gt;优点:&lt;/strong&gt;&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;使用sqlite3作为数据库，轻量、便于备份;&lt;/li&gt;
-&lt;li&gt;运行环境易于搭建;&lt;/li&gt;
-&lt;li&gt;不需要域名，VPS安全不会被恶意攻击.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id=&#34;下载与安装环境&#34;&gt;下载与安装环境&lt;/h2&gt;
-&lt;p&gt;安装python3&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;apt install python3-pip -y
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;下载tg_faka_bot并解压&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git clone https://github.com/GAted0/tg_faka_bot.git
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;PS:作者删除了部分文件，会导致不能正常使用，推荐在&lt;a href=&#34;https://567899.xyz/uploads/tg_faka_bot.tar.gz&#34;&gt;本站下载tg_faka_bot&lt;/a&gt;可正常使用。&lt;/p&gt;
-&lt;p&gt;进入文件目录&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; ~/tg_faka_bot
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;重命名文件&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;mv example.config.py config.py
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;安装依赖&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;pip3 install -r requirements.txt
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;编辑配置文件&#34;&gt;编辑配置文件&lt;/h2&gt;
-&lt;p&gt;登陆&lt;a href=&#34;https://telegram.org&#34;&gt;Telegram&lt;/a&gt;&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;a href=&#34;https://t.me/getidsbot&#34;&gt;@getidsbot&lt;/a&gt;获取自己的&lt;code&gt;ID&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://t.me/BotFather&#34;&gt;@BotFather&lt;/a&gt;创建bot机器人&lt;code&gt;API Token&lt;/code&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;编辑文件&lt;code&gt;config.py&lt;/code&gt;填写替换成自己的&lt;/p&gt;
-&lt;h2 id=&#34;继续配置支付接口信息&#34;&gt;继续配置支付接口信息&lt;/h2&gt;
-&lt;p&gt;编辑配置文件 &lt;code&gt;vi ~/tg_faka_bot/config.py&lt;/code&gt; 现在存在的支付接口：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;PAYMENT_METHOD&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;s1&#34;&gt;&amp;#39;epay&amp;#39;&lt;/span&gt;: &lt;span class=&#34;s1&#34;&gt;&amp;#39;支付宝/微信/QQ&amp;#39;&lt;/span&gt;,
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;s1&#34;&gt;&amp;#39;alifacepay&amp;#39;&lt;/span&gt;: &lt;span class=&#34;s1&#34;&gt;&amp;#39;支付宝当面付&amp;#39;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;如果只需要易支付，那么可以这么配置：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;PAYMENT_METHOD&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;s1&#34;&gt;&amp;#39;epay&amp;#39;&lt;/span&gt;: &lt;span class=&#34;s1&#34;&gt;&amp;#39;支付宝/微信/QQ&amp;#39;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;如果这时候有一个新的文件名为mugglepay.py的支付接口，那么可以这么配置：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;PAYMENT_METHOD&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;s1&#34;&gt;&amp;#39;epay&amp;#39;&lt;/span&gt;: &lt;span class=&#34;s1&#34;&gt;&amp;#39;支付宝/微信/QQ&amp;#39;&lt;/span&gt;,
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;s1&#34;&gt;&amp;#39;alifacepay&amp;#39;&lt;/span&gt;: &lt;span class=&#34;s1&#34;&gt;&amp;#39;支付宝当面付&amp;#39;&lt;/span&gt;,
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;s1&#34;&gt;&amp;#39;mugglepay&amp;#39;&lt;/span&gt;: &lt;span class=&#34;s1&#34;&gt;&amp;#39;加密货币&amp;#39;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;code&gt;mugglepay.py&lt;/code&gt;的相对路径为&lt;code&gt;getways/mugglepay/mugglepay.py&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;并且请确保你安装了此支付插件需要的额外依赖（如果有），&lt;code&gt;pip3 install -r ~/tg_faka_bot/getways/mugglepay/mugglepay.txt&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;以易支付(epay)为例：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; ~/tg_faka_bot/getways/epay
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;mv example.epay.py epay.py
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;vi epay.py
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;配置相关信息，回到机器人根目录启动机器人&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; ~/tg_faka_bot
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;python3 main.py
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;添加卡密，进行购买测试&lt;/p&gt;</description>
+      <description>项目地址: https://github.com/GAted0/tg_faka_bot
+优点:
+使用sqlite3作为数据库，轻量、便于备份; 运行环境易于搭建; 不需要域名，VPS安全不会被恶意攻击. 下载与安装环境 安装python3
+apt install python3-pip -y 下载tg_faka_bot并解压
+git clone https://github.com/GAted0/tg_faka_bot.git PS:作者删除了部分文件，会导致不能正常使用，推荐在本站下载tg_faka_bot可正常使用。
+进入文件目录
+cd ~/tg_faka_bot 重命名文件
+mv example.config.py config.py 安装依赖
+pip3 install -r requirements.txt 编辑配置文件 登陆Telegram
+@getidsbot获取自己的ID @BotFather创建bot机器人API Token 编辑文件config.py填写替换成自己的
+继续配置支付接口信息 编辑配置文件 vi ~/tg_faka_bot/config.py 现在存在的支付接口：
+PAYMENT_METHOD = { &amp;#39;epay&amp;#39;: &amp;#39;支付宝/微信/QQ&amp;#39;, &amp;#39;alifacepay&amp;#39;: &amp;#39;支付宝当面付&amp;#39; } 如果只需要易支付，那么可以这么配置：
+PAYMENT_METHOD = { &amp;#39;epay&amp;#39;: &amp;#39;支付宝/微信/QQ&amp;#39; } 如果这时候有一个新的文件名为mugglepay.py的支付接口，那么可以这么配置：
+PAYMENT_METHOD = { &amp;#39;epay&amp;#39;: &amp;#39;支付宝/微信/QQ&amp;#39;, &amp;#39;alifacepay&amp;#39;: &amp;#39;支付宝当面付&amp;#39;, &amp;#39;mugglepay&amp;#39;: &amp;#39;加密货币&amp;#39; } mugglepay.py的相对路径为getways/mugglepay/mugglepay.py
+并且请确保你安装了此支付插件需要的额外依赖（如果有），pip3 install -r ~/tg_faka_bot/getways/mugglepay/mugglepay.</description>
     </item>
     <item>
       <title>Telegram解锁&#43;86聊天,加机器人spambot进行解锁.</title>
       <link>https://567899.xyz/post/telegram/</link>
       <pubDate>Mon, 04 Sep 2017 01:37:56 +0800</pubDate>
       <guid>https://567899.xyz/post/telegram/</guid>
-      <description>&lt;blockquote&gt;
-&lt;p&gt;Telegram Sorry, you can only send messages to mutual contacts at the moment.
-MORE INFO   OK&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Telegram 抱歉，您目前只能向相互的联系人发送消息。 更多信息 好的&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://t.me/SpamBot&#34;&gt;@SpamBot&lt;/a&gt;发送&lt;code&gt;/start&lt;/code&gt;&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Q: Good news, no limits are currently applied to your account. You’re free as a bird!
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;But I can’t message non-contacts!
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Great. First, please confirm that you will never send this to strangers:
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;- Unsolicited advertising of any kind
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;- Promotional messages
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;- Shocking materials
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Were you going to &lt;span class=&#34;k&#34;&gt;do&lt;/span&gt; anything like that?
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;A: No, I’ll never &lt;span class=&#34;k&#34;&gt;do&lt;/span&gt; any of this!
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Q: Great! I’m very sorry &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; your account was limited by mistake. Please write me some details about your &lt;span class=&#34;k&#34;&gt;case&lt;/span&gt;, I will forward it to the supervisor. Why &lt;span class=&#34;k&#34;&gt;do&lt;/span&gt; you think your account was limited, what went wrong?
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;A: accident
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Q: Thank you! Your complaint has been successfully submitted. Our team’s supervisors will check it as soon as possible. If this was a mistake, all limitations will be lifted from your account soon.
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;等待处理&amp;hellip; &amp;hellip;&lt;/p&gt;</description>
+      <description>Telegram Sorry, you can only send messages to mutual contacts at the moment. MORE INFO OK
+Telegram 抱歉，您目前只能向相互的联系人发送消息。 更多信息 好的
+@SpamBot发送/start
+Q: Good news, no limits are currently applied to your account. You’re free as a bird! But I can’t message non-contacts! Great. First, please confirm that you will never send this to strangers: - Unsolicited advertising of any kind - Promotional messages - Shocking materials Were you going to do anything like that?</description>
     </item>
   </channel>
 </rss>

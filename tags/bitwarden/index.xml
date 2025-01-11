@@ -9,7 +9,7 @@
       <url>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
-    <generator>Hugo -- 0.134.2</generator>
+    <generator>Hugo -- 0.123.8</generator>
     <language>zh</language>
     <lastBuildDate>Tue, 13 Aug 2024 11:37:56 +0800</lastBuildDate>
     <atom:link href="https://567899.xyz/tags/bitwarden/index.xml" rel="self" type="application/rss+xml" />
@@ -18,103 +18,28 @@
       <link>https://567899.xyz/post/alist-vaultwarden-fly-io/</link>
       <pubDate>Tue, 13 Aug 2024 11:37:56 +0800</pubDate>
       <guid>https://567899.xyz/post/alist-vaultwarden-fly-io/</guid>
-      <description>&lt;p&gt;现在&lt;a href=&#34;https://fly.io/app/sign-in&#34;&gt;注册fly.io账号&lt;/a&gt;&lt;strong&gt;需要绑定信用卡并验证(扣款10刀以下随机金额)后方可&lt;/strong&gt;免费试用三个256MB内存的服务,每个1GB大小，最多3G的持久化存储&lt;/p&gt;
-&lt;table&gt;
-  &lt;thead&gt;
-      &lt;tr&gt;
-          &lt;th style=&#34;text-align: left&#34;&gt;分类&lt;/th&gt;
-          &lt;th style=&#34;text-align: left&#34;&gt;限额&lt;/th&gt;
-          &lt;th style=&#34;text-align: left&#34;&gt;说明&lt;/th&gt;
-      &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-      &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;VM: shared-cpu&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;每个月 2340 小时&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;可以全天候运行 3 个 256 MB 内存的共享 CPU 的 VM&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;Volumes&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;3GB&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;提供 3GB 永久存储&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;Bandwidth&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;160 GB/每月&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;亚洲、印度30G，美国、欧洲100G的outbound流量&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;Anycast IPs&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;无限的 IPv6, 每个应用一个 IPv4&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;每一个额外的 IPv4 地址需要额外每个月 $2&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;Certificates&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;10 个活跃的证书&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;最多 10 个证书&lt;/td&gt;
-      &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://fly.io/docs/about/pricing/&#34;&gt;资源定价&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://fly.io/docs/about/billing/&#34;&gt;Fly.io 计费&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;a href=&#34;https://fly.io/user/personal_access_tokens&#34;&gt;获取FLY_API_TOKEN&lt;/a&gt; 或在本地执行&lt;code&gt;flyctl auth token&lt;/code&gt;查看&lt;/p&gt;
-&lt;p&gt;Linux安装&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;curl -L https://fly.io/install.sh | sh
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;移动到&lt;code&gt;/usr/bin&lt;/code&gt;目录下&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;cp /root/.fly/bin/flyctl /usr/bin
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;登陆fly.io&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt; flyctl auth login
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;复制提示里面的网址在浏览器中打开完成登陆&lt;/p&gt;
-&lt;h2 id=&#34;部署bitwarden&#34;&gt;部署Bitwarden&lt;/h2&gt;
-&lt;p&gt;使用 SQLite 数据库安装 Vaultwarden。但是您需要为数据库创建卷&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;flyctl volumes create vaultwarden_data -a APP_NAME -s 1
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;在 Fly 上启动创建应用&lt;/p&gt;</description>
+      <description>现在注册fly.io账号需要绑定信用卡并验证(扣款10刀以下随机金额)后方可免费试用三个256MB内存的服务,每个1GB大小，最多3G的持久化存储
+分类 限额 说明 VM: shared-cpu 每个月 2340 小时 可以全天候运行 3 个 256 MB 内存的共享 CPU 的 VM Volumes 3GB 提供 3GB 永久存储 Bandwidth 160 GB/每月 亚洲、印度30G，美国、欧洲100G的outbound流量 Anycast IPs 无限的 IPv6, 每个应用一个 IPv4 每一个额外的 IPv4 地址需要额外每个月 $2 Certificates 10 个活跃的证书 最多 10 个证书 资源定价 Fly.io 计费 获取FLY_API_TOKEN 或在本地执行flyctl auth token查看
+Linux安装
+curl -L https://fly.io/install.sh | sh 移动到/usr/bin目录下
+cp /root/.fly/bin/flyctl /usr/bin 登陆fly.io
+flyctl auth login 复制提示里面的网址在浏览器中打开完成登陆
+部署Bitwarden 使用 SQLite 数据库安装 Vaultwarden。但是您需要为数据库创建卷</description>
     </item>
     <item>
       <title>使用bitwarden_rs搭建安全密码库服务器</title>
       <link>https://567899.xyz/post/bitwarden/</link>
       <pubDate>Fri, 01 Jun 2018 01:37:56 +0800</pubDate>
       <guid>https://567899.xyz/post/bitwarden/</guid>
-      <description>&lt;p&gt;bitwarden_rs是一个免费开源、能自己搭建服务端的安全密码库服务器&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://bitwarden.com/&#34;&gt;https://bitwarden.com/&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/dani-garcia/bitwarden_rs&#34;&gt;https://github.com/dani-garcia/bitwarden_rs&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://hub.docker.com/r/bitwardenrs/server&#34;&gt;https://hub.docker.com/r/bitwardenrs/server&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;docker安装&#34;&gt;Docker安装&lt;/h2&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;wget -qO- get.docker.com &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; bash
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;安装Docker Compose&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;curl -L https://github.com/docker/compose/releases/download/1.16.1/docker-compose-&lt;span class=&#34;sb&#34;&gt;`&lt;/span&gt;uname -s&lt;span class=&#34;sb&#34;&gt;`&lt;/span&gt;-&lt;span class=&#34;sb&#34;&gt;`&lt;/span&gt;uname -m&lt;span class=&#34;sb&#34;&gt;`&lt;/span&gt; &amp;gt; ./docker-compose
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;mv ./docker-compose /usr/bin/docker-compose
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;chmod +x /usr/bin/docker-compose
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Docker进程管理&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;systemctl &lt;span class=&#34;nb&#34;&gt;enable&lt;/span&gt; docker
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;systemctl start docker
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;systemctl status docker
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;部署-bitwarden&#34;&gt;部署 Bitwarden&lt;/h2&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&#34;https://github.com/dani-garcia/bitwarden_rs&#34;&gt;https://github.com/dani-garcia/bitwarden_rs&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;&amp;lsquo;bitwarden_rs&amp;rsquo;的docker镜像&lt;del&gt;bitwardenrs/server&lt;/del&gt;现已变更为&lt;strong&gt;vaultwarden/server&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;为了安全，可通过docker并创建一个临时容器，Generate an Argon2id PHC string using the &amp;lsquo;bitwarden&amp;rsquo; preset。&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker run --rm -it vaultwarden/server /vaultwarden &lt;span class=&#34;nb&#34;&gt;hash&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;得到用bitwarden生成的&lt;code&gt;ADMIN_TOKEN&lt;/code&gt;值。类似如下值&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;ADMIN_TOKEN=&amp;#39;$argon2id$v=19$m=65540,t=3,p=4$iK/BPqYwo02kukcDLJH+oUV1OSGkI0NRSgpGJam3Y6A$PTk/xhEI0bWQk8mWwk8HWdOQMwOipBAtMSEU8CAt274&amp;#39;
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;复制替换掉&lt;code&gt;ADMIN_TOKEN值&lt;/code&gt;&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker run -d --name bitwarden --restart&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;always -v /bw-data/:/data/ -p 45729:80 -e &lt;span class=&#34;nv&#34;&gt;SIGNUPS_ALLOWED&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;false&lt;/span&gt; -e &lt;span class=&#34;nv&#34;&gt;INVITATIONS_ALLOWED&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;false&lt;/span&gt; -e &lt;span class=&#34;nv&#34;&gt;ADMIN_TOKEN&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;sb&#34;&gt;`&lt;/span&gt;ADMIN_TOKEN值&lt;span class=&#34;sb&#34;&gt;`&lt;/span&gt; vaultwarden/server:latest
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;以下参数可自定义按需修改：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;SIGNUP_ALLOWED&lt;/code&gt;值是否允许注册&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;INVITATIONS_ALLOWED&lt;/code&gt;值是否允许组织邀请注册&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;youpassword&lt;/code&gt;用户管理界面 (/admin)的密码&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;/bw-data/&lt;/code&gt;宿主机映射目录&lt;/li&gt;
-&lt;li&gt;将宿主机的&lt;code&gt;45729&lt;/code&gt;映射到容器的80端口上&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;--restart=always&lt;/code&gt;自动启动bitwarden&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;-e SHOW_PASSWORD_HINT=false&lt;/code&gt;禁用密码提示&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;禁用日志添加&lt;code&gt;-e LOG_LEVEL=off&lt;/code&gt;、 &lt;code&gt;-e USE_SYSLOG=false&lt;/code&gt; 、&lt;code&gt;-e EXTENDED_LOGGING=false&lt;/code&gt;&lt;/p&gt;</description>
+      <description>bitwarden_rs是一个免费开源、能自己搭建服务端的安全密码库服务器
+https://bitwarden.com/ https://github.com/dani-garcia/bitwarden_rs https://hub.docker.com/r/bitwardenrs/server Docker安装 wget -qO- get.docker.com | bash 安装Docker Compose
+curl -L https://github.com/docker/compose/releases/download/1.16.1/docker-compose-`uname -s`-`uname -m` &amp;gt; ./docker-compose mv ./docker-compose /usr/bin/docker-compose chmod +x /usr/bin/docker-compose Docker进程管理
+systemctl enable docker systemctl start docker systemctl status docker 部署 Bitwarden https://github.com/dani-garcia/bitwarden_rs
+&amp;lsquo;bitwarden_rs&amp;rsquo;的docker镜像bitwardenrs/server现已变更为vaultwarden/server
+为了安全，可通过docker并创建一个临时容器，Generate an Argon2id PHC string using the &amp;lsquo;bitwarden&amp;rsquo; preset。
+docker run --rm -it vaultwarden/server /vaultwarden hash 得到用bitwarden生成的ADMIN_TOKEN值。类似如下值
+ADMIN_TOKEN=&amp;#39;$argon2id$v=19$m=65540,t=3,p=4$iK/BPqYwo02kukcDLJH+oUV1OSGkI0NRSgpGJam3Y6A$PTk/xhEI0bWQk8mWwk8HWdOQMwOipBAtMSEU8CAt274&amp;#39; 复制替换掉ADMIN_TOKEN值
+docker run -d --name bitwarden --restart=always -v /bw-data/:/data/ -p 45729:80 -e SIGNUPS_ALLOWED=false -e INVITATIONS_ALLOWED=false -e ADMIN_TOKEN=`ADMIN_TOKEN值` vaultwarden/server:latest 以下参数可自定义按需修改：</description>
     </item>
   </channel>
 </rss>

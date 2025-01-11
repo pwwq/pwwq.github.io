@@ -9,7 +9,7 @@
       <url>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
-    <generator>Hugo -- 0.134.2</generator>
+    <generator>Hugo -- 0.123.8</generator>
     <language>zh</language>
     <lastBuildDate>Mon, 02 Sep 2024 17:40:38 +0000</lastBuildDate>
     <atom:link href="https://567899.xyz/tags/mysql/index.xml" rel="self" type="application/rss+xml" />
@@ -18,183 +18,81 @@
       <link>https://567899.xyz/post/serv00/</link>
       <pubDate>Mon, 02 Sep 2024 17:40:38 +0000</pubDate>
       <guid>https://567899.xyz/post/serv00/</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;https://www.serv00.com/&#34;&gt;Serv00.com&lt;/a&gt;Revolutionary Free Hosting&lt;/p&gt;
-&lt;p&gt;提供免费的PHP,MYSQL,SMTP,PostgreSQL,MongoDB,可以SSH连接创建自己的应用,可以绑定域名,无广告。&lt;/p&gt;
-&lt;h2 id=&#34;注册&#34;&gt;注册&lt;/h2&gt;
-&lt;p&gt;&lt;a href=&#34;https://www.serv00.com/offer/create_new_account&#34;&gt;注册Serv00&lt;/a&gt; 建议用gmail邮箱,不要用微软邮箱,因为就是提示成功它也收不到邮件.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;注册小技巧&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;gmail邮箱可以无限别名,假设已经有一个yourname@gmail.com那么可以使用别名在用户名后面添加&lt;code&gt;+&lt;/code&gt;或者&lt;code&gt;.&lt;/code&gt;后面加其它随机字母数字,比如使用yourname+6dhj68kkm@gmail.com 或者  &lt;a href=&#34;mailto:yourname.jdjjs64kpo@gmail.com&#34;&gt;yourname.jdjjs64kpo@gmail.com&lt;/a&gt;  达到使用1个gmail邮箱来注册多个serv00账号,账号信息邮件在yourname@gmail.com接收。注册成功就能在邮件里面看到相关账号信息&lt;/p&gt;
-&lt;h2 id=&#34;搭建&#34;&gt;搭建&lt;/h2&gt;
-&lt;p&gt;面板设置&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;打开&lt;code&gt;Additional services&lt;/code&gt;  , &lt;code&gt;Run your own applications&lt;/code&gt;  使状态&lt;code&gt; Status&lt;/code&gt;改为
-&lt;code&gt;Enabled&lt;/code&gt;开启&lt;/li&gt;
-&lt;li&gt;可最多3个端口号,在&lt;code&gt;Port reservation&lt;/code&gt;,&lt;code&gt;Add port&lt;/code&gt;中设置添加。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h3 id=&#34;搭建hy2tuicvmess&#34;&gt;搭建hy2,tuic,vmess&lt;/h3&gt;
-&lt;p&gt;提前在面板添加1个tcp端口给vmess使用,2个udp端口分别给tuic和hy2用&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&#34;https://github.com/yixiu001/serv00-singbox&#34;&gt;https://github.com/yixiu001/serv00-singbox&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;wget https://raw.githubusercontent.com/yixiu001/serv00-singbox/main/yixiu.sh
-chmod +x yixiu.sh
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;编辑&lt;code&gt;yixiu.sh&lt;/code&gt;修改tcp与udp端口为面板对应添加的端口,修改uuid为自己的&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://1024tools.com/uuid&#34;&gt;UUID在线生成&lt;/a&gt;或者命令行生成&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;cat /proc/sys/kernel/random/uuid
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;然后创建screen窗口&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;curl -O https://raw.githubusercontent.com/eooce/ssh_tool/main/index.js &amp;amp;&amp;amp; curl -O https://raw.githubusercontent.com/eooce/nodejs-argo/main/package.json &amp;amp;&amp;amp; npm install &amp;amp;&amp;amp; chmod +x index.js &amp;amp;&amp;amp; screen node index.js
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;再次执行&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;./yixiu.sh
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;复制节点信息使用&lt;/p&gt;
-&lt;h3 id=&#34;搭建vmessargo&#34;&gt;搭建vmess+argo&lt;/h3&gt;
-&lt;p&gt;如果ip端口被xxx了,可套用cloudflare的argo,实现CDN减速&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&#34;https://github.com/eooce/scripts&#34;&gt;https://github.com/eooce/scripts&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;vmess-ws-tls(argo)一键脚本&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;必填变量：PORT=TCP端口&lt;/li&gt;
-&lt;li&gt;可选变量：UUID NEZHA_SERVER NEZHA_PORT NEZHA_KEY CFIP CFPORT&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;bash &amp;lt;(curl -Ls https://raw.githubusercontent.com/eooce/scripts/master/containers-shell/00_vmess.sh)
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;修改&lt;code&gt;00_vmess.sh&lt;/code&gt;中的TCP端口,uuid,argo的token域名&lt;/p&gt;</description>
+      <description>Serv00.comRevolutionary Free Hosting
+提供免费的PHP,MYSQL,SMTP,PostgreSQL,MongoDB,可以SSH连接创建自己的应用,可以绑定域名,无广告。
+注册 注册Serv00 建议用gmail邮箱,不要用微软邮箱,因为就是提示成功它也收不到邮件.
+注册小技巧
+gmail邮箱可以无限别名,假设已经有一个yourname@gmail.com那么可以使用别名在用户名后面添加+或者.后面加其它随机字母数字,比如使用yourname+6dhj68kkm@gmail.com 或者 yourname.jdjjs64kpo@gmail.com 达到使用1个gmail邮箱来注册多个serv00账号,账号信息邮件在yourname@gmail.com接收。注册成功就能在邮件里面看到相关账号信息
+搭建 面板设置
+打开Additional services , Run your own applications 使状态 Status改为 Enabled开启 可最多3个端口号,在Port reservation,Add port中设置添加。 搭建hy2,tuic,vmess 提前在面板添加1个tcp端口给vmess使用,2个udp端口分别给tuic和hy2用
+https://github.com/yixiu001/serv00-singbox
+wget https://raw.githubusercontent.com/yixiu001/serv00-singbox/main/yixiu.sh chmod +x yixiu.sh 编辑yixiu.sh修改tcp与udp端口为面板对应添加的端口,修改uuid为自己的
+UUID在线生成或者命令行生成
+cat /proc/sys/kernel/random/uuid 然后创建screen窗口
+curl -O https://raw.githubusercontent.com/eooce/ssh_tool/main/index.js &amp;amp;&amp;amp; curl -O https://raw.githubusercontent.com/eooce/nodejs-argo/main/package.json &amp;amp;&amp;amp; npm install &amp;amp;&amp;amp; chmod +x index.js &amp;amp;&amp;amp; screen node index.js 再次执行
+./yixiu.sh 复制节点信息使用
+搭建vmess+argo 如果ip端口被xxx了,可套用cloudflare的argo,实现CDN减速
+https://github.com/eooce/scripts
+vmess-ws-tls(argo)一键脚本
+必填变量：PORT=TCP端口 可选变量：UUID NEZHA_SERVER NEZHA_PORT NEZHA_KEY CFIP CFPORT bash &amp;lt;(curl -Ls https://raw.</description>
     </item>
     <item>
       <title>纯净Linux系统手工配置独角数卡发卡站点环境</title>
       <link>https://567899.xyz/post/dujiaoka/</link>
       <pubDate>Tue, 22 Sep 2020 16:40:38 +0000</pubDate>
       <guid>https://567899.xyz/post/dujiaoka/</guid>
-      <description>&lt;p&gt;纯净系统纯手工打造独角数卡发卡站点环境，抛弃各种面板、一键网站环境。&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&#34;https://github.com/assimon/dujiaoka&#34;&gt;https://github.com/assimon/dujiaoka&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id=&#34;支付接口已集成&#34;&gt;支付接口已集成&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 支付宝当面付&lt;/li&gt;
-&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 支付宝PC支付&lt;/li&gt;
-&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 支付宝手机支付&lt;/li&gt;
-&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; &lt;a href=&#34;http://payjs.cn&#34;&gt;payjs微信扫码&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; &lt;a href=&#34;https://www.paysapi.com/&#34;&gt;Paysapi(支付宝/微信)&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; &lt;a href=&#34;https://codepay.fateqq.com/&#34;&gt;码支付(QQ/支付宝/微信)&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 微信企业扫码支付&lt;/li&gt;
-&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; Paypal支付(默认美元)&lt;/li&gt;
-&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 麻瓜宝数字货币支付&lt;/li&gt;
-&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 全网易支付支持(针对彩虹版)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;基本环境要求&#34;&gt;基本环境要求&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;(PHP + PHPCLI) version &amp;gt;= 7.2&lt;/li&gt;
-&lt;li&gt;Nginx version &amp;gt;= 1.16&lt;/li&gt;
-&lt;li&gt;MYSQL version &amp;gt;= 5.6&lt;/li&gt;
-&lt;li&gt;Redis (高性能缓存服务)&lt;/li&gt;
-&lt;li&gt;Supervisor (一个python编写的进程管理服务)&lt;/li&gt;
-&lt;li&gt;Composer (PHP包管理器)&lt;/li&gt;
-&lt;li&gt;Linux/Win (Win下未测试，建议直接Linux)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;实测Supervisor不装也是可以运行的&lt;/strong&gt;&lt;/p&gt;
-&lt;h2 id=&#34;php环境要求&#34;&gt;PHP环境要求&lt;/h2&gt;
-&lt;p&gt;星号(*)为必须执行的要求，其他为建议内容&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;*安装&lt;code&gt;fileinfo&lt;/code&gt;扩展&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;*安装&lt;code&gt;redis&lt;/code&gt;扩展&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;*终端需支持&lt;code&gt;php-cli&lt;/code&gt;，测试&lt;code&gt;php -v&lt;/code&gt;(版本必须一致)&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;*需要开启的函数：&lt;code&gt;putenv&lt;/code&gt;，&lt;code&gt;proc_open&lt;/code&gt;，&lt;code&gt;pcntl_signal&lt;/code&gt;，&lt;code&gt;pcntl_alarm&lt;/code&gt;&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;安装&lt;code&gt;opcache&lt;/code&gt;扩展&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;网络上各类发卡网站程序，比如&lt;a href=&#34;https://github.com/zlkbdotnet/zfaka&#34;&gt;ZFAKA&lt;/a&gt;、&lt;a href=&#34;https://github.com/assimon/dujiaoka&#34;&gt;独角数卡&lt;/a&gt;环境搭建教程都是基于&lt;a href=&#34;https://www.bt.cn&#34;&gt;宝塔面板&lt;/a&gt;、&lt;a href=&#34;https://lnmp.org&#34;&gt;LNMP&lt;/a&gt;等等环境搭建的教程。&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://github.com/zlkbdotnet/zfaka&#34;&gt;ZFAKA&lt;/a&gt;可以在&lt;a href=&#34;https://www.bt.cn&#34;&gt;宝塔面板&lt;/a&gt;后台一键部署安装，也可以使用&lt;a href=&#34;https://github.com/Baiyuetribe/zfaka&#34;&gt;Docker版&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;为什么要手工搭建发卡网站环境&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;怕有后门(被害妄想症)&lt;/li&gt;
-&lt;li&gt;近期某某面板强迫用户注册才能使用&lt;/li&gt;
-&lt;li&gt;享受折腾的乐趣&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;测试使用环境Debian 10，其它系统可以参考修改搭建。&lt;/p&gt;
-&lt;h2 id=&#34;独角数卡发卡站环境搭建&#34;&gt;独角数卡发卡站环境搭建&lt;/h2&gt;
-&lt;p&gt;Nginx、MYSQL的搭建具体教程请&lt;a href=&#34;https://567899.xyz/post/debian10-web-nginx-certbot-ssl-php-mysql/&#34;&gt;点击查看&lt;/a&gt;，这里重点只讲独角数卡发卡站环境搭建PHP环境的配置&lt;/p&gt;
-&lt;h2 id=&#34;php和一些必要组件的安装&#34;&gt;PHP和一些必要组件的安装&lt;/h2&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;apt -y install php-fpm php-mysql php-redis php-fileinfo php-cli php-gd redis-server php-mbstring php-bcmath php-curl php-xml php-dom
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;配置php组件&#34;&gt;配置PHP组件&lt;/h2&gt;
-&lt;p&gt;配置PHP的redis缓存组件&lt;/p&gt;</description>
+      <description>纯净系统纯手工打造独角数卡发卡站点环境，抛弃各种面板、一键网站环境。
+https://github.com/assimon/dujiaoka
+支付接口已集成 支付宝当面付 支付宝PC支付 支付宝手机支付 payjs微信扫码. Paysapi(支付宝/微信). 码支付(QQ/支付宝/微信) 微信企业扫码支付 Paypal支付(默认美元) 麻瓜宝数字货币支付 全网易支付支持(针对彩虹版) 基本环境要求 (PHP + PHPCLI) version &amp;gt;= 7.2 Nginx version &amp;gt;= 1.16 MYSQL version &amp;gt;= 5.6 Redis (高性能缓存服务) Supervisor (一个python编写的进程管理服务) Composer (PHP包管理器) Linux/Win (Win下未测试，建议直接Linux) 实测Supervisor不装也是可以运行的
+PHP环境要求 星号(*)为必须执行的要求，其他为建议内容
+*安装fileinfo扩展 *安装redis扩展 *终端需支持php-cli，测试php -v(版本必须一致) *需要开启的函数：putenv，proc_open，pcntl_signal，pcntl_alarm 安装opcache扩展 网络上各类发卡网站程序，比如ZFAKA、独角数卡环境搭建教程都是基于宝塔面板、LNMP等等环境搭建的教程。
+ZFAKA可以在宝塔面板后台一键部署安装，也可以使用Docker版
+为什么要手工搭建发卡网站环境
+怕有后门(被害妄想症) 近期某某面板强迫用户注册才能使用 享受折腾的乐趣 测试使用环境Debian 10，其它系统可以参考修改搭建。
+独角数卡发卡站环境搭建 Nginx、MYSQL的搭建具体教程请点击查看，这里重点只讲独角数卡发卡站环境搭建PHP环境的配置
+PHP和一些必要组件的安装 apt -y install php-fpm php-mysql php-redis php-fileinfo php-cli php-gd redis-server php-mbstring php-bcmath php-curl php-xml php-dom 配置PHP组件 配置PHP的redis缓存组件</description>
     </item>
     <item>
       <title>Debian10手动搭建WEB环境Nginx,SSL,PHP,MySQL</title>
       <link>https://567899.xyz/post/debian10-web-nginx-certbot-ssl-php-mysql/</link>
       <pubDate>Thu, 10 Sep 2020 16:40:38 +0000</pubDate>
       <guid>https://567899.xyz/post/debian10-web-nginx-certbot-ssl-php-mysql/</guid>
-      <description>&lt;p&gt;手动搭建，使用&lt;code&gt;apt&lt;/code&gt;,&lt;code&gt;apt-get&lt;/code&gt;快速安装免编译&lt;/p&gt;
-&lt;p&gt;安装nginx和php&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;apt update
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;apt install openssl nginx-full php-fpm php-mysql -y
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;创建站点，新建文件&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;nano example.com.sh
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;内容如下&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cp&#34;&gt;#!/bin/bash
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cp&#34;&gt;&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# 创建站点目录和默认页面&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;mkdir /var/www/example.com
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;chown -R www-data:www-data /var/www/example.com
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;hello word&amp;#34;&lt;/span&gt; &amp;gt; /var/www/example.com/index.html
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 添加nginx配置文件&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;server {
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s2&#34;&gt;	listen 80;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s2&#34;&gt;	listen [::]:80;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s2&#34;&gt;	server_name example.com;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s2&#34;&gt;	root /var/www/example.com;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s2&#34;&gt;	index index.html;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s2&#34;&gt;	# return 301 https://&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$server_name$request_uri&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s2&#34;&gt;} &amp;gt;&amp;gt; /etc/nginx/sites-available/default
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;把&lt;code&gt;example.com&lt;/code&gt;替换成自己的域名&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sed -i &lt;span class=&#34;s1&#34;&gt;&amp;#39;s/example.com/自己的域名/&amp;#39;&lt;/span&gt; example.com.sh
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;给予权限并执行&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;chmod +x example.com.sh
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;bash example.com.sh
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;systemctl restart nginx
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Certbot申请Let’s Encrypt证书SSL，安装Certbot&lt;/p&gt;</description>
+      <description>手动搭建，使用apt,apt-get快速安装免编译
+安装nginx和php
+apt update apt install openssl nginx-full php-fpm php-mysql -y 创建站点，新建文件
+nano example.com.sh 内容如下
+#!/bin/bash # 创建站点目录和默认页面 mkdir /var/www/example.com chown -R www-data:www-data /var/www/example.com echo &amp;#34;hello word&amp;#34; &amp;gt; /var/www/example.com/index.html # 添加nginx配置文件 echo &amp;#34;server { listen 80; listen [::]:80; server_name example.com; root /var/www/example.com; index index.html; # return 301 https://$server_name$request_uri; } &amp;gt;&amp;gt; /etc/nginx/sites-available/default 把example.com替换成自己的域名
+sed -i &amp;#39;s/example.com/自己的域名/&amp;#39; example.com.sh 给予权限并执行
+chmod +x example.com.sh bash example.com.sh systemctl restart nginx Certbot申请Let’s Encrypt证书SSL，安装Certbot
+apt install certbot -y 获取SSL证书</description>
     </item>
     <item>
       <title>Debian和Ubuntu安装最新的MySQL修改密码卸载清理</title>
       <link>https://567899.xyz/post/debian-ubuntu-install-mysql-uninstall/</link>
       <pubDate>Tue, 24 Jul 2018 01:37:56 +0800</pubDate>
       <guid>https://567899.xyz/post/debian-ubuntu-install-mysql-uninstall/</guid>
-      <description>&lt;p&gt;Debian 9上安装最新的MySQL&lt;/p&gt;
-&lt;p&gt;在Debian 9中，MySQL项目的社区分支MariaDB被打包为默认的MySQL变体。虽然MariaDB在大多数情况下运行良好，但如果您需要仅在Oracle的MySQL中找到的功能，则可以从MySQL开发人员维护的存储库中安装和使用软件包。&lt;/p&gt;
-&lt;h1 id=&#34;安装mysql&#34;&gt;安装MySQL&lt;/h1&gt;
-&lt;p&gt;首先添加MySQL软件库&lt;/p&gt;
-&lt;p&gt;MySQL开发人员提供了一个.deb包，用于处理配置和安装官方MySQL软件存储库。一旦设置了存储库，我们就可以使用Ubuntu的标准apt命令来安装该软件。我们将使用wget下载此.deb文件，然后使用该dpkg命令进行安装。&lt;/p&gt;
-&lt;p&gt;首先，在Web浏览器中加载&lt;a href=&#34;https://dev.mysql.com/downloads/repo/apt/&#34;&gt;MySQL下载页面&lt;/a&gt;。找到右下角的“ 下载”按钮，然后单击下一页。此页面将提示您登录或注册Oracle Web帐户。我们可以跳过这一点，而是寻找说不用的链接，只需启动我的下载。右键单击该链接并选择“ 复制链接地址”（此选项的措辞可能不同，具体取决于您的浏览器）。&lt;/p&gt;
-&lt;p&gt;现在我们要下载文件了。在您的服务器上，移动到您可以写入的目录。使用wget下载文件，记住粘贴刚刚复制的地址代替下面突出显示的部分：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; /tmp
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;wget https://dev.mysql.com/get/mysql-apt-config_0.8.13-1_all.deb
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;该文件现在应该下载到我们当前的目录中&lt;code&gt;ls&lt;/code&gt;列出文件以确保：&lt;/p&gt;
-&lt;p&gt;您应该看到列出的文件名：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;mysql-apt-config_0.8.13-1_all.deb
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;现在我们准备安装：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;dpkg -i mysql-apt-config*
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;dpkg将会被用于安装，删除和检查.deb软件包。该-i标志表示我们要从指定的文件安装。&lt;/p&gt;
-&lt;p&gt;在安装过程中，您将看到一个配置屏幕，您可以在其中指定您喜欢的MySQL版本，以及为其他MySQL相关工具安装存储库的选项。默认值将添加最新稳定版MySQL的存储库信息，而不是其他任何内容。这就是我们想要的，所以使用向下箭头导航到Ok菜单选项并点击ENTER。&lt;/p&gt;
-&lt;p&gt;该包现在将完成添加存储库。刷新apt包缓存以使新软件包可用：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;dpkg-reconfigure mysql-apt-config
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;apt-get update
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;添加了存储库并使用我们的软件包缓存进行了新近更新&lt;/p&gt;
-&lt;p&gt;安装MySQL&lt;/p&gt;
-&lt;p&gt;我们现在可以使用apt安装最新的MySQL服务器软件包：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;apt install mysql-server
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;状态查询&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;systemctl status mysql
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;修改mysql的初使密码&#34;&gt;修改MYSQL的初使密码&lt;/h1&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;mysql -u root -p
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;用安装时设置的密码登陆&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;use mysql
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;开始修改密码&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;update user &lt;span class=&#34;nb&#34;&gt;set&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;authentication_string&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;password&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;yournewpassword&amp;#39;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; where &lt;span class=&#34;nv&#34;&gt;user&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;root&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;退出&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;exit&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;经过我们修改MYSQL的初使密码后，方可以顺利登陆phpMyAdmin管理&lt;/p&gt;
-&lt;p&gt;用SET PASSWORD命令&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;mysql -u root
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;mysql&amp;gt; SET PASSWORD FOR &lt;span class=&#34;s1&#34;&gt;&amp;#39;root&amp;#39;&lt;/span&gt;@&lt;span class=&#34;s1&#34;&gt;&amp;#39;localhost&amp;#39;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; PASSWORD&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;yournewpassword&amp;#39;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;如果报以下错误提示&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &#39;SETPASSWORD = PASSWORD(&#39;123456&#39;)&#39; at line 1&lt;/code&gt;&lt;/p&gt;</description>
+      <description>Debian 9上安装最新的MySQL
+在Debian 9中，MySQL项目的社区分支MariaDB被打包为默认的MySQL变体。虽然MariaDB在大多数情况下运行良好，但如果您需要仅在Oracle的MySQL中找到的功能，则可以从MySQL开发人员维护的存储库中安装和使用软件包。
+安装MySQL 首先添加MySQL软件库
+MySQL开发人员提供了一个.deb包，用于处理配置和安装官方MySQL软件存储库。一旦设置了存储库，我们就可以使用Ubuntu的标准apt命令来安装该软件。我们将使用wget下载此.deb文件，然后使用该dpkg命令进行安装。
+首先，在Web浏览器中加载MySQL下载页面。找到右下角的“ 下载”按钮，然后单击下一页。此页面将提示您登录或注册Oracle Web帐户。我们可以跳过这一点，而是寻找说不用的链接，只需启动我的下载。右键单击该链接并选择“ 复制链接地址”（此选项的措辞可能不同，具体取决于您的浏览器）。
+现在我们要下载文件了。在您的服务器上，移动到您可以写入的目录。使用wget下载文件，记住粘贴刚刚复制的地址代替下面突出显示的部分：
+cd /tmp wget https://dev.mysql.com/get/mysql-apt-config_0.8.13-1_all.deb 该文件现在应该下载到我们当前的目录中ls列出文件以确保：
+您应该看到列出的文件名：
+mysql-apt-config_0.8.13-1_all.deb 现在我们准备安装：
+dpkg -i mysql-apt-config* dpkg将会被用于安装，删除和检查.deb软件包。该-i标志表示我们要从指定的文件安装。
+在安装过程中，您将看到一个配置屏幕，您可以在其中指定您喜欢的MySQL版本，以及为其他MySQL相关工具安装存储库的选项。默认值将添加最新稳定版MySQL的存储库信息，而不是其他任何内容。这就是我们想要的，所以使用向下箭头导航到Ok菜单选项并点击ENTER。
+该包现在将完成添加存储库。刷新apt包缓存以使新软件包可用：
+dpkg-reconfigure mysql-apt-config apt-get update 添加了存储库并使用我们的软件包缓存进行了新近更新
+安装MySQL
+我们现在可以使用apt安装最新的MySQL服务器软件包：
+apt install mysql-server 状态查询
+systemctl status mysql 修改MYSQL的初使密码 mysql -u root -p 用安装时设置的密码登陆
+use mysql 开始修改密码
+update user set authentication_string=password(&amp;#39;yournewpassword&amp;#39;) where user=&amp;#39;root&amp;#39;; 退出
+exit 经过我们修改MYSQL的初使密码后，方可以顺利登陆phpMyAdmin管理
+用SET PASSWORD命令
+mysql -u root mysql&amp;gt; SET PASSWORD FOR &amp;#39;root&amp;#39;@&amp;#39;localhost&amp;#39; = PASSWORD(&amp;#39;yournewpassword&amp;#39;); 如果报以下错误提示</description>
     </item>
   </channel>
 </rss>

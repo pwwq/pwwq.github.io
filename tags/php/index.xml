@@ -9,7 +9,7 @@
       <url>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
-    <generator>Hugo -- 0.134.2</generator>
+    <generator>Hugo -- 0.123.8</generator>
     <language>zh</language>
     <lastBuildDate>Mon, 02 Sep 2024 17:40:38 +0000</lastBuildDate>
     <atom:link href="https://567899.xyz/tags/php/index.xml" rel="self" type="application/rss+xml" />
@@ -18,265 +18,100 @@
       <link>https://567899.xyz/post/serv00/</link>
       <pubDate>Mon, 02 Sep 2024 17:40:38 +0000</pubDate>
       <guid>https://567899.xyz/post/serv00/</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;https://www.serv00.com/&#34;&gt;Serv00.com&lt;/a&gt;Revolutionary Free Hosting&lt;/p&gt;
-&lt;p&gt;提供免费的PHP,MYSQL,SMTP,PostgreSQL,MongoDB,可以SSH连接创建自己的应用,可以绑定域名,无广告。&lt;/p&gt;
-&lt;h2 id=&#34;注册&#34;&gt;注册&lt;/h2&gt;
-&lt;p&gt;&lt;a href=&#34;https://www.serv00.com/offer/create_new_account&#34;&gt;注册Serv00&lt;/a&gt; 建议用gmail邮箱,不要用微软邮箱,因为就是提示成功它也收不到邮件.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;注册小技巧&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;gmail邮箱可以无限别名,假设已经有一个yourname@gmail.com那么可以使用别名在用户名后面添加&lt;code&gt;+&lt;/code&gt;或者&lt;code&gt;.&lt;/code&gt;后面加其它随机字母数字,比如使用yourname+6dhj68kkm@gmail.com 或者  &lt;a href=&#34;mailto:yourname.jdjjs64kpo@gmail.com&#34;&gt;yourname.jdjjs64kpo@gmail.com&lt;/a&gt;  达到使用1个gmail邮箱来注册多个serv00账号,账号信息邮件在yourname@gmail.com接收。注册成功就能在邮件里面看到相关账号信息&lt;/p&gt;
-&lt;h2 id=&#34;搭建&#34;&gt;搭建&lt;/h2&gt;
-&lt;p&gt;面板设置&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;打开&lt;code&gt;Additional services&lt;/code&gt;  , &lt;code&gt;Run your own applications&lt;/code&gt;  使状态&lt;code&gt; Status&lt;/code&gt;改为
-&lt;code&gt;Enabled&lt;/code&gt;开启&lt;/li&gt;
-&lt;li&gt;可最多3个端口号,在&lt;code&gt;Port reservation&lt;/code&gt;,&lt;code&gt;Add port&lt;/code&gt;中设置添加。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h3 id=&#34;搭建hy2tuicvmess&#34;&gt;搭建hy2,tuic,vmess&lt;/h3&gt;
-&lt;p&gt;提前在面板添加1个tcp端口给vmess使用,2个udp端口分别给tuic和hy2用&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&#34;https://github.com/yixiu001/serv00-singbox&#34;&gt;https://github.com/yixiu001/serv00-singbox&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;wget https://raw.githubusercontent.com/yixiu001/serv00-singbox/main/yixiu.sh
-chmod +x yixiu.sh
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;编辑&lt;code&gt;yixiu.sh&lt;/code&gt;修改tcp与udp端口为面板对应添加的端口,修改uuid为自己的&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://1024tools.com/uuid&#34;&gt;UUID在线生成&lt;/a&gt;或者命令行生成&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;cat /proc/sys/kernel/random/uuid
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;然后创建screen窗口&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;curl -O https://raw.githubusercontent.com/eooce/ssh_tool/main/index.js &amp;amp;&amp;amp; curl -O https://raw.githubusercontent.com/eooce/nodejs-argo/main/package.json &amp;amp;&amp;amp; npm install &amp;amp;&amp;amp; chmod +x index.js &amp;amp;&amp;amp; screen node index.js
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;再次执行&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;./yixiu.sh
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;复制节点信息使用&lt;/p&gt;
-&lt;h3 id=&#34;搭建vmessargo&#34;&gt;搭建vmess+argo&lt;/h3&gt;
-&lt;p&gt;如果ip端口被xxx了,可套用cloudflare的argo,实现CDN减速&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&#34;https://github.com/eooce/scripts&#34;&gt;https://github.com/eooce/scripts&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;vmess-ws-tls(argo)一键脚本&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;必填变量：PORT=TCP端口&lt;/li&gt;
-&lt;li&gt;可选变量：UUID NEZHA_SERVER NEZHA_PORT NEZHA_KEY CFIP CFPORT&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;bash &amp;lt;(curl -Ls https://raw.githubusercontent.com/eooce/scripts/master/containers-shell/00_vmess.sh)
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;修改&lt;code&gt;00_vmess.sh&lt;/code&gt;中的TCP端口,uuid,argo的token域名&lt;/p&gt;</description>
+      <description>Serv00.comRevolutionary Free Hosting
+提供免费的PHP,MYSQL,SMTP,PostgreSQL,MongoDB,可以SSH连接创建自己的应用,可以绑定域名,无广告。
+注册 注册Serv00 建议用gmail邮箱,不要用微软邮箱,因为就是提示成功它也收不到邮件.
+注册小技巧
+gmail邮箱可以无限别名,假设已经有一个yourname@gmail.com那么可以使用别名在用户名后面添加+或者.后面加其它随机字母数字,比如使用yourname+6dhj68kkm@gmail.com 或者 yourname.jdjjs64kpo@gmail.com 达到使用1个gmail邮箱来注册多个serv00账号,账号信息邮件在yourname@gmail.com接收。注册成功就能在邮件里面看到相关账号信息
+搭建 面板设置
+打开Additional services , Run your own applications 使状态 Status改为 Enabled开启 可最多3个端口号,在Port reservation,Add port中设置添加。 搭建hy2,tuic,vmess 提前在面板添加1个tcp端口给vmess使用,2个udp端口分别给tuic和hy2用
+https://github.com/yixiu001/serv00-singbox
+wget https://raw.githubusercontent.com/yixiu001/serv00-singbox/main/yixiu.sh chmod +x yixiu.sh 编辑yixiu.sh修改tcp与udp端口为面板对应添加的端口,修改uuid为自己的
+UUID在线生成或者命令行生成
+cat /proc/sys/kernel/random/uuid 然后创建screen窗口
+curl -O https://raw.githubusercontent.com/eooce/ssh_tool/main/index.js &amp;amp;&amp;amp; curl -O https://raw.githubusercontent.com/eooce/nodejs-argo/main/package.json &amp;amp;&amp;amp; npm install &amp;amp;&amp;amp; chmod +x index.js &amp;amp;&amp;amp; screen node index.js 再次执行
+./yixiu.sh 复制节点信息使用
+搭建vmess+argo 如果ip端口被xxx了,可套用cloudflare的argo,实现CDN减速
+https://github.com/eooce/scripts
+vmess-ws-tls(argo)一键脚本
+必填变量：PORT=TCP端口 可选变量：UUID NEZHA_SERVER NEZHA_PORT NEZHA_KEY CFIP CFPORT bash &amp;lt;(curl -Ls https://raw.</description>
     </item>
     <item>
       <title>Tiny File Manager一款简洁的PHP文件管理器</title>
       <link>https://567899.xyz/post/tinyfilemanager/</link>
       <pubDate>Wed, 11 Aug 2021 01:37:56 +0800</pubDate>
       <guid>https://567899.xyz/post/tinyfilemanager/</guid>
-      <description>&lt;p&gt;Tiny File Manager一款简洁的PHP文件管理器&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://tinyfilemanager.github.io&#34;&gt;Tiny File Manager&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://tinyfilemanager.github.io/demo/&#34;&gt;Demo&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/prasathmani/tinyfilemanager&#34;&gt;GitHub&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;requirements&#34;&gt;Requirements&lt;/h2&gt;
-&lt;ol&gt;
-&lt;li&gt;PHP 5.5.0 or higher.&lt;/li&gt;
-&lt;li&gt;Fileinfo, iconv, zip, tar and mbstring extensions are strongly recommended.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id=&#34;密码设置&#34;&gt;密码设置&lt;/h2&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Warning: Please set your own username and password in $auth_users before use. password is encrypted with password_hash(). to generate new password hash &lt;a href=&#34;https://tinyfilemanager.github.io/docs/pwd.html&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id=&#34;站点目录权限设置&#34;&gt;站点目录、权限设置&lt;/h2&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-php&#34; data-lang=&#34;php&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;chown&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;R&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;www&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;data&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;www&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;data&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;var&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;www&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;example&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;com&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;chmod&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;775&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;var&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;www&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;example&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;com&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;chmod&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;664&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;var&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;www&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;example&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;com&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;index&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;php&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;exclude-files--folders&#34;&gt;Exclude Files &amp;amp; Folders&lt;/h2&gt;
-&lt;p&gt;you can specify files or directories that you&amp;rsquo;d like to exclude from the listing using configuration, in case same name file/folder in multiple place also excluded.&lt;/p&gt;</description>
+      <description>Tiny File Manager一款简洁的PHP文件管理器
+Tiny File Manager Demo GitHub Requirements PHP 5.5.0 or higher. Fileinfo, iconv, zip, tar and mbstring extensions are strongly recommended. 密码设置 Warning: Please set your own username and password in $auth_users before use. password is encrypted with password_hash(). to generate new password hash here
+站点目录、权限设置 chown -R www-data:www-data /var/www/example.com chmod 775 /var/www/example.com chmod 664 /var/www/example.com/index.php Exclude Files &amp;amp; Folders you can specify files or directories that you&amp;rsquo;d like to exclude from the listing using configuration, in case same name file/folder in multiple place also excluded.</description>
     </item>
     <item>
       <title>Files Photo Gallery漂亮的php目录列表源码</title>
       <link>https://567899.xyz/post/files-photo-gallery-php-folders/</link>
       <pubDate>Tue, 05 Jan 2021 01:37:56 +0800</pubDate>
       <guid>https://567899.xyz/post/files-photo-gallery-php-folders/</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;https://files.photo.gallery&#34;&gt;Files Photo Gallery&lt;/a&gt;  &lt;a href=&#34;https://files.photo.gallery/demo/&#34;&gt;Demo&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&#34;requirements&#34;&gt;Requirements&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;Any web server with PHP 5.5 or higher. Extensions GD and mbstring are required.&lt;/li&gt;
-&lt;li&gt;Files app works in all modern browsers Chrome, Firefox, Safari, Opera and Edge, and almost all mobile devices. Files app does NOT work in Internet Explorer.&lt;/li&gt;
-&lt;li&gt;Although Files app is a single file that loads files locally, it still requires an internet connection to load Javascripts loaded from CDN jsdelivr.com.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;usage-examples&#34;&gt;Usage Examples&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;Instantly create a gallery of all your files and folders. No setup required.&lt;/li&gt;
-&lt;li&gt;Preview images, video, audio and code.&lt;/li&gt;
-&lt;li&gt;Share files and images with clients, friends or family.&lt;/li&gt;
-&lt;li&gt;Use as a simple yet beautiful and modern gallery on your website.&lt;/li&gt;
-&lt;li&gt;Preview IPTC, EXIF, GPS, dimensions and size for your photos.&lt;/li&gt;
-&lt;li&gt;Manage files and folders directly on your server. Coming soon!&lt;/li&gt;
-&lt;li&gt;Faster and more comfortable than using FTP!&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;downloadhttpscdnjsdelivrnetnpmfilesphotogalleryindexphp&#34;&gt;&lt;a href=&#34;https://cdn.jsdelivr.net/npm/files.photo.gallery/index.php&#34;&gt;Download&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Simply download index.php, drop it into any dir and view from browser.&lt;/p&gt;</description>
+      <description>Files Photo Gallery Demo
+Requirements Any web server with PHP 5.5 or higher. Extensions GD and mbstring are required. Files app works in all modern browsers Chrome, Firefox, Safari, Opera and Edge, and almost all mobile devices. Files app does NOT work in Internet Explorer. Although Files app is a single file that loads files locally, it still requires an internet connection to load Javascripts loaded from CDN jsdelivr.com. Usage Examples Instantly create a gallery of all your files and folders.</description>
     </item>
     <item>
       <title>纯净Linux系统手工配置独角数卡发卡站点环境</title>
       <link>https://567899.xyz/post/dujiaoka/</link>
       <pubDate>Tue, 22 Sep 2020 16:40:38 +0000</pubDate>
       <guid>https://567899.xyz/post/dujiaoka/</guid>
-      <description>&lt;p&gt;纯净系统纯手工打造独角数卡发卡站点环境，抛弃各种面板、一键网站环境。&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&#34;https://github.com/assimon/dujiaoka&#34;&gt;https://github.com/assimon/dujiaoka&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id=&#34;支付接口已集成&#34;&gt;支付接口已集成&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 支付宝当面付&lt;/li&gt;
-&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 支付宝PC支付&lt;/li&gt;
-&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 支付宝手机支付&lt;/li&gt;
-&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; &lt;a href=&#34;http://payjs.cn&#34;&gt;payjs微信扫码&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; &lt;a href=&#34;https://www.paysapi.com/&#34;&gt;Paysapi(支付宝/微信)&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; &lt;a href=&#34;https://codepay.fateqq.com/&#34;&gt;码支付(QQ/支付宝/微信)&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 微信企业扫码支付&lt;/li&gt;
-&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; Paypal支付(默认美元)&lt;/li&gt;
-&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 麻瓜宝数字货币支付&lt;/li&gt;
-&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 全网易支付支持(针对彩虹版)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;基本环境要求&#34;&gt;基本环境要求&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;(PHP + PHPCLI) version &amp;gt;= 7.2&lt;/li&gt;
-&lt;li&gt;Nginx version &amp;gt;= 1.16&lt;/li&gt;
-&lt;li&gt;MYSQL version &amp;gt;= 5.6&lt;/li&gt;
-&lt;li&gt;Redis (高性能缓存服务)&lt;/li&gt;
-&lt;li&gt;Supervisor (一个python编写的进程管理服务)&lt;/li&gt;
-&lt;li&gt;Composer (PHP包管理器)&lt;/li&gt;
-&lt;li&gt;Linux/Win (Win下未测试，建议直接Linux)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;实测Supervisor不装也是可以运行的&lt;/strong&gt;&lt;/p&gt;
-&lt;h2 id=&#34;php环境要求&#34;&gt;PHP环境要求&lt;/h2&gt;
-&lt;p&gt;星号(*)为必须执行的要求，其他为建议内容&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;*安装&lt;code&gt;fileinfo&lt;/code&gt;扩展&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;*安装&lt;code&gt;redis&lt;/code&gt;扩展&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;*终端需支持&lt;code&gt;php-cli&lt;/code&gt;，测试&lt;code&gt;php -v&lt;/code&gt;(版本必须一致)&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;*需要开启的函数：&lt;code&gt;putenv&lt;/code&gt;，&lt;code&gt;proc_open&lt;/code&gt;，&lt;code&gt;pcntl_signal&lt;/code&gt;，&lt;code&gt;pcntl_alarm&lt;/code&gt;&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;安装&lt;code&gt;opcache&lt;/code&gt;扩展&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;网络上各类发卡网站程序，比如&lt;a href=&#34;https://github.com/zlkbdotnet/zfaka&#34;&gt;ZFAKA&lt;/a&gt;、&lt;a href=&#34;https://github.com/assimon/dujiaoka&#34;&gt;独角数卡&lt;/a&gt;环境搭建教程都是基于&lt;a href=&#34;https://www.bt.cn&#34;&gt;宝塔面板&lt;/a&gt;、&lt;a href=&#34;https://lnmp.org&#34;&gt;LNMP&lt;/a&gt;等等环境搭建的教程。&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://github.com/zlkbdotnet/zfaka&#34;&gt;ZFAKA&lt;/a&gt;可以在&lt;a href=&#34;https://www.bt.cn&#34;&gt;宝塔面板&lt;/a&gt;后台一键部署安装，也可以使用&lt;a href=&#34;https://github.com/Baiyuetribe/zfaka&#34;&gt;Docker版&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;为什么要手工搭建发卡网站环境&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;怕有后门(被害妄想症)&lt;/li&gt;
-&lt;li&gt;近期某某面板强迫用户注册才能使用&lt;/li&gt;
-&lt;li&gt;享受折腾的乐趣&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;测试使用环境Debian 10，其它系统可以参考修改搭建。&lt;/p&gt;
-&lt;h2 id=&#34;独角数卡发卡站环境搭建&#34;&gt;独角数卡发卡站环境搭建&lt;/h2&gt;
-&lt;p&gt;Nginx、MYSQL的搭建具体教程请&lt;a href=&#34;https://567899.xyz/post/debian10-web-nginx-certbot-ssl-php-mysql/&#34;&gt;点击查看&lt;/a&gt;，这里重点只讲独角数卡发卡站环境搭建PHP环境的配置&lt;/p&gt;
-&lt;h2 id=&#34;php和一些必要组件的安装&#34;&gt;PHP和一些必要组件的安装&lt;/h2&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;apt -y install php-fpm php-mysql php-redis php-fileinfo php-cli php-gd redis-server php-mbstring php-bcmath php-curl php-xml php-dom
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;配置php组件&#34;&gt;配置PHP组件&lt;/h2&gt;
-&lt;p&gt;配置PHP的redis缓存组件&lt;/p&gt;</description>
+      <description>纯净系统纯手工打造独角数卡发卡站点环境，抛弃各种面板、一键网站环境。
+https://github.com/assimon/dujiaoka
+支付接口已集成 支付宝当面付 支付宝PC支付 支付宝手机支付 payjs微信扫码. Paysapi(支付宝/微信). 码支付(QQ/支付宝/微信) 微信企业扫码支付 Paypal支付(默认美元) 麻瓜宝数字货币支付 全网易支付支持(针对彩虹版) 基本环境要求 (PHP + PHPCLI) version &amp;gt;= 7.2 Nginx version &amp;gt;= 1.16 MYSQL version &amp;gt;= 5.6 Redis (高性能缓存服务) Supervisor (一个python编写的进程管理服务) Composer (PHP包管理器) Linux/Win (Win下未测试，建议直接Linux) 实测Supervisor不装也是可以运行的
+PHP环境要求 星号(*)为必须执行的要求，其他为建议内容
+*安装fileinfo扩展 *安装redis扩展 *终端需支持php-cli，测试php -v(版本必须一致) *需要开启的函数：putenv，proc_open，pcntl_signal，pcntl_alarm 安装opcache扩展 网络上各类发卡网站程序，比如ZFAKA、独角数卡环境搭建教程都是基于宝塔面板、LNMP等等环境搭建的教程。
+ZFAKA可以在宝塔面板后台一键部署安装，也可以使用Docker版
+为什么要手工搭建发卡网站环境
+怕有后门(被害妄想症) 近期某某面板强迫用户注册才能使用 享受折腾的乐趣 测试使用环境Debian 10，其它系统可以参考修改搭建。
+独角数卡发卡站环境搭建 Nginx、MYSQL的搭建具体教程请点击查看，这里重点只讲独角数卡发卡站环境搭建PHP环境的配置
+PHP和一些必要组件的安装 apt -y install php-fpm php-mysql php-redis php-fileinfo php-cli php-gd redis-server php-mbstring php-bcmath php-curl php-xml php-dom 配置PHP组件 配置PHP的redis缓存组件</description>
     </item>
     <item>
       <title>Debian10手动搭建WEB环境Nginx,SSL,PHP,MySQL</title>
       <link>https://567899.xyz/post/debian10-web-nginx-certbot-ssl-php-mysql/</link>
       <pubDate>Thu, 10 Sep 2020 16:40:38 +0000</pubDate>
       <guid>https://567899.xyz/post/debian10-web-nginx-certbot-ssl-php-mysql/</guid>
-      <description>&lt;p&gt;手动搭建，使用&lt;code&gt;apt&lt;/code&gt;,&lt;code&gt;apt-get&lt;/code&gt;快速安装免编译&lt;/p&gt;
-&lt;p&gt;安装nginx和php&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;apt update
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;apt install openssl nginx-full php-fpm php-mysql -y
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;创建站点，新建文件&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;nano example.com.sh
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;内容如下&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cp&#34;&gt;#!/bin/bash
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cp&#34;&gt;&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# 创建站点目录和默认页面&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;mkdir /var/www/example.com
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;chown -R www-data:www-data /var/www/example.com
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;hello word&amp;#34;&lt;/span&gt; &amp;gt; /var/www/example.com/index.html
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 添加nginx配置文件&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;server {
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s2&#34;&gt;	listen 80;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s2&#34;&gt;	listen [::]:80;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s2&#34;&gt;	server_name example.com;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s2&#34;&gt;	root /var/www/example.com;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s2&#34;&gt;	index index.html;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s2&#34;&gt;	# return 301 https://&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$server_name$request_uri&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s2&#34;&gt;} &amp;gt;&amp;gt; /etc/nginx/sites-available/default
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;把&lt;code&gt;example.com&lt;/code&gt;替换成自己的域名&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sed -i &lt;span class=&#34;s1&#34;&gt;&amp;#39;s/example.com/自己的域名/&amp;#39;&lt;/span&gt; example.com.sh
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;给予权限并执行&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;chmod +x example.com.sh
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;bash example.com.sh
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;systemctl restart nginx
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Certbot申请Let’s Encrypt证书SSL，安装Certbot&lt;/p&gt;</description>
+      <description>手动搭建，使用apt,apt-get快速安装免编译
+安装nginx和php
+apt update apt install openssl nginx-full php-fpm php-mysql -y 创建站点，新建文件
+nano example.com.sh 内容如下
+#!/bin/bash # 创建站点目录和默认页面 mkdir /var/www/example.com chown -R www-data:www-data /var/www/example.com echo &amp;#34;hello word&amp;#34; &amp;gt; /var/www/example.com/index.html # 添加nginx配置文件 echo &amp;#34;server { listen 80; listen [::]:80; server_name example.com; root /var/www/example.com; index index.html; # return 301 https://$server_name$request_uri; } &amp;gt;&amp;gt; /etc/nginx/sites-available/default 把example.com替换成自己的域名
+sed -i &amp;#39;s/example.com/自己的域名/&amp;#39; example.com.sh 给予权限并执行
+chmod +x example.com.sh bash example.com.sh systemctl restart nginx Certbot申请Let’s Encrypt证书SSL，安装Certbot
+apt install certbot -y 获取SSL证书</description>
     </item>
     <item>
       <title>Ubuntu_Debian配置Apache2_PHP配置站点</title>
       <link>https://567899.xyz/post/ubuntu-debian-apache2-php-vhost-sites/</link>
       <pubDate>Fri, 11 Jan 2019 01:37:56 +0800</pubDate>
       <guid>https://567899.xyz/post/ubuntu-debian-apache2-php-vhost-sites/</guid>
-      <description>&lt;p&gt;日常更新&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;apt-get update -y
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;apt-get upgrade -y
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;查找程序名&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo apt-cache search apache &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; grep &lt;span class=&#34;s1&#34;&gt;&amp;#39;apache2&amp;#39;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;安装apache2&#34;&gt;安装Apache2&lt;/h1&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;apt-get install apache2
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;安装好后开服务&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;service apache2 start
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;systemctl &lt;span class=&#34;nb&#34;&gt;enable&lt;/span&gt; apache2
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;检查Apache2运行状态&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;systemctl status apache2
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;安装Apache的php支持模块&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo apt-get install libapache2-mod-php
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;重启Apache2&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/etc/init.d/apache2 restart
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;停止&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/etc/init.d/apache2 stop
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;状态查询&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/etc/init.d/apache2 status
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;在浏览器中输入IP地址，看到以下页面说明apache成功安装&lt;/p&gt;
-&lt;p&gt;Debian系统上Apache2 Web服务器安装的配置布局如下：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/etc/apache2/
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;-- apache2.conf
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;       &lt;span class=&#34;sb&#34;&gt;`&lt;/span&gt;--  ports.conf
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;-- mods-enabled
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;       &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;-- *.load
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;       &lt;span class=&#34;sb&#34;&gt;`&lt;/span&gt;-- *.conf
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;-- conf-enabled
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;       &lt;span class=&#34;sb&#34;&gt;`&lt;/span&gt;-- *.conf
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;-- sites-enabled
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;       &lt;span class=&#34;sb&#34;&gt;`&lt;/span&gt;-- *.conf
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ol&gt;
-&lt;li&gt;apache2.conf is the main configuration file. It puts the pieces together by including all remaining configuration files when starting up the web server.&lt;/li&gt;
-&lt;li&gt;ports.conf is always included from the main configuration file. It is used to determine the listening ports for incoming connections, and this file can be customized anytime.&lt;/li&gt;
-&lt;li&gt;Configuration files in the mods-enabled/, conf-enabled/ and sites-enabled/ directories contain particular configuration snippets which manage modules, global configuration fragments, or virtual host configurations, respectively.&lt;/li&gt;
-&lt;li&gt;They are activated by symlinking available configuration files from their respective *-available/ counterparts. These should be managed by using our helpers a2enmod, a2dismod, a2ensite, a2dissite, and a2enconf, a2disconf . See their respective man pages for detailed information.&lt;/li&gt;
-&lt;li&gt;The binary is called apache2. Due to the use of environment variables, in the default configuration, apache2 needs to be started/stopped with /etc/init.d/apache2 or apache2ctl. Calling /usr/bin/apache2 directly will not work with the default configuration.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;Document Roots&lt;/p&gt;</description>
+      <description>日常更新
+apt-get update -y apt-get upgrade -y 查找程序名
+sudo apt-cache search apache | grep &amp;#39;apache2&amp;#39; 安装Apache2 apt-get install apache2 安装好后开服务
+service apache2 start systemctl enable apache2 检查Apache2运行状态
+systemctl status apache2 安装Apache的php支持模块
+sudo apt-get install libapache2-mod-php 重启Apache2
+/etc/init.d/apache2 restart 停止
+/etc/init.d/apache2 stop 状态查询
+/etc/init.d/apache2 status 在浏览器中输入IP地址，看到以下页面说明apache成功安装
+Debian系统上Apache2 Web服务器安装的配置布局如下：
+/etc/apache2/ |-- apache2.conf | `-- ports.conf |-- mods-enabled | |-- *.load | `-- *.conf |-- conf-enabled | `-- *.conf |-- sites-enabled | `-- *.</description>
     </item>
     <item>
       <title>Debian和Ubuntu安装php7.2</title>
       <link>https://567899.xyz/post/debian-ubuntu-install-php7.2/</link>
       <pubDate>Sat, 21 Jul 2018 01:37:56 +0800</pubDate>
       <guid>https://567899.xyz/post/debian-ubuntu-install-php7.2/</guid>
-      <description>&lt;p&gt;适用系统：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Ubuntu 16.04 LTS&lt;/li&gt;
-&lt;li&gt;Ubuntu 14.04 LTS&lt;/li&gt;
-&lt;li&gt;Debian 9 stretch&lt;/li&gt;
-&lt;li&gt;Debian 8 jessie&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1 id=&#34;安装-php&#34;&gt;安装 PHP&lt;/h1&gt;
-&lt;p&gt;Ond?ej Sury 的 PHP PPA 为 Ubuntu 16.04/14.04 提供了 PHP7.2 版本，同时也有通过个人网站为 Debian 9/8 提供 PHP7.2 版本，因此 Ubuntu 是源于 Debian 所以基本可以通用，同时维护难度较低，软件源安装的 PHP 默认以 Unix Socket 的状态运行在 /run/php/php7.1-fpm.sock，比使用 TCP 以 localhost:9000 的方式性能更好。&lt;/p&gt;
-&lt;h1 id=&#34;添加软件源&#34;&gt;添加软件源&lt;/h1&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Ubuntu安装软件源拓展工具：&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;apt -y install software-properties-common apt-transport-https lsb-release ca-certificates
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;添加 Ond?ej Sury 的 PHP PPA 源，需要按一次回车：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;add-apt-repository ppa:ondrej/php
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;更新软件源缓存：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;apt update
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
-&lt;p&gt;Debian安装软件源拓展工具：&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;apt -y install software-properties-common apt-transport-https lsb-release ca-certificates
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;添加 GPG&lt;/p&gt;</description>
+      <description>适用系统：
+Ubuntu 16.04 LTS Ubuntu 14.04 LTS Debian 9 stretch Debian 8 jessie 安装 PHP Ond?ej Sury 的 PHP PPA 为 Ubuntu 16.04/14.04 提供了 PHP7.2 版本，同时也有通过个人网站为 Debian 9/8 提供 PHP7.2 版本，因此 Ubuntu 是源于 Debian 所以基本可以通用，同时维护难度较低，软件源安装的 PHP 默认以 Unix Socket 的状态运行在 /run/php/php7.1-fpm.sock，比使用 TCP 以 localhost:9000 的方式性能更好。
+添加软件源 Ubuntu安装软件源拓展工具：
+apt -y install software-properties-common apt-transport-https lsb-release ca-certificates 添加 Ond?ej Sury 的 PHP PPA 源，需要按一次回车：
+add-apt-repository ppa:ondrej/php 更新软件源缓存：
+apt update Debian安装软件源拓展工具：
+apt -y install software-properties-common apt-transport-https lsb-release ca-certificates 添加 GPG</description>
     </item>
   </channel>
 </rss>
