@@ -14,7 +14,9 @@ apt update apt install python3-pip git screen -y git clone https://github.com/Sp
 Python 3.7.4 64-bit 、 Python 3.8.1
 下载folderclone源码并解压，比如我的放置在E:\folderclone-master
 以管理员身份运行 cmd或Windows PowerShell执行,且确保本地cmd或Windows PowerShell稳定的外网环境。
-# 进入folderclone解压根目录 cd E:\folderclone-master pip install folderclone 第二步 开启Drive API服务 打开登陆Python Quickstart 点击Enable the Drive API...</p></div><footer class=entry-footer><span title='2020-02-11 01:37:56 +0800 +0800'>二月 11, 2020</span>&nbsp;·&nbsp;admin</footer><a class=entry-link aria-label="post link to [更新]Folderclone谷歌Google Drive共享云端硬盘转存相互转移拷贝复制文件的正确姿势" href=https://567899.xyz/post/google_drive_folderclone/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>Serv00.com搭建使用</h2></header><div class=entry-content><p>Serv00.comRevolutionary Free Hosting
+# 进入folderclone解压根目录 cd E:\folderclone-master pip install folderclone 第二步 开启Drive API服务 打开登陆Python Quickstart 点击Enable the Drive API...</p></div><footer class=entry-footer><span title='2020-02-11 01:37:56 +0800 +0800'>二月 11, 2020</span>&nbsp;·&nbsp;admin</footer><a class=entry-link aria-label="post link to [更新]Folderclone谷歌Google Drive共享云端硬盘转存相互转移拷贝复制文件的正确姿势" href=https://567899.xyz/post/google_drive_folderclone/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>搭建CNS服务器</h2></header><div class=entry-content><p>https://github.com/AiziChen/CNS
+下载 wget https://github.com/AiziChen/CNS/releases/download/v0.2.4/cns-linux-amd64 mv cns-linux-amd64 /usr/bin/ chmod +x /usr/bin/cns-linux-amd64 创建配置文件/etc/cns-config.cfg proxyKey = Meng udpFlag = httpUDP listenAddr = :443 password = yourpassword udpTimeout = 30 tcpKeepAlive = 60 pidPath = cns.pid enableDnsTcpOverUdp = #t enableHttpDNS = #t enableTFO = #t 客户端需要用到的是服务器的IP:端口号、密码
+设置开机自动启动 echo "[Unit] Description=cns After=network.service [Service] Type=simple User=root Group=root ExecStart=/usr/bin/cns-linux-amd64 -config-file=/etc/cns-config.cfg -daemon PrivateTmp=true Restart=on-failure [Install] WantedBy=multi-user.target" > /etc/systemd/system/cns.service 管理cns systemctl daemon-reload systemctl enable cns.service systemctl start cns.service 客户端使用 可以配合 https://github....</p></div><footer class=entry-footer><span title='2025-01-30 11:42:56 +0800 +0800'>一月 30, 2025</span>&nbsp;·&nbsp;admin</footer><a class=entry-link aria-label="post link to 搭建CNS服务器" href=https://567899.xyz/post/cns/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>Serv00.com搭建使用</h2></header><div class=entry-content><p>Serv00.comRevolutionary Free Hosting
 提供免费的PHP,MYSQL,SMTP,PostgreSQL,MongoDB,可以SSH连接创建自己的应用,可以绑定域名,无广告。
 注册 注册Serv00 建议用gmail邮箱,不要用微软邮箱,因为就是提示成功它也收不到邮件.
 注册小技巧
@@ -89,24 +91,7 @@ https://github.com/HuskyDG/magisk-files https://huskydg.github.io/magisk-files/ 
 德尔塔面具kitsune mask是Magisk修改改进版，在隐藏root这方面比原版Magisk好，其它功能、使用上差不多。
 同样是kernel内核级root,但KernelSU使用的是GKI,APatch使用的是init.
 万豪旅享家在kernelsu能过，但APatch会闪退。
-截止目前，使用APatch或kitsune mask能有效隐藏root，日后可能会升级到检测bootloader解锁状态。</p></div><footer class=entry-footer><span title='2024-01-23 09:44:51 +0800 +0800'>一月 23, 2024</span>&nbsp;·&nbsp;admin</footer><a class=entry-link aria-label="post link to 安卓隐藏root权限" href=https://567899.xyz/post/android-root/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>使用ACME申请泛域名SSL证书</h2></header><div class=entry-content><p>安装acme.sh
-curl https://get.acme.sh | sh -s email=my@example.com 创建 一个 bash 的 alias方便你使用
-alias acme.sh=~/.acme.sh/acme.sh 注册（可选)
-acme.sh --register-account -m my@example.com 使用DNS API方式申请
-不需要TCP 80端口 不需要WEB服务器 不需要公网IP 导入DNS API：
-签发泛域名证书是最好的方式了，申请一个证书任意二级域名都可以使用，非常方便。
-根据你的域名服务商提供的DNS API，并导入DNS API，各域名服务商的DNS API请参考官方说明：https://github.com/Neilpang/acme.sh/tree/master/dnsapi
-这里以CloudFlare为例，在CloudFlare的控制台里找到自己的DNS API，然后使用以下命令导入到acme.sh中：
-export CF_Token="yp1dgAKdzglvUUuOBlXqDML2U886eQwiZ******" export CF_Zone_ID="e554bfdafd90d1671303d543c*******" 这个DNS API信息会保存在“~/.acme.sh/account.conf”文件中。
-2、申请泛域名证书：
-导入域名商的DNS API之后就可以使用以下命令，自动解析DNS（通过api给你的域名添加一条txt解析记录），验证通过后就会下发证书：
-acme.sh --issue --dns dns_cf -d example.com -d *.example.com 【可选】默认证书提供商是ZeroSSL ECC,可以添加--server letsencrypt更换为letsencrypt，或者
-acme.sh --set-default-ca --server letsencrypt 证书申请成功后，默认保存在“~/.acme.sh/example.com_ecc”目录下。注意：“dns_cf”表示使用CloudFlare的DNS API，域名商不同的话此处会不同，请参考上述文档。
-默认生成的证书都放在安装目录下: ~/.acme.sh/中的/root/.acme.sh/example.com_ecc/example.com.cer和/root/.acme.sh/example.com_ecc/example.com.key但是不要在web服务器中直接引用目录下的证书文件，也不要手动来拷贝证书文件到具体的web服务器中，手动拷贝会导致之后更新证书流程不能完全自动。
-正确方式是使用acme.sh的安装证书命令，acme.sh自动拷贝证书文件到具体目录中，拷贝命令会被记录下来，之后自动更新证书流程也会执行此拷贝步骤，从而实现更新证书流程的完全自动化。
-创建目录
-mkdir /etc/nginx/ssl acme.sh的安装证书命令
-acme.sh --install-cert -d example....</p></div><footer class=entry-footer><span title='2024-01-12 13:37:56 +0800 +0800'>一月 12, 2024</span>&nbsp;·&nbsp;admin</footer><a class=entry-link aria-label="post link to 使用ACME申请泛域名SSL证书" href=https://567899.xyz/post/acme/></a></article><footer class=page-footer><nav class=pagination><a class=next href=https://567899.xyz/post/page/2/>下一页&nbsp;&nbsp;»</a></nav></footer></main><footer class=footer><span>&copy; 2025 <a href=https://567899.xyz/>Xizi's Blog</a></span> ·
+截止目前，使用APatch或kitsune mask能有效隐藏root，日后可能会升级到检测bootloader解锁状态。</p></div><footer class=entry-footer><span title='2024-01-23 09:44:51 +0800 +0800'>一月 23, 2024</span>&nbsp;·&nbsp;admin</footer><a class=entry-link aria-label="post link to 安卓隐藏root权限" href=https://567899.xyz/post/android-root/></a></article><footer class=page-footer><nav class=pagination><a class=next href=https://567899.xyz/post/page/2/>下一页&nbsp;&nbsp;»</a></nav></footer></main><footer class=footer><span>&copy; 2025 <a href=https://567899.xyz/>Xizi's Blog</a></span> ·
 <span>Powered by
 <a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
         <a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg>

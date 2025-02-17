@@ -11,7 +11,7 @@
     </image>
     <generator>Hugo -- 0.123.8</generator>
     <language>zh</language>
-    <lastBuildDate>Mon, 02 Sep 2024 17:40:38 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 30 Jan 2025 11:42:56 +0800</lastBuildDate>
     <atom:link href="https://567899.xyz/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>[更新]Folderclone谷歌Google Drive共享云端硬盘转存相互转移拷贝复制文件的正确姿势</title>
@@ -33,6 +33,15 @@ Python 3.7.4 64-bit 、 Python 3.8.1
 下载folderclone源码并解压，比如我的放置在E:\folderclone-master
 以管理员身份运行 cmd或Windows PowerShell执行,且确保本地cmd或Windows PowerShell稳定的外网环境。
 # 进入folderclone解压根目录 cd E:\folderclone-master pip install folderclone 第二步 开启Drive API服务 打开登陆Python Quickstart 点击Enable the Drive API</description>
+    </item>
+    <item>
+      <title>搭建CNS服务器</title>
+      <link>https://567899.xyz/post/cns/</link>
+      <pubDate>Thu, 30 Jan 2025 11:42:56 +0800</pubDate>
+      <guid>https://567899.xyz/post/cns/</guid>
+      <description>https://github.com/AiziChen/CNS
+下载 wget https://github.com/AiziChen/CNS/releases/download/v0.2.4/cns-linux-amd64 mv cns-linux-amd64 /usr/bin/ chmod +x /usr/bin/cns-linux-amd64 创建配置文件/etc/cns-config.cfg proxyKey = Meng udpFlag = httpUDP listenAddr = :443 password = yourpassword udpTimeout = 30 tcpKeepAlive = 60 pidPath = cns.pid enableDnsTcpOverUdp = #t enableHttpDNS = #t enableTFO = #t 客户端需要用到的是服务器的IP:端口号、密码
+设置开机自动启动 echo &amp;#34;[Unit] Description=cns After=network.service [Service] Type=simple User=root Group=root ExecStart=/usr/bin/cns-linux-amd64 -config-file=/etc/cns-config.cfg -daemon PrivateTmp=true Restart=on-failure [Install] WantedBy=multi-user.target&amp;#34; &amp;gt; /etc/systemd/system/cns.service 管理cns systemctl daemon-reload systemctl enable cns.service systemctl start cns.service 客户端使用 可以配合 https://github.</description>
     </item>
     <item>
       <title>Serv00.com搭建使用</title>
