@@ -39,9 +39,14 @@ Python 3.7.4 64-bit 、 Python 3.8.1
       <link>https://567899.xyz/post/cns/</link>
       <pubDate>Thu, 30 Jan 2025 11:42:56 +0800</pubDate>
       <guid>https://567899.xyz/post/cns/</guid>
-      <description>https://github.com/AiziChen/CNS
+      <description>https://github.com/mmmdbybyd/CNS
+一键搭建cns
+安装
+wget http://binary.quicknet.cyou/cns/cns.sh &amp;amp;&amp;amp; chmod +x cns.sh &amp;amp;&amp;amp; ./cns.sh 卸载
+wget http://binary.quicknet.cyou/cns/cns.sh &amp;amp;&amp;amp; chmod +x cns.sh &amp;amp;&amp;amp; ./cns.sh uninstall 启动命令
+./cns -daemon=true -json=cns.json https://github.com/AiziChen/CNS
 下载 wget https://github.com/AiziChen/CNS/releases/download/v0.2.4/cns-linux-amd64 mv cns-linux-amd64 /usr/bin/ chmod +x /usr/bin/cns-linux-amd64 创建配置文件/etc/cns-config.cfg proxyKey = Meng udpFlag = httpUDP listenAddr = :443 password = yourpassword udpTimeout = 30 tcpKeepAlive = 60 pidPath = cns.pid enableDnsTcpOverUdp = #t enableHttpDNS = #t enableTFO = #t 客户端需要用到的是服务器的IP:端口号、密码
-设置开机自动启动 echo &amp;#34;[Unit] Description=cns After=network.service [Service] Type=simple User=root Group=root ExecStart=/usr/bin/cns-linux-amd64 -config-file=/etc/cns-config.cfg -daemon PrivateTmp=true Restart=on-failure [Install] WantedBy=multi-user.target&amp;#34; &amp;gt; /etc/systemd/system/cns.service 管理cns systemctl daemon-reload systemctl enable cns.service systemctl start cns.service 客户端使用 可以配合 https://github.</description>
+设置开机自动启动 echo &amp;#34;[Unit] Description=cns After=network.</description>
     </item>
     <item>
       <title>Serv00.com搭建使用</title>
