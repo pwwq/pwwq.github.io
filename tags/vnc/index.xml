@@ -9,7 +9,7 @@
       <url>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
-    <generator>Hugo -- 0.123.8</generator>
+    <generator>Hugo -- 0.144.2</generator>
     <language>zh</language>
     <lastBuildDate>Sat, 23 May 2015 01:37:56 +0800</lastBuildDate>
     <atom:link href="https://567899.xyz/tags/vnc/index.xml" rel="self" type="application/rss+xml" />
@@ -18,17 +18,25 @@
       <link>https://567899.xyz/post/debian-lxde-vnc-firefox/</link>
       <pubDate>Sat, 23 May 2015 01:37:56 +0800</pubDate>
       <guid>https://567899.xyz/post/debian-lxde-vnc-firefox/</guid>
-      <description>LXDE桌面环境相对其它VNC更加节省资源，开始安装
-apt-get update apt-get install xorg lxde-core tightvncserver -y 启动VNC/输入设置密码
-tightvncserver :1 暂停VNC
-tightvncserver -kill :1 配置xstartup系统文件
-nano ~/.vnc/xstartup 然后在文件的最后添加下面的脚本代码
-lxterminal &amp;amp; /usr/bin/lxsession -s LXDE &amp;amp; 客户端下载 Download VNC Viewer 使用ip:5901登录
-如果vnc远程桌面 桌面空白,编辑文件~/.vnc/xstartup将里面的最后一行twn &amp;amp;改成gnome-session &amp;amp; (即可视化界面)
-安装Firefox浏览器
-apt-get install iceweasel -y Firefox浏览器文件下载路径在/tmp/mozilla_root0
-可以使用free -m查看内存使用情况
-LXDE桌面VNC和Firefox浏览器，安装完成后占用磁盘大概1GB左右。</description>
+      <description>&lt;p&gt;LXDE桌面环境相对其它VNC更加节省资源，开始安装&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;apt-get update
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;apt-get install xorg lxde-core tightvncserver -y
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;启动VNC/输入设置密码&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;tightvncserver :1
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;暂停VNC&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;tightvncserver -kill :1
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;配置xstartup系统文件&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;nano ~/.vnc/xstartup
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;然后在文件的最后添加下面的脚本代码&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;lxterminal &lt;span class=&#34;p&#34;&gt;&amp;amp;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/usr/bin/lxsession -s LXDE &lt;span class=&#34;p&#34;&gt;&amp;amp;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;客户端下载 &lt;a href=&#34;https://www.realvnc.com/en/connect/download/viewer/&#34;&gt;Download VNC Viewer&lt;/a&gt; 使用ip:5901登录&lt;/p&gt;
+&lt;p&gt;如果vnc远程桌面 桌面空白,编辑文件&lt;code&gt;~/.vnc/xstartup&lt;/code&gt;将里面的最后一行&lt;code&gt;twn &amp;amp;&lt;/code&gt;改成&lt;code&gt;gnome-session &amp;amp;&lt;/code&gt; (即可视化界面)&lt;/p&gt;
+&lt;p&gt;安装Firefox浏览器&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;apt-get install iceweasel -y
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Firefox浏览器文件下载路径在&lt;code&gt;/tmp/mozilla_root0&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;可以使用&lt;code&gt;free -m&lt;/code&gt;查看内存使用情况&lt;/p&gt;
+&lt;p&gt;LXDE桌面VNC和Firefox浏览器，安装完成后占用磁盘大概1GB左右。&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

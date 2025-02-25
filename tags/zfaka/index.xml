@@ -9,7 +9,7 @@
       <url>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
-    <generator>Hugo -- 0.123.8</generator>
+    <generator>Hugo -- 0.144.2</generator>
     <language>zh</language>
     <lastBuildDate>Wed, 11 Apr 2018 01:37:56 +0800</lastBuildDate>
     <atom:link href="https://567899.xyz/tags/zfaka/index.xml" rel="self" type="application/rss+xml" />
@@ -18,25 +18,48 @@
       <link>https://567899.xyz/post/alipay-dangmianfu-zfaka/</link>
       <pubDate>Wed, 11 Apr 2018 01:37:56 +0800</pubDate>
       <guid>https://567899.xyz/post/alipay-dangmianfu-zfaka/</guid>
-      <description>支付宝当面付对接ZFAKA教程
-申请开通支付宝当面付基础版费率0.38% 操作步骤
-打开蚂蚁金服开放 登录
-打开：https://openhome.alipay.com/isv/isvadminrchantManage.htm 点击【新增商户】
-特别提醒：
-输入类目自己看着，一般选零售，比如生活百货（不建议选择金融网络） 营业执照是非必填项，可以不上传 上传门头，可以利用搜索引擎或者大众点评 联系方式？（据说可以随便输入，建议输入真实的） 费率建议选择0.38 申请出错
-有网友反馈无法申请，返回错误！可以试一试下面的地址申请！不过费率是0.6
-https://b.alipay.com/signing/authorizedProductSet.htm
-并按提示完成签约上线, 查看 商家签约管理
-图片
-支付宝当面付对接ZFAKA RSA私钥及公钥生成
-生成方式一（推荐）：使用支付宝提供的一键生成工具（内附使用说明）
-Windows：下载
-MAC OSX：下载
-解压打开文件夹，直接运行“RSA 签名验签工具.bat”（WINDOWS）或“RSA 签名验签工具.command”（MAC_OSX），点击“生成 RSA 密钥”，会自动生成公私钥，然后点击 打开文件位置，即可找到工具自动生成的密钥。 具体步骤请参考签名专区生成RSA密钥指南。
-把RSA 签名验签工具生成的商户应用公钥复制到网页&amp;amp;移动应用 管理中心-蚂蚁金服开放平台【应用信息】【加签方式】【应用公钥(SHA256withRsa)】【应用公钥】中 把ZFAKA【支付宝当面付】上方的【本支付接口异步支付回调地址】 https://xxx.xxx.xxx/product/notify/?paymethod=zfbf2f 复制到支付宝的【授权回调地址】中，其中https://xxx.xxx.xxx是自己的域名
-在支付宝【加签方式】【查看支付宝公钥】并把它复制到ZFAKA【后台管理】【设置中心】【支付设置】【支付宝当面付】【编辑】【ali_public_key】中
-把支付宝【APPID】复制到【ZFAKA】中
-把RSA 签名验签工具生成的商户应用私钥复制到【ZFAKA】应用密匙【rsa_private_key】中</description>
+      <description>&lt;p&gt;支付宝当面付对接ZFAKA教程&lt;/p&gt;
+&lt;h2 id=&#34;申请开通支付宝当面付基础版费率038&#34;&gt;申请开通支付宝当面付基础版费率0.38%&lt;/h2&gt;
+&lt;p&gt;操作步骤&lt;/p&gt;
+&lt;p&gt;打开&lt;a href=&#34;https://openhome.alipay.com/platform/home.htm&#34;&gt;蚂蚁金服开放&lt;/a&gt; 登录&lt;/p&gt;
+&lt;p&gt;打开：https://openhome.alipay.com/isv/isvadminrchantManage.htm 点击【新增商户】&lt;/p&gt;
+&lt;p&gt;特别提醒：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;输入类目自己看着，一般选零售，比如生活百货（不建议选择金融网络）&lt;/li&gt;
+&lt;li&gt;营业执照是非必填项，可以不上传&lt;/li&gt;
+&lt;li&gt;上传门头，可以利用搜索引擎或者大众点评&lt;/li&gt;
+&lt;li&gt;联系方式？（据说可以随便输入，建议输入真实的）&lt;/li&gt;
+&lt;li&gt;费率建议选择0.38&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;申请出错&lt;/p&gt;
+&lt;p&gt;有网友反馈无法申请，返回错误！可以试一试下面的地址申请！不过&lt;strong&gt;费率是0.6&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://b.alipay.com/signing/authorizedProductSet.htm&#34;&gt;https://b.alipay.com/signing/authorizedProductSet.htm&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;并按提示完成签约上线, 查看 &lt;a href=&#34;https://openhome.alipay.com/isv/settling/queryadminrchantSignProductList.htm&#34;&gt;商家签约管理&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;图片&lt;/p&gt;
+&lt;h2 id=&#34;支付宝当面付对接zfaka&#34;&gt;支付宝当面付对接ZFAKA&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://docs.open.alipay.com/58/103242&#34;&gt;RSA私钥及公钥生成&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;生成方式一（推荐）：使用支付宝提供的一键生成工具（内附使用说明）&lt;/p&gt;
+&lt;p&gt;Windows：&lt;a href=&#34;http://p.tb.cn/rmsportal_6680_secret_key_tools_RSA_win.zip&#34;&gt;下载&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;MAC OSX：&lt;a href=&#34;http://p.tb.cn/rmsportal_6680_secret_key_tools_RSA_macosx.zip&#34;&gt;下载&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;解压打开文件夹，直接运行“RSA 签名验签工具.bat”（WINDOWS）或“RSA 签名验签工具.command”（MAC_OSX），点击“生成 RSA 密钥”，会自动生成公私钥，然后点击 &lt;code&gt;打开文件位置&lt;/code&gt;，即可找到工具自动生成的密钥。
+具体步骤请参考签名专区&lt;a href=&#34;https://docs.open.alipay.com/291/105971&#34;&gt;生成RSA密钥指南&lt;/a&gt;。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;把&lt;code&gt;RSA 签名验签工具&lt;/code&gt;生成的&lt;code&gt;商户应用公钥&lt;/code&gt;复制到网页&amp;amp;移动应用 &lt;a href=&#34;https://openhome.alipay.com/platform/appManage.htm#/apps&#34;&gt;管理中心-蚂蚁金服开放平台&lt;/a&gt;【应用信息】【加签方式】【应用公钥(SHA256withRsa)】【应用公钥】中&lt;/li&gt;
+&lt;li&gt;把ZFAKA【支付宝当面付】上方的【本支付接口异步支付回调地址】&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;https://xxx.xxx.xxx/product/notify/?paymethod&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;zfbf2f
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;复制到支付宝的【授权回调地址】中，其中&lt;code&gt;https://xxx.xxx.xxx&lt;/code&gt;是自己的域名&lt;/p&gt;
+&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;在支付宝【加签方式】【查看支付宝公钥】并把它复制到ZFAKA【后台管理】【设置中心】【支付设置】【支付宝当面付】【编辑】【ali_public_key】中&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;把支付宝【APPID】复制到【ZFAKA】中&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;把&lt;code&gt;RSA 签名验签工具&lt;/code&gt;生成的&lt;code&gt;商户应用私钥&lt;/code&gt;复制到【ZFAKA】应用密匙【rsa_private_key】中&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;</description>
     </item>
   </channel>
 </rss>

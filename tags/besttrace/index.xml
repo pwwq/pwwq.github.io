@@ -9,7 +9,7 @@
       <url>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
-    <generator>Hugo -- 0.123.8</generator>
+    <generator>Hugo -- 0.144.2</generator>
     <language>zh</language>
     <lastBuildDate>Wed, 07 Jan 2015 01:37:56 +0800</lastBuildDate>
     <atom:link href="https://567899.xyz/tags/besttrace/index.xml" rel="self" type="application/rss+xml" />
@@ -18,12 +18,53 @@
       <link>https://567899.xyz/post/besttrace/</link>
       <pubDate>Wed, 07 Jan 2015 01:37:56 +0800</pubDate>
       <guid>https://567899.xyz/post/besttrace/</guid>
-      <description>VPS回程路由指的是你的远程VPS的IP地址到你本地ISP的IP。
-使用traceroute命令进行路由跟踪,但不能显示IP归属地。
-下载BestTrace
-Windows Mac OS iOS Android Linux Linux使用方法如下
-wget https://cdn.ipip.net/17mon/besttrace4linux.zip unzip besttrace4linux.zip chmod +x besttrace ./besttrace -q1 -g cn IP地址 更多使用说明可输入./besttrace --help进行查看，完整的参数如下：
--6， - ipv6 使用ipv6。 -J， - json 使用JSON格式打印traceroute结果。 -g， - lang string 语言现在仅支持cn和en。 -m， - maxhop int 指定traceroute将探测的最大跳数（最大生存时间值）。默认值为30.（默认为30） -a， - noas 显示时，请勿尝试将IP地址映射到AS。 -n， - nodomain 显示时，请勿尝试将IP地址映射到主机名。 -l， - location 显示时，请勿尝试将IP地址映射到位置。 -q， - query int 设置每跳的探测包数。默认值为3.（默认值为3） -z， - sendtime int 探针之间的最小时间间隔（默认为0）。 如果该值大于10，则它指定一个以毫秒为单位的数字，否则它是一个秒数（也允许浮点值）。 当某些路由器对ICMP消息使用速率限制时很有用。 -f， - stopop int 指定要启动的TTL。默认为1.</description>
+      <description>&lt;p&gt;VPS回程路由指的是你的远程VPS的IP地址到你本地ISP的IP。&lt;/p&gt;
+&lt;p&gt;使用&lt;code&gt;traceroute&lt;/code&gt;命令进行路由跟踪,但不能显示IP归属地。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.ipip.net/product/client.html&#34;&gt;下载BestTrace&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://cdn.ipip.net/17mon/besttrace.exe&#34;&gt;Windows&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://itunes.apple.com/us/app/best-trace/id1037779758?l=zh&amp;amp;ls=1&amp;amp;mt=12&#34;&gt;Mac OS&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://itunes.apple.com/cn/app/best-trace/id1026747589?ls=1&amp;amp;mt=8&#34;&gt;iOS&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://cdn.ipip.net/17mon/besttrace.apk&#34;&gt;Android&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://cdn.ipip.net/17mon/besttrace4linux.zip&#34;&gt;Linux&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Linux使用方法如下&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;wget https://cdn.ipip.net/17mon/besttrace4linux.zip
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;unzip besttrace4linux.zip
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;chmod +x besttrace
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;./besttrace -q1 -g cn IP地址
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;更多使用说明可输入&lt;code&gt;./besttrace --help&lt;/code&gt;进行查看，完整的参数如下：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;-6， - ipv6
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    使用ipv6。
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  -J， - json
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    使用JSON格式打印traceroute结果。
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  -g， - lang string
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    语言现在仅支持cn和en。
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  -m， - maxhop int
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    指定traceroute将探测的最大跳数（最大生存时间值）。默认值为30.（默认为30）
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  -a， - noas
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    显示时，请勿尝试将IP地址映射到AS。
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  -n， - nodomain
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    显示时，请勿尝试将IP地址映射到主机名。
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  -l， - location
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    显示时，请勿尝试将IP地址映射到位置。
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  -q， - query int
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    设置每跳的探测包数。默认值为3.（默认值为3）
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  -z， - sendtime int
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    探针之间的最小时间间隔（默认为0）。
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    如果该值大于10，则它指定一个以毫秒为单位的数字，否则它是一个秒数（也允许浮点值）。
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    当某些路由器对ICMP消息使用速率限制时很有用。
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  -f， - stopop int
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    指定要启动的TTL。默认为1.（默认值为1）
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;   - 同步
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    通过同步发送icmp包。
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  -T， - tcp
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    使用TCP SYN进行探测。
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  -V， - 版本
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    打印版本并退出。
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  -w， - waittime int
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    设置等待探测响应的时间（以秒为单位）。 （默认3）
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
     </item>
   </channel>
 </rss>

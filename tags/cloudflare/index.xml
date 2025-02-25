@@ -9,7 +9,7 @@
       <url>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
-    <generator>Hugo -- 0.123.8</generator>
+    <generator>Hugo -- 0.144.2</generator>
     <language>zh</language>
     <lastBuildDate>Thu, 22 Feb 2024 15:43:18 +0800</lastBuildDate>
     <atom:link href="https://567899.xyz/tags/cloudflare/index.xml" rel="self" type="application/rss+xml" />
@@ -18,49 +18,212 @@
       <link>https://567899.xyz/post/cloudflare-tunnel/</link>
       <pubDate>Thu, 22 Feb 2024 15:43:18 +0800</pubDate>
       <guid>https://567899.xyz/post/cloudflare-tunnel/</guid>
-      <description>使用前提条件
-拥有域名，并托管在Cloudflare上 持有外币卡或paypal账号【二选一】 使用方法如下
-打开 Cloudflare One按提示输入，选择免费套餐，填写好付款方式，开通试用账号；
-依次进入【Networks】【Tunnels】【Create a tunnel】创建一个隧道，然后按照里面的提示部署到需要内网穿透的机子上；看到Linux service for cloudflared installed successfully部署成功后刷新页面，此时Status应该会变成绿底黑字HEALTHY
-启动cloudflared
-/etc/init.d/cloudflared start 卸载cloudflared
-cloudflared service uninstall 授权 Cloudflare 隧道
-在服务器命令行中执行
-cloudflared tunnel login 复制网址、在浏览器中打开并登录CloudFlare账号，选中域名并授权；
-接下来就可以在网页端管理配置
-回到网页，依次进入【Networks】【Tunnels】【创建的隧道名称】右侧3点，【Configure】新增、编辑【Public Hostname】和【Private Network】
-不需要手掇配置文件</description>
+      <description>&lt;p&gt;使用前提条件&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;拥有域名，并托管在Cloudflare上&lt;/li&gt;
+&lt;li&gt;持有外币卡或paypal账号【二选一】&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;使用方法如下&lt;/p&gt;
+&lt;p&gt;打开 &lt;a href=&#34;https://one.dash.cloudflare.com&#34;&gt;Cloudflare One&lt;/a&gt;按提示输入，选择免费套餐，填写好付款方式，开通试用账号；&lt;/p&gt;
+&lt;p&gt;依次进入【Networks】【Tunnels】【Create a tunnel】创建一个隧道，然后按照里面的提示部署到需要内网穿透的机子上；看到&lt;code&gt;Linux service for cloudflared installed successfully&lt;/code&gt;部署成功后刷新页面，此时&lt;code&gt;Status&lt;/code&gt;应该会变成绿底黑字&lt;code&gt;HEALTHY&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;启动cloudflared&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/etc/init.d/cloudflared start
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;卸载cloudflared&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;cloudflared service uninstall
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;授权 Cloudflare 隧道&lt;/p&gt;
+&lt;p&gt;在服务器命令行中执行&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;cloudflared tunnel login
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;复制网址、在浏览器中打开并登录CloudFlare账号，选中域名并授权；&lt;/p&gt;
+&lt;p&gt;接下来就&lt;strong&gt;可以在网页端管理配置&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;回到网页，依次进入【Networks】【Tunnels】【创建的隧道名称】右侧3点，【Configure】新增、编辑【Public Hostname】和【Private Network】&lt;/p&gt;
+&lt;p&gt;不需要手掇配置文件&lt;/p&gt;</description>
     </item>
     <item>
       <title>自动查找Cloudflare最优(丢包、延迟)节点Ip</title>
       <link>https://567899.xyz/post/cloudflare-cdn-ip/</link>
       <pubDate>Wed, 09 Sep 2020 01:13:06 +0800</pubDate>
       <guid>https://567899.xyz/post/cloudflare-cdn-ip/</guid>
-      <description>官方列表：CloudFlare公开的节点
-1.1.1.1 和 1.0.0.1
-Windows平台自动扫IP工具下载fping-msys2.0
-推荐使用半自动方式查找
-第一步 执行 1-自动查找100个丢包最少的IP.bat
-设置对IP丢包测试PING的次数，默认100次，可手动设定，推荐50次上。运行完毕后命令行窗口会自动关闭再进行下一步操作
-第二步 执行 2-对100个丢包最少的IP测速.bat
-此过程是利用curl下载托管与cloudflare的大文件，默认每个IP下载时间为10秒钟。下载结束后到temp文件夹根据文件大小排序查看下载文件的大小。文件越大，代表单位时间内传输的数据越多，速度就越快。其中文件名是以IP地址的名称命名的。如果想要对IP单线程测速，可参考第三步。如果第三步找不到好用的IP，可重新执行第二步，再此完整测速分析。
-第三步 执行 3-单IP测速.bat
-输入第二部筛选出来的IP地址，回车后进行文件下载速度测试
-如果觉得上述过程过于繁琐 请参照最后一步
-最后一步 懒人版全自动处理 执行 自动查找最优CF节点-懒人专用.bat
-等待运行完毕后自动弹出IP速度从大到小的排名文本文件。
-该测试的结果不一定能达到预期的效果
-联通测试部分节点
-104.17.172.158 162.159.133.133 104.24.153.63 104.17.185.1 104.25.94.232 104.16.32.143 104.24.161.239 104.24.233.147 104.17.118.218 104.17.210.223 104.24.207.92 104.17.24.7 104.25.143.51 104.16.152.125 104.24.56.130 104.17.216.195 104.17.135.249 104.24.99.16 104.25.191.220 104.27.155.107 104.16.168.132 104.25.94.232 104.27.206.60 104.17.191.231 104.25.85.47 104.25.108.171 104.27.122.73 2020年9月10日更新 测试运营商联通</description>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;官方列表：&lt;a href=&#34;https://www.cloudflare.com/zh-cn/ips&#34;&gt;CloudFlare公开的节点&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;&lt;code&gt;1.1.1.1&lt;/code&gt; 和 &lt;code&gt;1.0.0.1&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Windows平台自动扫IP工具&lt;a href=&#34;https://567899.xyz/uploads/fping-msys2.0.7z&#34;&gt;下载fping-msys2.0&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;推荐使用半自动方式查找&lt;/p&gt;
+&lt;p&gt;第一步  执行 1-自动查找100个丢包最少的IP.bat&lt;/p&gt;
+&lt;p&gt;设置对IP丢包测试PING的次数，默认100次，可手动设定，推荐50次上。运行完毕后命令行窗口会自动关闭再进行下一步操作&lt;/p&gt;
+&lt;p&gt;第二步  执行 2-对100个丢包最少的IP测速.bat&lt;/p&gt;
+&lt;p&gt;此过程是利用curl下载托管与cloudflare的大文件，默认每个IP下载时间为10秒钟。下载结束后到temp文件夹根据文件大小排序查看下载文件的大小。文件越大，代表单位时间内传输的数据越多，速度就越快。其中文件名是以IP地址的名称命名的。如果想要对IP单线程测速，可参考第三步。如果第三步找不到好用的IP，可重新执行第二步，再此完整测速分析。&lt;/p&gt;
+&lt;p&gt;第三步  执行 3-单IP测速.bat&lt;/p&gt;
+&lt;p&gt;输入第二部筛选出来的IP地址，回车后进行文件下载速度测试&lt;/p&gt;
+&lt;p&gt;如果觉得上述过程过于繁琐  请参照最后一步&lt;/p&gt;
+&lt;p&gt;最后一步 懒人版全自动处理  执行 自动查找最优CF节点-懒人专用.bat&lt;/p&gt;
+&lt;p&gt;等待运行完毕后自动弹出IP速度从大到小的排名文本文件。&lt;/p&gt;
+&lt;p&gt;该测试的结果不一定能达到预期的效果&lt;/p&gt;
+&lt;p&gt;联通测试部分节点&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;104.17.172.158
+162.159.133.133
+104.24.153.63
+104.17.185.1
+104.25.94.232
+104.16.32.143
+104.24.161.239
+104.24.233.147
+104.17.118.218
+104.17.210.223
+104.24.207.92
+104.17.24.7
+104.25.143.51
+104.16.152.125
+104.24.56.130
+104.17.216.195
+104.17.135.249
+104.24.99.16
+104.25.191.220
+104.27.155.107
+104.16.168.132
+104.25.94.232
+104.27.206.60
+104.17.191.231
+104.25.85.47
+104.25.108.171
+104.27.122.73
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;2020年9月10日更新  测试运营商联通&lt;/p&gt;</description>
     </item>
     <item>
       <title>Caddy利用CloudFlare DNS申请泛域名证书</title>
       <link>https://567899.xyz/post/caddy-cloudflare-api-dns-ssl/</link>
       <pubDate>Sat, 06 Apr 2019 01:37:56 +0800</pubDate>
       <guid>https://567899.xyz/post/caddy-cloudflare-api-dns-ssl/</guid>
-      <description>安装Caddy curl https://getcaddy.com | bash -s personal tls.dns.cloudflare 后面的tls.dns.cloudflare为cloudflare的插件，如果你是其它DNS服务商就需要替换下插件参数，比如：
-tls.dns.auroradns tls.dns.azure tls.dns.cloudflare tls.dns.cloudxns tls.dns.digitalocean tls.dns.dnsimple tls.dns.dnsmadeeasy tls.dns.dnspod tls.dns.dyn tls.dns.exoscale tls.dns.gandi tls.dns.gandiv5 tls.dns.godaddy tls.dns.googlecloud tls.dns.lightsail tls.dns.linode tls.dns.namecheap tls.dns.ns1 tls.dns.otc tls.dns.ovh tls.dns.powerdns tls.dns.rackspace tls.dns.rfc2136 tls.dns.route53i tls.dns.vultr 设置环境变量 以下为Caddy申请通配符时所需要的DNS服务商的环境变量。
-#Aurora DNS by PCExtreme AURORA_USER_ID AURORA_KEY AURORA_ENDPOINT(optional) #Azure DNS AZURE_CLIENT_ID AZURE_CLIENT_SECRET AZURE_SUBSCRIPTION_ID AZURE_TENANT_ID #Cloudflare CLOUDFLARE_EMAIL CLOUDFLARE_API_KEY #CloudXNS CLOUDXNS_API_KEY CLOUDXNS_SECRET_KEY #DigitalOcean DO_AUTH_TOKEN #DNSimple DNSIMPLE_EMAIL DNSIMPLE_OAUTH_TOKEN #DNS Made Easy DNSMADEEASY_API_KEY DNSMADEEASY_API_SECRET DNSMADEEASY_SANDBOX(true/false) #DNSPod DNSPOD_API_KEY #DynDNS DYN_CUSTOMER_NAME DYN_USER_NAME DYN_PASSWORD #Gandi/Gandiv5 GANDI_API_KEY/GANDIV5_API_KEY #GoDaddy GODADDY_API_KEY GODADDY_API_SECRET #Google Cloud DNS GCE_PROJECT GCE_DOMAIN GOOGLE_APPLICATION_CREDENTIALS #Lightsail by AWS AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY AWS_SESSION_TOKEN(optional) DNS_ZONE(optional) #Linode LINODE_API_KEY #Namecheap NAMECHEAP_API_USER NAMECHEAP_API_KEY #NS1 NS1_API_KEY #Open Telekom Cloud Managed DNS OTC_DOMAIN_NAME OTC_USER_NAME OTC_PASSWORD OTC_PROJECT_NAME OTC_IDENTITY_ENDPOINT(optional) #OVH OVH_ENDPOINT OVH_APPLICATION_KEY OVH_APPLICATION_SECRET OVH_CONSUMER_KEY #PowerDNS PDNS_API_URL PDNS_API_KEY #Rackspace RACKSPACE_USER RACKSPACE_API_KEY #RFC2136 RFC2136_NAMESERVER RFC2136_TSIG_ALGORITHM RFC2136_TSIG_KEY RFC2136_TSIG_SECRET #Route53 by AWS AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY #Vultr VULTR_API_KEY 登陆CloudFlare的API Tokens 然后下拉找到【API Keys】【Global API Key】【View】</description>
+      <description>&lt;h2 id=&#34;安装caddy&#34;&gt;安装Caddy&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;curl https://getcaddy.com &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; bash -s personal tls.dns.cloudflare
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;后面的&lt;code&gt;tls.dns.cloudflare&lt;/code&gt;为&lt;code&gt;cloudflare&lt;/code&gt;的插件，如果你是其它DNS服务商就需要替换下插件参数，比如：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;tls.dns.auroradns
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;tls.dns.azure
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;tls.dns.cloudflare
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;tls.dns.cloudxns
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;tls.dns.digitalocean
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;tls.dns.dnsimple
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;tls.dns.dnsmadeeasy
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;tls.dns.dnspod
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;tls.dns.dyn
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;tls.dns.exoscale
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;tls.dns.gandi
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;tls.dns.gandiv5
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;tls.dns.godaddy
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;tls.dns.googlecloud
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;tls.dns.lightsail
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;tls.dns.linode
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;tls.dns.namecheap
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;tls.dns.ns1
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;tls.dns.otc
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;tls.dns.ovh
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;tls.dns.powerdns
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;tls.dns.rackspace
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;tls.dns.rfc2136
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;tls.dns.route53i
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;tls.dns.vultr
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;设置环境变量&#34;&gt;设置环境变量&lt;/h2&gt;
+&lt;p&gt;以下为Caddy申请通配符时所需要的DNS服务商的环境变量。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#Aurora DNS by PCExtreme&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;AURORA_USER_ID
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;AURORA_KEY
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;AURORA_ENDPOINT&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;optional&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#Azure DNS&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;AZURE_CLIENT_ID
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;AZURE_CLIENT_SECRET
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;AZURE_SUBSCRIPTION_ID
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;AZURE_TENANT_ID
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#Cloudflare&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;CLOUDFLARE_EMAIL
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;CLOUDFLARE_API_KEY
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#CloudXNS&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;CLOUDXNS_API_KEY
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;CLOUDXNS_SECRET_KEY
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#DigitalOcean&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;DO_AUTH_TOKEN
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#DNSimple&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;DNSIMPLE_EMAIL
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;DNSIMPLE_OAUTH_TOKEN
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#DNS Made Easy&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;DNSMADEEASY_API_KEY
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;DNSMADEEASY_API_SECRET
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;DNSMADEEASY_SANDBOX&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;true/false&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#DNSPod&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;DNSPOD_API_KEY
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#DynDNS&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;DYN_CUSTOMER_NAME
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;DYN_USER_NAME
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;DYN_PASSWORD
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#Gandi/Gandiv5&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;GANDI_API_KEY/GANDIV5_API_KEY
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#GoDaddy&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;GODADDY_API_KEY
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;GODADDY_API_SECRET
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#Google Cloud DNS    &lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;GCE_PROJECT
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;GCE_DOMAIN
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;GOOGLE_APPLICATION_CREDENTIALS
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#Lightsail by AWS&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;AWS_ACCESS_KEY_ID
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;AWS_SECRET_ACCESS_KEY
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;AWS_SESSION_TOKEN&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;optional&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;DNS_ZONE&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;optional&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#Linode&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;LINODE_API_KEY
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#Namecheap&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;NAMECHEAP_API_USER
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;NAMECHEAP_API_KEY
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#NS1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;NS1_API_KEY
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#Open Telekom Cloud Managed DNS&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;OTC_DOMAIN_NAME
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;OTC_USER_NAME
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;OTC_PASSWORD
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;OTC_PROJECT_NAME
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;OTC_IDENTITY_ENDPOINT&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;optional&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#OVH&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;OVH_ENDPOINT
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;OVH_APPLICATION_KEY
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;OVH_APPLICATION_SECRET
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;OVH_CONSUMER_KEY
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#PowerDNS&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;PDNS_API_URL
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;PDNS_API_KEY
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#Rackspace&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;RACKSPACE_USER
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;RACKSPACE_API_KEY
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#RFC2136&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;RFC2136_NAMESERVER
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;RFC2136_TSIG_ALGORITHM
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;RFC2136_TSIG_KEY
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;RFC2136_TSIG_SECRET
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#Route53 by AWS    &lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;AWS_ACCESS_KEY_ID
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;AWS_SECRET_ACCESS_KEY
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#Vultr&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;VULTR_API_KEY
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;登陆CloudFlare的&lt;a href=&#34;https://dash.cloudflare.com/profile/api-tokens&#34;&gt;API Tokens&lt;/a&gt; 然后下拉找到【API Keys】【Global API Key】【View】&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

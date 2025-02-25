@@ -9,7 +9,7 @@
       <url>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
-    <generator>Hugo -- 0.123.8</generator>
+    <generator>Hugo -- 0.144.2</generator>
     <language>zh</language>
     <lastBuildDate>Sat, 05 Oct 2019 01:37:56 +0800</lastBuildDate>
     <atom:link href="https://567899.xyz/tags/pornhub/index.xml" rel="self" type="application/rss+xml" />
@@ -18,15 +18,20 @@
       <link>https://567899.xyz/post/russia-pronhub-vkontakte-adblock-via/</link>
       <pubDate>Sat, 05 Oct 2019 01:37:56 +0800</pubDate>
       <guid>https://567899.xyz/post/russia-pronhub-vkontakte-adblock-via/</guid>
-      <description>更新：Pornhub 已经有简体中文且网页版可以免费观看1080P高清电影了。
-毛子机器上PH会弹出一个18+的提示，让登陆VK之类的毛子社交平台验证。
-只需要在浏览器的去广告插件中加入两个自定义规则就可以了。不需要登陆VKontakte验证就可以玩PH。
-PC端浏览器比如说chrome的扩展程序AdBlock等等 好像规则都是通用的。
-cn.pornhub.com###age-verification-wrapper cn.pornhub.com###age-verification-container 安卓手机端可以用Via浏览器自带去广告功能，支持自定义规则。
-依次打开via浏览器中的设置 通用 广告标记 + 添加
-地址加入网址
-cn.pornhub.com 标签加入规则
-#age-verification-wrapper,#age-verification-container 转载自https://www.hostloc.com/thread-581829-1-1.html</description>
+      <description>&lt;p&gt;更新：&lt;strong&gt;&lt;a href=&#34;https://cn.pornhub.com&#34;&gt;Pornhub&lt;/a&gt; 已经有简体中文且网页版可以免费观看1080P高清电影了。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;毛子机器上PH会弹出一个18+的提示，让登陆VK之类的毛子社交平台验证。&lt;/p&gt;
+&lt;p&gt;只需要在浏览器的去广告插件中加入两个自定义规则就可以了。不需要登陆VKontakte验证就可以玩PH。&lt;/p&gt;
+&lt;p&gt;PC端浏览器比如说chrome的扩展程序&lt;a href=&#34;https://chrome.google.com/webstore/search/abp?hl=zh-CN&#34;&gt;AdBlock&lt;/a&gt;等等 好像规则都是通用的。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;cn.pornhub.com###age-verification-wrapper
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;cn.pornhub.com###age-verification-container
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://567899.xyz/images/AdBlock-VK-pornhub.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;安卓手机端可以用&lt;a href=&#34;http://viayoo.com/zh-cn/&#34;&gt;Via浏览器&lt;/a&gt;自带去广告功能，支持自定义规则。&lt;/p&gt;
+&lt;p&gt;依次打开&lt;code&gt;via浏览器&lt;/code&gt;中的&lt;code&gt;设置&lt;/code&gt; &lt;code&gt;通用&lt;/code&gt;  &lt;code&gt;广告标记&lt;/code&gt;  &lt;code&gt;+&lt;/code&gt; 添加&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;地址&lt;/code&gt;加入网址&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;cn.pornhub.com
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;code&gt;标签&lt;/code&gt;加入规则&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#age-verification-wrapper,#age-verification-container&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;转载自https://www.hostloc.com/thread-581829-1-1.html&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

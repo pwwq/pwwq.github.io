@@ -9,7 +9,7 @@
       <url>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
-    <generator>Hugo -- 0.123.8</generator>
+    <generator>Hugo -- 0.144.2</generator>
     <language>zh</language>
     <lastBuildDate>Fri, 22 Sep 2017 01:37:56 +0800</lastBuildDate>
     <atom:link href="https://567899.xyz/tags/cookie/index.xml" rel="self" type="application/rss+xml" />
@@ -18,24 +18,45 @@
       <link>https://567899.xyz/post/qiandao/</link>
       <pubDate>Fri, 11 Mar 2022 22:04:59 +0800</pubDate>
       <guid>https://567899.xyz/post/qiandao/</guid>
-      <description>通过自动签到(网页签到、APP签到)，可以有效防止某些站点规则中的因长时间未登陆不活跃而导致封号，还可以赚积分、领金币薅羊毛&amp;hellip;
-Docker安装签到 https://hub.docker.com/r/a76yyyy/qiandao
-https://github.com/qiandao-today/qiandao
-安装、启用docker
-wget -qO- get.docker.com | bash systemctl enable docker systemctl start docker Docker部署a76yyyy/qiandao签到
-docker run -d --name qiandao --restart=always --env PORT=8923 --net=host -v /root/qiandao:/usr/src/app/config a76yyyy/qiandao 然后就可以访问 http://localhost:8923 网页管理签到
-8923端口可以随意，只要不被其它应用占用即可，/root/qiandao宿主机配置文件目录
-备份数据库只需要备份/root/qiandao目录下的database.db这个文件即可；
-还原数据库只需要先暂停docker stop qiandao然后将database.db复制替换掉原来/root/qiandao目录下的database.db这个文件。
-启动容器
-docker start qiandao 停止容器
-docker stop qiandao 删除容器
-docker rm qiandao 获取HAR文件 我们还可以使用Fiddler抓包软件来抓取，这里使用Chrome浏览器示范。
-打开Chrome浏览器，新建隐身窗口(重要)，登陆账号： 打开开发者工具（ctrl+shift+I，或者 鼠标右键 &amp;gt; 审查元素） 切换到 Network（网络）面板，勾选 Preserve log (非常重要) 直奔签到页，完成签到 找对签到链接(非常重要)，导出HAR文件。 使用HAR模板文件签到 以PT站点为例，因为大部分PT站点都是使用NexusPHP,大同小异，我们只需要抓取https://example.com/attendance.php保留这个链接，其它统统删掉。然后利用cookie登陆签到。
-注册、登陆到网页签到管理，上传导入HAR文件，编辑、删除多余的链接，只需要保留有效、正确的签到链接
-编辑HAR模板文件
-Request Headers全部勾选；cookie填写为{{cookie}}；Cookies全部删除；
-切换到测试/Test在Variables选项ADD中添加name为cookie</description>
+      <description>&lt;p&gt;通过自动签到(网页签到、APP签到)，可以有效防止某些站点规则中的因长时间未登陆不活跃而导致封号，还可以赚积分、领金币薅羊毛&amp;hellip;&lt;/p&gt;
+&lt;h2 id=&#34;docker安装签到&#34;&gt;Docker安装签到&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://hub.docker.com/r/a76yyyy/qiandao&#34;&gt;https://hub.docker.com/r/a76yyyy/qiandao&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/qiandao-today/qiandao&#34;&gt;https://github.com/qiandao-today/qiandao&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;安装、启用docker&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;wget -qO- get.docker.com &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; bash
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;systemctl &lt;span class=&#34;nb&#34;&gt;enable&lt;/span&gt; docker
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;systemctl start docker
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Docker部署&lt;code&gt;a76yyyy/qiandao&lt;/code&gt;签到&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker run -d --name qiandao --restart&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;always --env &lt;span class=&#34;nv&#34;&gt;PORT&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;8923&lt;/span&gt; --net&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;host -v /root/qiandao:/usr/src/app/config a76yyyy/qiandao
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;然后就可以访问  &lt;a href=&#34;http://localhost:8923&#34;&gt;http://localhost:8923&lt;/a&gt;  网页管理签到&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;8923&lt;/code&gt;端口可以随意，只要不被其它应用占用即可，&lt;code&gt;/root/qiandao&lt;/code&gt;宿主机配置文件目录&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;备份数据库&lt;/strong&gt;只需要备份&lt;code&gt;/root/qiandao&lt;/code&gt;目录下的&lt;code&gt;database.db&lt;/code&gt;这个文件即可；&lt;/p&gt;&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;还原数据库&lt;/strong&gt;只需要先暂停&lt;code&gt;docker stop qiandao&lt;/code&gt;然后将&lt;code&gt;database.db&lt;/code&gt;复制替换掉原来&lt;code&gt;/root/qiandao&lt;/code&gt;目录下的&lt;code&gt;database.db&lt;/code&gt;这个文件。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;启动容器&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker start qiandao
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;停止容器&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker stop qiandao
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;删除容器&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker rm qiandao
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;获取har文件&#34;&gt;获取HAR文件&lt;/h2&gt;
+&lt;p&gt;我们还可以使用&lt;code&gt;Fiddler&lt;/code&gt;抓包软件来抓取，这里使用Chrome浏览器示范。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;打开Chrome浏览器，新建隐身窗口(重要)，登陆账号：&lt;/li&gt;
+&lt;li&gt;打开开发者工具（ctrl+shift+I，或者 鼠标右键 &amp;gt; 审查元素）&lt;/li&gt;
+&lt;li&gt;切换到 &lt;code&gt;Network&lt;/code&gt;（网络）面板，勾选 &lt;code&gt;Preserve log&lt;/code&gt; (非常重要)&lt;/li&gt;
+&lt;li&gt;直奔签到页，完成签到&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;找对签到链接(非常重要)&lt;/strong&gt;，导出HAR文件。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;使用har模板文件签到&#34;&gt;使用HAR模板文件签到&lt;/h2&gt;
+&lt;p&gt;以PT站点为例，因为大部分PT站点都是使用&lt;a href=&#34;http://www.nexusphp.com&#34;&gt;NexusPHP&lt;/a&gt;,大同小异，我们只需要抓取&lt;code&gt;https://example.com/attendance.php&lt;/code&gt;保留这个链接，其它统统删掉。然后利用&lt;code&gt;cookie&lt;/code&gt;登陆签到。&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://567899.xyz/images/har_save.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;注册、登陆到网页签到管理，上传导入HAR文件，编辑、删除多余的链接，只需要保留有效、正确的签到链接&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://567899.xyz/images/har_attendance.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;编辑HAR模板文件&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://567899.xyz/images/har_355.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Request Headers&lt;/code&gt;全部勾选；&lt;code&gt;cookie&lt;/code&gt;填写为&lt;code&gt;{{cookie}}&lt;/code&gt;；&lt;code&gt;Cookies&lt;/code&gt;全部删除；&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

@@ -9,7 +9,7 @@
       <url>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
-    <generator>Hugo -- 0.123.8</generator>
+    <generator>Hugo -- 0.144.2</generator>
     <language>zh</language>
     <lastBuildDate>Fri, 07 Feb 2020 01:37:56 +0800</lastBuildDate>
     <atom:link href="https://567899.xyz/tags/fodi/index.xml" rel="self" type="application/rss+xml" />
@@ -18,19 +18,39 @@
       <link>https://567899.xyz/post/fodi/</link>
       <pubDate>Fri, 07 Feb 2020 01:37:56 +0800</pubDate>
       <guid>https://567899.xyz/post/fodi/</guid>
-      <description>Github地址：https://github.com/vcheckzen/FODI
-预览 DEMO
-获取 refresh_token 国际版、个人版、家庭版 、 中国世纪互联版
-点击其中的 Get a refresh_token，在打开的微软账号登录页面中，填写你的 OneDrive 账号和密码，完成登录。
-登录完毕后浏览器将跳转回上面的页面，此时修改网址，从左往右找到第一个?将其删除,再找到第一个 &amp;amp;将其改为? 注意要使用英文输入法
-下面是修改前后的网址对比：
-#修改前 https://service-36wivxsc-1256127833.ap-hongkong.apigateway.myqcloud.com/release/scf_onedrive_filelistor/?authorization_code&amp;amp;code=... #修改后 https://service-36wivxsc-1256127833.ap-hongkong.apigateway.myqcloud.com/release/scf_onedrive_filelistor/authorization_code?code=... 修改完毕后直接回车，稍等片刻页面将返回 refresh_token，复制保存。
-部署FODI后端 创建Cloudflare Workers编辑界面里面的代码替换成index.js
-找到并修改const ONEDRIVE_REFRESHTOKEN = &amp;quot;xxxxxxxxxxxxxxxxx&amp;quot;
-其中xxxxxxxxxxxxxxxxx为refresh_token的参数
-通过Github Pages部署前端 打开index.html在SCF_GATEWAY中填上你的Cloudflare Workers地址
-/** * SCF_GATEWAY：SCF 云函数网关地址 * SITE_NAME：站点名称 */ window.GLOBAL_CONFIG = { SCF_GATEWAY: &amp;#34;https://xxxx.xxx.workers.dev&amp;#34;, SITE_NAME: &amp;#34;FODI&amp;#34;, IS_CF: true }; 其它 在某个文件夹下添加.password文件加密码,README.mdMarkdown语法自述文件.注意文件必须以UTF-8无BOM格式编码且密码前后不能有空格或空行
-转载自：https://logi.im/back-end/fodi-on-cloudflare.html</description>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;Github地址：https://github.com/vcheckzen/FODI&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;预览 &lt;a href=&#34;https://logi.im/fodi.html&#34;&gt;DEMO&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;获取-refresh_token&#34;&gt;获取 refresh_token&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://service-36wivxsc-1256127833.ap-hongkong.apigateway.myqcloud.com/release/scf_onedrive_filelistor&#34;&gt;国际版、个人版、家庭版&lt;/a&gt;  、 &lt;a href=&#34;https://service-gzs9xkdm-1256127833.ap-hongkong.apigateway.myqcloud.com/release/onedrive-token-cn&#34;&gt;中国世纪互联版&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;点击其中的 &lt;code&gt;Get a refresh_token&lt;/code&gt;，在打开的微软账号登录页面中，填写你的 OneDrive 账号和密码，完成登录。&lt;/p&gt;
+&lt;p&gt;登录完毕后浏览器将跳转回上面的页面，此时修改网址，从左往右找到第一个&lt;code&gt;?&lt;/code&gt;将其删除,再找到第一个 &lt;code&gt;&amp;amp;&lt;/code&gt;将其改为&lt;code&gt;?&lt;/code&gt; &lt;strong&gt;注意要使用英文输入法&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://567899.xyz/images/fodi_refresh_token.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;下面是修改前后的网址对比：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#修改前&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;https://service-36wivxsc-1256127833.ap-hongkong.apigateway.myqcloud.com/release/scf_onedrive_filelistor/?authorization_code&lt;span class=&#34;p&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;code&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;...
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#修改后&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;https://service-36wivxsc-1256127833.ap-hongkong.apigateway.myqcloud.com/release/scf_onedrive_filelistor/authorization_code?code&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;...
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;修改完毕后直接回车，稍等片刻页面将返回 &lt;code&gt;refresh_token&lt;/code&gt;，复制保存。&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://567899.xyz/images/fodi_refresh_token1.png&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;部署fodi后端&#34;&gt;部署FODI后端&lt;/h2&gt;
+&lt;p&gt;创建&lt;a href=&#34;https://workers.cloudflare.com&#34;&gt;Cloudflare Workers&lt;/a&gt;编辑界面里面的代码替换成&lt;a href=&#34;https://raw.githubusercontent.com/vcheckzen/FODI/master/back-end-cf/index.js&#34;&gt;index.js&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;找到并修改&lt;code&gt;const ONEDRIVE_REFRESHTOKEN = &amp;quot;xxxxxxxxxxxxxxxxx&amp;quot;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;其中&lt;code&gt;xxxxxxxxxxxxxxxxx&lt;/code&gt;为&lt;code&gt;refresh_token&lt;/code&gt;的参数&lt;/p&gt;
+&lt;h2 id=&#34;通过github-pages部署前端&#34;&gt;通过&lt;a href=&#34;https://pages.github.com&#34;&gt;Github Pages&lt;/a&gt;部署前端&lt;/h2&gt;
+&lt;p&gt;打开&lt;a href=&#34;https://raw.githubusercontent.com/vcheckzen/FODI-FRONT-END/master/index.html&#34;&gt;index.html&lt;/a&gt;在&lt;code&gt;SCF_GATEWAY&lt;/code&gt;中填上你的&lt;a href=&#34;https://workers.cloudflare.com&#34;&gt;Cloudflare Workers&lt;/a&gt;地址&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/**
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;* SCF_GATEWAY：SCF 云函数网关地址
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;* SITE_NAME：站点名称
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;*/
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;window.GLOBAL_CONFIG &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    SCF_GATEWAY: &lt;span class=&#34;s2&#34;&gt;&amp;#34;https://xxxx.xxx.workers.dev&amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    SITE_NAME: &lt;span class=&#34;s2&#34;&gt;&amp;#34;FODI&amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    IS_CF: &lt;span class=&#34;nb&#34;&gt;true&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;其它&#34;&gt;其它&lt;/h2&gt;
+&lt;p&gt;在某个文件夹下添加&lt;code&gt;.password&lt;/code&gt;文件加密码,&lt;code&gt;README.md&lt;/code&gt;Markdown语法自述文件.注意文件必须以&lt;strong&gt;UTF-8无BOM格式编码&lt;/strong&gt;且密码前后不能有空格或空行&lt;/p&gt;
+&lt;p&gt;转载自：https://logi.im/back-end/fodi-on-cloudflare.html&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

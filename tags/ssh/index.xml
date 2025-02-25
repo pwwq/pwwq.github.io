@@ -9,7 +9,7 @@
       <url>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
-    <generator>Hugo -- 0.123.8</generator>
+    <generator>Hugo -- 0.144.2</generator>
     <language>zh</language>
     <lastBuildDate>Wed, 12 Jul 2017 01:37:56 +0800</lastBuildDate>
     <atom:link href="https://567899.xyz/tags/ssh/index.xml" rel="self" type="application/rss+xml" />
@@ -18,23 +18,73 @@
       <link>https://567899.xyz/post/ssh-xshell-password-keys/</link>
       <pubDate>Wed, 12 Jul 2017 01:37:56 +0800</pubDate>
       <guid>https://567899.xyz/post/ssh-xshell-password-keys/</guid>
-      <description>SSH安全登陆三步曲
-修改默认端口22为其它 改用SSH-keys登陆 禁止密码登陆 Linux生成密钥对
-ssh-keygen 文件 类型 路径 id_rsa 私钥 ~/.ssh/id_rsa id_rsa.pub 公钥 ~/.ssh/id_rsa.pub 使用Xshell生成密钥公钥 点击下载Xshell5依次点击菜单栏中的【工具】【新建用户密钥生成向导】
-【密钥类型】选择RSA【长度】2048可以自定义
-然后一路【下一步】【保存为文件】
-生成私钥 工具 -&amp;gt; 用户秘钥管理者 选中秘钥类型 -&amp;gt; 导出
-至此，生成了一对 公钥-私钥 对。 id_rsa_2048.pub #公钥 id_rsa_2048 #私钥
-使用puttygen把密钥id_rsa_2048转换成xxx.ppk后缀的文件
-如果您实在不会或者不想动手的话，可以用现成的。下载已经生成的 id_rsa_2048密钥对 里面包括了公钥 私钥及转换好了的PPK格式后缀
-配置Xshell使用密钥登陆 创建目录
-mkdir .ssh chmod 700 .ssh 创建文件
-cd .ssh touch authorized_keys chmod 600 authorized_keys 写入公钥内容
-nano /.ssh/authorized_keys 把id_rsa_2048.pub中的文本内容全部复制到/.ssh/authorized_keys
-修改SSH配置文件
-nano /etc/ssh/sshd_config 启用密钥验证
-RSAAuthentication yes PubkeyAuthentication yes AuthorsizedKeysFile .ssh/authorized_keys AuthorsizedKeysFile .ssh/authorized_keys是指定公钥数据库文件
-重启SSH服务生效</description>
+      <description>&lt;p&gt;SSH安全登陆三步曲&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;修改默认端口22为其它&lt;/li&gt;
+&lt;li&gt;改用SSH-keys登陆&lt;/li&gt;
+&lt;li&gt;禁止密码登陆&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Linux生成密钥对&lt;/p&gt;&lt;/blockquote&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ssh-keygen
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;文件&lt;/th&gt;
+          &lt;th&gt;类型&lt;/th&gt;
+          &lt;th&gt;路径&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;id_rsa&lt;/td&gt;
+          &lt;td&gt;私钥&lt;/td&gt;
+          &lt;td&gt;~/.ssh/id_rsa&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;id_rsa.pub&lt;/td&gt;
+          &lt;td&gt;公钥&lt;/td&gt;
+          &lt;td&gt;~/.ssh/id_rsa.pub&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h1 id=&#34;使用xshell生成密钥公钥&#34;&gt;使用Xshell生成密钥公钥&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&#34;https://567899.xyz/uploads/XSHELL5.7z&#34;&gt;点击下载Xshell5&lt;/a&gt;依次点击菜单栏中的【工具】【新建用户密钥生成向导】&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://567899.xyz/images/xshell_new_key.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;【密钥类型】选择&lt;code&gt;RSA&lt;/code&gt;【长度】&lt;code&gt;2048&lt;/code&gt;可以自定义&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://567899.xyz/images/xshell_new_key1.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://567899.xyz/images/xshell_new_key2.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://567899.xyz/images/xshell_new_key3.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://567899.xyz/images/xshell_new_key4.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;然后一路【下一步】【保存为文件】&lt;/p&gt;
+&lt;p&gt;生成私钥
+工具 -&amp;gt; 用户秘钥管理者
+选中秘钥类型 -&amp;gt; 导出&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://567899.xyz/images/xshell_new_key5.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;至此，生成了一对 公钥-私钥 对。
+id_rsa_2048.pub #公钥
+id_rsa_2048 #私钥&lt;/p&gt;
+&lt;p&gt;使用&lt;a href=&#34;https://567899.xyz/uploads/puttygen.7z&#34;&gt;puttygen&lt;/a&gt;把密钥id_rsa_2048转换成xxx.ppk后缀的文件&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://567899.xyz/images/id_rsa_2048_to_ppk.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;如果您实在不会或者不想动手的话，可以用现成的。下载已经生成的 &lt;a href=&#34;https://567899.xyz/uploads/share_id_rsa_2048.zip&#34;&gt;id_rsa_2048密钥对&lt;/a&gt; 里面包括了&lt;code&gt;公钥&lt;/code&gt; &lt;code&gt;私钥&lt;/code&gt;及转换好了的PPK格式后缀&lt;/p&gt;
+&lt;h1 id=&#34;配置xshell使用密钥登陆&#34;&gt;配置Xshell使用密钥登陆&lt;/h1&gt;
+&lt;p&gt;创建目录&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;mkdir .ssh
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;chmod &lt;span class=&#34;m&#34;&gt;700&lt;/span&gt; .ssh
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;创建文件&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; .ssh
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;touch authorized_keys
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;chmod &lt;span class=&#34;m&#34;&gt;600&lt;/span&gt; authorized_keys
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;写入公钥内容&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;nano /.ssh/authorized_keys
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;把&lt;code&gt;id_rsa_2048.pub&lt;/code&gt;中的文本内容全部复制到&lt;code&gt;/.ssh/authorized_keys&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;修改SSH配置文件&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;nano /etc/ssh/sshd_config
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;启用密钥验证&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;RSAAuthentication yes
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;PubkeyAuthentication yes
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;AuthorsizedKeysFile .ssh/authorized_keys
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;code&gt;AuthorsizedKeysFile .ssh/authorized_keys&lt;/code&gt;是指定公钥数据库文件&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

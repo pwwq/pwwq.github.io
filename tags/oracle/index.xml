@@ -9,7 +9,7 @@
       <url>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
-    <generator>Hugo -- 0.123.8</generator>
+    <generator>Hugo -- 0.144.2</generator>
     <language>zh</language>
     <lastBuildDate>Sat, 29 May 2021 01:37:56 +0800</lastBuildDate>
     <atom:link href="https://567899.xyz/tags/oracle/index.xml" rel="self" type="application/rss+xml" />
@@ -18,35 +18,89 @@
       <link>https://567899.xyz/post/oracle-oci-arm-vps/</link>
       <pubDate>Sat, 29 May 2021 01:37:56 +0800</pubDate>
       <guid>https://567899.xyz/post/oracle-oci-arm-vps/</guid>
-      <description>安装Terraform 从Terraform官网找到对应CPU架构的版本
-X86_X64如下 wget https://releases.hashicorp.com/terraform/0.15.4/terraform_0.15.4_linux_amd64.zip unzip terraform_0.15.4_linux_amd64.zip mv terraform /usr/bin ARM64如下 wget https://releases.hashicorp.com/terraform/1.0.9/terraform_1.0.9_linux_arm64.zip unzip terraform_1.0.9_linux_arm64.zip mv terraform /usr/bin 查看版本
-terraform version 安装oci-cli工具 安装，一路回车即可，默认安装在/root/bin目录
-bash -c &amp;#34;$(curl –L https://raw.githubusercontent.com/oracle/oci-cli/master/scripts/install/install.sh)&amp;#34; 当出现===&amp;gt; Modify profile to update your $PATH and enable shell/tab completion now? (Y/n):这个时候，是在提示你输入Y回车，会自动帮你添加环境变量。之后又是一路回车。出现如下提示表示安装成功。
-===&amp;gt; Modify profile to update your $PATH and enable shell/tab completion now? (Y/n): y ===&amp;gt; Enter a path to an rc file to update (file will be created if it does not exist) (leave blank to use &amp;#39;/root/.</description>
+      <description>&lt;h2 id=&#34;安装terraform&#34;&gt;安装Terraform&lt;/h2&gt;
+&lt;p&gt;从&lt;a href=&#34;https://www.terraform.io/downloads.html&#34;&gt;Terraform官网&lt;/a&gt;找到对应CPU架构的版本&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;X86_X64如下&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;wget https://releases.hashicorp.com/terraform/0.15.4/terraform_0.15.4_linux_amd64.zip
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;unzip terraform_0.15.4_linux_amd64.zip
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;mv terraform /usr/bin
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;ARM64如下&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;wget https://releases.hashicorp.com/terraform/1.0.9/terraform_1.0.9_linux_arm64.zip
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;unzip terraform_1.0.9_linux_arm64.zip
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;mv terraform /usr/bin
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;查看版本&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;terraform version
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;安装oci-cli工具&#34;&gt;安装oci-cli工具&lt;/h2&gt;
+&lt;p&gt;安装，一路回车即可，默认安装在/root/bin目录&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;bash -c &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;$(&lt;/span&gt;curl –L https://raw.githubusercontent.com/oracle/oci-cli/master/scripts/install/install.sh&lt;span class=&#34;k&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;当出现&lt;code&gt;===&amp;gt; Modify profile to update your $PATH and enable shell/tab completion now? (Y/n):&lt;/code&gt;这个时候，是在提示你输入&lt;code&gt;Y&lt;/code&gt;回车，会自动帮你添加环境变量。之后又是一路回车。出现如下提示表示安装成功。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;===&lt;/span&gt;&amp;gt; Modify profile to update your &lt;span class=&#34;nv&#34;&gt;$PATH&lt;/span&gt; and &lt;span class=&#34;nb&#34;&gt;enable&lt;/span&gt; shell/tab completion now? &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;Y/n&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;: &lt;span class=&#34;nv&#34;&gt;y&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;===&lt;/span&gt;&amp;gt; Enter a path to an rc file to update &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;file will be created &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; it does not exist&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;leave blank to use &lt;span class=&#34;s1&#34;&gt;&amp;#39;/root/.bashrc&amp;#39;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;: 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;-- Backed up &lt;span class=&#34;s1&#34;&gt;&amp;#39;/root/.bashrc&amp;#39;&lt;/span&gt; to &lt;span class=&#34;s1&#34;&gt;&amp;#39;/root/.bashrc.backup&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;-- Tab completion &lt;span class=&#34;nb&#34;&gt;set&lt;/span&gt; up complete.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;-- If tab completion is not activated, verify that &lt;span class=&#34;s1&#34;&gt;&amp;#39;/root/.bashrc&amp;#39;&lt;/span&gt; is sourced by your shell.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;-- 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;-- ** Run &lt;span class=&#34;sb&#34;&gt;`&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;exec&lt;/span&gt; -l &lt;span class=&#34;nv&#34;&gt;$SHELL&lt;/span&gt;&lt;span class=&#34;sb&#34;&gt;`&lt;/span&gt; to restart your shell. **
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;-- 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;-- Installation successful.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;-- Run the CLI with /root/bin/oci --help
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;把&lt;code&gt;/root/bin/oci&lt;/code&gt;路径移动到&lt;code&gt;/usr/bin&lt;/code&gt;目录下&lt;/p&gt;</description>
     </item>
     <item>
       <title>甲骨文云配置IPV6及关闭防火墙放行端口</title>
       <link>https://567899.xyz/post/oracle-ipv6-iptables/</link>
       <pubDate>Fri, 28 Feb 2020 01:37:56 +0800</pubDate>
       <guid>https://567899.xyz/post/oracle-ipv6-iptables/</guid>
-      <description>甲骨文的系统推荐使用ubuntu
-分配 IPv6
-网络 - 虚拟云网络 - 虚拟云网络详细信息 中操作，最后一个步骤在实例的 VNIC 详细信息中操作：
-分配CIDR 网络 - 虚拟云网络 - 虚拟云网络详细信息 - CIDR块中添加 IPv6 CIDR块 默认会分配一个 /56 大小的 IPv6 地址块
-配置子网 网络 - 虚拟云网络 - 虚拟云网络详细信息- 子网 - 编辑 勾选 启用 IPv6 CIDR 块，填写 00-FF 任意一个十六进制数字，然后保存，这里就会分配一个 /64 大小的 IPv6 地址块
-配置路由 网络 - 虚拟云网络 - 虚拟云网络详细信息- 路由表 点击添加路由规则
-协议版本 ipv6 目标类型 internet网关 目标地CIDR块 ::/0 IPv4/IPv6 双栈要正常工作，应该要有以下两条路由(::/0、0.0.0.0/0)
-配置安全规则 实例的VNIC详细信息 - 入站规则和出站规则中都加入以下规则
-目的地类型(Destination Type) CIDR 目的地CIDR(Destination CIDR) ::/0 IP协议IP Protocol 所有协议All Protocols IPv4还需要在实例的VNIC详细信息 - 入站规则中加入以下规则</description>
+      <description>&lt;p&gt;甲骨文的系统推荐使用ubuntu&lt;/p&gt;
+&lt;p&gt;分配 IPv6&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;网络&lt;/code&gt; - &lt;code&gt;虚拟云网络&lt;/code&gt; - &lt;code&gt;虚拟云网络详细信息&lt;/code&gt; 中操作，最后一个步骤在实例的 VNIC 详细信息中操作：&lt;/p&gt;
+&lt;h2 id=&#34;分配cidr&#34;&gt;分配CIDR&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;网络&lt;/code&gt; - &lt;code&gt;虚拟云网络&lt;/code&gt; - &lt;code&gt;虚拟云网络详细信息&lt;/code&gt; - &lt;code&gt;CIDR块&lt;/code&gt;中&lt;code&gt;添加 IPv6 CIDR块&lt;/code&gt;   默认会分配一个 /56 大小的 IPv6 地址块&lt;/p&gt;
+&lt;h2 id=&#34;配置子网&#34;&gt;配置子网&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;网络&lt;/code&gt; - &lt;code&gt;虚拟云网络&lt;/code&gt; - &lt;code&gt;虚拟云网络详细信息&lt;/code&gt;- &lt;code&gt;子网&lt;/code&gt; - &lt;code&gt;编辑&lt;/code&gt; 勾选 启用 IPv6 CIDR 块，填写 00-FF 任意一个十六进制数字，然后保存，这里就会分配一个 /64 大小的 IPv6 地址块&lt;/p&gt;
+&lt;h2 id=&#34;配置路由&#34;&gt;配置路由&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;网络&lt;/code&gt; - &lt;code&gt;虚拟云网络&lt;/code&gt; - &lt;code&gt;虚拟云网络详细信息&lt;/code&gt;- &lt;code&gt;路由表&lt;/code&gt; 点击添加路由规则&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;协议版本 &lt;code&gt;ipv6&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;目标类型 &lt;code&gt;internet网关&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;目标地CIDR块 &lt;code&gt;::/0&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;IPv4/IPv6 双栈要正常工作，应该要有以下两条路由(::/0、0.0.0.0/0)&lt;/p&gt;
+&lt;h2 id=&#34;配置安全规则&#34;&gt;配置安全规则&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;实例&lt;/code&gt;的&lt;code&gt;VNIC&lt;/code&gt;详细信息 - &lt;code&gt;入站规则&lt;/code&gt;和&lt;code&gt;出站规则&lt;/code&gt;中都加入以下规则&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;目的地类型(Destination Type) &lt;code&gt;CIDR&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;目的地CIDR(Destination CIDR) &lt;code&gt;::/0&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;IP协议IP Protocol &lt;code&gt;所有协议All Protocols&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;IPv4还需要在&lt;code&gt;实例&lt;/code&gt;的&lt;code&gt;VNIC&lt;/code&gt;详细信息 - &lt;code&gt;入站规则&lt;/code&gt;中加入以下规则&lt;/strong&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>甲骨文Oracle通过API或Chrome脚本获得免费VPS</title>
       <link>https://567899.xyz/post/oracle/</link>
       <pubDate>Thu, 10 Oct 2019 01:37:56 +0800</pubDate>
       <guid>https://567899.xyz/post/oracle/</guid>
-      <description>甲骨文Oracle通过API或Chrome脚本获得2台免费VPS及DD成win7或debian
-收获Oracle云资源
-2 个 Autonomous Database （自主数据仓库或自主事务处理），每个 Autonomous Database 都有 1 个 OCPU 和 20 GB 存储资源； 2 个 Compute VM，每个 Compute VM 有 1⁄8 OCPU 和 1 GB 内存； 2 个 Block Volumes，总共 100 GB，最多 5 个免费备份； 10 GB Object Storage、10 GB Archive Storage 和每月 50000 个 API 请求； 1 个 Load Balancer，10 Mbps 带宽； 每月 10 TB 的出站数据传输； 5 亿个摄取数据点和 10 亿个服务监测数据点； 每月传递 100 万个通知的选项和每月 1000 封电子邮件。 进入 oracle官网 的 活动页面 注册oracle cloud账号</description>
+      <description>&lt;p&gt;甲骨文Oracle通过API或Chrome脚本获得2台免费VPS及DD成win7或debian&lt;/p&gt;
+&lt;p&gt;收获Oracle云资源&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;m&#34;&gt;2&lt;/span&gt; 个 Autonomous Database （自主数据仓库或自主事务处理），每个 Autonomous Database 都有 &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt; 个 OCPU 和 &lt;span class=&#34;m&#34;&gt;20&lt;/span&gt; GB 存储资源；
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;m&#34;&gt;2&lt;/span&gt; 个 Compute VM，每个 Compute VM 有 1⁄8 OCPU 和 &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt; GB 内存；
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;m&#34;&gt;2&lt;/span&gt; 个 Block Volumes，总共 &lt;span class=&#34;m&#34;&gt;100&lt;/span&gt; GB，最多 &lt;span class=&#34;m&#34;&gt;5&lt;/span&gt; 个免费备份；
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;m&#34;&gt;10&lt;/span&gt; GB Object Storage、10 GB Archive Storage 和每月 &lt;span class=&#34;m&#34;&gt;50000&lt;/span&gt; 个 API 请求；
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;m&#34;&gt;1&lt;/span&gt; 个 Load Balancer，10 Mbps 带宽；
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;每月 &lt;span class=&#34;m&#34;&gt;10&lt;/span&gt; TB 的出站数据传输；
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;m&#34;&gt;5&lt;/span&gt; 亿个摄取数据点和 &lt;span class=&#34;m&#34;&gt;10&lt;/span&gt; 亿个服务监测数据点；
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;每月传递 &lt;span class=&#34;m&#34;&gt;100&lt;/span&gt; 万个通知的选项和每月 &lt;span class=&#34;m&#34;&gt;1000&lt;/span&gt; 封电子邮件。
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;进入 oracle官网 的 &lt;a href=&#34;https://www.oracle.com/cn/cloud/free/&#34;&gt;活动页面&lt;/a&gt; 注册oracle cloud账号&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;创建免费计算实例&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;可以手动创建，也可以使用API或者浏览器脚本刷鸡。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;通过oracle API方式刷鸡&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;依次打开【计算】【实例】【创建实例】&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

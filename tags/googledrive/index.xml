@@ -9,7 +9,7 @@
       <url>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
-    <generator>Hugo -- 0.123.8</generator>
+    <generator>Hugo -- 0.144.2</generator>
     <language>zh</language>
     <lastBuildDate>Tue, 11 Feb 2020 01:37:56 +0800</lastBuildDate>
     <atom:link href="https://567899.xyz/tags/googledrive/index.xml" rel="self" type="application/rss+xml" />
@@ -18,53 +18,145 @@
       <link>https://567899.xyz/post/google_drive_folderclone/</link>
       <pubDate>Tue, 11 Feb 2020 01:37:56 +0800</pubDate>
       <guid>https://567899.xyz/post/google_drive_folderclone/</guid>
-      <description>超级详细Folderclone使用的图文教程，更新新版Folderclone的使用方法
-更新新版folderclone使用方法 详情https://github.com/Spazzlo/folderclone
-[可选]加入Google Drive团队盘 没有Google Drive团队盘的小伙伴可以自助添加
-英国谢菲尔德大学：https://gdrive.zppcw.cn/ 404 NOT FOUND：https://gd.404edu.workers.dev/ https://gd.zxd.workers.dev/ http://leon.educationhost.cloud/ swccd.edu团队盘：https://teamdrive.xcpx.workers.dev/ 洛杉矶加利福尼亚大学团队盘：https://ucla.ur.workers.dev/ 日本国際大学团队盘：https://iuj.ur.workers.dev/ 自动创建：https://www.teamdrive.workers.dev 感谢大佬提供的Google Drive团队盘
-===新版folderclone教程开始===
-第一步 安装folderclone Linux
-Debian/Ubuntu安装
-apt update apt install python3-pip git screen -y git clone https://github.com/Spazzlo/folderclone.git cd folderclone pip3 install folderclone CentOS把apt-get替换成yum
-因拷贝时间长，防止中断，强烈建议使用screen后台运行。screen简单使用方法
-# 创建screen窗口,folderclone名字可自定义 screen -S folderclone # 临时退出使用screen后台运行,按组合键 【Ctrl】【a】【d】 # 回到screen窗口 screen -r folderclone Windows安装
-下载Python安装
-Python 3.7.4 64-bit 、 Python 3.8.1
-下载folderclone源码并解压，比如我的放置在E:\folderclone-master
-以管理员身份运行 cmd或Windows PowerShell执行,且确保本地cmd或Windows PowerShell稳定的外网环境。
-# 进入folderclone解压根目录 cd E:\folderclone-master pip install folderclone 第二步 开启Drive API服务 打开登陆Python Quickstart 点击Enable the Drive API</description>
+      <description>&lt;p&gt;超级详细Folderclone使用的图文教程，更新新版Folderclone的使用方法&lt;/p&gt;
+&lt;h2 id=&#34;更新新版folderclone使用方法&#34;&gt;更新新版folderclone使用方法&lt;/h2&gt;
+&lt;p&gt;详情https://github.com/Spazzlo/folderclone&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;可选加入google-drive团队盘&#34;&gt;[可选]加入Google Drive团队盘&lt;/h2&gt;
+&lt;p&gt;没有Google Drive团队盘的小伙伴可以自助添加&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;英国谢菲尔德大学：https://gdrive.zppcw.cn/&lt;/li&gt;
+&lt;li&gt;404 NOT FOUND：https://gd.404edu.workers.dev/&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://gd.zxd.workers.dev/&#34;&gt;https://gd.zxd.workers.dev/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://leon.educationhost.cloud/&#34;&gt;http://leon.educationhost.cloud/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;swccd.edu团队盘：https://teamdrive.xcpx.workers.dev/&lt;/li&gt;
+&lt;li&gt;洛杉矶加利福尼亚大学团队盘：https://ucla.ur.workers.dev/&lt;/li&gt;
+&lt;li&gt;日本国際大学团队盘：https://iuj.ur.workers.dev/&lt;/li&gt;
+&lt;li&gt;自动创建：https://www.teamdrive.workers.dev&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;感谢大佬提供的Google Drive团队盘&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;===新版folderclone教程开始===&lt;/p&gt;
+&lt;h2 id=&#34;第一步-安装folderclone&#34;&gt;第一步 安装folderclone&lt;/h2&gt;
+&lt;p&gt;Linux&lt;/p&gt;
+&lt;p&gt;Debian/Ubuntu安装&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;apt update
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;apt install python3-pip git screen -y
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git clone https://github.com/Spazzlo/folderclone.git
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; folderclone
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;pip3 install folderclone
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;code&gt;CentOS&lt;/code&gt;把&lt;code&gt;apt-get&lt;/code&gt;替换成&lt;code&gt;yum&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;因拷贝时间长，防止中断，强烈建议使用&lt;code&gt;screen&lt;/code&gt;后台运行。&lt;code&gt;screen&lt;/code&gt;简单使用方法&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 创建screen窗口,folderclone名字可自定义&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;screen -S folderclone
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 临时退出使用screen后台运行,按组合键&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;【Ctrl】【a】【d】
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 回到screen窗口&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;screen -r folderclone
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Windows安装&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.python.org/downloads/&#34;&gt;下载Python&lt;/a&gt;安装&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.python.org/ftp/python/3.7.4/python-3.7.4-amd64.exe&#34;&gt;Python 3.7.4 64-bit&lt;/a&gt; 、 &lt;a href=&#34;https://www.python.org/ftp/python/3.8.1/python-3.8.1.exe&#34;&gt;Python 3.8.1&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/Spazzlo/folderclone/archive/master.zip&#34;&gt;下载folderclone源码&lt;/a&gt;并解压，比如我的放置在&lt;code&gt;E:\folderclone-master&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;以管理员身份运行&lt;/strong&gt;  &lt;code&gt;cmd&lt;/code&gt;或&lt;code&gt;Windows PowerShell&lt;/code&gt;执行,且&lt;strong&gt;确保本地cmd或Windows PowerShell稳定的外网环境。&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 进入folderclone解压根目录&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; E:&lt;span class=&#34;se&#34;&gt;\f&lt;/span&gt;olderclone-master
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;pip install folderclone
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;第二步-开启drive-api服务&#34;&gt;第二步 开启Drive API服务&lt;/h2&gt;
+&lt;p&gt;打开登陆&lt;a href=&#34;https://developers.google.com/drive/api/v3/quickstart/python&#34;&gt;Python Quickstart&lt;/a&gt;  点击&lt;code&gt;Enable the Drive API&lt;/code&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>AutoRclone使用教程</title>
       <link>https://567899.xyz/post/autorclone/</link>
       <pubDate>Mon, 10 Feb 2020 01:37:56 +0800</pubDate>
       <guid>https://567899.xyz/post/autorclone/</guid>
-      <description>怎么快速拷贝1000T资源到我的Google Drive？
-必须是Rclone/AutoRclone啊！一直不想写关于AutoRclone的（中文）教程，因为其一直处于测试阶段，如果后面代码有大的更新那么前面的教程对于后面的人来说就是一个误导。但是现在应该不会有大的更新了，而且这么长时间的测试发现如果没有一个详细的教程的话，会让很多不会程序的小白错过这么好的工具 :)
-AutoRclone是一个用Python写的小程序的集合，其
-学习了folderclone利用service accounts来替代普通Google账号进行拷贝/上传； 通过rclone rc来做到对Rclone任务的监、控； 还可以用Google Groups的形式对成百上千的service accounts进行管理。 从而方便快速地
-从本地到 Team Drive， 从公共分享目录到 Team Drive， 再或者从 Team Drive 到 Team Drive。 其食用方法极其简单！
-步骤 1 下载代码 首先不管你是哪个操作系统，需要安装Python。对于Linux和Windows分别用以下方式安装相关脚本
-Linux: 安装screen，git和最新的Rclone。如果是Debian/Ubuntu，直接输入以下命令
-sudo apt-get update sudo apt-get install -y python3-pip screen git curl curl https://rclone.org/install.sh | sudo bash CentOS把apt-get替换成yum
-然后从Github下载代码并安装相关Python依赖包
-sudo git clone https://github.com/xyou365/AutoRclone &amp;amp;&amp;amp; cd AutoRclone &amp;amp;&amp;amp; sudo pip3 install -r requirements.txt Windows: 安装最新的Rclone，直接从Github下载AutoRclone后在Windows的cmd或PowerShell中切换到AutoRclone的目录，输入以下命令安装相关Python依赖包
-pip3 install -r requirements.txt 以上步骤如果输入python3没有反应，请输入python或者py3 以下所有步骤由于需要用到谷歌服务，请确保cmd或者vps能够翻墙 步骤 2 生成service accounts 首先开启Drive APIEnable the Drive API并将credentials.</description>
+      <description>&lt;p&gt;怎么快速拷贝1000T资源到我的Google Drive？&lt;/p&gt;
+&lt;p&gt;必须是Rclone/AutoRclone啊！一直不想写关于AutoRclone的（中文）教程，因为其一直处于测试阶段，如果后面代码有大的更新那么前面的教程对于后面的人来说就是一个误导。但是现在应该不会有大的更新了，而且这么长时间的测试发现如果没有一个详细的教程的话，会让很多不会程序的小白错过这么好的工具 :)&lt;/p&gt;
+&lt;p&gt;AutoRclone是一个用Python写的小程序的集合，其&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;学习了folderclone利用service accounts来替代普通Google账号进行拷贝/上传；&lt;/li&gt;
+&lt;li&gt;通过rclone rc来做到对Rclone任务的监、控；&lt;/li&gt;
+&lt;li&gt;还可以用Google Groups的形式对成百上千的service accounts进行管理。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;从而方便快速地&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;从本地到 Team Drive，&lt;/li&gt;
+&lt;li&gt;从公共分享目录到 Team Drive，&lt;/li&gt;
+&lt;li&gt;再或者从 Team Drive 到 Team Drive。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;其食用方法极其简单！&lt;/p&gt;
+&lt;h2 id=&#34;步骤-1-下载代码&#34;&gt;步骤 1 下载代码&lt;/h2&gt;
+&lt;p&gt;首先不管你是哪个操作系统，需要安装Python。对于Linux和Windows分别用以下方式安装相关脚本&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Linux:&lt;/strong&gt; 安装screen，git和最新的Rclone。如果是Debian/Ubuntu，直接输入以下命令&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo apt-get update
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo apt-get install -y python3-pip screen git curl
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;curl https://rclone.org/install.sh &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; sudo bash
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;CentOS&lt;/strong&gt;把&lt;code&gt;apt-get&lt;/code&gt;替换成&lt;code&gt;yum&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;然后从Github下载代码并安装相关Python依赖包&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo git clone https://github.com/xyou365/AutoRclone &lt;span class=&#34;o&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; AutoRclone &lt;span class=&#34;o&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; sudo pip3 install -r requirements.txt
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;Windows:&lt;/strong&gt; 安装最新的&lt;a href=&#34;https://rclone.org/downloads/&#34;&gt;Rclone&lt;/a&gt;，直接从Github下载&lt;a href=&#34;https://github.com/xyou365/AutoRclone&#34;&gt;AutoRclone&lt;/a&gt;后在Windows的cmd或PowerShell中切换到AutoRclone的目录，输入以下命令安装相关Python依赖包&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;pip3 install -r requirements.txt
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;以上步骤如果输入python3没有反应，请输入python或者py3&lt;/li&gt;
+&lt;li&gt;以下所有步骤由于需要用到谷歌服务，请确保cmd或者vps能够翻墙&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;步骤-2-生成service-accounts&#34;&gt;步骤 2 生成service accounts&lt;/h2&gt;
+&lt;p&gt;首先开启Drive API&lt;a href=&#34;https://developers.google.com/drive/api/v3/quickstart/python&#34;&gt;Enable the Drive API&lt;/a&gt;并将&lt;code&gt;credentials.json&lt;/code&gt;保存到你的AutoRclone目录下面&lt;/p&gt;</description>
     </item>
     <item>
       <title>GoogleDrive云端硬盘Microsoft_OneDrive对比下A1_E3_GD版本区别</title>
       <link>https://567899.xyz/post/microsoft-onedrive-google-drive-gsuite-e3-edu-version-difference/</link>
       <pubDate>Wed, 10 Jul 2019 01:37:56 +0800</pubDate>
       <guid>https://567899.xyz/post/microsoft-onedrive-google-drive-gsuite-e3-edu-version-difference/</guid>
-      <description>看到有大佬科普了教育版onedrive怎么查看数据中心，捋了好久终于是捋清楚了几个版本的差别。
-刚好最近热度比较大的网盘我都有在用，干脆整理下做下对比。
-可能还有什么没有考虑到，欢迎大佬指正。
-几个了解到的情况 Googledrive，不管是教育账户，个人账户，团队盘。 使用的线路都没有什么大的差别，使用自家的服务器集群。 onedrive, 教育版A1，企业版E3 ，个人版都是走全球CDN, 经测试E3和A1下载地址后缀是sharepoint.com。走的cdn线路一样的。 个人版貌似线路IP不同。 onedrive世纪互联版数据中心在北京，上海，国内基本直通。 onedrive教育版,企业版,等sharepoint.com下载地址的，随着api泛滥，线路稳定性大打折扣。 谷歌盘单文件最大限制为 5T ，one盘单文件最大限制为 15G，感谢大佬补充 团队盘单文件大小受限于自己帐号网盘的大小，如果是个人版谷歌盘容量只有15g,那么添加到该账户的团队盘单文件最大也是15G Googledrive 各类型对比。 a. G Suite 价格：12刀月。 空间：标注1T 实际为无限。 隐私：保障。 国内：不可用。 国际稳定性：好。 翻车指标：准付费，无所畏惧
-b. Google drive社区大学邮箱版。 价格：约20-50 隐私：无保障。 翻车指标：利用虚假身份注册的号，校方追查便会翻车。 (其余同上)
-c. Google drive校友邮箱版。 价格：约100-300。 隐私：无保障。 翻车指标：利用他人信息注册的号，使用者找回便会翻车。 (其余同上)
-d. Google drive团队盘版。 价格：约0-200年 隐私：无保障 翻车指标：团队盘，管理员不管管理员是否在盘内，都可随时移除成员。 (其余同上)
-onedrive 各类型对比。单文件限制15G a. onedrive 个人版 价格：60-100年（拼车） 空间：1T 隐私：保障。 国内线路稳定性：好。 国内：可用。 翻车指标：准付费，无所畏惧
-a. onedrive 世纪互联版 价格：最低32.00用户/月 感谢大佬补充 空间：1T及 隐私：保障。 国内线路稳定性：非常好。 国内：可用。 翻车指标：准付费，无所畏惧</description>
+      <description>&lt;p&gt;看到有大佬科普了教育版onedrive怎么查看数据中心，捋了好久终于是捋清楚了几个版本的差别。&lt;/p&gt;
+&lt;p&gt;刚好最近热度比较大的网盘我都有在用，干脆整理下做下对比。&lt;/p&gt;
+&lt;p&gt;可能还有什么没有考虑到，欢迎大佬指正。&lt;/p&gt;
+&lt;h1 id=&#34;几个了解到的情况&#34;&gt;几个了解到的情况&lt;/h1&gt;
+&lt;ol&gt;
+&lt;li&gt;Googledrive，不管是教育账户，个人账户，团队盘。 使用的线路都没有什么大的差别，使用自家的服务器集群。&lt;/li&gt;
+&lt;li&gt;onedrive, 教育版A1，企业版E3 ，个人版都是走全球CDN, 经测试E3和A1下载地址后缀是sharepoint.com。走的cdn线路一样的。 个人版貌似线路IP不同。&lt;/li&gt;
+&lt;li&gt;onedrive世纪互联版数据中心在北京，上海，国内基本直通。&lt;/li&gt;
+&lt;li&gt;onedrive教育版,企业版,等sharepoint.com下载地址的，随着api泛滥，线路稳定性大打折扣。&lt;/li&gt;
+&lt;li&gt;谷歌盘单文件最大限制为 5T   ，one盘单文件最大限制为 15G，感谢大佬补充&lt;/li&gt;
+&lt;li&gt;团队盘单文件大小受限于自己帐号网盘的大小，如果是个人版谷歌盘容量只有15g,那么添加到该账户的团队盘单文件最大也是15G&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id=&#34;googledrive-各类型对比&#34;&gt;Googledrive 各类型对比。&lt;/h1&gt;
+&lt;p&gt;a. G Suite
+价格：12刀月。
+空间：标注1T 实际为无限。
+隐私：保障。
+国内：不可用。
+国际稳定性：好。
+翻车指标：准付费，无所畏惧&lt;/p&gt;
+&lt;p&gt;b. Google drive社区大学邮箱版。
+价格：约20-50
+隐私：无保障。
+翻车指标：利用虚假身份注册的号，校方追查便会翻车。
+(其余同上)&lt;/p&gt;
+&lt;p&gt;c. Google drive校友邮箱版。
+价格：约100-300。
+隐私：无保障。
+翻车指标：利用他人信息注册的号，使用者找回便会翻车。
+(其余同上)&lt;/p&gt;
+&lt;p&gt;d. Google drive团队盘版。
+价格：约0-200年
+隐私：无保障
+翻车指标：团队盘，管理员不管管理员是否在盘内，都可随时移除成员。
+(其余同上)&lt;/p&gt;
+&lt;h1 id=&#34;onedrive-各类型对比单文件限制15g&#34;&gt;onedrive 各类型对比。单文件限制15G&lt;/h1&gt;
+&lt;p&gt;a. onedrive 个人版
+价格：60-100年（拼车）
+空间：1T
+隐私：保障。
+国内线路稳定性：好。
+国内：可用。
+翻车指标：准付费，无所畏惧&lt;/p&gt;
+&lt;p&gt;a. onedrive 世纪互联版
+价格：最低32.00用户/月  感谢大佬补充
+空间：1T及
+隐私：保障。
+国内线路稳定性：非常好。
+国内：可用。
+翻车指标：准付费，无所畏惧&lt;/p&gt;</description>
     </item>
     <item>
       <title>手动配置安装WireGuard服务端</title>
@@ -93,22 +185,107 @@ a. onedrive 世纪互联版 价格：最低32.00用户/月 感谢大佬补充 �
       <link>https://567899.xyz/post/linux-vps-rclone-googledrive-microsoftonedrive/</link>
       <pubDate>Wed, 13 Jun 2018 01:37:56 +0800</pubDate>
       <guid>https://567899.xyz/post/linux-vps-rclone-googledrive-microsoftonedrive/</guid>
-      <description>rclone可以在Linux上挂载包括
-Rclone is a command line program to sync files and directories to and from: Alibaba Cloud (Aliyun) Object Storage System (OSS) Amazon Drive (See note) Amazon S3 Backblaze B2 Box Ceph DigitalOcean Spaces Dreamhost Dropbox FTP Google Cloud Storage Google Drive HTTP Hubic Jottacloud IBM COS S3 Koofr adminmset Memstore adminga Microsoft Azure Blob Storage Microsoft OneDrive Minio Nextcloud OVH OpenDrive Openstack Swift Oracle Cloud Storage ownCloud pCloud put.io QingStor Rackspace Cloud Files Scaleway SFTP Wasabi WebDAV Yandex Disk The local filesystem 且不会占用本地硬盘空间</description>
+      <description>&lt;p&gt;&lt;a href=&#34;https://rclone.org/&#34;&gt;rclone&lt;/a&gt;可以在Linux上挂载包括&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Rclone is a &lt;span class=&#34;nb&#34;&gt;command&lt;/span&gt; line program to sync files and directories to and from:
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Alibaba Cloud &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;Aliyun&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; Object Storage System &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;OSS&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Amazon Drive   &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;See note&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Amazon S3  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Backblaze B2  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Box  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Ceph  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;DigitalOcean Spaces  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Dreamhost  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Dropbox  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;FTP  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Google Cloud Storage  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Google Drive  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;HTTP  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Hubic  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Jottacloud  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;IBM COS S3  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Koofr  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;adminmset Memstore  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;adminga  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Microsoft Azure Blob Storage  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Microsoft OneDrive  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Minio  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Nextcloud  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;OVH  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;OpenDrive  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Openstack Swift  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Oracle Cloud Storage  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ownCloud  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;pCloud  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;put.io  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;QingStor  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Rackspace Cloud Files  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Scaleway  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;SFTP  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Wasabi  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;WebDAV  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Yandex Disk  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;The &lt;span class=&#34;nb&#34;&gt;local&lt;/span&gt; filesystem  
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;且不会占用本地硬盘空间&lt;/p&gt;</description>
     </item>
     <item>
       <title>使用Aira2下载文件后自动上传到GoogleDrive网盘onedrive</title>
       <link>https://567899.xyz/post/aira2-uploads-googledrive-onedrive/</link>
       <pubDate>Wed, 11 Apr 2018 01:37:56 +0800</pubDate>
       <guid>https://567899.xyz/post/aira2-uploads-googledrive-onedrive/</guid>
-      <description>更新 【2018.10.30】 这里分享下萌咖大佬的Aira2上传脚本，不过是精简版，全能版暂不分享，精简版包含以下功能： 1、脚本适用于Rclone挂载的网盘，比如Onedrive/Google Drive等。 2、判断上传文件的文件大小区间。 限制最低上传大小：可防止产生的.aria2后缀文件一起上传到网盘。 限制最高文件大小：适用于Onedrive等，官方限制上传不能超过15G，其它可自行更改其数值。 3、支持文件名中包含空格等特殊字符。 脚本说明: Aria2 一键安装管理脚本 系统支持: CentOS6+ / Debian6+ / Ubuntu14+
-wget -N --no-check-certificate https://raw.githubusercontent.com/ojbk8/doubi/master/aria2.sh &amp;amp;&amp;amp; chmod +x aria2.sh &amp;amp;&amp;amp; bash aria2.sh Aria2下载为什么会多出一个.aria2后缀的文件？
-找到force-save参数，进行设置
-force-save=true 会保存文件下载历史,但会在下载目录产生同名.aria2文件
-force-save=false不产生同名.aria2文件,同时也不能能保存下载历史
-使用方法 原理是当下载完后aria2会给脚本传3个参数$1、$2、$3分别为gid、文件数量、文件路径。我们对文件路径这个字符串处理一番就可以达到目的了。
-新建脚本文件rcloneupload.sh并复制下面代码：
-#!/bin/bash downloadpath=&amp;#39;/root/Download&amp;#39; #需要上传的目录，Aria2下载目录 name=&amp;#39;rclonename&amp;#39; #配置Rclone时填写的name folder=&amp;#39;/rclone&amp;#39; #网盘里的文件夹，留空为整个网盘。 MinSize=&amp;#39;0.01k&amp;#39; #限制最低上传大小，默认10k，BT下载时可防止上传其他无用文件。会删除文件，谨慎设置。 MaxSize=&amp;#39;15G&amp;#39; #限制最高文件大小，默认15G，OneDrive上传限制。 filepath=$3 #Aria2传递给脚本的原始路径，如果是单文件则为/root/Download/1.mp4，如果是文件夹则该值为文件夹内第一个文件比如/root/Download/a/b/1.mp4 rdp=${filepath#${downloadpath}/} #路径转换，去掉开头的下载路径。 path=${downloadpath}/${rdp%%/*} #文件或文件夹路径。如果是单个文件，应与原始路径一致。 if [ $2 -eq 0 ] then exit 0 fi while true; do if [ &amp;#34;$path&amp;#34; = &amp;#34;$filepath&amp;#34; ] &amp;amp;&amp;amp; [ $2 -eq 1 ] #如果下载的是单个文件 then rclone move -v &amp;#34;$filepath&amp;#34; ${name}:${folder} --min-size $MinSize --max-size $MaxSize rm -vf &amp;#34;$filepath&amp;#34;.</description>
+      <description>&lt;h2 id=&#34;更新&#34;&gt;更新&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;【2018.10.30】
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;这里分享下萌咖大佬的Aira2上传脚本，不过是精简版，全能版暂不分享，精简版包含以下功能：
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;1、脚本适用于Rclone挂载的网盘，比如Onedrive/Google Drive等。
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;2、判断上传文件的文件大小区间。
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;限制最低上传大小：可防止产生的.aria2后缀文件一起上传到网盘。
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;限制最高文件大小：适用于Onedrive等，官方限制上传不能超过15G，其它可自行更改其数值。
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;3、支持文件名中包含空格等特殊字符。
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;脚本说明-aria2-一键安装管理脚本&#34;&gt;脚本说明: Aria2 一键安装管理脚本&lt;/h2&gt;
+&lt;p&gt;系统支持: CentOS6+ / Debian6+ / Ubuntu14+&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;wget -N --no-check-certificate https://raw.githubusercontent.com/ojbk8/doubi/master/aria2.sh &lt;span class=&#34;o&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; chmod +x aria2.sh &lt;span class=&#34;o&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; bash aria2.sh
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;Aria2下载为什么会多出一个.aria2后缀的文件？&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;找到force-save参数，进行设置&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;force-save=true&lt;/code&gt; 会保存文件下载历史,但会在下载目录产生同名.aria2文件&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;force-save=false&lt;/code&gt;不产生同名.aria2文件,同时也不能能保存下载历史&lt;/p&gt;
+&lt;h2 id=&#34;使用方法&#34;&gt;使用方法&lt;/h2&gt;
+&lt;p&gt;原理是当下载完后&lt;code&gt;aria2&lt;/code&gt;会给脚本传3个参数&lt;code&gt;$1&lt;/code&gt;、&lt;code&gt;$2&lt;/code&gt;、&lt;code&gt;$3&lt;/code&gt;分别为&lt;code&gt;gid&lt;/code&gt;、文件数量、文件路径。我们对文件路径这个字符串处理一番就可以达到目的了。&lt;/p&gt;
+&lt;p&gt;新建脚本文件&lt;code&gt;rcloneupload.sh&lt;/code&gt;并复制下面代码：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cp&#34;&gt;#!/bin/bash
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cp&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;downloadpath&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;/root/Download&amp;#39;&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;#需要上传的目录，Aria2下载目录&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;name&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;rclonename&amp;#39;&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;#配置Rclone时填写的name&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;folder&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;/rclone&amp;#39;&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;#网盘里的文件夹，留空为整个网盘。&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;MinSize&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;0.01k&amp;#39;&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;#限制最低上传大小，默认10k，BT下载时可防止上传其他无用文件。会删除文件，谨慎设置。&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;MaxSize&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;15G&amp;#39;&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;#限制最高文件大小，默认15G，OneDrive上传限制。&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;filepath&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$3&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;#Aria2传递给脚本的原始路径，如果是单文件则为/root/Download/1.mp4，如果是文件夹则该值为文件夹内第一个文件比如/root/Download/a/b/1.mp4&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;rdp&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;${&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;filepath&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;#&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;${&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;downloadpath&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;#路径转换，去掉开头的下载路径。&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;path&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;${&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;downloadpath&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt;/&lt;span class=&#34;si&#34;&gt;${&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;rdp&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;%%/*&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;#文件或文件夹路径。如果是单个文件，应与原始路径一致。&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$2&lt;/span&gt; -eq &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;k&#34;&gt;then&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;		&lt;span class=&#34;nb&#34;&gt;exit&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;fi&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;while&lt;/span&gt; true&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;do&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$path&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$filepath&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$2&lt;/span&gt; -eq &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;#如果下载的是单个文件&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;k&#34;&gt;then&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	rclone move -v &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$filepath&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt; &lt;span class=&#34;si&#34;&gt;${&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;name&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt;:&lt;span class=&#34;si&#34;&gt;${&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;folder&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt; --min-size &lt;span class=&#34;nv&#34;&gt;$MinSize&lt;/span&gt; --max-size &lt;span class=&#34;nv&#34;&gt;$MaxSize&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	rm -vf &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$filepath&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;.aria2 &lt;span class=&#34;c1&#34;&gt;#删除残留的.aria.2文件&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;nb&#34;&gt;exit&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;elif&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$path&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt; !&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$filepath&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;#如果下载的是文件夹&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;k&#34;&gt;then&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;k&#34;&gt;while&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;[[&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;`ls -A &amp;#34;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$path&lt;/span&gt;/&lt;span class=&#34;s2&#34;&gt;&amp;#34;`&amp;#34;&lt;/span&gt; !&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;]]&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;do&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	rclone move -v &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$path&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt; &lt;span class=&#34;si&#34;&gt;${&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;name&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt;:&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;${&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;folder&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;/&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;${&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;rdp&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;%%/*&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt; --min-size &lt;span class=&#34;nv&#34;&gt;$MinSize&lt;/span&gt; --max-size &lt;span class=&#34;nv&#34;&gt;$MaxSize&lt;/span&gt; --delete-empty-src-dirs
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	rclone delete -v &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$path&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt; --max-size &lt;span class=&#34;nv&#34;&gt;$MinSize&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;#删除多余的文件&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	rclone rmdirs -v &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$downloadpath&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt; --leave-root &lt;span class=&#34;c1&#34;&gt;#删除空目录，--delete-empty-src-dirs参数已实现，加上无所谓。&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;k&#34;&gt;done&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	rm -vf &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$path&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;.aria2 &lt;span class=&#34;c1&#34;&gt;#删除残留的.aria2文件&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;nb&#34;&gt;exit&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;fi&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;done&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;或者&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

@@ -9,7 +9,7 @@
       <url>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
-    <generator>Hugo -- 0.123.8</generator>
+    <generator>Hugo -- 0.144.2</generator>
     <language>zh</language>
     <lastBuildDate>Mon, 02 Sep 2024 17:40:38 +0000</lastBuildDate>
     <atom:link href="https://567899.xyz/tags/ssl/index.xml" rel="self" type="application/rss+xml" />
@@ -18,99 +18,351 @@
       <link>https://567899.xyz/post/serv00/</link>
       <pubDate>Mon, 02 Sep 2024 17:40:38 +0000</pubDate>
       <guid>https://567899.xyz/post/serv00/</guid>
-      <description>Serv00.comRevolutionary Free Hosting
-提供免费的PHP,MYSQL,SMTP,PostgreSQL,MongoDB,可以SSH连接创建自己的应用,可以绑定域名,无广告。
-注册 注册Serv00 建议用gmail邮箱,不要用微软邮箱,因为就是提示成功它也收不到邮件.
-注册小技巧
-gmail邮箱可以无限别名,假设已经有一个yourname@gmail.com那么可以使用别名在用户名后面添加+或者.后面加其它随机字母数字,比如使用yourname+6dhj68kkm@gmail.com 或者 yourname.jdjjs64kpo@gmail.com 达到使用1个gmail邮箱来注册多个serv00账号,账号信息邮件在yourname@gmail.com接收。注册成功就能在邮件里面看到相关账号信息
-搭建 面板设置
-打开Additional services , Run your own applications 使状态 Status改为 Enabled开启 可最多3个端口号,在Port reservation,Add port中设置添加。 搭建hy2,tuic,vmess 提前在面板添加1个tcp端口给vmess使用,2个udp端口分别给tuic和hy2用
-https://github.com/yixiu001/serv00-singbox
-wget https://raw.githubusercontent.com/yixiu001/serv00-singbox/main/yixiu.sh chmod +x yixiu.sh 编辑yixiu.sh修改tcp与udp端口为面板对应添加的端口,修改uuid为自己的
-UUID在线生成或者命令行生成
-cat /proc/sys/kernel/random/uuid 然后创建screen窗口
-curl -O https://raw.githubusercontent.com/eooce/ssh_tool/main/index.js &amp;amp;&amp;amp; curl -O https://raw.githubusercontent.com/eooce/nodejs-argo/main/package.json &amp;amp;&amp;amp; npm install &amp;amp;&amp;amp; chmod +x index.js &amp;amp;&amp;amp; screen node index.js 再次执行
-./yixiu.sh 复制节点信息使用
-搭建vmess+argo 如果ip端口被xxx了,可套用cloudflare的argo,实现CDN减速
-https://github.com/eooce/scripts
-vmess-ws-tls(argo)一键脚本
-必填变量：PORT=TCP端口 可选变量：UUID NEZHA_SERVER NEZHA_PORT NEZHA_KEY CFIP CFPORT bash &amp;lt;(curl -Ls https://raw.</description>
+      <description>&lt;p&gt;&lt;a href=&#34;https://www.serv00.com/&#34;&gt;Serv00.com&lt;/a&gt;Revolutionary Free Hosting&lt;/p&gt;
+&lt;p&gt;提供免费的PHP,MYSQL,SMTP,PostgreSQL,MongoDB,可以SSH连接创建自己的应用,可以绑定域名,无广告。&lt;/p&gt;
+&lt;h2 id=&#34;注册&#34;&gt;注册&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.serv00.com/offer/create_new_account&#34;&gt;注册Serv00&lt;/a&gt; 建议用gmail邮箱,不要用微软邮箱,因为就是提示成功它也收不到邮件.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;注册小技巧&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;gmail邮箱可以无限别名,假设已经有一个yourname@gmail.com那么可以使用别名在用户名后面添加&lt;code&gt;+&lt;/code&gt;或者&lt;code&gt;.&lt;/code&gt;后面加其它随机字母数字,比如使用yourname+6dhj68kkm@gmail.com 或者  &lt;a href=&#34;mailto:yourname.jdjjs64kpo@gmail.com&#34;&gt;yourname.jdjjs64kpo@gmail.com&lt;/a&gt;  达到使用1个gmail邮箱来注册多个serv00账号,账号信息邮件在yourname@gmail.com接收。注册成功就能在邮件里面看到相关账号信息&lt;/p&gt;
+&lt;h2 id=&#34;搭建&#34;&gt;搭建&lt;/h2&gt;
+&lt;p&gt;面板设置&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;打开&lt;code&gt;Additional services&lt;/code&gt;  , &lt;code&gt;Run your own applications&lt;/code&gt;  使状态&lt;code&gt; Status&lt;/code&gt;改为
+&lt;code&gt;Enabled&lt;/code&gt;开启&lt;/li&gt;
+&lt;li&gt;可最多3个端口号,在&lt;code&gt;Port reservation&lt;/code&gt;,&lt;code&gt;Add port&lt;/code&gt;中设置添加。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;搭建hy2tuicvmess&#34;&gt;搭建hy2,tuic,vmess&lt;/h3&gt;
+&lt;p&gt;提前在面板添加1个tcp端口给vmess使用,2个udp端口分别给tuic和hy2用&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/yixiu001/serv00-singbox&#34;&gt;https://github.com/yixiu001/serv00-singbox&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;wget https://raw.githubusercontent.com/yixiu001/serv00-singbox/main/yixiu.sh
+chmod +x yixiu.sh
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;编辑&lt;code&gt;yixiu.sh&lt;/code&gt;修改tcp与udp端口为面板对应添加的端口,修改uuid为自己的&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://1024tools.com/uuid&#34;&gt;UUID在线生成&lt;/a&gt;或者命令行生成&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;cat /proc/sys/kernel/random/uuid
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;然后创建screen窗口&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;curl -O https://raw.githubusercontent.com/eooce/ssh_tool/main/index.js &amp;amp;&amp;amp; curl -O https://raw.githubusercontent.com/eooce/nodejs-argo/main/package.json &amp;amp;&amp;amp; npm install &amp;amp;&amp;amp; chmod +x index.js &amp;amp;&amp;amp; screen node index.js
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;再次执行&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;./yixiu.sh
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;复制节点信息使用&lt;/p&gt;
+&lt;h3 id=&#34;搭建vmessargo&#34;&gt;搭建vmess+argo&lt;/h3&gt;
+&lt;p&gt;如果ip端口被xxx了,可套用cloudflare的argo,实现CDN减速&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/eooce/scripts&#34;&gt;https://github.com/eooce/scripts&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;vmess-ws-tls(argo)一键脚本&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;必填变量：PORT=TCP端口&lt;/li&gt;
+&lt;li&gt;可选变量：UUID NEZHA_SERVER NEZHA_PORT NEZHA_KEY CFIP CFPORT&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;bash &amp;lt;(curl -Ls https://raw.githubusercontent.com/eooce/scripts/master/containers-shell/00_vmess.sh)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;修改&lt;code&gt;00_vmess.sh&lt;/code&gt;中的TCP端口,uuid,argo的token域名&lt;/p&gt;</description>
     </item>
     <item>
       <title>使用ACME申请泛域名SSL证书</title>
       <link>https://567899.xyz/post/acme/</link>
       <pubDate>Fri, 12 Jan 2024 13:37:56 +0800</pubDate>
       <guid>https://567899.xyz/post/acme/</guid>
-      <description>安装acme.sh
-curl https://get.acme.sh | sh -s email=my@example.com 创建 一个 bash 的 alias方便你使用
-alias acme.sh=~/.acme.sh/acme.sh 注册（可选)
-acme.sh --register-account -m my@example.com 使用DNS API方式申请
-不需要TCP 80端口 不需要WEB服务器 不需要公网IP 导入DNS API：
-签发泛域名证书是最好的方式了，申请一个证书任意二级域名都可以使用，非常方便。
-根据你的域名服务商提供的DNS API，并导入DNS API，各域名服务商的DNS API请参考官方说明：https://github.com/Neilpang/acme.sh/tree/master/dnsapi
-这里以CloudFlare为例，在CloudFlare的控制台里找到自己的DNS API，然后使用以下命令导入到acme.sh中：
-export CF_Token=&amp;#34;yp1dgAKdzglvUUuOBlXqDML2U886eQwiZ******&amp;#34; export CF_Zone_ID=&amp;#34;e554bfdafd90d1671303d543c*******&amp;#34; 这个DNS API信息会保存在“~/.acme.sh/account.conf”文件中。
-2、申请泛域名证书：
-导入域名商的DNS API之后就可以使用以下命令，自动解析DNS（通过api给你的域名添加一条txt解析记录），验证通过后就会下发证书：
-acme.sh --issue --dns dns_cf -d example.com -d *.example.com 【可选】默认证书提供商是ZeroSSL ECC,可以添加--server letsencrypt更换为letsencrypt，或者
-acme.sh --set-default-ca --server letsencrypt 证书申请成功后，默认保存在“~/.acme.sh/example.com_ecc”目录下。注意：“dns_cf”表示使用CloudFlare的DNS API，域名商不同的话此处会不同，请参考上述文档。
-默认生成的证书都放在安装目录下: ~/.acme.sh/中的/root/.acme.sh/example.com_ecc/example.com.cer和/root/.acme.sh/example.com_ecc/example.com.key但是不要在web服务器中直接引用目录下的证书文件，也不要手动来拷贝证书文件到具体的web服务器中，手动拷贝会导致之后更新证书流程不能完全自动。
-正确方式是使用acme.sh的安装证书命令，acme.sh自动拷贝证书文件到具体目录中，拷贝命令会被记录下来，之后自动更新证书流程也会执行此拷贝步骤，从而实现更新证书流程的完全自动化。
-创建目录
-mkdir /etc/nginx/ssl acme.sh的安装证书命令
-acme.sh --install-cert -d example.</description>
+      <description>&lt;p&gt;安装acme.sh&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;curl https://get.acme.sh | sh -s email=my@example.com
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;创建 一个 bash 的 alias方便你使用&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;alias acme.sh=~/.acme.sh/acme.sh
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;注册（可选)&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;acme.sh --register-account -m my@example.com
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;使用DNS API方式申请&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;不需要TCP 80端口&lt;/li&gt;
+&lt;li&gt;不需要WEB服务器&lt;/li&gt;
+&lt;li&gt;不需要公网IP&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;导入DNS API：&lt;/p&gt;
+&lt;p&gt;签发泛域名证书是最好的方式了，申请一个证书任意二级域名都可以使用，非常方便。&lt;/p&gt;
+&lt;p&gt;根据你的域名服务商提供的DNS API，并导入DNS API，各域名服务商的DNS API请参考官方说明：&lt;a href=&#34;https://github.com/Neilpang/acme.sh/tree/master/dnsapi&#34;&gt;https://github.com/Neilpang/acme.sh/tree/master/dnsapi&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;这里以CloudFlare为例，在CloudFlare的控制台里找到自己的DNS API，然后使用以下命令导入到acme.sh中：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;export CF_Token=&amp;#34;yp1dgAKdzglvUUuOBlXqDML2U886eQwiZ******&amp;#34;
+export CF_Zone_ID=&amp;#34;e554bfdafd90d1671303d543c*******&amp;#34;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;这个DNS API信息会保存在“~/.acme.sh/account.conf”文件中。&lt;/p&gt;
+&lt;p&gt;2、申请泛域名证书：&lt;/p&gt;
+&lt;p&gt;导入域名商的DNS API之后就可以使用以下命令，自动解析DNS（通过api给你的域名添加一条txt解析记录），验证通过后就会下发证书：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;acme.sh --issue --dns dns_cf -d example.com -d *.example.com
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;【可选】默认证书提供商是ZeroSSL ECC,可以添加&lt;code&gt;--server letsencrypt&lt;/code&gt;更换为letsencrypt，或者&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;acme.sh --set-default-ca  --server  letsencrypt
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;证书申请成功后，默认保存在“~/.acme.sh/example.com_ecc”目录下。注意：“dns_cf”表示使用CloudFlare的DNS API，域名商不同的话此处会不同，请参考上述文档。&lt;/p&gt;
+&lt;p&gt;默认生成的证书都放在安装目录下: &lt;code&gt;~/.acme.sh/&lt;/code&gt;中的&lt;code&gt;/root/.acme.sh/example.com_ecc/example.com.cer&lt;/code&gt;和&lt;code&gt;/root/.acme.sh/example.com_ecc/example.com.key&lt;/code&gt;但是不要在web服务器中直接引用目录下的证书文件，也不要手动来拷贝证书文件到具体的web服务器中，手动拷贝会导致之后更新证书流程不能完全自动。&lt;/p&gt;
+&lt;p&gt;正确方式是使用acme.sh的安装证书命令，acme.sh自动拷贝证书文件到具体目录中，拷贝命令会被记录下来，之后自动更新证书流程也会执行此拷贝步骤，从而实现更新证书流程的完全自动化。&lt;/p&gt;
+&lt;p&gt;创建目录&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;mkdir /etc/nginx/ssl
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;acme.sh的安装证书命令&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;acme.sh --install-cert -d example.com \
+		--key-file   /etc/nginx/ssl/example.com.key  \
+		--fullchain-file /etc/nginx/ssl/example.com.cer \
+		--reloadcmd     &amp;#34;service nginx force-reload&amp;#34;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;配置nginx&lt;/p&gt;</description>
     </item>
     <item>
       <title>纯净Linux系统手工配置独角数卡发卡站点环境</title>
       <link>https://567899.xyz/post/dujiaoka/</link>
       <pubDate>Tue, 22 Sep 2020 16:40:38 +0000</pubDate>
       <guid>https://567899.xyz/post/dujiaoka/</guid>
-      <description>纯净系统纯手工打造独角数卡发卡站点环境，抛弃各种面板、一键网站环境。
-https://github.com/assimon/dujiaoka
-支付接口已集成 支付宝当面付 支付宝PC支付 支付宝手机支付 payjs微信扫码. Paysapi(支付宝/微信). 码支付(QQ/支付宝/微信) 微信企业扫码支付 Paypal支付(默认美元) 麻瓜宝数字货币支付 全网易支付支持(针对彩虹版) 基本环境要求 (PHP + PHPCLI) version &amp;gt;= 7.2 Nginx version &amp;gt;= 1.16 MYSQL version &amp;gt;= 5.6 Redis (高性能缓存服务) Supervisor (一个python编写的进程管理服务) Composer (PHP包管理器) Linux/Win (Win下未测试，建议直接Linux) 实测Supervisor不装也是可以运行的
-PHP环境要求 星号(*)为必须执行的要求，其他为建议内容
-*安装fileinfo扩展 *安装redis扩展 *终端需支持php-cli，测试php -v(版本必须一致) *需要开启的函数：putenv，proc_open，pcntl_signal，pcntl_alarm 安装opcache扩展 网络上各类发卡网站程序，比如ZFAKA、独角数卡环境搭建教程都是基于宝塔面板、LNMP等等环境搭建的教程。
-ZFAKA可以在宝塔面板后台一键部署安装，也可以使用Docker版
-为什么要手工搭建发卡网站环境
-怕有后门(被害妄想症) 近期某某面板强迫用户注册才能使用 享受折腾的乐趣 测试使用环境Debian 10，其它系统可以参考修改搭建。
-独角数卡发卡站环境搭建 Nginx、MYSQL的搭建具体教程请点击查看，这里重点只讲独角数卡发卡站环境搭建PHP环境的配置
-PHP和一些必要组件的安装 apt -y install php-fpm php-mysql php-redis php-fileinfo php-cli php-gd redis-server php-mbstring php-bcmath php-curl php-xml php-dom 配置PHP组件 配置PHP的redis缓存组件</description>
+      <description>&lt;p&gt;纯净系统纯手工打造独角数卡发卡站点环境，抛弃各种面板、一键网站环境。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/assimon/dujiaoka&#34;&gt;https://github.com/assimon/dujiaoka&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;h2 id=&#34;支付接口已集成&#34;&gt;支付接口已集成&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 支付宝当面付&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 支付宝PC支付&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 支付宝手机支付&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; &lt;a href=&#34;http://payjs.cn&#34;&gt;payjs微信扫码&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; &lt;a href=&#34;https://www.paysapi.com/&#34;&gt;Paysapi(支付宝/微信)&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; &lt;a href=&#34;https://codepay.fateqq.com/&#34;&gt;码支付(QQ/支付宝/微信)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 微信企业扫码支付&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; Paypal支付(默认美元)&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 麻瓜宝数字货币支付&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 全网易支付支持(针对彩虹版)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;基本环境要求&#34;&gt;基本环境要求&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;(PHP + PHPCLI) version &amp;gt;= 7.2&lt;/li&gt;
+&lt;li&gt;Nginx version &amp;gt;= 1.16&lt;/li&gt;
+&lt;li&gt;MYSQL version &amp;gt;= 5.6&lt;/li&gt;
+&lt;li&gt;Redis (高性能缓存服务)&lt;/li&gt;
+&lt;li&gt;Supervisor (一个python编写的进程管理服务)&lt;/li&gt;
+&lt;li&gt;Composer (PHP包管理器)&lt;/li&gt;
+&lt;li&gt;Linux/Win (Win下未测试，建议直接Linux)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;实测Supervisor不装也是可以运行的&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&#34;php环境要求&#34;&gt;PHP环境要求&lt;/h2&gt;
+&lt;p&gt;星号(*)为必须执行的要求，其他为建议内容&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;*安装&lt;code&gt;fileinfo&lt;/code&gt;扩展&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;*安装&lt;code&gt;redis&lt;/code&gt;扩展&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;*终端需支持&lt;code&gt;php-cli&lt;/code&gt;，测试&lt;code&gt;php -v&lt;/code&gt;(版本必须一致)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;*需要开启的函数：&lt;code&gt;putenv&lt;/code&gt;，&lt;code&gt;proc_open&lt;/code&gt;，&lt;code&gt;pcntl_signal&lt;/code&gt;，&lt;code&gt;pcntl_alarm&lt;/code&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;安装&lt;code&gt;opcache&lt;/code&gt;扩展&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;网络上各类发卡网站程序，比如&lt;a href=&#34;https://github.com/zlkbdotnet/zfaka&#34;&gt;ZFAKA&lt;/a&gt;、&lt;a href=&#34;https://github.com/assimon/dujiaoka&#34;&gt;独角数卡&lt;/a&gt;环境搭建教程都是基于&lt;a href=&#34;https://www.bt.cn&#34;&gt;宝塔面板&lt;/a&gt;、&lt;a href=&#34;https://lnmp.org&#34;&gt;LNMP&lt;/a&gt;等等环境搭建的教程。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/zlkbdotnet/zfaka&#34;&gt;ZFAKA&lt;/a&gt;可以在&lt;a href=&#34;https://www.bt.cn&#34;&gt;宝塔面板&lt;/a&gt;后台一键部署安装，也可以使用&lt;a href=&#34;https://github.com/Baiyuetribe/zfaka&#34;&gt;Docker版&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;为什么要手工搭建发卡网站环境&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;怕有后门(被害妄想症)&lt;/li&gt;
+&lt;li&gt;近期某某面板强迫用户注册才能使用&lt;/li&gt;
+&lt;li&gt;享受折腾的乐趣&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;测试使用环境Debian 10，其它系统可以参考修改搭建。&lt;/p&gt;
+&lt;h2 id=&#34;独角数卡发卡站环境搭建&#34;&gt;独角数卡发卡站环境搭建&lt;/h2&gt;
+&lt;p&gt;Nginx、MYSQL的搭建具体教程请&lt;a href=&#34;https://567899.xyz/post/debian10-web-nginx-certbot-ssl-php-mysql/&#34;&gt;点击查看&lt;/a&gt;，这里重点只讲独角数卡发卡站环境搭建PHP环境的配置&lt;/p&gt;
+&lt;h2 id=&#34;php和一些必要组件的安装&#34;&gt;PHP和一些必要组件的安装&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;apt -y install php-fpm php-mysql php-redis php-fileinfo php-cli php-gd redis-server php-mbstring php-bcmath php-curl php-xml php-dom
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;配置php组件&#34;&gt;配置PHP组件&lt;/h2&gt;
+&lt;p&gt;配置PHP的redis缓存组件&lt;/p&gt;</description>
     </item>
     <item>
       <title>Debian10手动搭建WEB环境Nginx,SSL,PHP,MySQL</title>
       <link>https://567899.xyz/post/debian10-web-nginx-certbot-ssl-php-mysql/</link>
       <pubDate>Thu, 10 Sep 2020 16:40:38 +0000</pubDate>
       <guid>https://567899.xyz/post/debian10-web-nginx-certbot-ssl-php-mysql/</guid>
-      <description>手动搭建，使用apt,apt-get快速安装免编译
-安装nginx和php
-apt update apt install openssl nginx-full php-fpm php-mysql -y 创建站点，新建文件
-nano example.com.sh 内容如下
-#!/bin/bash # 创建站点目录和默认页面 mkdir /var/www/example.com chown -R www-data:www-data /var/www/example.com echo &amp;#34;hello word&amp;#34; &amp;gt; /var/www/example.com/index.html # 添加nginx配置文件 echo &amp;#34;server { listen 80; listen [::]:80; server_name example.com; root /var/www/example.com; index index.html; # return 301 https://$server_name$request_uri; } &amp;gt;&amp;gt; /etc/nginx/sites-available/default 把example.com替换成自己的域名
-sed -i &amp;#39;s/example.com/自己的域名/&amp;#39; example.com.sh 给予权限并执行
-chmod +x example.com.sh bash example.com.sh systemctl restart nginx Certbot申请Let’s Encrypt证书SSL，安装Certbot
-apt install certbot -y 获取SSL证书</description>
+      <description>&lt;p&gt;手动搭建，使用&lt;code&gt;apt&lt;/code&gt;,&lt;code&gt;apt-get&lt;/code&gt;快速安装免编译&lt;/p&gt;
+&lt;p&gt;安装nginx和php&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;apt update
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;apt install openssl nginx-full php-fpm php-mysql -y
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;创建站点，新建文件&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;nano example.com.sh
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;内容如下&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cp&#34;&gt;#!/bin/bash
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cp&#34;&gt;&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# 创建站点目录和默认页面&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;mkdir /var/www/example.com
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;chown -R www-data:www-data /var/www/example.com
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;hello word&amp;#34;&lt;/span&gt; &amp;gt; /var/www/example.com/index.html
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 添加nginx配置文件&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;server {
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s2&#34;&gt;	listen 80;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s2&#34;&gt;	listen [::]:80;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s2&#34;&gt;	server_name example.com;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s2&#34;&gt;	root /var/www/example.com;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s2&#34;&gt;	index index.html;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s2&#34;&gt;	# return 301 https://&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$server_name$request_uri&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s2&#34;&gt;} &amp;gt;&amp;gt; /etc/nginx/sites-available/default
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;把&lt;code&gt;example.com&lt;/code&gt;替换成自己的域名&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sed -i &lt;span class=&#34;s1&#34;&gt;&amp;#39;s/example.com/自己的域名/&amp;#39;&lt;/span&gt; example.com.sh
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;给予权限并执行&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;chmod +x example.com.sh
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;bash example.com.sh
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;systemctl restart nginx
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Certbot申请Let’s Encrypt证书SSL，安装Certbot&lt;/p&gt;</description>
     </item>
     <item>
       <title>Caddy利用CloudFlare DNS申请泛域名证书</title>
       <link>https://567899.xyz/post/caddy-cloudflare-api-dns-ssl/</link>
       <pubDate>Sat, 06 Apr 2019 01:37:56 +0800</pubDate>
       <guid>https://567899.xyz/post/caddy-cloudflare-api-dns-ssl/</guid>
-      <description>安装Caddy curl https://getcaddy.com | bash -s personal tls.dns.cloudflare 后面的tls.dns.cloudflare为cloudflare的插件，如果你是其它DNS服务商就需要替换下插件参数，比如：
-tls.dns.auroradns tls.dns.azure tls.dns.cloudflare tls.dns.cloudxns tls.dns.digitalocean tls.dns.dnsimple tls.dns.dnsmadeeasy tls.dns.dnspod tls.dns.dyn tls.dns.exoscale tls.dns.gandi tls.dns.gandiv5 tls.dns.godaddy tls.dns.googlecloud tls.dns.lightsail tls.dns.linode tls.dns.namecheap tls.dns.ns1 tls.dns.otc tls.dns.ovh tls.dns.powerdns tls.dns.rackspace tls.dns.rfc2136 tls.dns.route53i tls.dns.vultr 设置环境变量 以下为Caddy申请通配符时所需要的DNS服务商的环境变量。
-#Aurora DNS by PCExtreme AURORA_USER_ID AURORA_KEY AURORA_ENDPOINT(optional) #Azure DNS AZURE_CLIENT_ID AZURE_CLIENT_SECRET AZURE_SUBSCRIPTION_ID AZURE_TENANT_ID #Cloudflare CLOUDFLARE_EMAIL CLOUDFLARE_API_KEY #CloudXNS CLOUDXNS_API_KEY CLOUDXNS_SECRET_KEY #DigitalOcean DO_AUTH_TOKEN #DNSimple DNSIMPLE_EMAIL DNSIMPLE_OAUTH_TOKEN #DNS Made Easy DNSMADEEASY_API_KEY DNSMADEEASY_API_SECRET DNSMADEEASY_SANDBOX(true/false) #DNSPod DNSPOD_API_KEY #DynDNS DYN_CUSTOMER_NAME DYN_USER_NAME DYN_PASSWORD #Gandi/Gandiv5 GANDI_API_KEY/GANDIV5_API_KEY #GoDaddy GODADDY_API_KEY GODADDY_API_SECRET #Google Cloud DNS GCE_PROJECT GCE_DOMAIN GOOGLE_APPLICATION_CREDENTIALS #Lightsail by AWS AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY AWS_SESSION_TOKEN(optional) DNS_ZONE(optional) #Linode LINODE_API_KEY #Namecheap NAMECHEAP_API_USER NAMECHEAP_API_KEY #NS1 NS1_API_KEY #Open Telekom Cloud Managed DNS OTC_DOMAIN_NAME OTC_USER_NAME OTC_PASSWORD OTC_PROJECT_NAME OTC_IDENTITY_ENDPOINT(optional) #OVH OVH_ENDPOINT OVH_APPLICATION_KEY OVH_APPLICATION_SECRET OVH_CONSUMER_KEY #PowerDNS PDNS_API_URL PDNS_API_KEY #Rackspace RACKSPACE_USER RACKSPACE_API_KEY #RFC2136 RFC2136_NAMESERVER RFC2136_TSIG_ALGORITHM RFC2136_TSIG_KEY RFC2136_TSIG_SECRET #Route53 by AWS AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY #Vultr VULTR_API_KEY 登陆CloudFlare的API Tokens 然后下拉找到【API Keys】【Global API Key】【View】</description>
+      <description>&lt;h2 id=&#34;安装caddy&#34;&gt;安装Caddy&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;curl https://getcaddy.com &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; bash -s personal tls.dns.cloudflare
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;后面的&lt;code&gt;tls.dns.cloudflare&lt;/code&gt;为&lt;code&gt;cloudflare&lt;/code&gt;的插件，如果你是其它DNS服务商就需要替换下插件参数，比如：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;tls.dns.auroradns
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;tls.dns.azure
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;tls.dns.cloudflare
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;tls.dns.cloudxns
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;tls.dns.digitalocean
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;tls.dns.dnsimple
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;tls.dns.dnsmadeeasy
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;tls.dns.dnspod
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;tls.dns.dyn
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;tls.dns.exoscale
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;tls.dns.gandi
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;tls.dns.gandiv5
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;tls.dns.godaddy
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;tls.dns.googlecloud
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;tls.dns.lightsail
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;tls.dns.linode
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;tls.dns.namecheap
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;tls.dns.ns1
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;tls.dns.otc
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;tls.dns.ovh
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;tls.dns.powerdns
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;tls.dns.rackspace
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;tls.dns.rfc2136
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;tls.dns.route53i
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;tls.dns.vultr
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;设置环境变量&#34;&gt;设置环境变量&lt;/h2&gt;
+&lt;p&gt;以下为Caddy申请通配符时所需要的DNS服务商的环境变量。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#Aurora DNS by PCExtreme&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;AURORA_USER_ID
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;AURORA_KEY
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;AURORA_ENDPOINT&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;optional&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#Azure DNS&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;AZURE_CLIENT_ID
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;AZURE_CLIENT_SECRET
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;AZURE_SUBSCRIPTION_ID
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;AZURE_TENANT_ID
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#Cloudflare&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;CLOUDFLARE_EMAIL
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;CLOUDFLARE_API_KEY
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#CloudXNS&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;CLOUDXNS_API_KEY
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;CLOUDXNS_SECRET_KEY
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#DigitalOcean&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;DO_AUTH_TOKEN
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#DNSimple&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;DNSIMPLE_EMAIL
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;DNSIMPLE_OAUTH_TOKEN
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#DNS Made Easy&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;DNSMADEEASY_API_KEY
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;DNSMADEEASY_API_SECRET
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;DNSMADEEASY_SANDBOX&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;true/false&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#DNSPod&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;DNSPOD_API_KEY
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#DynDNS&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;DYN_CUSTOMER_NAME
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;DYN_USER_NAME
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;DYN_PASSWORD
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#Gandi/Gandiv5&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;GANDI_API_KEY/GANDIV5_API_KEY
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#GoDaddy&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;GODADDY_API_KEY
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;GODADDY_API_SECRET
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#Google Cloud DNS    &lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;GCE_PROJECT
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;GCE_DOMAIN
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;GOOGLE_APPLICATION_CREDENTIALS
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#Lightsail by AWS&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;AWS_ACCESS_KEY_ID
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;AWS_SECRET_ACCESS_KEY
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;AWS_SESSION_TOKEN&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;optional&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;DNS_ZONE&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;optional&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#Linode&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;LINODE_API_KEY
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#Namecheap&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;NAMECHEAP_API_USER
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;NAMECHEAP_API_KEY
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#NS1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;NS1_API_KEY
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#Open Telekom Cloud Managed DNS&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;OTC_DOMAIN_NAME
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;OTC_USER_NAME
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;OTC_PASSWORD
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;OTC_PROJECT_NAME
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;OTC_IDENTITY_ENDPOINT&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;optional&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#OVH&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;OVH_ENDPOINT
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;OVH_APPLICATION_KEY
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;OVH_APPLICATION_SECRET
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;OVH_CONSUMER_KEY
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#PowerDNS&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;PDNS_API_URL
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;PDNS_API_KEY
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#Rackspace&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;RACKSPACE_USER
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;RACKSPACE_API_KEY
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#RFC2136&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;RFC2136_NAMESERVER
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;RFC2136_TSIG_ALGORITHM
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;RFC2136_TSIG_KEY
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;RFC2136_TSIG_SECRET
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#Route53 by AWS    &lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;AWS_ACCESS_KEY_ID
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;AWS_SECRET_ACCESS_KEY
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#Vultr&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;VULTR_API_KEY
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;登陆CloudFlare的&lt;a href=&#34;https://dash.cloudflare.com/profile/api-tokens&#34;&gt;API Tokens&lt;/a&gt; 然后下拉找到【API Keys】【Global API Key】【View】&lt;/p&gt;</description>
     </item>
     <item>
       <title>Nginx使用官方工具Certbot配置申请Let’s Encrypt安全SSL证书详细教程</title>
       <link>https://567899.xyz/post/debian-ubuntu-nginx-certbot-lets-encrypt-ssl/</link>
       <pubDate>Wed, 21 Nov 2018 01:37:56 +0800</pubDate>
       <guid>https://567899.xyz/post/debian-ubuntu-nginx-certbot-lets-encrypt-ssl/</guid>
-      <description>获取Certbot客户端 apt update apt install openssl nginx certbot -y systemctl enable nginx systemctl start nginx 获取SSL证书 certbot certonly --webroot -w /var/www/example -d example.com -d www.example.com 这个命令会为example.com和www.example.com这两个域名生成一个证书，使用--webroot模式会在/var/www/example站点根目录中创建.well-known文件夹，这个文件夹里面包含了一些验证文件，certbot会通过访问example.com/.well-known/acme-challenge来验证你的域名是否绑定的这个服务器。
-SSL证书保存路径
-/etc/letsencrypt/live/example.com/fullchain.pem /etc/letsencrypt/live/example.com/privkey.pem 自动更新SSL证书 Let’s Encrypt提供的证书只有90天的有效期，certbot运行
-certbot renew 自动检查系统内的证书，并且自动更新这些证书。 我们也可以运行certbot renew --dry-run测试一下
-或添加一个cron计划19 4 * * 3 root certbot renew意为每周三的00:19执行定时更新SSL证书计划
-获取 Certbot 客户端 wget https://dl.eff.org/certbot-auto chmod a+x ./certbot-auto ./certbot-auto --help 配置 nginx 、验证域名所有权 在虚拟主机配置文件（ /etc/nginx/conf.d/xxx.com.conf ）中添加如下内容，这一步是为了通过 Let’s Encrypt 的验证，验证 linuxstory.org 这个域名是属于我的管理之下。（具体解释可见下一章“一些补充说明”的“ certbot 的两种工作方式”）
-location ^~ /.</description>
+      <description>&lt;h2 id=&#34;获取certbot客户端&#34;&gt;获取Certbot客户端&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;apt update
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;apt install openssl nginx certbot -y
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;systemctl &lt;span class=&#34;nb&#34;&gt;enable&lt;/span&gt; nginx
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;systemctl start nginx
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;获取ssl证书&#34;&gt;获取SSL证书&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;certbot certonly --webroot -w /var/www/example -d example.com -d www.example.com
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;这个命令会为&lt;code&gt;example.com&lt;/code&gt;和&lt;code&gt;www.example.com&lt;/code&gt;这两个域名生成一个证书，使用&lt;code&gt;--webroot&lt;/code&gt;模式会在&lt;code&gt;/var/www/example&lt;/code&gt;站点根目录中创建&lt;code&gt;.well-known&lt;/code&gt;文件夹，这个文件夹里面包含了一些验证文件，certbot会通过访问&lt;code&gt;example.com/.well-known/acme-challenge&lt;/code&gt;来验证你的域名是否绑定的这个服务器。&lt;/p&gt;
+&lt;p&gt;SSL证书保存路径&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/etc/letsencrypt/live/example.com/fullchain.pem
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/etc/letsencrypt/live/example.com/privkey.pem
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;自动更新ssl证书&#34;&gt;自动更新SSL证书&lt;/h2&gt;
+&lt;p&gt;Let’s Encrypt提供的证书只有90天的有效期，certbot运行&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;certbot renew
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;自动检查系统内的证书，并且自动更新这些证书。 我们也可以运行&lt;code&gt;certbot renew --dry-run&lt;/code&gt;测试一下&lt;/p&gt;
+&lt;p&gt;或添加一个&lt;code&gt;cron&lt;/code&gt;计划&lt;code&gt;19 4 * * 3 root certbot renew&lt;/code&gt;意为每周三的00:19执行定时更新SSL证书计划&lt;/p&gt;
+&lt;h2 id=&#34;获取-certbot-客户端&#34;&gt;获取 Certbot 客户端&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;wget https://dl.eff.org/certbot-auto
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;chmod a+x ./certbot-auto
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;./certbot-auto --help
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;配置-nginx-验证域名所有权&#34;&gt;配置 nginx 、验证域名所有权&lt;/h2&gt;
+&lt;p&gt;在虚拟主机配置文件（ /etc/nginx/conf.d/xxx.com.conf ）中添加如下内容，这一步是为了通过 Let’s Encrypt 的验证，验证 linuxstory.org 这个域名是属于我的管理之下。（具体解释可见下一章“一些补充说明”的“ certbot 的两种工作方式”）&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;location ^~ /.well-known/acme-challenge/ &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;   default_type &lt;span class=&#34;s2&#34;&gt;&amp;#34;text/plain&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;   root     /home/wwwroot/xxx.com/&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;location&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; /.well-known/acme-challenge/ &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;   &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; 404&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;code&gt;/home/wwwroot/xxx.com/&lt;/code&gt;是站点根目录路径
+&lt;code&gt;xxx.com&lt;/code&gt;替换成自己的域名&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

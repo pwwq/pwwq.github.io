@@ -9,7 +9,7 @@
       <url>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
-    <generator>Hugo -- 0.123.8</generator>
+    <generator>Hugo -- 0.144.2</generator>
     <language>zh</language>
     <lastBuildDate>Tue, 01 Mar 2016 01:37:56 +0800</lastBuildDate>
     <atom:link href="https://567899.xyz/tags/cmd/index.xml" rel="self" type="application/rss+xml" />
@@ -18,13 +18,18 @@
       <link>https://567899.xyz/post/cmd-shutdown/</link>
       <pubDate>Tue, 01 Mar 2016 01:37:56 +0800</pubDate>
       <guid>https://567899.xyz/post/cmd-shutdown/</guid>
-      <description>运行cmd,键盘快捷键win+r输入cmd回车.
-shutdown -s 关机（默认1分钟后关）
-shutdown -s -t 3600 1小时后定时关机
-shutdown -r 重启（默认1分钟后重启）
-shutdown -r -t 3600 1小时后定时重启
-shutdown -a 取消定时任务
-例子：1小时后自动关机，输入shutdown -s -t 3600回车，其中-s是关机,-t是定时，3600是3600秒。</description>
+      <description>&lt;p&gt;运行&lt;code&gt;cmd&lt;/code&gt;,键盘快捷键&lt;code&gt;win+r&lt;/code&gt;输入&lt;code&gt;cmd&lt;/code&gt;回车.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;shutdown -s
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;关机（默认1分钟后关）&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;shutdown -s -t &lt;span class=&#34;m&#34;&gt;3600&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;1小时后定时关机&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;shutdown -r
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;重启（默认1分钟后重启）&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;shutdown -r -t &lt;span class=&#34;m&#34;&gt;3600&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;1小时后定时重启&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;shutdown -a
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;取消定时任务&lt;/p&gt;
+&lt;p&gt;例子：1小时后自动关机，输入&lt;code&gt;shutdown -s -t 3600&lt;/code&gt;回车，其中&lt;code&gt;-s&lt;/code&gt;是关机,&lt;code&gt;-t&lt;/code&gt;是定时，&lt;code&gt;3600&lt;/code&gt;是3600秒。&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

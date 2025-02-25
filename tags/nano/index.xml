@@ -9,7 +9,7 @@
       <url>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
-    <generator>Hugo -- 0.123.8</generator>
+    <generator>Hugo -- 0.144.2</generator>
     <language>zh</language>
     <lastBuildDate>Thu, 19 Feb 2015 01:37:56 +0800</lastBuildDate>
     <atom:link href="https://567899.xyz/tags/nano/index.xml" rel="self" type="application/rss+xml" />
@@ -18,35 +18,55 @@
       <link>https://567899.xyz/post/nano/</link>
       <pubDate>Thu, 19 Feb 2015 01:37:56 +0800</pubDate>
       <guid>https://567899.xyz/post/nano/</guid>
-      <description>安装
-CentOS执行
-yum -y install nano Debian执行
-apt-get install -y nano 新建/打开文件
-nano 路径+文件名 如果改文件存在，上面的命令将打开这个文件； 如果文件不存在则将会创建一个新文件并打开。 光标控制
-移动光标：使用用方向键移动。 选择文字：按住鼠标左键拖到。 复制、剪贴和粘贴
-复制一整行：Alt+6 剪贴一整行：Ctrl+K 粘贴：Ctrl+U 如果需要复制/剪贴多行或者一行中的一部分，先将光标移动到需要复制／剪贴的文本的开头，按Ctrl+6或者Alt+A做标记，然后移动光标到 待复制／剪贴的文本末尾。这时选定的文本会反白，用Alt+6来复制Ctrl+K来剪贴。若在选择文本过程中要取消，只需要再按一次Ctrl+6。
-搜索
-按Ctrl+W然后输入你要搜索的关键字，回车确定。这将会定位到第一个匹配的文本，接着可以用Alt+W来定位到下一个匹配的文本。
-翻页
-用Ctrl+Y到上一页，Ctrl+V到下一页
-替换文本
-按Ctrl+\在编辑器的底部输入要替换的文本回车然后输入替换后的文本内容按A替换所有匹配的文本
-保存
-使用Ctrl+O来保存所做的修改
-退出
-按Ctrl+X
-如果你修改了文件，下面会询问你是否需要保存修改。输入Y确认保存，输入N不保存，按Ctrl+C取消返回。
-如果输入了Y，下一步会让你输入想要保存的文件名。如果不需要修改文件名直接回车就行；若想要保存成别的名字（也就是另存为）则输入新名称然后确 定。这个时候也可用Ctrl+C来取消返回。
-获得帮助
-进入nano界面后，下面有两行菜单，例如，“^G Get Help”。其意义如下：
-^G意味着快捷键是Ctrl+G，“Get Help”当然是功能了。
-根据这些提示就可以立刻开始使用nano了，也可以Ctrl+G看看帮助。
-Note：nano中，黑底白字表示快捷键操作。其中^表示Ctrl键，则Ctrl+G就表示成^G。M表示 Alt键，则Alt+W表示为M-W。
-编辑文件整行文本内容替换
-sed -i &amp;#39;s/替换前的整行原文本/替换后的整行文本/&amp;#39; 文件路径 文件路径示范/root/test.txt
-修改或替换整个文件
-echo &amp;#34;添加的文本内容&amp;#34; &amp;gt; 文件路径 在文件最后增加
-echo &amp;#34;添加的文本内容&amp;#34; &amp;gt;&amp;gt; 文件路径 </description>
+      <description>&lt;p&gt;&lt;strong&gt;安装&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;CentOS执行&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;yum -y install nano
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Debian执行&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;apt-get install -y nano
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;新建/打开文件&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;nano 路径+文件名
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ol&gt;
+&lt;li&gt;如果改文件存在，上面的命令将打开这个文件；&lt;/li&gt;
+&lt;li&gt;如果文件不存在则将会创建一个新文件并打开。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;光标控制&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;移动光标：使用用方向键移动。&lt;/li&gt;
+&lt;li&gt;选择文字：按住鼠标左键拖到。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;复制、剪贴和粘贴&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;复制一整行：&lt;code&gt;Alt+6&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;剪贴一整行：&lt;code&gt;Ctrl+K&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;粘贴：&lt;code&gt;Ctrl+U&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;如果需要复制/剪贴多行或者一行中的一部分，先将光标移动到需要复制／剪贴的文本的开头，按&lt;code&gt;Ctrl+6&lt;/code&gt;或者&lt;code&gt;Alt+A&lt;/code&gt;做标记，然后移动光标到 待复制／剪贴的文本末尾。这时选定的文本会反白，用&lt;code&gt;Alt+6&lt;/code&gt;来复制&lt;code&gt;Ctrl+K&lt;/code&gt;来剪贴。若在选择文本过程中要取消，只需要再按一次&lt;code&gt;Ctrl+6&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;搜索&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;按&lt;code&gt;Ctrl+W&lt;/code&gt;然后输入你要搜索的关键字，回车确定。这将会定位到第一个匹配的文本，接着可以用&lt;code&gt;Alt+W&lt;/code&gt;来定位到下一个匹配的文本。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;翻页&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;用&lt;code&gt;Ctrl+Y&lt;/code&gt;到上一页，&lt;code&gt;Ctrl+V&lt;/code&gt;到下一页&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;替换文本&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;按&lt;code&gt;Ctrl+\&lt;/code&gt;在编辑器的底部输入&lt;code&gt;要替换的文本&lt;/code&gt;回车然后输入&lt;code&gt;替换后的文本内容&lt;/code&gt;按&lt;code&gt;A&lt;/code&gt;替换所有匹配的文本&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;保存&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;使用&lt;code&gt;Ctrl+O&lt;/code&gt;来保存所做的修改&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;退出&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;按&lt;code&gt;Ctrl+X&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;如果你修改了文件，下面会询问你是否需要保存修改。输入&lt;code&gt;Y&lt;/code&gt;确认保存，输入&lt;code&gt;N&lt;/code&gt;不保存，按&lt;code&gt;Ctrl+C&lt;/code&gt;取消返回。&lt;/p&gt;
+&lt;p&gt;如果输入了&lt;code&gt;Y&lt;/code&gt;，下一步会让你输入想要保存的文件名。如果不需要修改文件名直接回车就行；若想要保存成别的名字（也就是另存为）则输入新名称然后确 定。这个时候也可用&lt;code&gt;Ctrl+C&lt;/code&gt;来取消返回。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;获得帮助&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;进入nano界面后，下面有两行菜单，例如，“^G Get Help”。其意义如下：&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;^G&lt;/code&gt;意味着快捷键是&lt;code&gt;Ctrl+G&lt;/code&gt;，“Get Help”当然是功能了。&lt;/p&gt;
+&lt;p&gt;根据这些提示就可以立刻开始使用nano了，也可以Ctrl+G看看帮助。&lt;/p&gt;
+&lt;p&gt;Note：nano中，黑底白字表示快捷键操作。其中&lt;code&gt;^&lt;/code&gt;表示Ctrl键，则&lt;code&gt;Ctrl+G&lt;/code&gt;就表示成&lt;code&gt;^G&lt;/code&gt;。&lt;code&gt;M&lt;/code&gt;表示 Alt键，则&lt;code&gt;Alt+W&lt;/code&gt;表示为&lt;code&gt;M-W&lt;/code&gt;。&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;编辑文件&lt;strong&gt;整行文本&lt;/strong&gt;内容替换&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sed -i &lt;span class=&#34;s1&#34;&gt;&amp;#39;s/替换前的整行原文本/替换后的整行文本/&amp;#39;&lt;/span&gt; 文件路径
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;code&gt;文件路径&lt;/code&gt;示范&lt;code&gt;/root/test.txt&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;修改或替换整个文件&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;添加的文本内容&amp;#34;&lt;/span&gt; &amp;gt; 文件路径
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;在文件最后增加&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;添加的文本内容&amp;#34;&lt;/span&gt; &amp;gt;&amp;gt; 文件路径
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
     </item>
   </channel>
 </rss>

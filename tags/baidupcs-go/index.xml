@@ -9,7 +9,7 @@
       <url>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
-    <generator>Hugo -- 0.123.8</generator>
+    <generator>Hugo -- 0.144.2</generator>
     <language>zh</language>
     <lastBuildDate>Sun, 13 Jan 2019 01:37:56 +0800</lastBuildDate>
     <atom:link href="https://567899.xyz/tags/baidupcs-go/index.xml" rel="self" type="application/rss+xml" />
@@ -18,17 +18,36 @@
       <link>https://567899.xyz/post/baidupcs-go/</link>
       <pubDate>Sun, 13 Jan 2019 01:37:56 +0800</pubDate>
       <guid>https://567899.xyz/post/baidupcs-go/</guid>
-      <description>BaiduPCS-Go项目地址(https://github.com/iikira/BaiduPCS-Go)
-Android运行BaiduPCS-Go 下载Termux 安装并运行
-termux-setup-storage 始终允许Termux获取存储权限
-安装方式一: 通过软件源安装 echo &amp;#34;deb [trusted=yes] http://termux.iikira.com stable main&amp;#34; &amp;gt;&amp;gt; /data/data/com.termux/files/usr/etc/apt/sources.list 添加更新软件源
-apt update 安装程序
-apt install baidupcs-go 安装方式二: 手动安装 apt update &amp;amp;&amp;amp; apt upgrade -y wget -O 1.zip https://github.com/iikira/BaiduPCS-Go/releases/download/v3.3.3/BaiduPCS-Go-v3.3.3-android-21-arm64.zip unzip 1.zip &amp;amp;&amp;amp; rm 1.zip mv BaiduPCS-Go-v3.3.3-android-21-arm64 BaiduPCS-Go cd ~/BaiduPCS-Go &amp;amp;&amp;amp; ./BaiduPCS-Go 按提示完成登陆
-BaiduPCS-Go login 配置文件所在的目录为家目录的情况
-config set -max_parallel 500 下载最大并发量建议值: 50~500, 太低下载速度提升不明显甚至速度会变为0, 太高可能会导致程序出错被操作系统结束掉
-更新程序
-apt update apt install baidupcs-go 卸载程序
-apt remove baidupcs-go BaiduPCS-Go 百度网盘客户端 仿 Linux shell 文件处理命令的百度网盘命令行客户端.</description>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;BaiduPCS-Go项目地址(&lt;a href=&#34;https://github.com/iikira/BaiduPCS-Go&#34;&gt;https://github.com/iikira/BaiduPCS-Go&lt;/a&gt;)&lt;/p&gt;&lt;/blockquote&gt;
+&lt;h2 id=&#34;android运行baidupcs-go&#34;&gt;&lt;a href=&#34;https://github.com/iikira/BaiduPCS-Go/wiki/Android-%E8%BF%90%E8%A1%8C%E6%9C%AC%E9%A1%B9%E7%9B%AE%E7%A8%8B%E5%BA%8F%E5%8F%82%E8%80%83%E7%A4%BA%E4%BE%8B&#34;&gt;Android运行BaiduPCS-Go&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://termux.com/&#34;&gt;下载Termux&lt;/a&gt; 安装并运行&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;termux-setup-storage
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;始终允许Termux获取存储权限&lt;/p&gt;
+&lt;h3 id=&#34;安装方式一-通过软件源安装&#34;&gt;安装方式一: 通过软件源安装&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;deb [trusted=yes] http://termux.iikira.com stable main&amp;#34;&lt;/span&gt; &amp;gt;&amp;gt; /data/data/com.termux/files/usr/etc/apt/sources.list
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;添加更新软件源&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;apt update
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;安装程序&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;apt install baidupcs-go
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;安装方式二-手动安装&#34;&gt;安装方式二: 手动安装&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;apt update &lt;span class=&#34;o&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; apt upgrade -y
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;wget -O 1.zip https://github.com/iikira/BaiduPCS-Go/releases/download/v3.3.3/BaiduPCS-Go-v3.3.3-android-21-arm64.zip
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;unzip 1.zip &lt;span class=&#34;o&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; rm 1.zip
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;mv BaiduPCS-Go-v3.3.3-android-21-arm64 BaiduPCS-Go
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; ~/BaiduPCS-Go &lt;span class=&#34;o&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; ./BaiduPCS-Go
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;按提示完成登陆&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;BaiduPCS-Go login
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;配置文件所在的目录为家目录的情况&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;config &lt;span class=&#34;nb&#34;&gt;set&lt;/span&gt; -max_parallel &lt;span class=&#34;m&#34;&gt;500&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;下载最大并发量建议值: 50~500, 太低下载速度提升不明显甚至速度会变为0, 太高可能会导致程序出错被操作系统结束掉&lt;/p&gt;
+&lt;p&gt;更新程序&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;apt update
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;apt install baidupcs-go
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;卸载程序&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;apt remove baidupcs-go
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;baidupcs-go-百度网盘客户端&#34;&gt;BaiduPCS-Go 百度网盘客户端&lt;/h1&gt;
+&lt;p&gt;仿 Linux shell 文件处理命令的百度网盘命令行客户端.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

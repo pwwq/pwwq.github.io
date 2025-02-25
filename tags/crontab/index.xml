@@ -9,7 +9,7 @@
       <url>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
-    <generator>Hugo -- 0.123.8</generator>
+    <generator>Hugo -- 0.144.2</generator>
     <language>zh</language>
     <lastBuildDate>Thu, 25 Jan 2018 01:37:56 +0800</lastBuildDate>
     <atom:link href="https://567899.xyz/tags/crontab/index.xml" rel="self" type="application/rss+xml" />
@@ -18,25 +18,57 @@
       <link>https://567899.xyz/post/crontab/</link>
       <pubDate>Thu, 25 Jan 2018 01:37:56 +0800</pubDate>
       <guid>https://567899.xyz/post/crontab/</guid>
-      <description>crond简介 crond是linux定时执行计划任务
-Linux下的任务调度分为两类，系统任务调度和用户任务调度。
-系统任务 配置文件/etc/crontab
-nano /etc/crontab 用户任务 crontab -e crontab文件的含义 用户所建立的crontab文件中，每一行都代表一项任务，每行的每个字段代表一项设置，它的格式共分为六个字段，前五段是时间设定段，第六段是要执行的命令段，格式如下：
-minute hour day month week command
-其中：
-minute： 表示分钟，可以是从0到59之间的任何整数。 hour：表示小时，可以是从0到23之间的任何整数。 day：表示日期，可以是从1到31之间的任何整数。 month：表示月份，可以是从1到12之间的任何整数。 week：表示星期几，可以是从0到7之间的任何整数，这里的0或7代表星期日。 command：要执行的命令，可以是系统命令，也可以是自己编写的脚本文件。 在以上各个字段中，还可以使用以下特殊字符：
-星号（*）：代表所有可能的值，例如month字段如果是星号，则表示在满足其它字段的制约条件后每月都执行该命令操作。 逗号（,）：可以用逗号隔开的值指定一个列表范围，例如，“1,2,5,7,8,9” 中杠（-）：可以用整数之间的中杠表示一个整数范围，例如“2-6”表示“2,3,4,5,6” 正斜线（/）：可以用正斜线指定时间的间隔频率，例如“0-23/2”表示每两小时执行一次。同时正斜线可以和星号一起使用，例如*/10，如果用在minute字段，表示每十分钟执行一次。 管理crontab进程 重启
-/etc/init.d/cron restart 或者
-systemctl restart cron 或者
-systemctl restart cron.service 状态查询
-service cron status 或者
-systemctl status cron 列出crontab文件
-crontab -l 删除crontab文件
-crontab -r 开启crontab日志
-编辑文件/etc/rsyslog.conf将#cron.* /var/log/cron.log去掉前面的#
-sed -i &amp;#39;s/#cron/cron/&amp;#39; /etc/rsyslog.conf 重启rsyslog
-service rsyslog restart 查看crontab开启日志
-cat /var/log/cron.</description>
+      <description>&lt;h2 id=&#34;crond简介&#34;&gt;crond简介&lt;/h2&gt;
+&lt;p&gt;crond是linux定时执行计划任务&lt;/p&gt;
+&lt;p&gt;Linux下的任务调度分为两类，系统任务调度和用户任务调度。&lt;/p&gt;
+&lt;h2 id=&#34;系统任务&#34;&gt;系统任务&lt;/h2&gt;
+&lt;p&gt;配置文件&lt;code&gt;/etc/crontab&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;nano /etc/crontab
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;用户任务&#34;&gt;用户任务&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;crontab -e
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;crontab文件的含义&#34;&gt;crontab文件的含义&lt;/h2&gt;
+&lt;p&gt;用户所建立的crontab文件中，每一行都代表一项任务，每行的每个字段代表一项设置，它的格式共分为六个字段，前五段是时间设定段，第六段是要执行的命令段，格式如下：&lt;/p&gt;
+&lt;p&gt;minute   hour   day   month   week   command&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://567899.xyz/images/crontab.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;其中：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;minute： 表示分钟，可以是从0到59之间的任何整数。&lt;/li&gt;
+&lt;li&gt;hour：表示小时，可以是从0到23之间的任何整数。&lt;/li&gt;
+&lt;li&gt;day：表示日期，可以是从1到31之间的任何整数。&lt;/li&gt;
+&lt;li&gt;month：表示月份，可以是从1到12之间的任何整数。&lt;/li&gt;
+&lt;li&gt;week：表示星期几，可以是从0到7之间的任何整数，这里的0或7代表星期日。&lt;/li&gt;
+&lt;li&gt;command：要执行的命令，可以是系统命令，也可以是自己编写的脚本文件。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;在以上各个字段中，还可以使用以下特殊字符：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;星号（*）：代表所有可能的值，例如month字段如果是星号，则表示在满足其它字段的制约条件后每月都执行该命令操作。&lt;/li&gt;
+&lt;li&gt;逗号（,）：可以用逗号隔开的值指定一个列表范围，例如，“1,2,5,7,8,9”&lt;/li&gt;
+&lt;li&gt;中杠（-）：可以用整数之间的中杠表示一个整数范围，例如“2-6”表示“2,3,4,5,6”&lt;/li&gt;
+&lt;li&gt;正斜线（/）：可以用正斜线指定时间的间隔频率，例如“0-23/2”表示每两小时执行一次。同时正斜线可以和星号一起使用，例如*/10，如果用在minute字段，表示每十分钟执行一次。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;管理crontab进程&#34;&gt;管理crontab进程&lt;/h2&gt;
+&lt;p&gt;重启&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/etc/init.d/cron restart
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;或者&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;systemctl restart cron
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;或者&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;systemctl restart cron.service
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;状态查询&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;service cron status
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;或者&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;systemctl status cron
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;列出crontab文件&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;crontab -l
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;删除crontab文件&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;crontab -r
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;开启crontab日志&lt;/p&gt;
+&lt;p&gt;编辑文件&lt;code&gt;/etc/rsyslog.conf&lt;/code&gt;将&lt;code&gt;#cron.* /var/log/cron.log&lt;/code&gt;去掉前面的&lt;code&gt;#&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sed -i &lt;span class=&#34;s1&#34;&gt;&amp;#39;s/#cron/cron/&amp;#39;&lt;/span&gt; /etc/rsyslog.conf
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;重启&lt;code&gt;rsyslog&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;service rsyslog restart
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;查看crontab开启日志&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;cat /var/log/cron.log
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;解决&lt;code&gt;(CRON) info (No MTA installed, discarding output)&lt;/code&gt;错误crontab不执行，方法是在后面加上&lt;code&gt;&amp;gt;/dev/null 2&amp;gt;&amp;amp;1&lt;/code&gt;不需要保留执行的输出,重定向到null中，例如：&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

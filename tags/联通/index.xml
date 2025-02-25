@@ -9,7 +9,7 @@
       <url>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
-    <generator>Hugo -- 0.123.8</generator>
+    <generator>Hugo -- 0.144.2</generator>
     <language>zh</language>
     <lastBuildDate>Mon, 03 Aug 2020 01:37:56 +0800</lastBuildDate>
     <atom:link href="https://567899.xyz/tags/%E8%81%94%E9%80%9A/index.xml" rel="self" type="application/rss+xml" />
@@ -18,27 +18,81 @@
       <link>https://567899.xyz/post/chinaunicom-traffic-cap-canceled/</link>
       <pubDate>Mon, 03 Aug 2020 01:37:56 +0800</pubDate>
       <guid>https://567899.xyz/post/chinaunicom-traffic-cap-canceled/</guid>
-      <description>中国联通手机用户免费办理流量封顶取消(长期有效)一次办理，终身有效。需要的小伙伴抓紧上车
-以前办理订购的流量封顶取消是月底失效，次月达量后又要重新订购办理，对于无限流量套餐的用户很苦恼。
-不过2020年8月开始 中国联通可以办理长期有效的流量封顶取消啦，这里免费公布办理入口，不要被女干商坑钱，打开中国联通官方APP 手机营业厅扫描以下二维码自助办理
-按提示就能订购办理
-成功后可在业务办理记录中查看
-其它：拜访地接入服务失效的解决方法
-打中国联通客服热线 10010 退订后付费拜访地接入服务然后订购消息计费拜访地接入服务 不知道这二者有什么区别，不过以用后付费拜访地接入服务时，每次用完到达流量封顶后就失效了，但消息计费拜访地接入服务则不会失效。</description>
+      <description>&lt;p&gt;中国联通手机用户免费办理流量封顶取消(长期有效)一次办理，终身有效。需要的小伙伴抓紧上车&lt;/p&gt;
+&lt;p&gt;以前办理订购的流量封顶取消是月底失效，次月达量后又要重新订购办理，对于无限流量套餐的用户很苦恼。&lt;/p&gt;
+&lt;p&gt;不过2020年8月开始  中国联通可以办理长期有效的流量封顶取消啦，这里免费公布办理入口，不要被女干商坑钱，打开中国联通官方APP &lt;code&gt;手机营业厅&lt;/code&gt;扫描以下二维码自助办理&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://567899.xyz/images/ChinaUnicomergerreth.jpg&#34;&gt;&lt;/p&gt;
+&lt;p&gt;按提示就能订购办理&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://567899.xyz/images/ChinaUnicomthjtyjuy.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;成功后可在业务办理记录中查看&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://567899.xyz/images/ChinaUnicomgrthjtyj5fe.jpg&#34;&gt;&lt;/p&gt;
+&lt;p&gt;其它：拜访地接入服务失效的解决方法&lt;/p&gt;
+&lt;p&gt;打中国联通客服热线 10010 退订&lt;code&gt;后付费拜访地接入服务&lt;/code&gt;然后订购&lt;code&gt;消息计费拜访地接入服务&lt;/code&gt;  不知道这二者有什么区别，不过以用&lt;code&gt;后付费拜访地接入服务&lt;/code&gt;时，每次用完到达流量封顶后就失效了，但&lt;code&gt;消息计费拜访地接入服务&lt;/code&gt;则不会失效。&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://567899.xyz/images/ChinaUnicomerg7fver.jpg&#34;&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>检测移动电信联通通讯运营商SIM卡分配给用户的最高速率、限速速率网速值</title>
       <link>https://567899.xyz/post/internet-sim-ambr-dl-ul-2g-3g-4g-lte/</link>
       <pubDate>Mon, 04 Nov 2019 01:37:56 +0800</pubDate>
       <guid>https://567899.xyz/post/internet-sim-ambr-dl-ul-2g-3g-4g-lte/</guid>
-      <description>你想知道自己的SIM卡移动数据流量网速能跑多少？是不是达标符合通信运营商承诺的网络速率？&amp;hellip; &amp;hellip;
-使用条件 拥有root权限的安卓Android手机设备 CPU品牌是高通 网络信号大师 点击下载 名词解译 【网络信号大师】【LTE小区配置】里面的参数，专业术语名词相信对于通信运营商不会陌生，这里重点只涉及限速速率检测
-AMBR(Aggregated Maximum Bit Rate)聚合最大比特速率，也是常说的最高速率、限速速率 DL即downlink下行速率 UL即uplink上行速率 适用范围 适用于任意套餐资费的网速速率检测。所有电信、联通、移动的2G,3G,4G(5G未测试，目前没有条件测试)的任何APN\频段\制式。CDMA、GSM、TD-SCDMA、WCDMA、LTE、HSUPA、HSDPA、FDD-LTE、TD-LTE 零流量检测网速速率 ,测试过程中可以关闭流量。比如1Mbps,3Mbps,7Mbps&amp;hellip;
-温馨提示：针对24小时内，不同时段不同限速规则的，可能需要重启软件或者开关一次飞行模式才能刷新显示。
-使用方法 授予安卓软件网络信号大师ROOT权限，依次打开【网络信号大师】右上角的3点【锁频段】任意切换下频段再切换回原来默认的频段，然后左右滑动到【LTE小区配置】就能在右下角方位看到AMBP DL/UL就能看到1Mbps,3Mbps,7Mbps&amp;hellip;通信运营商实行分配给用户的网速速率值了
-用途 该方法检测值能作为投诉、举报到运营商、工信部的有力证据。
-2020年1月1日更新：三家都将“永久套餐”全改为有到期期限了，移动2099年，电信2050年，联通2029年。所以“永久套餐”不存在的。
-其它 酸酸乳免流host 混淆方式http_simple 远程端口80 APN接入点3gnet mbh.wotv.17wo.cn 沃视频 m.client.10010.com 中国联通手机营业厅 中国联通工行梦想e卡 v.icbc.com.cn m.icbc.com.cn m.mall.icbc.com.cn elife.icbc.com.cn act.icbc.com.cn hit.icbc.com.cn pv.mall.icbc.com.cn mybank.icbc.com.cn ===中国联通阿里宝卡== api.mobile.youku.com ===腾讯王卡=== qiniucdnct.inter.iqiyi.com APN:3gnet 远程端口: 80 混淆参数: szextshort.weixin.qq.com#Upgrade: mmtls\nUser-Agent: Microadminssenger Client\nAccept: */*\nConnection: close\nContent-Length: 533\nContent-Type: application/octet-stream #前面的是host \n是换行 SSR的http-simple只能伪装GET报头，不能伪装Post报头 诈骗高危地区存在局停的可能 广东省：江门，阳江，东莞，佛山，肇庆, 茂名,湛江，珠海，番禺区，潮州、惠州、河源 湖北省：孝感，黄冈，武汉，江汉(仙桃) 广西省：南宁，贵港，防城港，玉林，宾阳 湖南省：娄底，衡阳，怀化，长沙 河南省：驻马店、周口 河北省：承德、邯郸 安徽省：阜阳、安庆、蚌埠 福建省：泉州，漳州，龙岩 海南省：海口，儋州 云南省：普洱，临沧，西双版纳傣族自治州，景洪市，思茅，西双版纳，德宏 江西省：吉安，上饶 西藏、新疆 </description>
+      <description>&lt;p&gt;你想知道自己的SIM卡移动数据流量网速能跑多少？是不是达标符合通信运营商承诺的网络速率？&amp;hellip; &amp;hellip;&lt;/p&gt;
+&lt;h2 id=&#34;使用条件&#34;&gt;使用条件&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;拥有root权限的安卓Android手机设备&lt;/li&gt;
+&lt;li&gt;CPU品牌是高通&lt;/li&gt;
+&lt;li&gt;网络信号大师 &lt;a href=&#34;https://www.coolapk.com/apk/com.qtrun.QuickTest&#34;&gt;点击下载&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;名词解译&#34;&gt;名词解译&lt;/h2&gt;
+&lt;p&gt;【网络信号大师】【LTE小区配置】里面的参数，专业术语名词相信对于通信运营商不会陌生，这里重点只涉及限速速率检测&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;AMBR(Aggregated Maximum Bit Rate)聚合最大比特速率，也是常说的最高速率、限速速率&lt;/li&gt;
+&lt;li&gt;DL即downlink下行速率&lt;/li&gt;
+&lt;li&gt;UL即uplink上行速率&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;适用范围&#34;&gt;适用范围&lt;/h2&gt;
+&lt;p&gt;适用于任意套餐资费的网速速率检测。所有电信、联通、移动的2G,3G,4G(5G未测试，目前没有条件测试)的任何APN\频段\制式。CDMA、GSM、TD-SCDMA、WCDMA、LTE、HSUPA、HSDPA、FDD-LTE、TD-LTE &lt;strong&gt;零流量检测网速速率&lt;/strong&gt; ,测试过程中可以关闭流量。比如1Mbps,3Mbps,7Mbps&amp;hellip;&lt;/p&gt;
+&lt;p&gt;温馨提示：针对24小时内，不同时段不同限速规则的，可能需要重启软件或者开关一次飞行模式才能刷新显示。&lt;/p&gt;
+&lt;h2 id=&#34;使用方法&#34;&gt;使用方法&lt;/h2&gt;
+&lt;p&gt;授予安卓软件&lt;code&gt;网络信号大师&lt;/code&gt;ROOT权限，依次打开【网络信号大师】右上角的3点【锁频段】任意切换下频段再切换回原来默认的频段，然后左右滑动到【LTE小区配置】就能在右下角方位看到AMBP DL/UL就能看到1Mbps,3Mbps,7Mbps&amp;hellip;通信运营商实行分配给用户的网速速率值了&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://567899.xyz/images/SIM-AMBR-DL-UL.png&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;用途&#34;&gt;用途&lt;/h2&gt;
+&lt;p&gt;该方法检测值能作为投诉、举报到运营商、工信部的有力证据。&lt;/p&gt;
+&lt;p&gt;2020年1月1日更新：三家都将“永久套餐”全改为有到期期限了，移动2099年，电信2050年，联通2029年。所以“永久套餐”不存在的。&lt;/p&gt;
+&lt;h2 id=&#34;其它&#34;&gt;其它&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;酸酸乳免流host
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;混淆方式http_simple
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;远程端口80
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;APN接入点3gnet
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;mbh.wotv.17wo.cn  沃视频
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;m.client.10010.com 中国联通手机营业厅
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;中国联通工行梦想e卡
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;v.icbc.com.cn
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;m.icbc.com.cn
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;m.mall.icbc.com.cn
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;elife.icbc.com.cn
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;act.icbc.com.cn
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;hit.icbc.com.cn
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;pv.mall.icbc.com.cn
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;mybank.icbc.com.cn
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;===&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;中国联通阿里宝卡&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;==&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;api.mobile.youku.com
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;===&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;腾讯王卡&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;===&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;qiniucdnct.inter.iqiyi.com
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;APN:3gnet
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;远程端口: &lt;span class=&#34;m&#34;&gt;80&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;混淆参数: szextshort.weixin.qq.com#Upgrade: mmtls&lt;span class=&#34;se&#34;&gt;\n&lt;/span&gt;User-Agent: Microadminssenger Client&lt;span class=&#34;se&#34;&gt;\n&lt;/span&gt;Accept: */*&lt;span class=&#34;se&#34;&gt;\n&lt;/span&gt;Connection: close&lt;span class=&#34;se&#34;&gt;\n&lt;/span&gt;Content-Length: 533&lt;span class=&#34;se&#34;&gt;\n&lt;/span&gt;Content-Type: application/octet-stream
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#前面的是host \n是换行  SSR的http-simple只能伪装GET报头，不能伪装Post报头&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;诈骗高危地区存在局停的可能&#34;&gt;诈骗高危地区存在局停的可能&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;广东省：江门，阳江，东莞，佛山，肇庆, 茂名,湛江，珠海，番禺区，潮州、惠州、河源
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;湖北省：孝感，黄冈，武汉，江汉&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;仙桃&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;广西省：南宁，贵港，防城港，玉林，宾阳 湖南省：娄底，衡阳，怀化，长沙
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;河南省：驻马店、周口 河北省：承德、邯郸 安徽省：阜阳、安庆、蚌埠
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;福建省：泉州，漳州，龙岩 海南省：海口，儋州
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;云南省：普洱，临沧，西双版纳傣族自治州，景洪市，思茅，西双版纳，德宏
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;江西省：吉安，上饶
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;西藏、新疆
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
     </item>
   </channel>
 </rss>

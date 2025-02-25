@@ -9,7 +9,7 @@
       <url>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
-    <generator>Hugo -- 0.123.8</generator>
+    <generator>Hugo -- 0.144.2</generator>
     <language>zh</language>
     <lastBuildDate>Tue, 27 Aug 2024 15:37:56 +0800</lastBuildDate>
     <atom:link href="https://567899.xyz/tags/debian/index.xml" rel="self" type="application/rss+xml" />
@@ -18,183 +18,420 @@
       <link>https://567899.xyz/post/debian-gnome-ibus-table-wubi/</link>
       <pubDate>Tue, 27 Aug 2024 15:37:56 +0800</pubDate>
       <guid>https://567899.xyz/post/debian-gnome-ibus-table-wubi/</guid>
-      <description>Debian12 默认安装的是Gnome桌面，安装ibus五笔输入法，输入su root然后root密码
-安装ibus五笔 apt-get update apt-get install ibus ibus-table-wubi 配置输入法 以普通用户身份输入下面的命令打开ibus配置窗口。
-ibus-setup 选择输入法标签，选中极点五笔然后点击添加按钮。添加之后，关闭窗口。
-打开Gnome的设置面板，选择键盘。 在底部点击输入源。 点击加号添加输入源。 选择极点五笔。点击添加按钮。 现在你可以用Super+空格键来调出五笔输入法了。如果调不出，请重新登录或重启Debian系统。
-转载自https://www.ywnz.com/linuxjc/704.html</description>
+      <description>&lt;p&gt;Debian12  默认安装的是Gnome桌面，安装ibus五笔输入法，输入&lt;code&gt;su root&lt;/code&gt;然后root密码&lt;/p&gt;
+&lt;h2 id=&#34;安装ibus五笔&#34;&gt;安装ibus五笔&lt;/h2&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;apt-get update
+apt-get install ibus ibus-table-wubi
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;配置输入法&#34;&gt;配置输入法&lt;/h2&gt;
+&lt;p&gt;以普通用户身份输入下面的命令打开ibus配置窗口。&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;ibus-setup
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;选择&lt;code&gt;输入法&lt;/code&gt;标签，选中&lt;code&gt;极点五笔&lt;/code&gt;然后点击添加按钮。添加之后，关闭窗口。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;打开Gnome的设置面板，选择键盘。&lt;/li&gt;
+&lt;li&gt;在底部点击输入源。&lt;/li&gt;
+&lt;li&gt;点击加号添加输入源。&lt;/li&gt;
+&lt;li&gt;选择极点五笔。点击添加按钮。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;现在你可以用Super+空格键来调出五笔输入法了。如果调不出，请重新登录或重启Debian系统。&lt;/p&gt;
+&lt;p&gt;转载自https://www.ywnz.com/linuxjc/704.html&lt;/p&gt;</description>
     </item>
     <item>
       <title>纯净Linux系统手工配置独角数卡发卡站点环境</title>
       <link>https://567899.xyz/post/dujiaoka/</link>
       <pubDate>Tue, 22 Sep 2020 16:40:38 +0000</pubDate>
       <guid>https://567899.xyz/post/dujiaoka/</guid>
-      <description>纯净系统纯手工打造独角数卡发卡站点环境，抛弃各种面板、一键网站环境。
-https://github.com/assimon/dujiaoka
-支付接口已集成 支付宝当面付 支付宝PC支付 支付宝手机支付 payjs微信扫码. Paysapi(支付宝/微信). 码支付(QQ/支付宝/微信) 微信企业扫码支付 Paypal支付(默认美元) 麻瓜宝数字货币支付 全网易支付支持(针对彩虹版) 基本环境要求 (PHP + PHPCLI) version &amp;gt;= 7.2 Nginx version &amp;gt;= 1.16 MYSQL version &amp;gt;= 5.6 Redis (高性能缓存服务) Supervisor (一个python编写的进程管理服务) Composer (PHP包管理器) Linux/Win (Win下未测试，建议直接Linux) 实测Supervisor不装也是可以运行的
-PHP环境要求 星号(*)为必须执行的要求，其他为建议内容
-*安装fileinfo扩展 *安装redis扩展 *终端需支持php-cli，测试php -v(版本必须一致) *需要开启的函数：putenv，proc_open，pcntl_signal，pcntl_alarm 安装opcache扩展 网络上各类发卡网站程序，比如ZFAKA、独角数卡环境搭建教程都是基于宝塔面板、LNMP等等环境搭建的教程。
-ZFAKA可以在宝塔面板后台一键部署安装，也可以使用Docker版
-为什么要手工搭建发卡网站环境
-怕有后门(被害妄想症) 近期某某面板强迫用户注册才能使用 享受折腾的乐趣 测试使用环境Debian 10，其它系统可以参考修改搭建。
-独角数卡发卡站环境搭建 Nginx、MYSQL的搭建具体教程请点击查看，这里重点只讲独角数卡发卡站环境搭建PHP环境的配置
-PHP和一些必要组件的安装 apt -y install php-fpm php-mysql php-redis php-fileinfo php-cli php-gd redis-server php-mbstring php-bcmath php-curl php-xml php-dom 配置PHP组件 配置PHP的redis缓存组件</description>
+      <description>&lt;p&gt;纯净系统纯手工打造独角数卡发卡站点环境，抛弃各种面板、一键网站环境。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/assimon/dujiaoka&#34;&gt;https://github.com/assimon/dujiaoka&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;h2 id=&#34;支付接口已集成&#34;&gt;支付接口已集成&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 支付宝当面付&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 支付宝PC支付&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 支付宝手机支付&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; &lt;a href=&#34;http://payjs.cn&#34;&gt;payjs微信扫码&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; &lt;a href=&#34;https://www.paysapi.com/&#34;&gt;Paysapi(支付宝/微信)&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; &lt;a href=&#34;https://codepay.fateqq.com/&#34;&gt;码支付(QQ/支付宝/微信)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 微信企业扫码支付&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; Paypal支付(默认美元)&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 麻瓜宝数字货币支付&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 全网易支付支持(针对彩虹版)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;基本环境要求&#34;&gt;基本环境要求&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;(PHP + PHPCLI) version &amp;gt;= 7.2&lt;/li&gt;
+&lt;li&gt;Nginx version &amp;gt;= 1.16&lt;/li&gt;
+&lt;li&gt;MYSQL version &amp;gt;= 5.6&lt;/li&gt;
+&lt;li&gt;Redis (高性能缓存服务)&lt;/li&gt;
+&lt;li&gt;Supervisor (一个python编写的进程管理服务)&lt;/li&gt;
+&lt;li&gt;Composer (PHP包管理器)&lt;/li&gt;
+&lt;li&gt;Linux/Win (Win下未测试，建议直接Linux)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;实测Supervisor不装也是可以运行的&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&#34;php环境要求&#34;&gt;PHP环境要求&lt;/h2&gt;
+&lt;p&gt;星号(*)为必须执行的要求，其他为建议内容&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;*安装&lt;code&gt;fileinfo&lt;/code&gt;扩展&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;*安装&lt;code&gt;redis&lt;/code&gt;扩展&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;*终端需支持&lt;code&gt;php-cli&lt;/code&gt;，测试&lt;code&gt;php -v&lt;/code&gt;(版本必须一致)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;*需要开启的函数：&lt;code&gt;putenv&lt;/code&gt;，&lt;code&gt;proc_open&lt;/code&gt;，&lt;code&gt;pcntl_signal&lt;/code&gt;，&lt;code&gt;pcntl_alarm&lt;/code&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;安装&lt;code&gt;opcache&lt;/code&gt;扩展&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;网络上各类发卡网站程序，比如&lt;a href=&#34;https://github.com/zlkbdotnet/zfaka&#34;&gt;ZFAKA&lt;/a&gt;、&lt;a href=&#34;https://github.com/assimon/dujiaoka&#34;&gt;独角数卡&lt;/a&gt;环境搭建教程都是基于&lt;a href=&#34;https://www.bt.cn&#34;&gt;宝塔面板&lt;/a&gt;、&lt;a href=&#34;https://lnmp.org&#34;&gt;LNMP&lt;/a&gt;等等环境搭建的教程。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/zlkbdotnet/zfaka&#34;&gt;ZFAKA&lt;/a&gt;可以在&lt;a href=&#34;https://www.bt.cn&#34;&gt;宝塔面板&lt;/a&gt;后台一键部署安装，也可以使用&lt;a href=&#34;https://github.com/Baiyuetribe/zfaka&#34;&gt;Docker版&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;为什么要手工搭建发卡网站环境&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;怕有后门(被害妄想症)&lt;/li&gt;
+&lt;li&gt;近期某某面板强迫用户注册才能使用&lt;/li&gt;
+&lt;li&gt;享受折腾的乐趣&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;测试使用环境Debian 10，其它系统可以参考修改搭建。&lt;/p&gt;
+&lt;h2 id=&#34;独角数卡发卡站环境搭建&#34;&gt;独角数卡发卡站环境搭建&lt;/h2&gt;
+&lt;p&gt;Nginx、MYSQL的搭建具体教程请&lt;a href=&#34;https://567899.xyz/post/debian10-web-nginx-certbot-ssl-php-mysql/&#34;&gt;点击查看&lt;/a&gt;，这里重点只讲独角数卡发卡站环境搭建PHP环境的配置&lt;/p&gt;
+&lt;h2 id=&#34;php和一些必要组件的安装&#34;&gt;PHP和一些必要组件的安装&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;apt -y install php-fpm php-mysql php-redis php-fileinfo php-cli php-gd redis-server php-mbstring php-bcmath php-curl php-xml php-dom
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;配置php组件&#34;&gt;配置PHP组件&lt;/h2&gt;
+&lt;p&gt;配置PHP的redis缓存组件&lt;/p&gt;</description>
     </item>
     <item>
       <title>Debian10手动搭建WEB环境Nginx,SSL,PHP,MySQL</title>
       <link>https://567899.xyz/post/debian10-web-nginx-certbot-ssl-php-mysql/</link>
       <pubDate>Thu, 10 Sep 2020 16:40:38 +0000</pubDate>
       <guid>https://567899.xyz/post/debian10-web-nginx-certbot-ssl-php-mysql/</guid>
-      <description>手动搭建，使用apt,apt-get快速安装免编译
-安装nginx和php
-apt update apt install openssl nginx-full php-fpm php-mysql -y 创建站点，新建文件
-nano example.com.sh 内容如下
-#!/bin/bash # 创建站点目录和默认页面 mkdir /var/www/example.com chown -R www-data:www-data /var/www/example.com echo &amp;#34;hello word&amp;#34; &amp;gt; /var/www/example.com/index.html # 添加nginx配置文件 echo &amp;#34;server { listen 80; listen [::]:80; server_name example.com; root /var/www/example.com; index index.html; # return 301 https://$server_name$request_uri; } &amp;gt;&amp;gt; /etc/nginx/sites-available/default 把example.com替换成自己的域名
-sed -i &amp;#39;s/example.com/自己的域名/&amp;#39; example.com.sh 给予权限并执行
-chmod +x example.com.sh bash example.com.sh systemctl restart nginx Certbot申请Let’s Encrypt证书SSL，安装Certbot
-apt install certbot -y 获取SSL证书</description>
+      <description>&lt;p&gt;手动搭建，使用&lt;code&gt;apt&lt;/code&gt;,&lt;code&gt;apt-get&lt;/code&gt;快速安装免编译&lt;/p&gt;
+&lt;p&gt;安装nginx和php&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;apt update
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;apt install openssl nginx-full php-fpm php-mysql -y
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;创建站点，新建文件&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;nano example.com.sh
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;内容如下&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cp&#34;&gt;#!/bin/bash
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cp&#34;&gt;&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# 创建站点目录和默认页面&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;mkdir /var/www/example.com
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;chown -R www-data:www-data /var/www/example.com
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;hello word&amp;#34;&lt;/span&gt; &amp;gt; /var/www/example.com/index.html
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 添加nginx配置文件&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;server {
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s2&#34;&gt;	listen 80;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s2&#34;&gt;	listen [::]:80;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s2&#34;&gt;	server_name example.com;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s2&#34;&gt;	root /var/www/example.com;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s2&#34;&gt;	index index.html;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s2&#34;&gt;	# return 301 https://&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$server_name$request_uri&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s2&#34;&gt;} &amp;gt;&amp;gt; /etc/nginx/sites-available/default
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;把&lt;code&gt;example.com&lt;/code&gt;替换成自己的域名&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sed -i &lt;span class=&#34;s1&#34;&gt;&amp;#39;s/example.com/自己的域名/&amp;#39;&lt;/span&gt; example.com.sh
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;给予权限并执行&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;chmod +x example.com.sh
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;bash example.com.sh
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;systemctl restart nginx
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Certbot申请Let’s Encrypt证书SSL，安装Certbot&lt;/p&gt;</description>
     </item>
     <item>
       <title>Linux VPS Debian/Ubuntu/CentOS DD系统网络安装/网络重装/纯净安装 一键脚本</title>
       <link>https://567899.xyz/post/linux-vps-dd-debian-ubuntu-centos/</link>
       <pubDate>Wed, 15 May 2019 01:37:56 +0800</pubDate>
       <guid>https://567899.xyz/post/linux-vps-dd-debian-ubuntu-centos/</guid>
-      <description>背景:
-适用于由GRUB引导的CentOS,Ubuntu,Debian系统. 使用官方发行版去掉模板预装的软件. 同时也可以解决内核版本与软件不兼容的问题。 只要有root权限,还您一个纯净的系统。 注意:
-全自动安装默认root密码:MoeClub.org 安装完成后请立即更改密码. 能够全自动重装Debian/Ubuntu/CentOS等系统. 同时提供dd安装镜像功能,例如: 全自动无救援dd安装windows系统 全自动安装CentOS时默认提供VNC功能,可使用VNC Viewer查看进度, VNC端口为1或者5901,可自行尝试连接.(成功后VNC功能会消失.) 目前CentOS系统只支持任意版本重装为 CentOS 6.x 及以下版本. 特别注意:OpenVZ构架不适用. 依赖包:
-#二进制文件 Debian/Ubuntu RedHat/CentOS iconv [libc-bin] [glibc-common] xz [xz-utils] [xz] awk [gawk] [gawk] sed [sed] [sed] file [file] [file] grep [grep] [grep] openssl [openssl] [openssl] cpio [cpio] [cpio] gzip [gzip] [gzip] cat,cut.. [coreutils] [coreutils] 确保安装了所需软件:
-#Debian/Ubuntu: apt-get install -y xz-utils openssl gawk file #RedHat/CentOS: yum install -y xz openssl gawk file 如果出现了错误,请运行:</description>
+      <description>&lt;p&gt;背景:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;适用于由GRUB引导的CentOS,Ubuntu,Debian系统.&lt;/li&gt;
+&lt;li&gt;使用官方发行版去掉模板预装的软件.&lt;/li&gt;
+&lt;li&gt;同时也可以解决内核版本与软件不兼容的问题。&lt;/li&gt;
+&lt;li&gt;只要有root权限,还您一个纯净的系统。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;注意:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;全自动安装默认root密码:MoeClub.org&lt;/li&gt;
+&lt;li&gt;安装完成后请立即更改密码.&lt;/li&gt;
+&lt;li&gt;能够全自动重装Debian/Ubuntu/CentOS等系统.&lt;/li&gt;
+&lt;li&gt;同时提供dd安装镜像功能,例如: 全自动无救援dd安装windows系统&lt;/li&gt;
+&lt;li&gt;全自动安装CentOS时默认提供VNC功能,可使用VNC Viewer查看进度,&lt;/li&gt;
+&lt;li&gt;VNC端口为1或者5901,可自行尝试连接.(成功后VNC功能会消失.)&lt;/li&gt;
+&lt;li&gt;目前CentOS系统只支持任意版本重装为 CentOS 6.x 及以下版本.&lt;/li&gt;
+&lt;li&gt;特别注意:OpenVZ构架不适用.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;依赖包:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#二进制文件    Debian/Ubuntu    RedHat/CentOS&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;iconv         &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;libc-bin&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;       &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;glibc-common&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;xz            &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;xz-utils&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;       &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;xz&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;awk           &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;gawk&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;           &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;gawk&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sed           &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;sed&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;            &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;sed&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;file          &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;file&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;           &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;file&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;grep          &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;grep&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;           &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;grep&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;openssl       &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;openssl&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;        &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;openssl&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;cpio          &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;cpio&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;           &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;cpio&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;gzip          &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;gzip&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;           &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;gzip&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;cat,cut..     &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;coreutils&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;      &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;coreutils&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;确保安装了所需软件:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#Debian/Ubuntu:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;apt-get install -y xz-utils openssl gawk file
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#RedHat/CentOS:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;yum install -y xz openssl gawk file
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;如果出现了错误,请运行:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#Debian/Ubuntu:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;apt-get update
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#RedHat/CentOS:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;yum update
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;快速使用示例:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;bash &amp;lt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;wget --no-check-certificate -qO- &lt;span class=&#34;s1&#34;&gt;&amp;#39;https://moeclub.org/attachment/LinuxShell/InstallNET.sh&amp;#39;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; -d &lt;span class=&#34;m&#34;&gt;8&lt;/span&gt; -v &lt;span class=&#34;m&#34;&gt;64&lt;/span&gt; -a
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;下载及说明:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;wget --no-check-certificate -qO InstallNET.sh &lt;span class=&#34;s1&#34;&gt;&amp;#39;https://moeclub.org/attachment/LinuxShell/InstallNET.sh&amp;#39;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; chmod a+x InstallNET.sh
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;一些说明&lt;/p&gt;</description>
     </item>
     <item>
       <title>Debian9安装最新版Nginx</title>
       <link>https://567899.xyz/post/debian-ubuntu-install-new-nginx/</link>
       <pubDate>Wed, 21 Nov 2018 01:37:56 +0800</pubDate>
       <guid>https://567899.xyz/post/debian-ubuntu-install-new-nginx/</guid>
-      <description>apt-get默认安装的nginx为1.10，如果嫌太老了可以修改安装源的方式来获得更新的版本；
-一、添加Nginx源 新建一个nginx.list文件
-vi /etc/apt/sources.list.d/nginx.list 加入以下内容：
-deb http://nginx.org/packages/mainline/debian/ stretch nginx deb-src http://nginx.org/packages/mainline/debian/ stretch nginx 下面这个我也不晓得干什么的，反正老外是这样写的
-wget -qO - http://nginx.org/keys/nginx_signing.key | apt-key add - 更新一下让源生效
-apt update 二、安装更新版本nginx
-如果之前用apt命令安装了旧版本nginx,需要卸载掉才行
-apt remove nginx-common 正式开始安装
-apt install nginx 安装完成查看版本:
-nginx -v 会列出Nginx OpenSSL相关配置文件路径&amp;hellip;
-查看nginx进程
-ps aux | grep nginx pgrep nginx 安装好的文件位置：
-/usr/sbin/nginx #主程序 /etc/nginx #存放配置文件 /usr/share/nginx #存放静态文件 /var/log/nginx #存放日志 /etc/nginx/nginx.conf #默认nginx配置文件 Nginx控制命令：
-###启动 systemctl enable nginx ###重启 systemctl restart nginx ###停止 systemctl stop nginx ###也可以使用 /etc/init.</description>
+      <description>&lt;p&gt;apt-get默认安装的nginx为1.10，如果嫌太老了可以修改安装源的方式来获得更新的版本；&lt;/p&gt;
+&lt;p&gt;一、添加Nginx源
+新建一个nginx.list文件&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;vi /etc/apt/sources.list.d/nginx.list
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;加入以下内容：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;deb http://nginx.org/packages/mainline/debian/ stretch nginx
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;deb-src http://nginx.org/packages/mainline/debian/ stretch nginx
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;下面这个我也不晓得干什么的，反正老外是这样写的&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;wget -qO - http://nginx.org/keys/nginx_signing.key &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; apt-key add -
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;更新一下让源生效&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;apt update
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;二、安装更新版本nginx&lt;/p&gt;
+&lt;p&gt;如果之前用apt命令安装了旧版本nginx,需要卸载掉才行&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;apt remove nginx-common
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;正式开始安装&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;apt install nginx
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;安装完成查看版本:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;nginx -v
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;会列出&lt;code&gt;Nginx&lt;/code&gt; &lt;code&gt;OpenSSL&lt;/code&gt;相关配置文件路径&amp;hellip;&lt;/p&gt;
+&lt;p&gt;查看nginx进程&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ps aux &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; grep nginx
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;pgrep nginx
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;安装好的文件位置：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/usr/sbin/nginx  &lt;span class=&#34;c1&#34;&gt;#主程序&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/etc/nginx  &lt;span class=&#34;c1&#34;&gt;#存放配置文件&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/usr/share/nginx  &lt;span class=&#34;c1&#34;&gt;#存放静态文件&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/var/log/nginx  &lt;span class=&#34;c1&#34;&gt;#存放日志&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/etc/nginx/nginx.conf  &lt;span class=&#34;c1&#34;&gt;#默认nginx配置文件&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Nginx控制命令：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;###启动&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;systemctl &lt;span class=&#34;nb&#34;&gt;enable&lt;/span&gt; nginx
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;###重启&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;systemctl restart nginx
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;###停止&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;systemctl stop nginx
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;###也可以使用&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/etc/init.d/nginx start &lt;span class=&#34;c1&#34;&gt;# 启动Nginx服务&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/etc/init.d/nginx stop &lt;span class=&#34;c1&#34;&gt;# 停止Nginx服务&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/etc/init.d/nginx  restart &lt;span class=&#34;c1&#34;&gt;# 重启Nginx服务&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;增加-nginx-虚拟主机&#34;&gt;增加 Nginx 虚拟主机&lt;/h1&gt;
+&lt;p&gt;检查&lt;code&gt;/etc/nginx/nginx.conf&lt;/code&gt;配置文件，确保文件中有：&lt;code&gt;include /etc/nginx/conf.d/*.conf;&lt;/code&gt; 默认已经有了的。&lt;/p&gt;</description>
     </item>
     <item>
       <title>Nginx使用官方工具Certbot配置申请Let’s Encrypt安全SSL证书详细教程</title>
       <link>https://567899.xyz/post/debian-ubuntu-nginx-certbot-lets-encrypt-ssl/</link>
       <pubDate>Wed, 21 Nov 2018 01:37:56 +0800</pubDate>
       <guid>https://567899.xyz/post/debian-ubuntu-nginx-certbot-lets-encrypt-ssl/</guid>
-      <description>获取Certbot客户端 apt update apt install openssl nginx certbot -y systemctl enable nginx systemctl start nginx 获取SSL证书 certbot certonly --webroot -w /var/www/example -d example.com -d www.example.com 这个命令会为example.com和www.example.com这两个域名生成一个证书，使用--webroot模式会在/var/www/example站点根目录中创建.well-known文件夹，这个文件夹里面包含了一些验证文件，certbot会通过访问example.com/.well-known/acme-challenge来验证你的域名是否绑定的这个服务器。
-SSL证书保存路径
-/etc/letsencrypt/live/example.com/fullchain.pem /etc/letsencrypt/live/example.com/privkey.pem 自动更新SSL证书 Let’s Encrypt提供的证书只有90天的有效期，certbot运行
-certbot renew 自动检查系统内的证书，并且自动更新这些证书。 我们也可以运行certbot renew --dry-run测试一下
-或添加一个cron计划19 4 * * 3 root certbot renew意为每周三的00:19执行定时更新SSL证书计划
-获取 Certbot 客户端 wget https://dl.eff.org/certbot-auto chmod a+x ./certbot-auto ./certbot-auto --help 配置 nginx 、验证域名所有权 在虚拟主机配置文件（ /etc/nginx/conf.d/xxx.com.conf ）中添加如下内容，这一步是为了通过 Let’s Encrypt 的验证，验证 linuxstory.org 这个域名是属于我的管理之下。（具体解释可见下一章“一些补充说明”的“ certbot 的两种工作方式”）
-location ^~ /.</description>
+      <description>&lt;h2 id=&#34;获取certbot客户端&#34;&gt;获取Certbot客户端&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;apt update
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;apt install openssl nginx certbot -y
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;systemctl &lt;span class=&#34;nb&#34;&gt;enable&lt;/span&gt; nginx
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;systemctl start nginx
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;获取ssl证书&#34;&gt;获取SSL证书&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;certbot certonly --webroot -w /var/www/example -d example.com -d www.example.com
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;这个命令会为&lt;code&gt;example.com&lt;/code&gt;和&lt;code&gt;www.example.com&lt;/code&gt;这两个域名生成一个证书，使用&lt;code&gt;--webroot&lt;/code&gt;模式会在&lt;code&gt;/var/www/example&lt;/code&gt;站点根目录中创建&lt;code&gt;.well-known&lt;/code&gt;文件夹，这个文件夹里面包含了一些验证文件，certbot会通过访问&lt;code&gt;example.com/.well-known/acme-challenge&lt;/code&gt;来验证你的域名是否绑定的这个服务器。&lt;/p&gt;
+&lt;p&gt;SSL证书保存路径&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/etc/letsencrypt/live/example.com/fullchain.pem
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/etc/letsencrypt/live/example.com/privkey.pem
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;自动更新ssl证书&#34;&gt;自动更新SSL证书&lt;/h2&gt;
+&lt;p&gt;Let’s Encrypt提供的证书只有90天的有效期，certbot运行&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;certbot renew
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;自动检查系统内的证书，并且自动更新这些证书。 我们也可以运行&lt;code&gt;certbot renew --dry-run&lt;/code&gt;测试一下&lt;/p&gt;
+&lt;p&gt;或添加一个&lt;code&gt;cron&lt;/code&gt;计划&lt;code&gt;19 4 * * 3 root certbot renew&lt;/code&gt;意为每周三的00:19执行定时更新SSL证书计划&lt;/p&gt;
+&lt;h2 id=&#34;获取-certbot-客户端&#34;&gt;获取 Certbot 客户端&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;wget https://dl.eff.org/certbot-auto
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;chmod a+x ./certbot-auto
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;./certbot-auto --help
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;配置-nginx-验证域名所有权&#34;&gt;配置 nginx 、验证域名所有权&lt;/h2&gt;
+&lt;p&gt;在虚拟主机配置文件（ /etc/nginx/conf.d/xxx.com.conf ）中添加如下内容，这一步是为了通过 Let’s Encrypt 的验证，验证 linuxstory.org 这个域名是属于我的管理之下。（具体解释可见下一章“一些补充说明”的“ certbot 的两种工作方式”）&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;location ^~ /.well-known/acme-challenge/ &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;   default_type &lt;span class=&#34;s2&#34;&gt;&amp;#34;text/plain&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;   root     /home/wwwroot/xxx.com/&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;location&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; /.well-known/acme-challenge/ &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;   &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; 404&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;code&gt;/home/wwwroot/xxx.com/&lt;/code&gt;是站点根目录路径
+&lt;code&gt;xxx.com&lt;/code&gt;替换成自己的域名&lt;/p&gt;</description>
     </item>
     <item>
       <title>Debian和Ubuntu安装最新的MySQL修改密码卸载清理</title>
       <link>https://567899.xyz/post/debian-ubuntu-install-mysql-uninstall/</link>
       <pubDate>Tue, 24 Jul 2018 01:37:56 +0800</pubDate>
       <guid>https://567899.xyz/post/debian-ubuntu-install-mysql-uninstall/</guid>
-      <description>Debian 9上安装最新的MySQL
-在Debian 9中，MySQL项目的社区分支MariaDB被打包为默认的MySQL变体。虽然MariaDB在大多数情况下运行良好，但如果您需要仅在Oracle的MySQL中找到的功能，则可以从MySQL开发人员维护的存储库中安装和使用软件包。
-安装MySQL 首先添加MySQL软件库
-MySQL开发人员提供了一个.deb包，用于处理配置和安装官方MySQL软件存储库。一旦设置了存储库，我们就可以使用Ubuntu的标准apt命令来安装该软件。我们将使用wget下载此.deb文件，然后使用该dpkg命令进行安装。
-首先，在Web浏览器中加载MySQL下载页面。找到右下角的“ 下载”按钮，然后单击下一页。此页面将提示您登录或注册Oracle Web帐户。我们可以跳过这一点，而是寻找说不用的链接，只需启动我的下载。右键单击该链接并选择“ 复制链接地址”（此选项的措辞可能不同，具体取决于您的浏览器）。
-现在我们要下载文件了。在您的服务器上，移动到您可以写入的目录。使用wget下载文件，记住粘贴刚刚复制的地址代替下面突出显示的部分：
-cd /tmp wget https://dev.mysql.com/get/mysql-apt-config_0.8.13-1_all.deb 该文件现在应该下载到我们当前的目录中ls列出文件以确保：
-您应该看到列出的文件名：
-mysql-apt-config_0.8.13-1_all.deb 现在我们准备安装：
-dpkg -i mysql-apt-config* dpkg将会被用于安装，删除和检查.deb软件包。该-i标志表示我们要从指定的文件安装。
-在安装过程中，您将看到一个配置屏幕，您可以在其中指定您喜欢的MySQL版本，以及为其他MySQL相关工具安装存储库的选项。默认值将添加最新稳定版MySQL的存储库信息，而不是其他任何内容。这就是我们想要的，所以使用向下箭头导航到Ok菜单选项并点击ENTER。
-该包现在将完成添加存储库。刷新apt包缓存以使新软件包可用：
-dpkg-reconfigure mysql-apt-config apt-get update 添加了存储库并使用我们的软件包缓存进行了新近更新
-安装MySQL
-我们现在可以使用apt安装最新的MySQL服务器软件包：
-apt install mysql-server 状态查询
-systemctl status mysql 修改MYSQL的初使密码 mysql -u root -p 用安装时设置的密码登陆
-use mysql 开始修改密码
-update user set authentication_string=password(&amp;#39;yournewpassword&amp;#39;) where user=&amp;#39;root&amp;#39;; 退出
-exit 经过我们修改MYSQL的初使密码后，方可以顺利登陆phpMyAdmin管理
-用SET PASSWORD命令
-mysql -u root mysql&amp;gt; SET PASSWORD FOR &amp;#39;root&amp;#39;@&amp;#39;localhost&amp;#39; = PASSWORD(&amp;#39;yournewpassword&amp;#39;); 如果报以下错误提示</description>
+      <description>&lt;p&gt;Debian 9上安装最新的MySQL&lt;/p&gt;
+&lt;p&gt;在Debian 9中，MySQL项目的社区分支MariaDB被打包为默认的MySQL变体。虽然MariaDB在大多数情况下运行良好，但如果您需要仅在Oracle的MySQL中找到的功能，则可以从MySQL开发人员维护的存储库中安装和使用软件包。&lt;/p&gt;
+&lt;h1 id=&#34;安装mysql&#34;&gt;安装MySQL&lt;/h1&gt;
+&lt;p&gt;首先添加MySQL软件库&lt;/p&gt;
+&lt;p&gt;MySQL开发人员提供了一个.deb包，用于处理配置和安装官方MySQL软件存储库。一旦设置了存储库，我们就可以使用Ubuntu的标准apt命令来安装该软件。我们将使用wget下载此.deb文件，然后使用该dpkg命令进行安装。&lt;/p&gt;
+&lt;p&gt;首先，在Web浏览器中加载&lt;a href=&#34;https://dev.mysql.com/downloads/repo/apt/&#34;&gt;MySQL下载页面&lt;/a&gt;。找到右下角的“ 下载”按钮，然后单击下一页。此页面将提示您登录或注册Oracle Web帐户。我们可以跳过这一点，而是寻找说不用的链接，只需启动我的下载。右键单击该链接并选择“ 复制链接地址”（此选项的措辞可能不同，具体取决于您的浏览器）。&lt;/p&gt;
+&lt;p&gt;现在我们要下载文件了。在您的服务器上，移动到您可以写入的目录。使用wget下载文件，记住粘贴刚刚复制的地址代替下面突出显示的部分：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; /tmp
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;wget https://dev.mysql.com/get/mysql-apt-config_0.8.13-1_all.deb
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;该文件现在应该下载到我们当前的目录中&lt;code&gt;ls&lt;/code&gt;列出文件以确保：&lt;/p&gt;
+&lt;p&gt;您应该看到列出的文件名：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;mysql-apt-config_0.8.13-1_all.deb
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;现在我们准备安装：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;dpkg -i mysql-apt-config*
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;dpkg将会被用于安装，删除和检查.deb软件包。该-i标志表示我们要从指定的文件安装。&lt;/p&gt;
+&lt;p&gt;在安装过程中，您将看到一个配置屏幕，您可以在其中指定您喜欢的MySQL版本，以及为其他MySQL相关工具安装存储库的选项。默认值将添加最新稳定版MySQL的存储库信息，而不是其他任何内容。这就是我们想要的，所以使用向下箭头导航到Ok菜单选项并点击ENTER。&lt;/p&gt;
+&lt;p&gt;该包现在将完成添加存储库。刷新apt包缓存以使新软件包可用：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;dpkg-reconfigure mysql-apt-config
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;apt-get update
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;添加了存储库并使用我们的软件包缓存进行了新近更新&lt;/p&gt;
+&lt;p&gt;安装MySQL&lt;/p&gt;
+&lt;p&gt;我们现在可以使用apt安装最新的MySQL服务器软件包：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;apt install mysql-server
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;状态查询&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;systemctl status mysql
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;修改mysql的初使密码&#34;&gt;修改MYSQL的初使密码&lt;/h1&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;mysql -u root -p
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;用安装时设置的密码登陆&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;use mysql
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;开始修改密码&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;update user &lt;span class=&#34;nb&#34;&gt;set&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;authentication_string&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;password&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;yournewpassword&amp;#39;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; where &lt;span class=&#34;nv&#34;&gt;user&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;root&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;退出&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;exit&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;经过我们修改MYSQL的初使密码后，方可以顺利登陆phpMyAdmin管理&lt;/p&gt;
+&lt;p&gt;用SET PASSWORD命令&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;mysql -u root
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;mysql&amp;gt; SET PASSWORD FOR &lt;span class=&#34;s1&#34;&gt;&amp;#39;root&amp;#39;&lt;/span&gt;@&lt;span class=&#34;s1&#34;&gt;&amp;#39;localhost&amp;#39;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; PASSWORD&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;yournewpassword&amp;#39;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;如果报以下错误提示&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &#39;SETPASSWORD = PASSWORD(&#39;123456&#39;)&#39; at line 1&lt;/code&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>Debian和Ubuntu安装php7.2</title>
       <link>https://567899.xyz/post/debian-ubuntu-install-php7.2/</link>
       <pubDate>Sat, 21 Jul 2018 01:37:56 +0800</pubDate>
       <guid>https://567899.xyz/post/debian-ubuntu-install-php7.2/</guid>
-      <description>适用系统：
-Ubuntu 16.04 LTS Ubuntu 14.04 LTS Debian 9 stretch Debian 8 jessie 安装 PHP Ond?ej Sury 的 PHP PPA 为 Ubuntu 16.04/14.04 提供了 PHP7.2 版本，同时也有通过个人网站为 Debian 9/8 提供 PHP7.2 版本，因此 Ubuntu 是源于 Debian 所以基本可以通用，同时维护难度较低，软件源安装的 PHP 默认以 Unix Socket 的状态运行在 /run/php/php7.1-fpm.sock，比使用 TCP 以 localhost:9000 的方式性能更好。
-添加软件源 Ubuntu安装软件源拓展工具：
-apt -y install software-properties-common apt-transport-https lsb-release ca-certificates 添加 Ond?ej Sury 的 PHP PPA 源，需要按一次回车：
-add-apt-repository ppa:ondrej/php 更新软件源缓存：
-apt update Debian安装软件源拓展工具：
-apt -y install software-properties-common apt-transport-https lsb-release ca-certificates 添加 GPG</description>
+      <description>&lt;p&gt;适用系统：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Ubuntu 16.04 LTS&lt;/li&gt;
+&lt;li&gt;Ubuntu 14.04 LTS&lt;/li&gt;
+&lt;li&gt;Debian 9 stretch&lt;/li&gt;
+&lt;li&gt;Debian 8 jessie&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;安装-php&#34;&gt;安装 PHP&lt;/h1&gt;
+&lt;p&gt;Ond?ej Sury 的 PHP PPA 为 Ubuntu 16.04/14.04 提供了 PHP7.2 版本，同时也有通过个人网站为 Debian 9/8 提供 PHP7.2 版本，因此 Ubuntu 是源于 Debian 所以基本可以通用，同时维护难度较低，软件源安装的 PHP 默认以 Unix Socket 的状态运行在 /run/php/php7.1-fpm.sock，比使用 TCP 以 localhost:9000 的方式性能更好。&lt;/p&gt;
+&lt;h1 id=&#34;添加软件源&#34;&gt;添加软件源&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Ubuntu安装软件源拓展工具：&lt;/p&gt;&lt;/blockquote&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;apt -y install software-properties-common apt-transport-https lsb-release ca-certificates
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;添加 Ond?ej Sury 的 PHP PPA 源，需要按一次回车：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;add-apt-repository ppa:ondrej/php
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;更新软件源缓存：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;apt update
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;Debian安装软件源拓展工具：&lt;/p&gt;&lt;/blockquote&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;apt -y install software-properties-common apt-transport-https lsb-release ca-certificates
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;添加 GPG&lt;/p&gt;</description>
     </item>
     <item>
       <title>Debian/Ubuntu系统手动更新内核并启用TCP BBR拥塞控制算法</title>
       <link>https://567899.xyz/post/debian-ubuntu-kernel-update-bbr/</link>
       <pubDate>Thu, 21 Dec 2017 01:37:56 +0800</pubDate>
       <guid>https://567899.xyz/post/debian-ubuntu-kernel-update-bbr/</guid>
-      <description>查看内核版本
-uname -r BBR要求内核为kernel4.9以上版本。
-如果大于或等于4.9的可以直接开启BBR,开启步骤如下
-配置文件
-echo &amp;#34;net.core.default_qdisc=fq&amp;#34; &amp;gt;&amp;gt; /etc/sysctl.conf echo &amp;#34;net.ipv4.tcp_congestion_control=bbr&amp;#34; &amp;gt;&amp;gt; /etc/sysctl.conf 加载配置到内核参数中
-sysctl -p sysctl net.ipv4.tcp_available_congestion_control 顺利的话下面的命令就能看到bbr模块了
-lsmod | grep bbr sysctl net.ipv4.tcp_available_congestion_control 返回值一般为：
-net.ipv4.tcp_available_congestion_control = bbr cubic reno sysctl net.ipv4.tcp_congestion_control 返回值一般为：
-net.ipv4.tcp_congestion_control = bbr sysctl net.core.default_qdisc 返回值一般为：
-net.core.default_qdisc = fq 如果内核版本低于4.9的需要手动升级到4.9或以上才能开启
-去这里下载最新版的内核 deb 安装包
-如果系统是 64 位，则下载 amd64 的 linux-image 中含有 generic 这个 deb 包； 如果系统是 32 位，则下载 i386 的 linux-image 中含有 generic 这个 deb 包； 安装的命令如下（以最新版的 64 位 4.</description>
+      <description>&lt;p&gt;查看内核版本&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;uname -r
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;BBR要求内核为kernel4.9以上版本。&lt;/p&gt;
+&lt;p&gt;如果大于或等于4.9的可以直接开启BBR,开启步骤如下&lt;/p&gt;
+&lt;p&gt;配置文件&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;net.core.default_qdisc=fq&amp;#34;&lt;/span&gt; &amp;gt;&amp;gt; /etc/sysctl.conf
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;net.ipv4.tcp_congestion_control=bbr&amp;#34;&lt;/span&gt; &amp;gt;&amp;gt; /etc/sysctl.conf
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;加载配置到内核参数中&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sysctl -p
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sysctl net.ipv4.tcp_available_congestion_control
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;顺利的话下面的命令就能看到bbr模块了&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;lsmod &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; grep bbr
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sysctl net.ipv4.tcp_available_congestion_control
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;返回值一般为：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;net.ipv4.tcp_available_congestion_control &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; bbr cubic reno
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sysctl net.ipv4.tcp_congestion_control
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;返回值一般为：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;net.ipv4.tcp_congestion_control &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; bbr
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sysctl net.core.default_qdisc
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;返回值一般为：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;net.core.default_qdisc &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; fq
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;如果内核版本低于4.9的需要手动升级到4.9或以上才能开启&lt;/p&gt;
+&lt;p&gt;去这里&lt;a href=&#34;https://kernel.ubuntu.com/~kernel-ppa/mainline/&#34;&gt;下载最新版的内核 deb 安装包&lt;/a&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;如果系统是 64 位，则下载 amd64 的 linux-image 中含有 generic 这个 deb 包；&lt;/li&gt;
+&lt;li&gt;如果系统是 32 位，则下载 i386 的 linux-image 中含有 generic 这个 deb 包；&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;安装的命令如下（以最新版的 64 位 4.12.4 举例而已，请替换为下载好的 deb 包）：&lt;/p&gt;</description>
     </item>
     <item>
       <title>在Debian、Ubuntu系统上为Python 2/3安装和使用Pip的方法</title>
       <link>https://567899.xyz/post/ubuntu-debian-install-python3-pin3-pip/</link>
       <pubDate>Mon, 19 Sep 2016 01:37:56 +0800</pubDate>
       <guid>https://567899.xyz/post/ubuntu-debian-install-python3-pin3-pip/</guid>
-      <description>为Python 3安装pip3 以具有sudo权限的非root用户身份执行以下步骤
-首先更新包列表：
-sudo apt update 使用以下命令为Python 3及其所有依赖项安装pip：
-sudo apt install python3-pip 查看pip3、Python版本以验证安装：
-pip3 --version python3 -V 版本号可能不同，但它看起来如下所示：
-pip 18.1 from /usr/lib/python3/dist-packages/pip (python 3.7) 为Python 2安装pip 以具有sudo权限的非root用户身份执行以下步骤
-首先更新包索引：
-sudo apt update 为Python 2及其所有依赖项安装pip：
-sudo apt install python-pip 通过输入以下命令来验证安装，该命令将打印pip版本：
-pip --version 版本号可能会有所不同，但它看起来像这样：
-pip 18.1 from /usr/lib/python2.7/dist-packages/pip (python 2.7) 安装软件
-pip install 软件包名 卸载包：
-pip uninstall package_name 从PyPI搜索包：
-pip search &amp;#34;search_query&amp;#34; 列出已安装的包：
-pip list 列出过时的包：
-pip list --outdated </description>
+      <description>&lt;h2 id=&#34;为python-3安装pip3&#34;&gt;为Python 3安装pip3&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;以具有sudo权限的非root用户身份执行&lt;/strong&gt;以下步骤&lt;/p&gt;
+&lt;p&gt;首先更新包列表：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo apt update
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;使用以下命令为Python 3及其所有依赖项安装pip：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo apt install python3-pip
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;查看pip3、Python版本以验证安装：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;pip3 --version
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;python3 -V
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;版本号可能不同，但它看起来如下所示：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;pip 18.1 from /usr/lib/python3/dist-packages/pip &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;python 3.7&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;为python-2安装pip&#34;&gt;为Python 2安装pip&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;以具有sudo权限的非root用户身份执行&lt;/strong&gt;以下步骤&lt;/p&gt;
+&lt;p&gt;首先更新包索引：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo apt update
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;为Python 2及其所有依赖项安装pip：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo apt install python-pip
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;通过输入以下命令来验证安装，该命令将打印pip版本：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;pip --version
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;版本号可能会有所不同，但它看起来像这样：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;pip 18.1 from /usr/lib/python2.7/dist-packages/pip &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;python 2.7&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;安装软件&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;pip install 软件包名
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;卸载包：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;pip uninstall package_name
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;从PyPI搜索包：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;pip search &lt;span class=&#34;s2&#34;&gt;&amp;#34;search_query&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;列出已安装的包：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;pip list
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;列出过时的包：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;pip list --outdated
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
     </item>
     <item>
       <title>Debian安装LXDE VNC桌面和Firefox浏览器</title>
       <link>https://567899.xyz/post/debian-lxde-vnc-firefox/</link>
       <pubDate>Sat, 23 May 2015 01:37:56 +0800</pubDate>
       <guid>https://567899.xyz/post/debian-lxde-vnc-firefox/</guid>
-      <description>LXDE桌面环境相对其它VNC更加节省资源，开始安装
-apt-get update apt-get install xorg lxde-core tightvncserver -y 启动VNC/输入设置密码
-tightvncserver :1 暂停VNC
-tightvncserver -kill :1 配置xstartup系统文件
-nano ~/.vnc/xstartup 然后在文件的最后添加下面的脚本代码
-lxterminal &amp;amp; /usr/bin/lxsession -s LXDE &amp;amp; 客户端下载 Download VNC Viewer 使用ip:5901登录
-如果vnc远程桌面 桌面空白,编辑文件~/.vnc/xstartup将里面的最后一行twn &amp;amp;改成gnome-session &amp;amp; (即可视化界面)
-安装Firefox浏览器
-apt-get install iceweasel -y Firefox浏览器文件下载路径在/tmp/mozilla_root0
-可以使用free -m查看内存使用情况
-LXDE桌面VNC和Firefox浏览器，安装完成后占用磁盘大概1GB左右。</description>
+      <description>&lt;p&gt;LXDE桌面环境相对其它VNC更加节省资源，开始安装&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;apt-get update
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;apt-get install xorg lxde-core tightvncserver -y
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;启动VNC/输入设置密码&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;tightvncserver :1
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;暂停VNC&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;tightvncserver -kill :1
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;配置xstartup系统文件&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;nano ~/.vnc/xstartup
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;然后在文件的最后添加下面的脚本代码&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;lxterminal &lt;span class=&#34;p&#34;&gt;&amp;amp;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/usr/bin/lxsession -s LXDE &lt;span class=&#34;p&#34;&gt;&amp;amp;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;客户端下载 &lt;a href=&#34;https://www.realvnc.com/en/connect/download/viewer/&#34;&gt;Download VNC Viewer&lt;/a&gt; 使用ip:5901登录&lt;/p&gt;
+&lt;p&gt;如果vnc远程桌面 桌面空白,编辑文件&lt;code&gt;~/.vnc/xstartup&lt;/code&gt;将里面的最后一行&lt;code&gt;twn &amp;amp;&lt;/code&gt;改成&lt;code&gt;gnome-session &amp;amp;&lt;/code&gt; (即可视化界面)&lt;/p&gt;
+&lt;p&gt;安装Firefox浏览器&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;apt-get install iceweasel -y
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Firefox浏览器文件下载路径在&lt;code&gt;/tmp/mozilla_root0&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;可以使用&lt;code&gt;free -m&lt;/code&gt;查看内存使用情况&lt;/p&gt;
+&lt;p&gt;LXDE桌面VNC和Firefox浏览器，安装完成后占用磁盘大概1GB左右。&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

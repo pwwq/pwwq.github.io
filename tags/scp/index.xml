@@ -9,7 +9,7 @@
       <url>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
-    <generator>Hugo -- 0.123.8</generator>
+    <generator>Hugo -- 0.144.2</generator>
     <language>zh</language>
     <lastBuildDate>Wed, 11 Apr 2018 01:37:56 +0800</lastBuildDate>
     <atom:link href="https://567899.xyz/tags/scp/index.xml" rel="self" type="application/rss+xml" />
@@ -18,9 +18,26 @@
       <link>https://567899.xyz/post/linux_ssh_scp_id_rsa/</link>
       <pubDate>Wed, 11 Apr 2018 01:37:56 +0800</pubDate>
       <guid>https://567899.xyz/post/linux_ssh_scp_id_rsa/</guid>
-      <description>生成密钥对 ssh-keygen id_rsa为私钥文件(保存在client) id_rsa.pub为公钥(用于追加到server的用户目录/.ssh/authorized_keys文件中) 下载数据 scp -i ~/.ssh/id_rsa -r root@server_ip:/var/www/ /var/www/ 上传数据 scp -i ~/.ssh/id_rsa -r /var/www/ root@server_ip:/var/www/ ssh登录 ssh user@host 其它 ssh使用RSA密钥对登录也是同理，service名称为sshd,配置文件为/etc/ssh/sshd_config
-chmod -R 700 ~/.ssh/ chmod 600 ~/.ssh/authorized_keys 指定端口 -P: 大写的P, 指定端口号
-scp -P 788 -i ~/.ssh/id_rsa -r /var/www/ root@server_ip:/var/www/ </description>
+      <description>&lt;h2 id=&#34;生成密钥对&#34;&gt;生成密钥对&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ssh-keygen
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;id_rsa&lt;/code&gt;为私钥文件(保存在client)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;id_rsa.pub&lt;/code&gt;为公钥(用于追加到server的用户目录&lt;code&gt;/.ssh/authorized_keys&lt;/code&gt;文件中)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;下载数据&#34;&gt;下载数据&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;scp -i ~/.ssh/id_rsa -r root@server_ip:/var/www/ /var/www/
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;上传数据&#34;&gt;上传数据&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;scp -i ~/.ssh/id_rsa -r /var/www/ root@server_ip:/var/www/
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;ssh登录&#34;&gt;ssh登录&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ssh user@host
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;其它&#34;&gt;其它&lt;/h2&gt;
+&lt;p&gt;ssh使用RSA密钥对登录也是同理，service名称为sshd,配置文件为&lt;code&gt;/etc/ssh/sshd_config&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;chmod -R &lt;span class=&#34;m&#34;&gt;700&lt;/span&gt; ~/.ssh/ 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;chmod &lt;span class=&#34;m&#34;&gt;600&lt;/span&gt; ~/.ssh/authorized_keys
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;指定端口&#34;&gt;指定端口&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;-P&lt;/code&gt;: 大写的P, 指定端口号&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;scp -P &lt;span class=&#34;m&#34;&gt;788&lt;/span&gt; -i ~/.ssh/id_rsa -r /var/www/ root@server_ip:/var/www/
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
     </item>
   </channel>
 </rss>

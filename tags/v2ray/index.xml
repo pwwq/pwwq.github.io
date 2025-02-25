@@ -9,7 +9,7 @@
       <url>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
-    <generator>Hugo -- 0.123.8</generator>
+    <generator>Hugo -- 0.144.2</generator>
     <language>zh</language>
     <lastBuildDate>Mon, 02 Sep 2024 17:40:38 +0000</lastBuildDate>
     <atom:link href="https://567899.xyz/tags/v2ray/index.xml" rel="self" type="application/rss+xml" />
@@ -18,58 +18,244 @@
       <link>https://567899.xyz/post/serv00/</link>
       <pubDate>Mon, 02 Sep 2024 17:40:38 +0000</pubDate>
       <guid>https://567899.xyz/post/serv00/</guid>
-      <description>Serv00.comRevolutionary Free Hosting
-提供免费的PHP,MYSQL,SMTP,PostgreSQL,MongoDB,可以SSH连接创建自己的应用,可以绑定域名,无广告。
-注册 注册Serv00 建议用gmail邮箱,不要用微软邮箱,因为就是提示成功它也收不到邮件.
-注册小技巧
-gmail邮箱可以无限别名,假设已经有一个yourname@gmail.com那么可以使用别名在用户名后面添加+或者.后面加其它随机字母数字,比如使用yourname+6dhj68kkm@gmail.com 或者 yourname.jdjjs64kpo@gmail.com 达到使用1个gmail邮箱来注册多个serv00账号,账号信息邮件在yourname@gmail.com接收。注册成功就能在邮件里面看到相关账号信息
-搭建 面板设置
-打开Additional services , Run your own applications 使状态 Status改为 Enabled开启 可最多3个端口号,在Port reservation,Add port中设置添加。 搭建hy2,tuic,vmess 提前在面板添加1个tcp端口给vmess使用,2个udp端口分别给tuic和hy2用
-https://github.com/yixiu001/serv00-singbox
-wget https://raw.githubusercontent.com/yixiu001/serv00-singbox/main/yixiu.sh chmod +x yixiu.sh 编辑yixiu.sh修改tcp与udp端口为面板对应添加的端口,修改uuid为自己的
-UUID在线生成或者命令行生成
-cat /proc/sys/kernel/random/uuid 然后创建screen窗口
-curl -O https://raw.githubusercontent.com/eooce/ssh_tool/main/index.js &amp;amp;&amp;amp; curl -O https://raw.githubusercontent.com/eooce/nodejs-argo/main/package.json &amp;amp;&amp;amp; npm install &amp;amp;&amp;amp; chmod +x index.js &amp;amp;&amp;amp; screen node index.js 再次执行
-./yixiu.sh 复制节点信息使用
-搭建vmess+argo 如果ip端口被xxx了,可套用cloudflare的argo,实现CDN减速
-https://github.com/eooce/scripts
-vmess-ws-tls(argo)一键脚本
-必填变量：PORT=TCP端口 可选变量：UUID NEZHA_SERVER NEZHA_PORT NEZHA_KEY CFIP CFPORT bash &amp;lt;(curl -Ls https://raw.</description>
+      <description>&lt;p&gt;&lt;a href=&#34;https://www.serv00.com/&#34;&gt;Serv00.com&lt;/a&gt;Revolutionary Free Hosting&lt;/p&gt;
+&lt;p&gt;提供免费的PHP,MYSQL,SMTP,PostgreSQL,MongoDB,可以SSH连接创建自己的应用,可以绑定域名,无广告。&lt;/p&gt;
+&lt;h2 id=&#34;注册&#34;&gt;注册&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.serv00.com/offer/create_new_account&#34;&gt;注册Serv00&lt;/a&gt; 建议用gmail邮箱,不要用微软邮箱,因为就是提示成功它也收不到邮件.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;注册小技巧&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;gmail邮箱可以无限别名,假设已经有一个yourname@gmail.com那么可以使用别名在用户名后面添加&lt;code&gt;+&lt;/code&gt;或者&lt;code&gt;.&lt;/code&gt;后面加其它随机字母数字,比如使用yourname+6dhj68kkm@gmail.com 或者  &lt;a href=&#34;mailto:yourname.jdjjs64kpo@gmail.com&#34;&gt;yourname.jdjjs64kpo@gmail.com&lt;/a&gt;  达到使用1个gmail邮箱来注册多个serv00账号,账号信息邮件在yourname@gmail.com接收。注册成功就能在邮件里面看到相关账号信息&lt;/p&gt;
+&lt;h2 id=&#34;搭建&#34;&gt;搭建&lt;/h2&gt;
+&lt;p&gt;面板设置&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;打开&lt;code&gt;Additional services&lt;/code&gt;  , &lt;code&gt;Run your own applications&lt;/code&gt;  使状态&lt;code&gt; Status&lt;/code&gt;改为
+&lt;code&gt;Enabled&lt;/code&gt;开启&lt;/li&gt;
+&lt;li&gt;可最多3个端口号,在&lt;code&gt;Port reservation&lt;/code&gt;,&lt;code&gt;Add port&lt;/code&gt;中设置添加。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;搭建hy2tuicvmess&#34;&gt;搭建hy2,tuic,vmess&lt;/h3&gt;
+&lt;p&gt;提前在面板添加1个tcp端口给vmess使用,2个udp端口分别给tuic和hy2用&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/yixiu001/serv00-singbox&#34;&gt;https://github.com/yixiu001/serv00-singbox&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;wget https://raw.githubusercontent.com/yixiu001/serv00-singbox/main/yixiu.sh
+chmod +x yixiu.sh
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;编辑&lt;code&gt;yixiu.sh&lt;/code&gt;修改tcp与udp端口为面板对应添加的端口,修改uuid为自己的&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://1024tools.com/uuid&#34;&gt;UUID在线生成&lt;/a&gt;或者命令行生成&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;cat /proc/sys/kernel/random/uuid
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;然后创建screen窗口&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;curl -O https://raw.githubusercontent.com/eooce/ssh_tool/main/index.js &amp;amp;&amp;amp; curl -O https://raw.githubusercontent.com/eooce/nodejs-argo/main/package.json &amp;amp;&amp;amp; npm install &amp;amp;&amp;amp; chmod +x index.js &amp;amp;&amp;amp; screen node index.js
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;再次执行&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;./yixiu.sh
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;复制节点信息使用&lt;/p&gt;
+&lt;h3 id=&#34;搭建vmessargo&#34;&gt;搭建vmess+argo&lt;/h3&gt;
+&lt;p&gt;如果ip端口被xxx了,可套用cloudflare的argo,实现CDN减速&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/eooce/scripts&#34;&gt;https://github.com/eooce/scripts&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;vmess-ws-tls(argo)一键脚本&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;必填变量：PORT=TCP端口&lt;/li&gt;
+&lt;li&gt;可选变量：UUID NEZHA_SERVER NEZHA_PORT NEZHA_KEY CFIP CFPORT&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;bash &amp;lt;(curl -Ls https://raw.githubusercontent.com/eooce/scripts/master/containers-shell/00_vmess.sh)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;修改&lt;code&gt;00_vmess.sh&lt;/code&gt;中的TCP端口,uuid,argo的token域名&lt;/p&gt;</description>
     </item>
     <item>
       <title>Hysteria2的安装、配置、使用</title>
       <link>https://567899.xyz/post/hysteria/</link>
       <pubDate>Tue, 12 Mar 2024 14:27:56 +0800</pubDate>
       <guid>https://567899.xyz/post/hysteria/</guid>
-      <description>Hysteria2是一个基于HTTP3的UDP协议代理。
-https://github.com/apernet/hysteria https://v2.hysteria.network/zh/ 安装 bash &amp;lt;(curl -fsSL https://get.hy2.sh/) 卸载
-bash &amp;lt;(curl -fsSL https://get.hy2.sh/) --remove 默认的配置文件/etc/hysteria/config.yaml内容如下
-# listen: :443 acme: domains: - your.domain.net email: your@email.com auth: type: password password: /dKigjv9qEJrQbJvm3RMtIGg masquerade: type: proxy proxy: url: https://news.ycombinator.com/ rewriteHost: true 在线生成密码
-配置Hysteria2 分二种情况，拥有域名、没有域名
-拥有域名 拥有域名的话，只需要提前把域名解析到服务器的IP地址上，替换your.domain.net为自己的域名。域名SSL证书通过acme全自动申请。
-sed -i &amp;#39;s/your.domain.net/自己的域名/&amp;#39; /etc/hysteria/config.yaml 自己的域名改为实际域名。
-若无域名，生成自签证书 openssl req -x509 -nodes -newkey ec:&amp;lt;(openssl ecparam -name prime256v1) -keyout /etc/hysteria/server.key -out /etc/hysteria/server.crt -subj &amp;#34;/CN=bing.com&amp;#34; -days 36500 &amp;amp;&amp;amp; chown hysteria /etc/hysteria/server.key &amp;amp;&amp;amp; chown hysteria /etc/hysteria/server.</description>
+      <description>&lt;p&gt;Hysteria2是一个基于HTTP3的UDP协议代理。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/apernet/hysteria&#34;&gt;https://github.com/apernet/hysteria&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://v2.hysteria.network/zh/&#34;&gt;https://v2.hysteria.network/zh/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;安装&#34;&gt;安装&lt;/h2&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;bash &amp;lt;(curl -fsSL https://get.hy2.sh/)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;卸载&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;bash &amp;lt;(curl -fsSL https://get.hy2.sh/) --remove
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;默认的配置文件&lt;code&gt;/etc/hysteria/config.yaml&lt;/code&gt;内容如下&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c&#34;&gt;# listen: :443&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;acme&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;domains&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;- &lt;span class=&#34;l&#34;&gt;your.domain.net&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;email&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;your@email.com&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;auth&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;type&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;password&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;password&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;/dKigjv9qEJrQbJvm3RMtIGg&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;masquerade&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;type&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;proxy&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;proxy&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;url&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;https://news.ycombinator.com/&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;rewriteHost&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kc&#34;&gt;true&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;a href=&#34;https://1password.com/zh-cn/password-generator/&#34;&gt;在线生成密码&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;配置hysteria2&#34;&gt;配置Hysteria2&lt;/h2&gt;
+&lt;p&gt;分二种情况，拥有域名、没有域名&lt;/p&gt;
+&lt;h3 id=&#34;拥有域名&#34;&gt;拥有域名&lt;/h3&gt;
+&lt;p&gt;拥有域名的话，只需要提前把域名解析到服务器的IP地址上，替换&lt;code&gt;your.domain.net&lt;/code&gt;为自己的域名。域名SSL证书通过acme全自动申请。&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;sed -i &amp;#39;s/your.domain.net/自己的域名/&amp;#39; /etc/hysteria/config.yaml
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;code&gt;自己的域名&lt;/code&gt;改为实际域名。&lt;/p&gt;
+&lt;h3 id=&#34;若无域名生成自签证书&#34;&gt;若无域名，生成自签证书&lt;/h3&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;openssl req -x509 -nodes -newkey ec:&amp;lt;(openssl ecparam -name prime256v1) -keyout /etc/hysteria/server.key -out /etc/hysteria/server.crt -subj &amp;#34;/CN=bing.com&amp;#34; -days 36500 &amp;amp;&amp;amp; chown hysteria /etc/hysteria/server.key &amp;amp;&amp;amp; chown hysteria /etc/hysteria/server.crt
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;修改配置文件&lt;code&gt;/etc/hysteria/config.yaml&lt;/code&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>联通电信移动V2ray免流host http教程</title>
       <link>https://567899.xyz/post/v2ray-http/</link>
       <pubDate>Fri, 09 Sep 2022 09:37:56 +0800</pubDate>
       <guid>https://567899.xyz/post/v2ray-http/</guid>
-      <description>V2ray服务端的搭建配置 bash &amp;lt;(curl -L https://raw.githubusercontent.com/XTLS/Xray-install/main/install-release.sh) 免流的方案采用Vadminss协议+TCP+HTTP，编辑配置文件/usr/local/etc/xray/config.json，
-nano /usr/local/etc/xray/config.json 完整配置示范如下
-{ &amp;#34;inbounds&amp;#34;: [ { &amp;#34;port&amp;#34;: 80, &amp;#34;protocol&amp;#34;: &amp;#34;vmess&amp;#34;, &amp;#34;settings&amp;#34;: { &amp;#34;clients&amp;#34;: [ { &amp;#34;id&amp;#34;: &amp;#34;这里填写你的UUID&amp;#34; } ] }, &amp;#34;streamSettings&amp;#34;: { &amp;#34;network&amp;#34;: &amp;#34;tcp&amp;#34;, &amp;#34;tcpSettings&amp;#34;: { &amp;#34;header&amp;#34;: { &amp;#34;type&amp;#34;: &amp;#34;http&amp;#34;, &amp;#34;response&amp;#34;: { &amp;#34;version&amp;#34;: &amp;#34;1.1&amp;#34;, &amp;#34;status&amp;#34;: &amp;#34;200&amp;#34;, &amp;#34;reason&amp;#34;: &amp;#34;OK&amp;#34;, &amp;#34;headers&amp;#34;: { &amp;#34;Content-Type&amp;#34;: [&amp;#34;application/octet-stream&amp;#34;, &amp;#34;video/mpeg&amp;#34;], &amp;#34;Transfer-Encoding&amp;#34;: [&amp;#34;chunked&amp;#34;], &amp;#34;Connection&amp;#34;: [&amp;#34;keep-alive&amp;#34;], &amp;#34;Pragma&amp;#34;: &amp;#34;no-cache&amp;#34; } } } } } } ], &amp;#34;outbounds&amp;#34;: [ { &amp;#34;protocol&amp;#34;: &amp;#34;freedom&amp;#34; } ] } 可以通过命令cat /proc/sys/kernel/random/uuid随机生成</description>
+      <description>&lt;h2 id=&#34;v2ray服务端的搭建配置&#34;&gt;V2ray服务端的搭建配置&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;bash &amp;lt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;curl -L https://raw.githubusercontent.com/XTLS/Xray-install/main/install-release.sh&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;免流的方案采用Vadminss协议+TCP+HTTP，编辑配置文件&lt;code&gt;/usr/local/etc/xray/config.json&lt;/code&gt;，&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;nano /usr/local/etc/xray/config.json
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;完整配置示范如下&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;s2&#34;&gt;&amp;#34;inbounds&amp;#34;&lt;/span&gt;: &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;s2&#34;&gt;&amp;#34;port&amp;#34;&lt;/span&gt;: 80,
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;s2&#34;&gt;&amp;#34;protocol&amp;#34;&lt;/span&gt;: &lt;span class=&#34;s2&#34;&gt;&amp;#34;vmess&amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;s2&#34;&gt;&amp;#34;settings&amp;#34;&lt;/span&gt;: &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                &lt;span class=&#34;s2&#34;&gt;&amp;#34;clients&amp;#34;&lt;/span&gt;: &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                    &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                        &lt;span class=&#34;s2&#34;&gt;&amp;#34;id&amp;#34;&lt;/span&gt;: &lt;span class=&#34;s2&#34;&gt;&amp;#34;这里填写你的UUID&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                    &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                &lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;s2&#34;&gt;&amp;#34;streamSettings&amp;#34;&lt;/span&gt;: &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                &lt;span class=&#34;s2&#34;&gt;&amp;#34;network&amp;#34;&lt;/span&gt;: &lt;span class=&#34;s2&#34;&gt;&amp;#34;tcp&amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                &lt;span class=&#34;s2&#34;&gt;&amp;#34;tcpSettings&amp;#34;&lt;/span&gt;: &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                    &lt;span class=&#34;s2&#34;&gt;&amp;#34;header&amp;#34;&lt;/span&gt;: &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                        &lt;span class=&#34;s2&#34;&gt;&amp;#34;type&amp;#34;&lt;/span&gt;: &lt;span class=&#34;s2&#34;&gt;&amp;#34;http&amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                        &lt;span class=&#34;s2&#34;&gt;&amp;#34;response&amp;#34;&lt;/span&gt;: &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                            &lt;span class=&#34;s2&#34;&gt;&amp;#34;version&amp;#34;&lt;/span&gt;: &lt;span class=&#34;s2&#34;&gt;&amp;#34;1.1&amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                            &lt;span class=&#34;s2&#34;&gt;&amp;#34;status&amp;#34;&lt;/span&gt;: &lt;span class=&#34;s2&#34;&gt;&amp;#34;200&amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                            &lt;span class=&#34;s2&#34;&gt;&amp;#34;reason&amp;#34;&lt;/span&gt;: &lt;span class=&#34;s2&#34;&gt;&amp;#34;OK&amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                            &lt;span class=&#34;s2&#34;&gt;&amp;#34;headers&amp;#34;&lt;/span&gt;: &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                                &lt;span class=&#34;s2&#34;&gt;&amp;#34;Content-Type&amp;#34;&lt;/span&gt;: &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;application/octet-stream&amp;#34;&lt;/span&gt;, &lt;span class=&#34;s2&#34;&gt;&amp;#34;video/mpeg&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                                &lt;span class=&#34;s2&#34;&gt;&amp;#34;Transfer-Encoding&amp;#34;&lt;/span&gt;: &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;chunked&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                                &lt;span class=&#34;s2&#34;&gt;&amp;#34;Connection&amp;#34;&lt;/span&gt;: &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;keep-alive&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                                &lt;span class=&#34;s2&#34;&gt;&amp;#34;Pragma&amp;#34;&lt;/span&gt;: &lt;span class=&#34;s2&#34;&gt;&amp;#34;no-cache&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                            &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                        &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                    &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;s2&#34;&gt;&amp;#34;outbounds&amp;#34;&lt;/span&gt;: &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;s2&#34;&gt;&amp;#34;protocol&amp;#34;&lt;/span&gt;: &lt;span class=&#34;s2&#34;&gt;&amp;#34;freedom&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;可以通过命令&lt;code&gt;cat /proc/sys/kernel/random/uuid&lt;/code&gt;随机生成&lt;/p&gt;
+&lt;p&gt;ws配置如下&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;s2&#34;&gt;&amp;#34;inbounds&amp;#34;&lt;/span&gt;: &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;s2&#34;&gt;&amp;#34;port&amp;#34;&lt;/span&gt;: 8080,
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;s2&#34;&gt;&amp;#34;protocol&amp;#34;&lt;/span&gt;: &lt;span class=&#34;s2&#34;&gt;&amp;#34;vmess&amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;s2&#34;&gt;&amp;#34;settings&amp;#34;&lt;/span&gt;: &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;s2&#34;&gt;&amp;#34;clients&amp;#34;&lt;/span&gt;: &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;          &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;s2&#34;&gt;&amp;#34;id&amp;#34;&lt;/span&gt;: &lt;span class=&#34;s2&#34;&gt;&amp;#34;这里填写你的UUID&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;          &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;s2&#34;&gt;&amp;#34;streamSettings&amp;#34;&lt;/span&gt;: &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;s2&#34;&gt;&amp;#34;network&amp;#34;&lt;/span&gt;: &lt;span class=&#34;s2&#34;&gt;&amp;#34;ws&amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;s2&#34;&gt;&amp;#34;wsSettings&amp;#34;&lt;/span&gt;: &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;s2&#34;&gt;&amp;#34;path&amp;#34;&lt;/span&gt;: &lt;span class=&#34;s2&#34;&gt;&amp;#34;/ray&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;s2&#34;&gt;&amp;#34;outbounds&amp;#34;&lt;/span&gt;: &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;s2&#34;&gt;&amp;#34;protocol&amp;#34;&lt;/span&gt;: &lt;span class=&#34;s2&#34;&gt;&amp;#34;freedom&amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;s2&#34;&gt;&amp;#34;settings&amp;#34;&lt;/span&gt;: &lt;span class=&#34;o&#34;&gt;{}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;管理启动V2ray&lt;/p&gt;</description>
     </item>
     <item>
       <title>V2ray安装配置Vadminss、VLESS、XTLS教程</title>
       <link>https://567899.xyz/post/v2ray/</link>
       <pubDate>Mon, 28 Sep 2020 01:37:56 +0800</pubDate>
       <guid>https://567899.xyz/post/v2ray/</guid>
-      <description>近期更新重点
-V2Ray v4.27.0+新增支持VLESS新协议 V2Ray v4.29.0+新增支持XTLS新协议 Vadminss AEAD will be used when alterId is 0 in V2Ray v4.28.0+ 安装脚本放废弃go.sh改用install-realese.sh V2Ray v4.33.0移除了XTLS，建议使用V2Ray v4.32.1 详情参考
-https://v2ray.com/ https://github.com/v2ray/v2ray-core https://toutyrater.github.io/ https://guide.v2fly.org/ https://github.com/veekxt/v2ray-template https://github.com/v2fly/v2ray-examples https://www.v2fly.org/ https://github.com/rprx/v2ray-vless https://github.com/v2fly/v2ray-core https://github.com/XTLS/Xray-core 排名不分先后顺序 致敬开发者们的无私奉献
-xray https://github.com/XTLS/Xray-core
-Install &amp;amp; Upgrade Xray-core and .dat files bash &amp;lt;(curl -L https://raw.githubusercontent.com/XTLS/Xray-install/main/install-release.sh) Update geoip.dat and geosite.dat only bash &amp;lt;(curl -L https://raw.githubusercontent.com/XTLS/Xray-install/main/install-dat-release.sh) Remove Xray, except json and logs bash &amp;lt;(curl -L https://raw.githubusercontent.com/XTLS/Xray-install/main/install-release.sh) --remove 成功安装后会提示如下
-# /etc/systemd/system/xray.service [Unit] Description=Xray Service Documentation=https://github.</description>
+      <description>&lt;p&gt;近期更新重点&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;V2Ray v4.27.0+新增支持VLESS新协议&lt;/li&gt;
+&lt;li&gt;V2Ray v4.29.0+新增支持XTLS新协议&lt;/li&gt;
+&lt;li&gt;Vadminss AEAD will be used when alterId is 0 in V2Ray v4.28.0+&lt;/li&gt;
+&lt;li&gt;安装脚本放废弃&lt;code&gt;go.sh&lt;/code&gt;改用&lt;code&gt;install-realese.sh&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;V2Ray v4.33.0移除了XTLS，建议使用V2Ray v4.32.1&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;详情参考&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;https://v2ray.com/&#34;&gt;https://v2ray.com/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/v2ray/v2ray-core&#34;&gt;https://github.com/v2ray/v2ray-core&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://toutyrater.github.io/&#34;&gt;https://toutyrater.github.io/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://guide.v2fly.org/&#34;&gt;https://guide.v2fly.org/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/veekxt/v2ray-template&#34;&gt;https://github.com/veekxt/v2ray-template&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/v2fly/v2ray-examples&#34;&gt;https://github.com/v2fly/v2ray-examples&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.v2fly.org/&#34;&gt;https://www.v2fly.org/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/rprx/v2ray-vless&#34;&gt;https://github.com/rprx/v2ray-vless&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/v2fly/v2ray-core&#34;&gt;https://github.com/v2fly/v2ray-core&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/XTLS/Xray-core&#34;&gt;https://github.com/XTLS/Xray-core&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;排名不分先后顺序 致敬开发者们的无私奉献&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;xray&#34;&gt;xray&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/XTLS/Xray-core&#34;&gt;https://github.com/XTLS/Xray-core&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;h3 id=&#34;install--upgrade-xray-core-and-dat-files&#34;&gt;Install &amp;amp; Upgrade Xray-core and .dat files&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;bash &amp;lt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;curl -L https://raw.githubusercontent.com/XTLS/Xray-install/main/install-release.sh&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;update-geoipdat-and-geositedat-only&#34;&gt;Update geoip.dat and geosite.dat only&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;bash &amp;lt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;curl -L https://raw.githubusercontent.com/XTLS/Xray-install/main/install-dat-release.sh&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;remove-xray-except-json-and-logs&#34;&gt;Remove Xray, except json and logs&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;bash &amp;lt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;curl -L https://raw.githubusercontent.com/XTLS/Xray-install/main/install-release.sh&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; --remove
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;成功安装后会提示如下&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# /etc/systemd/system/xray.service&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;Unit&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;Description&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;Xray Service
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;Documentation&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;https://github.com/xtls
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;After&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;network.target nss-lookup.target
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;Service&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;User&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;nobody
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;CapabilityBoundingSet&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;CAP_NET_ADMIN CAP_NET_BIND_SERVICE
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;AmbientCapabilities&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;CAP_NET_ADMIN CAP_NET_BIND_SERVICE
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;NoNewPrivileges&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;true&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;ExecStart&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;/usr/local/bin/xray run -config /usr/local/etc/xray/config.json
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;Restart&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;on-failure
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;RestartPreventExitStatus&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;23&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;Install&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;WantedBy&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;multi-user.target
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# /etc/systemd/system/xray.service.d/10-donot_touch_single_conf.conf&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# In case you have a good reason to do so, duplicate this file in the same directory and make your customizes there.&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Or all changes you made will be lost!  # Refer: https://www.freedesktop.org/software/systemd/man/systemd.unit.html&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;Service&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;ExecStart&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;ExecStart&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;/usr/local/bin/xray run -config /usr/local/etc/xray/config.json
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;installed: /usr/local/bin/xray
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;installed: /usr/local/share/xray/geoip.dat
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;installed: /usr/local/share/xray/geosite.dat
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;installed: /usr/local/etc/xray/config.json
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;installed: /var/log/xray/
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;installed: /var/log/xray/access.log
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;installed: /var/log/xray/error.log
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;installed: /etc/systemd/system/xray.service
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;installed: /etc/systemd/system/xray@.service
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;removed: /tmp/tmp.S3mHoPXvIj
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;info: Xray v1.1.2 is installed.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;You may need to execute a &lt;span class=&#34;nb&#34;&gt;command&lt;/span&gt; to remove dependent software: apt purge curl unzip
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Please execute the command: systemctl &lt;span class=&#34;nb&#34;&gt;enable&lt;/span&gt; xray&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; systemctl start xray
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;解决SSL证书权限不足&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

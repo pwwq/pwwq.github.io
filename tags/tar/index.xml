@@ -9,7 +9,7 @@
       <url>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
-    <generator>Hugo -- 0.123.8</generator>
+    <generator>Hugo -- 0.144.2</generator>
     <language>zh</language>
     <lastBuildDate>Sun, 01 Oct 2017 01:37:56 +0800</lastBuildDate>
     <atom:link href="https://567899.xyz/tags/tar/index.xml" rel="self" type="application/rss+xml" />
@@ -18,22 +18,46 @@
       <link>https://567899.xyz/post/linux-tar-unzip-p7zip-unrar-password/</link>
       <pubDate>Sun, 01 Oct 2017 01:37:56 +0800</pubDate>
       <guid>https://567899.xyz/post/linux-tar-unzip-p7zip-unrar-password/</guid>
-      <description>tar压缩 压缩多个文件或者文件夹的命令
-tar -czvf a.tar.gz(想压缩文件名) 源文件名1 源文件名2 源文件夹1 源文件夹2 参数：
-c创建一个压缩文件，如果只使用这个参数，不使用 z 参数，那么只会打包，不会压缩 x解开一个压缩文件 z是否使用 gzip 压缩或解压 j是否使用 bzip2 压缩或解压 v显示详细信息 f指定压缩后的文件名，后面要直接跟文件名，所以将 f 参数放到最后 举几个例子：
-将a文件夹打包成a.tar但是不压缩
-tar cvf a.tar arg 将a文件夹打包成a.tar.gz并使用 gzip 压缩
-tar czvf a.tar.gz arg 将a文件夹打包成a.tar.gz并使用bzip2压缩
-tar cjvf a.tar.bz2 arg tar解压 Linux下常见的压缩包格式有5种:zip tar.gz tar.bz2 tar.xz tar.Z
-其中tar是种打包格式,gz和bz2等后缀才是指代压缩方式:gzip和bzip2
-filename.zip的解压:
-unzip filename.zip filename.tar.gz的解压:
-tar -zxvf filename.tar.gz 其中zxvf含义分别如下
-zgzip压缩格式 xextract解压 vverbose详细信息 ffile(file=archieve)文件 filename.tar.bz2的解压:
-tar -jxvf filename.tar.bz2 j指bzip2压缩格式
-其它选项和tar.gz解压含义相同
-filename.tar.xz的解压:
-tar -Jxvf filename.</description>
+      <description>&lt;h2 id=&#34;tar压缩&#34;&gt;tar压缩&lt;/h2&gt;
+&lt;p&gt;压缩多个文件或者文件夹的命令&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;tar -czvf a.tar.gz&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;想压缩文件名&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; 源文件名1 源文件名2 源文件夹1 源文件夹2
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;参数：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;c&lt;/code&gt;创建一个压缩文件，如果只使用这个参数，不使用 z 参数，那么只会打包，不会压缩&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;x&lt;/code&gt;解开一个压缩文件&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;z&lt;/code&gt;是否使用 gzip 压缩或解压&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;j&lt;/code&gt;是否使用 bzip2 压缩或解压&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;v&lt;/code&gt;显示详细信息&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;f&lt;/code&gt;指定压缩后的文件名，后面要直接跟文件名，所以将 f 参数放到最后&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;举几个例子：&lt;/p&gt;
+&lt;p&gt;将a文件夹打包成a.tar但是不压缩&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;tar cvf a.tar arg
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;将a文件夹打包成a.tar.gz并使用 gzip 压缩&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;tar czvf a.tar.gz arg
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;将a文件夹打包成a.tar.gz并使用bzip2压缩&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;tar cjvf a.tar.bz2 arg
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;tar解压&#34;&gt;tar解压&lt;/h2&gt;
+&lt;p&gt;Linux下常见的压缩包格式有5种:zip tar.gz tar.bz2 tar.xz tar.Z&lt;/p&gt;
+&lt;p&gt;其中tar是种打包格式,gz和bz2等后缀才是指代压缩方式:gzip和bzip2&lt;/p&gt;
+&lt;p&gt;filename.zip的解压:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;unzip filename.zip
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;filename.tar.gz的解压:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;tar -zxvf filename.tar.gz
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;其中zxvf含义分别如下&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;z&lt;/code&gt;gzip压缩格式&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;x&lt;/code&gt;extract解压&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;v&lt;/code&gt;verbose详细信息&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;f&lt;/code&gt;file(file=archieve)文件&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;filename.tar.bz2的解压:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;tar -jxvf filename.tar.bz2
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;code&gt;j&lt;/code&gt;指bzip2压缩格式&lt;/p&gt;
+&lt;p&gt;其它选项和tar.gz解压含义相同&lt;/p&gt;
+&lt;p&gt;filename.tar.xz的解压:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;tar -Jxvf filename.tar.xz
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;注意&lt;code&gt;J&lt;/code&gt;大写&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>
