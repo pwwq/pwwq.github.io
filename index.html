@@ -27,7 +27,19 @@ Python 3.7.4 64-bit 、 Python 3.8.1
 下载folderclone源码并解压，比如我的放置在E:\folderclone-master
 以管理员身份运行 cmd或Windows PowerShell执行,且确保本地cmd或Windows PowerShell稳定的外网环境。
 # 进入folderclone解压根目录 cd E:\folderclone-master pip install folderclone 第二步 开启Drive API服务 打开登陆Python Quickstart 点击Enable the Drive API
-...</p></div><footer class=entry-footer><span title='2020-02-11 01:37:56 +0800 +0800'>二月 11, 2020</span>&nbsp;·&nbsp;admin</footer><a class=entry-link aria-label="post link to [更新]Folderclone谷歌Google Drive共享云端硬盘转存相互转移拷贝复制文件的正确姿势" href=https://567899.xyz/post/google_drive_folderclone/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>搭建CNS服务器</h2></header><div class=entry-content><p>https://github.com/mmmdbybyd/CNS
+...</p></div><footer class=entry-footer><span title='2020-02-11 01:37:56 +0800 +0800'>二月 11, 2020</span>&nbsp;·&nbsp;admin</footer><a class=entry-link aria-label="post link to [更新]Folderclone谷歌Google Drive共享云端硬盘转存相互转移拷贝复制文件的正确姿势" href=https://567899.xyz/post/google_drive_folderclone/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>自建RustDesk远程桌面服务</h2></header><div class=entry-content><p>https://rustdesk.com/ https://github.com/rustdesk 打开防火墙配置，放行以下端口：
+21115 TCP 21116 TCP & UDP 21117 TCP 21118 TCP 21119 TCP 从Releases · rustdesk/rustdesk-server · GitHub选择合适的版本下载
+wget https://github.com/rustdesk/rustdesk-server/releases/download/1.1.14/rustdesk-server-linux-amd64.zip 解压后重命名文件目录为rustdesk方便日后维护记忆，进入rustdesk目录下
+unzip unzip rustdesk-server-linux-amd64.zip mv amd64 rustdesk cd rustdesk 进入rustdesk目录后我们能看到公钥文件id_ed25519.pub查看命令
+cat /root/rustdesk/id_ed25519.pub 运行中继服务器
+./hbbr -k _ 注册服务器
+./hbbs -k _ 以上2个服务需要后台运行，为了方便,使用systemd将运行RustDesk服务器配置为系统服务
+创建RustDeskHbbs.service服务文件
+nano /etc/systemd/system/RustDeskHbbs.service 内容如下
+[Unit] Description=RustDesk Hbbs After=network.target [Service] User=root Type=simple WorkingDirectory=/root/rustdesk ExecStart=/root/rustdesk/hbbs -k _ ExecStop=/bin/kill -TERM $MAINPID Restart=on-failure [Install] WantedBy=multi-user.target 创建RustDeskHbbr.service服务文件
+nano /etc/systemd/system/RustDeskHbbr.service 内容如下
+[Unit] Description=RustDesk Hbbr After=network.target [Service] User=root Type=simple WorkingDirectory=/root/rustdesk ExecStart=/root/rustdesk/hbbr -k _ ExecStop=/bin/kill -TERM $MAINPID Restart=on-failure [Install] WantedBy=multi-user.target 设置开机自动启动
+...</p></div><footer class=entry-footer><span title='2025-03-09 13:45:52 +0800 +0800'>三月 9, 2025</span>&nbsp;·&nbsp;admin</footer><a class=entry-link aria-label="post link to 自建RustDesk远程桌面服务" href=https://567899.xyz/post/rustdesk/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>搭建CNS服务器</h2></header><div class=entry-content><p>https://github.com/mmmdbybyd/CNS
 一键搭建cns
 安装
 wget http://binary.quicknet.cyou/cns/cns.sh && chmod +x cns.sh && ./cns.sh 卸载
@@ -110,12 +122,7 @@ cloudflared service uninstall 授权 Cloudflare 隧道
 cloudflared tunnel login 复制网址、在浏览器中打开并登录CloudFlare账号，选中域名并授权；
 接下来就可以在网页端管理配置
 回到网页，依次进入【Networks】【Tunnels】【创建的隧道名称】右侧3点，【Configure】新增、编辑【Public Hostname】和【Private Network】
-不需要手掇配置文件</p></div><footer class=entry-footer><span title='2024-02-22 15:43:18 +0800 +0800'>二月 22, 2024</span>&nbsp;·&nbsp;admin</footer><a class=entry-link aria-label="post link to Cloudflare Tunnel免费内网穿透使用教程" href=https://567899.xyz/post/cloudflare-tunnel/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>安卓隐藏root权限</h2></header><div class=entry-content><p>Kitsune Magisk
-https://github.com/HuskyDG/magisk-files https://huskydg.github.io/magisk-files/ Magisk 安装Shamiko模块对软件隐藏Root权限，但是效果不是很好，比如过不了【数字人民币】、【反诈中心】APP，目前隐藏root权限效果出色的是KernelSU,但是KernelSU门槛较高，要编译安卓kernel内核,可使用修改版使用APatch
-德尔塔面具kitsune mask是Magisk修改改进版，在隐藏root这方面比原版Magisk好，其它功能、使用上差不多。
-同样是kernel内核级root,但KernelSU使用的是GKI,APatch使用的是init.
-万豪旅享家在kernelsu能过，但APatch会闪退。
-截止目前，使用APatch或kitsune mask能有效隐藏root，日后可能会升级到检测bootloader解锁状态。</p></div><footer class=entry-footer><span title='2024-01-23 09:44:51 +0800 +0800'>一月 23, 2024</span>&nbsp;·&nbsp;admin</footer><a class=entry-link aria-label="post link to 安卓隐藏root权限" href=https://567899.xyz/post/android-root/></a></article><footer class=page-footer><nav class=pagination><a class=next href=https://567899.xyz/page/2/>下一页&nbsp;&nbsp;»</a></nav></footer></main><footer class=footer><span>&copy; 2025 <a href=https://567899.xyz/>Xizi's Blog</a></span> ·
+不需要手掇配置文件</p></div><footer class=entry-footer><span title='2024-02-22 15:43:18 +0800 +0800'>二月 22, 2024</span>&nbsp;·&nbsp;admin</footer><a class=entry-link aria-label="post link to Cloudflare Tunnel免费内网穿透使用教程" href=https://567899.xyz/post/cloudflare-tunnel/></a></article><footer class=page-footer><nav class=pagination><a class=next href=https://567899.xyz/page/2/>下一页&nbsp;&nbsp;»</a></nav></footer></main><footer class=footer><span>&copy; 2025 <a href=https://567899.xyz/>Xizi's Blog</a></span> ·
 <span>Powered by
 <a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
         <a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg>

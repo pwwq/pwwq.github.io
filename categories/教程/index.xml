@@ -11,7 +11,7 @@
     </image>
     <generator>Hugo -- 0.145.0</generator>
     <language>zh</language>
-    <lastBuildDate>Tue, 02 Jan 2024 13:27:16 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 09 Mar 2025 13:45:52 +0800</lastBuildDate>
     <atom:link href="https://567899.xyz/categories/%E6%95%99%E7%A8%8B/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>[更新]Folderclone谷歌Google Drive共享云端硬盘转存相互转移拷贝复制文件的正确姿势</title>
@@ -63,6 +63,72 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;pip install folderclone
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;第二步-开启drive-api服务&#34;&gt;第二步 开启Drive API服务&lt;/h2&gt;
 &lt;p&gt;打开登陆&lt;a href=&#34;https://developers.google.com/drive/api/v3/quickstart/python&#34;&gt;Python Quickstart&lt;/a&gt;  点击&lt;code&gt;Enable the Drive API&lt;/code&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>自建RustDesk远程桌面服务</title>
+      <link>https://567899.xyz/post/rustdesk/</link>
+      <pubDate>Sun, 09 Mar 2025 13:45:52 +0800</pubDate>
+      <guid>https://567899.xyz/post/rustdesk/</guid>
+      <description>&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;https://rustdesk.com/&#34;&gt;https://rustdesk.com/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/rustdesk&#34;&gt;https://github.com/rustdesk&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;打开防火墙配置，放行以下端口：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;21115 TCP&lt;/li&gt;
+&lt;li&gt;21116 TCP &amp;amp; UDP&lt;/li&gt;
+&lt;li&gt;21117 TCP&lt;/li&gt;
+&lt;li&gt;21118 TCP&lt;/li&gt;
+&lt;li&gt;21119 TCP&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;从&lt;a href=&#34;https://github.com/rustdesk/rustdesk-server/releases&#34;&gt;Releases · rustdesk/rustdesk-server · GitHub&lt;/a&gt;选择合适的版本下载&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;wget https://github.com/rustdesk/rustdesk-server/releases/download/1.1.14/rustdesk-server-linux-amd64.zip
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;解压后重命名文件目录为&lt;code&gt;rustdesk&lt;/code&gt;方便日后维护记忆，进入&lt;code&gt;rustdesk&lt;/code&gt;目录下&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;unzip unzip rustdesk-server-linux-amd64.zip
+mv amd64 rustdesk
+cd rustdesk
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;进入&lt;code&gt;rustdesk&lt;/code&gt;目录后我们能看到公钥文件&lt;code&gt;id_ed25519.pub&lt;/code&gt;查看命令&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;cat /root/rustdesk/id_ed25519.pub
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;运行中继服务器&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;./hbbr  -k _
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;注册服务器&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;./hbbs  -k _
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;以上2个服务需要后台运行，为了方便,使用systemd将运行RustDesk服务器配置为系统服务&lt;/p&gt;
+&lt;p&gt;创建RustDeskHbbs.service服务文件&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;nano /etc/systemd/system/RustDeskHbbs.service
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;内容如下&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;[Unit]
+Description=RustDesk Hbbs
+After=network.target
+
+[Service]
+User=root
+Type=simple
+WorkingDirectory=/root/rustdesk
+ExecStart=/root/rustdesk/hbbs  -k _
+ExecStop=/bin/kill -TERM $MAINPID
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;创建RustDeskHbbr.service服务文件&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;nano /etc/systemd/system/RustDeskHbbr.service
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;内容如下&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;[Unit]
+Description=RustDesk Hbbr
+After=network.target
+
+[Service]
+User=root
+Type=simple
+WorkingDirectory=/root/rustdesk
+ExecStart=/root/rustdesk/hbbr  -k _
+ExecStop=/bin/kill -TERM $MAINPID
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;设置开机自动启动&lt;/p&gt;</description>
     </item>
     <item>
       <title>WSL2运行Ubuntu子系统并设置开机自动启动应用docker</title>
