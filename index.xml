@@ -73,7 +73,7 @@
 &lt;li&gt;&lt;a href=&#34;https://rustdesk.com/&#34;&gt;https://rustdesk.com/&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/rustdesk&#34;&gt;https://github.com/rustdesk&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;打开防火墙配置，放行以下端口：&lt;/p&gt;
+&lt;p&gt;防火墙放行以下端口：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;TCP (21114, 21115, 21116, 21117, 21118, 21119)&lt;/li&gt;
 &lt;li&gt;UDP (21116)&lt;/li&gt;
