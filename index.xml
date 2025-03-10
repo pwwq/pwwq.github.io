@@ -93,7 +93,7 @@ Please choose if you want to download configs and install HTTP server:
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;查看KEY&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;cat /opt/rustdesk/id_ed25519.pub
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;卸载删除&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;rm /etc/systemd/system/gohttpserver.service /etc/systemd/system/rustdeskrelay.service /etc/systemd/system/rustdesksignal.service
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;rm /etc/systemd/system/gohttpserver.service /etc/systemd/system/rustdeskrelay.service /etc/systemd/system/rustdesksignal.service /etc/systemd/system/multi-user.target.wants/gohttpserver.service
 rm rf /var/log/gohttp /opt/gohttp /var/log/rustdesk /opt/rustdesk
 systemctl daemon-reload
 &lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;手动安装&#34;&gt;手动安装&lt;/h2&gt;

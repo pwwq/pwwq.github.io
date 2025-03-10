@@ -32,7 +32,7 @@ TCP (21114, 21115, 21116, 21117, 21118, 21119) UDP (21116) 官方一键安装脚
 1) IP 2) DNS/Domain Choose your preferred connection method: auto-resolve current WAN IP or enter your DNS/Domain: 选择是否安装HTTP服务
 1) Yes 2) No Please choose if you want to download configs and install HTTP server: 查看KEY
 cat /opt/rustdesk/id_ed25519.pub 卸载删除
-rm /etc/systemd/system/gohttpserver.service /etc/systemd/system/rustdeskrelay.service /etc/systemd/system/rustdesksignal.service rm rf /var/log/gohttp /opt/gohttp /var/log/rustdesk /opt/rustdesk systemctl daemon-reload 手动安装 从Releases · rustdesk/rustdesk-server · GitHub选择合适的版本下载
+rm /etc/systemd/system/gohttpserver.service /etc/systemd/system/rustdeskrelay.service /etc/systemd/system/rustdesksignal.service /etc/systemd/system/multi-user.target.wants/gohttpserver.service rm rf /var/log/gohttp /opt/gohttp /var/log/rustdesk /opt/rustdesk systemctl daemon-reload 手动安装 从Releases · rustdesk/rustdesk-server · GitHub选择合适的版本下载
 ...</p></div><footer class=entry-footer><span title='2025-03-09 13:45:52 +0800 +0800'>三月 9, 2025</span>&nbsp;·&nbsp;admin</footer><a class=entry-link aria-label="post link to 自建RustDesk远程桌面服务" href=https://567899.xyz/post/rustdesk/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>搭建CNS服务器</h2></header><div class=entry-content><p>https://github.com/mmmdbybyd/CNS
 一键搭建cns
 安装
