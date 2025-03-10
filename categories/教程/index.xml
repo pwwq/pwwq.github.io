@@ -74,61 +74,30 @@
 &lt;li&gt;&lt;a href=&#34;https://github.com/rustdesk&#34;&gt;https://github.com/rustdesk&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;打开防火墙配置，放行以下端口：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;21115 TCP&lt;/li&gt;
-&lt;li&gt;21116 TCP &amp;amp; UDP&lt;/li&gt;
-&lt;li&gt;21117 TCP&lt;/li&gt;
-&lt;li&gt;21118 TCP&lt;/li&gt;
-&lt;li&gt;21119 TCP&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;从&lt;a href=&#34;https://github.com/rustdesk/rustdesk-server/releases&#34;&gt;Releases · rustdesk/rustdesk-server · GitHub&lt;/a&gt;选择合适的版本下载&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;wget https://github.com/rustdesk/rustdesk-server/releases/download/1.1.14/rustdesk-server-linux-amd64.zip
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;解压后重命名文件目录为&lt;code&gt;rustdesk&lt;/code&gt;方便日后维护记忆，进入&lt;code&gt;rustdesk&lt;/code&gt;目录下&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;unzip unzip rustdesk-server-linux-amd64.zip
-mv amd64 rustdesk
-cd rustdesk
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;进入&lt;code&gt;rustdesk&lt;/code&gt;目录后我们能看到公钥文件&lt;code&gt;id_ed25519.pub&lt;/code&gt;查看命令&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;cat /root/rustdesk/id_ed25519.pub
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;运行中继服务器&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;./hbbr  -k _
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;注册服务器&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;./hbbs  -k _
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;以上2个服务需要后台运行，为了方便,使用systemd将运行RustDesk服务器配置为系统服务&lt;/p&gt;
-&lt;p&gt;创建RustDeskHbbs.service服务文件&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;nano /etc/systemd/system/RustDeskHbbs.service
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;内容如下&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;[Unit]
-Description=RustDesk Hbbs
-After=network.target
-
-[Service]
-User=root
-Type=simple
-WorkingDirectory=/root/rustdesk
-ExecStart=/root/rustdesk/hbbs  -k _
-ExecStop=/bin/kill -TERM $MAINPID
-Restart=on-failure
-
-[Install]
-WantedBy=multi-user.target
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;创建RustDeskHbbr.service服务文件&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;nano /etc/systemd/system/RustDeskHbbr.service
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;内容如下&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;[Unit]
-Description=RustDesk Hbbr
-After=network.target
-
-[Service]
-User=root
-Type=simple
-WorkingDirectory=/root/rustdesk
-ExecStart=/root/rustdesk/hbbr  -k _
-ExecStop=/bin/kill -TERM $MAINPID
-Restart=on-failure
-
-[Install]
-WantedBy=multi-user.target
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;设置开机自动启动&lt;/p&gt;</description>
+&lt;ul&gt;
+&lt;li&gt;TCP (21114, 21115, 21116, 21117, 21118, 21119)&lt;/li&gt;
+&lt;li&gt;UDP (21116)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;官方一键安装脚本&#34;&gt;官方一键安装脚本&lt;/h2&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;wget https://raw.githubusercontent.com/techahold/rustdeskinstall/master/install.sh
+chmod +x install.sh
+./install.sh
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;选择IP或域名&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;1) IP
+2) DNS/Domain
+Choose your preferred connection method: auto-resolve current WAN IP or enter your DNS/Domain:
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;选择是否安装HTTP服务&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;1) Yes
+2) No
+Please choose if you want to download configs and install HTTP server:
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;查看KEY&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;cat /opt/rustdesk/id_ed25519.pub
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;卸载删除&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;rm /etc/systemd/system/gohttpserver.service /etc/systemd/system/rustdeskrelay.service /etc/systemd/system/rustdesksignal.service
+rm rf /var/log/gohttp /opt/gohttp /var/log/rustdesk /opt/rustdesk
+systemctl daemon-reload
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;手动安装&#34;&gt;手动安装&lt;/h2&gt;
+&lt;p&gt;从&lt;a href=&#34;https://github.com/rustdesk/rustdesk-server/releases&#34;&gt;Releases · rustdesk/rustdesk-server · GitHub&lt;/a&gt;选择合适的版本下载&lt;/p&gt;</description>
     </item>
     <item>
       <title>WSL2运行Ubuntu子系统并设置开机自动启动应用docker</title>
