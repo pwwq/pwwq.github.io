@@ -93,8 +93,12 @@ Please choose if you want to download configs and install HTTP server:
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;查看KEY&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;cat /opt/rustdesk/id_ed25519.pub
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;增加&lt;code&gt;-k _&lt;/code&gt;参数开启强制KEY验证(可选)&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;sed -i &amp;#39;s/ExecStart=/hbbr/hbbr -k _/&amp;#39; /etc/systemd/system/rustdeskrelay.service
-sed -i &amp;#39;s/ExecStart=/hbbs/hbbs -k _/&amp;#39; /etc/systemd/system/rustdesksignal.service
+&lt;ol&gt;
+&lt;li&gt;修改&lt;code&gt;/etc/systemd/system/rustdeskrelay.service&lt;/code&gt;文件中找到&lt;code&gt;ExecStart=/opt/rustdesk/hbbr&lt;/code&gt;修改为&lt;code&gt;ExecStart=/opt/rustdesk/hbbr -k _&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;修改&lt;code&gt;/etc/systemd/system/rustdesksignal.service&lt;/code&gt;文件中找到&lt;code&gt;ExecStart=/opt/rustdesk/hbbs&lt;/code&gt;修改为&lt;code&gt;ExecStart=/opt/rustdesk/hbbs -k _&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;重新加载后生效&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;systemctl daemon-reload
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;卸载删除&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;rm /etc/systemd/system/gohttpserver.service /etc/systemd/system/rustdeskrelay.service /etc/systemd/system/rustdesksignal.service /etc/systemd/system/multi-user.target.wants/gohttpserver.service
 rm rf /var/log/gohttp /opt/gohttp /var/log/rustdesk /opt/rustdesk
