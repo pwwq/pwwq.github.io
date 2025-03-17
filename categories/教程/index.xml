@@ -97,7 +97,7 @@ Please choose if you want to download configs and install HTTP server:
 &lt;li&gt;修改&lt;code&gt;/etc/systemd/system/rustdeskrelay.service&lt;/code&gt;文件中找到&lt;code&gt;ExecStart=/opt/rustdesk/hbbr&lt;/code&gt;修改为&lt;code&gt;ExecStart=/opt/rustdesk/hbbr -k _&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;修改&lt;code&gt;/etc/systemd/system/rustdesksignal.service&lt;/code&gt;文件中找到&lt;code&gt;ExecStart=/opt/rustdesk/hbbs&lt;/code&gt;修改为&lt;code&gt;ExecStart=/opt/rustdesk/hbbs -k _&lt;/code&gt;&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;重新加载后生效&lt;/p&gt;
+&lt;p&gt;重新加载后生效,&lt;strong&gt;被控端的KEY可以留空不填写，但主控端必须填写&lt;/strong&gt;&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;systemctl daemon-reload
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;卸载删除&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;rm /etc/systemd/system/gohttpserver.service /etc/systemd/system/rustdeskrelay.service /etc/systemd/system/rustdesksignal.service /etc/systemd/system/multi-user.target.wants/gohttpserver.service
