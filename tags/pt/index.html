@@ -21,7 +21,8 @@ apt-get install software-properties-common 安装qBittorrent Webui apt-get updat
 qbittorrent-nox --webui-port=XXXX 命令是在当前窗口下启动的，如果窗口关闭也就跟着一同关闭了，所有需要后台运行，完整命令如下：
 qbittorrent-nox --webui-port=8899 & 添加qbittorrent-nox开机自动启动 创建qbittorrent-nox启动服务
 echo "[Unit] Description=qbittorrent-nox After=network.service [Service] Type=simple User=root Group=root ExecStart=/usr/bin/qbittorrent-nox PrivateTmp=true Restart=on-failure [Install] WantedBy=multi-user.target" > /etc/systemd/system/qbittorrent-nox.service 启动qbittorrent-nox
-systemctl daemon-reload systemctl enable qbittorrent-nox.service systemctl start qbittorrent-nox.service</p></div><footer class=entry-footer><span title='2017-09-22 01:37:56 +0800 +0800'>九月 22, 2017</span>&nbsp;·&nbsp;admin</footer><a class=entry-link aria-label="post link to Linux安装、使用qBittorrent" href=https://567899.xyz/post/qbittorrent/></a></article></main><footer class=footer><span>&copy; 2025 <a href=https://567899.xyz/>Xizi's Blog</a></span> ·
+systemctl daemon-reload systemctl enable qbittorrent-nox.service systemctl start qbittorrent-nox.service qBittorrent身份认证失败次数过多，您的 IP 地址已被封禁。 重启qbittorrent-nox
+...</p></div><footer class=entry-footer><span title='2017-09-22 01:37:56 +0800 +0800'>九月 22, 2017</span>&nbsp;·&nbsp;admin</footer><a class=entry-link aria-label="post link to Linux安装、使用qBittorrent" href=https://567899.xyz/post/qbittorrent/></a></article></main><footer class=footer><span>&copy; 2025 <a href=https://567899.xyz/>Xizi's Blog</a></span> ·
 <span>Powered by
 <a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
         <a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg>

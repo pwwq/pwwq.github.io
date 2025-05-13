@@ -2164,7 +2164,8 @@ Select Language: English
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;systemctl daemon-reload
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;systemctl &lt;span class=&#34;nb&#34;&gt;enable&lt;/span&gt; qbittorrent-nox.service
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;systemctl start qbittorrent-nox.service
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;qbittorrent身份认证失败次数过多您的-ip-地址已被封禁&#34;&gt;qBittorrent身份认证失败次数过多，您的 IP 地址已被封禁。&lt;/h2&gt;
+&lt;p&gt;重启qbittorrent-nox&lt;/p&gt;</description>
     </item>
     <item>
       <title>TCP加速bbr魔改plus锐速lotserver一键安装包</title>
