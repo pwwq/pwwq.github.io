@@ -9,9 +9,9 @@
       <url>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
-    <generator>Hugo -- 0.147.3</generator>
+    <generator>Hugo -- 0.148.2</generator>
     <language>zh</language>
-    <lastBuildDate>Sun, 09 Mar 2025 13:45:52 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 29 Mar 2025 09:45:27 +0800</lastBuildDate>
     <atom:link href="https://567899.xyz/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>[更新]Folderclone谷歌Google Drive共享云端硬盘转存相互转移拷贝复制文件的正确姿势</title>
@@ -63,6 +63,33 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;pip install folderclone
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;第二步-开启drive-api服务&#34;&gt;第二步 开启Drive API服务&lt;/h2&gt;
 &lt;p&gt;打开登陆&lt;a href=&#34;https://developers.google.com/drive/api/v3/quickstart/python&#34;&gt;Python Quickstart&lt;/a&gt;  点击&lt;code&gt;Enable the Drive API&lt;/code&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>清除PowerShell的命令历史记录</title>
+      <link>https://567899.xyz/post/powershell-clear-history/</link>
+      <pubDate>Sat, 29 Mar 2025 09:45:27 +0800</pubDate>
+      <guid>https://567899.xyz/post/powershell-clear-history/</guid>
+      <description>&lt;p&gt;要清除PowerShell的命令历史记录，你可以尝试以下几种方法：&lt;/p&gt;
+&lt;h2 id=&#34;清空当前会话中的历史记录&#34;&gt;清空当前会话中的历史记录&lt;/h2&gt;
+&lt;p&gt;在当前 PowerShell 会话中，你可以通过执行以下命令清空历史记录：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-powershell&#34; data-lang=&#34;powershell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;Clear-History&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;这个命令会清除当前会话的命令历史记录，但它不会影响你之前的历史记录文件。&lt;/p&gt;
+&lt;h2 id=&#34;删除历史记录文件&#34;&gt;删除历史记录文件&lt;/h2&gt;
+&lt;p&gt;PowerShell 会把历史记录保存在用户的配置文件中，如果你想彻底删除历史记录，可以手动删除历史记录文件。&lt;/p&gt;
+&lt;p&gt;对于 Windows 10 或更高版本：&lt;/p&gt;
+&lt;p&gt;打开文件资源管理器，导航到以下路径：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-powershell&#34; data-lang=&#34;powershell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;$env:APPDATA&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;\&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Microsoft&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;\&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Windows&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;\&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;PowerShell&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;\&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;PSReadline&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;\&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ConsoleHost_history&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;py&#34;&gt;txt&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;你也可以直接在 PowerShell 中执行：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-powershell&#34; data-lang=&#34;powershell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;Remove-Item&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$env:APPDATA&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;\Microsoft\Windows\PowerShell\PSReadline\ConsoleHost_history.txt&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;这将删除 PowerShell 的历史记录文件。&lt;/p&gt;
+&lt;h2 id=&#34;禁用历史记录&#34;&gt;禁用历史记录&lt;/h2&gt;
+&lt;p&gt;查找PowerShell配置文件路径&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-powershell&#34; data-lang=&#34;powershell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;$PROFILE&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;如果你不希望 PowerShell 记录历史记录，可以禁用历史记录功能。在 PowerShell 配置文件中加入以下代码：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;$MaximumHistoryCount = 0
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;这将禁用历史记录的保存。你可以通过编辑&lt;code&gt;$PROFILE&lt;/code&gt;文件来永久性禁用它：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-powershell&#34; data-lang=&#34;powershell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;notepad&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;py&#34;&gt;exe&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$PROFILE&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;在文件中添加 &lt;code&gt;$MaximumHistoryCount = 0&lt;/code&gt; 后保存并关闭。&lt;/p&gt;</description>
     </item>
     <item>
       <title>自建RustDesk远程桌面服务</title>

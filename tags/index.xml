@@ -9,10 +9,17 @@
       <url>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
-    <generator>Hugo -- 0.147.3</generator>
+    <generator>Hugo -- 0.148.2</generator>
     <language>zh</language>
-    <lastBuildDate>Mon, 02 Sep 2024 17:40:38 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 29 Mar 2025 09:45:27 +0800</lastBuildDate>
     <atom:link href="https://567899.xyz/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>PowerShell</title>
+      <link>https://567899.xyz/tags/powershell/</link>
+      <pubDate>Sat, 29 Mar 2025 09:45:27 +0800</pubDate>
+      <guid>https://567899.xyz/tags/powershell/</guid>
+      <description></description>
+    </item>
     <item>
       <title>MySQL</title>
       <link>https://567899.xyz/tags/mysql/</link>
