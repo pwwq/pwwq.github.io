@@ -1,0 +1,1062 @@
+<!doctype html><html lang=zh dir=auto><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>Docker部署Chatwoot在线聊天客服 | Xizi's Blog</title><meta name=keywords content="docker"><meta name=description content="Chatwoot是一款聊天对话软件，支持Docker部署Chatwoot,详细过程如下
+安装docker及docker compose
+# example in ubuntu
+apt-get update
+curl -fsSL https://get.docker.com -o get-docker.sh
+sudo sh get-docker.sh
+apt install docker-compose-plugin
+查看对应的版本
+docker --version
+docker compose version
+创建配置文件
+mkdir chatwoot
+cd chatwoot
+wget -O .env https://raw.githubusercontent.com/chatwoot/chatwoot/develop/.env.example
+wget -O docker-compose.yaml https://raw.githubusercontent.com/chatwoot/chatwoot/develop/docker-compose.production.yaml
+编辑修改，注意在.env和docker-compose.yaml二者中的POSTGRES_PASSWORD参数必须一致
+nano .env
+SECRET_KEY_BASE值可以用以下命令生成，二选一即可
+openssl rand -base64 32
+head /dev/urandom | tr -dc A-Za-z0-9 | head -c 63 ; echo ''
+我的自定义，示范如下
+# Learn about the various environment variables at
+# https://www.chatwoot.com/docs/self-hosted/configuration/environment-variables/#rails-production-variables
+
+# Used to verify the integrity of signed cookies. so ensure a secure value is set
+# SECRET_KEY_BASE should be alphanumeric. Avoid special characters or symbols.
+# Use `rake secret` to generate this variable
+SECRET_KEY_BASE=ZoxaEZz7M/gviLx4iuLw6e141CBKPGkagPGplBgSyrA=
+
+# Replace with the URL you are planning to use for your app
+FRONTEND_URL=http://0.0.0.0:3000
+# To use a dedicated URL for help center pages
+HELPCENTER_URL=http://0.0.0.0:3000
+
+# If the variable is set, all non-authenticated pages would fallback to the default locale.
+# Whenever a new account is created, the default language will be DEFAULT_LOCALE instead of en
+# DEFAULT_LOCALE=en
+
+# If you plan to use CDN for your assets, set Asset CDN Host
+ASSET_CDN_HOST=
+
+# Force all access to the app over SSL, default is set to false
+FORCE_SSL=false
+
+# This lets you control new sign ups on your chatwoot installation
+# true : default option, allows sign ups
+# false : disables all the end points related to sign ups
+# api_only: disables the UI for signup, but you can create sign ups via the account apis
+ENABLE_ACCOUNT_SIGNUP=false
+
+# Redis config
+# specify the configs via single URL or individual variables
+# ref: https://www.iana.org/assignments/uri-schemes/prov/redis
+# You can also use the following format for the URL: redis://:password@host:port/db_number
+REDIS_URL=redis://redis:6379
+# If you are using docker-compose, set this variable's value to be any string,
+# which will be the password for the redis service running inside the docker-compose
+# to make it secure
+REDIS_PASSWORD=trrt75XS91MSFF #密码复杂点可随便填写
+# Redis Sentinel can be used by passing list of sentinel host and ports e,g. sentinel_host1:port1,sentinel_host2:port2
+REDIS_SENTINELS=
+# Redis sentinel master name is required when using sentinel, default value is &#34;mymaster&#34;.
+# You can find list of master using &#34;SENTINEL masters&#34; command
+REDIS_SENTINEL_MASTER_NAME=
+
+# By default Chatwoot will pass REDIS_PASSWORD as the password value for sentinels
+# Use the following environment variable to customize passwords for sentinels.
+# Use empty string if sentinels are configured with out passwords
+# REDIS_SENTINEL_PASSWORD=
+
+# Redis premium breakage in heroku fix
+# enable the following configuration
+# ref: https://github.com/chatwoot/chatwoot/issues/2420
+# REDIS_OPENSSL_VERIFY_MODE=none
+
+# Postgres Database config variables
+# You can leave POSTGRES_DATABASE blank. The default name of
+# the database in the production environment is chatwoot_production
+# POSTGRES_DATABASE=
+POSTGRES_HOST=postgres
+POSTGRES_USERNAME=postgres
+POSTGRES_PASSWORD=b45CW2jTWuUKh26WKJf6ngO
+RAILS_ENV=development
+# Changes the Postgres query timeout limit. The default is 14 seconds. Modify only when required.
+# POSTGRES_STATEMENT_TIMEOUT=14s
+RAILS_MAX_THREADS=5
+
+# The email from which all outgoing emails are sent
+# could user either  `email@yourdomain.com` or `BrandName <email@yourdomain.com>`
+MAILER_SENDER_EMAIL=Chatwoot <accounts@chatwoot.com>
+
+#SMTP domain key is set up for HELO checking
+SMTP_DOMAIN=chatwoot.com
+# Set the value to &#34;mailhog&#34; if using docker-compose for development environments,
+# Set the value as &#34;localhost&#34; or your SMTP address in other environments
+# If SMTP_ADDRESS is empty, Chatwoot would try to use sendmail(postfix)
+SMTP_ADDRESS=
+SMTP_PORT=1025
+SMTP_USERNAME=
+SMTP_PASSWORD=
+# plain,login,cram_md5
+SMTP_AUTHENTICATION=
+SMTP_ENABLE_STARTTLS_AUTO=true
+# Can be: 'none', 'peer', 'client_once', 'fail_if_no_peer_cert', see http://api.rubyonrails.org/classes/ActionMailer/Base.html
+SMTP_OPENSSL_VERIFY_MODE=peer
+# Comment out the following environment variables if required by your SMTP server
+# SMTP_TLS=
+# SMTP_SSL=
+# SMTP_OPEN_TIMEOUT
+# SMTP_READ_TIMEOUT
+
+# Mail Incoming
+# This is the domain set for the reply emails when conversation continuity is enabled
+MAILER_INBOUND_EMAIL_DOMAIN=
+# Set this to the appropriate ingress channel with regards to incoming emails
+# Possible values are :
+# relay for Exim, Postfix, Qmail
+# mailgun for Mailgun
+# mandrill for Mandrill
+# postmark for Postmark
+# sendgrid for Sendgrid
+RAILS_INBOUND_EMAIL_SERVICE=
+# Use one of the following based on the email ingress service
+# Ref: https://edgeguides.rubyonrails.org/action_mailbox_basics.html
+# Set this to a password of your choice and use it in the Inbound webhook
+RAILS_INBOUND_EMAIL_PASSWORD=
+
+MAILGUN_INGRESS_SIGNING_KEY=
+MANDRILL_INGRESS_API_KEY=
+
+# Creating Your Inbound Webhook Instructions for Postmark and Sendgrid:
+# Inbound webhook URL format:
+#    https://actionmailbox:[YOUR_RAILS_INBOUND_EMAIL_PASSWORD]@[YOUR_CHATWOOT_DOMAIN.COM]/rails/action_mailbox/[RAILS_INBOUND_EMAIL_SERVICE]/inbound_emails
+# Note: Replace the values inside the brackets; do not include the brackets themselves.
+# Example: https://actionmailbox:mYRandomPassword3@chatwoot.example.com/rails/action_mailbox/postmark/inbound_emails
+# For Postmark
+# Ensure the 'Include raw email content in JSON payload' checkbox is selected in the inbound webhook section.
+
+# Storage
+ACTIVE_STORAGE_SERVICE=local
+
+# Amazon S3
+# documentation: https://www.chatwoot.com/docs/configuring-s3-bucket-as-cloud-storage
+S3_BUCKET_NAME=
+AWS_ACCESS_KEY_ID=
+AWS_SECRET_ACCESS_KEY=
+AWS_REGION=
+
+# Log settings
+# Disable if you want to write logs to a file
+RAILS_LOG_TO_STDOUT=true
+LOG_LEVEL=info
+LOG_SIZE=500
+# Configure this environment variable if you want to use lograge instead of rails logger
+#LOGRAGE_ENABLED=true
+
+### This environment variables are only required if you are setting up social media channels
+
+# Facebook
+# documentation: https://www.chatwoot.com/docs/facebook-setup
+FB_VERIFY_TOKEN=
+FB_APP_SECRET=
+FB_APP_ID=
+
+# https://developers.facebook.com/docs/messenger-platform/instagram/get-started#app-dashboard
+IG_VERIFY_TOKEN=
+
+# Twitter
+# documentation: https://www.chatwoot.com/docs/twitter-app-setup
+TWITTER_APP_ID=
+TWITTER_CONSUMER_KEY=
+TWITTER_CONSUMER_SECRET=
+TWITTER_ENVIRONMENT=
+
+#slack integration
+SLACK_CLIENT_ID=
+SLACK_CLIENT_SECRET=
+
+# Google OAuth
+GOOGLE_OAUTH_CLIENT_ID=
+GOOGLE_OAUTH_CLIENT_SECRET=
+GOOGLE_OAUTH_CALLBACK_URL=
+
+### Change this env variable only if you are using a custom build mobile app
+## Mobile app env variables
+IOS_APP_ID=L7YLMN4634.com.chatwoot.app
+ANDROID_BUNDLE_ID=com.chatwoot.app
+
+# https://developers.google.com/android/guides/client-auth (use keytool to print the fingerprint in the first section)
+ANDROID_SHA256_CERT_FINGERPRINT=AC:73:8E:DE:EB:56:EA:CC:10:87:02:A7:65:37:7B:38:D4:5D:D4:53:F8:3B:FB:D3:C6:28:64:1D:AA:08:1E:D8
+
+### Smart App Banner
+# https://developer.apple.com/library/archive/documentation/AppleApplications/Reference/SafariWebContent/PromotingAppswithAppBanners/PromotingAppswithAppBanners.html
+# You can find your app-id in https://itunesconnect.apple.com
+#IOS_APP_IDENTIFIER=1495796682
+
+## Push Notification
+## generate a new key value here : https://d3v.one/vapid-key-generator/
+# VAPID_PUBLIC_KEY=
+# VAPID_PRIVATE_KEY=
+#
+# for mobile apps
+# FCM_SERVER_KEY=
+
+### APM and Error Monitoring configurations
+## Elastic APM
+## https://www.elastic.co/guide/en/apm/agent/ruby/current/getting-started-rails.html
+# ELASTIC_APM_SERVER_URL=
+# ELASTIC_APM_SECRET_TOKEN=
+
+## Sentry
+# SENTRY_DSN=
+
+
+## Scout
+## https://scoutapm.com/docs/ruby/configuration
+# SCOUT_KEY=YOURKEY
+# SCOUT_NAME=YOURAPPNAME (Production)
+# SCOUT_MONITOR=true
+
+## NewRelic
+# https://docs.newrelic.com/docs/agents/ruby-agent/configuration/ruby-agent-configuration/
+# NEW_RELIC_LICENSE_KEY=
+# Set this to true to allow newrelic apm to send logs.
+# This is turned off by default.
+# NEW_RELIC_APPLICATION_LOGGING_ENABLED=
+
+## Datadog
+## https://github.com/DataDog/dd-trace-rb/blob/master/docs/GettingStarted.md#environment-variables
+# DD_TRACE_AGENT_URL=
+
+# MaxMindDB API key to download GeoLite2 City database
+# IP_LOOKUP_API_KEY=
+
+## Rack Attack configuration
+## To prevent and throttle abusive requests
+# ENABLE_RACK_ATTACK=true
+# RACK_ATTACK_LIMIT=300
+# ENABLE_RACK_ATTACK_WIDGET_API=true
+# Comma-separated list of trusted IPs that bypass Rack Attack throttling rules
+# RACK_ATTACK_ALLOWED_IPS=127.0.0.1,::1,192.168.0.10
+
+## Running chatwoot as an API only server
+## setting this value to true will disable the frontend dashboard endpoints
+# CW_API_ONLY_SERVER=false
+
+## Development Only Config
+# if you want to use letter_opener for local emails
+# LETTER_OPENER=true
+# meant to be used in github codespaces
+# WEBPACKER_DEV_SERVER_PUBLIC=
+
+# If you want to use official mobile app,
+# the notifications would be relayed via a Chatwoot server
+ENABLE_PUSH_RELAY_SERVER=true
+
+# Stripe API key
+STRIPE_SECRET_KEY=
+STRIPE_WEBHOOK_SECRET=
+
+# Set to true if you want to upload files to cloud storage using the signed url
+# Make sure to follow https://edgeguides.rubyonrails.org/active_storage_overview.html#cross-origin-resource-sharing-cors-configuration on the cloud storage after setting this to true.
+DIRECT_UPLOADS_ENABLED=
+
+#MS OAUTH creds
+AZURE_APP_ID=
+AZURE_APP_SECRET=
+
+## Advanced configurations
+## Change these values to fine tune performance
+# control the concurrency setting of sidekiq
+# SIDEKIQ_CONCURRENCY=10
+
+
+# AI powered features
+## OpenAI key
+# OPENAI_API_KEY=
+
+# Housekeeping/Performance related configurations
+# Set to true if you want to remove stale contact inboxes
+# contact_inboxes with no conversation older than 90 days will be removed
+# REMOVE_STALE_CONTACT_INBOX_JOB_STATUS=false
+nano docker-compose.yaml
+示范如下"><meta name=author content="admin"><link rel=canonical href=https://567899.xyz/post/chatwoot/><meta name=google-site-verification content="XYZabc"><meta name=yandex-verification content="XYZabc"><meta name=msvalidate.01 content="XYZabc"><link crossorigin=anonymous href=/assets/css/stylesheet.7b3992f7b4f9ee4ae9431996141cd91083cdbffc8db56955d4cdcd798a156db7.css integrity="sha256-ezmS97T57krpQxmWFBzZEIPNv/yNtWlV1M3NeYoVbbc=" rel="preload stylesheet" as=style><link rel=icon href=https://567899.xyz/%3Clink%20/%20abs%20url%3E><link rel=icon type=image/png sizes=16x16 href=https://567899.xyz/%3Clink%20/%20abs%20url%3E><link rel=icon type=image/png sizes=32x32 href=https://567899.xyz/%3Clink%20/%20abs%20url%3E><link rel=apple-touch-icon href=https://567899.xyz/%3Clink%20/%20abs%20url%3E><link rel=mask-icon href=https://567899.xyz/%3Clink%20/%20abs%20url%3E><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=zh href=https://567899.xyz/post/chatwoot/><noscript><style>#theme-toggle,.top-link{display:none}</style><style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--code-block-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51)}.list{background:var(--theme)}.list:not(.dark)::-webkit-scrollbar-track{background:0 0}.list:not(.dark)::-webkit-scrollbar-thumb{border-color:var(--theme)}}</style></noscript><meta property="og:url" content="https://567899.xyz/post/chatwoot/"><meta property="og:site_name" content="Xizi's Blog"><meta property="og:title" content="Docker部署Chatwoot在线聊天客服"><meta property="og:description" content="Chatwoot是一款聊天对话软件，支持Docker部署Chatwoot,详细过程如下
+安装docker及docker compose # example in ubuntu apt-get update curl -fsSL https://get.docker.com -o get-docker.sh sudo sh get-docker.sh apt install docker-compose-plugin 查看对应的版本
+docker --version docker compose version 创建配置文件 mkdir chatwoot cd chatwoot wget -O .env https://raw.githubusercontent.com/chatwoot/chatwoot/develop/.env.example wget -O docker-compose.yaml https://raw.githubusercontent.com/chatwoot/chatwoot/develop/docker-compose.production.yaml 编辑修改，注意在.env和docker-compose.yaml二者中的POSTGRES_PASSWORD参数必须一致
+nano .env SECRET_KEY_BASE值可以用以下命令生成，二选一即可
+openssl rand -base64 32 head /dev/urandom | tr -dc A-Za-z0-9 | head -c 63 ; echo '' 我的自定义，示范如下
+# Learn about the various environment variables at # https://www.chatwoot.com/docs/self-hosted/configuration/environment-variables/#rails-production-variables # Used to verify the integrity of signed cookies. so ensure a secure value is set # SECRET_KEY_BASE should be alphanumeric. Avoid special characters or symbols. # Use `rake secret` to generate this variable SECRET_KEY_BASE=ZoxaEZz7M/gviLx4iuLw6e141CBKPGkagPGplBgSyrA= # Replace with the URL you are planning to use for your app FRONTEND_URL=http://0.0.0.0:3000 # To use a dedicated URL for help center pages HELPCENTER_URL=http://0.0.0.0:3000 # If the variable is set, all non-authenticated pages would fallback to the default locale. # Whenever a new account is created, the default language will be DEFAULT_LOCALE instead of en # DEFAULT_LOCALE=en # If you plan to use CDN for your assets, set Asset CDN Host ASSET_CDN_HOST= # Force all access to the app over SSL, default is set to false FORCE_SSL=false # This lets you control new sign ups on your chatwoot installation # true : default option, allows sign ups # false : disables all the end points related to sign ups # api_only: disables the UI for signup, but you can create sign ups via the account apis ENABLE_ACCOUNT_SIGNUP=false # Redis config # specify the configs via single URL or individual variables # ref: https://www.iana.org/assignments/uri-schemes/prov/redis # You can also use the following format for the URL: redis://:password@host:port/db_number REDIS_URL=redis://redis:6379 # If you are using docker-compose, set this variable's value to be any string, # which will be the password for the redis service running inside the docker-compose # to make it secure REDIS_PASSWORD=trrt75XS91MSFF #密码复杂点可随便填写 # Redis Sentinel can be used by passing list of sentinel host and ports e,g. sentinel_host1:port1,sentinel_host2:port2 REDIS_SENTINELS= # Redis sentinel master name is required when using sentinel, default value is &#34;mymaster&#34;. # You can find list of master using &#34;SENTINEL masters&#34; command REDIS_SENTINEL_MASTER_NAME= # By default Chatwoot will pass REDIS_PASSWORD as the password value for sentinels # Use the following environment variable to customize passwords for sentinels. # Use empty string if sentinels are configured with out passwords # REDIS_SENTINEL_PASSWORD= # Redis premium breakage in heroku fix # enable the following configuration # ref: https://github.com/chatwoot/chatwoot/issues/2420 # REDIS_OPENSSL_VERIFY_MODE=none # Postgres Database config variables # You can leave POSTGRES_DATABASE blank. The default name of # the database in the production environment is chatwoot_production # POSTGRES_DATABASE= POSTGRES_HOST=postgres POSTGRES_USERNAME=postgres POSTGRES_PASSWORD=b45CW2jTWuUKh26WKJf6ngO RAILS_ENV=development # Changes the Postgres query timeout limit. The default is 14 seconds. Modify only when required. # POSTGRES_STATEMENT_TIMEOUT=14s RAILS_MAX_THREADS=5 # The email from which all outgoing emails are sent # could user either `email@yourdomain.com` or `BrandName <email@yourdomain.com>` MAILER_SENDER_EMAIL=Chatwoot <accounts@chatwoot.com> #SMTP domain key is set up for HELO checking SMTP_DOMAIN=chatwoot.com # Set the value to &#34;mailhog&#34; if using docker-compose for development environments, # Set the value as &#34;localhost&#34; or your SMTP address in other environments # If SMTP_ADDRESS is empty, Chatwoot would try to use sendmail(postfix) SMTP_ADDRESS= SMTP_PORT=1025 SMTP_USERNAME= SMTP_PASSWORD= # plain,login,cram_md5 SMTP_AUTHENTICATION= SMTP_ENABLE_STARTTLS_AUTO=true # Can be: 'none', 'peer', 'client_once', 'fail_if_no_peer_cert', see http://api.rubyonrails.org/classes/ActionMailer/Base.html SMTP_OPENSSL_VERIFY_MODE=peer # Comment out the following environment variables if required by your SMTP server # SMTP_TLS= # SMTP_SSL= # SMTP_OPEN_TIMEOUT # SMTP_READ_TIMEOUT # Mail Incoming # This is the domain set for the reply emails when conversation continuity is enabled MAILER_INBOUND_EMAIL_DOMAIN= # Set this to the appropriate ingress channel with regards to incoming emails # Possible values are : # relay for Exim, Postfix, Qmail # mailgun for Mailgun # mandrill for Mandrill # postmark for Postmark # sendgrid for Sendgrid RAILS_INBOUND_EMAIL_SERVICE= # Use one of the following based on the email ingress service # Ref: https://edgeguides.rubyonrails.org/action_mailbox_basics.html # Set this to a password of your choice and use it in the Inbound webhook RAILS_INBOUND_EMAIL_PASSWORD= MAILGUN_INGRESS_SIGNING_KEY= MANDRILL_INGRESS_API_KEY= # Creating Your Inbound Webhook Instructions for Postmark and Sendgrid: # Inbound webhook URL format: # https://actionmailbox:[YOUR_RAILS_INBOUND_EMAIL_PASSWORD]@[YOUR_CHATWOOT_DOMAIN.COM]/rails/action_mailbox/[RAILS_INBOUND_EMAIL_SERVICE]/inbound_emails # Note: Replace the values inside the brackets; do not include the brackets themselves. # Example: https://actionmailbox:mYRandomPassword3@chatwoot.example.com/rails/action_mailbox/postmark/inbound_emails # For Postmark # Ensure the 'Include raw email content in JSON payload' checkbox is selected in the inbound webhook section. # Storage ACTIVE_STORAGE_SERVICE=local # Amazon S3 # documentation: https://www.chatwoot.com/docs/configuring-s3-bucket-as-cloud-storage S3_BUCKET_NAME= AWS_ACCESS_KEY_ID= AWS_SECRET_ACCESS_KEY= AWS_REGION= # Log settings # Disable if you want to write logs to a file RAILS_LOG_TO_STDOUT=true LOG_LEVEL=info LOG_SIZE=500 # Configure this environment variable if you want to use lograge instead of rails logger #LOGRAGE_ENABLED=true ### This environment variables are only required if you are setting up social media channels # Facebook # documentation: https://www.chatwoot.com/docs/facebook-setup FB_VERIFY_TOKEN= FB_APP_SECRET= FB_APP_ID= # https://developers.facebook.com/docs/messenger-platform/instagram/get-started#app-dashboard IG_VERIFY_TOKEN= # Twitter # documentation: https://www.chatwoot.com/docs/twitter-app-setup TWITTER_APP_ID= TWITTER_CONSUMER_KEY= TWITTER_CONSUMER_SECRET= TWITTER_ENVIRONMENT= #slack integration SLACK_CLIENT_ID= SLACK_CLIENT_SECRET= # Google OAuth GOOGLE_OAUTH_CLIENT_ID= GOOGLE_OAUTH_CLIENT_SECRET= GOOGLE_OAUTH_CALLBACK_URL= ### Change this env variable only if you are using a custom build mobile app ## Mobile app env variables IOS_APP_ID=L7YLMN4634.com.chatwoot.app ANDROID_BUNDLE_ID=com.chatwoot.app # https://developers.google.com/android/guides/client-auth (use keytool to print the fingerprint in the first section) ANDROID_SHA256_CERT_FINGERPRINT=AC:73:8E:DE:EB:56:EA:CC:10:87:02:A7:65:37:7B:38:D4:5D:D4:53:F8:3B:FB:D3:C6:28:64:1D:AA:08:1E:D8 ### Smart App Banner # https://developer.apple.com/library/archive/documentation/AppleApplications/Reference/SafariWebContent/PromotingAppswithAppBanners/PromotingAppswithAppBanners.html # You can find your app-id in https://itunesconnect.apple.com #IOS_APP_IDENTIFIER=1495796682 ## Push Notification ## generate a new key value here : https://d3v.one/vapid-key-generator/ # VAPID_PUBLIC_KEY= # VAPID_PRIVATE_KEY= # # for mobile apps # FCM_SERVER_KEY= ### APM and Error Monitoring configurations ## Elastic APM ## https://www.elastic.co/guide/en/apm/agent/ruby/current/getting-started-rails.html # ELASTIC_APM_SERVER_URL= # ELASTIC_APM_SECRET_TOKEN= ## Sentry # SENTRY_DSN= ## Scout ## https://scoutapm.com/docs/ruby/configuration # SCOUT_KEY=YOURKEY # SCOUT_NAME=YOURAPPNAME (Production) # SCOUT_MONITOR=true ## NewRelic # https://docs.newrelic.com/docs/agents/ruby-agent/configuration/ruby-agent-configuration/ # NEW_RELIC_LICENSE_KEY= # Set this to true to allow newrelic apm to send logs. # This is turned off by default. # NEW_RELIC_APPLICATION_LOGGING_ENABLED= ## Datadog ## https://github.com/DataDog/dd-trace-rb/blob/master/docs/GettingStarted.md#environment-variables # DD_TRACE_AGENT_URL= # MaxMindDB API key to download GeoLite2 City database # IP_LOOKUP_API_KEY= ## Rack Attack configuration ## To prevent and throttle abusive requests # ENABLE_RACK_ATTACK=true # RACK_ATTACK_LIMIT=300 # ENABLE_RACK_ATTACK_WIDGET_API=true # Comma-separated list of trusted IPs that bypass Rack Attack throttling rules # RACK_ATTACK_ALLOWED_IPS=127.0.0.1,::1,192.168.0.10 ## Running chatwoot as an API only server ## setting this value to true will disable the frontend dashboard endpoints # CW_API_ONLY_SERVER=false ## Development Only Config # if you want to use letter_opener for local emails # LETTER_OPENER=true # meant to be used in github codespaces # WEBPACKER_DEV_SERVER_PUBLIC= # If you want to use official mobile app, # the notifications would be relayed via a Chatwoot server ENABLE_PUSH_RELAY_SERVER=true # Stripe API key STRIPE_SECRET_KEY= STRIPE_WEBHOOK_SECRET= # Set to true if you want to upload files to cloud storage using the signed url # Make sure to follow https://edgeguides.rubyonrails.org/active_storage_overview.html#cross-origin-resource-sharing-cors-configuration on the cloud storage after setting this to true. DIRECT_UPLOADS_ENABLED= #MS OAUTH creds AZURE_APP_ID= AZURE_APP_SECRET= ## Advanced configurations ## Change these values to fine tune performance # control the concurrency setting of sidekiq # SIDEKIQ_CONCURRENCY=10 # AI powered features ## OpenAI key # OPENAI_API_KEY= # Housekeeping/Performance related configurations # Set to true if you want to remove stale contact inboxes # contact_inboxes with no conversation older than 90 days will be removed # REMOVE_STALE_CONTACT_INBOX_JOB_STATUS=false nano docker-compose.yaml 示范如下"><meta property="og:locale" content="zh"><meta property="og:type" content="article"><meta property="article:section" content="post"><meta property="article:published_time" content="2025-08-16T13:45:17+08:00"><meta property="article:modified_time" content="2025-08-16T13:45:17+08:00"><meta property="article:tag" content="Docker"><meta property="og:image" content="https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E"><meta name=twitter:title content="Docker部署Chatwoot在线聊天客服"><meta name=twitter:description content="Chatwoot是一款聊天对话软件，支持Docker部署Chatwoot,详细过程如下
+安装docker及docker compose
+# example in ubuntu
+apt-get update
+curl -fsSL https://get.docker.com -o get-docker.sh
+sudo sh get-docker.sh
+apt install docker-compose-plugin
+查看对应的版本
+docker --version
+docker compose version
+创建配置文件
+mkdir chatwoot
+cd chatwoot
+wget -O .env https://raw.githubusercontent.com/chatwoot/chatwoot/develop/.env.example
+wget -O docker-compose.yaml https://raw.githubusercontent.com/chatwoot/chatwoot/develop/docker-compose.production.yaml
+编辑修改，注意在.env和docker-compose.yaml二者中的POSTGRES_PASSWORD参数必须一致
+nano .env
+SECRET_KEY_BASE值可以用以下命令生成，二选一即可
+openssl rand -base64 32
+head /dev/urandom | tr -dc A-Za-z0-9 | head -c 63 ; echo ''
+我的自定义，示范如下
+# Learn about the various environment variables at
+# https://www.chatwoot.com/docs/self-hosted/configuration/environment-variables/#rails-production-variables
+
+# Used to verify the integrity of signed cookies. so ensure a secure value is set
+# SECRET_KEY_BASE should be alphanumeric. Avoid special characters or symbols.
+# Use `rake secret` to generate this variable
+SECRET_KEY_BASE=ZoxaEZz7M/gviLx4iuLw6e141CBKPGkagPGplBgSyrA=
+
+# Replace with the URL you are planning to use for your app
+FRONTEND_URL=http://0.0.0.0:3000
+# To use a dedicated URL for help center pages
+HELPCENTER_URL=http://0.0.0.0:3000
+
+# If the variable is set, all non-authenticated pages would fallback to the default locale.
+# Whenever a new account is created, the default language will be DEFAULT_LOCALE instead of en
+# DEFAULT_LOCALE=en
+
+# If you plan to use CDN for your assets, set Asset CDN Host
+ASSET_CDN_HOST=
+
+# Force all access to the app over SSL, default is set to false
+FORCE_SSL=false
+
+# This lets you control new sign ups on your chatwoot installation
+# true : default option, allows sign ups
+# false : disables all the end points related to sign ups
+# api_only: disables the UI for signup, but you can create sign ups via the account apis
+ENABLE_ACCOUNT_SIGNUP=false
+
+# Redis config
+# specify the configs via single URL or individual variables
+# ref: https://www.iana.org/assignments/uri-schemes/prov/redis
+# You can also use the following format for the URL: redis://:password@host:port/db_number
+REDIS_URL=redis://redis:6379
+# If you are using docker-compose, set this variable's value to be any string,
+# which will be the password for the redis service running inside the docker-compose
+# to make it secure
+REDIS_PASSWORD=trrt75XS91MSFF #密码复杂点可随便填写
+# Redis Sentinel can be used by passing list of sentinel host and ports e,g. sentinel_host1:port1,sentinel_host2:port2
+REDIS_SENTINELS=
+# Redis sentinel master name is required when using sentinel, default value is &#34;mymaster&#34;.
+# You can find list of master using &#34;SENTINEL masters&#34; command
+REDIS_SENTINEL_MASTER_NAME=
+
+# By default Chatwoot will pass REDIS_PASSWORD as the password value for sentinels
+# Use the following environment variable to customize passwords for sentinels.
+# Use empty string if sentinels are configured with out passwords
+# REDIS_SENTINEL_PASSWORD=
+
+# Redis premium breakage in heroku fix
+# enable the following configuration
+# ref: https://github.com/chatwoot/chatwoot/issues/2420
+# REDIS_OPENSSL_VERIFY_MODE=none
+
+# Postgres Database config variables
+# You can leave POSTGRES_DATABASE blank. The default name of
+# the database in the production environment is chatwoot_production
+# POSTGRES_DATABASE=
+POSTGRES_HOST=postgres
+POSTGRES_USERNAME=postgres
+POSTGRES_PASSWORD=b45CW2jTWuUKh26WKJf6ngO
+RAILS_ENV=development
+# Changes the Postgres query timeout limit. The default is 14 seconds. Modify only when required.
+# POSTGRES_STATEMENT_TIMEOUT=14s
+RAILS_MAX_THREADS=5
+
+# The email from which all outgoing emails are sent
+# could user either  `email@yourdomain.com` or `BrandName <email@yourdomain.com>`
+MAILER_SENDER_EMAIL=Chatwoot <accounts@chatwoot.com>
+
+#SMTP domain key is set up for HELO checking
+SMTP_DOMAIN=chatwoot.com
+# Set the value to &#34;mailhog&#34; if using docker-compose for development environments,
+# Set the value as &#34;localhost&#34; or your SMTP address in other environments
+# If SMTP_ADDRESS is empty, Chatwoot would try to use sendmail(postfix)
+SMTP_ADDRESS=
+SMTP_PORT=1025
+SMTP_USERNAME=
+SMTP_PASSWORD=
+# plain,login,cram_md5
+SMTP_AUTHENTICATION=
+SMTP_ENABLE_STARTTLS_AUTO=true
+# Can be: 'none', 'peer', 'client_once', 'fail_if_no_peer_cert', see http://api.rubyonrails.org/classes/ActionMailer/Base.html
+SMTP_OPENSSL_VERIFY_MODE=peer
+# Comment out the following environment variables if required by your SMTP server
+# SMTP_TLS=
+# SMTP_SSL=
+# SMTP_OPEN_TIMEOUT
+# SMTP_READ_TIMEOUT
+
+# Mail Incoming
+# This is the domain set for the reply emails when conversation continuity is enabled
+MAILER_INBOUND_EMAIL_DOMAIN=
+# Set this to the appropriate ingress channel with regards to incoming emails
+# Possible values are :
+# relay for Exim, Postfix, Qmail
+# mailgun for Mailgun
+# mandrill for Mandrill
+# postmark for Postmark
+# sendgrid for Sendgrid
+RAILS_INBOUND_EMAIL_SERVICE=
+# Use one of the following based on the email ingress service
+# Ref: https://edgeguides.rubyonrails.org/action_mailbox_basics.html
+# Set this to a password of your choice and use it in the Inbound webhook
+RAILS_INBOUND_EMAIL_PASSWORD=
+
+MAILGUN_INGRESS_SIGNING_KEY=
+MANDRILL_INGRESS_API_KEY=
+
+# Creating Your Inbound Webhook Instructions for Postmark and Sendgrid:
+# Inbound webhook URL format:
+#    https://actionmailbox:[YOUR_RAILS_INBOUND_EMAIL_PASSWORD]@[YOUR_CHATWOOT_DOMAIN.COM]/rails/action_mailbox/[RAILS_INBOUND_EMAIL_SERVICE]/inbound_emails
+# Note: Replace the values inside the brackets; do not include the brackets themselves.
+# Example: https://actionmailbox:mYRandomPassword3@chatwoot.example.com/rails/action_mailbox/postmark/inbound_emails
+# For Postmark
+# Ensure the 'Include raw email content in JSON payload' checkbox is selected in the inbound webhook section.
+
+# Storage
+ACTIVE_STORAGE_SERVICE=local
+
+# Amazon S3
+# documentation: https://www.chatwoot.com/docs/configuring-s3-bucket-as-cloud-storage
+S3_BUCKET_NAME=
+AWS_ACCESS_KEY_ID=
+AWS_SECRET_ACCESS_KEY=
+AWS_REGION=
+
+# Log settings
+# Disable if you want to write logs to a file
+RAILS_LOG_TO_STDOUT=true
+LOG_LEVEL=info
+LOG_SIZE=500
+# Configure this environment variable if you want to use lograge instead of rails logger
+#LOGRAGE_ENABLED=true
+
+### This environment variables are only required if you are setting up social media channels
+
+# Facebook
+# documentation: https://www.chatwoot.com/docs/facebook-setup
+FB_VERIFY_TOKEN=
+FB_APP_SECRET=
+FB_APP_ID=
+
+# https://developers.facebook.com/docs/messenger-platform/instagram/get-started#app-dashboard
+IG_VERIFY_TOKEN=
+
+# Twitter
+# documentation: https://www.chatwoot.com/docs/twitter-app-setup
+TWITTER_APP_ID=
+TWITTER_CONSUMER_KEY=
+TWITTER_CONSUMER_SECRET=
+TWITTER_ENVIRONMENT=
+
+#slack integration
+SLACK_CLIENT_ID=
+SLACK_CLIENT_SECRET=
+
+# Google OAuth
+GOOGLE_OAUTH_CLIENT_ID=
+GOOGLE_OAUTH_CLIENT_SECRET=
+GOOGLE_OAUTH_CALLBACK_URL=
+
+### Change this env variable only if you are using a custom build mobile app
+## Mobile app env variables
+IOS_APP_ID=L7YLMN4634.com.chatwoot.app
+ANDROID_BUNDLE_ID=com.chatwoot.app
+
+# https://developers.google.com/android/guides/client-auth (use keytool to print the fingerprint in the first section)
+ANDROID_SHA256_CERT_FINGERPRINT=AC:73:8E:DE:EB:56:EA:CC:10:87:02:A7:65:37:7B:38:D4:5D:D4:53:F8:3B:FB:D3:C6:28:64:1D:AA:08:1E:D8
+
+### Smart App Banner
+# https://developer.apple.com/library/archive/documentation/AppleApplications/Reference/SafariWebContent/PromotingAppswithAppBanners/PromotingAppswithAppBanners.html
+# You can find your app-id in https://itunesconnect.apple.com
+#IOS_APP_IDENTIFIER=1495796682
+
+## Push Notification
+## generate a new key value here : https://d3v.one/vapid-key-generator/
+# VAPID_PUBLIC_KEY=
+# VAPID_PRIVATE_KEY=
+#
+# for mobile apps
+# FCM_SERVER_KEY=
+
+### APM and Error Monitoring configurations
+## Elastic APM
+## https://www.elastic.co/guide/en/apm/agent/ruby/current/getting-started-rails.html
+# ELASTIC_APM_SERVER_URL=
+# ELASTIC_APM_SECRET_TOKEN=
+
+## Sentry
+# SENTRY_DSN=
+
+
+## Scout
+## https://scoutapm.com/docs/ruby/configuration
+# SCOUT_KEY=YOURKEY
+# SCOUT_NAME=YOURAPPNAME (Production)
+# SCOUT_MONITOR=true
+
+## NewRelic
+# https://docs.newrelic.com/docs/agents/ruby-agent/configuration/ruby-agent-configuration/
+# NEW_RELIC_LICENSE_KEY=
+# Set this to true to allow newrelic apm to send logs.
+# This is turned off by default.
+# NEW_RELIC_APPLICATION_LOGGING_ENABLED=
+
+## Datadog
+## https://github.com/DataDog/dd-trace-rb/blob/master/docs/GettingStarted.md#environment-variables
+# DD_TRACE_AGENT_URL=
+
+# MaxMindDB API key to download GeoLite2 City database
+# IP_LOOKUP_API_KEY=
+
+## Rack Attack configuration
+## To prevent and throttle abusive requests
+# ENABLE_RACK_ATTACK=true
+# RACK_ATTACK_LIMIT=300
+# ENABLE_RACK_ATTACK_WIDGET_API=true
+# Comma-separated list of trusted IPs that bypass Rack Attack throttling rules
+# RACK_ATTACK_ALLOWED_IPS=127.0.0.1,::1,192.168.0.10
+
+## Running chatwoot as an API only server
+## setting this value to true will disable the frontend dashboard endpoints
+# CW_API_ONLY_SERVER=false
+
+## Development Only Config
+# if you want to use letter_opener for local emails
+# LETTER_OPENER=true
+# meant to be used in github codespaces
+# WEBPACKER_DEV_SERVER_PUBLIC=
+
+# If you want to use official mobile app,
+# the notifications would be relayed via a Chatwoot server
+ENABLE_PUSH_RELAY_SERVER=true
+
+# Stripe API key
+STRIPE_SECRET_KEY=
+STRIPE_WEBHOOK_SECRET=
+
+# Set to true if you want to upload files to cloud storage using the signed url
+# Make sure to follow https://edgeguides.rubyonrails.org/active_storage_overview.html#cross-origin-resource-sharing-cors-configuration on the cloud storage after setting this to true.
+DIRECT_UPLOADS_ENABLED=
+
+#MS OAUTH creds
+AZURE_APP_ID=
+AZURE_APP_SECRET=
+
+## Advanced configurations
+## Change these values to fine tune performance
+# control the concurrency setting of sidekiq
+# SIDEKIQ_CONCURRENCY=10
+
+
+# AI powered features
+## OpenAI key
+# OPENAI_API_KEY=
+
+# Housekeeping/Performance related configurations
+# Set to true if you want to remove stale contact inboxes
+# contact_inboxes with no conversation older than 90 days will be removed
+# REMOVE_STALE_CONTACT_INBOX_JOB_STATUS=false
+nano docker-compose.yaml
+示范如下"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Posts","item":"https://567899.xyz/post/"},{"@type":"ListItem","position":2,"name":"Docker部署Chatwoot在线聊天客服","item":"https://567899.xyz/post/chatwoot/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"Docker部署Chatwoot在线聊天客服","name":"Docker部署Chatwoot在线聊天客服","description":"Chatwoot是一款聊天对话软件，支持Docker部署Chatwoot,详细过程如下\n安装docker及docker compose # example in ubuntu apt-get update curl -fsSL https://get.docker.com -o get-docker.sh sudo sh get-docker.sh apt install docker-compose-plugin 查看对应的版本\ndocker --version docker compose version 创建配置文件 mkdir chatwoot cd chatwoot wget -O .env https://raw.githubusercontent.com/chatwoot/chatwoot/develop/.env.example wget -O docker-compose.yaml https://raw.githubusercontent.com/chatwoot/chatwoot/develop/docker-compose.production.yaml 编辑修改，注意在.env和docker-compose.yaml二者中的POSTGRES_PASSWORD参数必须一致\nnano .env SECRET_KEY_BASE值可以用以下命令生成，二选一即可\nopenssl rand -base64 32 head /dev/urandom | tr -dc A-Za-z0-9 | head -c 63 ; echo \u0026#39;\u0026#39; 我的自定义，示范如下\n# Learn about the various environment variables at # https://www.chatwoot.com/docs/self-hosted/configuration/environment-variables/#rails-production-variables # Used to verify the integrity of signed cookies. so ensure a secure value is set # SECRET_KEY_BASE should be alphanumeric. Avoid special characters or symbols. # Use `rake secret` to generate this variable SECRET_KEY_BASE=ZoxaEZz7M/gviLx4iuLw6e141CBKPGkagPGplBgSyrA= # Replace with the URL you are planning to use for your app FRONTEND_URL=http://0.0.0.0:3000 # To use a dedicated URL for help center pages HELPCENTER_URL=http://0.0.0.0:3000 # If the variable is set, all non-authenticated pages would fallback to the default locale. # Whenever a new account is created, the default language will be DEFAULT_LOCALE instead of en # DEFAULT_LOCALE=en # If you plan to use CDN for your assets, set Asset CDN Host ASSET_CDN_HOST= # Force all access to the app over SSL, default is set to false FORCE_SSL=false # This lets you control new sign ups on your chatwoot installation # true : default option, allows sign ups # false : disables all the end points related to sign ups # api_only: disables the UI for signup, but you can create sign ups via the account apis ENABLE_ACCOUNT_SIGNUP=false # Redis config # specify the configs via single URL or individual variables # ref: https://www.iana.org/assignments/uri-schemes/prov/redis # You can also use the following format for the URL: redis://:password@host:port/db_number REDIS_URL=redis://redis:6379 # If you are using docker-compose, set this variable\u0026#39;s value to be any string, # which will be the password for the redis service running inside the docker-compose # to make it secure REDIS_PASSWORD=trrt75XS91MSFF #密码复杂点可随便填写 # Redis Sentinel can be used by passing list of sentinel host and ports e,g. sentinel_host1:port1,sentinel_host2:port2 REDIS_SENTINELS= # Redis sentinel master name is required when using sentinel, default value is \u0026#34;mymaster\u0026#34;. # You can find list of master using \u0026#34;SENTINEL masters\u0026#34; command REDIS_SENTINEL_MASTER_NAME= # By default Chatwoot will pass REDIS_PASSWORD as the password value for sentinels # Use the following environment variable to customize passwords for sentinels. # Use empty string if sentinels are configured with out passwords # REDIS_SENTINEL_PASSWORD= # Redis premium breakage in heroku fix # enable the following configuration # ref: https://github.com/chatwoot/chatwoot/issues/2420 # REDIS_OPENSSL_VERIFY_MODE=none # Postgres Database config variables # You can leave POSTGRES_DATABASE blank. The default name of # the database in the production environment is chatwoot_production # POSTGRES_DATABASE= POSTGRES_HOST=postgres POSTGRES_USERNAME=postgres POSTGRES_PASSWORD=b45CW2jTWuUKh26WKJf6ngO RAILS_ENV=development # Changes the Postgres query timeout limit. The default is 14 seconds. Modify only when required. # POSTGRES_STATEMENT_TIMEOUT=14s RAILS_MAX_THREADS=5 # The email from which all outgoing emails are sent # could user either `email@yourdomain.com` or `BrandName \u0026lt;email@yourdomain.com\u0026gt;` MAILER_SENDER_EMAIL=Chatwoot \u0026lt;accounts@chatwoot.com\u0026gt; #SMTP domain key is set up for HELO checking SMTP_DOMAIN=chatwoot.com # Set the value to \u0026#34;mailhog\u0026#34; if using docker-compose for development environments, # Set the value as \u0026#34;localhost\u0026#34; or your SMTP address in other environments # If SMTP_ADDRESS is empty, Chatwoot would try to use sendmail(postfix) SMTP_ADDRESS= SMTP_PORT=1025 SMTP_USERNAME= SMTP_PASSWORD= # plain,login,cram_md5 SMTP_AUTHENTICATION= SMTP_ENABLE_STARTTLS_AUTO=true # Can be: \u0026#39;none\u0026#39;, \u0026#39;peer\u0026#39;, \u0026#39;client_once\u0026#39;, \u0026#39;fail_if_no_peer_cert\u0026#39;, see http://api.rubyonrails.org/classes/ActionMailer/Base.html SMTP_OPENSSL_VERIFY_MODE=peer # Comment out the following environment variables if required by your SMTP server # SMTP_TLS= # SMTP_SSL= # SMTP_OPEN_TIMEOUT # SMTP_READ_TIMEOUT # Mail Incoming # This is the domain set for the reply emails when conversation continuity is enabled MAILER_INBOUND_EMAIL_DOMAIN= # Set this to the appropriate ingress channel with regards to incoming emails # Possible values are : # relay for Exim, Postfix, Qmail # mailgun for Mailgun # mandrill for Mandrill # postmark for Postmark # sendgrid for Sendgrid RAILS_INBOUND_EMAIL_SERVICE= # Use one of the following based on the email ingress service # Ref: https://edgeguides.rubyonrails.org/action_mailbox_basics.html # Set this to a password of your choice and use it in the Inbound webhook RAILS_INBOUND_EMAIL_PASSWORD= MAILGUN_INGRESS_SIGNING_KEY= MANDRILL_INGRESS_API_KEY= # Creating Your Inbound Webhook Instructions for Postmark and Sendgrid: # Inbound webhook URL format: # https://actionmailbox:[YOUR_RAILS_INBOUND_EMAIL_PASSWORD]@[YOUR_CHATWOOT_DOMAIN.COM]/rails/action_mailbox/[RAILS_INBOUND_EMAIL_SERVICE]/inbound_emails # Note: Replace the values inside the brackets; do not include the brackets themselves. # Example: https://actionmailbox:mYRandomPassword3@chatwoot.example.com/rails/action_mailbox/postmark/inbound_emails # For Postmark # Ensure the \u0026#39;Include raw email content in JSON payload\u0026#39; checkbox is selected in the inbound webhook section. # Storage ACTIVE_STORAGE_SERVICE=local # Amazon S3 # documentation: https://www.chatwoot.com/docs/configuring-s3-bucket-as-cloud-storage S3_BUCKET_NAME= AWS_ACCESS_KEY_ID= AWS_SECRET_ACCESS_KEY= AWS_REGION= # Log settings # Disable if you want to write logs to a file RAILS_LOG_TO_STDOUT=true LOG_LEVEL=info LOG_SIZE=500 # Configure this environment variable if you want to use lograge instead of rails logger #LOGRAGE_ENABLED=true ### This environment variables are only required if you are setting up social media channels # Facebook # documentation: https://www.chatwoot.com/docs/facebook-setup FB_VERIFY_TOKEN= FB_APP_SECRET= FB_APP_ID= # https://developers.facebook.com/docs/messenger-platform/instagram/get-started#app-dashboard IG_VERIFY_TOKEN= # Twitter # documentation: https://www.chatwoot.com/docs/twitter-app-setup TWITTER_APP_ID= TWITTER_CONSUMER_KEY= TWITTER_CONSUMER_SECRET= TWITTER_ENVIRONMENT= #slack integration SLACK_CLIENT_ID= SLACK_CLIENT_SECRET= # Google OAuth GOOGLE_OAUTH_CLIENT_ID= GOOGLE_OAUTH_CLIENT_SECRET= GOOGLE_OAUTH_CALLBACK_URL= ### Change this env variable only if you are using a custom build mobile app ## Mobile app env variables IOS_APP_ID=L7YLMN4634.com.chatwoot.app ANDROID_BUNDLE_ID=com.chatwoot.app # https://developers.google.com/android/guides/client-auth (use keytool to print the fingerprint in the first section) ANDROID_SHA256_CERT_FINGERPRINT=AC:73:8E:DE:EB:56:EA:CC:10:87:02:A7:65:37:7B:38:D4:5D:D4:53:F8:3B:FB:D3:C6:28:64:1D:AA:08:1E:D8 ### Smart App Banner # https://developer.apple.com/library/archive/documentation/AppleApplications/Reference/SafariWebContent/PromotingAppswithAppBanners/PromotingAppswithAppBanners.html # You can find your app-id in https://itunesconnect.apple.com #IOS_APP_IDENTIFIER=1495796682 ## Push Notification ## generate a new key value here : https://d3v.one/vapid-key-generator/ # VAPID_PUBLIC_KEY= # VAPID_PRIVATE_KEY= # # for mobile apps # FCM_SERVER_KEY= ### APM and Error Monitoring configurations ## Elastic APM ## https://www.elastic.co/guide/en/apm/agent/ruby/current/getting-started-rails.html # ELASTIC_APM_SERVER_URL= # ELASTIC_APM_SECRET_TOKEN= ## Sentry # SENTRY_DSN= ## Scout ## https://scoutapm.com/docs/ruby/configuration # SCOUT_KEY=YOURKEY # SCOUT_NAME=YOURAPPNAME (Production) # SCOUT_MONITOR=true ## NewRelic # https://docs.newrelic.com/docs/agents/ruby-agent/configuration/ruby-agent-configuration/ # NEW_RELIC_LICENSE_KEY= # Set this to true to allow newrelic apm to send logs. # This is turned off by default. # NEW_RELIC_APPLICATION_LOGGING_ENABLED= ## Datadog ## https://github.com/DataDog/dd-trace-rb/blob/master/docs/GettingStarted.md#environment-variables # DD_TRACE_AGENT_URL= # MaxMindDB API key to download GeoLite2 City database # IP_LOOKUP_API_KEY= ## Rack Attack configuration ## To prevent and throttle abusive requests # ENABLE_RACK_ATTACK=true # RACK_ATTACK_LIMIT=300 # ENABLE_RACK_ATTACK_WIDGET_API=true # Comma-separated list of trusted IPs that bypass Rack Attack throttling rules # RACK_ATTACK_ALLOWED_IPS=127.0.0.1,::1,192.168.0.10 ## Running chatwoot as an API only server ## setting this value to true will disable the frontend dashboard endpoints # CW_API_ONLY_SERVER=false ## Development Only Config # if you want to use letter_opener for local emails # LETTER_OPENER=true # meant to be used in github codespaces # WEBPACKER_DEV_SERVER_PUBLIC= # If you want to use official mobile app, # the notifications would be relayed via a Chatwoot server ENABLE_PUSH_RELAY_SERVER=true # Stripe API key STRIPE_SECRET_KEY= STRIPE_WEBHOOK_SECRET= # Set to true if you want to upload files to cloud storage using the signed url # Make sure to follow https://edgeguides.rubyonrails.org/active_storage_overview.html#cross-origin-resource-sharing-cors-configuration on the cloud storage after setting this to true. DIRECT_UPLOADS_ENABLED= #MS OAUTH creds AZURE_APP_ID= AZURE_APP_SECRET= ## Advanced configurations ## Change these values to fine tune performance # control the concurrency setting of sidekiq # SIDEKIQ_CONCURRENCY=10 # AI powered features ## OpenAI key # OPENAI_API_KEY= # Housekeeping/Performance related configurations # Set to true if you want to remove stale contact inboxes # contact_inboxes with no conversation older than 90 days will be removed # REMOVE_STALE_CONTACT_INBOX_JOB_STATUS=false nano docker-compose.yaml 示范如下\n","keywords":["docker"],"articleBody":"Chatwoot是一款聊天对话软件，支持Docker部署Chatwoot,详细过程如下\n安装docker及docker compose # example in ubuntu apt-get update curl -fsSL https://get.docker.com -o get-docker.sh sudo sh get-docker.sh apt install docker-compose-plugin 查看对应的版本\ndocker --version docker compose version 创建配置文件 mkdir chatwoot cd chatwoot wget -O .env https://raw.githubusercontent.com/chatwoot/chatwoot/develop/.env.example wget -O docker-compose.yaml https://raw.githubusercontent.com/chatwoot/chatwoot/develop/docker-compose.production.yaml 编辑修改，注意在.env和docker-compose.yaml二者中的POSTGRES_PASSWORD参数必须一致\nnano .env SECRET_KEY_BASE值可以用以下命令生成，二选一即可\nopenssl rand -base64 32 head /dev/urandom | tr -dc A-Za-z0-9 | head -c 63 ; echo '' 我的自定义，示范如下\n# Learn about the various environment variables at # https://www.chatwoot.com/docs/self-hosted/configuration/environment-variables/#rails-production-variables # Used to verify the integrity of signed cookies. so ensure a secure value is set # SECRET_KEY_BASE should be alphanumeric. Avoid special characters or symbols. # Use `rake secret` to generate this variable SECRET_KEY_BASE=ZoxaEZz7M/gviLx4iuLw6e141CBKPGkagPGplBgSyrA= # Replace with the URL you are planning to use for your app FRONTEND_URL=http://0.0.0.0:3000 # To use a dedicated URL for help center pages HELPCENTER_URL=http://0.0.0.0:3000 # If the variable is set, all non-authenticated pages would fallback to the default locale. # Whenever a new account is created, the default language will be DEFAULT_LOCALE instead of en # DEFAULT_LOCALE=en # If you plan to use CDN for your assets, set Asset CDN Host ASSET_CDN_HOST= # Force all access to the app over SSL, default is set to false FORCE_SSL=false # This lets you control new sign ups on your chatwoot installation # true : default option, allows sign ups # false : disables all the end points related to sign ups # api_only: disables the UI for signup, but you can create sign ups via the account apis ENABLE_ACCOUNT_SIGNUP=false # Redis config # specify the configs via single URL or individual variables # ref: https://www.iana.org/assignments/uri-schemes/prov/redis # You can also use the following format for the URL: redis://:password@host:port/db_number REDIS_URL=redis://redis:6379 # If you are using docker-compose, set this variable's value to be any string, # which will be the password for the redis service running inside the docker-compose # to make it secure REDIS_PASSWORD=trrt75XS91MSFF #密码复杂点可随便填写 # Redis Sentinel can be used by passing list of sentinel host and ports e,g. sentinel_host1:port1,sentinel_host2:port2 REDIS_SENTINELS= # Redis sentinel master name is required when using sentinel, default value is \"mymaster\". # You can find list of master using \"SENTINEL masters\" command REDIS_SENTINEL_MASTER_NAME= # By default Chatwoot will pass REDIS_PASSWORD as the password value for sentinels # Use the following environment variable to customize passwords for sentinels. # Use empty string if sentinels are configured with out passwords # REDIS_SENTINEL_PASSWORD= # Redis premium breakage in heroku fix # enable the following configuration # ref: https://github.com/chatwoot/chatwoot/issues/2420 # REDIS_OPENSSL_VERIFY_MODE=none # Postgres Database config variables # You can leave POSTGRES_DATABASE blank. The default name of # the database in the production environment is chatwoot_production # POSTGRES_DATABASE= POSTGRES_HOST=postgres POSTGRES_USERNAME=postgres POSTGRES_PASSWORD=b45CW2jTWuUKh26WKJf6ngO RAILS_ENV=development # Changes the Postgres query timeout limit. The default is 14 seconds. Modify only when required. # POSTGRES_STATEMENT_TIMEOUT=14s RAILS_MAX_THREADS=5 # The email from which all outgoing emails are sent # could user either `email@yourdomain.com` or `BrandName ` MAILER_SENDER_EMAIL=Chatwoot #SMTP domain key is set up for HELO checking SMTP_DOMAIN=chatwoot.com # Set the value to \"mailhog\" if using docker-compose for development environments, # Set the value as \"localhost\" or your SMTP address in other environments # If SMTP_ADDRESS is empty, Chatwoot would try to use sendmail(postfix) SMTP_ADDRESS= SMTP_PORT=1025 SMTP_USERNAME= SMTP_PASSWORD= # plain,login,cram_md5 SMTP_AUTHENTICATION= SMTP_ENABLE_STARTTLS_AUTO=true # Can be: 'none', 'peer', 'client_once', 'fail_if_no_peer_cert', see http://api.rubyonrails.org/classes/ActionMailer/Base.html SMTP_OPENSSL_VERIFY_MODE=peer # Comment out the following environment variables if required by your SMTP server # SMTP_TLS= # SMTP_SSL= # SMTP_OPEN_TIMEOUT # SMTP_READ_TIMEOUT # Mail Incoming # This is the domain set for the reply emails when conversation continuity is enabled MAILER_INBOUND_EMAIL_DOMAIN= # Set this to the appropriate ingress channel with regards to incoming emails # Possible values are : # relay for Exim, Postfix, Qmail # mailgun for Mailgun # mandrill for Mandrill # postmark for Postmark # sendgrid for Sendgrid RAILS_INBOUND_EMAIL_SERVICE= # Use one of the following based on the email ingress service # Ref: https://edgeguides.rubyonrails.org/action_mailbox_basics.html # Set this to a password of your choice and use it in the Inbound webhook RAILS_INBOUND_EMAIL_PASSWORD= MAILGUN_INGRESS_SIGNING_KEY= MANDRILL_INGRESS_API_KEY= # Creating Your Inbound Webhook Instructions for Postmark and Sendgrid: # Inbound webhook URL format: # https://actionmailbox:[YOUR_RAILS_INBOUND_EMAIL_PASSWORD]@[YOUR_CHATWOOT_DOMAIN.COM]/rails/action_mailbox/[RAILS_INBOUND_EMAIL_SERVICE]/inbound_emails # Note: Replace the values inside the brackets; do not include the brackets themselves. # Example: https://actionmailbox:mYRandomPassword3@chatwoot.example.com/rails/action_mailbox/postmark/inbound_emails # For Postmark # Ensure the 'Include raw email content in JSON payload' checkbox is selected in the inbound webhook section. # Storage ACTIVE_STORAGE_SERVICE=local # Amazon S3 # documentation: https://www.chatwoot.com/docs/configuring-s3-bucket-as-cloud-storage S3_BUCKET_NAME= AWS_ACCESS_KEY_ID= AWS_SECRET_ACCESS_KEY= AWS_REGION= # Log settings # Disable if you want to write logs to a file RAILS_LOG_TO_STDOUT=true LOG_LEVEL=info LOG_SIZE=500 # Configure this environment variable if you want to use lograge instead of rails logger #LOGRAGE_ENABLED=true ### This environment variables are only required if you are setting up social media channels # Facebook # documentation: https://www.chatwoot.com/docs/facebook-setup FB_VERIFY_TOKEN= FB_APP_SECRET= FB_APP_ID= # https://developers.facebook.com/docs/messenger-platform/instagram/get-started#app-dashboard IG_VERIFY_TOKEN= # Twitter # documentation: https://www.chatwoot.com/docs/twitter-app-setup TWITTER_APP_ID= TWITTER_CONSUMER_KEY= TWITTER_CONSUMER_SECRET= TWITTER_ENVIRONMENT= #slack integration SLACK_CLIENT_ID= SLACK_CLIENT_SECRET= # Google OAuth GOOGLE_OAUTH_CLIENT_ID= GOOGLE_OAUTH_CLIENT_SECRET= GOOGLE_OAUTH_CALLBACK_URL= ### Change this env variable only if you are using a custom build mobile app ## Mobile app env variables IOS_APP_ID=L7YLMN4634.com.chatwoot.app ANDROID_BUNDLE_ID=com.chatwoot.app # https://developers.google.com/android/guides/client-auth (use keytool to print the fingerprint in the first section) ANDROID_SHA256_CERT_FINGERPRINT=AC:73:8E:DE:EB:56:EA:CC:10:87:02:A7:65:37:7B:38:D4:5D:D4:53:F8:3B:FB:D3:C6:28:64:1D:AA:08:1E:D8 ### Smart App Banner # https://developer.apple.com/library/archive/documentation/AppleApplications/Reference/SafariWebContent/PromotingAppswithAppBanners/PromotingAppswithAppBanners.html # You can find your app-id in https://itunesconnect.apple.com #IOS_APP_IDENTIFIER=1495796682 ## Push Notification ## generate a new key value here : https://d3v.one/vapid-key-generator/ # VAPID_PUBLIC_KEY= # VAPID_PRIVATE_KEY= # # for mobile apps # FCM_SERVER_KEY= ### APM and Error Monitoring configurations ## Elastic APM ## https://www.elastic.co/guide/en/apm/agent/ruby/current/getting-started-rails.html # ELASTIC_APM_SERVER_URL= # ELASTIC_APM_SECRET_TOKEN= ## Sentry # SENTRY_DSN= ## Scout ## https://scoutapm.com/docs/ruby/configuration # SCOUT_KEY=YOURKEY # SCOUT_NAME=YOURAPPNAME (Production) # SCOUT_MONITOR=true ## NewRelic # https://docs.newrelic.com/docs/agents/ruby-agent/configuration/ruby-agent-configuration/ # NEW_RELIC_LICENSE_KEY= # Set this to true to allow newrelic apm to send logs. # This is turned off by default. # NEW_RELIC_APPLICATION_LOGGING_ENABLED= ## Datadog ## https://github.com/DataDog/dd-trace-rb/blob/master/docs/GettingStarted.md#environment-variables # DD_TRACE_AGENT_URL= # MaxMindDB API key to download GeoLite2 City database # IP_LOOKUP_API_KEY= ## Rack Attack configuration ## To prevent and throttle abusive requests # ENABLE_RACK_ATTACK=true # RACK_ATTACK_LIMIT=300 # ENABLE_RACK_ATTACK_WIDGET_API=true # Comma-separated list of trusted IPs that bypass Rack Attack throttling rules # RACK_ATTACK_ALLOWED_IPS=127.0.0.1,::1,192.168.0.10 ## Running chatwoot as an API only server ## setting this value to true will disable the frontend dashboard endpoints # CW_API_ONLY_SERVER=false ## Development Only Config # if you want to use letter_opener for local emails # LETTER_OPENER=true # meant to be used in github codespaces # WEBPACKER_DEV_SERVER_PUBLIC= # If you want to use official mobile app, # the notifications would be relayed via a Chatwoot server ENABLE_PUSH_RELAY_SERVER=true # Stripe API key STRIPE_SECRET_KEY= STRIPE_WEBHOOK_SECRET= # Set to true if you want to upload files to cloud storage using the signed url # Make sure to follow https://edgeguides.rubyonrails.org/active_storage_overview.html#cross-origin-resource-sharing-cors-configuration on the cloud storage after setting this to true. DIRECT_UPLOADS_ENABLED= #MS OAUTH creds AZURE_APP_ID= AZURE_APP_SECRET= ## Advanced configurations ## Change these values to fine tune performance # control the concurrency setting of sidekiq # SIDEKIQ_CONCURRENCY=10 # AI powered features ## OpenAI key # OPENAI_API_KEY= # Housekeeping/Performance related configurations # Set to true if you want to remove stale contact inboxes # contact_inboxes with no conversation older than 90 days will be removed # REMOVE_STALE_CONTACT_INBOX_JOB_STATUS=false nano docker-compose.yaml 示范如下\nversion: '3' services: base: \u0026base build: context: . dockerfile: ./docker/Dockerfile args: BUNDLE_WITHOUT: '' EXECJS_RUNTIME: 'Node' RAILS_ENV: 'development' RAILS_SERVE_STATIC_FILES: 'false' tty: true stdin_open: true image: chatwoot:development env_file: .env rails: \u003c\u003c: *base build: context: . dockerfile: ./docker/dockerfiles/rails.Dockerfile image: chatwoot-rails:development volumes: - ./:/app:delegated - node_modules:/app/node_modules - packs:/app/public/packs - cache:/app/tmp/cache - bundle:/usr/local/bundle depends_on: - postgres - redis - vite - mailhog - sidekiq ports: - 3000:3000 env_file: .env environment: - VITE_DEV_SERVER_HOST=vite - NODE_ENV=development - RAILS_ENV=development entrypoint: docker/entrypoints/rails.sh command: [\"bundle\", \"exec\", \"rails\", \"s\", \"-p\", \"3000\", \"-b\", \"0.0.0.0\"] sidekiq: \u003c\u003c: *base image: chatwoot-rails:development volumes: - ./:/app:delegated - node_modules:/app/node_modules - packs:/app/public/packs - cache:/app/tmp/cache - bundle:/usr/local/bundle depends_on: - postgres - redis - mailhog environment: - NODE_ENV=development - RAILS_ENV=development command: [\"bundle\", \"exec\", \"sidekiq\", \"-C\", \"config/sidekiq.yml\"] vite: \u003c\u003c: *base build: context: . dockerfile: ./docker/dockerfiles/vite.Dockerfile image: chatwoot-vite:development volumes: - ./:/app:delegated - node_modules:/app/node_modules - packs:/app/public/packs - cache:/app/tmp/cache - bundle:/usr/local/bundle ports: - \"3036:3036\" # Vite dev server environment: - VITE_DEV_SERVER_HOST=0.0.0.0 - NODE_ENV=development - RAILS_ENV=development entrypoint: docker/entrypoints/vite.sh command: bin/vite dev postgres: image: pgvector/pgvector:pg16 restart: always ports: - '5432:5432' volumes: - postgres:/data/postgres environment: - POSTGRES_DB=chatwoot - POSTGRES_USER=postgres - POSTGRES_PASSWORD=b45CW2jTWuUKh26WKJf6ngO redis: image: redis:alpine restart: always command: [\"sh\", \"-c\", \"redis-server --requirepass \\\"$REDIS_PASSWORD\\\"\"] env_file: .env volumes: - redis:/data/redis ports: - '6379:6379' mailhog: image: mailhog/mailhog ports: - 1025:1025 - 8025:8025 volumes: postgres: redis: packs: node_modules: cache: bundle: 准备数据库\ndocker compose run --rm rails bundle exec rails db:chatwoot_prepare ​启动\ndocker compose down docker compose up -d Access your installation Your Chatwoot installation is complete. Please note that the containers are not exposed to the internet and they only bind to the localhost. Setup something like Nginx or any other proxy server to proxy the requests to the container. If you want to verify whether the installation is working, try curl -I localhost:3000/api to see if it returns 200. Also, you could temporarily drop the 127.0.0.1:3000:3000 for rails to 3000:3000 in the compose file to access your instance at http://:3000. It’s recommended to revert this change back and use Nginx or some proxy server in the front. Run docker compose run --rm rails bundle exec rails db:chatwoot_prepare whenever you decide to update the Chatwoot images to handle the migrations.\n彻底删除docker部署的chatwoot 删除卷和网络\nChatwoot 会用到 Postgres、Redis 等卷，执行：\ndocker compose down -v docker volume ls | grep chatwoot docker volume rm chatwoot_postgres_data docker volume rm chatwoot_redis_data docker volume rm chatwoot_storage_data # 删除网络 docker network ls | grep chatwoot docker network rm \u003c网络名\u003e docker system prune -a --volumes # 删除残留数据目录（如果映射过宿主机目录） # 检查 docker-compose.yml 或启动命令，看是否有挂载到宿主机，比如 # volumes: # - ./storage:/app/storage rm -rf ./storage rm -rf chatwoot ","wordCount":"1561","inLanguage":"zh","image":"https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E","datePublished":"2025-08-16T13:45:17+08:00","dateModified":"2025-08-16T13:45:17+08:00","author":{"@type":"Person","name":"admin"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://567899.xyz/post/chatwoot/"},"publisher":{"@type":"Organization","name":"Xizi's Blog","logo":{"@type":"ImageObject","url":"https://567899.xyz/%3Clink%20/%20abs%20url%3E"}}}</script></head><body id=top><script>localStorage.getItem("pref-theme")==="dark"?document.body.classList.add("dark"):localStorage.getItem("pref-theme")==="light"?document.body.classList.remove("dark"):window.matchMedia("(prefers-color-scheme: dark)").matches&&document.body.classList.add("dark")</script><header class=header><nav class=nav><div class=logo><a href=https://567899.xyz/ accesskey=h title="Xizi's Blog (Alt + H)"><img src=https://567899.xyz/apple-touch-icon.png alt aria-label=logo height=35>Xizi's Blog</a><div class=logo-switches><button id=theme-toggle accesskey=t title="(Alt + T)">
+<svg id="moon" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+<svg id="sun" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu><li><a href=https://567899.xyz/archives/ title=归档><span>归档</span></a></li><li><a href=https://567899.xyz/tags/ title=标签><span>标签</span></a></li><li><a href=https://567899.xyz/about/ title=关于><span>关于</span></a></li><li><a href=https://567899.xyz/search/ title="搜索 (Alt + /)" accesskey=/><span>搜索</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><div class=breadcrumbs><a href=https://567899.xyz/>主页</a>&nbsp;»&nbsp;<a href=https://567899.xyz/post/>Posts</a></div><h1 class="post-title entry-hint-parent">Docker部署Chatwoot在线聊天客服</h1><div class=post-meta><span title='2025-08-16 13:45:17 +0800 +0800'>八月 16, 2025</span>&nbsp;·&nbsp;admin&nbsp;|&nbsp;<a href=https://github.com/pwwq/hugo-code/tree/master/content/post/chatwoot.md rel="noopener noreferrer" target=_blank>编辑</a></div></header><div class=toc><details open><summary accesskey=c title="(Alt + C)"><span class=details>目录</span></summary><div class=inner><nav id=TableOfContents><ul><li><a href=#安装docker及docker-compose>安装docker及docker compose</a></li><li><a href=#创建配置文件>创建配置文件</a></li><li><a href=#彻底删除docker部署的chatwoot>彻底删除docker部署的chatwoot</a></li></ul></nav></div></details></div><div class=post-content><p><a href=https://www.chatwoot.com>Chatwoot</a>是一款聊天对话软件，支持<a href=https://developers.chatwoot.com/self-hosted/deployment/docker#5-start-the-services>Docker部署Chatwoot</a>,详细过程如下</p><h2 id=安装docker及docker-compose>安装docker及docker compose<a hidden class=anchor aria-hidden=true href=#安装docker及docker-compose>#</a></h2><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># example in ubuntu</span>
+</span></span><span class=line><span class=cl>apt-get update
+</span></span><span class=line><span class=cl>curl -fsSL https://get.docker.com -o get-docker.sh
+</span></span><span class=line><span class=cl>sudo sh get-docker.sh
+</span></span><span class=line><span class=cl>apt install docker-compose-plugin
+</span></span></code></pre></div><p>查看对应的版本</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>docker --version
+</span></span><span class=line><span class=cl>docker compose version
+</span></span></code></pre></div><h2 id=创建配置文件>创建配置文件<a hidden class=anchor aria-hidden=true href=#创建配置文件>#</a></h2><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>mkdir chatwoot
+</span></span><span class=line><span class=cl><span class=nb>cd</span> chatwoot
+</span></span><span class=line><span class=cl>wget -O .env https://raw.githubusercontent.com/chatwoot/chatwoot/develop/.env.example
+</span></span><span class=line><span class=cl>wget -O docker-compose.yaml https://raw.githubusercontent.com/chatwoot/chatwoot/develop/docker-compose.production.yaml
+</span></span></code></pre></div><p>编辑修改，注意<strong>在<code>.env</code>和<code>docker-compose.yaml</code>二者中的<code>POSTGRES_PASSWORD</code>参数必须一致</strong></p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>nano .env
+</span></span></code></pre></div><p><code>SECRET_KEY_BASE</code>值可以用以下命令生成，二选一即可</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>openssl rand -base64 <span class=m>32</span>
+</span></span><span class=line><span class=cl>head /dev/urandom <span class=p>|</span> tr -dc A-Za-z0-9 <span class=p>|</span> head -c <span class=m>63</span> <span class=p>;</span> <span class=nb>echo</span> <span class=s1>&#39;&#39;</span>
+</span></span></code></pre></div><p>我的自定义，示范如下</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># Learn about the various environment variables at</span>
+</span></span><span class=line><span class=cl><span class=c1># https://www.chatwoot.com/docs/self-hosted/configuration/environment-variables/#rails-production-variables</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Used to verify the integrity of signed cookies. so ensure a secure value is set</span>
+</span></span><span class=line><span class=cl><span class=c1># SECRET_KEY_BASE should be alphanumeric. Avoid special characters or symbols.</span>
+</span></span><span class=line><span class=cl><span class=c1># Use `rake secret` to generate this variable</span>
+</span></span><span class=line><span class=cl><span class=nv>SECRET_KEY_BASE</span><span class=o>=</span>ZoxaEZz7M/gviLx4iuLw6e141CBKPGkagPGplBgSyrA<span class=o>=</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Replace with the URL you are planning to use for your app</span>
+</span></span><span class=line><span class=cl><span class=nv>FRONTEND_URL</span><span class=o>=</span>http://0.0.0.0:3000
+</span></span><span class=line><span class=cl><span class=c1># To use a dedicated URL for help center pages</span>
+</span></span><span class=line><span class=cl><span class=nv>HELPCENTER_URL</span><span class=o>=</span>http://0.0.0.0:3000
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># If the variable is set, all non-authenticated pages would fallback to the default locale.</span>
+</span></span><span class=line><span class=cl><span class=c1># Whenever a new account is created, the default language will be DEFAULT_LOCALE instead of en</span>
+</span></span><span class=line><span class=cl><span class=c1># DEFAULT_LOCALE=en</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># If you plan to use CDN for your assets, set Asset CDN Host</span>
+</span></span><span class=line><span class=cl><span class=nv>ASSET_CDN_HOST</span><span class=o>=</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Force all access to the app over SSL, default is set to false</span>
+</span></span><span class=line><span class=cl><span class=nv>FORCE_SSL</span><span class=o>=</span><span class=nb>false</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># This lets you control new sign ups on your chatwoot installation</span>
+</span></span><span class=line><span class=cl><span class=c1># true : default option, allows sign ups</span>
+</span></span><span class=line><span class=cl><span class=c1># false : disables all the end points related to sign ups</span>
+</span></span><span class=line><span class=cl><span class=c1># api_only: disables the UI for signup, but you can create sign ups via the account apis</span>
+</span></span><span class=line><span class=cl><span class=nv>ENABLE_ACCOUNT_SIGNUP</span><span class=o>=</span><span class=nb>false</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Redis config</span>
+</span></span><span class=line><span class=cl><span class=c1># specify the configs via single URL or individual variables</span>
+</span></span><span class=line><span class=cl><span class=c1># ref: https://www.iana.org/assignments/uri-schemes/prov/redis</span>
+</span></span><span class=line><span class=cl><span class=c1># You can also use the following format for the URL: redis://:password@host:port/db_number</span>
+</span></span><span class=line><span class=cl><span class=nv>REDIS_URL</span><span class=o>=</span>redis://redis:6379
+</span></span><span class=line><span class=cl><span class=c1># If you are using docker-compose, set this variable&#39;s value to be any string,</span>
+</span></span><span class=line><span class=cl><span class=c1># which will be the password for the redis service running inside the docker-compose</span>
+</span></span><span class=line><span class=cl><span class=c1># to make it secure</span>
+</span></span><span class=line><span class=cl><span class=nv>REDIS_PASSWORD</span><span class=o>=</span>trrt75XS91MSFF <span class=c1>#密码复杂点可随便填写</span>
+</span></span><span class=line><span class=cl><span class=c1># Redis Sentinel can be used by passing list of sentinel host and ports e,g. sentinel_host1:port1,sentinel_host2:port2</span>
+</span></span><span class=line><span class=cl><span class=nv>REDIS_SENTINELS</span><span class=o>=</span>
+</span></span><span class=line><span class=cl><span class=c1># Redis sentinel master name is required when using sentinel, default value is &#34;mymaster&#34;.</span>
+</span></span><span class=line><span class=cl><span class=c1># You can find list of master using &#34;SENTINEL masters&#34; command</span>
+</span></span><span class=line><span class=cl><span class=nv>REDIS_SENTINEL_MASTER_NAME</span><span class=o>=</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># By default Chatwoot will pass REDIS_PASSWORD as the password value for sentinels</span>
+</span></span><span class=line><span class=cl><span class=c1># Use the following environment variable to customize passwords for sentinels.</span>
+</span></span><span class=line><span class=cl><span class=c1># Use empty string if sentinels are configured with out passwords</span>
+</span></span><span class=line><span class=cl><span class=c1># REDIS_SENTINEL_PASSWORD=</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Redis premium breakage in heroku fix</span>
+</span></span><span class=line><span class=cl><span class=c1># enable the following configuration</span>
+</span></span><span class=line><span class=cl><span class=c1># ref: https://github.com/chatwoot/chatwoot/issues/2420</span>
+</span></span><span class=line><span class=cl><span class=c1># REDIS_OPENSSL_VERIFY_MODE=none</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Postgres Database config variables</span>
+</span></span><span class=line><span class=cl><span class=c1># You can leave POSTGRES_DATABASE blank. The default name of</span>
+</span></span><span class=line><span class=cl><span class=c1># the database in the production environment is chatwoot_production</span>
+</span></span><span class=line><span class=cl><span class=c1># POSTGRES_DATABASE=</span>
+</span></span><span class=line><span class=cl><span class=nv>POSTGRES_HOST</span><span class=o>=</span>postgres
+</span></span><span class=line><span class=cl><span class=nv>POSTGRES_USERNAME</span><span class=o>=</span>postgres
+</span></span><span class=line><span class=cl><span class=nv>POSTGRES_PASSWORD</span><span class=o>=</span>b45CW2jTWuUKh26WKJf6ngO
+</span></span><span class=line><span class=cl><span class=nv>RAILS_ENV</span><span class=o>=</span>development
+</span></span><span class=line><span class=cl><span class=c1># Changes the Postgres query timeout limit. The default is 14 seconds. Modify only when required.</span>
+</span></span><span class=line><span class=cl><span class=c1># POSTGRES_STATEMENT_TIMEOUT=14s</span>
+</span></span><span class=line><span class=cl><span class=nv>RAILS_MAX_THREADS</span><span class=o>=</span><span class=m>5</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># The email from which all outgoing emails are sent</span>
+</span></span><span class=line><span class=cl><span class=c1># could user either  `email@yourdomain.com` or `BrandName &lt;email@yourdomain.com&gt;`</span>
+</span></span><span class=line><span class=cl><span class=nv>MAILER_SENDER_EMAIL</span><span class=o>=</span>Chatwoot &lt;accounts@chatwoot.com&gt;
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>#SMTP domain key is set up for HELO checking</span>
+</span></span><span class=line><span class=cl><span class=nv>SMTP_DOMAIN</span><span class=o>=</span>chatwoot.com
+</span></span><span class=line><span class=cl><span class=c1># Set the value to &#34;mailhog&#34; if using docker-compose for development environments,</span>
+</span></span><span class=line><span class=cl><span class=c1># Set the value as &#34;localhost&#34; or your SMTP address in other environments</span>
+</span></span><span class=line><span class=cl><span class=c1># If SMTP_ADDRESS is empty, Chatwoot would try to use sendmail(postfix)</span>
+</span></span><span class=line><span class=cl><span class=nv>SMTP_ADDRESS</span><span class=o>=</span>
+</span></span><span class=line><span class=cl><span class=nv>SMTP_PORT</span><span class=o>=</span><span class=m>1025</span>
+</span></span><span class=line><span class=cl><span class=nv>SMTP_USERNAME</span><span class=o>=</span>
+</span></span><span class=line><span class=cl><span class=nv>SMTP_PASSWORD</span><span class=o>=</span>
+</span></span><span class=line><span class=cl><span class=c1># plain,login,cram_md5</span>
+</span></span><span class=line><span class=cl><span class=nv>SMTP_AUTHENTICATION</span><span class=o>=</span>
+</span></span><span class=line><span class=cl><span class=nv>SMTP_ENABLE_STARTTLS_AUTO</span><span class=o>=</span><span class=nb>true</span>
+</span></span><span class=line><span class=cl><span class=c1># Can be: &#39;none&#39;, &#39;peer&#39;, &#39;client_once&#39;, &#39;fail_if_no_peer_cert&#39;, see http://api.rubyonrails.org/classes/ActionMailer/Base.html</span>
+</span></span><span class=line><span class=cl><span class=nv>SMTP_OPENSSL_VERIFY_MODE</span><span class=o>=</span>peer
+</span></span><span class=line><span class=cl><span class=c1># Comment out the following environment variables if required by your SMTP server</span>
+</span></span><span class=line><span class=cl><span class=c1># SMTP_TLS=</span>
+</span></span><span class=line><span class=cl><span class=c1># SMTP_SSL=</span>
+</span></span><span class=line><span class=cl><span class=c1># SMTP_OPEN_TIMEOUT</span>
+</span></span><span class=line><span class=cl><span class=c1># SMTP_READ_TIMEOUT</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Mail Incoming</span>
+</span></span><span class=line><span class=cl><span class=c1># This is the domain set for the reply emails when conversation continuity is enabled</span>
+</span></span><span class=line><span class=cl><span class=nv>MAILER_INBOUND_EMAIL_DOMAIN</span><span class=o>=</span>
+</span></span><span class=line><span class=cl><span class=c1># Set this to the appropriate ingress channel with regards to incoming emails</span>
+</span></span><span class=line><span class=cl><span class=c1># Possible values are :</span>
+</span></span><span class=line><span class=cl><span class=c1># relay for Exim, Postfix, Qmail</span>
+</span></span><span class=line><span class=cl><span class=c1># mailgun for Mailgun</span>
+</span></span><span class=line><span class=cl><span class=c1># mandrill for Mandrill</span>
+</span></span><span class=line><span class=cl><span class=c1># postmark for Postmark</span>
+</span></span><span class=line><span class=cl><span class=c1># sendgrid for Sendgrid</span>
+</span></span><span class=line><span class=cl><span class=nv>RAILS_INBOUND_EMAIL_SERVICE</span><span class=o>=</span>
+</span></span><span class=line><span class=cl><span class=c1># Use one of the following based on the email ingress service</span>
+</span></span><span class=line><span class=cl><span class=c1># Ref: https://edgeguides.rubyonrails.org/action_mailbox_basics.html</span>
+</span></span><span class=line><span class=cl><span class=c1># Set this to a password of your choice and use it in the Inbound webhook</span>
+</span></span><span class=line><span class=cl><span class=nv>RAILS_INBOUND_EMAIL_PASSWORD</span><span class=o>=</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nv>MAILGUN_INGRESS_SIGNING_KEY</span><span class=o>=</span>
+</span></span><span class=line><span class=cl><span class=nv>MANDRILL_INGRESS_API_KEY</span><span class=o>=</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Creating Your Inbound Webhook Instructions for Postmark and Sendgrid:</span>
+</span></span><span class=line><span class=cl><span class=c1># Inbound webhook URL format:</span>
+</span></span><span class=line><span class=cl><span class=c1>#    https://actionmailbox:[YOUR_RAILS_INBOUND_EMAIL_PASSWORD]@[YOUR_CHATWOOT_DOMAIN.COM]/rails/action_mailbox/[RAILS_INBOUND_EMAIL_SERVICE]/inbound_emails</span>
+</span></span><span class=line><span class=cl><span class=c1># Note: Replace the values inside the brackets; do not include the brackets themselves.</span>
+</span></span><span class=line><span class=cl><span class=c1># Example: https://actionmailbox:mYRandomPassword3@chatwoot.example.com/rails/action_mailbox/postmark/inbound_emails</span>
+</span></span><span class=line><span class=cl><span class=c1># For Postmark</span>
+</span></span><span class=line><span class=cl><span class=c1># Ensure the &#39;Include raw email content in JSON payload&#39; checkbox is selected in the inbound webhook section.</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Storage</span>
+</span></span><span class=line><span class=cl><span class=nv>ACTIVE_STORAGE_SERVICE</span><span class=o>=</span><span class=nb>local</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Amazon S3</span>
+</span></span><span class=line><span class=cl><span class=c1># documentation: https://www.chatwoot.com/docs/configuring-s3-bucket-as-cloud-storage</span>
+</span></span><span class=line><span class=cl><span class=nv>S3_BUCKET_NAME</span><span class=o>=</span>
+</span></span><span class=line><span class=cl><span class=nv>AWS_ACCESS_KEY_ID</span><span class=o>=</span>
+</span></span><span class=line><span class=cl><span class=nv>AWS_SECRET_ACCESS_KEY</span><span class=o>=</span>
+</span></span><span class=line><span class=cl><span class=nv>AWS_REGION</span><span class=o>=</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Log settings</span>
+</span></span><span class=line><span class=cl><span class=c1># Disable if you want to write logs to a file</span>
+</span></span><span class=line><span class=cl><span class=nv>RAILS_LOG_TO_STDOUT</span><span class=o>=</span><span class=nb>true</span>
+</span></span><span class=line><span class=cl><span class=nv>LOG_LEVEL</span><span class=o>=</span>info
+</span></span><span class=line><span class=cl><span class=nv>LOG_SIZE</span><span class=o>=</span><span class=m>500</span>
+</span></span><span class=line><span class=cl><span class=c1># Configure this environment variable if you want to use lograge instead of rails logger</span>
+</span></span><span class=line><span class=cl><span class=c1>#LOGRAGE_ENABLED=true</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>### This environment variables are only required if you are setting up social media channels</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Facebook</span>
+</span></span><span class=line><span class=cl><span class=c1># documentation: https://www.chatwoot.com/docs/facebook-setup</span>
+</span></span><span class=line><span class=cl><span class=nv>FB_VERIFY_TOKEN</span><span class=o>=</span>
+</span></span><span class=line><span class=cl><span class=nv>FB_APP_SECRET</span><span class=o>=</span>
+</span></span><span class=line><span class=cl><span class=nv>FB_APP_ID</span><span class=o>=</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># https://developers.facebook.com/docs/messenger-platform/instagram/get-started#app-dashboard</span>
+</span></span><span class=line><span class=cl><span class=nv>IG_VERIFY_TOKEN</span><span class=o>=</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Twitter</span>
+</span></span><span class=line><span class=cl><span class=c1># documentation: https://www.chatwoot.com/docs/twitter-app-setup</span>
+</span></span><span class=line><span class=cl><span class=nv>TWITTER_APP_ID</span><span class=o>=</span>
+</span></span><span class=line><span class=cl><span class=nv>TWITTER_CONSUMER_KEY</span><span class=o>=</span>
+</span></span><span class=line><span class=cl><span class=nv>TWITTER_CONSUMER_SECRET</span><span class=o>=</span>
+</span></span><span class=line><span class=cl><span class=nv>TWITTER_ENVIRONMENT</span><span class=o>=</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>#slack integration</span>
+</span></span><span class=line><span class=cl><span class=nv>SLACK_CLIENT_ID</span><span class=o>=</span>
+</span></span><span class=line><span class=cl><span class=nv>SLACK_CLIENT_SECRET</span><span class=o>=</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Google OAuth</span>
+</span></span><span class=line><span class=cl><span class=nv>GOOGLE_OAUTH_CLIENT_ID</span><span class=o>=</span>
+</span></span><span class=line><span class=cl><span class=nv>GOOGLE_OAUTH_CLIENT_SECRET</span><span class=o>=</span>
+</span></span><span class=line><span class=cl><span class=nv>GOOGLE_OAUTH_CALLBACK_URL</span><span class=o>=</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>### Change this env variable only if you are using a custom build mobile app</span>
+</span></span><span class=line><span class=cl><span class=c1>## Mobile app env variables</span>
+</span></span><span class=line><span class=cl><span class=nv>IOS_APP_ID</span><span class=o>=</span>L7YLMN4634.com.chatwoot.app
+</span></span><span class=line><span class=cl><span class=nv>ANDROID_BUNDLE_ID</span><span class=o>=</span>com.chatwoot.app
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># https://developers.google.com/android/guides/client-auth (use keytool to print the fingerprint in the first section)</span>
+</span></span><span class=line><span class=cl><span class=nv>ANDROID_SHA256_CERT_FINGERPRINT</span><span class=o>=</span>AC:73:8E:DE:EB:56:EA:CC:10:87:02:A7:65:37:7B:38:D4:5D:D4:53:F8:3B:FB:D3:C6:28:64:1D:AA:08:1E:D8
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>### Smart App Banner</span>
+</span></span><span class=line><span class=cl><span class=c1># https://developer.apple.com/library/archive/documentation/AppleApplications/Reference/SafariWebContent/PromotingAppswithAppBanners/PromotingAppswithAppBanners.html</span>
+</span></span><span class=line><span class=cl><span class=c1># You can find your app-id in https://itunesconnect.apple.com</span>
+</span></span><span class=line><span class=cl><span class=c1>#IOS_APP_IDENTIFIER=1495796682</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>## Push Notification</span>
+</span></span><span class=line><span class=cl><span class=c1>## generate a new key value here : https://d3v.one/vapid-key-generator/</span>
+</span></span><span class=line><span class=cl><span class=c1># VAPID_PUBLIC_KEY=</span>
+</span></span><span class=line><span class=cl><span class=c1># VAPID_PRIVATE_KEY=</span>
+</span></span><span class=line><span class=cl><span class=c1>#</span>
+</span></span><span class=line><span class=cl><span class=c1># for mobile apps</span>
+</span></span><span class=line><span class=cl><span class=c1># FCM_SERVER_KEY=</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>### APM and Error Monitoring configurations</span>
+</span></span><span class=line><span class=cl><span class=c1>## Elastic APM</span>
+</span></span><span class=line><span class=cl><span class=c1>## https://www.elastic.co/guide/en/apm/agent/ruby/current/getting-started-rails.html</span>
+</span></span><span class=line><span class=cl><span class=c1># ELASTIC_APM_SERVER_URL=</span>
+</span></span><span class=line><span class=cl><span class=c1># ELASTIC_APM_SECRET_TOKEN=</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>## Sentry</span>
+</span></span><span class=line><span class=cl><span class=c1># SENTRY_DSN=</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>## Scout</span>
+</span></span><span class=line><span class=cl><span class=c1>## https://scoutapm.com/docs/ruby/configuration</span>
+</span></span><span class=line><span class=cl><span class=c1># SCOUT_KEY=YOURKEY</span>
+</span></span><span class=line><span class=cl><span class=c1># SCOUT_NAME=YOURAPPNAME (Production)</span>
+</span></span><span class=line><span class=cl><span class=c1># SCOUT_MONITOR=true</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>## NewRelic</span>
+</span></span><span class=line><span class=cl><span class=c1># https://docs.newrelic.com/docs/agents/ruby-agent/configuration/ruby-agent-configuration/</span>
+</span></span><span class=line><span class=cl><span class=c1># NEW_RELIC_LICENSE_KEY=</span>
+</span></span><span class=line><span class=cl><span class=c1># Set this to true to allow newrelic apm to send logs.</span>
+</span></span><span class=line><span class=cl><span class=c1># This is turned off by default.</span>
+</span></span><span class=line><span class=cl><span class=c1># NEW_RELIC_APPLICATION_LOGGING_ENABLED=</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>## Datadog</span>
+</span></span><span class=line><span class=cl><span class=c1>## https://github.com/DataDog/dd-trace-rb/blob/master/docs/GettingStarted.md#environment-variables</span>
+</span></span><span class=line><span class=cl><span class=c1># DD_TRACE_AGENT_URL=</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># MaxMindDB API key to download GeoLite2 City database</span>
+</span></span><span class=line><span class=cl><span class=c1># IP_LOOKUP_API_KEY=</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>## Rack Attack configuration</span>
+</span></span><span class=line><span class=cl><span class=c1>## To prevent and throttle abusive requests</span>
+</span></span><span class=line><span class=cl><span class=c1># ENABLE_RACK_ATTACK=true</span>
+</span></span><span class=line><span class=cl><span class=c1># RACK_ATTACK_LIMIT=300</span>
+</span></span><span class=line><span class=cl><span class=c1># ENABLE_RACK_ATTACK_WIDGET_API=true</span>
+</span></span><span class=line><span class=cl><span class=c1># Comma-separated list of trusted IPs that bypass Rack Attack throttling rules</span>
+</span></span><span class=line><span class=cl><span class=c1># RACK_ATTACK_ALLOWED_IPS=127.0.0.1,::1,192.168.0.10</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>## Running chatwoot as an API only server</span>
+</span></span><span class=line><span class=cl><span class=c1>## setting this value to true will disable the frontend dashboard endpoints</span>
+</span></span><span class=line><span class=cl><span class=c1># CW_API_ONLY_SERVER=false</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>## Development Only Config</span>
+</span></span><span class=line><span class=cl><span class=c1># if you want to use letter_opener for local emails</span>
+</span></span><span class=line><span class=cl><span class=c1># LETTER_OPENER=true</span>
+</span></span><span class=line><span class=cl><span class=c1># meant to be used in github codespaces</span>
+</span></span><span class=line><span class=cl><span class=c1># WEBPACKER_DEV_SERVER_PUBLIC=</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># If you want to use official mobile app,</span>
+</span></span><span class=line><span class=cl><span class=c1># the notifications would be relayed via a Chatwoot server</span>
+</span></span><span class=line><span class=cl><span class=nv>ENABLE_PUSH_RELAY_SERVER</span><span class=o>=</span><span class=nb>true</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Stripe API key</span>
+</span></span><span class=line><span class=cl><span class=nv>STRIPE_SECRET_KEY</span><span class=o>=</span>
+</span></span><span class=line><span class=cl><span class=nv>STRIPE_WEBHOOK_SECRET</span><span class=o>=</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Set to true if you want to upload files to cloud storage using the signed url</span>
+</span></span><span class=line><span class=cl><span class=c1># Make sure to follow https://edgeguides.rubyonrails.org/active_storage_overview.html#cross-origin-resource-sharing-cors-configuration on the cloud storage after setting this to true.</span>
+</span></span><span class=line><span class=cl><span class=nv>DIRECT_UPLOADS_ENABLED</span><span class=o>=</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>#MS OAUTH creds</span>
+</span></span><span class=line><span class=cl><span class=nv>AZURE_APP_ID</span><span class=o>=</span>
+</span></span><span class=line><span class=cl><span class=nv>AZURE_APP_SECRET</span><span class=o>=</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>## Advanced configurations</span>
+</span></span><span class=line><span class=cl><span class=c1>## Change these values to fine tune performance</span>
+</span></span><span class=line><span class=cl><span class=c1># control the concurrency setting of sidekiq</span>
+</span></span><span class=line><span class=cl><span class=c1># SIDEKIQ_CONCURRENCY=10</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># AI powered features</span>
+</span></span><span class=line><span class=cl><span class=c1>## OpenAI key</span>
+</span></span><span class=line><span class=cl><span class=c1># OPENAI_API_KEY=</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Housekeeping/Performance related configurations</span>
+</span></span><span class=line><span class=cl><span class=c1># Set to true if you want to remove stale contact inboxes</span>
+</span></span><span class=line><span class=cl><span class=c1># contact_inboxes with no conversation older than 90 days will be removed</span>
+</span></span><span class=line><span class=cl><span class=c1># REMOVE_STALE_CONTACT_INBOX_JOB_STATUS=false</span>
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>nano docker-compose.yaml
+</span></span></code></pre></div><p>示范如下</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>version: <span class=s1>&#39;3&#39;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>services:
+</span></span><span class=line><span class=cl>  base: <span class=p>&amp;</span>base
+</span></span><span class=line><span class=cl>    build:
+</span></span><span class=line><span class=cl>      context: .
+</span></span><span class=line><span class=cl>      dockerfile: ./docker/Dockerfile
+</span></span><span class=line><span class=cl>      args:
+</span></span><span class=line><span class=cl>        BUNDLE_WITHOUT: <span class=s1>&#39;&#39;</span>
+</span></span><span class=line><span class=cl>        EXECJS_RUNTIME: <span class=s1>&#39;Node&#39;</span>
+</span></span><span class=line><span class=cl>        RAILS_ENV: <span class=s1>&#39;development&#39;</span>
+</span></span><span class=line><span class=cl>        RAILS_SERVE_STATIC_FILES: <span class=s1>&#39;false&#39;</span>
+</span></span><span class=line><span class=cl>    tty: <span class=nb>true</span>
+</span></span><span class=line><span class=cl>    stdin_open: <span class=nb>true</span>
+</span></span><span class=line><span class=cl>    image: chatwoot:development
+</span></span><span class=line><span class=cl>    env_file: .env
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  rails:
+</span></span><span class=line><span class=cl>    &lt;&lt;: *base
+</span></span><span class=line><span class=cl>    build:
+</span></span><span class=line><span class=cl>      context: .
+</span></span><span class=line><span class=cl>      dockerfile: ./docker/dockerfiles/rails.Dockerfile
+</span></span><span class=line><span class=cl>    image: chatwoot-rails:development
+</span></span><span class=line><span class=cl>    volumes:
+</span></span><span class=line><span class=cl>      - ./:/app:delegated
+</span></span><span class=line><span class=cl>      - node_modules:/app/node_modules
+</span></span><span class=line><span class=cl>      - packs:/app/public/packs
+</span></span><span class=line><span class=cl>      - cache:/app/tmp/cache
+</span></span><span class=line><span class=cl>      - bundle:/usr/local/bundle
+</span></span><span class=line><span class=cl>    depends_on:
+</span></span><span class=line><span class=cl>      - postgres
+</span></span><span class=line><span class=cl>      - redis
+</span></span><span class=line><span class=cl>      - vite
+</span></span><span class=line><span class=cl>      - mailhog
+</span></span><span class=line><span class=cl>      - sidekiq
+</span></span><span class=line><span class=cl>    ports:
+</span></span><span class=line><span class=cl>      - 3000:3000
+</span></span><span class=line><span class=cl>    env_file: .env
+</span></span><span class=line><span class=cl>    environment:
+</span></span><span class=line><span class=cl>      - <span class=nv>VITE_DEV_SERVER_HOST</span><span class=o>=</span>vite
+</span></span><span class=line><span class=cl>      - <span class=nv>NODE_ENV</span><span class=o>=</span>development
+</span></span><span class=line><span class=cl>      - <span class=nv>RAILS_ENV</span><span class=o>=</span>development
+</span></span><span class=line><span class=cl>    entrypoint: docker/entrypoints/rails.sh
+</span></span><span class=line><span class=cl>    command: <span class=o>[</span><span class=s2>&#34;bundle&#34;</span>, <span class=s2>&#34;exec&#34;</span>, <span class=s2>&#34;rails&#34;</span>, <span class=s2>&#34;s&#34;</span>, <span class=s2>&#34;-p&#34;</span>, <span class=s2>&#34;3000&#34;</span>, <span class=s2>&#34;-b&#34;</span>, <span class=s2>&#34;0.0.0.0&#34;</span><span class=o>]</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  sidekiq:
+</span></span><span class=line><span class=cl>    &lt;&lt;: *base
+</span></span><span class=line><span class=cl>    image: chatwoot-rails:development
+</span></span><span class=line><span class=cl>    volumes:
+</span></span><span class=line><span class=cl>      - ./:/app:delegated
+</span></span><span class=line><span class=cl>      - node_modules:/app/node_modules
+</span></span><span class=line><span class=cl>      - packs:/app/public/packs
+</span></span><span class=line><span class=cl>      - cache:/app/tmp/cache
+</span></span><span class=line><span class=cl>      - bundle:/usr/local/bundle
+</span></span><span class=line><span class=cl>    depends_on:
+</span></span><span class=line><span class=cl>      - postgres
+</span></span><span class=line><span class=cl>      - redis
+</span></span><span class=line><span class=cl>      - mailhog
+</span></span><span class=line><span class=cl>    environment:
+</span></span><span class=line><span class=cl>      - <span class=nv>NODE_ENV</span><span class=o>=</span>development
+</span></span><span class=line><span class=cl>      - <span class=nv>RAILS_ENV</span><span class=o>=</span>development
+</span></span><span class=line><span class=cl>    command: <span class=o>[</span><span class=s2>&#34;bundle&#34;</span>, <span class=s2>&#34;exec&#34;</span>, <span class=s2>&#34;sidekiq&#34;</span>, <span class=s2>&#34;-C&#34;</span>, <span class=s2>&#34;config/sidekiq.yml&#34;</span><span class=o>]</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  vite:
+</span></span><span class=line><span class=cl>    &lt;&lt;: *base
+</span></span><span class=line><span class=cl>    build:
+</span></span><span class=line><span class=cl>      context: .
+</span></span><span class=line><span class=cl>      dockerfile: ./docker/dockerfiles/vite.Dockerfile
+</span></span><span class=line><span class=cl>    image: chatwoot-vite:development
+</span></span><span class=line><span class=cl>    volumes:
+</span></span><span class=line><span class=cl>      - ./:/app:delegated
+</span></span><span class=line><span class=cl>      - node_modules:/app/node_modules
+</span></span><span class=line><span class=cl>      - packs:/app/public/packs
+</span></span><span class=line><span class=cl>      - cache:/app/tmp/cache
+</span></span><span class=line><span class=cl>      - bundle:/usr/local/bundle
+</span></span><span class=line><span class=cl>    ports:
+</span></span><span class=line><span class=cl>      - <span class=s2>&#34;3036:3036&#34;</span> <span class=c1># Vite dev server</span>
+</span></span><span class=line><span class=cl>    environment:
+</span></span><span class=line><span class=cl>      - <span class=nv>VITE_DEV_SERVER_HOST</span><span class=o>=</span>0.0.0.0
+</span></span><span class=line><span class=cl>      - <span class=nv>NODE_ENV</span><span class=o>=</span>development
+</span></span><span class=line><span class=cl>      - <span class=nv>RAILS_ENV</span><span class=o>=</span>development
+</span></span><span class=line><span class=cl>    entrypoint: docker/entrypoints/vite.sh
+</span></span><span class=line><span class=cl>    command: bin/vite dev
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  postgres:
+</span></span><span class=line><span class=cl>    image: pgvector/pgvector:pg16
+</span></span><span class=line><span class=cl>    restart: always
+</span></span><span class=line><span class=cl>    ports:
+</span></span><span class=line><span class=cl>      - <span class=s1>&#39;5432:5432&#39;</span>
+</span></span><span class=line><span class=cl>    volumes:
+</span></span><span class=line><span class=cl>      - postgres:/data/postgres
+</span></span><span class=line><span class=cl>    environment:
+</span></span><span class=line><span class=cl>      - <span class=nv>POSTGRES_DB</span><span class=o>=</span>chatwoot
+</span></span><span class=line><span class=cl>      - <span class=nv>POSTGRES_USER</span><span class=o>=</span>postgres
+</span></span><span class=line><span class=cl>      - <span class=nv>POSTGRES_PASSWORD</span><span class=o>=</span>b45CW2jTWuUKh26WKJf6ngO
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  redis:
+</span></span><span class=line><span class=cl>    image: redis:alpine
+</span></span><span class=line><span class=cl>    restart: always
+</span></span><span class=line><span class=cl>    command: <span class=o>[</span><span class=s2>&#34;sh&#34;</span>, <span class=s2>&#34;-c&#34;</span>, <span class=s2>&#34;redis-server --requirepass \&#34;</span><span class=nv>$REDIS_PASSWORD</span><span class=s2>\&#34;&#34;</span><span class=o>]</span>
+</span></span><span class=line><span class=cl>    env_file: .env
+</span></span><span class=line><span class=cl>    volumes:
+</span></span><span class=line><span class=cl>      - redis:/data/redis
+</span></span><span class=line><span class=cl>    ports:
+</span></span><span class=line><span class=cl>      - <span class=s1>&#39;6379:6379&#39;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  mailhog:
+</span></span><span class=line><span class=cl>    image: mailhog/mailhog
+</span></span><span class=line><span class=cl>    ports:
+</span></span><span class=line><span class=cl>      - 1025:1025
+</span></span><span class=line><span class=cl>      - 8025:8025
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>volumes:
+</span></span><span class=line><span class=cl>  postgres:
+</span></span><span class=line><span class=cl>  redis:
+</span></span><span class=line><span class=cl>  packs:
+</span></span><span class=line><span class=cl>  node_modules:
+</span></span><span class=line><span class=cl>  cache:
+</span></span><span class=line><span class=cl>  bundle:
+</span></span></code></pre></div><p>准备数据库</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>docker compose run --rm rails bundle <span class=nb>exec</span> rails db:chatwoot_prepare
+</span></span></code></pre></div><p>​启动</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>docker compose down
+</span></span><span class=line><span class=cl>docker compose up -d
+</span></span></code></pre></div><p>Access your installation
+Your Chatwoot installation is complete. Please note that the containers are not exposed to the internet and they only bind to the localhost. Setup something like Nginx or any other proxy server to proxy the requests to the container. If you want to verify whether the installation is working, try curl -I localhost:3000/api to see if it returns 200. Also, you could temporarily drop the 127.0.0.1:3000:3000 for rails to 3000:3000 in the compose file to access your instance at http://<your-external-ip>:3000. It’s recommended to revert this change back and use Nginx or some proxy server in the front.
+Run <code>docker compose run --rm rails bundle exec rails db:chatwoot_prepare</code> whenever you decide to update the Chatwoot images to handle the migrations.</p><h2 id=彻底删除docker部署的chatwoot>彻底删除docker部署的chatwoot<a hidden class=anchor aria-hidden=true href=#彻底删除docker部署的chatwoot>#</a></h2><p>删除卷和网络</p><p>Chatwoot 会用到 Postgres、Redis 等卷，执行：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>docker compose down -v
+</span></span><span class=line><span class=cl>docker volume ls <span class=p>|</span> grep chatwoot
+</span></span><span class=line><span class=cl>docker volume rm  chatwoot_postgres_data
+</span></span><span class=line><span class=cl>docker volume rm  chatwoot_redis_data
+</span></span><span class=line><span class=cl>docker volume rm  chatwoot_storage_data
+</span></span><span class=line><span class=cl><span class=c1># 删除网络</span>
+</span></span><span class=line><span class=cl>docker network ls <span class=p>|</span> grep chatwoot
+</span></span><span class=line><span class=cl>docker network rm &lt;网络名&gt;
+</span></span><span class=line><span class=cl>docker system prune -a --volumes
+</span></span><span class=line><span class=cl><span class=c1># 删除残留数据目录（如果映射过宿主机目录）</span>
+</span></span><span class=line><span class=cl><span class=c1># 检查 docker-compose.yml 或启动命令，看是否有挂载到宿主机，比如</span>
+</span></span><span class=line><span class=cl><span class=c1># volumes:</span>
+</span></span><span class=line><span class=cl><span class=c1>#   - ./storage:/app/storage</span>
+</span></span><span class=line><span class=cl>rm -rf ./storage
+</span></span><span class=line><span class=cl>rm -rf chatwoot
+</span></span></code></pre></div></div><footer class=post-footer><ul class=post-tags><li><a href=https://567899.xyz/tags/docker/>Docker</a></li></ul><nav class=paginav><a class=prev href=https://567899.xyz/post/google_drive_folderclone/><span class=title>« 上一页</span><br><span>[更新]Folderclone谷歌Google Drive共享云端硬盘转存相互转移拷贝复制文件的正确姿势</span>
+</a><a class=next href=https://567899.xyz/post/powershell-clear-history/><span class=title>下一页 »</span><br><span>清除PowerShell的命令历史记录</span></a></nav><ul class=share-buttons><li><a target=_blank rel="noopener noreferrer" aria-label="share Docker部署Chatwoot在线聊天客服 on x" href="https://x.com/intent/tweet/?text=Docker%e9%83%a8%e7%bd%b2Chatwoot%e5%9c%a8%e7%ba%bf%e8%81%8a%e5%a4%a9%e5%ae%a2%e6%9c%8d&amp;url=https%3a%2f%2f567899.xyz%2fpost%2fchatwoot%2f&amp;hashtags=docker"><svg viewBox="0 0 512 512" height="30" width="30" fill="currentColor"><path d="M512 62.554V449.446C512 483.97 483.97 512 449.446 512H62.554C28.03 512 0 483.97.0 449.446V62.554C0 28.03 28.029.0 62.554.0H449.446C483.971.0 512 28.03 512 62.554zM269.951 190.75 182.567 75.216H56L207.216 272.95 63.9 436.783h61.366L235.9 310.383l96.667 126.4H456L298.367 228.367l134-153.151H371.033zM127.633 110h36.468l219.38 290.065H349.5z"/></svg></a></li><li><a target=_blank rel="noopener noreferrer" aria-label="share Docker部署Chatwoot在线聊天客服 on linkedin" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2f567899.xyz%2fpost%2fchatwoot%2f&amp;title=Docker%e9%83%a8%e7%bd%b2Chatwoot%e5%9c%a8%e7%ba%bf%e8%81%8a%e5%a4%a9%e5%ae%a2%e6%9c%8d&amp;summary=Docker%e9%83%a8%e7%bd%b2Chatwoot%e5%9c%a8%e7%ba%bf%e8%81%8a%e5%a4%a9%e5%ae%a2%e6%9c%8d&amp;source=https%3a%2f%2f567899.xyz%2fpost%2fchatwoot%2f"><svg viewBox="0 0 512 512" height="30" width="30" fill="currentColor"><path d="M449.446.0C483.971.0 512 28.03 512 62.554v386.892C512 483.97 483.97 512 449.446 512H62.554c-34.524.0-62.554-28.03-62.554-62.554V62.554c0-34.524 28.029-62.554 62.554-62.554h386.892zM160.461 423.278V197.561h-75.04v225.717h75.04zm270.539.0V293.839c0-69.333-37.018-101.586-86.381-101.586-39.804.0-57.634 21.891-67.617 37.266v-31.958h-75.021c.995 21.181.0 225.717.0 225.717h75.02V297.222c0-6.748.486-13.492 2.474-18.315 5.414-13.475 17.767-27.434 38.494-27.434 27.135.0 38.007 20.707 38.007 51.037v120.768H431zM123.448 88.722C97.774 88.722 81 105.601 81 127.724c0 21.658 16.264 39.002 41.455 39.002h.484c26.165.0 42.452-17.344 42.452-39.002-.485-22.092-16.241-38.954-41.943-39.002z"/></svg></a></li><li><a target=_blank rel="noopener noreferrer" aria-label="share Docker部署Chatwoot在线聊天客服 on reddit" href="https://reddit.com/submit?url=https%3a%2f%2f567899.xyz%2fpost%2fchatwoot%2f&title=Docker%e9%83%a8%e7%bd%b2Chatwoot%e5%9c%a8%e7%ba%bf%e8%81%8a%e5%a4%a9%e5%ae%a2%e6%9c%8d"><svg viewBox="0 0 512 512" height="30" width="30" fill="currentColor"><path d="M449.446.0C483.971.0 512 28.03 512 62.554v386.892C512 483.97 483.97 512 449.446 512H62.554c-34.524.0-62.554-28.03-62.554-62.554V62.554c0-34.524 28.029-62.554 62.554-62.554h386.892zM446 265.638c0-22.964-18.616-41.58-41.58-41.58-11.211.0-21.361 4.457-28.841 11.666-28.424-20.508-67.586-33.757-111.204-35.278l18.941-89.121 61.884 13.157c.756 15.734 13.642 28.29 29.56 28.29 16.407.0 29.706-13.299 29.706-29.701.0-16.403-13.299-29.702-29.706-29.702-11.666.0-21.657 6.792-26.515 16.578l-69.105-14.69c-1.922-.418-3.939-.042-5.585 1.036-1.658 1.073-2.811 2.761-3.224 4.686l-21.152 99.438c-44.258 1.228-84.046 14.494-112.837 35.232-7.468-7.164-17.589-11.591-28.757-11.591-22.965.0-41.585 18.616-41.585 41.58.0 16.896 10.095 31.41 24.568 37.918-.639 4.135-.99 8.328-.99 12.576.0 63.977 74.469 115.836 166.33 115.836s166.334-51.859 166.334-115.836c0-4.218-.347-8.387-.977-12.493 14.564-6.47 24.735-21.034 24.735-38.001zM326.526 373.831c-20.27 20.241-59.115 21.816-70.534 21.816-11.428.0-50.277-1.575-70.522-21.82-3.007-3.008-3.007-7.882.0-10.889 3.003-2.999 7.882-3.003 10.885.0 12.777 12.781 40.11 17.317 59.637 17.317 19.522.0 46.86-4.536 59.657-17.321 3.016-2.999 7.886-2.995 10.885.008 3.008 3.011 3.003 7.882-.008 10.889zm-5.23-48.781c-16.373.0-29.701-13.324-29.701-29.698.0-16.381 13.328-29.714 29.701-29.714 16.378.0 29.706 13.333 29.706 29.714.0 16.374-13.328 29.698-29.706 29.698zM160.91 295.348c0-16.381 13.328-29.71 29.714-29.71 16.369.0 29.689 13.329 29.689 29.71.0 16.373-13.32 29.693-29.689 29.693-16.386.0-29.714-13.32-29.714-29.693z"/></svg></a></li><li><a target=_blank rel="noopener noreferrer" aria-label="share Docker部署Chatwoot在线聊天客服 on facebook" href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2f567899.xyz%2fpost%2fchatwoot%2f"><svg viewBox="0 0 512 512" height="30" width="30" fill="currentColor"><path d="M449.446.0C483.971.0 512 28.03 512 62.554v386.892C512 483.97 483.97 512 449.446 512H342.978V319.085h66.6l12.672-82.621h-79.272v-53.617c0-22.603 11.073-44.636 46.58-44.636H425.6v-70.34s-32.71-5.582-63.982-5.582c-65.288.0-107.96 39.569-107.96 111.204v62.971h-72.573v82.621h72.573V512h-191.104c-34.524.0-62.554-28.03-62.554-62.554V62.554c0-34.524 28.029-62.554 62.554-62.554h386.892z"/></svg></a></li><li><a target=_blank rel="noopener noreferrer" aria-label="share Docker部署Chatwoot在线聊天客服 on whatsapp" href="https://api.whatsapp.com/send?text=Docker%e9%83%a8%e7%bd%b2Chatwoot%e5%9c%a8%e7%ba%bf%e8%81%8a%e5%a4%a9%e5%ae%a2%e6%9c%8d%20-%20https%3a%2f%2f567899.xyz%2fpost%2fchatwoot%2f"><svg viewBox="0 0 512 512" height="30" width="30" fill="currentColor"><path d="M449.446.0C483.971.0 512 28.03 512 62.554v386.892C512 483.97 483.97 512 449.446 512H62.554c-34.524.0-62.554-28.03-62.554-62.554V62.554c0-34.524 28.029-62.554 62.554-62.554h386.892zm-58.673 127.703c-33.842-33.881-78.847-52.548-126.798-52.568-98.799.0-179.21 80.405-179.249 179.234-.013 31.593 8.241 62.428 23.927 89.612l-25.429 92.884 95.021-24.925c26.181 14.28 55.659 21.807 85.658 21.816h.074c98.789.0 179.206-80.413 179.247-179.243.018-47.895-18.61-92.93-52.451-126.81zM263.976 403.485h-.06c-26.734-.01-52.954-7.193-75.828-20.767l-5.441-3.229-56.386 14.792 15.05-54.977-3.542-5.637c-14.913-23.72-22.791-51.136-22.779-79.287.033-82.142 66.867-148.971 149.046-148.971 39.793.014 77.199 15.531 105.329 43.692 28.128 28.16 43.609 65.592 43.594 105.4-.034 82.149-66.866 148.983-148.983 148.984zm81.721-111.581c-4.479-2.242-26.499-13.075-30.604-14.571-4.105-1.495-7.091-2.241-10.077 2.241-2.986 4.483-11.569 14.572-14.182 17.562-2.612 2.988-5.225 3.364-9.703 1.12-4.479-2.241-18.91-6.97-36.017-22.23C231.8 264.15 222.81 249.484 220.198 245s-.279-6.908 1.963-9.14c2.016-2.007 4.48-5.232 6.719-7.847 2.24-2.615 2.986-4.484 4.479-7.472 1.493-2.99.747-5.604-.374-7.846-1.119-2.241-10.077-24.288-13.809-33.256-3.635-8.733-7.327-7.55-10.077-7.688-2.609-.13-5.598-.158-8.583-.158-2.986.0-7.839 1.121-11.944 5.604-4.105 4.484-15.675 15.32-15.675 37.364.0 22.046 16.048 43.342 18.287 46.332 2.24 2.99 31.582 48.227 76.511 67.627 10.685 4.615 19.028 7.371 25.533 9.434 10.728 3.41 20.492 2.929 28.209 1.775 8.605-1.285 26.499-10.833 30.231-21.295 3.732-10.464 3.732-19.431 2.612-21.298-1.119-1.869-4.105-2.99-8.583-5.232z"/></svg></a></li><li><a target=_blank rel="noopener noreferrer" aria-label="share Docker部署Chatwoot在线聊天客服 on telegram" href="https://telegram.me/share/url?text=Docker%e9%83%a8%e7%bd%b2Chatwoot%e5%9c%a8%e7%ba%bf%e8%81%8a%e5%a4%a9%e5%ae%a2%e6%9c%8d&amp;url=https%3a%2f%2f567899.xyz%2fpost%2fchatwoot%2f"><svg viewBox="2 2 28 28" height="30" width="30" fill="currentColor"><path d="M26.49 29.86H5.5a3.37 3.37.0 01-2.47-1 3.35 3.35.0 01-1-2.47V5.48A3.36 3.36.0 013 3 3.37 3.37.0 015.5 2h21A3.38 3.38.0 0129 3a3.36 3.36.0 011 2.46V26.37a3.35 3.35.0 01-1 2.47 3.38 3.38.0 01-2.51 1.02zm-5.38-6.71a.79.79.0 00.85-.66L24.73 9.24a.55.55.0 00-.18-.46.62.62.0 00-.41-.17q-.08.0-16.53 6.11a.59.59.0 00-.41.59.57.57.0 00.43.52l4 1.24 1.61 4.83a.62.62.0 00.63.43.56.56.0 00.4-.17L16.54 20l4.09 3A.9.9.0 0021.11 23.15zM13.8 20.71l-1.21-4q8.72-5.55 8.78-5.55c.15.0.23.0.23.16a.18.18.0 010 .06s-2.51 2.3-7.52 6.8z"/></svg></a></li><li><a target=_blank rel="noopener noreferrer" aria-label="share Docker部署Chatwoot在线聊天客服 on ycombinator" href="https://news.ycombinator.com/submitlink?t=Docker%e9%83%a8%e7%bd%b2Chatwoot%e5%9c%a8%e7%ba%bf%e8%81%8a%e5%a4%a9%e5%ae%a2%e6%9c%8d&u=https%3a%2f%2f567899.xyz%2fpost%2fchatwoot%2f"><svg width="30" height="30" viewBox="0 0 512 512" fill="currentColor"><path d="M449.446.0C483.971.0 512 28.03 512 62.554V449.446C512 483.97 483.97 512 449.446 512H62.554C28.03 512 0 483.97.0 449.446V62.554C0 28.03 28.029.0 62.554.0H449.446zM183.8767 87.9921h-62.034L230.6673 292.4508V424.0079h50.6655V292.4508L390.1575 87.9921H328.1233L256 238.2489z"/></svg></a></li></ul></footer><link rel=stylesheet href=https://unpkg.com/@waline/client@v2/dist/waline.css><div id=waline></div><script type=module>
+    import { init } from 'https://unpkg.com/@waline/client@v2/dist/waline.mjs';
+    const locale = {
+        nick: '昵称(必填)',
+        nickError: '请填写昵称',
+        mail: '邮箱',
+        mailError: '请填写正确的邮件地址',
+        link: '网址',
+        optional: '可选',
+        placeholder: '说点什么吧...\n填写邮箱可收到回复提醒。\n评论区支持 Markdown 语法及预览。\n',
+        sofa: '来发评论吧~',
+        submit: '提交',
+        like: '喜欢',
+        cancelLike: '取消喜欢',
+        reply: '回复',
+        cancelReply: '取消回复',
+        comment: '评论',
+        refresh: '刷新',
+        more: '加载更多...',
+        preview: '预览',
+        emoji: '表情',
+        uploadImage: '上传图片',
+        seconds: '秒前',
+        minutes: '分钟前',
+        hours: '小时前',
+        days: '天前',
+        now: '刚刚',
+        uploading: '正在上传',
+        login: '登录',
+        logout: '退出',
+        admin: '博主',
+        sticky: '置顶',
+        word: '字',
+        wordHint: '评论字数应在 $0 到 $1 字之间！\n当前字数：$2',
+        anonymous: '匿名',
+        level0: '潜水',
+        level1: '冒泡',
+        level2: '吐槽',
+        level3: '活跃',
+        level4: '话痨',
+        level5: '传说',
+        gif: '表情包',
+        gifSearchPlaceholder: '搜索表情包',
+        profile: '个人资料',
+        approved: '通过',
+        waiting: '待审核',
+        spam: '垃圾',
+        unsticky: '取消置顶',
+        oldest: '按倒序',
+        latest: '按正序',
+        hottest: '按热度',
+        reactionTitle: '你认为这篇文章怎么样？',
+    };
+    init({
+        
+        el: '#waline',
+        serverURL: 'https://comments.567899.xyz',
+        locale,
+        emoji: true,     
+        search: true,    
+        reaction: false,  
+        requiredMeta: ['nick'],
+        pageSize: 10,
+        imageUploader: true,
+        copyright: true,
+        pageview: true,
+        like: true,
+    });
+</script></article></main><footer class=footer><span>&copy; 2025 <a href=https://567899.xyz/>Xizi's Blog</a></span> ·
+<span>Powered by
+<a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
+<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg viewBox="0 0 12 6" fill="currentColor"><path d="M12 6H0l6-6z"/></svg>
+</a><script>let menu=document.getElementById("menu");menu&&(menu.scrollLeft=localStorage.getItem("menu-scroll-position"),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}),document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{document.body.className.includes("dark")?(document.body.classList.remove("dark"),localStorage.setItem("pref-theme","light")):(document.body.classList.add("dark"),localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="复制";function s(){t.innerHTML="已复制！",setTimeout(()=>{t.innerHTML="复制"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>
