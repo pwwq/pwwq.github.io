@@ -847,126 +847,126 @@ nano docker-compose.yaml
 </span></span><span class=line><span class=cl><span class=c1># contact_inboxes with no conversation older than 90 days will be removed</span>
 </span></span><span class=line><span class=cl><span class=c1># REMOVE_STALE_CONTACT_INBOX_JOB_STATUS=false</span>
 </span></span></code></pre></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>nano docker-compose.yaml
-</span></span></code></pre></div><p>示范如下</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>version: <span class=s1>&#39;3&#39;</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl>services:
-</span></span><span class=line><span class=cl>  base: <span class=p>&amp;</span>base
-</span></span><span class=line><span class=cl>    build:
-</span></span><span class=line><span class=cl>      context: .
-</span></span><span class=line><span class=cl>      dockerfile: ./docker/Dockerfile
-</span></span><span class=line><span class=cl>      args:
-</span></span><span class=line><span class=cl>        BUNDLE_WITHOUT: <span class=s1>&#39;&#39;</span>
-</span></span><span class=line><span class=cl>        EXECJS_RUNTIME: <span class=s1>&#39;Node&#39;</span>
-</span></span><span class=line><span class=cl>        RAILS_ENV: <span class=s1>&#39;development&#39;</span>
-</span></span><span class=line><span class=cl>        RAILS_SERVE_STATIC_FILES: <span class=s1>&#39;false&#39;</span>
-</span></span><span class=line><span class=cl>    tty: <span class=nb>true</span>
-</span></span><span class=line><span class=cl>    stdin_open: <span class=nb>true</span>
-</span></span><span class=line><span class=cl>    image: chatwoot:development
-</span></span><span class=line><span class=cl>    env_file: .env
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl>  rails:
-</span></span><span class=line><span class=cl>    &lt;&lt;: *base
-</span></span><span class=line><span class=cl>    build:
-</span></span><span class=line><span class=cl>      context: .
-</span></span><span class=line><span class=cl>      dockerfile: ./docker/dockerfiles/rails.Dockerfile
-</span></span><span class=line><span class=cl>    image: chatwoot-rails:development
-</span></span><span class=line><span class=cl>    volumes:
-</span></span><span class=line><span class=cl>      - ./:/app:delegated
-</span></span><span class=line><span class=cl>      - node_modules:/app/node_modules
-</span></span><span class=line><span class=cl>      - packs:/app/public/packs
-</span></span><span class=line><span class=cl>      - cache:/app/tmp/cache
-</span></span><span class=line><span class=cl>      - bundle:/usr/local/bundle
-</span></span><span class=line><span class=cl>    depends_on:
-</span></span><span class=line><span class=cl>      - postgres
-</span></span><span class=line><span class=cl>      - redis
-</span></span><span class=line><span class=cl>      - vite
-</span></span><span class=line><span class=cl>      - mailhog
-</span></span><span class=line><span class=cl>      - sidekiq
-</span></span><span class=line><span class=cl>    ports:
-</span></span><span class=line><span class=cl>      - 3000:3000
-</span></span><span class=line><span class=cl>    env_file: .env
-</span></span><span class=line><span class=cl>    environment:
-</span></span><span class=line><span class=cl>      - <span class=nv>VITE_DEV_SERVER_HOST</span><span class=o>=</span>vite
-</span></span><span class=line><span class=cl>      - <span class=nv>NODE_ENV</span><span class=o>=</span>development
-</span></span><span class=line><span class=cl>      - <span class=nv>RAILS_ENV</span><span class=o>=</span>development
-</span></span><span class=line><span class=cl>    entrypoint: docker/entrypoints/rails.sh
-</span></span><span class=line><span class=cl>    command: <span class=o>[</span><span class=s2>&#34;bundle&#34;</span>, <span class=s2>&#34;exec&#34;</span>, <span class=s2>&#34;rails&#34;</span>, <span class=s2>&#34;s&#34;</span>, <span class=s2>&#34;-p&#34;</span>, <span class=s2>&#34;3000&#34;</span>, <span class=s2>&#34;-b&#34;</span>, <span class=s2>&#34;0.0.0.0&#34;</span><span class=o>]</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl>  sidekiq:
-</span></span><span class=line><span class=cl>    &lt;&lt;: *base
-</span></span><span class=line><span class=cl>    image: chatwoot-rails:development
-</span></span><span class=line><span class=cl>    volumes:
-</span></span><span class=line><span class=cl>      - ./:/app:delegated
-</span></span><span class=line><span class=cl>      - node_modules:/app/node_modules
-</span></span><span class=line><span class=cl>      - packs:/app/public/packs
-</span></span><span class=line><span class=cl>      - cache:/app/tmp/cache
-</span></span><span class=line><span class=cl>      - bundle:/usr/local/bundle
-</span></span><span class=line><span class=cl>    depends_on:
-</span></span><span class=line><span class=cl>      - postgres
-</span></span><span class=line><span class=cl>      - redis
-</span></span><span class=line><span class=cl>      - mailhog
-</span></span><span class=line><span class=cl>    environment:
-</span></span><span class=line><span class=cl>      - <span class=nv>NODE_ENV</span><span class=o>=</span>development
-</span></span><span class=line><span class=cl>      - <span class=nv>RAILS_ENV</span><span class=o>=</span>development
-</span></span><span class=line><span class=cl>    command: <span class=o>[</span><span class=s2>&#34;bundle&#34;</span>, <span class=s2>&#34;exec&#34;</span>, <span class=s2>&#34;sidekiq&#34;</span>, <span class=s2>&#34;-C&#34;</span>, <span class=s2>&#34;config/sidekiq.yml&#34;</span><span class=o>]</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl>  vite:
-</span></span><span class=line><span class=cl>    &lt;&lt;: *base
-</span></span><span class=line><span class=cl>    build:
-</span></span><span class=line><span class=cl>      context: .
-</span></span><span class=line><span class=cl>      dockerfile: ./docker/dockerfiles/vite.Dockerfile
-</span></span><span class=line><span class=cl>    image: chatwoot-vite:development
-</span></span><span class=line><span class=cl>    volumes:
-</span></span><span class=line><span class=cl>      - ./:/app:delegated
-</span></span><span class=line><span class=cl>      - node_modules:/app/node_modules
-</span></span><span class=line><span class=cl>      - packs:/app/public/packs
-</span></span><span class=line><span class=cl>      - cache:/app/tmp/cache
-</span></span><span class=line><span class=cl>      - bundle:/usr/local/bundle
-</span></span><span class=line><span class=cl>    ports:
-</span></span><span class=line><span class=cl>      - <span class=s2>&#34;3036:3036&#34;</span> <span class=c1># Vite dev server</span>
-</span></span><span class=line><span class=cl>    environment:
-</span></span><span class=line><span class=cl>      - <span class=nv>VITE_DEV_SERVER_HOST</span><span class=o>=</span>0.0.0.0
-</span></span><span class=line><span class=cl>      - <span class=nv>NODE_ENV</span><span class=o>=</span>development
-</span></span><span class=line><span class=cl>      - <span class=nv>RAILS_ENV</span><span class=o>=</span>development
-</span></span><span class=line><span class=cl>    entrypoint: docker/entrypoints/vite.sh
-</span></span><span class=line><span class=cl>    command: bin/vite dev
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl>  postgres:
-</span></span><span class=line><span class=cl>    image: pgvector/pgvector:pg16
-</span></span><span class=line><span class=cl>    restart: always
-</span></span><span class=line><span class=cl>    ports:
-</span></span><span class=line><span class=cl>      - <span class=s1>&#39;5432:5432&#39;</span>
-</span></span><span class=line><span class=cl>    volumes:
-</span></span><span class=line><span class=cl>      - postgres:/data/postgres
-</span></span><span class=line><span class=cl>    environment:
-</span></span><span class=line><span class=cl>      - <span class=nv>POSTGRES_DB</span><span class=o>=</span>chatwoot
-</span></span><span class=line><span class=cl>      - <span class=nv>POSTGRES_USER</span><span class=o>=</span>postgres
-</span></span><span class=line><span class=cl>      - <span class=nv>POSTGRES_PASSWORD</span><span class=o>=</span>b45CW2jTWuUKh26WKJf6ngO
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl>  redis:
-</span></span><span class=line><span class=cl>    image: redis:alpine
-</span></span><span class=line><span class=cl>    restart: always
-</span></span><span class=line><span class=cl>    command: <span class=o>[</span><span class=s2>&#34;sh&#34;</span>, <span class=s2>&#34;-c&#34;</span>, <span class=s2>&#34;redis-server --requirepass \&#34;</span><span class=nv>$REDIS_PASSWORD</span><span class=s2>\&#34;&#34;</span><span class=o>]</span>
-</span></span><span class=line><span class=cl>    env_file: .env
-</span></span><span class=line><span class=cl>    volumes:
-</span></span><span class=line><span class=cl>      - redis:/data/redis
-</span></span><span class=line><span class=cl>    ports:
-</span></span><span class=line><span class=cl>      - <span class=s1>&#39;6379:6379&#39;</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl>  mailhog:
-</span></span><span class=line><span class=cl>    image: mailhog/mailhog
-</span></span><span class=line><span class=cl>    ports:
-</span></span><span class=line><span class=cl>      - 1025:1025
-</span></span><span class=line><span class=cl>      - 8025:8025
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl>volumes:
-</span></span><span class=line><span class=cl>  postgres:
-</span></span><span class=line><span class=cl>  redis:
-</span></span><span class=line><span class=cl>  packs:
-</span></span><span class=line><span class=cl>  node_modules:
-</span></span><span class=line><span class=cl>  cache:
-</span></span><span class=line><span class=cl>  bundle:
-</span></span></code></pre></div><p>准备数据库</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>docker compose run --rm rails bundle <span class=nb>exec</span> rails db:chatwoot_prepare
+</span></span></code></pre></div><p>示范如下</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=nt>version</span><span class=p>:</span><span class=w> </span><span class=s1>&#39;3&#39;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>services</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>base</span><span class=p>:</span><span class=w> </span><span class=cp>&amp;base</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>build</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>context</span><span class=p>:</span><span class=w> </span><span class=l>.</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>dockerfile</span><span class=p>:</span><span class=w> </span><span class=l>./docker/Dockerfile</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>args</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>BUNDLE_WITHOUT</span><span class=p>:</span><span class=w> </span><span class=s1>&#39;&#39;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>EXECJS_RUNTIME</span><span class=p>:</span><span class=w> </span><span class=s1>&#39;Node&#39;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>RAILS_ENV</span><span class=p>:</span><span class=w> </span><span class=s1>&#39;development&#39;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>RAILS_SERVE_STATIC_FILES</span><span class=p>:</span><span class=w> </span><span class=s1>&#39;false&#39;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>tty</span><span class=p>:</span><span class=w> </span><span class=kc>true</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>stdin_open</span><span class=p>:</span><span class=w> </span><span class=kc>true</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>image</span><span class=p>:</span><span class=w> </span><span class=l>chatwoot:development</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>env_file</span><span class=p>:</span><span class=w> </span><span class=l>.env</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>rails</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>&lt;&lt;</span><span class=p>:</span><span class=w> </span><span class=cp>*base</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>build</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>context</span><span class=p>:</span><span class=w> </span><span class=l>.</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>dockerfile</span><span class=p>:</span><span class=w> </span><span class=l>./docker/dockerfiles/rails.Dockerfile</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>image</span><span class=p>:</span><span class=w> </span><span class=l>chatwoot-rails:development</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>volumes</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=l>./:/app:delegated</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=l>node_modules:/app/node_modules</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=l>packs:/app/public/packs</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=l>cache:/app/tmp/cache</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=l>bundle:/usr/local/bundle</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>depends_on</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=l>postgres</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=l>redis</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=l>vite</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=l>mailhog</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=l>sidekiq</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>ports</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=m>3000</span><span class=p>:</span><span class=m>3000</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>env_file</span><span class=p>:</span><span class=w> </span><span class=l>.env</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>environment</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=l>VITE_DEV_SERVER_HOST=vite</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=l>NODE_ENV=development</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=l>RAILS_ENV=development</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>entrypoint</span><span class=p>:</span><span class=w> </span><span class=l>docker/entrypoints/rails.sh</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>command</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=s2>&#34;bundle&#34;</span><span class=p>,</span><span class=w> </span><span class=s2>&#34;exec&#34;</span><span class=p>,</span><span class=w> </span><span class=s2>&#34;rails&#34;</span><span class=p>,</span><span class=w> </span><span class=s2>&#34;s&#34;</span><span class=p>,</span><span class=w> </span><span class=s2>&#34;-p&#34;</span><span class=p>,</span><span class=w> </span><span class=s2>&#34;3000&#34;</span><span class=p>,</span><span class=w> </span><span class=s2>&#34;-b&#34;</span><span class=p>,</span><span class=w> </span><span class=s2>&#34;0.0.0.0&#34;</span><span class=p>]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>sidekiq</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>&lt;&lt;</span><span class=p>:</span><span class=w> </span><span class=cp>*base</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>image</span><span class=p>:</span><span class=w> </span><span class=l>chatwoot-rails:development</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>volumes</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=l>./:/app:delegated</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=l>node_modules:/app/node_modules</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=l>packs:/app/public/packs</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=l>cache:/app/tmp/cache</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=l>bundle:/usr/local/bundle</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>depends_on</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=l>postgres</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=l>redis</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=l>mailhog</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>environment</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=l>NODE_ENV=development</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=l>RAILS_ENV=development</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>command</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=s2>&#34;bundle&#34;</span><span class=p>,</span><span class=w> </span><span class=s2>&#34;exec&#34;</span><span class=p>,</span><span class=w> </span><span class=s2>&#34;sidekiq&#34;</span><span class=p>,</span><span class=w> </span><span class=s2>&#34;-C&#34;</span><span class=p>,</span><span class=w> </span><span class=s2>&#34;config/sidekiq.yml&#34;</span><span class=p>]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>vite</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>&lt;&lt;</span><span class=p>:</span><span class=w> </span><span class=cp>*base</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>build</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>context</span><span class=p>:</span><span class=w> </span><span class=l>.</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>dockerfile</span><span class=p>:</span><span class=w> </span><span class=l>./docker/dockerfiles/vite.Dockerfile</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>image</span><span class=p>:</span><span class=w> </span><span class=l>chatwoot-vite:development</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>volumes</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=l>./:/app:delegated</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=l>node_modules:/app/node_modules</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=l>packs:/app/public/packs</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=l>cache:/app/tmp/cache</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=l>bundle:/usr/local/bundle</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>ports</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=s2>&#34;3036:3036&#34;</span><span class=w> </span><span class=c># Vite dev server</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>environment</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=l>VITE_DEV_SERVER_HOST=0.0.0.0</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=l>NODE_ENV=development</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=l>RAILS_ENV=development</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>entrypoint</span><span class=p>:</span><span class=w> </span><span class=l>docker/entrypoints/vite.sh</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>command</span><span class=p>:</span><span class=w> </span><span class=l>bin/vite dev</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>postgres</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>image</span><span class=p>:</span><span class=w> </span><span class=l>pgvector/pgvector:pg16</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>restart</span><span class=p>:</span><span class=w> </span><span class=l>always</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>ports</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=s1>&#39;5432:5432&#39;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>volumes</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=l>postgres:/data/postgres</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>environment</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=l>POSTGRES_DB=chatwoot</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=l>POSTGRES_USER=postgres</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=l>POSTGRES_PASSWORD=b45CW2jTWuUKh26WKJf6ngO</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>redis</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>image</span><span class=p>:</span><span class=w> </span><span class=l>redis:alpine</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>restart</span><span class=p>:</span><span class=w> </span><span class=l>always</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>command</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=s2>&#34;sh&#34;</span><span class=p>,</span><span class=w> </span><span class=s2>&#34;-c&#34;</span><span class=p>,</span><span class=w> </span><span class=s2>&#34;redis-server --requirepass \&#34;$REDIS_PASSWORD\&#34;&#34;</span><span class=p>]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>env_file</span><span class=p>:</span><span class=w> </span><span class=l>.env</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>volumes</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=l>redis:/data/redis</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>ports</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=s1>&#39;6379:6379&#39;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>mailhog</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>image</span><span class=p>:</span><span class=w> </span><span class=l>mailhog/mailhog</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>ports</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=m>1025</span><span class=p>:</span><span class=m>1025</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=m>8025</span><span class=p>:</span><span class=m>8025</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>volumes</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>postgres</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>redis</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>packs</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>node_modules</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>cache</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>bundle</span><span class=p>:</span><span class=w>
+</span></span></span></code></pre></div><p>准备数据库</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>docker compose run --rm rails bundle <span class=nb>exec</span> rails db:chatwoot_prepare
 </span></span></code></pre></div><p>​启动</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>docker compose down
 </span></span><span class=line><span class=cl>docker compose up -d
 </span></span></code></pre></div><p>Access your installation
