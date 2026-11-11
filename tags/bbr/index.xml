@@ -9,7 +9,7 @@
       <url>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
-    <generator>Hugo -- 0.148.2</generator>
+    <generator>Hugo</generator>
     <language>zh</language>
     <lastBuildDate>Thu, 21 Dec 2017 01:37:56 +0800</lastBuildDate>
     <atom:link href="https://567899.xyz/tags/bbr/index.xml" rel="self" type="application/rss+xml" />
@@ -55,7 +55,8 @@
       <description>&lt;p&gt;整出了一个集合BBR、BBR魔改、BBR plus、锐速四合一的脚本
 本脚本支持KVM架构的VPS，不支持OpenVZ。&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;项目地址：(&lt;a href=&#34;https://github.com/cx9208/Linux-NetSpeed&#34;&gt;https://github.com/cx9208/Linux-NetSpeed&lt;/a&gt;)&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;项目地址：(&lt;a href=&#34;https://github.com/cx9208/Linux-NetSpeed&#34;&gt;https://github.com/cx9208/Linux-NetSpeed&lt;/a&gt;)&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;h1 id=&#34;安装&#34;&gt;安装&lt;/h1&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;wget https://github.com/ojbk8/Linux-NetSpeed/raw/master/tcp.sh
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;chmod +x tcp.sh

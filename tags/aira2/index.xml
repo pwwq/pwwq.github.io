@@ -9,7 +9,7 @@
       <url>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
-    <generator>Hugo -- 0.148.2</generator>
+    <generator>Hugo</generator>
     <language>zh</language>
     <lastBuildDate>Fri, 08 Feb 2019 01:37:56 +0800</lastBuildDate>
     <atom:link href="https://567899.xyz/tags/aira2/index.xml" rel="self" type="application/rss+xml" />
@@ -52,7 +52,8 @@
 &lt;p&gt;系统支持: CentOS6+ / Debian6+ / Ubuntu14+&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;wget -N --no-check-certificate https://raw.githubusercontent.com/ojbk8/doubi/master/aria2.sh &lt;span class=&#34;o&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; chmod +x aria2.sh &lt;span class=&#34;o&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; bash aria2.sh
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
-&lt;p&gt;Aria2下载为什么会多出一个.aria2后缀的文件？&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;Aria2下载为什么会多出一个.aria2后缀的文件？&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;找到force-save参数，进行设置&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;force-save=true&lt;/code&gt; 会保存文件下载历史,但会在下载目录产生同名.aria2文件&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;force-save=false&lt;/code&gt;不产生同名.aria2文件,同时也不能能保存下载历史&lt;/p&gt;
@@ -60,7 +61,7 @@
 &lt;p&gt;原理是当下载完后&lt;code&gt;aria2&lt;/code&gt;会给脚本传3个参数&lt;code&gt;$1&lt;/code&gt;、&lt;code&gt;$2&lt;/code&gt;、&lt;code&gt;$3&lt;/code&gt;分别为&lt;code&gt;gid&lt;/code&gt;、文件数量、文件路径。我们对文件路径这个字符串处理一番就可以达到目的了。&lt;/p&gt;
 &lt;p&gt;新建脚本文件&lt;code&gt;rcloneupload.sh&lt;/code&gt;并复制下面代码：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cp&#34;&gt;#!/bin/bash
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cp&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;downloadpath&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;/root/Download&amp;#39;&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;#需要上传的目录，Aria2下载目录&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;downloadpath&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;/root/Download&amp;#39;&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;#需要上传的目录，Aria2下载目录&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;name&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;rclonename&amp;#39;&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;#配置Rclone时填写的name&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;folder&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;/rclone&amp;#39;&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;#网盘里的文件夹，留空为整个网盘。&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;MinSize&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;0.01k&amp;#39;&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;#限制最低上传大小，默认10k，BT下载时可防止上传其他无用文件。会删除文件，谨慎设置。&lt;/span&gt;

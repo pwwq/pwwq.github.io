@@ -9,7 +9,7 @@
       <url>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
-    <generator>Hugo -- 0.148.2</generator>
+    <generator>Hugo</generator>
     <language>zh</language>
     <lastBuildDate>Sat, 16 Aug 2025 13:45:17 +0800</lastBuildDate>
     <atom:link href="https://567899.xyz/tags/docker/index.xml" rel="self" type="application/rss+xml" />
@@ -309,40 +309,40 @@
       <guid>https://567899.xyz/post/alist-vaultwarden-fly-io/</guid>
       <description>&lt;p&gt;现在&lt;a href=&#34;https://fly.io/app/sign-in&#34;&gt;注册fly.io账号&lt;/a&gt;&lt;strong&gt;需要绑定信用卡并验证(扣款10刀以下随机金额)后方可&lt;/strong&gt;免费试用三个256MB内存的服务,每个1GB大小，最多3G的持久化存储&lt;/p&gt;
 &lt;table&gt;
-  &lt;thead&gt;
-      &lt;tr&gt;
-          &lt;th&gt;分类&lt;/th&gt;
-          &lt;th&gt;限额&lt;/th&gt;
-          &lt;th&gt;说明&lt;/th&gt;
-      &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-      &lt;tr&gt;
-          &lt;td&gt;VM: shared-cpu&lt;/td&gt;
-          &lt;td&gt;每个月 2340 小时&lt;/td&gt;
-          &lt;td&gt;可以全天候运行 3 个 256 MB 内存的共享 CPU 的 VM&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;Volumes&lt;/td&gt;
-          &lt;td&gt;3GB&lt;/td&gt;
-          &lt;td&gt;提供 3GB 永久存储&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;Bandwidth&lt;/td&gt;
-          &lt;td&gt;160 GB/每月&lt;/td&gt;
-          &lt;td&gt;亚洲、印度30G，美国、欧洲100G的outbound流量&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;Anycast IPs&lt;/td&gt;
-          &lt;td&gt;无限的 IPv6, 每个应用一个 IPv4&lt;/td&gt;
-          &lt;td&gt;每一个额外的 IPv4 地址需要额外每个月 $2&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;Certificates&lt;/td&gt;
-          &lt;td&gt;10 个活跃的证书&lt;/td&gt;
-          &lt;td&gt;最多 10 个证书&lt;/td&gt;
-      &lt;/tr&gt;
-  &lt;/tbody&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;分类&lt;/th&gt;
+					&lt;th&gt;限额&lt;/th&gt;
+					&lt;th&gt;说明&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;VM: shared-cpu&lt;/td&gt;
+					&lt;td&gt;每个月 2340 小时&lt;/td&gt;
+					&lt;td&gt;可以全天候运行 3 个 256 MB 内存的共享 CPU 的 VM&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;Volumes&lt;/td&gt;
+					&lt;td&gt;3GB&lt;/td&gt;
+					&lt;td&gt;提供 3GB 永久存储&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;Bandwidth&lt;/td&gt;
+					&lt;td&gt;160 GB/每月&lt;/td&gt;
+					&lt;td&gt;亚洲、印度30G，美国、欧洲100G的outbound流量&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;Anycast IPs&lt;/td&gt;
+					&lt;td&gt;无限的 IPv6, 每个应用一个 IPv4&lt;/td&gt;
+					&lt;td&gt;每一个额外的 IPv4 地址需要额外每个月 $2&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;Certificates&lt;/td&gt;
+					&lt;td&gt;10 个活跃的证书&lt;/td&gt;
+					&lt;td&gt;最多 10 个证书&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
 &lt;/table&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;https://fly.io/docs/about/pricing/&#34;&gt;资源定价&lt;/a&gt;&lt;/li&gt;
@@ -421,9 +421,11 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;然后就可以访问  &lt;a href=&#34;http://localhost:8923&#34;&gt;http://localhost:8923&lt;/a&gt;  网页管理签到&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;8923&lt;/code&gt;端口可以随意，只要不被其它应用占用即可，&lt;code&gt;/root/qiandao&lt;/code&gt;宿主机配置文件目录&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;备份数据库&lt;/strong&gt;只需要备份&lt;code&gt;/root/qiandao&lt;/code&gt;目录下的&lt;code&gt;database.db&lt;/code&gt;这个文件即可；&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;备份数据库&lt;/strong&gt;只需要备份&lt;code&gt;/root/qiandao&lt;/code&gt;目录下的&lt;code&gt;database.db&lt;/code&gt;这个文件即可；&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;还原数据库&lt;/strong&gt;只需要先暂停&lt;code&gt;docker stop qiandao&lt;/code&gt;然后将&lt;code&gt;database.db&lt;/code&gt;复制替换掉原来&lt;code&gt;/root/qiandao&lt;/code&gt;目录下的&lt;code&gt;database.db&lt;/code&gt;这个文件。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;还原数据库&lt;/strong&gt;只需要先暂停&lt;code&gt;docker stop qiandao&lt;/code&gt;然后将&lt;code&gt;database.db&lt;/code&gt;复制替换掉原来&lt;code&gt;/root/qiandao&lt;/code&gt;目录下的&lt;code&gt;database.db&lt;/code&gt;这个文件。&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;启动容器&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker start qiandao
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;停止容器&lt;/p&gt;
@@ -446,7 +448,9 @@
 &lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://567899.xyz/images/har_attendance.png&#34;&gt;&lt;/p&gt;
 &lt;p&gt;编辑HAR模板文件&lt;/p&gt;
 &lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://567899.xyz/images/har_355.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;Request Headers&lt;/code&gt;全部勾选；&lt;code&gt;cookie&lt;/code&gt;填写为&lt;code&gt;{{cookie}}&lt;/code&gt;；&lt;code&gt;Cookies&lt;/code&gt;全部删除；&lt;/p&gt;</description>
+&lt;p&gt;&lt;code&gt;Request Headers&lt;/code&gt;全部勾选；&lt;code&gt;cookie&lt;/code&gt;填写为&lt;code&gt;{{cookie}}&lt;/code&gt;；&lt;code&gt;Cookies&lt;/code&gt;全部删除；&lt;/p&gt;
+&lt;p&gt;切换到&lt;code&gt;测试/Test&lt;/code&gt;在&lt;code&gt;Variables&lt;/code&gt;选项&lt;code&gt;ADD&lt;/code&gt;中添加&lt;code&gt;name&lt;/code&gt;为&lt;code&gt;cookie&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://567899.xyz/images/har_Variables.png&#34;&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>docker创建删除使用容器或镜像</title>

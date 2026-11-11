@@ -9,7 +9,7 @@
       <url>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
-    <generator>Hugo -- 0.148.2</generator>
+    <generator>Hugo</generator>
     <language>zh</language>
     <lastBuildDate>Thu, 17 May 2018 01:37:56 +0800</lastBuildDate>
     <atom:link href="https://567899.xyz/tags/gitbook/index.xml" rel="self" type="application/rss+xml" />
@@ -19,7 +19,8 @@
       <pubDate>Thu, 17 May 2018 01:37:56 +0800</pubDate>
       <guid>https://567899.xyz/post/gitbook-install-plugin/</guid>
       <description>&lt;blockquote&gt;
-&lt;p&gt;gitbook安装使用插件教程&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;gitbook安装使用插件教程&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;h2 id=&#34;安装gitbook&#34;&gt;安装gitbook&lt;/h2&gt;
 &lt;p&gt;先下载安装&lt;a href=&#34;https://nodejs.org/zh-cn/&#34;&gt;Node.js&lt;/a&gt;,然后&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;npm install -g gitbook-cli

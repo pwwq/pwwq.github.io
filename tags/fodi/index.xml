@@ -9,7 +9,7 @@
       <url>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
-    <generator>Hugo -- 0.148.2</generator>
+    <generator>Hugo</generator>
     <language>zh</language>
     <lastBuildDate>Fri, 07 Feb 2020 01:37:56 +0800</lastBuildDate>
     <atom:link href="https://567899.xyz/tags/fodi/index.xml" rel="self" type="application/rss+xml" />
@@ -19,7 +19,8 @@
       <pubDate>Fri, 07 Feb 2020 01:37:56 +0800</pubDate>
       <guid>https://567899.xyz/post/fodi/</guid>
       <description>&lt;blockquote&gt;
-&lt;p&gt;Github地址：https://github.com/vcheckzen/FODI&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;Github地址：https://github.com/vcheckzen/FODI&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;预览 &lt;a href=&#34;https://logi.im/fodi.html&#34;&gt;DEMO&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id=&#34;获取-refresh_token&#34;&gt;获取 refresh_token&lt;/h2&gt;
 &lt;p&gt;&lt;a href=&#34;https://service-36wivxsc-1256127833.ap-hongkong.apigateway.myqcloud.com/release/scf_onedrive_filelistor&#34;&gt;国际版、个人版、家庭版&lt;/a&gt;  、 &lt;a href=&#34;https://service-gzs9xkdm-1256127833.ap-hongkong.apigateway.myqcloud.com/release/onedrive-token-cn&#34;&gt;中国世纪互联版&lt;/a&gt;&lt;/p&gt;

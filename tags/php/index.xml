@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>PHP on Xizi&#39;s Blog</title>
+    <title>Php on Xizi&#39;s Blog</title>
     <link>https://567899.xyz/tags/php/</link>
-    <description>Recent content in PHP on Xizi&#39;s Blog</description>
+    <description>Recent content in Php on Xizi&#39;s Blog</description>
     <image>
       <title>Xizi&#39;s Blog</title>
       <url>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
-    <generator>Hugo -- 0.148.2</generator>
+    <generator>Hugo</generator>
     <language>zh</language>
     <lastBuildDate>Mon, 02 Sep 2024 17:40:38 +0000</lastBuildDate>
     <atom:link href="https://567899.xyz/tags/php/index.xml" rel="self" type="application/rss+xml" />
@@ -34,7 +34,8 @@
 &lt;h3 id=&#34;搭建hy2tuicvmess&#34;&gt;搭建hy2,tuic,vmess&lt;/h3&gt;
 &lt;p&gt;提前在面板添加1个tcp端口给vmess使用,2个udp端口分别给tuic和hy2用&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&#34;https://github.com/yixiu001/serv00-singbox&#34;&gt;https://github.com/yixiu001/serv00-singbox&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/yixiu001/serv00-singbox&#34;&gt;https://github.com/yixiu001/serv00-singbox&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;wget https://raw.githubusercontent.com/yixiu001/serv00-singbox/main/yixiu.sh
 chmod +x yixiu.sh
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;编辑&lt;code&gt;yixiu.sh&lt;/code&gt;修改tcp与udp端口为面板对应添加的端口,修改uuid为自己的&lt;/p&gt;
@@ -48,7 +49,8 @@ chmod +x yixiu.sh
 &lt;h3 id=&#34;搭建vmessargo&#34;&gt;搭建vmess+argo&lt;/h3&gt;
 &lt;p&gt;如果ip端口被xxx了,可套用cloudflare的argo,实现CDN减速&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&#34;https://github.com/eooce/scripts&#34;&gt;https://github.com/eooce/scripts&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/eooce/scripts&#34;&gt;https://github.com/eooce/scripts&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;vmess-ws-tls(argo)一键脚本&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;必填变量：PORT=TCP端口&lt;/li&gt;
@@ -75,7 +77,8 @@ chmod +x yixiu.sh
 &lt;/ol&gt;
 &lt;h2 id=&#34;密码设置&#34;&gt;密码设置&lt;/h2&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Warning: Please set your own username and password in $auth_users before use. password is encrypted with password_hash(). to generate new password hash &lt;a href=&#34;https://tinyfilemanager.github.io/docs/pwd.html&#34;&gt;here&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;Warning: Please set your own username and password in $auth_users before use. password is encrypted with password_hash(). to generate new password hash &lt;a href=&#34;https://tinyfilemanager.github.io/docs/pwd.html&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;h2 id=&#34;站点目录权限设置&#34;&gt;站点目录、权限设置&lt;/h2&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-php&#34; data-lang=&#34;php&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;chown&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;R&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;www&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;data&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;www&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;data&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;var&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;www&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;example&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;com&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;chmod&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;775&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;var&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;www&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;example&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;com&lt;/span&gt;
@@ -115,7 +118,8 @@ chmod +x yixiu.sh
       <guid>https://567899.xyz/post/dujiaoka/</guid>
       <description>&lt;p&gt;纯净系统纯手工打造独角数卡发卡站点环境，抛弃各种面板、一键网站环境。&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&#34;https://github.com/assimon/dujiaoka&#34;&gt;https://github.com/assimon/dujiaoka&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/assimon/dujiaoka&#34;&gt;https://github.com/assimon/dujiaoka&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;h2 id=&#34;支付接口已集成&#34;&gt;支付接口已集成&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 支付宝当面付&lt;/li&gt;
@@ -178,7 +182,7 @@ chmod +x yixiu.sh
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;nano example.com.sh
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;内容如下&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cp&#34;&gt;#!/bin/bash
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cp&#34;&gt;&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# 创建站点目录和默认页面&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 创建站点目录和默认页面&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;mkdir /var/www/example.com
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;chown -R www-data:www-data /var/www/example.com
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;hello word&amp;#34;&lt;/span&gt; &amp;gt; /var/www/example.com/index.html
@@ -261,14 +265,16 @@ chmod +x yixiu.sh
 &lt;p&gt;Ond?ej Sury 的 PHP PPA 为 Ubuntu 16.04/14.04 提供了 PHP7.2 版本，同时也有通过个人网站为 Debian 9/8 提供 PHP7.2 版本，因此 Ubuntu 是源于 Debian 所以基本可以通用，同时维护难度较低，软件源安装的 PHP 默认以 Unix Socket 的状态运行在 /run/php/php7.1-fpm.sock，比使用 TCP 以 localhost:9000 的方式性能更好。&lt;/p&gt;
 &lt;h1 id=&#34;添加软件源&#34;&gt;添加软件源&lt;/h1&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Ubuntu安装软件源拓展工具：&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;Ubuntu安装软件源拓展工具：&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;apt -y install software-properties-common apt-transport-https lsb-release ca-certificates
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;添加 Ond?ej Sury 的 PHP PPA 源，需要按一次回车：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;add-apt-repository ppa:ondrej/php
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;更新软件源缓存：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;apt update
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
-&lt;p&gt;Debian安装软件源拓展工具：&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;Debian安装软件源拓展工具：&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;apt -y install software-properties-common apt-transport-https lsb-release ca-certificates
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;添加 GPG&lt;/p&gt;</description>
     </item>

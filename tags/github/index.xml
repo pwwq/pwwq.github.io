@@ -9,7 +9,7 @@
       <url>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
-    <generator>Hugo -- 0.148.2</generator>
+    <generator>Hugo</generator>
     <language>zh</language>
     <lastBuildDate>Sun, 12 Jan 2020 01:37:56 +0800</lastBuildDate>
     <atom:link href="https://567899.xyz/tags/github/index.xml" rel="self" type="application/rss+xml" />
@@ -47,7 +47,8 @@
 &lt;li&gt;全新环境（杜绝编译环境不干净导致编译失败）&lt;/li&gt;
 &lt;/ol&gt;
 &lt;blockquote&gt;
-&lt;p&gt;本解决方案是一个开放平台，任何人都可以基于此打造自己专属的编译方案。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;本解决方案是一个开放平台，任何人都可以基于此打造自己专属的编译方案。&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;h2 id=&#34;项目地址&#34;&gt;项目地址&lt;/h2&gt;
 &lt;p&gt;&lt;a href=&#34;https://github.com/P3TERX/Actions-OpenWrt&#34;&gt;https://github.com/P3TERX/Actions-OpenWrt&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;支持项目请随手点个 star，让更多的人发现、使用并受益。&lt;/p&gt;
@@ -57,7 +58,8 @@
 &lt;li&gt;搭建编译环境，用于生成&lt;code&gt;.config&lt;/code&gt;文件。(可选)&lt;/li&gt;
 &lt;/ul&gt;
 &lt;blockquote&gt;
-&lt;p&gt;TIPS: 关于编译环境的搭建，推荐去看我之前写的相关文章，Win­dows 10 可以使用 WSL ，ma­cOS、Linux 可以使用 Docker 。&lt;/p&gt;</description>
+&lt;p&gt;TIPS: 关于编译环境的搭建，推荐去看我之前写的相关文章，Win­dows 10 可以使用 WSL ，ma­cOS、Linux 可以使用 Docker 。&lt;/p&gt;
+&lt;/blockquote&gt;</description>
     </item>
     <item>
       <title>推送发布到GitHub及错误提示</title>
@@ -109,7 +111,8 @@
       <guid>https://567899.xyz/post/hugo-travis-ci-deploy-github-pages-automatically/</guid>
       <description>&lt;p&gt;個人Blog採用靜態Blog形式託管在[Github][github]上。此前使用的是[Hexo][hexo]，因其包依賴關係複雜，部署流程繁瑣，故將整個部署環境封裝到Docker鏡像中以實現快速部署，但仍較爲繁瑣。現轉用執行速度快、操作簡便的[Hugo][hugo]。本文記錄如何在GNU/Linux中通過[Travis CI][travisci]將[Hugo][hugo]生成的Blog內容自動同步到[Github][github]，實現持續集成、部署。&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;转载自 &lt;a href=&#34;https://axdlog.com/zh/2018/using-hugo-and-travis-ci-to-deploy-blog-to-github-pages-automatically/&#34;&gt;利用Travis CI和Hugo將Blog自動部署到Github Pages&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;转载自 &lt;a href=&#34;https://axdlog.com/zh/2018/using-hugo-and-travis-ci-to-deploy-blog-to-github-pages-automatically/&#34;&gt;利用Travis CI和Hugo將Blog自動部署到Github Pages&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;h2 id=&#34;官方文檔&#34;&gt;官方文檔&lt;/h2&gt;
 &lt;p&gt;本文中的相關操作皆以官方文檔爲操作依據&lt;/p&gt;
 &lt;ul&gt;
@@ -137,7 +140,8 @@
 &lt;/ul&gt;
 &lt;h2 id=&#34;github-pages-限制&#34;&gt;GitHub Pages 限制&lt;/h2&gt;
 &lt;blockquote&gt;
-&lt;p&gt;GitHub Pages is a static site hosting service designed to host your personal, organization, or project pages directly from a GitHub repository.&lt;/p&gt;</description>
+&lt;p&gt;GitHub Pages is a static site hosting service designed to host your personal, organization, or project pages directly from a GitHub repository.&lt;/p&gt;
+&lt;/blockquote&gt;</description>
     </item>
     <item>
       <title>Linux下如何管理多个ssh密钥对github公钥私钥</title>

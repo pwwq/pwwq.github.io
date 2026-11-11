@@ -9,7 +9,7 @@
       <url>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
-    <generator>Hugo -- 0.148.2</generator>
+    <generator>Hugo</generator>
     <language>zh</language>
     <lastBuildDate>Sat, 23 Feb 2019 01:37:56 +0800</lastBuildDate>
     <atom:link href="https://567899.xyz/tags/systemctl/index.xml" rel="self" type="application/rss+xml" />
@@ -21,7 +21,8 @@
       <description>&lt;p&gt;使用&lt;code&gt;update-rc.d&lt;/code&gt;以及&lt;code&gt;rc.local&lt;/code&gt;等方法就是不生效。后来在ubuntu的官方论坛ubuntu-16.10开始不再使用initd管理系统改用systemd&lt;/p&gt;
 &lt;p&gt;ubuntu-18.04 LTS版本用的是systemctl命令来替换了service和chkconfig的功能。&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;systemd is now used for user sessions. System sessions had already been provided by systemd in previous Ubuntu releases.&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;systemd is now used for user sessions. System sessions had already been provided by systemd in previous Ubuntu releases.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;比如以前启动 mysql 服务用:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo service mysql start
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;现在用：&lt;/p&gt;

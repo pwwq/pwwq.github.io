@@ -9,7 +9,7 @@
       <url>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
-    <generator>Hugo -- 0.148.2</generator>
+    <generator>Hugo</generator>
     <language>zh</language>
     <lastBuildDate>Thu, 10 Oct 2019 01:37:56 +0800</lastBuildDate>
     <atom:link href="https://567899.xyz/categories/free/index.xml" rel="self" type="application/rss+xml" />
@@ -32,8 +32,10 @@
 &lt;p&gt;&lt;strong&gt;创建免费计算实例&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;可以手动创建，也可以使用API或者浏览器脚本刷鸡。&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;通过oracle API方式刷鸡&lt;/p&gt;&lt;/blockquote&gt;
-&lt;p&gt;依次打开【计算】【实例】【创建实例】&lt;/p&gt;</description>
+&lt;p&gt;通过oracle API方式刷鸡&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;依次打开【计算】【实例】【创建实例】&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://567899.xyz/images/oracle_new_vm.png&#34;&gt;&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

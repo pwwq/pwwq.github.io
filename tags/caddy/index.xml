@@ -9,7 +9,7 @@
       <url>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
-    <generator>Hugo -- 0.148.2</generator>
+    <generator>Hugo</generator>
     <language>zh</language>
     <lastBuildDate>Sun, 24 May 2020 01:37:56 +0800</lastBuildDate>
     <atom:link href="https://567899.xyz/tags/caddy/index.xml" rel="self" type="application/rss+xml" />
@@ -19,7 +19,8 @@
       <pubDate>Sun, 24 May 2020 01:37:56 +0800</pubDate>
       <guid>https://567899.xyz/post/caddy2/</guid>
       <description>&lt;blockquote&gt;
-&lt;p&gt;使用Caddy 2的安装、配置gzip,websocket,redir,PHP,basicauth搭建一个简单的WEB网站。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;使用Caddy 2的安装、配置gzip,websocket,redir,PHP,basicauth搭建一个简单的WEB网站。&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;Caddy V2版本改动较大，详见&lt;a href=&#34;https://caddyserver.com/docs/v2-upgrade&#34;&gt;Upgrading to Caddy 2&lt;/a&gt;配置文件Caddyfile、JSON与Caddy v1不兼容。许多小伙伴们吐槽在开倒车，可视自己的需求决定是否升级到Caddy2,详情参考Caddy官网&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;https://caddyserver.com&#34;&gt;https://caddyserver.com&lt;/a&gt;&lt;/li&gt;
@@ -29,7 +30,7 @@
 &lt;p&gt;&lt;a href=&#34;https://caddyserver.com/docs/download&#34;&gt;Caddy下载安装&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Debian, Ubuntu, Raspbian&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;deb [trusted=yes] https://apt.fury.io/caddy/ /&amp;#34;&lt;/span&gt; &lt;span class=&#34;se&#34;&gt;\
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;    &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; tee -a /etc/apt/sources.list.d/caddy-fury.list
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; tee -a /etc/apt/sources.list.d/caddy-fury.list
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;apt update
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;apt install caddy
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Fedora or RHEL/CentOS 8:&lt;/p&gt;

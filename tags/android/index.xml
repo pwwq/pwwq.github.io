@@ -9,7 +9,7 @@
       <url>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
-    <generator>Hugo -- 0.148.2</generator>
+    <generator>Hugo</generator>
     <language>zh</language>
     <lastBuildDate>Thu, 20 Jun 2024 09:44:56 +0800</lastBuildDate>
     <atom:link href="https://567899.xyz/tags/android/index.xml" rel="self" type="application/rss+xml" />
@@ -83,7 +83,8 @@ fastboot reboot
       <pubDate>Mon, 20 Feb 2023 09:37:56 +0800</pubDate>
       <guid>https://567899.xyz/post/tinyproxy_baidu_uc_ip_magisk/</guid>
       <description>&lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&#34;https://github.com/EternalPain/ZJL&#34;&gt;https://github.com/EternalPain/ZJL&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/EternalPain/ZJL&#34;&gt;https://github.com/EternalPain/ZJL&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;&lt;a href=&#34;https://567899.xyz/uploads/ZJL2.0beta30_clnc_UC_magisk.zip&#34;&gt;ZJL2.0beta30_clncUC动态(联通)_magisk&lt;/a&gt;、&lt;a href=&#34;https://567899.xyz/uploads/ZJL2.0beta30_clnc_baidu_magisk.zip&#34;&gt;ZJL2.0beta30_clnc百度直连_magisk&lt;/a&gt;、&lt;a href=&#34;https://567899.xyz/uploads/ZJL2.0beta30_cns_baidu_speed.zip&#34;&gt;ZJL2.0beta30_cns 百度直连不限制网速&lt;/a&gt; 三选一即可，安装完重启手机后进入目录&lt;code&gt;/data/ZJL2.0_magisk&lt;/code&gt;修改编辑文件conf并执行&lt;code&gt;开启.sh&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;TinyProxy官方版：&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://www.lanzoui.com/b004yxdhc&#34;&gt;https://www.lanzoui.com/b004yxdhc&lt;/a&gt; 密码5fgw&lt;/p&gt;
@@ -182,7 +183,8 @@ fastboot reboot
 &lt;p&gt;&lt;strong&gt;前提条件&lt;/strong&gt;
 &lt;code&gt;VPN 热点&lt;/code&gt;这个软件必须有root权限&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Android安卓手机如何ROOT？&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;Android安卓手机如何ROOT？&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;方法在&lt;a href=&#34;https://www.google.com&#34;&gt;Google&lt;/a&gt;中输入&lt;code&gt;手机机型+root&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;常规的思路是解锁后用第三方&lt;a href=&#34;https://twrp.me&#34;&gt;TWRP-recovery&lt;/a&gt;卡刷&lt;a href=&#34;https://github.com/topjohnwu/Magisk/releases&#34;&gt;Magisk&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;如果不能用可尝试【全局】或者关闭【分应用代理】或者在【设置选项】关闭【网络共享硬件加速】&lt;/strong&gt;&lt;/p&gt;
@@ -203,8 +205,8 @@ or &lt;a href=&#34;https://labs.xda-developers.com/store/app/be.mygod.vpnhotspot
       <description>&lt;p&gt;如有侵权，请联系我&lt;a href=&#34;mailto:admin@567899.xyz&#34;&gt;E-mail&lt;/a&gt;删除。谢谢!&lt;/p&gt;
 &lt;hr&gt;
 &lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;&gt;
-      &lt;iframe allow=&#34;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen&#34; loading=&#34;eager&#34; referrerpolicy=&#34;strict-origin-when-cross-origin&#34; src=&#34;https://www.youtube.com/embed/0RKpf3rK57I?autoplay=0&amp;amp;controls=1&amp;amp;end=0&amp;amp;loop=0&amp;amp;mute=0&amp;amp;start=0&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; title=&#34;YouTube video&#34;&gt;&lt;/iframe&gt;
-    &lt;/div&gt;
+			&lt;iframe allow=&#34;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen&#34; loading=&#34;eager&#34; referrerpolicy=&#34;strict-origin-when-cross-origin&#34; src=&#34;https://www.youtube.com/embed/0RKpf3rK57I?autoplay=0&amp;amp;controls=1&amp;amp;end=0&amp;amp;loop=0&amp;amp;mute=0&amp;amp;start=0&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; title=&#34;YouTube video&#34;&gt;&lt;/iframe&gt;
+		&lt;/div&gt;
 
 &lt;p&gt;记录下自己的VPS常用操作&lt;/p&gt;
 &lt;h2 id=&#34;配置ssh使用密钥key登陆&#34;&gt;配置SSH使用密钥KEY登陆&lt;/h2&gt;

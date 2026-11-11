@@ -9,7 +9,7 @@
       <url>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
-    <generator>Hugo -- 0.148.2</generator>
+    <generator>Hugo</generator>
     <language>zh</language>
     <lastBuildDate>Wed, 11 Apr 2018 01:37:56 +0800</lastBuildDate>
     <atom:link href="https://567899.xyz/tags/hexo/index.xml" rel="self" type="application/rss+xml" />
@@ -56,25 +56,25 @@
 &lt;h2 id=&#34;域名解析&#34;&gt;域名解析&lt;/h2&gt;
 &lt;p&gt;登陆&lt;a href=&#34;https://www.dnspod.cn&#34;&gt;DNSPOD控制台&lt;/a&gt;  在域名添加2条记录值&lt;/p&gt;
 &lt;table&gt;
-  &lt;thead&gt;
-      &lt;tr&gt;
-          &lt;th&gt;记录类型&lt;/th&gt;
-          &lt;th&gt;线路类型&lt;/th&gt;
-          &lt;th&gt;记录值&lt;/th&gt;
-      &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-      &lt;tr&gt;
-          &lt;td&gt;CNAME&lt;/td&gt;
-          &lt;td&gt;国外&lt;/td&gt;
-          &lt;td&gt;username.github.io&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;CNAME&lt;/td&gt;
-          &lt;td&gt;国内&lt;/td&gt;
-          &lt;td&gt;username.coding.me&lt;/td&gt;
-      &lt;/tr&gt;
-  &lt;/tbody&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;记录类型&lt;/th&gt;
+					&lt;th&gt;线路类型&lt;/th&gt;
+					&lt;th&gt;记录值&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;CNAME&lt;/td&gt;
+					&lt;td&gt;国外&lt;/td&gt;
+					&lt;td&gt;username.github.io&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;CNAME&lt;/td&gt;
+					&lt;td&gt;国内&lt;/td&gt;
+					&lt;td&gt;username.coding.me&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
 &lt;/table&gt;</description>
     </item>
     <item>

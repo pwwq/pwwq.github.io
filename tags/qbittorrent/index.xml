@@ -9,7 +9,7 @@
       <url>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
-    <generator>Hugo -- 0.148.2</generator>
+    <generator>Hugo</generator>
     <language>zh</language>
     <lastBuildDate>Thu, 23 Dec 2021 19:13:56 +0800</lastBuildDate>
     <atom:link href="https://567899.xyz/tags/qbittorrent/index.xml" rel="self" type="application/rss+xml" />
@@ -19,7 +19,8 @@
       <pubDate>Thu, 23 Dec 2021 19:13:56 +0800</pubDate>
       <guid>https://567899.xyz/post/flexget/</guid>
       <description>&lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&#34;https://flexget.com&#34;&gt;https://flexget.com&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;https://flexget.com&#34;&gt;https://flexget.com&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;flexget解决了PT客户端没有RSS订阅功能，实现全自动添加种子任务到&lt;a href=&#34;https://567899.xyz/post/qbittorrent/&#34;&gt;qbittorrent&lt;/a&gt;、 &lt;a href=&#34;https://567899.xyz/post/transmission/&#34;&gt;transmission&lt;/a&gt;、 deluge等客户端上,配合&lt;a href=&#34;https://567899.xyz/post/autoremove-torrents/&#34;&gt;使用autoremove-torrents自动删除PT种子文件&lt;/a&gt;简直是PT党刷上传流量的必备神器&lt;/p&gt;
 &lt;h2 id=&#34;安装flexget&#34;&gt;安装flexget&lt;/h2&gt;
 &lt;p&gt;从pip安装&lt;/p&gt;

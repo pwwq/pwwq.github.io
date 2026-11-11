@@ -9,7 +9,7 @@
       <url>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
       <link>https://567899.xyz/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
-    <generator>Hugo -- 0.148.2</generator>
+    <generator>Hugo</generator>
     <language>zh</language>
     <lastBuildDate>Wed, 12 Jul 2017 01:37:56 +0800</lastBuildDate>
     <atom:link href="https://567899.xyz/tags/ssh/index.xml" rel="self" type="application/rss+xml" />
@@ -25,28 +25,29 @@
 &lt;li&gt;禁止密码登陆&lt;/li&gt;
 &lt;/ol&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Linux生成密钥对&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;Linux生成密钥对&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ssh-keygen
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;table&gt;
-  &lt;thead&gt;
-      &lt;tr&gt;
-          &lt;th&gt;文件&lt;/th&gt;
-          &lt;th&gt;类型&lt;/th&gt;
-          &lt;th&gt;路径&lt;/th&gt;
-      &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-      &lt;tr&gt;
-          &lt;td&gt;id_rsa&lt;/td&gt;
-          &lt;td&gt;私钥&lt;/td&gt;
-          &lt;td&gt;~/.ssh/id_rsa&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;id_rsa.pub&lt;/td&gt;
-          &lt;td&gt;公钥&lt;/td&gt;
-          &lt;td&gt;~/.ssh/id_rsa.pub&lt;/td&gt;
-      &lt;/tr&gt;
-  &lt;/tbody&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;文件&lt;/th&gt;
+					&lt;th&gt;类型&lt;/th&gt;
+					&lt;th&gt;路径&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;id_rsa&lt;/td&gt;
+					&lt;td&gt;私钥&lt;/td&gt;
+					&lt;td&gt;~/.ssh/id_rsa&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;id_rsa.pub&lt;/td&gt;
+					&lt;td&gt;公钥&lt;/td&gt;
+					&lt;td&gt;~/.ssh/id_rsa.pub&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
 &lt;/table&gt;
 &lt;h1 id=&#34;使用xshell生成密钥公钥&#34;&gt;使用Xshell生成密钥公钥&lt;/h1&gt;
 &lt;p&gt;&lt;a href=&#34;https://567899.xyz/uploads/XSHELL5.7z&#34;&gt;点击下载Xshell5&lt;/a&gt;依次点击菜单栏中的【工具】【新建用户密钥生成向导】&lt;/p&gt;
