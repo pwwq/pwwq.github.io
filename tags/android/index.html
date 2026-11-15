@@ -56,8 +56,6 @@ Android安卓手机如何ROOT？
 VPN Hotspot Connecting things to your VPN made simple. Share your VPN connection over hotspot or repeater. (root required)
 or XDA Labs
 ...</p></div><footer class=entry-footer><span title=2016-01-17T01:37:56+08:00>一月 17, 2016</span>&nbsp;·&nbsp;<span>admin</span></footer><a class=entry-link aria-label="post link to Android安卓手机VPN热点中继USB蓝牙网络共享" href=https://567899.xyz/post/android-vpn-hotspot/></a></article><article class="post-entry tag-entry"><header class=entry-header><h2 class=entry-hint-parent>关于</h2></header><div class=entry-content><p>如有侵权，请联系我E-mail删除。谢谢!
-{{/&lt; audio src="/music876e86ergretrfer.mp3" >/}}
-{{/&lt; video src="/ergrehtrytjuy65th.mp4" >/}}
 记录下自己的VPS常用操作
 配置SSH使用密钥KEY登陆 mkdir .ssh chmod 700 .ssh touch .ssh/authorized_keys chmod 600 .ssh/authorized_keys 写入公钥内容,(替换成自己的公钥)
 echo "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGhTW7kPvfXsrey74lG6BxdKMtKdn6Y1bgDLe++lB7xn" > .ssh/authorized_keys 修改SSH配置文件/etc/ssh/sshd_config启用KEY登陆
@@ -65,7 +63,8 @@ sed -i 's/#PubkeyAuthentication/PubkeyAuthentication/' /etc/ssh/sshd_config 重�
 service sshd restart /etc/init.d/ssh restart 退出SSH登陆，使用KEY如果能顺利登陆的话就禁用密码登陆
 sed -i 's/PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config 更改SSH端口号(慎重，请确保正确配置好了防火墙)
 sed -i 's/#Port 22/Port 6789/' /etc/ssh/sshd_config DD系统 安装依赖软件
-...</p></div><footer class=entry-footer><span title=2015-03-10T00:13:27+00:00>三月 10, 2015</span>&nbsp;·&nbsp;<span>156 字</span>&nbsp;·&nbsp;<span>admin</span></footer><a class=entry-link aria-label="post link to 关于" href=https://567899.xyz/about/></a></article></main><footer class=footer><span>&copy; 2026 <a href=https://567899.xyz/>Xizi's Blog</a></span> ·
+Debian/Ubuntu:
+...</p></div><footer class=entry-footer><span title=2015-03-10T00:13:27+00:00>三月 10, 2015</span>&nbsp;·&nbsp;<span>148 字</span>&nbsp;·&nbsp;<span>admin</span></footer><a class=entry-link aria-label="post link to 关于" href=https://567899.xyz/about/></a></article></main><footer class=footer><span>&copy; 2026 <a href=https://567899.xyz/>Xizi's Blog</a></span> ·
 <span>Powered by
 <a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
 <a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>

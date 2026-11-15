@@ -209,9 +209,13 @@ or &lt;a href=&#34;https://labs.xda-developers.com/store/app/be.mygod.vpnhotspot
 		&lt;/div&gt;
 
 &lt;hr&gt;
-&lt;p&gt;{{/&lt;em&gt;&amp;lt; audio src=&amp;quot;/music876e86ergretrfer.mp3&amp;quot; &amp;gt;&lt;/em&gt;/}}&lt;/p&gt;
+
+&lt;audio src=&#34;https://567899.xyz/music876e86ergretrfer.mp3&#34; controls muted loading=&#34;lazy&#34;&gt;&lt;/audio&gt;
+
 &lt;hr&gt;
-&lt;p&gt;{{/&lt;em&gt;&amp;lt; video src=&amp;quot;/ergrehtrytjuy65th.mp4&amp;quot; &amp;gt;&lt;/em&gt;/}}&lt;/p&gt;
+
+&lt;video src=&#34;https://567899.xyz/ergrehtrytjuy65th.mp4&#34; controls muted&gt;&lt;/video&gt;
+
 &lt;hr&gt;
 &lt;p&gt;记录下自己的VPS常用操作&lt;/p&gt;
 &lt;h2 id=&#34;配置ssh使用密钥key登陆&#34;&gt;配置SSH使用密钥KEY登陆&lt;/h2&gt;
@@ -231,7 +235,8 @@ or &lt;a href=&#34;https://labs.xda-developers.com/store/app/be.mygod.vpnhotspot
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;更改SSH端口号(慎重，请确保正确配置好了防火墙)&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sed -i &lt;span class=&#34;s1&#34;&gt;&amp;#39;s/#Port 22/Port 6789/&amp;#39;&lt;/span&gt; /etc/ssh/sshd_config
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;dd系统&#34;&gt;DD系统&lt;/h2&gt;
-&lt;p&gt;安装依赖软件&lt;/p&gt;</description>
+&lt;p&gt;安装依赖软件&lt;/p&gt;
+&lt;p&gt;Debian/Ubuntu:&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>
