@@ -79,6 +79,11 @@
 			&lt;iframe allow=&#34;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen&#34; loading=&#34;eager&#34; referrerpolicy=&#34;strict-origin-when-cross-origin&#34; src=&#34;https://www.youtube.com/embed/0RKpf3rK57I?autoplay=0&amp;amp;controls=1&amp;amp;end=0&amp;amp;loop=0&amp;amp;mute=0&amp;amp;start=0&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; title=&#34;YouTube video&#34;&gt;&lt;/iframe&gt;
 		&lt;/div&gt;
 
+&lt;hr&gt;
+&lt;p&gt;{{/&lt;em&gt;&amp;lt; audio src=&amp;quot;/music876e86ergretrfer.mp3&amp;quot; &amp;gt;&lt;/em&gt;/}}&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;{{/&lt;em&gt;&amp;lt; video src=&amp;quot;/ergrehtrytjuy65th.mp4&amp;quot; &amp;gt;&lt;/em&gt;/}}&lt;/p&gt;
+&lt;hr&gt;
 &lt;p&gt;记录下自己的VPS常用操作&lt;/p&gt;
 &lt;h2 id=&#34;配置ssh使用密钥key登陆&#34;&gt;配置SSH使用密钥KEY登陆&lt;/h2&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;mkdir .ssh
@@ -97,10 +102,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;更改SSH端口号(慎重，请确保正确配置好了防火墙)&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sed -i &lt;span class=&#34;s1&#34;&gt;&amp;#39;s/#Port 22/Port 6789/&amp;#39;&lt;/span&gt; /etc/ssh/sshd_config
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;dd系统&#34;&gt;DD系统&lt;/h2&gt;
-&lt;p&gt;安装依赖软件&lt;/p&gt;
-&lt;p&gt;Debian/Ubuntu:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;apt-get install -y xz-utils openssl gawk file
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;RedHat/CentOS:&lt;/p&gt;</description>
+&lt;p&gt;安装依赖软件&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>
